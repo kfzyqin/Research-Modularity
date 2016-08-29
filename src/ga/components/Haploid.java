@@ -1,3 +1,5 @@
+package ga.components;
+
 /**
  * Created by david on 26/08/16.
  */

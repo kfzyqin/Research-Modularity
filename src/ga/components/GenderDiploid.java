@@ -1,4 +1,7 @@
+package ga.components;
+
 import com.sun.istack.internal.NotNull;
+import ga.operations.DominanceMapping;
 
 import java.util.ArrayList;
 import java.util.Collections;

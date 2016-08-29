@@ -1,3 +1,8 @@
+package ga.operations;
+
+import ga.collections.Population;
+import ga.components.Chromosome;
+
 import java.util.List;
 
 /**

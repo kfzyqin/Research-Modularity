@@ -1,9 +1,13 @@
+package ga.components;
+
+import ga.others.Copyable;
+
 import java.util.Arrays;
 
 /**
  * Created by david on 26/08/16.
  */
-public abstract class Chromosome implements Copyable<Chromosome>{
+public abstract class Chromosome implements Copyable<Chromosome> {
 
     protected final int strands;
     protected final int length;

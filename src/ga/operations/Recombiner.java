@@ -1,3 +1,7 @@
+package ga.operations;
+
+import ga.components.Chromosome;
+
 import java.util.List;
 
 /**

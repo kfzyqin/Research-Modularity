@@ -1,4 +1,7 @@
+package ga.components;
+
 import com.sun.istack.internal.NotNull;
+import ga.operations.DominanceMapping;
 
 import java.util.LinkedList;
 import java.util.List;

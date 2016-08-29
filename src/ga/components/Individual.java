@@ -1,9 +1,13 @@
+package ga.components;
+
 import com.sun.istack.internal.NotNull;
+import ga.operations.Fitness;
+import ga.others.Copyable;
 
 /**
  * Created by david on 27/08/16.
  */
-public class Individual<T extends Chromosome> implements Comparable<Individual<T>>, Copyable<Individual<T>>{
+public class Individual<T extends Chromosome> implements Comparable<Individual<T>>, Copyable<Individual<T>> {
 
     private T chromosome;
     private double fitness = 0;

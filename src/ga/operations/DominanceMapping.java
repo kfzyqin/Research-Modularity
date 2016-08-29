@@ -1,3 +1,8 @@
+package ga.operations;
+
+import ga.components.Gene;
+import ga.others.Copyable;
+
 import java.util.List;
 
 /**

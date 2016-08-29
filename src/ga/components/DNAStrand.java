@@ -1,3 +1,7 @@
+package ga.components;
+
+import ga.others.Copyable;
+
 /**
  * Created by david on 26/08/16.
  */

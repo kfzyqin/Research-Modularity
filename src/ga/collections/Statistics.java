@@ -1,3 +1,7 @@
+package ga.collections;
+
+import ga.components.Chromosome;
+
 import java.util.List;
 import java.util.Map;
 

@@ -1,4 +1,10 @@
+package ga.frame;
+
 import com.sun.istack.internal.NotNull;
+import ga.collections.Population;
+import ga.collections.Statistics;
+import ga.components.Chromosome;
+import ga.operations.*;
 
 /**
  * Created by david on 29/08/16.

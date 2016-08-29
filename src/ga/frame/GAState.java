@@ -1,7 +1,12 @@
+package ga.frame;
+
 import com.sun.istack.internal.NotNull;
+import ga.collections.Population;
+import ga.collections.Statistics;
+import ga.components.Chromosome;
+import ga.operations.*;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by david on 27/08/16.
@@ -61,11 +66,6 @@ public class GAState<T extends Chromosome> {
     public Population<T> getPopulationCopy(){
         return population.copy();
     }
-
-    /*
-    public Map<String, List<T>> getElites(final int amount){
-        return population.getElites(amount);
-    }*/
 
     public int getGeneration() {
         return generation;

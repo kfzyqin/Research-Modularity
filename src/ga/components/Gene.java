@@ -1,9 +1,12 @@
+package ga.components;
+
 import com.sun.istack.internal.NotNull;
+import ga.others.Copyable;
 
 /**
  * Created by david on 26/08/16.
  */
-public final class Gene<T extends Comparable<T>> implements Copyable<Gene<T>>{
+public final class Gene<T extends Comparable<T>> implements Copyable<Gene<T>> {
 
     private final GeneConfig config;
     private final Class<T> tClass;

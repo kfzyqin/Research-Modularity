@@ -1,3 +1,7 @@
+package ga.operations;
+
+import ga.components.Chromosome;
+
 /**
  * Created by david on 26/08/16.
  */
