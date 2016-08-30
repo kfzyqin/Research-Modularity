@@ -28,10 +28,9 @@ public class Exp1Statistics implements Statistics<SequentialHaploid> {
     }
 
     @Override
-    public void record(Map<String, Object> data) {
-        if (data.keySet().contains(MessageKeys.ELITE.key)) {
-            generation++;
-            Individual<SequentialHaploid> elite = (Individual<SequentialHaploid>) data.get(MessageKeys.ELITE.key);
+    public void record(@NotNull final Map<String, Object> data) {
+        if (data.keySet().contains(Exp1MessageKeys.ELITE.key)) {
+            Individual<SequentialHaploid> elite = (Individual<SequentialHaploid>) data.get(Exp1MessageKeys.ELITE.key);
             elites.add(elite);
             if (generation == 1)
                 deltas.add(elite.getFitness());
@@ -41,30 +40,50 @@ public class Exp1Statistics implements Statistics<SequentialHaploid> {
     }
 
     @Override
-    public void request(final int generation,
-                        @NotNull final List<String> keys,
-                        @NotNull final Map<String, Object> data) {
-
-        if (generation > this.generation || generation < 0)
-            return;
-
-        if (keys.contains(MessageKeys.ELITE.key)) {
-            if (generation == 0)
-                data.put(MessageKeys.ELITE.key, Collections.unmodifiableList(elites));
+    public void record(@NotNull String key, Object object) {
+        if (key.equals(Exp1MessageKeys.ELITE.key)) {
+            if (generation == elites.size()-1)
+                elites.set(elites.size()-1, (Individual<SequentialHaploid>) object);
             else
-                data.put(MessageKeys.ELITE.key, elites.get(generation - 1));
-        }
-
-        if (keys.contains(MessageKeys.DELTA.key)) {
-            if (generation == 0)
-                data.put(MessageKeys.DELTA.key, Collections.unmodifiableList(deltas));
-            else
-                data.put(MessageKeys.DELTA.key, deltas.get(generation - 1));
+                elites.add((Individual<SequentialHaploid>)object);
         }
     }
 
     @Override
-    public void save(final String filename) {
+    public void request(final int generation,
+                        @NotNull final List<String> keys,
+                        @NotNull final Map<String, Object> data) {
+
+        if (generation > this.generation || generation < -1)
+            return;
+
+        if (keys.contains(Exp1MessageKeys.ELITE.key)) {
+            if (generation == -1)
+                data.put(Exp1MessageKeys.ELITE.key, Collections.unmodifiableList(elites));
+            else
+                data.put(Exp1MessageKeys.ELITE.key, elites.get(generation));
+        }
+
+        if (keys.contains(Exp1MessageKeys.DELTA.key)) {
+            if (generation == -1)
+                data.put(Exp1MessageKeys.DELTA.key, Collections.unmodifiableList(deltas));
+            else
+                data.put(Exp1MessageKeys.DELTA.key, deltas.get(generation));
+        }
+    }
+
+    @Override
+    public Object request(int generation, @NotNull String key) {
+        return null;
+    }
+
+    @Override
+    public void nextGeneration() {
+        generation++;
+    }
+
+    @Override
+    public void save(@NotNull final String filename) {
         final File file = new File(filename);
         PrintWriter pw = null;
         try {

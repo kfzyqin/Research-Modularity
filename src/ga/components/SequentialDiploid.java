@@ -54,7 +54,7 @@ public class SequentialDiploid extends Chromosome{
     }
 
     @Override
-    public Chromosome copy() {
+    public SequentialDiploid copy() {
         return new SequentialDiploid((DNAStrand)materials[0].copy(), (DNAStrand)materials[1].copy(), mapping.copy());
     }
 

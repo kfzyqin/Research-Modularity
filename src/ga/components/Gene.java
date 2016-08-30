@@ -15,10 +15,7 @@ public final class Gene<T extends Comparable<T>> implements Copyable<Gene<T>> {
     public Gene(final Class<T> tClass, final GeneConfig config, T value){
         this.config = config;
         this.tClass = tClass;
-        if (config.isValid(value))
-            this.value = value;
-        else
-            throw new IllegalArgumentException("Value out of bound");
+        setValue(value);
     }
 
     public GeneConfig getConfig() {

@@ -7,7 +7,7 @@ public final class GeneConfig<T extends Comparable<T>> {
     private final T upperBound;
     private final T lowerBound;
 
-    public GeneConfig(final T upperBound, final T lowerBound) {
+    public GeneConfig(final T lowerBound, final T upperBound) {
         this.upperBound = upperBound;
         this.lowerBound = lowerBound;
     }

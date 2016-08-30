@@ -25,7 +25,7 @@ public class SequentialHaploid extends Chromosome {
     }
 
     @Override
-    public Chromosome copy() {
+    public SequentialHaploid copy() {
         return new SequentialHaploid((DNAStrand) materials[0].copy());
     }
 

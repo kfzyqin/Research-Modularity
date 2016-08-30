@@ -39,6 +39,7 @@ public class GAFrame<T extends Chromosome> {
         state.mutate();
         state.nextGeneration();
         state.evaluate();
+        statistics.nextGeneration();
         state.record(statistics);
     }
 

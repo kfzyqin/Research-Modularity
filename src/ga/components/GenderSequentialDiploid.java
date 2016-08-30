@@ -42,7 +42,7 @@ public final class GenderSequentialDiploid extends SequentialDiploid {
     }
 
     @Override
-    public Chromosome copy() {
+    public GenderSequentialDiploid copy() {
         DNAStrand dna1 = (DNAStrand) materials[0].copy();
         DNAStrand dna2 = (DNAStrand) materials[1].copy();
         DominanceMapping mapping = super.mapping.copy();

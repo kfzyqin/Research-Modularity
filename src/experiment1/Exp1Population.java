@@ -9,9 +9,7 @@ import ga.operations.Fitness;
 import ga.operations.Mutator;
 import ga.operations.Selector;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by david on 29/08/16.
@@ -21,6 +19,7 @@ public class Exp1Population implements Population<SequentialHaploid> {
     List<Individual<SequentialHaploid>> individuals;
     List<Double> fitnessValues;
     List<Individual<SequentialHaploid>> nextGen;
+    private boolean evaluated = false;
     private final int size;
 
     public Exp1Population(final int size) {
@@ -45,7 +44,7 @@ public class Exp1Population implements Population<SequentialHaploid> {
     }
 
     @Override
-    public void evaluate(Fitness fitness) {
+    public void evaluate(@NotNull final Fitness fitness) {
 
         if (!fitnessValues.isEmpty())
             fitnessValues.clear();
@@ -59,6 +58,7 @@ public class Exp1Population implements Population<SequentialHaploid> {
         }
 
         // Normalization
+        // ** Fitness function has to be non-negative
         for (int i = 0; i < size; i++) {
             fitnessValues.set(i, fitnessValues.get(i)/sum);
         }
@@ -66,10 +66,11 @@ public class Exp1Population implements Population<SequentialHaploid> {
         Collections.sort(fitnessValues);
         Collections.reverse(individuals);
         Collections.reverse(fitnessValues);
+        evaluated = true;
     }
 
     @Override
-    public void addChildren(List<SequentialHaploid> children) {
+    public void addChildren(@NotNull final List<SequentialHaploid> children) {
         int index = 0;
         while (nextGen.size() < size) {
             if (index == children.size())
@@ -80,15 +81,25 @@ public class Exp1Population implements Population<SequentialHaploid> {
     }
 
     @Override
-    public void mutate(Mutator mutator) {
+    public void addChild(@NotNull SequentialHaploid child) {
+        if (nextGen.size() < size)
+            nextGen.add(new Individual<>(child));
+    }
+
+    @Override
+    public void mutate(@NotNull final Mutator mutator) {
         for (Individual<SequentialHaploid> h : nextGen) {
-            // TODO: Mutation
+            h.getChromosome().mutate(mutator);
         }
     }
 
     @Override
-    public void record(Statistics<SequentialHaploid> statistics) {
-        
+    public void record(@NotNull final Statistics<SequentialHaploid> statistics) {
+        if (!evaluated)
+            return;
+        Map<String, Object> data = new HashMap<>();
+        data.put(Exp1MessageKeys.ELITE.key, individuals.get(0));
+        statistics.record(data);
     }
 
     @Override
@@ -103,11 +114,14 @@ public class Exp1Population implements Population<SequentialHaploid> {
         individuals.clear();
         individuals.addAll(nextGen);
         nextGen.clear();
+        fitnessValues.clear();
+        evaluated = false;
         return true;
     }
 
     @Override
-    public List<SequentialHaploid> select(Selector selector) {
+    public List<SequentialHaploid> select(@NotNull final Selector selector) {
+
         return null;
     }
 

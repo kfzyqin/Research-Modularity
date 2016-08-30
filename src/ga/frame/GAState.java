@@ -31,7 +31,7 @@ public class GAState<T extends Chromosome> {
         this.recombiner = recombiner;
         this.selector = selector;
         evaluate();
-        generation++;
+        // generation++;
     }
 
     public void evaluate(){
