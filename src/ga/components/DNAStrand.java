@@ -2,10 +2,12 @@ package ga.components;
 
 import ga.others.Copyable;
 
+import java.util.Arrays;
+
 /**
  * Created by david on 26/08/16.
  */
-public class DNAStrand implements Copyable<DNAStrand> {
+public class DNAStrand implements GeneticMaterial {
 
     private final Gene[] strand;
 
@@ -13,11 +15,13 @@ public class DNAStrand implements Copyable<DNAStrand> {
         this.strand = strand;
     }
 
-    public int getLength(){
+    @Override
+    public int getSize(){
         return strand.length;
     }
 
-    public Gene getGene(int index){
+    @Override
+    public Gene getGene(final int index){
         return strand[index];
     }
 
@@ -29,5 +33,10 @@ public class DNAStrand implements Copyable<DNAStrand> {
             strand[i] = this.strand[i].copy();
         }
         return new DNAStrand(strand);
+    }
+
+    @Override
+    public String toString() {
+        return Arrays.toString(strand);
     }
 }

@@ -49,4 +49,9 @@ public class Individual<T extends Chromosome> implements Comparable<Individual<T
     public T getChromosome() {
         return chromosome;
     }
+
+    @Override
+    public String toString() {
+        return "Fitness: " + fitness + ", " + chromosome.toString();
+    }
 }

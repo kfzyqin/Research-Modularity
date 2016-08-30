@@ -23,11 +23,11 @@ public class GAFrame<T extends Chromosome> {
     public GAFrame(Fitness fitness,
                    Initializer<T> initializer,
                    Recombiner<T> recombiner,
-                   Mutator<T> mutator,
+                   Mutator mutator,
                    Selector selector,
                    Statistics<T> statistics) {
         Population<T> population = initializer.initialize();
-        state = new GAState<T>(population, fitness, mutator, recombiner, selector);
+        state = new GAState<>(population, fitness, mutator, recombiner, selector);
         this.statistics = statistics;
         state.record(statistics);
     }

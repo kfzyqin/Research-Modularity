@@ -20,5 +20,5 @@ public interface Population<T extends Chromosome> extends Copyable<Population<T>
     boolean isReady(); // May be duplicated with nextGeneration()
     boolean nextGeneration();
     List<T> select(Selector selector);
-    Map<String, List<T>> getElites(final int amount);
+    // Map<String, List<T>> getElites(final int amount);
 }

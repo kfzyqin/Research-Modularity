@@ -1,8 +1,7 @@
 package ga.components;
 
+import ga.operations.Mutator;
 import ga.others.Copyable;
-
-import java.util.Arrays;
 
 /**
  * Created by david on 26/08/16.
@@ -11,15 +10,19 @@ public abstract class Chromosome implements Copyable<Chromosome> {
 
     protected final int strands;
     protected final int length;
-    protected DNAStrand[] materials;
+    protected GeneticMaterial[] materials;
+    // protected DNAStrand[] materials;
 
     public Chromosome(int strands, int length){
         this.strands = strands;
         this.length = length;
-        materials = new DNAStrand[strands];
+        materials = new GeneticMaterial[strands];
+        // materials = new DNAStrand[strands];
     }
 
-    public abstract DNAStrand getPhenotype();
+    public abstract void mutate(Mutator mutator);
+
+    public abstract GeneticMaterial getPhenotype();
 
     public int getStrands() {
         return strands;
@@ -29,10 +32,15 @@ public abstract class Chromosome implements Copyable<Chromosome> {
         return length;
     }
 
-    public DNAStrand[] getMaterials() {
+    public GeneticMaterial[] getMaterials(){
         return materials;
     }
+    /*
+    public DNAStrand[] getMaterials() {
+        return materials;
+    }*/
 
+    /*
     public void setMaterials(DNAStrand[] materials) {
         if (materials.length != strands)
             throw new IllegalArgumentException("Ploidy does not agree");
@@ -41,5 +49,5 @@ public abstract class Chromosome implements Copyable<Chromosome> {
                 throw new IllegalArgumentException("DNA strand lengths do not agree");
         }
         this.materials = Arrays.copyOf(materials, strands);
-    }
+    }*/
 }

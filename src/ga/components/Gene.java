@@ -48,4 +48,9 @@ public final class Gene<T extends Comparable<T>> implements Copyable<Gene<T>> {
     public Gene<T> copy() {
         return new Gene<T>(tClass, config, value);
     }
+
+    @Override
+    public String toString() {
+        return value.toString();
+    }
 }

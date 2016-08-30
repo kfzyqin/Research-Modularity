@@ -1,10 +1,10 @@
 package ga.operations;
 
-import ga.components.Chromosome;
+import ga.components.Gene;
 
 /**
  * Created by david on 26/08/16.
  */
-public interface Mutator<T extends Chromosome> {
-    T mutate(Chromosome c);
+public interface Mutator {
+    void mutate(Gene c);
 }

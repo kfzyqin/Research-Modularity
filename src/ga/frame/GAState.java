@@ -16,13 +16,13 @@ public class GAState<T extends Chromosome> {
     private int generation = 0;
     private final Population<T> population;
     private Fitness fitness;
-    private Mutator<T> mutator;
+    private Mutator mutator;
     private Recombiner<T> recombiner;
     private Selector selector;
 
     public GAState(@NotNull final Population<T> population,
                    @NotNull final Fitness fitness,
-                   @NotNull final Mutator<T> mutator,
+                   @NotNull final Mutator mutator,
                    @NotNull final Recombiner<T> recombiner,
                    @NotNull final Selector selector) {
         this.population = population;
@@ -43,7 +43,7 @@ public class GAState<T extends Chromosome> {
     }
 
     public void preOperate(PriorOperation<T> priorOperation){
-        priorOperation.preSelect(population);
+        priorOperation.preOperate(population);
     }
 
     public void recombine(){
