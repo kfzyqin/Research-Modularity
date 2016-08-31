@@ -9,6 +9,6 @@ import java.util.List;
 /**
  * Created by david on 28/08/16.
  */
-public interface PriorOperation<T extends Chromosome> {
-    List<T> preOperate(@NotNull final Population<T> population);
+public interface PriorOperator<T extends Chromosome> {
+    void preOperate(@NotNull final Population<T> population);
 }

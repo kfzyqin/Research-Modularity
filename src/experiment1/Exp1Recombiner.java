@@ -24,8 +24,8 @@ public class Exp1Recombiner implements Recombiner<SequentialHaploid> {
         SequentialHaploid child1 = mates.get(0).copy();
         SequentialHaploid child2 = mates.get(1).copy();
 
-        DNAStrand dna1 = (DNAStrand) child1.getMaterials()[0];
-        DNAStrand dna2 = (DNAStrand) child2.getMaterials()[0];
+        DNAStrand dna1 = (DNAStrand) child1.getMaterialsView().get(0);
+        DNAStrand dna2 = (DNAStrand) child2.getMaterialsView().get(0);
 
         final int length = child1.getLength();
         final int crossIndex = ThreadLocalRandom.current().nextInt(1,length-1);

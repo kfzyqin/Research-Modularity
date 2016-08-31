@@ -25,7 +25,7 @@ public class Exp1Initializer implements Initializer<SequentialHaploid> {
         Population<SequentialHaploid> population = new Exp1Population(size);
         while (!population.isReady()) {
             final int num = ThreadLocalRandom.current().nextInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
-            population.addChild(new SequentialHaploid(makeStrand(num)));
+            population.addChildChromosome(new SequentialHaploid(makeStrand(num)));
         }
         population.nextGeneration();
         return population;

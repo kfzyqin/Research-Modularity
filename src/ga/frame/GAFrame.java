@@ -12,7 +12,7 @@ import ga.operations.*;
 public class GAFrame<T extends Chromosome> {
     private final GAState<T> state;
     private Statistics<T> statistics;
-    private PriorOperation<T> priorOperation = null;
+    private PriorOperator<T> priorOperator = null;
 
     public GAFrame(@NotNull final GAState<T> state,
                    @NotNull final Statistics<T> statistics) {
@@ -33,8 +33,8 @@ public class GAFrame<T extends Chromosome> {
     }
 
     public void evolve(){
-        if (priorOperation != null)
-            state.preOperate(priorOperation);
+        if (priorOperator != null)
+            state.preOperate(priorOperator);
         state.recombine();
         state.mutate();
         state.nextGeneration();
@@ -55,7 +55,7 @@ public class GAFrame<T extends Chromosome> {
         this.statistics = statistics;
     }
 
-    public void setPriorOperation(final PriorOperation<T> priorOperation){
-        this.priorOperation = priorOperation;
+    public void setPriorOperator(final PriorOperator<T> priorOperator){
+        this.priorOperator = priorOperator;
     }
 }

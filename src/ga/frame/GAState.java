@@ -31,7 +31,6 @@ public class GAState<T extends Chromosome> {
         this.recombiner = recombiner;
         this.selector = selector;
         evaluate();
-        // generation++;
     }
 
     public void evaluate(){
@@ -42,15 +41,16 @@ public class GAState<T extends Chromosome> {
         population.record(statistics);
     }
 
-    public void preOperate(PriorOperation<T> priorOperation){
-        priorOperation.preOperate(population);
+    public void preOperate(PriorOperator<T> priorOperator){
+        priorOperator.preOperate(population);
     }
 
     public void recombine(){
+        population.setPriorPoolMode(false);
         while (!population.isReady()) {
-            List<T> mates = population.select(selector);
+            List<T> mates = population.selectMates(selector);
             List<T> children = recombiner.recombine(mates);
-            population.addChildren(children);
+            population.addChildrenChromosome(children);
         }
     }
 
@@ -60,7 +60,7 @@ public class GAState<T extends Chromosome> {
     }
 
     public void mutate(){
-        population.mutate(mutator);
+        mutator.mutate(population.getSecondPoolView());
     }
 
     public Population<T> getPopulationCopy(){

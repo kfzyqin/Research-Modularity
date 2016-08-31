@@ -20,27 +20,16 @@ public class SequentialDiploid extends Chromosome{
         super(2, dna1.getSize());
         if (length != dna2.getSize())
             throw new IllegalArgumentException("Length of chromosomes do not agree");
-        materials = new DNAStrand[length];
-        materials[0] = dna1;
-        materials[1] = dna2;
+        materials.set(0, dna1);
+        materials.set(1, dna2);
         this.mapping = mapping;
-    }
-
-    @Override
-    public void mutate(Mutator mutator) {
-        DNAStrand dna1 = (DNAStrand) materials[0];
-        DNAStrand dna2 = (DNAStrand) materials[1];
-        for (int i = 0; i < length; i++) {
-            mutator.mutate(dna1.getGene(i));
-            mutator.mutate(dna2.getGene(i));
-        }
     }
 
     @Override
     public DNAStrand getPhenotype(){
 
-        DNAStrand dna1 = (DNAStrand) materials[0];
-        DNAStrand dna2 = (DNAStrand) materials[1];
+        DNAStrand dna1 = (DNAStrand) materials.get(0);
+        DNAStrand dna2 = (DNAStrand) materials.get(1);
         Gene[] strand = new Gene[length];
         List<Gene> genes = new LinkedList<>();
 
@@ -55,13 +44,13 @@ public class SequentialDiploid extends Chromosome{
 
     @Override
     public SequentialDiploid copy() {
-        return new SequentialDiploid((DNAStrand)materials[0].copy(), (DNAStrand)materials[1].copy(), mapping.copy());
+        return new SequentialDiploid((DNAStrand)materials.get(0).copy(), (DNAStrand)materials.get(1).copy(), mapping.copy());
     }
 
     @Override
     public String toString() {
-        return "DNA_1: " + materials[0].toString() +
-                ", DNA_2: " + materials[1].toString() +
+        return "DNA_1: " + materials.get(0).toString() +
+                ", DNA_2: " + materials.get(1).toString() +
                 ", Dominance: " + mapping.toString() +
                 ", Phenotype: " + getPhenotype().toString();
 

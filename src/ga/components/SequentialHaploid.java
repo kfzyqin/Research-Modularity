@@ -9,28 +9,21 @@ public class SequentialHaploid extends Chromosome {
 
     public SequentialHaploid(DNAStrand dnaStrand) {
         super(1, dnaStrand.getSize());
-        materials[0] = dnaStrand;
+        materials.set(0, dnaStrand);
     }
 
     @Override
     public GeneticMaterial getPhenotype() {
-        return materials[0].copy();
-    }
-
-    @Override
-    public void mutate(Mutator mutator) {
-        DNAStrand dna = (DNAStrand) materials[0];
-        for (int i = 0; i < length; i++)
-            mutator.mutate(dna.getGene(i));
+        return materials.get(0).copy();
     }
 
     @Override
     public SequentialHaploid copy() {
-        return new SequentialHaploid((DNAStrand) materials[0].copy());
+        return new SequentialHaploid((DNAStrand) materials.get(0).copy());
     }
 
     @Override
     public String toString() {
-        return "Genotype/Phenotype: " + materials[0].toString();
+        return "Genotype/Phenotype: " + materials.get(0).toString();
     }
 }

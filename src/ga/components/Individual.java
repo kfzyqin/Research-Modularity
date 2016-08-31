@@ -34,13 +34,15 @@ public class Individual<T extends Chromosome> implements Comparable<Individual<T
     }
 
     public void evaluate(final Fitness objective) {
+        if (evaluated) return;
         fitness = objective.evaluate(chromosome.getPhenotype());
         evaluated = true;
     }
 
+    /*
     public boolean isEvaluated(){
         return evaluated;
-    }
+    }*/
 
     public double getFitness(){
         return fitness;

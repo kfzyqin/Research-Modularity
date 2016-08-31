@@ -2,96 +2,76 @@ package experiment1;
 
 import com.sun.istack.internal.NotNull;
 import ga.collections.Statistics;
-import ga.components.SequentialHaploid;
 import ga.components.Individual;
+import ga.components.SequentialHaploid;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 /**
- * Created by david on 29/08/16.
+ * Created by david on 31/08/16.
  */
 public class Exp1Statistics implements Statistics<SequentialHaploid> {
 
-    private int generation = 0;
-    private List<Individual<SequentialHaploid>> elites;
-    private List<Double> deltas;
+    private int currentGen;
+    private final List<Individual<SequentialHaploid>> elites;
+    private final List<Double> deltas;
 
     public Exp1Statistics() {
+        currentGen = 0;
         elites = new ArrayList<>();
         deltas = new ArrayList<>();
     }
 
+    public Exp1Statistics(final int maxGen) {
+        currentGen = 0;
+        elites = new ArrayList<>(maxGen);
+        deltas = new ArrayList<>(maxGen);
+    }
+
+    /**
+     * This method records the elite of a generation into "elites",
+     * and calculate the difference of best fitness values between
+     * successive generations.
+     * @param data A descending sorted list of individuals by fitness values.
+     */
     @Override
-    public void record(@NotNull final Map<String, Object> data) {
-        if (data.keySet().contains(Exp1MessageKeys.ELITE.key)) {
-            Individual<SequentialHaploid> elite = (Individual<SequentialHaploid>) data.get(Exp1MessageKeys.ELITE.key);
+    public void record(@NotNull List<Individual<SequentialHaploid>> data) {
+        Individual<SequentialHaploid> elite = data.get(0);
+
+        if (currentGen < elites.size()) {
+            elites.set(currentGen, elite);
+            deltas.set(currentGen, elite.getFitness() - elites.get(currentGen-1).getFitness());
+        } else {
             elites.add(elite);
-            if (generation == 1)
+            if (deltas.size() > 0)
+                deltas.add(elite.getFitness() - elites.get(currentGen-1).getFitness());
+            else
                 deltas.add(elite.getFitness());
-            else
-                deltas.add(elite.getFitness() - deltas.get(deltas.size()-1));
         }
     }
 
     @Override
-    public void record(@NotNull String key, Object object) {
-        if (key.equals(Exp1MessageKeys.ELITE.key)) {
-            if (generation == elites.size()-1)
-                elites.set(elites.size()-1, (Individual<SequentialHaploid>) object);
-            else
-                elites.add((Individual<SequentialHaploid>)object);
-        }
-    }
-
-    @Override
-    public void request(final int generation,
-                        @NotNull final List<String> keys,
-                        @NotNull final Map<String, Object> data) {
-
-        if (generation > this.generation || generation < -1)
+    public void print(final int generation) {
+        if (generation >= deltas.size())
             return;
-
-        if (keys.contains(Exp1MessageKeys.ELITE.key)) {
-            if (generation == -1)
-                data.put(Exp1MessageKeys.ELITE.key, Collections.unmodifiableList(elites));
-            else
-                data.put(Exp1MessageKeys.ELITE.key, elites.get(generation));
-        }
-
-        if (keys.contains(Exp1MessageKeys.DELTA.key)) {
-            if (generation == -1)
-                data.put(Exp1MessageKeys.DELTA.key, Collections.unmodifiableList(deltas));
-            else
-                data.put(Exp1MessageKeys.DELTA.key, deltas.get(generation));
-        }
+        System.out.printf("Generation: %d; Delta: %.4f, Best >> %s <<\n",
+                          generation, deltas.get(generation), elites.get(generation).toString());
     }
 
     @Override
-    public Object request(int generation, @NotNull String key) {
-        return null;
-    }
-
-    @Override
-    public void nextGeneration() {
-        generation++;
-    }
-
-    @Override
-    public void save(@NotNull final String filename) {
+    public void save(@NotNull String filename) {
         final File file = new File(filename);
         PrintWriter pw = null;
         try {
             file.createNewFile();
             pw = new PrintWriter(file);
-            for (int i = 1; i <= generation; i++){
-                pw.printf("Generation: %d; Delta: %.4f, Best >> %s <<",
-                          i, deltas.get(i-1), elites.get(i-1).toString());
+            for (int i = 0; i <= currentGen; i++){
+                pw.printf("Generation: %d; Delta: %.4f, Best >> %s <<\n",
+                          i, deltas.get(i), elites.get(i).toString());
             }
 
         } catch (IOException e) {
@@ -102,10 +82,8 @@ public class Exp1Statistics implements Statistics<SequentialHaploid> {
         }
     }
 
-    /*
     @Override
-    public void load(String filename) {
-
+    public void nextGeneration() {
+        currentGen++;
     }
-    */
 }

@@ -3,6 +3,10 @@ package ga.components;
 import ga.operations.Mutator;
 import ga.others.Copyable;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Created by david on 26/08/16.
  */
@@ -10,17 +14,15 @@ public abstract class Chromosome implements Copyable<Chromosome> {
 
     protected final int strands;
     protected final int length;
-    protected GeneticMaterial[] materials;
+    protected List<GeneticMaterial> materials;
     // protected DNAStrand[] materials;
 
     public Chromosome(int strands, int length){
         this.strands = strands;
         this.length = length;
-        materials = new GeneticMaterial[strands];
+        materials = Arrays.asList(new GeneticMaterial[strands]);
         // materials = new DNAStrand[strands];
     }
-
-    public abstract void mutate(Mutator mutator);
 
     public abstract GeneticMaterial getPhenotype();
 
@@ -32,8 +34,8 @@ public abstract class Chromosome implements Copyable<Chromosome> {
         return length;
     }
 
-    public GeneticMaterial[] getMaterials(){
-        return materials;
+    public List<GeneticMaterial> getMaterialsView(){
+        return Collections.unmodifiableList(materials);
     }
     /*
     public DNAStrand[] getMaterials() {

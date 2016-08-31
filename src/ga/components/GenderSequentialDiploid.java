@@ -43,8 +43,8 @@ public final class GenderSequentialDiploid extends SequentialDiploid {
 
     @Override
     public GenderSequentialDiploid copy() {
-        DNAStrand dna1 = (DNAStrand) materials[0].copy();
-        DNAStrand dna2 = (DNAStrand) materials[1].copy();
+        DNAStrand dna1 = (DNAStrand) materials.get(0).copy();
+        DNAStrand dna2 = (DNAStrand) materials.get(1).copy();
         DominanceMapping mapping = super.mapping.copy();
         List<Double> mMap = new ArrayList<>(masRecomMap);
         List<Double> fMap = new ArrayList<>(femRecomMap);
