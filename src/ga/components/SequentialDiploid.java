@@ -13,6 +13,7 @@ import java.util.List;
 public class SequentialDiploid extends Chromosome{
 
     protected DominanceMapping mapping;
+    protected DNAStrand phenotype = null;
 
     public SequentialDiploid(@NotNull final DNAStrand dna1,
                              @NotNull final DNAStrand dna2,
@@ -28,6 +29,7 @@ public class SequentialDiploid extends Chromosome{
     @Override
     public DNAStrand getPhenotype(){
 
+        if (phenotype != null) return phenotype;
         DNAStrand dna1 = (DNAStrand) materials.get(0);
         DNAStrand dna2 = (DNAStrand) materials.get(1);
         Gene[] strand = new Gene[length];
@@ -39,7 +41,8 @@ public class SequentialDiploid extends Chromosome{
             strand[i] = mapping.map(genes);
             genes.clear();
         }
-        return new DNAStrand(strand);
+        phenotype = new DNAStrand(strand);
+        return phenotype;
     }
 
     @Override
