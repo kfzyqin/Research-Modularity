@@ -86,4 +86,14 @@ public class Exp1Statistics implements Statistics<SequentialHaploid> {
     public void nextGeneration() {
         currentGen++;
     }
+
+    @Override
+    public double getDelta(final int generation) {
+        return deltas.get(generation);
+    }
+
+    @Override
+    public double getBest(final int generation) {
+        return elites.get(generation).getFitness();
+    }
 }

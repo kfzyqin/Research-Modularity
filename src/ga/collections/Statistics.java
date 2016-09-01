@@ -14,4 +14,6 @@ public interface Statistics<T extends Chromosome> {
     void print(final int generation);
     void save(@NotNull final String filename);
     void nextGeneration();
+    double getDelta(final int generation);
+    double getBest(final int generation);
 }

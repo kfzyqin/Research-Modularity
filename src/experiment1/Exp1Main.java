@@ -12,7 +12,7 @@ public class Exp1Main {
 
     private static final int target = 0xf71b72e5;
     private static final int size = 200;
-    private static final int maxGen = 400;
+    private static final int maxGen = 2000;
     private static final int numElites = 20;
     private static final double mutationRate = 0.05;
     private static final double epsilon = 1.5;
@@ -33,7 +33,10 @@ public class Exp1Main {
         for (int i = 1; i <= maxGen; i++) {
             frame.evolve();
             statistics.print(i);
+            if (statistics.getBest(i) > 31.5)
+                break;
         }
         statistics.save(outfile);
+        System.out.println(Integer.toBinaryString(target));
     }
 }
