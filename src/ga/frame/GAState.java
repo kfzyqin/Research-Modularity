@@ -3,7 +3,7 @@ package ga.frame;
 import com.sun.istack.internal.NotNull;
 import ga.collections.Population;
 import ga.collections.Statistics;
-import ga.components.Chromosome;
+import ga.components.chromosome.Chromosome;
 import ga.operations.*;
 
 import java.util.List;

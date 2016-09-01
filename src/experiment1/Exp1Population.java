@@ -3,10 +3,9 @@ package experiment1;
 import com.sun.istack.internal.NotNull;
 import ga.collections.Population;
 import ga.collections.Statistics;
-import ga.components.SequentialHaploid;
-import ga.components.Individual;
+import ga.components.chromosome.SequentialHaploid;
+import ga.collections.Individual;
 import ga.operations.Fitness;
-import ga.operations.Mutator;
 import ga.operations.Selector;
 
 import java.util.*;

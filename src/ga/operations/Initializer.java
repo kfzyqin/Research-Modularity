@@ -1,7 +1,7 @@
 package ga.operations;
 
 import ga.collections.Population;
-import ga.components.Chromosome;
+import ga.components.chromosome.Chromosome;
 
 /**
  * Created by david on 29/08/16.

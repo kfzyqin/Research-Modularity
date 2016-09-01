@@ -1,10 +1,8 @@
 package ga.collections;
 
 import com.sun.istack.internal.NotNull;
-import ga.components.Chromosome;
-import ga.components.Individual;
+import ga.components.chromosome.Chromosome;
 import ga.operations.Fitness;
-import ga.operations.Mutator;
 import ga.operations.Selector;
 import ga.others.Copyable;
 

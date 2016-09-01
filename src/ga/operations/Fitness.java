@@ -1,7 +1,7 @@
 package ga.operations;
 
 import com.sun.istack.internal.NotNull;
-import ga.components.GeneticMaterial;
+import ga.components.materials.GeneticMaterial;
 
 /**
  * Created by david on 27/08/16.
