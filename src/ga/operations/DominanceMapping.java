@@ -1,7 +1,7 @@
 package ga.operations;
 
 import com.sun.istack.internal.NotNull;
-import ga.components.Gene;
+import ga.components.genes.Gene;
 import ga.others.Copyable;
 
 import java.util.List;

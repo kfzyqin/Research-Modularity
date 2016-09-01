@@ -2,13 +2,12 @@ package experiment1;
 
 import com.sun.istack.internal.NotNull;
 import ga.collections.Population;
-import ga.components.Individual;
-import ga.components.SequentialHaploid;
+import ga.collections.Individual;
+import ga.components.chromosome.SequentialHaploid;
 import ga.operations.Mutator;
 import ga.operations.PriorOperator;
 import ga.operations.Selector;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

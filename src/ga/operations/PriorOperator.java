@@ -2,9 +2,7 @@ package ga.operations;
 
 import com.sun.istack.internal.NotNull;
 import ga.collections.Population;
-import ga.components.Chromosome;
-
-import java.util.List;
+import ga.components.chromosome.Chromosome;
 
 /**
  * Created by david on 28/08/16.

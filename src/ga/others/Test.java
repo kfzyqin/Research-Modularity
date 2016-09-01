@@ -1,8 +1,8 @@
 package ga.others;
 
 import experiment1.Exp1Fitness;
-import ga.components.DNAStrand;
-import ga.components.Gene;
+import ga.components.materials.DNAStrand;
+import ga.components.genes.Gene;
 import ga.components.GeneConfig;
 import ga.operations.Fitness;
 

@@ -1,7 +1,7 @@
 package experiment1;
 
 import com.sun.istack.internal.NotNull;
-import ga.components.DNAStrand;
+import ga.components.materials.DNAStrand;
 import ga.operations.Fitness;
 
 import java.util.concurrent.ThreadLocalRandom;

@@ -2,6 +2,10 @@ package experiment1;
 
 import ga.collections.Population;
 import ga.components.*;
+import ga.components.chromosome.SequentialHaploid;
+import ga.components.genes.BinaryGene;
+import ga.components.materials.DNAStrand;
+import ga.components.genes.Gene;
 import ga.operations.Initializer;
 
 import java.util.ArrayList;
@@ -13,7 +17,6 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Exp1Initializer implements Initializer<SequentialHaploid> {
 
-    private GeneConfig<Integer> config = new GeneConfig<>(0, 1);
     private int size;
 
     public Exp1Initializer(final int size) {
@@ -31,12 +34,12 @@ public class Exp1Initializer implements Initializer<SequentialHaploid> {
         return population;
     }
 
-    private DNAStrand makeStrand(final int num) {
-        Gene[] genes = new Gene[32];
+    private DNAStrand<Integer> makeStrand(final int num) {
+        List<Gene<Integer>> genes = new ArrayList<>(32);
         for (int i = 0; i < 32; i++) {
-            genes[i] = new Gene<Integer>(Integer.class, config, (num >> 31-i) & 1);
+            genes.add(new BinaryGene((num >> 31-i) & 1));
         }
-        return new DNAStrand(genes);
+        return new DNAStrand<>(genes);
     }
 
     public int getSize() {

@@ -2,8 +2,8 @@ package experiment1;
 
 import com.sun.istack.internal.NotNull;
 import ga.collections.Statistics;
-import ga.components.Individual;
-import ga.components.SequentialHaploid;
+import ga.collections.Individual;
+import ga.components.chromosome.SequentialHaploid;
 
 import java.io.File;
 import java.io.IOException;

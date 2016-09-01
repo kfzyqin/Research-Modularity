@@ -1,10 +1,10 @@
 package experiment1;
 
 import com.sun.istack.internal.NotNull;
-import ga.components.DNAStrand;
-import ga.components.Gene;
-import ga.components.Individual;
-import ga.components.SequentialHaploid;
+import ga.components.materials.DNAStrand;
+import ga.components.genes.Gene;
+import ga.collections.Individual;
+import ga.components.chromosome.SequentialHaploid;
 import ga.operations.Mutator;
 
 import java.util.List;
@@ -33,11 +33,11 @@ public class Exp1Mutator implements Mutator<SequentialHaploid>{
     @Override
     public void mutate(@NotNull List<Individual<SequentialHaploid>> individuals) {
         for (Individual<SequentialHaploid> h : individuals) {
-            DNAStrand dna = (DNAStrand) h.getChromosome().getMaterialsView().get(0);
+            DNAStrand<Integer> dna = (DNAStrand<Integer>) h.getChromosome().getMaterialsView().get(0);
             for (int i = 0; i < dna.getSize(); i++) {
                 if (!toFlip()) continue;
-                Gene gene = dna.getGene(i);
-                gene.setValue(((Integer) gene.getValue()) ^ 1);
+                Gene<Integer> gene = dna.getGene(i);
+                gene.setValue(gene.getValue() ^ 1);
             }
         }
     }
