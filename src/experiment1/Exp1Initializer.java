@@ -1,12 +1,11 @@
 package experiment1;
 
 import ga.collections.Population;
-import ga.components.*;
 import ga.components.chromosome.SequentialHaploid;
 import ga.components.genes.BinaryGene;
 import ga.components.materials.DNAStrand;
 import ga.components.genes.Gene;
-import ga.operations.Initializer;
+import ga.operations.initializers.Initializer;
 
 import java.util.ArrayList;
 import java.util.List;

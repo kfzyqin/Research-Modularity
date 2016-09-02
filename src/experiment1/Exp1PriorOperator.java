@@ -4,9 +4,9 @@ import com.sun.istack.internal.NotNull;
 import ga.collections.Population;
 import ga.collections.Individual;
 import ga.components.chromosome.SequentialHaploid;
-import ga.operations.Mutator;
+import ga.operations.mutators.Mutator;
 import ga.operations.PriorOperator;
-import ga.operations.Selector;
+import ga.operations.selectors.Selector;
 
 import java.util.List;
 

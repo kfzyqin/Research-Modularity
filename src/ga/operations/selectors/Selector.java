@@ -1,4 +1,4 @@
-package ga.operations;
+package ga.operations.selectors;
 
 import com.sun.istack.internal.NotNull;
 

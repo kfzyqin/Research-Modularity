@@ -2,7 +2,7 @@ package ga.components.chromosome;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.materials.GeneticMaterial;
-import ga.operations.DominanceMapping;
+import ga.operations.dominanceMappings.DominanceMapping;
 import org.apache.commons.collections4.list.FixedSizeList;
 
 import java.util.ArrayList;

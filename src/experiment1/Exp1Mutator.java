@@ -5,7 +5,7 @@ import ga.components.materials.DNAStrand;
 import ga.components.genes.Gene;
 import ga.collections.Individual;
 import ga.components.chromosome.SequentialHaploid;
-import ga.operations.Mutator;
+import ga.operations.mutators.Mutator;
 
 import java.util.List;
 

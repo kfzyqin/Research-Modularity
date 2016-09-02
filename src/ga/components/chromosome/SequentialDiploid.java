@@ -2,7 +2,7 @@ package ga.components.chromosome;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.materials.DNAStrand;
-import ga.operations.DominanceMapping;
+import ga.operations.dominanceMappings.DominanceMapping;
 
 /**
  * Created by david on 26/08/16.

@@ -5,8 +5,8 @@ import ga.collections.Population;
 import ga.collections.Statistics;
 import ga.components.chromosome.SequentialHaploid;
 import ga.collections.Individual;
-import ga.operations.Fitness;
-import ga.operations.Selector;
+import ga.operations.fitness.Fitness;
+import ga.operations.selectors.Selector;
 
 import java.util.*;
 

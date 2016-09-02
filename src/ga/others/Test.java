@@ -5,7 +5,7 @@ import ga.components.genes.BinaryGene;
 import ga.components.materials.DNAStrand;
 import ga.components.genes.Gene;
 import ga.components.GeneConfig;
-import ga.operations.Fitness;
+import ga.operations.fitness.Fitness;
 
 import java.util.Arrays;
 

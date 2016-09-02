@@ -5,14 +5,20 @@ import ga.collections.Population;
 import ga.collections.Statistics;
 import ga.components.chromosome.Chromosome;
 import ga.operations.*;
+import ga.operations.fitness.Fitness;
+import ga.operations.initializers.Initializer;
+import ga.operations.mutators.Mutator;
+import ga.operations.recombiners.Recombiner;
+import ga.operations.selectors.Selector;
 
 /**
  * Created by david on 29/08/16.
  */
-public class GAFrame<T extends Chromosome> {
-    private final GAState<T> state;
-    private Statistics<T> statistics;
-    private PriorOperator<T> priorOperator = null;
+public abstract class GAFrame<T extends Chromosome> {
+
+    protected final GAState<T> state;
+    protected Statistics<T> statistics;
+    protected PriorOperator<T> priorOperator = null;
 
     public GAFrame(@NotNull final GAState<T> state,
                    @NotNull final Statistics<T> statistics) {
@@ -20,28 +26,19 @@ public class GAFrame<T extends Chromosome> {
         this.statistics = statistics;
     }
 
-    public GAFrame(Fitness fitness,
-                   Initializer<T> initializer,
-                   Recombiner<T> recombiner,
-                   Mutator mutator,
-                   Selector selector,
-                   Statistics<T> statistics) {
+    public GAFrame(@NotNull final Fitness fitness,
+                   @NotNull final Initializer<T> initializer,
+                   @NotNull final Recombiner<T> recombiner,
+                   @NotNull final Mutator mutator,
+                   @NotNull final Selector selector,
+                   @NotNull final Statistics<T> statistics) {
         Population<T> population = initializer.initialize();
         state = new GAState<>(population, fitness, mutator, recombiner, selector);
         this.statistics = statistics;
         state.record(statistics);
     }
 
-    public void evolve(){
-        if (priorOperator != null)
-            state.preOperate(priorOperator);
-        state.recombine();
-        state.mutate();
-        state.nextGeneration();
-        state.evaluate();
-        statistics.nextGeneration();
-        state.record(statistics);
-    }
+    public abstract void evolve();
 
     public GAState<T> getState() {
         return state;

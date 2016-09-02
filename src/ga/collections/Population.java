@@ -2,8 +2,8 @@ package ga.collections;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.chromosome.Chromosome;
-import ga.operations.Fitness;
-import ga.operations.Selector;
+import ga.operations.fitness.Fitness;
+import ga.operations.selectors.Selector;
 import ga.others.Copyable;
 
 import java.util.List;

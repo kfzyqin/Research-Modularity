@@ -1,4 +1,4 @@
-package ga.operations;
+package ga.operations.recombiners;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.chromosome.Chromosome;

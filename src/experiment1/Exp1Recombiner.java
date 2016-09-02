@@ -4,7 +4,7 @@ import com.sun.istack.internal.NotNull;
 import ga.components.genes.Gene;
 import ga.components.materials.DNAStrand;
 import ga.components.chromosome.SequentialHaploid;
-import ga.operations.Recombiner;
+import ga.operations.recombiners.Recombiner;
 
 import java.util.ArrayList;
 import java.util.List;

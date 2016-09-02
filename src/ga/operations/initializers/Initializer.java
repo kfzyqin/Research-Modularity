@@ -1,4 +1,4 @@
-package ga.operations;
+package ga.operations.initializers;
 
 import ga.collections.Population;
 import ga.components.chromosome.Chromosome;

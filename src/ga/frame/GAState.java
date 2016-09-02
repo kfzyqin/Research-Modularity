@@ -5,6 +5,10 @@ import ga.collections.Population;
 import ga.collections.Statistics;
 import ga.components.chromosome.Chromosome;
 import ga.operations.*;
+import ga.operations.fitness.Fitness;
+import ga.operations.mutators.Mutator;
+import ga.operations.recombiners.Recombiner;
+import ga.operations.selectors.Selector;
 
 import java.util.List;
 
