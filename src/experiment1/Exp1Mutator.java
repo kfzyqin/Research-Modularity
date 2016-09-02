@@ -33,10 +33,10 @@ public class Exp1Mutator implements Mutator<SequentialHaploid>{
     @Override
     public void mutate(@NotNull List<Individual<SequentialHaploid>> individuals) {
         for (Individual<SequentialHaploid> h : individuals) {
-            DNAStrand<Integer> dna = (DNAStrand<Integer>) h.getChromosome().getMaterialsView().get(0);
+            DNAStrand dna = h.getChromosome().getMaterialsView().get(0);
             for (int i = 0; i < dna.getSize(); i++) {
                 if (!toFlip()) continue;
-                Gene<Integer> gene = dna.getGene(i);
+                Gene<Integer> gene = (Gene<Integer>) dna.getGene(i);
                 gene.setValue(gene.getValue() ^ 1);
             }
         }

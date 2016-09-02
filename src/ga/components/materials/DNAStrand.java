@@ -9,14 +9,14 @@ import java.util.List;
 /**
  * Created by david on 26/08/16.
  */
-public class DNAStrand<V> implements GeneticMaterial {
+public class DNAStrand implements GeneticMaterial {
 
-    private final List<Gene<V>> strand;
+    private final List<Gene> strand;
     private final int size;
 
-    public DNAStrand(List<? extends Gene<V>> strand) {
+    public DNAStrand(List<? extends Gene> strand) {
         size = strand.size();
-        List<Gene<V>> contents = new ArrayList<>(strand);
+        List<Gene> contents = new ArrayList<>(strand);
         this.strand = FixedSizeList.fixedSizeList(contents);
     }
 
@@ -26,16 +26,16 @@ public class DNAStrand<V> implements GeneticMaterial {
     }
 
     @Override
-    public Gene<V> getGene(final int index){
+    public Gene getGene(final int index){
         return strand.get(index);
     }
 
     @Override
-    public DNAStrand<V> copy() {
-        List<Gene<V>> strand = new ArrayList<>(size);
+    public DNAStrand copy() {
+        List<Gene> strand = new ArrayList<>(size);
         for (int i = 0; i < size; i++)
-            strand.add(this.strand.get(i).copy());
-        return new DNAStrand<>(strand);
+            strand.add((Gene)this.strand.get(i).copy());
+        return new DNAStrand(strand);
     }
 
     @Override

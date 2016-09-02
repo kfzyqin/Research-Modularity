@@ -84,31 +84,6 @@ public class Exp1Population implements Population<SequentialHaploid> {
         evaluated = true;
     }
 
-    /*
-    @Override
-    public void addChildrenChromosome(@NotNull final List<SequentialHaploid> children) {
-        int index = 0;
-        while (nextGenSize < size) {
-            if (index == children.size())
-                return;
-            if (priorPoolMode) priorPool.add(new Individual<>(children.get(index)));
-            else secondPool.add(new Individual<>(children.get(index)));
-            index++;
-            nextGenSize++;
-        }
-    }*/
-
-    /*
-    @Override
-    public void addChildren(@NotNull List<Individual<SequentialHaploid>> children) {
-        for (Individual<SequentialHaploid> h : children) {
-            if (nextGenSize >= size) return;
-            if (priorPoolMode) priorPool.add(h);
-            else secondPool.add(h);
-            nextGenSize++;
-        }
-    }*/
-
     @Override
     public void addChild(@NotNull Individual<SequentialHaploid> child) {
         if (nextGenSize < size) {
@@ -118,27 +93,10 @@ public class Exp1Population implements Population<SequentialHaploid> {
         }
     }
 
-    /*
-    @Override
-    public void addChildChromosome(@NotNull SequentialHaploid child) {
-        if (nextGenSize < size) {
-            if (priorPoolMode) priorPool.add(new Individual<>(child));
-            else secondPool.add(new Individual<>(child));
-            nextGenSize++;
-        }
-    }*/
-
     @Override
     public void setPriorPoolMode(final boolean mode) {
         priorPoolMode = mode;
     }
-
-    /*
-    @Override
-    public boolean isInPriorPoolMode() {
-        return priorPoolMode;
-    }
-    */
 
     @Override
     public void record(@NotNull final Statistics<SequentialHaploid> statistics) {

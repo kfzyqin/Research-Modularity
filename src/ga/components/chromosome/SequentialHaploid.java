@@ -6,21 +6,20 @@ import ga.components.materials.GeneticMaterial;
 /**
  * Created by david on 26/08/16.
  */
-public class SequentialHaploid extends Chromosome {
+public class SequentialHaploid extends Haploid<DNAStrand, DNAStrand> {
 
     public SequentialHaploid(DNAStrand dnaStrand) {
-        super(1, dnaStrand.getSize());
-        materials.set(0, dnaStrand);
+        super(dnaStrand);
     }
 
     @Override
-    public GeneticMaterial getPhenotype() {
-        return materials.get(0).copy();
+    public DNAStrand getPhenotype() {
+        return materials.get(0);
     }
 
     @Override
     public SequentialHaploid copy() {
-        return new SequentialHaploid((DNAStrand) materials.get(0).copy());
+        return new SequentialHaploid(materials.get(0).copy());
     }
 
     @Override

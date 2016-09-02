@@ -40,6 +40,6 @@ public class BinaryGene implements Gene<Integer> {
 
     @Override
     public String toString() {
-        return super.toString();
+        return Integer.toString(value);
     }
 }

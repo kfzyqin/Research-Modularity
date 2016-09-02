@@ -34,12 +34,12 @@ public class Exp1Initializer implements Initializer<SequentialHaploid> {
         return population;
     }
 
-    private DNAStrand<Integer> makeStrand(final int num) {
+    private DNAStrand makeStrand(final int num) {
         List<Gene<Integer>> genes = new ArrayList<>(32);
         for (int i = 0; i < 32; i++) {
             genes.add(new BinaryGene((num >> 31-i) & 1));
         }
-        return new DNAStrand<>(genes);
+        return new DNAStrand(genes);
     }
 
     public int getSize() {

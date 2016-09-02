@@ -1,10 +1,13 @@
 package ga.others;
 
 import experiment1.Exp1Fitness;
+import ga.components.genes.BinaryGene;
 import ga.components.materials.DNAStrand;
 import ga.components.genes.Gene;
 import ga.components.GeneConfig;
 import ga.operations.Fitness;
+
+import java.util.Arrays;
 
 /**
  * Created by david on 30/08/16.
@@ -25,12 +28,13 @@ public class Test {
         System.out.println(((Exp1Fitness) fitness).getTargetBitString());
     }
 
+
     private static DNAStrand makeStrand(final int num) {
         Gene[] genes = new Gene[32];
         for (int i = 0; i < 32; i++) {
-            genes[i] = new Gene<Integer>(Integer.class, config, (num >> 31-i) & 1);
+            genes[i] = new BinaryGene((num >> 31-i) & 1);
         }
-        return new DNAStrand(genes);
+        return new DNAStrand(Arrays.asList(genes));
     }
 
 }
