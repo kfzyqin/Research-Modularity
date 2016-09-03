@@ -3,7 +3,7 @@ package experiment1;
 import ga.collections.Statistics;
 import ga.components.chromosome.SequentialHaploid;
 import ga.frame.GAFrame;
-import ga.frame.SimpleStaticGAFrame;
+import ga.frame.SimpleGAFrame;
 import ga.operations.*;
 import ga.operations.fitness.Fitness;
 import ga.operations.initializers.Initializer;
@@ -34,7 +34,7 @@ public class Exp1Main {
         Statistics<SequentialHaploid> statistics = new Exp1Statistics();
         Recombiner<SequentialHaploid> recombiner = new Exp1Recombiner();
 
-        GAFrame<SequentialHaploid> frame = new SimpleStaticGAFrame<>(fitness,initializer,recombiner,mutator,selector,statistics);
+        GAFrame<SequentialHaploid> frame = new SimpleGAFrame<>(fitness,initializer,recombiner,mutator,selector,statistics);
         frame.setPriorOperator(priorOperator);
         statistics.print(0);
         for (int i = 1; i <= maxGen; i++) {

@@ -5,6 +5,7 @@ import ga.collections.Population;
 import ga.collections.Statistics;
 import ga.components.chromosome.Chromosome;
 import ga.operations.*;
+import ga.operations.dynamicHandler.DynamicHandler;
 import ga.operations.fitness.Fitness;
 import ga.operations.initializers.Initializer;
 import ga.operations.mutators.Mutator;
@@ -19,6 +20,7 @@ public abstract class GAFrame<T extends Chromosome> {
     protected final GAState<T> state;
     protected Statistics<T> statistics;
     protected PriorOperator<T> priorOperator = null;
+    protected DynamicHandler<T> handler = null;
 
     public GAFrame(@NotNull final GAState<T> state,
                    @NotNull final Statistics<T> statistics) {
@@ -54,5 +56,9 @@ public abstract class GAFrame<T extends Chromosome> {
 
     public void setPriorOperator(final PriorOperator<T> priorOperator){
         this.priorOperator = priorOperator;
+    }
+
+    public void setDynamicHandler(final DynamicHandler<T> handler) {
+        this.handler = handler;
     }
 }

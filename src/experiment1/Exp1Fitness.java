@@ -41,4 +41,9 @@ public class Exp1Fitness implements Fitness<DNAStrand>{
         final int comparison = ~(num ^ target);
         return Integer.bitCount(comparison);
     }
+
+    @Override
+    public void update() {
+
+    }
 }

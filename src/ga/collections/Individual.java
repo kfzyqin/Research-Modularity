@@ -12,7 +12,6 @@ public class Individual<T extends Chromosome> implements Comparable<Individual<T
 
     private T chromosome;
     private double fitness = 0;
-    private boolean evaluated = false;
 
     public Individual(@NotNull final T chromosome) {
         this.chromosome = chromosome;
@@ -34,16 +33,10 @@ public class Individual<T extends Chromosome> implements Comparable<Individual<T
         return null;
     }
 
-    public void evaluate(final Fitness objective) {
-        if (evaluated) return;
+    public double evaluate(final Fitness objective) {
         fitness = objective.evaluate(chromosome.getPhenotype());
-        evaluated = true;
+        return fitness;
     }
-
-    /*
-    public boolean isEvaluated(){
-        return evaluated;
-    }*/
 
     public double getFitness(){
         return fitness;

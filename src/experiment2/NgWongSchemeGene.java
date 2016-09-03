@@ -6,11 +6,11 @@ import ga.components.genes.Gene;
 /**
  * Created by david on 2/09/16.
  */
-public class NgWongSchemeGenes implements Gene<Character>{
+public class NgWongSchemeGene implements Gene<Character>{
 
     private char value;
 
-    public NgWongSchemeGenes(char value) {
+    public NgWongSchemeGene(char value) {
         validityFilter(value);
         this.value = value;
     }
@@ -30,7 +30,7 @@ public class NgWongSchemeGenes implements Gene<Character>{
 
     @Override
     public Gene<Character> copy() {
-        return new NgWongSchemeGenes(value);
+        return new NgWongSchemeGene(value);
     }
 
     @Override

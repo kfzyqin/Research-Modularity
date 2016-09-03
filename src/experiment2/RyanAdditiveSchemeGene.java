@@ -1,0 +1,38 @@
+package experiment2;
+
+import com.sun.istack.internal.NotNull;
+import ga.components.genes.Gene;
+
+/**
+ * Created by david on 3/09/16.
+ */
+public class RyanAdditiveSchemeGene implements Gene<Character> {
+
+    private char value;
+
+    public RyanAdditiveSchemeGene(final char value) {
+        filter(value);
+        this.value = value;
+    }
+
+    private void filter(final char value) {
+        if (value < 'A' || value > 'D')
+            throw new IllegalArgumentException("Invalid value. The permitted values are 'A', 'B', 'C' or 'D'.");
+    }
+
+    @Override
+    public Gene<Character> copy() {
+        return new RyanAdditiveSchemeGene(value);
+    }
+
+    @Override
+    public Character getValue() {
+        return value;
+    }
+
+    @Override
+    public void setValue(@NotNull Character value) {
+        filter(value);
+        this.value = value;
+    }
+}

@@ -67,12 +67,16 @@ public class GAState<T extends Chromosome> {
         mutator.mutate(population.getSecondPoolView());
     }
 
-    public Population<T> getPopulationCopy(){
-        return population.copy();
+    public Population<T> getPopulation(){
+        return population;
     }
 
     public int getGeneration() {
         return generation;
+    }
+
+    public Fitness getFitness() {
+        return fitness;
     }
 
     public void setFitness(@NotNull final Fitness fitness) {

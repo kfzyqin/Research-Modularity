@@ -31,8 +31,8 @@ public class NgWongSchemeMapping implements DominanceMapping<DNAStrand, DNAStran
         final int length = dna1.getSize();
         List<Gene> phenotype = new ArrayList<>(length);
         for (int i = 0; i < length; i++) {
-            NgWongSchemeGenes gene1 = (NgWongSchemeGenes) dna1.getGene(i);
-            NgWongSchemeGenes gene2 = (NgWongSchemeGenes) dna2.getGene(i);
+            NgWongSchemeGene gene1 = (NgWongSchemeGene) dna1.getGene(i);
+            NgWongSchemeGene gene2 = (NgWongSchemeGene) dna2.getGene(i);
             promote(gene1,gene2);
             final int row = toIndex(gene1.getValue());
             final int col = toIndex(gene2.getValue());
@@ -45,7 +45,7 @@ public class NgWongSchemeMapping implements DominanceMapping<DNAStrand, DNAStran
         return (Math.random() < matrix[row][column]) ? 1 : 0;
     }
 
-    private void promote(NgWongSchemeGenes gene1, NgWongSchemeGenes gene2) {
+    private void promote(NgWongSchemeGene gene1, NgWongSchemeGene gene2) {
         char value1 = gene1.getValue();
         char value2 = gene2.getValue();
         switch (value1) {

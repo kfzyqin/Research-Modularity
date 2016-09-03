@@ -8,4 +8,5 @@ import ga.components.materials.GeneticMaterial;
  */
 public interface Fitness<G extends GeneticMaterial> {
     double evaluate(@NotNull final G phenotype);
+    void update();
 }
