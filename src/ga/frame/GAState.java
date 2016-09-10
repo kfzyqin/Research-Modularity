@@ -18,22 +18,25 @@ import java.util.List;
 public class GAState<T extends Chromosome> {
 
     private int generation = 0;
+    private int numOfMates;
     private final Population<T> population;
     private Fitness fitness;
     private Mutator mutator;
     private Recombiner<T> recombiner;
-    private Selector selector;
+    private Selector<T> selector;
 
     public GAState(@NotNull final Population<T> population,
                    @NotNull final Fitness fitness,
                    @NotNull final Mutator mutator,
                    @NotNull final Recombiner<T> recombiner,
-                   @NotNull final Selector selector) {
+                   @NotNull final Selector<T> selector,
+                   final int numOfMates) {
         this.population = population;
         this.fitness = fitness;
         this.mutator = mutator;
         this.recombiner = recombiner;
         this.selector = selector;
+        this.numOfMates = numOfMates;
         evaluate();
     }
 
@@ -42,7 +45,7 @@ public class GAState<T extends Chromosome> {
     }
 
     public void record(Statistics<T> statistics) {
-        population.record(statistics);
+        statistics.record(population.getIndividualsView());
     }
 
     public void preOperate(PriorOperator<T> priorOperator){
@@ -51,8 +54,9 @@ public class GAState<T extends Chromosome> {
 
     public void recombine(){
         population.setPriorPoolMode(false);
+        selector.setSelectionData(population.getIndividualsView());
         while (!population.isReady()) {
-            List<T> mates = population.selectMates(selector);
+            List<T> mates = selector.select(numOfMates);
             List<T> children = recombiner.recombine(mates);
             population.addChildrenChromosome(children);
         }
@@ -87,7 +91,7 @@ public class GAState<T extends Chromosome> {
         this.mutator = mutator;
     }
 
-    public void setRecombiner(@NotNull final Recombiner recombiner) {
+    public void setRecombiner(@NotNull final Recombiner<T> recombiner) {
         this.recombiner = recombiner;
     }
 }

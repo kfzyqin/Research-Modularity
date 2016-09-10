@@ -36,6 +36,10 @@ public abstract class Diploid<M extends GeneticMaterial, G extends GeneticMateri
         return phenotype;
     }
 
+    public DominanceMapping<M, G> getMapping() {
+        return mapping;
+    }
+
     public void setMapping(DominanceMapping<M,G> mapping) {
         this.mapping = mapping;
     }

@@ -1,6 +1,7 @@
 package experiment1;
 
 import com.sun.istack.internal.NotNull;
+import ga.operations.selectors.SelectionScheme;
 import ga.operations.selectors.Selector;
 
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.List;
 /**
  * Created by david on 31/08/16.
  */
-public class Exp1Selector implements Selector{
+public class Exp1Selector implements SelectionScheme{
 
     public Exp1Selector() {
     }

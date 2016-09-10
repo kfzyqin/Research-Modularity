@@ -22,8 +22,9 @@ public class SimpleGAFrame<T extends Chromosome> extends GAFrame<T> {
                          @NotNull final Recombiner<T> recombiner,
                          @NotNull final Mutator mutator,
                          @NotNull final Selector selector,
-                         @NotNull final Statistics<T> statistics) {
-        super(fitness, initializer, recombiner, mutator, selector, statistics);
+                         @NotNull final Statistics<T> statistics,
+                         final int numOfMates) {
+        super(fitness, initializer, recombiner, mutator, selector, statistics, numOfMates);
     }
 
     public SimpleGAFrame(@NotNull final Fitness fitness,
@@ -32,8 +33,9 @@ public class SimpleGAFrame<T extends Chromosome> extends GAFrame<T> {
                          @NotNull final Mutator mutator,
                          @NotNull final Selector selector,
                          @NotNull final Statistics<T> statistics,
-                         @NotNull final DynamicHandler<T> handler) {
-        super(fitness, initializer, recombiner, mutator, selector, statistics);
+                         @NotNull final DynamicHandler<T> handler,
+                         final int numOfMates) {
+        super(fitness, initializer, recombiner, mutator, selector, statistics, numOfMates);
         this.handler = handler;
     }
 

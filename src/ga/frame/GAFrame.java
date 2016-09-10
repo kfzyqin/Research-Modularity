@@ -32,10 +32,11 @@ public abstract class GAFrame<T extends Chromosome> {
                    @NotNull final Initializer<T> initializer,
                    @NotNull final Recombiner<T> recombiner,
                    @NotNull final Mutator mutator,
-                   @NotNull final Selector selector,
-                   @NotNull final Statistics<T> statistics) {
+                   @NotNull final Selector<T> selector,
+                   @NotNull final Statistics<T> statistics,
+                   final int numOfMates) {
         Population<T> population = initializer.initialize();
-        state = new GAState<>(population, fitness, mutator, recombiner, selector);
+        state = new GAState<>(population, fitness, mutator, recombiner, selector, numOfMates);
         this.statistics = statistics;
         state.record(statistics);
     }

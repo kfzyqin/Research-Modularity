@@ -6,10 +6,12 @@ import ga.frame.GAFrame;
 import ga.frame.SimpleGAFrame;
 import ga.operations.*;
 import ga.operations.fitness.Fitness;
+import ga.operations.initializers.BinarySequentialHaploidInitializer;
 import ga.operations.initializers.Initializer;
 import ga.operations.mutators.Mutator;
 import ga.operations.recombiners.Recombiner;
 import ga.operations.selectors.Selector;
+import ga.operations.selectors.SimpleSelector;
 
 /**
  * Created by david on 31/08/16.
@@ -27,14 +29,14 @@ public class Exp1Main {
 
     public static void main(String[] args) {
         Fitness fitness = new Exp1Fitness(target);
-        Initializer<SequentialHaploid> initializer = new Exp1Initializer(size);
+        Initializer<SequentialHaploid> initializer = new BinarySequentialHaploidInitializer(size, 32);
         Mutator mutator = new Exp1Mutator(mutationRate);
-        Selector selector = new Exp1Selector();
+        Selector<SequentialHaploid> selector = new SimpleSelector<>(new Exp1Selector());
         PriorOperator<SequentialHaploid> priorOperator = new Exp1PriorOperator(numElites, selector);
         Statistics<SequentialHaploid> statistics = new Exp1Statistics();
         Recombiner<SequentialHaploid> recombiner = new Exp1Recombiner();
 
-        GAFrame<SequentialHaploid> frame = new SimpleGAFrame<>(fitness,initializer,recombiner,mutator,selector,statistics);
+        GAFrame<SequentialHaploid> frame = new SimpleGAFrame<>(fitness,initializer,recombiner,mutator,selector,statistics, 2);
         frame.setPriorOperator(priorOperator);
         statistics.print(0);
         for (int i = 1; i <= maxGen; i++) {
