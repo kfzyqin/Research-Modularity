@@ -18,8 +18,8 @@ public class NgWongSchemeGene implements Gene<Character>{
     private void validityFilter(char value) {
         switch (value) {
             case 'i':
-            case 'I':
-            case 'O':
+            case '1':
+            case '0':
             case 'o':
                 return;
             default:
