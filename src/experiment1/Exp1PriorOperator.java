@@ -5,7 +5,7 @@ import ga.collections.Population;
 import ga.collections.Individual;
 import ga.components.chromosome.SequentialHaploid;
 import ga.operations.mutators.Mutator;
-import ga.operations.PriorOperator;
+import ga.operations.priorOperators.PriorOperator;
 import ga.operations.selectors.Selector;
 
 import java.util.List;

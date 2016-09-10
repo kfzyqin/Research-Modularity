@@ -4,11 +4,11 @@ import com.sun.istack.internal.NotNull;
 import ga.collections.Population;
 import ga.collections.Statistics;
 import ga.components.chromosome.Chromosome;
-import ga.operations.*;
 import ga.operations.dynamicHandler.DynamicHandler;
 import ga.operations.fitness.Fitness;
 import ga.operations.initializers.Initializer;
 import ga.operations.mutators.Mutator;
+import ga.operations.priorOperators.PriorOperator;
 import ga.operations.recombiners.Recombiner;
 import ga.operations.selectors.Selector;
 

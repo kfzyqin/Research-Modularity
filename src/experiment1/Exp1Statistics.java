@@ -87,13 +87,24 @@ public class Exp1Statistics implements Statistics<SequentialHaploid> {
         currentGen++;
     }
 
-    @Override
+    // @Override
     public double getDelta(final int generation) {
         return deltas.get(generation);
     }
 
     @Override
-    public double getBest(final int generation) {
+    public double getOptimum(final int generation) {
         return elites.get(generation).getFitness();
+    }
+
+    @Override
+    public Statistics<SequentialHaploid> copy() {
+        return null;
+    }
+
+    @Override
+    public String getSummary(int generation) {
+        return String.format("Generation: %d; Delta: %.4f, Best >> %s <<",
+                generation, deltas.get(generation), elites.get(generation).toString());
     }
 }

@@ -4,11 +4,11 @@ import ga.collections.Statistics;
 import ga.components.chromosome.SequentialHaploid;
 import ga.frame.GAFrame;
 import ga.frame.SimpleGAFrame;
-import ga.operations.*;
 import ga.operations.fitness.Fitness;
 import ga.operations.initializers.BinarySequentialHaploidInitializer;
 import ga.operations.initializers.Initializer;
 import ga.operations.mutators.Mutator;
+import ga.operations.priorOperators.PriorOperator;
 import ga.operations.recombiners.Recombiner;
 import ga.operations.selectors.Selector;
 import ga.operations.selectors.SimpleSelector;
@@ -42,7 +42,7 @@ public class Exp1Main {
         for (int i = 1; i <= maxGen; i++) {
             frame.evolve();
             statistics.print(i);
-            if (statistics.getBest(i) > maxFit - epsilon)
+            if (statistics.getOptimum(i) > maxFit - epsilon)
                 break;
         }
         statistics.save(outfile);

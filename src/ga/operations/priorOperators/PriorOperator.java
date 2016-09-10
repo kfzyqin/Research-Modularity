@@ -1,4 +1,4 @@
-package ga.operations;
+package ga.operations.priorOperators;
 
 import com.sun.istack.internal.NotNull;
 import ga.collections.Population;
