@@ -42,4 +42,5 @@ public class BinaryGene implements Gene<Integer> {
     public String toString() {
         return Integer.toString(value);
     }
+
 }

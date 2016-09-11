@@ -22,10 +22,10 @@ public class SequentialDiploid extends Diploid<DNAStrand, DNAStrand>{
 
     @Override
     public String toString() {
-        return "DNA_1: " + materials.get(0).toString() +
-                ", DNA_2: " + materials.get(1).toString() +
-                ", Dominance: " + mapping.toString() +
-                ", Phenotype: " + getPhenotype().toString();
+        return "\nDNA_1: " + materials.get(0).toString() +
+                "\nDNA_2: " + materials.get(1).toString() +
+                "\nDominance:\n" + mapping.toString() +
+                "\nPhenotype: " + getPhenotype().toString();
 
     }
 }

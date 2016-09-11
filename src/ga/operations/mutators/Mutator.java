@@ -1,8 +1,8 @@
 package ga.operations.mutators;
 
 import com.sun.istack.internal.NotNull;
-import ga.components.chromosome.Chromosome;
 import ga.collections.Individual;
+import ga.components.chromosome.Chromosome;
 
 import java.util.List;
 

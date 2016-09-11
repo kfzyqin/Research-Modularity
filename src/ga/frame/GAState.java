@@ -2,10 +2,12 @@ package ga.frame;
 
 import com.sun.istack.internal.NotNull;
 import ga.collections.Population;
+import ga.collections.PopulationMode;
 import ga.collections.Statistics;
 import ga.components.chromosome.Chromosome;
 import ga.operations.fitness.Fitness;
 import ga.operations.mutators.Mutator;
+import ga.operations.postOperators.PostOperator;
 import ga.operations.priorOperators.PriorOperator;
 import ga.operations.recombiners.Recombiner;
 import ga.operations.selectors.Selector;
@@ -15,15 +17,15 @@ import java.util.List;
 /**
  * Created by david on 27/08/16.
  */
-public class GAState<T extends Chromosome> {
+public abstract class GAState<T extends Chromosome> {
 
-    private int generation = 0;
-    private int numOfMates;
-    private final Population<T> population;
-    private Fitness fitness;
-    private Mutator mutator;
-    private Recombiner<T> recombiner;
-    private Selector<T> selector;
+    protected int generation = 0;
+    protected int numOfMates;
+    protected final Population<T> population;
+    protected Fitness fitness;
+    protected Mutator mutator;
+    protected Recombiner<T> recombiner;
+    protected Selector<T> selector;
 
     public GAState(@NotNull final Population<T> population,
                    @NotNull final Fitness fitness,
@@ -40,6 +42,9 @@ public class GAState<T extends Chromosome> {
         evaluate();
     }
 
+    public abstract void recombine();
+    public abstract void mutate();
+
     public void evaluate(){
         population.evaluate(fitness);
     }
@@ -49,26 +54,19 @@ public class GAState<T extends Chromosome> {
     }
 
     public void preOperate(PriorOperator<T> priorOperator){
+        population.setMode(PopulationMode.PRIOR);
         priorOperator.preOperate(population);
     }
 
-    public void recombine(){
-        population.setPriorPoolMode(false);
-        selector.setSelectionData(population.getIndividualsView());
-        while (!population.isReady()) {
-            List<T> mates = selector.select(numOfMates);
-            List<T> children = recombiner.recombine(mates);
-            population.addChildrenChromosome(children);
-        }
-    }
+
+
+    public void postOperate(PostOperator<T> postOperator) {
+        population.setMode(PopulationMode.POST);
+        postOperator.postOperate(population);}
 
     public boolean nextGeneration(){
         generation++;
         return population.nextGeneration();
-    }
-
-    public void mutate(){
-        mutator.mutate(population.getSecondPoolView());
     }
 
     public Population<T> getPopulation(){

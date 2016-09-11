@@ -8,6 +8,7 @@ import ga.operations.dynamicHandler.DynamicHandler;
 import ga.operations.fitness.Fitness;
 import ga.operations.initializers.Initializer;
 import ga.operations.mutators.Mutator;
+import ga.operations.postOperators.PostOperator;
 import ga.operations.priorOperators.PriorOperator;
 import ga.operations.recombiners.Recombiner;
 import ga.operations.selectors.Selector;
@@ -20,14 +21,18 @@ public abstract class GAFrame<T extends Chromosome> {
     protected final GAState<T> state;
     protected Statistics<T> statistics;
     protected PriorOperator<T> priorOperator = null;
+    protected PostOperator<T> postOperator;
     protected DynamicHandler<T> handler = null;
 
     public GAFrame(@NotNull final GAState<T> state,
+                   @NotNull final PostOperator<T> postOperator,
                    @NotNull final Statistics<T> statistics) {
         this.state = state;
+        this.postOperator = postOperator;
         this.statistics = statistics;
     }
 
+    /*
     public GAFrame(@NotNull final Fitness fitness,
                    @NotNull final Initializer<T> initializer,
                    @NotNull final Recombiner<T> recombiner,
@@ -39,7 +44,7 @@ public abstract class GAFrame<T extends Chromosome> {
         state = new GAState<>(population, fitness, mutator, recombiner, selector, numOfMates);
         this.statistics = statistics;
         state.record(statistics);
-    }
+    }*/
 
     public abstract void evolve();
 
@@ -57,6 +62,10 @@ public abstract class GAFrame<T extends Chromosome> {
 
     public void setPriorOperator(final PriorOperator<T> priorOperator){
         this.priorOperator = priorOperator;
+    }
+
+    public void setPostOperator(@NotNull final PostOperator<T> postOperator) {
+        this.postOperator = postOperator;
     }
 
     public void setDynamicHandler(final DynamicHandler<T> handler) {

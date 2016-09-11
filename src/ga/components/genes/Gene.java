@@ -9,4 +9,5 @@ import ga.others.Copyable;
 public interface Gene<V> extends Copyable<Gene<V>> {
     V getValue();
     void setValue(@NotNull final V value);
+    // static Gene<V> generateGene();
 }

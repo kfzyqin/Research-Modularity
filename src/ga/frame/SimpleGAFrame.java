@@ -7,6 +7,7 @@ import ga.operations.dynamicHandler.DynamicHandler;
 import ga.operations.fitness.Fitness;
 import ga.operations.initializers.Initializer;
 import ga.operations.mutators.Mutator;
+import ga.operations.postOperators.PostOperator;
 import ga.operations.recombiners.Recombiner;
 import ga.operations.selectors.Selector;
 
@@ -17,6 +18,22 @@ public class SimpleGAFrame<T extends Chromosome> extends GAFrame<T> {
 
     protected DynamicHandler<T> handler = null;
 
+    public SimpleGAFrame(@NotNull final GAState<T> state,
+                         @NotNull final PostOperator<T> postOperator,
+                         @NotNull final Statistics<T> statistics,
+                         final DynamicHandler<T> handler) {
+        super(state, postOperator, statistics);
+        this.handler = handler;
+    }
+
+    public SimpleGAFrame(@NotNull final GAState<T> state,
+                         @NotNull final PostOperator<T> postOperator,
+                         @NotNull final Statistics<T> statistics) {
+        super(state, postOperator, statistics);
+    }
+
+    /*
+
     public SimpleGAFrame(@NotNull final Fitness fitness,
                          @NotNull final Initializer<T> initializer,
                          @NotNull final Recombiner<T> recombiner,
@@ -24,8 +41,10 @@ public class SimpleGAFrame<T extends Chromosome> extends GAFrame<T> {
                          @NotNull final Selector selector,
                          @NotNull final Statistics<T> statistics,
                          final int numOfMates) {
-        super(fitness, initializer, recombiner, mutator, selector, statistics, numOfMates);
-    }
+        super(new SimpleGAState<T>(fitness, initializer, recombiner, mutator, selector, statistics, numOfMates));
+    }*/
+
+    /*
 
     public SimpleGAFrame(@NotNull final Fitness fitness,
                          @NotNull final Initializer<T> initializer,
@@ -37,9 +56,11 @@ public class SimpleGAFrame<T extends Chromosome> extends GAFrame<T> {
                          final int numOfMates) {
         super(fitness, initializer, recombiner, mutator, selector, statistics, numOfMates);
         this.handler = handler;
+    }*/
+
+    public void setHandler(final DynamicHandler<T> handler) {
+        this.handler = handler;
     }
-
-
 
     @Override
     public void evolve(){
@@ -52,6 +73,7 @@ public class SimpleGAFrame<T extends Chromosome> extends GAFrame<T> {
             state.preOperate(priorOperator);
         state.recombine();
         state.mutate();
+        state.postOperate(postOperator);
         state.nextGeneration();
         state.evaluate();
         statistics.nextGeneration();

@@ -14,9 +14,9 @@ import java.util.List;
  */
 public class NgWongInitializer implements Initializer<SequentialDiploid> {
 
-    private static final char[] chars = {'0','o','1','i'};
     private int size;
     private int length;
+    private NgWongGeneFactory factory = new NgWongGeneFactory();
 
     public NgWongInitializer(final int length, final int size) {
         setSize(size);
@@ -48,8 +48,8 @@ public class NgWongInitializer implements Initializer<SequentialDiploid> {
             List<NgWongSchemeGene> genes1 = new ArrayList<>(length);
             List<NgWongSchemeGene> genes2 = new ArrayList<>(length);
             for (int j = 0; j < length; j++) {
-                genes1.add(generateGene());
-                genes2.add(generateGene());
+                genes1.add(factory.generateGene());
+                genes2.add(factory.generateGene());
             }
             population.addChildChromosome(new SequentialDiploid(new DNAStrand(genes1),
                                                                 new DNAStrand(genes2),
@@ -59,6 +59,7 @@ public class NgWongInitializer implements Initializer<SequentialDiploid> {
         return population;
     }
 
+    /*
     private NgWongSchemeGene generateGene() {
         final double R = .25;
         double r = Math.random();
@@ -68,5 +69,5 @@ public class NgWongInitializer implements Initializer<SequentialDiploid> {
             r -= R;
         }
         return new NgWongSchemeGene('i');
-    }
+    }*/
 }

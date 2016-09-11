@@ -3,7 +3,6 @@ package ga.components.chromosome;
 import ga.components.materials.GeneticMaterial;
 import ga.others.Copyable;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 

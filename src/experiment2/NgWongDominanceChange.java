@@ -65,15 +65,15 @@ public class NgWongDominanceChange implements DynamicHandler<SequentialDiploid>{
         char c = gene.getValue();
         switch (c) {
             case 'i':
-                gene.setValue('I');
+                gene.setValue('1');
                 return;
-            case 'I':
+            case '1':
                 gene.setValue('i');
                 return;
             case 'o':
-                gene.setValue('O');
+                gene.setValue('0');
                 return;
-            case 'O':
+            case '0':
                 gene.setValue('o');
         }
     }

@@ -46,7 +46,7 @@ public class SimpleElitesStatistics<T extends Chromosome> implements Statistics<
         if (generation == 0)
             deltas.add(elite.getFitness());
         else
-            deltas.add(elite.getFitness() - deltas.get(generation-1));
+            deltas.add(elite.getFitness() - elites.get(generation-1).getFitness());
     }
 
     @Override

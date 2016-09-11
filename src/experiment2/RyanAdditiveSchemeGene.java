@@ -3,11 +3,14 @@ package experiment2;
 import com.sun.istack.internal.NotNull;
 import ga.components.genes.Gene;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 /**
  * Created by david on 3/09/16.
  */
 public class RyanAdditiveSchemeGene implements Gene<Character> {
 
+    private static final char[] values = {'A','B','C','D'};
     private char value;
 
     public RyanAdditiveSchemeGene(final char value) {

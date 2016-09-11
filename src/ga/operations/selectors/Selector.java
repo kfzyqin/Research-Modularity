@@ -1,6 +1,5 @@
 package ga.operations.selectors;
 
-import com.sun.istack.internal.NotNull;
 import ga.collections.Individual;
 import ga.components.chromosome.Chromosome;
 

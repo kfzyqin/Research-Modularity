@@ -17,6 +17,7 @@ public class RyanAdditiveInitializer implements Initializer<SequentialDiploid> {
     private static final char[] chars = {'A','B','C','D'};
     private int size;
     private int length;
+    private RyanAdditiveGeneFactory factory = new RyanAdditiveGeneFactory();
 
     public RyanAdditiveInitializer(final int length, final int size) {
         filter(length, "Length must be at least 1.");
@@ -47,8 +48,8 @@ public class RyanAdditiveInitializer implements Initializer<SequentialDiploid> {
             List<RyanAdditiveSchemeGene> genes1 = new ArrayList<>(length);
             List<RyanAdditiveSchemeGene> genes2 = new ArrayList<>(length);
             for (int j = 0; j < length; j++) {
-                genes1.add(generateGene());
-                genes2.add(generateGene());
+                genes1.add(factory.generateGene());
+                genes2.add(factory.generateGene());
             }
             population.addChildChromosome(new SequentialDiploid(new DNAStrand(genes1),
                                                                 new DNAStrand(genes2),
@@ -56,16 +57,5 @@ public class RyanAdditiveInitializer implements Initializer<SequentialDiploid> {
         }
         population.nextGeneration();
         return population;
-    }
-
-    private RyanAdditiveSchemeGene generateGene() {
-        final double R = .25;
-        double r = Math.random();
-        for (int i = 0; i < chars.length; i++) {
-            if (r < R)
-                return new RyanAdditiveSchemeGene(chars[i]);
-            r -= R;
-        }
-        return new RyanAdditiveSchemeGene('D');
     }
 }

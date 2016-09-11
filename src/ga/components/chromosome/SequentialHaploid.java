@@ -1,7 +1,6 @@
 package ga.components.chromosome;
 
 import ga.components.materials.DNAStrand;
-import ga.components.materials.GeneticMaterial;
 
 /**
  * Created by david on 26/08/16.

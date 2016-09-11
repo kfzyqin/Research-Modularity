@@ -1,8 +1,9 @@
 package experiment1;
 
 import com.sun.istack.internal.NotNull;
-import ga.collections.Population;
 import ga.collections.Individual;
+import ga.collections.Population;
+import ga.collections.PopulationMode;
 import ga.components.chromosome.SequentialHaploid;
 import ga.operations.mutators.Mutator;
 import ga.operations.priorOperators.PriorOperator;
@@ -28,7 +29,7 @@ public class Exp1PriorOperator implements PriorOperator<SequentialHaploid> {
 
     @Override
     public void preOperate(@NotNull Population<SequentialHaploid> population) {
-        population.setPriorPoolMode(true);
+        population.setMode(PopulationMode.PRIOR);
         /*
         List<Integer> indices = new ArrayList<>(numOfElites);
         List<Double> fitnessValues = population.getFitnessValuesView();

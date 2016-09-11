@@ -3,11 +3,14 @@ package experiment2;
 import com.sun.istack.internal.NotNull;
 import ga.components.genes.Gene;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 /**
  * Created by david on 2/09/16.
  */
 public class NgWongSchemeGene implements Gene<Character>{
 
+    // private static final char[] values = {'0','o','1','i'};
     private char value;
 
     public NgWongSchemeGene(char value) {
@@ -23,7 +26,7 @@ public class NgWongSchemeGene implements Gene<Character>{
             case 'o':
                 return;
             default:
-                throw new IllegalArgumentException("Invalid value given. The value must be one of 'i', 'I', 'O' or 'o'.");
+                throw new IllegalArgumentException("Invalid value given. The value must be one of 'i', '1', '0' or 'o'.");
         }
 
     }
@@ -42,5 +45,10 @@ public class NgWongSchemeGene implements Gene<Character>{
     public void setValue(@NotNull Character value) {
         validityFilter(value);
         this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return Character.toString(value);
     }
 }

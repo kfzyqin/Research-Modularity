@@ -1,15 +1,13 @@
 package ga.collections;
 
 import com.sun.istack.internal.NotNull;
+import com.sun.xml.internal.bind.v2.runtime.Coordinator;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import ga.components.chromosome.Chromosome;
 import ga.operations.fitness.Fitness;
-import ga.operations.initializers.Initializer;
-import ga.operations.selectors.Selector;
 import ga.others.Copyable;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by david on 27/08/16.
@@ -18,22 +16,26 @@ public class Population<T extends Chromosome> implements Copyable<Population<T>>
 
     private List<Individual<T>> individuals;
     private List<Individual<T>> priorPool;
-    private List<Individual<T>> secondPool;
+    private List<Individual<T>> offspringPool;
+    private List<Individual<T>> postPool;
+    private Set<Integer> survivedIndices;
     // private List<Double> normalizedFitnessValues;
 
     // private boolean evaluated;
-    private boolean priorPoolMode;
+    private PopulationMode mode;
     private int nextGenSize;
     private final int size;
 
     public Population(final int size) {
         individuals = new ArrayList<>(size);
         priorPool = new ArrayList<>(size);
-        secondPool = new ArrayList<>(size);
+        offspringPool = new ArrayList<>(size);
+        postPool = new ArrayList<>(size);
+        survivedIndices = new HashSet<>();
         // normalizedFitnessValues = new ArrayList<>(size);
         this.size = size;
         nextGenSize = 0;
-        priorPoolMode = false;
+        mode = PopulationMode.RECOMBINE;
     }
 
     private Population(@NotNull final List<Individual<T>> individuals,
@@ -41,9 +43,11 @@ public class Population<T extends Chromosome> implements Copyable<Population<T>>
                        final int size) {
         this.individuals = individuals;
         this.priorPool = new ArrayList<>(size);
-        this.secondPool = new ArrayList<>(size);
+        this.offspringPool = new ArrayList<>(size);
+        this.postPool = new ArrayList<>(size);
+        this.survivedIndices = new HashSet<>();
         // this.normalizedFitnessValues = normalizedFitnessValues;
-        this.priorPoolMode = false;
+        this.mode = PopulationMode.RECOMBINE;
         this.nextGenSize = 0;
         this.size = size;
     }
@@ -69,13 +73,26 @@ public class Population<T extends Chromosome> implements Copyable<Population<T>>
 
     public void addChild(@NotNull final Individual<T> child) {
         if (isReady()) return;
-        if (priorPoolMode) priorPool.add(child);
-        else secondPool.add(child);
+        switch (mode) {
+            case PRIOR:
+                priorPool.add(child);
+                break;
+            case RECOMBINE:
+                offspringPool.add(child);
+                break;
+            case POST:
+                postPool.add(child);
+                break;
+        }
         nextGenSize++;
     }
 
-    public void setPriorPoolMode(final boolean mode) {
-        this.priorPoolMode = mode;
+    public void setMode(final PopulationMode mode) {
+        this.mode = mode;
+    }
+
+    public void markSurvivedIndex(final int index) {
+        survivedIndices.add(index);
     }
 
     /*
@@ -93,12 +110,23 @@ public class Population<T extends Chromosome> implements Copyable<Population<T>>
             return false;
         individuals.clear();
         individuals.addAll(priorPool);
-        individuals.addAll(secondPool);
+        individuals.addAll(offspringPool);
+        individuals.addAll(postPool);
         priorPool.clear();
-        secondPool.clear();
+        offspringPool.clear();
+        postPool.clear();
+        survivedIndices.clear();
         nextGenSize = 0;
         // normalizedFitnessValues.clear();
         return true;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public int getNextGenSize() {
+        return nextGenSize;
     }
 
     public List<Individual<T>> getIndividualsView() {
@@ -109,14 +137,13 @@ public class Population<T extends Chromosome> implements Copyable<Population<T>>
         return Collections.unmodifiableList(priorPool);
     }
 
-    public List<Individual<T>> getSecondPoolView() {
-        return Collections.unmodifiableList(secondPool);
+    public List<Individual<T>> getOffspringPoolView() {
+        return Collections.unmodifiableList(offspringPool);
     }
 
-    /*
-    public List<Double> getNormalizedFitnessValuesView() {
-        return Collections.unmodifiableList(normalizedFitnessValues);
-    }*/
+    public List<Individual<T>> getPostPoolView() { return Collections.unmodifiableList(postPool);}
+
+    public Set<Integer> getSurvivedIndicesView() {return Collections.unmodifiableSet(survivedIndices);}
 
     @Override
     public Population<T> copy() {

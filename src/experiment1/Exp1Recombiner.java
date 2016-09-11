@@ -1,9 +1,9 @@
 package experiment1;
 
 import com.sun.istack.internal.NotNull;
+import ga.components.chromosome.SequentialHaploid;
 import ga.components.genes.Gene;
 import ga.components.materials.DNAStrand;
-import ga.components.chromosome.SequentialHaploid;
 import ga.operations.recombiners.Recombiner;
 
 import java.util.ArrayList;

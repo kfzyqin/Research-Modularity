@@ -1,10 +1,10 @@
 package experiment1;
 
 import com.sun.istack.internal.NotNull;
-import ga.components.materials.DNAStrand;
-import ga.components.genes.Gene;
 import ga.collections.Individual;
 import ga.components.chromosome.SequentialHaploid;
+import ga.components.genes.Gene;
+import ga.components.materials.DNAStrand;
 import ga.operations.mutators.Mutator;
 
 import java.util.List;
