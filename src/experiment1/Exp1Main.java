@@ -18,6 +18,7 @@ import ga.operations.priorOperators.PriorOperator;
 import ga.operations.recombiners.Recombiner;
 import ga.operations.selectors.ProportionateScheme;
 import ga.operations.selectors.Selector;
+import ga.operations.selectors.SimpleProportionateSelector;
 import ga.operations.selectors.SimpleSelector;
 
 /**
@@ -40,7 +41,7 @@ public class Exp1Main {
         Initializer<SequentialHaploid> initializer = new BinarySequentialHaploidInitializer(size, 32);
         Population<SequentialHaploid> population = initializer.initialize();
         Mutator mutator = new Exp1Mutator(mutationRate);
-        Selector<SequentialHaploid> selector = new SimpleSelector<>(new Exp1Selector());
+        Selector<SequentialHaploid> selector = new SimpleProportionateSelector<>();
         PriorOperator<SequentialHaploid> priorOperator = new Exp1PriorOperator(numElites, selector);
         PostOperator<SequentialHaploid> postOperator = new SimpleFillingOperator<>(new ProportionateScheme());
         Statistics<SequentialHaploid> statistics = new Exp1Statistics();

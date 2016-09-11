@@ -3,7 +3,10 @@ package ga.components.genes;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Created by david on 11/09/16.
+ * BinaryGeneFactory generates random BinaryGene.
+ *
+ * @author Siu Kei Muk (David)
+ * @since 11/09/2016.
  */
 public class BinaryGeneFactory implements GeneFactory<Integer> {
 

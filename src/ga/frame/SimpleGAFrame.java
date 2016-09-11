@@ -75,7 +75,7 @@ public class SimpleGAFrame<T extends Chromosome> extends GAFrame<T> {
         state.mutate();
         state.postOperate(postOperator);
         state.nextGeneration();
-        state.evaluate();
+        state.evaluate(true);
         statistics.nextGeneration();
         state.record(statistics);
     }

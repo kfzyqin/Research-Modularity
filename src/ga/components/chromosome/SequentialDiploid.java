@@ -25,7 +25,7 @@ public class SequentialDiploid extends Diploid<DNAStrand, DNAStrand>{
         return "\nDNA_1: " + materials.get(0).toString() +
                 "\nDNA_2: " + materials.get(1).toString() +
                 "\nDominance:\n" + mapping.toString() +
-                "\nPhenotype: " + getPhenotype().toString();
+                "\nPhenotype: " + getPhenotype(false).toString();
 
     }
 }

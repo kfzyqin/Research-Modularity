@@ -38,7 +38,7 @@ public class RyanAdditiveDominanceChange implements DynamicHandler<SequentialDip
             return false;
         state.getFitness().update();
         List<Double> preValues = extractFitnessValue(state.getPopulation().getIndividualsView());
-        state.evaluate();
+        state.evaluate(false);
         List<Individual<SequentialDiploid>> individuals = state.getPopulation().getIndividualsView();
         List<Double> postValues = extractFitnessValue(individuals);
         final int length = individuals.get(0).getChromosome().getLength();
@@ -62,7 +62,7 @@ public class RyanAdditiveDominanceChange implements DynamicHandler<SequentialDip
                 }
             }
         }
-        state.evaluate();
+        state.evaluate(true);
         return true;
     }
 

@@ -39,14 +39,14 @@ public abstract class GAState<T extends Chromosome> {
         this.recombiner = recombiner;
         this.selector = selector;
         this.numOfMates = numOfMates;
-        evaluate();
+        evaluate(true);
     }
 
     public abstract void recombine();
     public abstract void mutate();
 
-    public void evaluate(){
-        population.evaluate(fitness);
+    public void evaluate(final boolean recomputePhenotype){
+        population.evaluate(fitness, recomputePhenotype);
     }
 
     public void record(Statistics<T> statistics) {

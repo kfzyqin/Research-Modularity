@@ -12,9 +12,10 @@ public class SequentialHaploid extends Haploid<DNAStrand, DNAStrand> {
     }
 
     @Override
-    public DNAStrand getPhenotype() {
+    public DNAStrand getPhenotype(final boolean recompute) {
         return materials.get(0);
     }
+
 
     @Override
     public SequentialHaploid copy() {

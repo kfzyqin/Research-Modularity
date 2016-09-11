@@ -50,4 +50,9 @@ public class RyanAdditiveScheme implements DominanceMapping<DNAStrand, DNAStrand
         }
         return new DNAStrand(genes);
     }
+
+    @Override
+    public String toString() {
+        return "'A':2, 'B':3, 'C':7, 'D':9. Sum > 10: 1, otherwise: 0.";
+    }
 }

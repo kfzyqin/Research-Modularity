@@ -38,7 +38,7 @@ public class NgWongDominanceChange implements DynamicHandler<SequentialDiploid>{
             return false;
         state.getFitness().update();
         List<Double> preValues = extractFitnessValue(state.getPopulation().getIndividualsView());
-        state.evaluate();
+        state.evaluate(false);
         List<Individual<SequentialDiploid>> individuals = state.getPopulation().getIndividualsView();
         List<Double> postValues = extractFitnessValue(individuals);
         final int length = individuals.get(0).getChromosome().getLength();
@@ -57,7 +57,7 @@ public class NgWongDominanceChange implements DynamicHandler<SequentialDiploid>{
                 }
             }
         }
-        state.evaluate();
+        state.evaluate(true);
         return true;
     }
 

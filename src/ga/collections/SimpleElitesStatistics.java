@@ -58,6 +58,7 @@ public class SimpleElitesStatistics<T extends Chromosome> implements Statistics<
             pw = new PrintWriter(file);
             for (int i = 0; i <= generation; i++){
                 pw.println(getSummary(i));
+                pw.println();
             }
 
         } catch (IOException e) {

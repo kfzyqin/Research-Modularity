@@ -5,22 +5,37 @@ import com.sun.istack.internal.NotNull;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Created by david on 1/09/16.
+ * BinaryGene is an implementation of binary genes. It can only store 0 or 1 as its value.
+ *
+ * @author Siu Kei Muk (David)
+ * @since 01/09/2016
  */
 public class BinaryGene implements Gene<Integer> {
 
     private int value;
 
+    /**
+     * Constructs a binary gene with the specified binary value.
+     * @param value 0 or 1
+     * @throws IllegalArgumentException If the value is not 0 or 1.
+     */
     public BinaryGene(final int value) {
         if (value != 0 && value != 1)
             throw new IllegalArgumentException("Only binary values are allowed.");
         this.value = value;
     }
 
+    /**
+     * Constructs a binary gene with random binary value.
+     */
     public BinaryGene() {
         value = ThreadLocalRandom.current().nextInt(2);
     }
 
+    /**
+     * Constructs a deep copy of the current gene.
+     * @return A new binary gene with the same value.
+     */
     @Override
     public Gene<Integer> copy() {
         return new BinaryGene(value);
@@ -31,6 +46,11 @@ public class BinaryGene implements Gene<Integer> {
         return value;
     }
 
+    /**
+     *
+     * @param value Value (0 or 1) to be assigned to the gene.
+     * @throws IllegalArgumentException If value is not 0 or 1.
+     */
     @Override
     public void setValue(@NotNull Integer value) {
         if (value != 0 && value != 1)
@@ -38,6 +58,9 @@ public class BinaryGene implements Gene<Integer> {
         this.value = value;
     }
 
+    /**
+     * @return String representation of the gene value.
+     */
     @Override
     public String toString() {
         return Integer.toString(value);

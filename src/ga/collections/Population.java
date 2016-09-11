@@ -64,9 +64,9 @@ public class Population<T extends Chromosome> implements Copyable<Population<T>>
         for (Individual<T> child : children) addChild(child);
     }
 
-    public void evaluate(@NotNull final Fitness fitness){
+    public void evaluate(@NotNull final Fitness fitness, final boolean recompute){
         for (Individual<T> i : individuals)
-            i.evaluate(fitness);
+            i.evaluate(fitness, recompute);
         Collections.sort(individuals);
         Collections.reverse(individuals);
     }

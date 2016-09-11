@@ -12,15 +12,15 @@ import java.util.Set;
 /**
  * Created by david on 3/09/16.
  */
-public class SimpleSelector<T extends Chromosome> implements Selector<T> {
+public abstract class SimpleSelector<T extends Chromosome> implements Selector<T> {
 
-    private List<Individual<T>> individuals;
-    private List<Double> normalized;
-    private SelectionScheme scheme;
+    protected List<Individual<T>> individuals;
+    protected List<Double> fitnessValues;
+    protected SelectionScheme scheme;
 
     public SimpleSelector(@NotNull final SelectionScheme scheme) {
         this.scheme = scheme;
-        normalized = new ArrayList<>();
+        fitnessValues = new ArrayList<>();
     }
 
     @Override
@@ -28,7 +28,7 @@ public class SimpleSelector<T extends Chromosome> implements Selector<T> {
         Set<Integer> set = new HashSet<>(numOfMates);
         while (set.size() < numOfMates) {
             // System.out.println(1);
-            set.add(scheme.select(normalized));
+            set.add(scheme.select(fitnessValues));
         }
 
         List<T> parents = new ArrayList<>(numOfMates);
@@ -38,16 +38,5 @@ public class SimpleSelector<T extends Chromosome> implements Selector<T> {
             parents.add(individuals.get(i).getChromosome());
         }
         return parents;
-    }
-
-    @Override
-    public void setSelectionData(@NotNull final List<Individual<T>> individuals) {
-        final int size = individuals.size();
-        this.individuals = individuals;
-        normalized.clear();
-        double sum = individuals.stream().mapToDouble(Individual::getFitness).sum();
-        for (int i = 0; i < size; i++) {
-            normalized.add(individuals.get(i).getFitness()/sum);
-        }
     }
 }

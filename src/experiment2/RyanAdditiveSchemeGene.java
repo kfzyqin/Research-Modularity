@@ -38,4 +38,9 @@ public class RyanAdditiveSchemeGene implements Gene<Character> {
         filter(value);
         this.value = value;
     }
+
+    @Override
+    public String toString() {
+        return Character.toString(value);
+    }
 }

@@ -38,8 +38,8 @@ public class Individual<T extends Chromosome> implements Comparable<Individual<T
         return new Individual<>(chromosome, fitness);
     }
 
-    public double evaluate(final Fitness objective) {
-        fitness = objective.evaluate(chromosome.getPhenotype());
+    public double evaluate(final Fitness objective, final boolean recompute) {
+        fitness = objective.evaluate(chromosome.getPhenotype(recompute));
         return fitness;
     }
 

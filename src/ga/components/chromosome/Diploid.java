@@ -30,8 +30,8 @@ public abstract class Diploid<M extends GeneticMaterial, G extends GeneticMateri
     }
 
     @Override
-    public G getPhenotype() {
-        if (phenotype == null)
+    public G getPhenotype(final boolean recompute) {
+        if (phenotype == null || recompute)
             phenotype = mapping.map(materials);
         return phenotype;
     }

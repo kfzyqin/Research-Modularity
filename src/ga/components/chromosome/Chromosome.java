@@ -20,7 +20,7 @@ public abstract class Chromosome<M extends GeneticMaterial, G extends GeneticMat
         this.length = length;
     }
 
-    public abstract G getPhenotype();
+    public abstract G getPhenotype(final boolean recompute);
 
     public int getStrands() {
         return strands;
