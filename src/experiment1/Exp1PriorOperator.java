@@ -4,7 +4,7 @@ import com.sun.istack.internal.NotNull;
 import ga.collections.Individual;
 import ga.collections.Population;
 import ga.collections.PopulationMode;
-import ga.components.chromosome.SequentialHaploid;
+import ga.components.chromosome.SimpleHaploid;
 import ga.operations.mutators.Mutator;
 import ga.operations.priorOperators.PriorOperator;
 import ga.operations.selectors.Selector;
@@ -14,11 +14,11 @@ import java.util.List;
 /**
  * Created by david on 31/08/16.
  */
-public class Exp1PriorOperator implements PriorOperator<SequentialHaploid> {
+public class Exp1PriorOperator implements PriorOperator<SimpleHaploid> {
 
     private int numOfElites;
     private Selector selector;
-    private Mutator<SequentialHaploid> mutator = null;
+    private Mutator<SimpleHaploid> mutator = null;
 
     public Exp1PriorOperator(final int numOfElites, Selector selector) {
         if (numOfElites < 1)
@@ -28,24 +28,24 @@ public class Exp1PriorOperator implements PriorOperator<SequentialHaploid> {
     }
 
     @Override
-    public void preOperate(@NotNull Population<SequentialHaploid> population) {
+    public void preOperate(@NotNull Population<SimpleHaploid> population) {
         population.setMode(PopulationMode.PRIOR);
         /*
         List<Integer> indices = new ArrayList<>(numOfElites);
         List<Double> fitnessValues = population.getFitnessValuesView();
-        List<Individual<SequentialHaploid>> individuals = population.getIndividualsView();
+        List<Individual<SimpleHaploid>> individuals = population.getIndividualsView();
         while (indices.size() < numOfElites) {
             final int index = selector.select(fitnessValues);
             if (!indices.contains(index)) indices.add(index);
         }
         System.out.println(indices);
         */
-        List<Individual<SequentialHaploid>> individuals = population.getIndividualsView();
+        List<Individual<SimpleHaploid>> individuals = population.getIndividualsView();
         for (int i = 0; i < 20; i++) population.addChild(individuals.get(i));
     }
 
-    private void mutate(@NotNull final List<Individual<SequentialHaploid>> mutant,
-                        @NotNull final Mutator<SequentialHaploid> mutator) {
+    private void mutate(@NotNull final List<Individual<SimpleHaploid>> mutant,
+                        @NotNull final Mutator<SimpleHaploid> mutator) {
         mutator.mutate(mutant);
     }
 
@@ -61,7 +61,7 @@ public class Exp1PriorOperator implements PriorOperator<SequentialHaploid> {
         this.selector = selector;
     }
 
-    public void setMutator(final Mutator<SequentialHaploid> mutator) {
+    public void setMutator(final Mutator<SimpleHaploid> mutator) {
         this.mutator = mutator;
     }
 }

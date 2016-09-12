@@ -3,8 +3,8 @@ package experiment2;
 import ga.collections.Population;
 import ga.collections.SimpleElitesStatistics;
 import ga.collections.Statistics;
-import ga.components.chromosome.SequentialDiploid;
-import ga.components.materials.DNAStrand;
+import ga.components.chromosome.SimpleDiploid;
+import ga.components.materials.SimpleDNA;
 import ga.frame.GAFrame;
 import ga.frame.GAState;
 import ga.frame.SimpleGAFrame;
@@ -18,7 +18,7 @@ import ga.operations.postOperators.SimpleFillingOperator;
 import ga.operations.priorOperators.PriorOperator;
 import ga.operations.priorOperators.SimpleElitismOperator;
 import ga.operations.recombiners.Recombiner;
-import ga.operations.recombiners.SimpleSequentialDiploidRecombiner;
+import ga.operations.recombiners.SimpleDiploidRecombiner;
 import ga.operations.selectors.Selector;
 import ga.operations.selectors.SimpleTournamentScheme;
 import ga.operations.selectors.SimpleTournamentSelector;
@@ -43,20 +43,20 @@ public class RyanAdditivieMain {
     private static final String outfile = "RyanAdditive.out";
 
     public static void main(String[] args) {
-        Fitness<DNAStrand> fitness = new DynamicOneMax(length, rho);
-        Initializer<SequentialDiploid> initializer = new RyanAdditiveInitializer(length, size);
-        Population<SequentialDiploid> population = initializer.initialize();
-        Recombiner<SequentialDiploid> recombiner = new SimpleSequentialDiploidRecombiner();
-        Mutator<SequentialDiploid> mutator = new RyanAdditiveMutator(mutationRate);
-        Selector<SequentialDiploid> selector = new SimpleTournamentSelector<>(tournamentSize, selectivePressure);
-        PostOperator<SequentialDiploid> fillingOperator = new SimpleFillingOperator<>(new SimpleTournamentScheme(tournamentSize, selectivePressure));
-        PriorOperator<SequentialDiploid> elitismOperator = new SimpleElitismOperator<>(numElites);
-        DynamicHandler<SequentialDiploid> handler = new RyanAdditiveDominanceChange(dominanceChangeThreshold, cycleLength);
-        Statistics<SequentialDiploid> statistics = new SimpleElitesStatistics<>();
+        Fitness<SimpleDNA> fitness = new DynamicOneMax(length, rho);
+        Initializer<SimpleDiploid> initializer = new RyanAdditiveInitializer(length, size);
+        Population<SimpleDiploid> population = initializer.initialize();
+        Recombiner<SimpleDiploid> recombiner = new SimpleDiploidRecombiner();
+        Mutator<SimpleDiploid> mutator = new RyanAdditiveMutator(mutationRate);
+        Selector<SimpleDiploid> selector = new SimpleTournamentSelector<>(tournamentSize, selectivePressure);
+        PostOperator<SimpleDiploid> fillingOperator = new SimpleFillingOperator<>(new SimpleTournamentScheme(tournamentSize, selectivePressure));
+        PriorOperator<SimpleDiploid> elitismOperator = new SimpleElitismOperator<>(numElites);
+        DynamicHandler<SimpleDiploid> handler = new RyanAdditiveDominanceChange(dominanceChangeThreshold, cycleLength);
+        Statistics<SimpleDiploid> statistics = new SimpleElitesStatistics<>();
 
-        GAState<SequentialDiploid> state = new SimpleGAState<>(population, fitness, mutator, recombiner, selector, 2, recombinationRate);
+        GAState<SimpleDiploid> state = new SimpleGAState<>(population, fitness, mutator, recombiner, selector, 2, recombinationRate);
         state.record(statistics);
-        GAFrame<SequentialDiploid> frame = new SimpleGAFrame<>(state, fillingOperator, statistics, handler);
+        GAFrame<SimpleDiploid> frame = new SimpleGAFrame<>(state, fillingOperator, statistics, handler);
         frame.setPriorOperator(elitismOperator);
         statistics.print(0);
 

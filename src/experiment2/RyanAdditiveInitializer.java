@@ -1,8 +1,8 @@
 package experiment2;
 
 import ga.collections.Population;
-import ga.components.chromosome.SequentialDiploid;
-import ga.components.materials.DNAStrand;
+import ga.components.chromosome.SimpleDiploid;
+import ga.components.materials.SimpleDNA;
 import ga.operations.dominanceMappings.DominanceMapping;
 import ga.operations.initializers.Initializer;
 
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by david on 11/09/16.
  */
-public class RyanAdditiveInitializer implements Initializer<SequentialDiploid> {
+public class RyanAdditiveInitializer implements Initializer<SimpleDiploid> {
 
     private static final char[] chars = {'A','B','C','D'};
     private int size;
@@ -41,8 +41,8 @@ public class RyanAdditiveInitializer implements Initializer<SequentialDiploid> {
     }
 
     @Override
-    public Population<SequentialDiploid> initialize() {
-        Population<SequentialDiploid> population = new Population<>(size);
+    public Population<SimpleDiploid> initialize() {
+        Population<SimpleDiploid> population = new Population<>(size);
         DominanceMapping mapping = new RyanAdditiveScheme();
         for (int i = 0; i < size; i++) {
             List<RyanAdditiveSchemeGene> genes1 = new ArrayList<>(length);
@@ -51,8 +51,8 @@ public class RyanAdditiveInitializer implements Initializer<SequentialDiploid> {
                 genes1.add(factory.generateGene());
                 genes2.add(factory.generateGene());
             }
-            population.addChildChromosome(new SequentialDiploid(new DNAStrand(genes1),
-                                                                new DNAStrand(genes2),
+            population.addChildChromosome(new SimpleDiploid(new SimpleDNA(genes1),
+                                                                new SimpleDNA(genes2),
                                                                 mapping));
         }
         population.nextGeneration();

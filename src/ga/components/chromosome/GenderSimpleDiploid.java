@@ -1,7 +1,7 @@
 package ga.components.chromosome;
 
 import com.sun.istack.internal.NotNull;
-import ga.components.materials.DNAStrand;
+import ga.components.materials.SimpleDNA;
 import ga.operations.dominanceMappings.DominanceMapping;
 
 import java.util.ArrayList;
@@ -11,18 +11,18 @@ import java.util.List;
 /**
  * Created by david on 27/08/16.
  */
-public final class GenderSequentialDiploid extends SequentialDiploid {
+public final class GenderSimpleDiploid extends SimpleDiploid {
 
     private final boolean masculine;
     private final List<Double> masRecomMap;
     private final List<Double> femRecomMap;
 
-    public GenderSequentialDiploid(@NotNull final DNAStrand dna1,
-                                   @NotNull final DNAStrand dna2,
-                                   @NotNull final DominanceMapping<DNAStrand, DNAStrand> mapping,
-                                   @NotNull final List<Double> masRecomMap,
-                                   @NotNull final List<Double> femRecomMap,
-                                   final boolean masculine) {
+    public GenderSimpleDiploid(@NotNull final SimpleDNA dna1,
+                               @NotNull final SimpleDNA dna2,
+                               @NotNull final DominanceMapping<SimpleDNA, SimpleDNA> mapping,
+                               @NotNull final List<Double> masRecomMap,
+                               @NotNull final List<Double> femRecomMap,
+                               final boolean masculine) {
 
         super(dna1, dna2, mapping);
         this.masculine = masculine;
@@ -43,13 +43,13 @@ public final class GenderSequentialDiploid extends SequentialDiploid {
     }
 
     @Override
-    public GenderSequentialDiploid copy() {
-        DNAStrand dna1 = materials.get(0).copy();
-        DNAStrand dna2 = materials.get(1).copy();
+    public GenderSimpleDiploid copy() {
+        SimpleDNA dna1 = materials.get(0).copy();
+        SimpleDNA dna2 = materials.get(1).copy();
         DominanceMapping mapping = super.mapping.copy();
         List<Double> mMap = new ArrayList<>(masRecomMap);
         List<Double> fMap = new ArrayList<>(femRecomMap);
-        return new GenderSequentialDiploid(dna1, dna2, mapping, mMap, fMap, masculine);
+        return new GenderSimpleDiploid(dna1, dna2, mapping, mMap, fMap, masculine);
     }
 
     @Override

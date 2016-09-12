@@ -3,7 +3,7 @@ package experiment2;
 import com.sun.istack.internal.NotNull;
 import ga.components.genes.BinaryGene;
 import ga.components.genes.Gene;
-import ga.components.materials.DNAStrand;
+import ga.components.materials.SimpleDNA;
 import ga.operations.fitness.Fitness;
 
 import java.util.ArrayList;
@@ -12,9 +12,9 @@ import java.util.List;
 /**
  * Created by david on 2/09/16.
  */
-public class DynamicOneMax implements Fitness<DNAStrand>{
+public class DynamicOneMax implements Fitness<SimpleDNA>{
 
-    private DNAStrand mask;
+    private SimpleDNA mask;
     private double flipProb;
     private final int length;
 
@@ -26,10 +26,10 @@ public class DynamicOneMax implements Fitness<DNAStrand>{
         List<Gene<Integer>> strand = new ArrayList<>(length);
         for (int i = 0; i < length; i++)
             strand.add(new BinaryGene(0));
-        mask = new DNAStrand(strand);
+        mask = new SimpleDNA(strand);
     }
 
-    public DNAStrand getMask() {
+    public SimpleDNA getMask() {
         return mask;
     }
 
@@ -45,7 +45,7 @@ public class DynamicOneMax implements Fitness<DNAStrand>{
     }
 
     @Override
-    public double evaluate(@NotNull DNAStrand phenotype) {
+    public double evaluate(@NotNull SimpleDNA phenotype) {
         double fitness = 0;
         for (int i = 0; i < length; i++)
             fitness += (int) phenotype.getGene(i).getValue() ^ (int) mask.getGene(i).getValue();

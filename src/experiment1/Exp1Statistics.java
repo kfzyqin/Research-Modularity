@@ -3,7 +3,7 @@ package experiment1;
 import com.sun.istack.internal.NotNull;
 import ga.collections.Individual;
 import ga.collections.Statistics;
-import ga.components.chromosome.SequentialHaploid;
+import ga.components.chromosome.SimpleHaploid;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,10 +14,10 @@ import java.util.List;
 /**
  * Created by david on 31/08/16.
  */
-public class Exp1Statistics implements Statistics<SequentialHaploid> {
+public class Exp1Statistics implements Statistics<SimpleHaploid> {
 
     private int currentGen;
-    private final List<Individual<SequentialHaploid>> elites;
+    private final List<Individual<SimpleHaploid>> elites;
     private final List<Double> deltas;
 
     public Exp1Statistics() {
@@ -39,8 +39,8 @@ public class Exp1Statistics implements Statistics<SequentialHaploid> {
      * @param data A descending sorted list of individuals by fitness values.
      */
     @Override
-    public void record(@NotNull List<Individual<SequentialHaploid>> data) {
-        Individual<SequentialHaploid> elite = data.get(0);
+    public void record(@NotNull List<Individual<SimpleHaploid>> data) {
+        Individual<SimpleHaploid> elite = data.get(0);
 
         if (currentGen < elites.size()) {
             elites.set(currentGen, elite);
@@ -98,7 +98,7 @@ public class Exp1Statistics implements Statistics<SequentialHaploid> {
     }
 
     @Override
-    public Statistics<SequentialHaploid> copy() {
+    public Statistics<SimpleHaploid> copy() {
         return null;
     }
 

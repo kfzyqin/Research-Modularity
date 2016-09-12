@@ -2,7 +2,7 @@ package experiment2;
 
 import com.sun.istack.internal.NotNull;
 import ga.collections.Individual;
-import ga.components.chromosome.SequentialDiploid;
+import ga.components.chromosome.SimpleDiploid;
 import ga.components.genes.Gene;
 import ga.components.materials.GeneticMaterial;
 import ga.operations.mutators.Mutator;
@@ -13,7 +13,7 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * Created by david on 12/09/16.
  */
-public class RyanAdditiveMutator implements Mutator<SequentialDiploid> {
+public class RyanAdditiveMutator implements Mutator<SimpleDiploid> {
 
     private static final char[] values = {'A','B','C','D'};
     private double probability;
@@ -37,8 +37,8 @@ public class RyanAdditiveMutator implements Mutator<SequentialDiploid> {
     }
 
     @Override
-    public void mutate(@NotNull List<Individual<SequentialDiploid>> individuals) {
-        for (Individual<SequentialDiploid> individual : individuals) {
+    public void mutate(@NotNull List<Individual<SimpleDiploid>> individuals) {
+        for (Individual<SimpleDiploid> individual : individuals) {
             GeneticMaterial material1 = individual.getChromosome().getMaterialsView().get(0);
             GeneticMaterial material2 = individual.getChromosome().getMaterialsView().get(1);
             for (int i = 0; i < material1.getSize(); i++) {

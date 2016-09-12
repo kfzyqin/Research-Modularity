@@ -1,7 +1,7 @@
 package experiment1;
 
 import com.sun.istack.internal.NotNull;
-import ga.components.materials.DNAStrand;
+import ga.components.materials.SimpleDNA;
 import ga.operations.fitness.Fitness;
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -9,7 +9,7 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * Created by david on 30/08/16.
  */
-public class Exp1Fitness implements Fitness<DNAStrand>{
+public class Exp1Fitness implements Fitness<SimpleDNA>{
 
     private final int target;
     private final String targetBitString;
@@ -33,7 +33,7 @@ public class Exp1Fitness implements Fitness<DNAStrand>{
     }
 
     @Override
-    public double evaluate(@NotNull final DNAStrand phenotype) {
+    public double evaluate(@NotNull final SimpleDNA phenotype) {
         int num = 0;
         for (int i = 0; i < phenotype.getSize(); i++) {
             num = (num << 1) | (Integer) phenotype.getGene(i).getValue();

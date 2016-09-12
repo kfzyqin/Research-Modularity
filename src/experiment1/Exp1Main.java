@@ -2,8 +2,7 @@ package experiment1;
 
 import ga.collections.Population;
 import ga.collections.Statistics;
-import ga.components.chromosome.SequentialDiploid;
-import ga.components.chromosome.SequentialHaploid;
+import ga.components.chromosome.SimpleHaploid;
 import ga.frame.GAFrame;
 import ga.frame.GAState;
 import ga.frame.SimpleGAFrame;
@@ -19,7 +18,6 @@ import ga.operations.recombiners.Recombiner;
 import ga.operations.selectors.ProportionateScheme;
 import ga.operations.selectors.Selector;
 import ga.operations.selectors.SimpleProportionateSelector;
-import ga.operations.selectors.SimpleSelector;
 
 /**
  * Created by david on 31/08/16.
@@ -38,19 +36,19 @@ public class Exp1Main {
 
     public static void main(String[] args) {
         Fitness fitness = new Exp1Fitness(target);
-        Initializer<SequentialHaploid> initializer = new BinarySequentialHaploidInitializer(size, 32);
-        Population<SequentialHaploid> population = initializer.initialize();
+        Initializer<SimpleHaploid> initializer = new BinarySequentialHaploidInitializer(size, 32);
+        Population<SimpleHaploid> population = initializer.initialize();
         Mutator mutator = new Exp1Mutator(mutationRate);
-        Selector<SequentialHaploid> selector = new SimpleProportionateSelector<>();
-        PriorOperator<SequentialHaploid> priorOperator = new Exp1PriorOperator(numElites, selector);
-        PostOperator<SequentialHaploid> postOperator = new SimpleFillingOperator<>(new ProportionateScheme());
-        Statistics<SequentialHaploid> statistics = new Exp1Statistics();
-        Recombiner<SequentialHaploid> recombiner = new Exp1Recombiner();
+        Selector<SimpleHaploid> selector = new SimpleProportionateSelector<>();
+        PriorOperator<SimpleHaploid> priorOperator = new Exp1PriorOperator(numElites, selector);
+        PostOperator<SimpleHaploid> postOperator = new SimpleFillingOperator<>(new ProportionateScheme());
+        Statistics<SimpleHaploid> statistics = new Exp1Statistics();
+        Recombiner<SimpleHaploid> recombiner = new Exp1Recombiner();
 
-        GAState<SequentialHaploid> state = new SimpleGAState<>(population, fitness, mutator, recombiner, selector, 2, crossoverRate);
+        GAState<SimpleHaploid> state = new SimpleGAState<>(population, fitness, mutator, recombiner, selector, 2, crossoverRate);
         state.record(statistics);
-        GAFrame<SequentialHaploid> frame = new SimpleGAFrame<>(state,postOperator,statistics);
-        // GAFrame<SequentialHaploid> frame = new SimpleGAFrame<>(fitness,initializer,recombiner,mutator,selector,statistics, 2);
+        GAFrame<SimpleHaploid> frame = new SimpleGAFrame<>(state,postOperator,statistics);
+        // GAFrame<SimpleHaploid> frame = new SimpleGAFrame<>(fitness,initializer,recombiner,mutator,selector,statistics, 2);
         frame.setPriorOperator(priorOperator);
         statistics.print(0);
         for (int i = 1; i <= maxGen; i++) {

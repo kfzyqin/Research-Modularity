@@ -2,7 +2,7 @@ package experiment2;
 
 import com.sun.istack.internal.NotNull;
 import ga.collections.Individual;
-import ga.components.chromosome.SequentialDiploid;
+import ga.components.chromosome.SimpleDiploid;
 import ga.components.materials.GeneticMaterial;
 import ga.frame.GAState;
 import ga.operations.dynamicHandler.DynamicHandler;
@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by david on 3/09/16.
  */
-public class RyanAdditiveDominanceChange implements DynamicHandler<SequentialDiploid> {
+public class RyanAdditiveDominanceChange implements DynamicHandler<SimpleDiploid> {
 
     private double threshold;
     private int cycleLength;
@@ -32,14 +32,14 @@ public class RyanAdditiveDominanceChange implements DynamicHandler<SequentialDip
     }
 
     @Override
-    public boolean handle(@NotNull GAState<SequentialDiploid> state) {
+    public boolean handle(@NotNull GAState<SimpleDiploid> state) {
         final int currGen = state.getGeneration();
         if (currGen == 0 || currGen % cycleLength != 0)
             return false;
         state.getFitness().update();
         List<Double> preValues = extractFitnessValue(state.getPopulation().getIndividualsView());
         state.evaluate(false);
-        List<Individual<SequentialDiploid>> individuals = state.getPopulation().getIndividualsView();
+        List<Individual<SimpleDiploid>> individuals = state.getPopulation().getIndividualsView();
         List<Double> postValues = extractFitnessValue(individuals);
         final int length = individuals.get(0).getChromosome().getLength();
 
@@ -110,7 +110,7 @@ public class RyanAdditiveDominanceChange implements DynamicHandler<SequentialDip
         }
     }
 
-    private List<Double> extractFitnessValue(List<Individual<SequentialDiploid>> individuals) {
+    private List<Double> extractFitnessValue(List<Individual<SimpleDiploid>> individuals) {
         final int size = individuals.size();
         List<Double> fitnessValues = new ArrayList<>(size);
         for (int i = 0; i < size; i++) {

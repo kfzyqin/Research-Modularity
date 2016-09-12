@@ -3,7 +3,7 @@ package experiment2;
 import com.sun.istack.internal.NotNull;
 import ga.components.genes.BinaryGene;
 import ga.components.genes.Gene;
-import ga.components.materials.DNAStrand;
+import ga.components.materials.SimpleDNA;
 import ga.operations.dominanceMappings.DominanceMapping;
 
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by david on 2/09/16.
  */
-public class NgWongSchemeMapping implements DominanceMapping<DNAStrand, DNAStrand>{
+public class NgWongSchemeMapping implements DominanceMapping<SimpleDNA, SimpleDNA>{
 
     private final double[][] matrix = new double[][] {{   0,  0,0.5,  1},
                                                       {   0,  0,  1,0.5},
@@ -20,14 +20,14 @@ public class NgWongSchemeMapping implements DominanceMapping<DNAStrand, DNAStran
                                                       {   0,0.5,  1,  1}};
 
     @Override
-    public DominanceMapping<DNAStrand, DNAStrand> copy() {
+    public DominanceMapping<SimpleDNA, SimpleDNA> copy() {
         return new NgWongSchemeMapping();
     }
 
     @Override
-    public DNAStrand map(@NotNull final List<DNAStrand> materials) {
-        DNAStrand dna1 = materials.get(0);
-        DNAStrand dna2 = materials.get(1);
+    public SimpleDNA map(@NotNull final List<SimpleDNA> materials) {
+        SimpleDNA dna1 = materials.get(0);
+        SimpleDNA dna2 = materials.get(1);
         final int length = dna1.getSize();
         List<Gene> phenotype = new ArrayList<>(length);
         for (int i = 0; i < length; i++) {
@@ -38,7 +38,7 @@ public class NgWongSchemeMapping implements DominanceMapping<DNAStrand, DNAStran
             final int col = toIndex(gene2.getValue());
             phenotype.add(new BinaryGene(getGeneValue(row,col)));
         }
-        return new DNAStrand(phenotype);
+        return new SimpleDNA(phenotype);
     }
 
     private int getGeneValue(final int row, final int column) {

@@ -3,7 +3,7 @@ package experiment2;
 import com.sun.istack.internal.NotNull;
 import ga.components.genes.BinaryGene;
 import ga.components.genes.Gene;
-import ga.components.materials.DNAStrand;
+import ga.components.materials.SimpleDNA;
 import ga.operations.dominanceMappings.DominanceMapping;
 
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by david on 3/09/16.
  */
-public class RyanAdditiveScheme implements DominanceMapping<DNAStrand, DNAStrand> {
+public class RyanAdditiveScheme implements DominanceMapping<SimpleDNA, SimpleDNA> {
 
     public RyanAdditiveScheme() {
     }
@@ -33,14 +33,14 @@ public class RyanAdditiveScheme implements DominanceMapping<DNAStrand, DNAStrand
     }
 
     @Override
-    public DominanceMapping<DNAStrand, DNAStrand> copy() {
+    public DominanceMapping<SimpleDNA, SimpleDNA> copy() {
         return new RyanAdditiveScheme();
     }
 
     @Override
-    public DNAStrand map(@NotNull List<DNAStrand> materials) {
-        DNAStrand dna1 = materials.get(0);
-        DNAStrand dna2 = materials.get(1);
+    public SimpleDNA map(@NotNull List<SimpleDNA> materials) {
+        SimpleDNA dna1 = materials.get(0);
+        SimpleDNA dna2 = materials.get(1);
         final int length = dna1.getSize();
         List<Gene<Integer>> genes = new ArrayList<>(length);
         for (int i = 0; i < length; i++) {
@@ -48,7 +48,7 @@ public class RyanAdditiveScheme implements DominanceMapping<DNAStrand, DNAStrand
             final int value2 = toPoints((char)dna2.getGene(i).getValue());
             genes.add((value1 + value2 > 10) ? new BinaryGene(1) : new BinaryGene(0));
         }
-        return new DNAStrand(genes);
+        return new SimpleDNA(genes);
     }
 
     @Override

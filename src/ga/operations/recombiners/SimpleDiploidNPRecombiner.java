@@ -1,9 +1,9 @@
 package ga.operations.recombiners;
 
 import com.sun.istack.internal.NotNull;
-import ga.components.chromosome.SequentialDiploid;
+import ga.components.chromosome.SimpleDiploid;
 import ga.components.genes.Gene;
-import ga.components.materials.DNAStrand;
+import ga.components.materials.SimpleDNA;
 import ga.operations.dominanceMappings.DominanceMapping;
 
 import java.util.ArrayList;
@@ -14,15 +14,15 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * Created by david on 8/09/16.
  */
-public class SimpleSequentialDiploidNPRecombiner implements Recombiner<SequentialDiploid> {
+public class SimpleDiploidNPRecombiner implements Recombiner<SimpleDiploid> {
 
     private double matchProbability = 0.5;
     private int points = 1;
 
-    public SimpleSequentialDiploidNPRecombiner() {
+    public SimpleDiploidNPRecombiner() {
     }
 
-    public SimpleSequentialDiploidNPRecombiner(final double matchProbability, final int points) {
+    public SimpleDiploidNPRecombiner(final double matchProbability, final int points) {
         setMatchProbability(matchProbability);
         setPoints(points);
     }
@@ -38,18 +38,18 @@ public class SimpleSequentialDiploidNPRecombiner implements Recombiner<Sequentia
     }
 
     @Override
-    public List<SequentialDiploid> recombine(@NotNull List<SequentialDiploid> mates) {
-        SequentialDiploid parent1 = mates.get(0);
-        SequentialDiploid parent2 = mates.get(1);
-        DNAStrand dna1_1 = parent1.getMaterialsView().get(0).copy();
-        DNAStrand dna1_2 = parent2.getMaterialsView().get(0).copy();
-        DNAStrand dna2_1 = parent1.getMaterialsView().get(1).copy();
-        DNAStrand dna2_2 = parent2.getMaterialsView().get(1).copy();
+    public List<SimpleDiploid> recombine(@NotNull List<SimpleDiploid> mates) {
+        SimpleDiploid parent1 = mates.get(0);
+        SimpleDiploid parent2 = mates.get(1);
+        SimpleDNA dna1_1 = parent1.getMaterialsView().get(0).copy();
+        SimpleDNA dna1_2 = parent2.getMaterialsView().get(0).copy();
+        SimpleDNA dna2_1 = parent1.getMaterialsView().get(1).copy();
+        SimpleDNA dna2_2 = parent2.getMaterialsView().get(1).copy();
         DominanceMapping mapping1 = parent1.getMapping();
         DominanceMapping mapping2 = parent2.getMapping();
 
         if (Math.random() < matchProbability) {
-            DNAStrand tmp = dna1_2;
+            SimpleDNA tmp = dna1_2;
             dna1_2 = dna2_2;
             dna2_2 = tmp;
         }
@@ -63,14 +63,14 @@ public class SimpleSequentialDiploidNPRecombiner implements Recombiner<Sequentia
         swap(dna1_1, dna1_2);
         swap(dna2_1, dna2_2);
 
-        List<SequentialDiploid> children = new ArrayList<>(2);
-        children.add(new SequentialDiploid(dna1_1,dna1_2, mapping1));
-        children.add(new SequentialDiploid(dna2_1,dna2_2, mapping2));
+        List<SimpleDiploid> children = new ArrayList<>(2);
+        children.add(new SimpleDiploid(dna1_1,dna1_2, mapping1));
+        children.add(new SimpleDiploid(dna2_1,dna2_2, mapping2));
 
         return children;
     }
 
-    private void swap(DNAStrand dna1, DNAStrand dna2) {
+    private void swap(SimpleDNA dna1, SimpleDNA dna2) {
         final int length = dna1.getSize();
         List<Integer> crossoverPoints = generateCrossoverPoints(length);
         int index = 0;

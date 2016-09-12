@@ -2,7 +2,7 @@ package experiment2;
 
 import com.sun.istack.internal.NotNull;
 import ga.collections.Individual;
-import ga.components.chromosome.SequentialDiploid;
+import ga.components.chromosome.SimpleDiploid;
 import ga.components.genes.Gene;
 import ga.components.materials.GeneticMaterial;
 import ga.operations.mutators.Mutator;
@@ -13,7 +13,7 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * Created by david on 11/09/16.
  */
-public class NgWongMutator implements Mutator<SequentialDiploid> {
+public class NgWongMutator implements Mutator<SimpleDiploid> {
 
     private static final char[] values = {'0','o','1','i'};
     private double probability;
@@ -37,8 +37,8 @@ public class NgWongMutator implements Mutator<SequentialDiploid> {
     }
 
     @Override
-    public void mutate(@NotNull final List<Individual<SequentialDiploid>> individuals) {
-        for (Individual<SequentialDiploid> individual : individuals) {
+    public void mutate(@NotNull final List<Individual<SimpleDiploid>> individuals) {
+        for (Individual<SimpleDiploid> individual : individuals) {
             final GeneticMaterial material1 = individual.getChromosome().getMaterialsView().get(0);
             final GeneticMaterial material2 = individual.getChromosome().getMaterialsView().get(1);
             final int length = material1.getSize();

@@ -2,10 +2,10 @@ package ga.operations.initializers;
 
 import ga.collections.Individual;
 import ga.collections.Population;
-import ga.components.chromosome.SequentialHaploid;
+import ga.components.chromosome.SimpleHaploid;
 import ga.components.genes.BinaryGene;
 import ga.components.genes.Gene;
-import ga.components.materials.DNAStrand;
+import ga.components.materials.SimpleDNA;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by david on 8/09/16.
  */
-public class BinarySequentialHaploidInitializer implements Initializer<SequentialHaploid> {
+public class BinarySequentialHaploidInitializer implements Initializer<SimpleHaploid> {
 
     private int size;
     private int length;
@@ -64,8 +64,8 @@ public class BinarySequentialHaploidInitializer implements Initializer<Sequentia
     }
 
     @Override
-    public Population<SequentialHaploid> initialize() {
-        Population<SequentialHaploid> population = new Population<>(size);
+    public Population<SimpleHaploid> initialize() {
+        Population<SimpleHaploid> population = new Population<>(size);
         for (int i = 0; i < size; i++) {
             population.addChild(generateIndividual());
         }
@@ -73,11 +73,11 @@ public class BinarySequentialHaploidInitializer implements Initializer<Sequentia
         return population;
     }
 
-    private Individual<SequentialHaploid> generateIndividual() {
+    private Individual<SimpleHaploid> generateIndividual() {
         List<Gene<Integer>> genes = new ArrayList<>(length);
         for (int i = 0; i < length; i++) {
             genes.add((Math.random() < probability) ? new BinaryGene(1) : new BinaryGene(0));
         }
-        return new Individual<>(new SequentialHaploid(new DNAStrand(genes)));
+        return new Individual<>(new SimpleHaploid(new SimpleDNA(genes)));
     }
 }

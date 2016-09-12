@@ -1,23 +1,23 @@
 package ga.components.chromosome;
 
 import com.sun.istack.internal.NotNull;
-import ga.components.materials.DNAStrand;
+import ga.components.materials.SimpleDNA;
 import ga.operations.dominanceMappings.DominanceMapping;
 
 /**
  * Created by david on 26/08/16.
  */
-public class SequentialDiploid extends Diploid<DNAStrand, DNAStrand>{
+public class SimpleDiploid extends Diploid<SimpleDNA, SimpleDNA>{
 
-    public SequentialDiploid(@NotNull final DNAStrand dna1,
-                             @NotNull final DNAStrand dna2,
-                             @NotNull final DominanceMapping<DNAStrand, DNAStrand> mapping) {
+    public SimpleDiploid(@NotNull final SimpleDNA dna1,
+                         @NotNull final SimpleDNA dna2,
+                         @NotNull final DominanceMapping<SimpleDNA, SimpleDNA> mapping) {
         super(dna1, dna2, mapping);
     }
 
     @Override
-    public SequentialDiploid copy() {
-        return new SequentialDiploid(materials.get(0).copy(), materials.get(1).copy(), mapping.copy());
+    public SimpleDiploid copy() {
+        return new SimpleDiploid(materials.get(0).copy(), materials.get(1).copy(), mapping.copy());
     }
 
     @Override

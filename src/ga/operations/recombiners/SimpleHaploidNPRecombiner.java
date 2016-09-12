@@ -1,7 +1,7 @@
 package ga.operations.recombiners;
 
 import com.sun.istack.internal.NotNull;
-import ga.components.chromosome.SequentialHaploid;
+import ga.components.chromosome.SimpleHaploid;
 import ga.components.genes.Gene;
 import ga.components.materials.GeneticMaterial;
 
@@ -13,11 +13,11 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * Created by david on 8/09/16.
  */
-public class SimpleSequentialHaploidNPRecombiner implements Recombiner<SequentialHaploid> {
+public class SimpleHaploidNPRecombiner implements Recombiner<SimpleHaploid> {
 
     private final int point;
 
-    public SimpleSequentialHaploidNPRecombiner(final int point) {
+    public SimpleHaploidNPRecombiner(final int point) {
         filter(point);
         this.point = point;
     }
@@ -28,9 +28,9 @@ public class SimpleSequentialHaploidNPRecombiner implements Recombiner<Sequentia
     }
 
     @Override
-    public List<SequentialHaploid> recombine(@NotNull List<SequentialHaploid> mates) {
-        SequentialHaploid hap1 = mates.get(0).copy();
-        SequentialHaploid hap2 = mates.get(1).copy();
+    public List<SimpleHaploid> recombine(@NotNull List<SimpleHaploid> mates) {
+        SimpleHaploid hap1 = mates.get(0).copy();
+        SimpleHaploid hap2 = mates.get(1).copy();
         final int length = hap1.getLength();
         if (length-1 < point)
             throw new IllegalArgumentException("Length must be larger than crossover points.");
@@ -56,7 +56,7 @@ public class SimpleSequentialHaploidNPRecombiner implements Recombiner<Sequentia
             }
         }
 
-        List<SequentialHaploid> children = new ArrayList<>(2);
+        List<SimpleHaploid> children = new ArrayList<>(2);
         children.add(hap1);
         children.add(hap2);
         return children;

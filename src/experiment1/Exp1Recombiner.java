@@ -1,9 +1,9 @@
 package experiment1;
 
 import com.sun.istack.internal.NotNull;
-import ga.components.chromosome.SequentialHaploid;
+import ga.components.chromosome.SimpleHaploid;
 import ga.components.genes.Gene;
-import ga.components.materials.DNAStrand;
+import ga.components.materials.SimpleDNA;
 import ga.operations.recombiners.Recombiner;
 
 import java.util.ArrayList;
@@ -13,20 +13,20 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * Created by david on 31/08/16.
  */
-public class Exp1Recombiner implements Recombiner<SequentialHaploid> {
+public class Exp1Recombiner implements Recombiner<SimpleHaploid> {
 
     public Exp1Recombiner() {
     }
 
     @Override
-    public List<SequentialHaploid> recombine(@NotNull List<SequentialHaploid> mates) {
-        List<SequentialHaploid> children = new ArrayList<>(2);
+    public List<SimpleHaploid> recombine(@NotNull List<SimpleHaploid> mates) {
+        List<SimpleHaploid> children = new ArrayList<>(2);
 
-        SequentialHaploid child1 = mates.get(0).copy();
-        SequentialHaploid child2 = mates.get(1).copy();
+        SimpleHaploid child1 = mates.get(0).copy();
+        SimpleHaploid child2 = mates.get(1).copy();
 
-        DNAStrand dna1 = child1.getMaterialsView().get(0);
-        DNAStrand dna2 = child2.getMaterialsView().get(0);
+        SimpleDNA dna1 = child1.getMaterialsView().get(0);
+        SimpleDNA dna2 = child2.getMaterialsView().get(0);
 
         final int length = child1.getLength();
         final int crossIndex = ThreadLocalRandom.current().nextInt(1,length-1);

@@ -1,8 +1,8 @@
 package experiment2;
 
 import ga.collections.Population;
-import ga.components.chromosome.SequentialDiploid;
-import ga.components.materials.DNAStrand;
+import ga.components.chromosome.SimpleDiploid;
+import ga.components.materials.SimpleDNA;
 import ga.operations.dominanceMappings.DominanceMapping;
 import ga.operations.initializers.Initializer;
 
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by david on 8/09/16.
  */
-public class NgWongInitializer implements Initializer<SequentialDiploid> {
+public class NgWongInitializer implements Initializer<SimpleDiploid> {
 
     private int size;
     private int length;
@@ -41,9 +41,9 @@ public class NgWongInitializer implements Initializer<SequentialDiploid> {
     }
 
     @Override
-    public Population<SequentialDiploid> initialize() {
-        DominanceMapping<DNAStrand, DNAStrand> mapping = new NgWongSchemeMapping();
-        Population<SequentialDiploid> population = new Population<>(size);
+    public Population<SimpleDiploid> initialize() {
+        DominanceMapping<SimpleDNA, SimpleDNA> mapping = new NgWongSchemeMapping();
+        Population<SimpleDiploid> population = new Population<>(size);
         for (int i = 0; i < size; i++) {
             List<NgWongSchemeGene> genes1 = new ArrayList<>(length);
             List<NgWongSchemeGene> genes2 = new ArrayList<>(length);
@@ -51,8 +51,8 @@ public class NgWongInitializer implements Initializer<SequentialDiploid> {
                 genes1.add(factory.generateGene());
                 genes2.add(factory.generateGene());
             }
-            population.addChildChromosome(new SequentialDiploid(new DNAStrand(genes1),
-                                                                new DNAStrand(genes2),
+            population.addChildChromosome(new SimpleDiploid(new SimpleDNA(genes1),
+                                                                new SimpleDNA(genes2),
                                                                 mapping));
         }
         population.nextGeneration();
