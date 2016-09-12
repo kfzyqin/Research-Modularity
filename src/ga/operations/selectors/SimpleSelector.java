@@ -10,7 +10,12 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Created by david on 3/09/16.
+ * This class provides a simple framework for implementation of selector.
+ * The given reference of list of individuals is stored for efficient retrieval purpose.
+ * Any subclass of this class must implement a way that facilitates execution according to particular selection scheme.
+ *
+ * @author Siu Kei Muk (David)
+ * @since 3/09/16.
  */
 public abstract class SimpleSelector<T extends Chromosome> implements Selector<T> {
 
@@ -27,13 +32,11 @@ public abstract class SimpleSelector<T extends Chromosome> implements Selector<T
     public List<T> select(final int numOfMates) {
         Set<Integer> set = new HashSet<>(numOfMates);
         while (set.size() < numOfMates) {
-            // System.out.println(1);
             set.add(scheme.select(fitnessValues));
         }
 
         List<T> parents = new ArrayList<>(numOfMates);
 
-        // List<T> parents = set.stream().map(i -> individuals.get(i).getChromosome()).collect(Collectors.toList());
         for (int i : set) {
             parents.add(individuals.get(i).getChromosome());
         }

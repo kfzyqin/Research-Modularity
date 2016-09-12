@@ -35,14 +35,5 @@ public abstract class Diploid<M extends GeneticMaterial, G extends GeneticMateri
         strands.add(strand1);
         strands.add(strand2);
         materials = FixedSizeList.fixedSizeList(strands);
-        // this.mapping = mapping;
     }
-
-    /*
-    @Override
-    public G getPhenotype(final boolean recompute) {
-        if (phenotype == null || recompute)
-            phenotype = mapping.map(materials);
-        return phenotype;
-    }*/
 }

@@ -6,13 +6,26 @@ import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Created by david on 11/09/16.
+ * This class implements the tournament selection scheme.
+ * A number, K, of the individuals are first randomly added in a pool.
+ * From the pool, the individual with highest fitness value will be selected with given probability p.
+ * The one with second highest fitness value will be selection with p(1-p), and the third one with p(1-p)^2, and so on.
+ * If none of the first K-1 individual is selected, the last one is selected.
+ *
+ * @author Siu Kei Muk (David)
+ * @since 11/09/16.
  */
 public class SimpleTournamentScheme implements SelectionScheme {
 
     private int size;
     private double dominanceProbability;
 
+    /**
+     * Constructs a tournament selection scheme.
+     *
+     * @param size tournament size
+     * @param dominanceProbability probability p of individual with highest probability to be selected
+     */
     public SimpleTournamentScheme(final int size, final double dominanceProbability) {
         sizeFilter(size);
         probabilityFilter(dominanceProbability);
@@ -30,6 +43,10 @@ public class SimpleTournamentScheme implements SelectionScheme {
             throw new IllegalArgumentException("Invalid probability value.");
     }
 
+    /**
+     * @param candidates candidates selected in the tournament pool
+     * @return index of selected individual
+     */
     private int getSurvivor(@NotNull final List<Integer> candidates) {
         int currentIndex = 0;
         double r = Math.random();

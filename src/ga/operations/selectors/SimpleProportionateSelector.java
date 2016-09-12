@@ -7,7 +7,10 @@ import ga.components.chromosome.Chromosome;
 import java.util.List;
 
 /**
- * Created by david on 11/09/16.
+ * This class implements a simple selector that uses proportionate selection scheme.
+ *
+ * @author Siu Kei Muk (David)
+ * @since 11/09/16
  */
 public class SimpleProportionateSelector<T extends Chromosome> extends SimpleSelector<T> {
 
