@@ -41,7 +41,7 @@ public class Exp1PriorOperator implements PriorOperator<SimpleHaploid> {
         System.out.println(indices);
         */
         List<Individual<SimpleHaploid>> individuals = population.getIndividualsView();
-        for (int i = 0; i < 20; i++) population.addChild(individuals.get(i));
+        for (int i = 0; i < 20; i++) population.addCandidate(individuals.get(i));
     }
 
     private void mutate(@NotNull final List<Individual<SimpleHaploid>> mutant,

@@ -1,8 +1,6 @@
 package ga.collections;
 
 import com.sun.istack.internal.NotNull;
-import com.sun.xml.internal.bind.v2.runtime.Coordinator;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import ga.components.chromosome.Chromosome;
 import ga.operations.fitness.Fitness;
 import ga.others.Copyable;
@@ -10,7 +8,12 @@ import ga.others.Copyable;
 import java.util.*;
 
 /**
- * Created by david on 27/08/16.
+ * This class represents a population used in genetic algorithms.
+ * It consists of several pools for performing different kinds of operation to produce the next generation.
+ * The PopulationMode values are used to indicate the current added child to be placed in corresponding pools.
+ *
+ * @author Siu Kei Muk (David)
+ * @since 27/08/16.
  */
 public class Population<T extends Chromosome> implements Copyable<Population<T>> {
 
@@ -19,92 +22,121 @@ public class Population<T extends Chromosome> implements Copyable<Population<T>>
     private List<Individual<T>> offspringPool;
     private List<Individual<T>> postPool;
     private Set<Integer> survivedIndices;
-    // private List<Double> normalizedFitnessValues;
 
-    // private boolean evaluated;
     private PopulationMode mode;
     private int nextGenSize;
     private final int size;
 
+    /**
+     * Constructs an empty population.
+     *
+     * @param size population size
+     */
     public Population(final int size) {
         individuals = new ArrayList<>(size);
         priorPool = new ArrayList<>(size);
         offspringPool = new ArrayList<>(size);
         postPool = new ArrayList<>(size);
         survivedIndices = new HashSet<>();
-        // normalizedFitnessValues = new ArrayList<>(size);
         this.size = size;
         nextGenSize = 0;
         mode = PopulationMode.RECOMBINE;
     }
 
     private Population(@NotNull final List<Individual<T>> individuals,
-                       // @NotNull final List<Double> normalizedFitnessValues,
                        final int size) {
         this.individuals = individuals;
         this.priorPool = new ArrayList<>(size);
         this.offspringPool = new ArrayList<>(size);
         this.postPool = new ArrayList<>(size);
         this.survivedIndices = new HashSet<>();
-        // this.normalizedFitnessValues = normalizedFitnessValues;
         this.mode = PopulationMode.RECOMBINE;
         this.nextGenSize = 0;
         this.size = size;
     }
 
-    public void addChildChromosome(@NotNull final T child) {
-        addChild(new Individual<>(child));
+    /**
+     * Adds an individual to the corresponding pool with the given chromosome.
+     * @param chromosome chromosome of the candidate individual
+     */
+    public void addCandidateChromosome(@NotNull final T chromosome) {
+        addCandidate(new Individual<>(chromosome));
     }
 
-    public void addChildrenChromosome(@NotNull final List<T> children) {
-        for (T child : children) addChildChromosome(child);
+    /**
+     * Adds multiple individuals to the corresponding pool with the given chromosomes.
+     * @param chromosomes a list of chromosomes of the candidate individuals
+     */
+    public void addCandidateChromosomes(@NotNull final List<T> chromosomes) {
+        for (T child : chromosomes) addCandidateChromosome(child);
     }
 
-    public void addChildren(@NotNull final List<Individual<T>> children) {
-        for (Individual<T> child : children) addChild(child);
+    /**
+     * Adds multiple candidates to the corresponding pool.
+     * @param candidates a list of candidate individuals
+     */
+    public void addCandidates(@NotNull final List<Individual<T>> candidates) {
+        for (Individual<T> child : candidates) addCandidate(child);
     }
 
-    public void evaluate(@NotNull final Fitness fitness, final boolean recompute){
+    /**
+     * Evaluates the fitness function values of the individuals
+     * @param fitness fitness function
+     * @param recompute determines whether to force re-computation of phenotype from genotype
+     */
+    public void evaluate(@NotNull final Fitness fitness, final boolean recompute) {
         for (Individual<T> i : individuals)
             i.evaluate(fitness, recompute);
         Collections.sort(individuals);
-        Collections.reverse(individuals);
     }
 
-    public void addChild(@NotNull final Individual<T> child) {
+    /**
+     * Adds a child/candidate to a pool for the next generation according to the mode.
+     * @param candidate candidate to be added
+     */
+    public void addCandidate(@NotNull final Individual<T> candidate) {
         if (isReady()) return;
         switch (mode) {
             case PRIOR:
-                priorPool.add(child);
+                priorPool.add(candidate);
                 break;
             case RECOMBINE:
-                offspringPool.add(child);
+                offspringPool.add(candidate);
                 break;
             case POST:
-                postPool.add(child);
+                postPool.add(candidate);
                 break;
         }
         nextGenSize++;
     }
 
+    /**
+     * Sets the mode to be PRIOR, RECOMBINE, or POST
+     * @param mode
+     */
     public void setMode(final PopulationMode mode) {
         this.mode = mode;
     }
 
+    /**
+     * Marks the index of an individual that survives to the next generation.
+     * @param index
+     */
     public void markSurvivedIndex(final int index) {
         survivedIndices.add(index);
     }
 
-    /*
-    public void record(@NotNull final Statistics<T> statistics) {
-        if (!evaluated) return;
-        statistics.record(individuals);
-    }*/
-
+    /**
+     * @return a boolean that states whether the population is ready to proceed to the next generation
+     */
     public boolean isReady() {
         return nextGenSize == size;
     }
 
+    /**
+     * Proceeds the population to the next generation, if the population is ready.
+     * @return a boolean that states whether the population is successfully proceeded to the next generation
+     */
     public boolean nextGeneration() {
         if (!isReady())
             return false;
@@ -117,43 +149,71 @@ public class Population<T extends Chromosome> implements Copyable<Population<T>>
         postPool.clear();
         survivedIndices.clear();
         nextGenSize = 0;
-        // normalizedFitnessValues.clear();
         return true;
     }
 
+    /**
+     * Returns the population size.
+     * @return population size
+     */
     public int getSize() {
         return size;
     }
 
+    /**
+     * Returns the total number of individuals in the pools.
+     * @return total number of individuals in the pools
+     */
     public int getNextGenSize() {
         return nextGenSize;
     }
 
+    /**
+     * Returns an unmodifiable view of the individuals.
+     * @return unmodifiable view of the individuals
+     */
     public List<Individual<T>> getIndividualsView() {
         return Collections.unmodifiableList(individuals);
     }
 
-    public List<Individual<T>> getPriorPoolView(){
+    /**
+     * Returns an unmodifiable view of the prior pool.
+     * @return unmodifiable view of the prior pool
+     */
+    public List<Individual<T>> getPriorPoolView() {
         return Collections.unmodifiableList(priorPool);
     }
 
+    /**
+     * Returns an unmodifiable view of the offspring pool.
+     * @return unmodifiable view of the offspring pool
+     */
     public List<Individual<T>> getOffspringPoolView() {
         return Collections.unmodifiableList(offspringPool);
     }
 
-    public List<Individual<T>> getPostPoolView() { return Collections.unmodifiableList(postPool);}
+    /**
+     * Returns an unmodifiable view of the post pool.
+     * @return unmodifiable view of the post pool
+     */
+    public List<Individual<T>> getPostPoolView() {
+        return Collections.unmodifiableList(postPool);
+    }
 
-    public Set<Integer> getSurvivedIndicesView() {return Collections.unmodifiableSet(survivedIndices);}
+    /**
+     * Returns an unmodifiable view of the survivors indices.
+     * @return unmodifiable view of the survivors indices
+     */
+    public Set<Integer> getSurvivedIndicesView() {
+        return Collections.unmodifiableSet(survivedIndices);
+    }
 
     @Override
     public Population<T> copy() {
         List<Individual<T>> individualsCopy = new ArrayList<>(size);
-        // List<Double> normalizedFitnessValuesCopy = new ArrayList<>(normalizedFitnessValues);
         for (int i = 0; i < size; i++) {
             individualsCopy.add(individuals.get(i).copy());
         }
-        return new Population<>(individualsCopy, size); //, normalizedFitnessValuesCopy, size);
+        return new Population<>(individualsCopy, size);
     }
-
-    // public abstract List<T> selectMates(@NotNull final Selector selector);
 }

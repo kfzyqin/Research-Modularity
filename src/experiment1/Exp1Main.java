@@ -8,7 +8,7 @@ import ga.frame.GAState;
 import ga.frame.SimpleGAFrame;
 import ga.frame.SimpleGAState;
 import ga.operations.fitness.Fitness;
-import ga.operations.initializers.BinarySequentialHaploidInitializer;
+import ga.operations.initializers.BinarySimpleHaploidInitializer;
 import ga.operations.initializers.Initializer;
 import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
@@ -36,7 +36,7 @@ public class Exp1Main {
 
     public static void main(String[] args) {
         Fitness fitness = new Exp1Fitness(target);
-        Initializer<SimpleHaploid> initializer = new BinarySequentialHaploidInitializer(size, 32);
+        Initializer<SimpleHaploid> initializer = new BinarySimpleHaploidInitializer(size, 32);
         Population<SimpleHaploid> population = initializer.initialize();
         Mutator mutator = new Exp1Mutator(mutationRate);
         Selector<SimpleHaploid> selector = new SimpleProportionateSelector<>();

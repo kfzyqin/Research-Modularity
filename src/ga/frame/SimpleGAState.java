@@ -12,7 +12,11 @@ import ga.operations.selectors.Selector;
 import java.util.List;
 
 /**
- * Created by david on 12/09/16.
+ * This class is a simple implementation of the state. The recombination rate determines the proportion of
+ * individuals in the new generation that are produced by recombination.
+ *
+ * @author Siu Kei Muk (David)
+ * @since 12/09/16.
  */
 public class SimpleGAState<T extends Chromosome> extends GAState<T> {
 
@@ -34,6 +38,7 @@ public class SimpleGAState<T extends Chromosome> extends GAState<T> {
             throw new IllegalArgumentException("Invalid probability value.");
     }
 
+
     @Override
     public void recombine() {
         population.setMode(PopulationMode.RECOMBINE);
@@ -43,7 +48,7 @@ public class SimpleGAState<T extends Chromosome> extends GAState<T> {
         while (count < size && !population.isReady()) {
             List<T> mates = selector.select(numOfMates);
             List<T> children = recombiner.recombine(mates);
-            population.addChildrenChromosome(children);
+            population.addCandidateChromosomes(children);
             count += children.size();
         }
     }

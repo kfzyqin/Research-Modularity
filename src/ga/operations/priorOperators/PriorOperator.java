@@ -5,6 +5,8 @@ import ga.collections.Population;
 import ga.components.chromosome.Chromosome;
 
 /**
+ *
+ *
  * Created by david on 28/08/16.
  */
 public interface PriorOperator<T extends Chromosome> {

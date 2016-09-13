@@ -19,7 +19,9 @@ import ga.operations.priorOperators.PriorOperator;
 import ga.operations.priorOperators.SimpleElitismOperator;
 import ga.operations.recombiners.Recombiner;
 import ga.operations.recombiners.SimpleDiploidRecombiner;
-import ga.operations.selectors.*;
+import ga.operations.selectors.Selector;
+import ga.operations.selectors.SimpleTournamentScheme;
+import ga.operations.selectors.SimpleTournamentSelector;
 
 /**
  * Created by david on 11/09/16.

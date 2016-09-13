@@ -9,12 +9,19 @@ import ga.components.materials.GeneticMaterial;
 import java.util.List;
 
 /**
- * Created by david on 3/09/16.
+ * This class implements a mutation operation for chromosomes with pure binary genes.
+ *
+ * @author Siu Kei Muk (David)
+ * @since 3/09/16.
  */
 public class BinaryGeneMutator<T extends Chromosome> implements Mutator<T> {
 
     private double prob;
 
+    /**
+     * Constructs a BinaryGeneMutator object.
+     * @param prob mutation probability
+     */
     public BinaryGeneMutator(final double prob) {
         filter(prob);
         this.prob = prob;

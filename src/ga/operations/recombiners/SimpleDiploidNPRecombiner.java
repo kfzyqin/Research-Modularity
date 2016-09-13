@@ -12,7 +12,12 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Created by david on 8/09/16.
+ * This class is a simple implementation for diploid N-point recombination for simple diploids.
+ * The match probability determines the likelihood of choosing combination over the other in the pairing part.
+ * The gene value swapping is performed after chromosome pairing.
+ *
+ * @author Siu Kei Muk (David)
+ * @since 8/09/16.
  */
 public class SimpleDiploidNPRecombiner implements Recombiner<SimpleDiploid> {
 

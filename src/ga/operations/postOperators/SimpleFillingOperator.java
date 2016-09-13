@@ -12,7 +12,12 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Created by david on 12/09/16.
+ * This class is an implementation of post-operator that fills up the remaining space by
+ * selecting individuals from the current generation to survive in the next generation
+ * according to a given selection scheme.
+ *
+ * @author Siu Kei Muk (David)
+ * @since 12/09/16.
  */
 public class SimpleFillingOperator<T extends Chromosome> implements PostOperator<T> {
 
@@ -33,7 +38,7 @@ public class SimpleFillingOperator<T extends Chromosome> implements PostOperator
             final int index = scheme.select(normalized);
             if (!survivedIndices.contains(index)) selected.add(index);
         }
-        for (Integer i : selected) population.addChild(individuals.get(i).copy());
+        for (Integer i : selected) population.addCandidate(individuals.get(i).copy());
     }
 
     private List<Double> normalizeFitness(List<Individual<T>> individuals) {

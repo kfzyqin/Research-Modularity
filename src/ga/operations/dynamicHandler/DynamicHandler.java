@@ -5,8 +5,18 @@ import ga.components.chromosome.Chromosome;
 import ga.frame.GAState;
 
 /**
- * Created by david on 3/09/16.
+ * This interface provides an abstraction of handler that handles changes occurred in the fitness function/environment.
+ * Usually, it is used to re-evaluate the fitness function values and perform dominance change after a change is occurred.
+ *
+ * @author Siu Kei Muk (David)
+ * @since 3/09/16.
  */
 public interface DynamicHandler<T extends Chromosome> {
+    /**
+     * Handles the change in environment.
+     *
+     * @param state current state of genetic algorithm
+     * @return false: not handled, true: handled
+     */
     boolean handle(@NotNull final GAState<T> state);
 }

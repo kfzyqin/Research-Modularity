@@ -1,20 +1,18 @@
 package ga.frame;
 
 import com.sun.istack.internal.NotNull;
-import ga.collections.Population;
 import ga.collections.Statistics;
 import ga.components.chromosome.Chromosome;
 import ga.operations.dynamicHandler.DynamicHandler;
-import ga.operations.fitness.Fitness;
-import ga.operations.initializers.Initializer;
-import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
 import ga.operations.priorOperators.PriorOperator;
-import ga.operations.recombiners.Recombiner;
-import ga.operations.selectors.Selector;
 
 /**
- * Created by david on 29/08/16.
+ * This class provides a general framework for the genetic algorithm to run.
+ * The abstract method 'evolve' is the content for one iteration of GA.
+ *
+ * @author Siu Kei Muk (David)
+ * @since 29/08/16.
  */
 public abstract class GAFrame<T extends Chromosome> {
 
@@ -32,20 +30,9 @@ public abstract class GAFrame<T extends Chromosome> {
         this.statistics = statistics;
     }
 
-    /*
-    public GAFrame(@NotNull final Fitness fitness,
-                   @NotNull final Initializer<T> initializer,
-                   @NotNull final Recombiner<T> recombiner,
-                   @NotNull final Mutator mutator,
-                   @NotNull final Selector<T> selector,
-                   @NotNull final Statistics<T> statistics,
-                   final int numOfMates) {
-        Population<T> population = initializer.initialize();
-        state = new GAState<>(population, fitness, mutator, recombiner, selector, numOfMates);
-        this.statistics = statistics;
-        state.record(statistics);
-    }*/
-
+    /**
+     * Evolves for one generation
+     */
     public abstract void evolve();
 
     public GAState<T> getState() {

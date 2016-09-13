@@ -10,6 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * This class is a simple implementation of statistics bookkeeping that
+ * keeps records of the best elite of each generation.
+ *
+ * @author Siu Kei Muk (David)
  * Created by david on 11/09/16.
  */
 public class SimpleElitesStatistics<T extends Chromosome> implements Statistics<T> {
@@ -24,6 +28,9 @@ public class SimpleElitesStatistics<T extends Chromosome> implements Statistics<
         deltas = new ArrayList<>();
     }
 
+    /**
+     * @param maxGen maximum number of generations, for efficiency reason
+     */
     public SimpleElitesStatistics(final int maxGen) {
         generation = 0;
         elites = new ArrayList<>(maxGen);

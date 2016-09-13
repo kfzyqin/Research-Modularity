@@ -10,7 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by david on 8/09/16.
+ * This class is an implementation of a simple random recombination for simple diploids.
+ * The match probability determines the likelihood of choosing combination over the other in the pairing part.
+ * The gene value swapping is performed after chromosome pairing.
+ *
+ * @author Siu Kei Muk (David)
+ * @since 8/09/16.
  */
 public class SimpleDiploidRecombiner implements Recombiner<SimpleDiploid> {
 

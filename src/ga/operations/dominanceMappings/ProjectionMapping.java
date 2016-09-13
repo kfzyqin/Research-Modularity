@@ -6,7 +6,11 @@ import ga.components.materials.GeneticMaterial;
 import java.util.List;
 
 /**
- * Created by david on 12/09/16.
+ * A projection mapping object returns one of the given genetic material as the phenotype.
+ * It is mainly used for identity mapping for haploids.
+ *
+ * @author Siu Kei Muk (David)
+ * @since 12/09/16.
  */
 public class ProjectionMapping<M extends GeneticMaterial> implements DominanceMapping<M,M> {
 

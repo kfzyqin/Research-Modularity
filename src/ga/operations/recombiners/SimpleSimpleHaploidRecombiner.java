@@ -9,7 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by david on 8/09/16.
+ * This class is a simple implementation for simple haploid random recombination for simple haploids.
+ * The match probability determines the likelihood of choosing combination over the other in the pairing part.
+ * The gene value swapping is performed after chromosome pairing.
+ *
+ * @author Siu Kei Muk (David)
+ * @since 8/09/16.
  */
 public class SimpleSimpleHaploidRecombiner implements Recombiner<SimpleHaploid>{
 

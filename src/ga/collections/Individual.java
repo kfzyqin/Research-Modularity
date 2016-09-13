@@ -6,6 +6,9 @@ import ga.operations.fitness.Fitness;
 import ga.others.Copyable;
 
 /**
+ * This class represents an individual in the population. An individual consists of a chromosome and fitness function value.
+ * This class implements Comparable for sorting purpose (in descending order).
+ *
  * Created by david on 27/08/16.
  */
 public class Individual<T extends Chromosome> implements Comparable<Individual<T>>, Copyable<Individual<T>> {
@@ -13,6 +16,10 @@ public class Individual<T extends Chromosome> implements Comparable<Individual<T
     private T chromosome;
     private double fitness = 0;
 
+    /**
+     * Constructs an individual.
+     * @param chromosome chromosome of the individual
+     */
     public Individual(@NotNull final T chromosome) {
         this.chromosome = chromosome;
     }
@@ -25,10 +32,11 @@ public class Individual<T extends Chromosome> implements Comparable<Individual<T
     @Override
     public int compareTo(final Individual<T> tIndividual) {
         final double tFitness = tIndividual.getFitness();
+        // For descending sort
         if (fitness > tFitness)
-            return 1;
-        else if (fitness < tFitness)
             return -1;
+        else if (fitness < tFitness)
+            return 1;
         else
             return 0;
     }

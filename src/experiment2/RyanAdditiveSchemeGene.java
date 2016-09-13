@@ -3,8 +3,6 @@ package experiment2;
 import com.sun.istack.internal.NotNull;
 import ga.components.genes.Gene;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 /**
  * Created by david on 3/09/16.
  */

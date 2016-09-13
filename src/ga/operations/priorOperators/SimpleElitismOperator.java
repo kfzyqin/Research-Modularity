@@ -3,7 +3,6 @@ package ga.operations.priorOperators;
 import com.sun.istack.internal.NotNull;
 import ga.collections.Individual;
 import ga.collections.Population;
-import ga.collections.PopulationMode;
 import ga.components.chromosome.Chromosome;
 
 import java.util.List;
@@ -29,7 +28,7 @@ public class SimpleElitismOperator<T extends Chromosome> implements PriorOperato
     public void preOperate(@NotNull Population<T> population) {
         List<Individual<T>> individuals = population.getIndividualsView();
         for (int i = 0; i < numOfElites; i++) {
-            population.addChild(individuals.get(i).copy());
+            population.addCandidate(individuals.get(i).copy());
             population.markSurvivedIndex(i);
         }
     }

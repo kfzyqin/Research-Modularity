@@ -11,15 +11,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by david on 8/09/16.
+ * This class is a simple initializer that initializes a population of binary simple haploid individuals.
+ * The probability governs the likelyhood of a randomly generated gene to contain the value 1.
+ *
+ * @author Siu Kei Muk (David)
+ * @since 8/09/16.
  */
-public class BinarySequentialHaploidInitializer implements Initializer<SimpleHaploid> {
+public class BinarySimpleHaploidInitializer implements Initializer<SimpleHaploid> {
 
     private int size;
     private int length;
     private double probability = 0.5;
 
-    public BinarySequentialHaploidInitializer(final int size, final int length) {
+    /**
+     * Constructs the initializer
+     * @param size size of population to be initialized
+     * @param length length of each haploid
+     */
+    public BinarySimpleHaploidInitializer(final int size, final int length) {
         this.size = size;
         this.length = length;
     }
@@ -67,7 +76,7 @@ public class BinarySequentialHaploidInitializer implements Initializer<SimpleHap
     public Population<SimpleHaploid> initialize() {
         Population<SimpleHaploid> population = new Population<>(size);
         for (int i = 0; i < size; i++) {
-            population.addChild(generateIndividual());
+            population.addCandidate(generateIndividual());
         }
         population.nextGeneration();
         return population;

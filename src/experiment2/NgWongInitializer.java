@@ -51,7 +51,7 @@ public class NgWongInitializer implements Initializer<SimpleDiploid> {
                 genes1.add(factory.generateGene());
                 genes2.add(factory.generateGene());
             }
-            population.addChildChromosome(new SimpleDiploid(new SimpleDNA(genes1),
+            population.addCandidateChromosome(new SimpleDiploid(new SimpleDNA(genes1),
                                                                 new SimpleDNA(genes2),
                                                                 mapping));
         }
