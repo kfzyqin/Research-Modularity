@@ -34,9 +34,9 @@ public class Exp1Statistics implements Statistics<SimpleHaploid> {
 
     /**
      * This method records the elite of a generation into "elites",
-     * and calculate the difference of best fitness values between
+     * and calculate the difference of best fitnessfunction values between
      * successive generations.
-     * @param data A descending sorted list of individuals by fitness values.
+     * @param data A descending sorted list of individuals by fitnessfunction values.
      */
     @Override
     public void record(@NotNull List<Individual<SimpleHaploid>> data) {

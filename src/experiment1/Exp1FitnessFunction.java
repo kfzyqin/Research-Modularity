@@ -2,24 +2,24 @@ package experiment1;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.materials.SimpleDNA;
-import ga.operations.fitness.Fitness;
+import ga.operations.fitnessfunction.FitnessFunction;
 
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by david on 30/08/16.
  */
-public class Exp1Fitness implements Fitness<SimpleDNA>{
+public class Exp1FitnessFunction implements FitnessFunction<SimpleDNA> {
 
     private final int target;
     private final String targetBitString;
 
-    public Exp1Fitness() {
+    public Exp1FitnessFunction() {
         this.target = ThreadLocalRandom.current().nextInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
         targetBitString = Integer.toBinaryString(target);
     }
 
-    public Exp1Fitness(final int target) {
+    public Exp1FitnessFunction(final int target) {
         this.target = target;
         targetBitString = Integer.toBinaryString(target);
     }

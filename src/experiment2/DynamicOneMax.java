@@ -4,7 +4,7 @@ import com.sun.istack.internal.NotNull;
 import ga.components.genes.BinaryGene;
 import ga.components.genes.Gene;
 import ga.components.materials.SimpleDNA;
-import ga.operations.fitness.Fitness;
+import ga.operations.fitnessfunction.FitnessFunction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by david on 2/09/16.
  */
-public class DynamicOneMax implements Fitness<SimpleDNA>{
+public class DynamicOneMax implements FitnessFunction<SimpleDNA> {
 
     private SimpleDNA mask;
     private double flipProb;

@@ -4,9 +4,9 @@ import com.sun.istack.internal.NotNull;
 import ga.collections.Population;
 import ga.collections.PopulationMode;
 import ga.components.chromosome.Chromosome;
-import ga.operations.fitness.Fitness;
-import ga.operations.mutators.Mutator;
-import ga.operations.recombiners.Recombiner;
+import ga.operations.fitnessfunction.FitnessFunction;
+import ga.operations.mutation.MutationOperator;
+import ga.operations.recombination.Recombiner;
 import ga.operations.selectors.Selector;
 
 import java.util.List;
@@ -23,13 +23,13 @@ public class SimpleGAState<T extends Chromosome> extends GAState<T> {
     private double recombinationRate;
 
     public SimpleGAState(@NotNull final Population<T> population,
-                         @NotNull final Fitness fitness,
-                         @NotNull final Mutator mutator,
+                         @NotNull final FitnessFunction fitnessFunction,
+                         @NotNull final MutationOperator mutationOperator,
                          @NotNull final Recombiner<T> recombiner,
                          @NotNull final Selector<T> selector,
                          final int numOfMates,
                          final double recombinationRate) {
-        super(population, fitness, mutator, recombiner, selector, numOfMates);
+        super(population, fitnessFunction, mutationOperator, recombiner, selector, numOfMates);
         setRecombinationRate(recombinationRate);
     }
 
@@ -55,7 +55,7 @@ public class SimpleGAState<T extends Chromosome> extends GAState<T> {
 
     @Override
     public void mutate() {
-        mutator.mutate(population.getOffspringPoolView());
+        mutationOperator.mutate(population.getOffspringPoolView());
     }
 
     public double getRecombinationRate() {

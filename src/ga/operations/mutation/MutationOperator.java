@@ -1,4 +1,4 @@
-package ga.operations.mutators;
+package ga.operations.mutation;
 
 import com.sun.istack.internal.NotNull;
 import ga.collections.Individual;
@@ -14,7 +14,7 @@ import java.util.List;
  * @author Siu Kei Muk (David)
  * @since 26/08/16.
  */
-public interface Mutator<T extends Chromosome> {
+public interface MutationOperator<T extends Chromosome> {
     /**
      * Mutates the given list of individuals.
      * @param individuals individuals to be mutated

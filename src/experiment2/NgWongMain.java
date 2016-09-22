@@ -10,15 +10,15 @@ import ga.frame.GAState;
 import ga.frame.SimpleGAFrame;
 import ga.frame.SimpleGAState;
 import ga.operations.dynamicHandler.DynamicHandler;
-import ga.operations.fitness.Fitness;
+import ga.operations.fitnessfunction.FitnessFunction;
 import ga.operations.initializers.Initializer;
-import ga.operations.mutators.Mutator;
+import ga.operations.mutation.MutationOperator;
 import ga.operations.postOperators.PostOperator;
 import ga.operations.postOperators.SimpleFillingOperator;
 import ga.operations.priorOperators.PriorOperator;
 import ga.operations.priorOperators.SimpleElitismOperator;
-import ga.operations.recombiners.Recombiner;
-import ga.operations.recombiners.SimpleDiploidRecombiner;
+import ga.operations.recombination.Recombiner;
+import ga.operations.recombination.SimpleDiploidRecombiner;
 import ga.operations.selectors.Selector;
 import ga.operations.selectors.SimpleTournamentScheme;
 import ga.operations.selectors.SimpleTournamentSelector;
@@ -44,18 +44,18 @@ public class NgWongMain {
     private static final String outfile = "NgWong.out";
 
     public static void main(String[] args) {
-        Fitness<SimpleDNA> fitness = new DynamicOneMax(length, rho);
+        FitnessFunction<SimpleDNA> fitnessFunction = new DynamicOneMax(length, rho);
         Initializer<SimpleDiploid> initializer = new NgWongInitializer(length, size);
         Population<SimpleDiploid> population = initializer.initialize();
         Recombiner<SimpleDiploid> recombiner = new SimpleDiploidRecombiner();
-        Mutator<SimpleDiploid> mutator = new NgWongMutator(mutationRate);
+        MutationOperator<SimpleDiploid> mutationOperator = new NgWongMutationOperator(mutationRate);
         Selector<SimpleDiploid> selector = new SimpleTournamentSelector<>(tournamentSize, selectivePressure);
         PostOperator<SimpleDiploid> fillingOperator = new SimpleFillingOperator<>(new SimpleTournamentScheme(tournamentSize, selectivePressure));
         PriorOperator<SimpleDiploid> elitismOperator = new SimpleElitismOperator<>(numElites);
         DynamicHandler<SimpleDiploid> handler = new NgWongDominanceChange(dominanceChangeThreshold, cycleLength);
         Statistics<SimpleDiploid> statistics = new SimpleElitesStatistics<>();
 
-        GAState<SimpleDiploid> state = new SimpleGAState<>(population, fitness, mutator, recombiner, selector, 2, recombinationRate);
+        GAState<SimpleDiploid> state = new SimpleGAState<>(population, fitnessFunction, mutationOperator, recombiner, selector, 2, recombinationRate);
         state.record(statistics);
         GAFrame<SimpleDiploid> frame = new SimpleGAFrame<>(state, fillingOperator, statistics, handler);
         frame.setPriorOperator(elitismOperator);

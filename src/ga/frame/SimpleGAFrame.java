@@ -29,27 +29,27 @@ public class SimpleGAFrame<T extends Chromosome> extends GAFrame<T> {
 
     /*
 
-    public SimpleGAFrame(@NotNull final Fitness fitness,
+    public SimpleGAFrame(@NotNull final FitnessFunction fitnessfunction,
                          @NotNull final Initializer<T> initializer,
                          @NotNull final Recombiner<T> recombiner,
-                         @NotNull final Mutator mutator,
+                         @NotNull final MutationOperator mutationOperator,
                          @NotNull final Selector selector,
                          @NotNull final Statistics<T> statistics,
                          final int numOfMates) {
-        super(new SimpleGAState<T>(fitness, initializer, recombiner, mutator, selector, statistics, numOfMates));
+        super(new SimpleGAState<T>(fitnessfunction, initializer, recombiner, mutationOperator, selector, statistics, numOfMates));
     }*/
 
     /*
 
-    public SimpleGAFrame(@NotNull final Fitness fitness,
+    public SimpleGAFrame(@NotNull final FitnessFunction fitnessfunction,
                          @NotNull final Initializer<T> initializer,
                          @NotNull final Recombiner<T> recombiner,
-                         @NotNull final Mutator mutator,
+                         @NotNull final MutationOperator mutationOperator,
                          @NotNull final Selector selector,
                          @NotNull final Statistics<T> statistics,
                          @NotNull final DynamicHandler<T> handler,
                          final int numOfMates) {
-        super(fitness, initializer, recombiner, mutator, selector, statistics, numOfMates);
+        super(fitnessfunction, initializer, recombiner, mutationOperator, selector, statistics, numOfMates);
         this.handler = handler;
     }*/
 

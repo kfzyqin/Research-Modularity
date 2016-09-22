@@ -5,7 +5,7 @@ import ga.collections.Individual;
 import ga.collections.Population;
 import ga.collections.PopulationMode;
 import ga.components.chromosome.SimpleHaploid;
-import ga.operations.mutators.Mutator;
+import ga.operations.mutation.MutationOperator;
 import ga.operations.priorOperators.PriorOperator;
 import ga.operations.selectors.Selector;
 
@@ -18,7 +18,7 @@ public class Exp1PriorOperator implements PriorOperator<SimpleHaploid> {
 
     private int numOfElites;
     private Selector selector;
-    private Mutator<SimpleHaploid> mutator = null;
+    private MutationOperator<SimpleHaploid> mutationOperator = null;
 
     public Exp1PriorOperator(final int numOfElites, Selector selector) {
         if (numOfElites < 1)
@@ -45,8 +45,8 @@ public class Exp1PriorOperator implements PriorOperator<SimpleHaploid> {
     }
 
     private void mutate(@NotNull final List<Individual<SimpleHaploid>> mutant,
-                        @NotNull final Mutator<SimpleHaploid> mutator) {
-        mutator.mutate(mutant);
+                        @NotNull final MutationOperator<SimpleHaploid> mutationOperator) {
+        mutationOperator.mutate(mutant);
     }
 
     public int getNumOfElites() {
@@ -61,7 +61,7 @@ public class Exp1PriorOperator implements PriorOperator<SimpleHaploid> {
         this.selector = selector;
     }
 
-    public void setMutator(final Mutator<SimpleHaploid> mutator) {
-        this.mutator = mutator;
+    public void setMutationOperator(final MutationOperator<SimpleHaploid> mutationOperator) {
+        this.mutationOperator = mutationOperator;
     }
 }

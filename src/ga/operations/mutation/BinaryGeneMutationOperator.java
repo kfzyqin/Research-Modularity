@@ -1,4 +1,4 @@
-package ga.operations.mutators;
+package ga.operations.mutation;
 
 import com.sun.istack.internal.NotNull;
 import ga.collections.Individual;
@@ -14,15 +14,15 @@ import java.util.List;
  * @author Siu Kei Muk (David)
  * @since 3/09/16.
  */
-public class BinaryGeneMutator<T extends Chromosome> implements Mutator<T> {
+public class BinaryGeneMutationOperator<T extends Chromosome> implements MutationOperator<T> {
 
     private double prob;
 
     /**
-     * Constructs a BinaryGeneMutator object.
+     * Constructs a BinaryGeneMutationOperator object.
      * @param prob mutation probability
      */
-    public BinaryGeneMutator(final double prob) {
+    public BinaryGeneMutationOperator(final double prob) {
         filter(prob);
         this.prob = prob;
     }

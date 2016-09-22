@@ -5,7 +5,7 @@ import ga.collections.Individual;
 import ga.components.chromosome.SimpleDiploid;
 import ga.components.genes.Gene;
 import ga.components.materials.GeneticMaterial;
-import ga.operations.mutators.Mutator;
+import ga.operations.mutation.MutationOperator;
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -13,12 +13,12 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * Created by david on 11/09/16.
  */
-public class NgWongMutator implements Mutator<SimpleDiploid> {
+public class NgWongMutationOperator implements MutationOperator<SimpleDiploid> {
 
     private static final char[] values = {'0','o','1','i'};
     private double probability;
 
-    public NgWongMutator(final double probability) {
+    public NgWongMutationOperator(final double probability) {
         setProbability(probability);
     }
 

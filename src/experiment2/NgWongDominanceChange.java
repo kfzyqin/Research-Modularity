@@ -36,7 +36,7 @@ public class NgWongDominanceChange implements DynamicHandler<SimpleDiploid>{
         final int currGen = state.getGeneration();
         if (currGen == 0 || currGen % cycleLength != 0)
             return false;
-        state.getFitness().update();
+        state.getFitnessFunction().update();
         List<Double> preValues = extractFitnessValue(state.getPopulation().getIndividualsView());
         state.evaluate(false);
         List<Individual<SimpleDiploid>> individuals = state.getPopulation().getIndividualsView();

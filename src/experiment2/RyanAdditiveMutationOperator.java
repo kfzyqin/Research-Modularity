@@ -5,7 +5,7 @@ import ga.collections.Individual;
 import ga.components.chromosome.SimpleDiploid;
 import ga.components.genes.Gene;
 import ga.components.materials.GeneticMaterial;
-import ga.operations.mutators.Mutator;
+import ga.operations.mutation.MutationOperator;
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -13,12 +13,12 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * Created by david on 12/09/16.
  */
-public class RyanAdditiveMutator implements Mutator<SimpleDiploid> {
+public class RyanAdditiveMutationOperator implements MutationOperator<SimpleDiploid> {
 
     private static final char[] values = {'A','B','C','D'};
     private double probability;
 
-    public RyanAdditiveMutator(double probability) {
+    public RyanAdditiveMutationOperator(double probability) {
         setProbability(probability);
     }
 

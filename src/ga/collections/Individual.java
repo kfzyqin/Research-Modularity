@@ -2,11 +2,11 @@ package ga.collections;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.chromosome.Chromosome;
-import ga.operations.fitness.Fitness;
+import ga.operations.fitnessfunction.FitnessFunction;
 import ga.others.Copyable;
 
 /**
- * This class represents an individual in the population. An individual consists of a chromosome and fitness function value.
+ * This class represents an individual in the population. An individual consists of a chromosome and fitnessfunction function value.
  * This class implements Comparable for sorting purpose (in descending order).
  *
  * Created by david on 27/08/16.
@@ -46,7 +46,7 @@ public class Individual<T extends Chromosome> implements Comparable<Individual<T
         return new Individual<>(chromosome, fitness);
     }
 
-    public double evaluate(final Fitness objective, final boolean recompute) {
+    public double evaluate(final FitnessFunction objective, final boolean recompute) {
         fitness = objective.evaluate(chromosome.getPhenotype(recompute));
         return fitness;
     }
@@ -61,6 +61,6 @@ public class Individual<T extends Chromosome> implements Comparable<Individual<T
 
     @Override
     public String toString() {
-        return "Fitness: " + fitness + ", " + chromosome.toString();
+        return "FitnessFunction: " + fitness + ", " + chromosome.toString();
     }
 }

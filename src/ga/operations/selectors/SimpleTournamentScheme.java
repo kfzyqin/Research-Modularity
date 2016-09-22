@@ -10,8 +10,8 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * This class implements the tournament selection scheme.
  * A number, K, of the individuals are first randomly added in a pool.
- * From the pool, the individual with highest fitness value will be selected with given probability p.
- * The one with second highest fitness value will be selection with p(1-p), and the third one with p(1-p)^2, and so on.
+ * From the pool, the individual with highest fitnessfunction value will be selected with given probability p.
+ * The one with second highest fitnessfunction value will be selection with p(1-p), and the third one with p(1-p)^2, and so on.
  * If none of the first K-1 individual is selected, the last one is selected.
  *
  * @author Siu Kei Muk (David)
