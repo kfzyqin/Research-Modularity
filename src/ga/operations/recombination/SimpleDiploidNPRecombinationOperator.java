@@ -7,47 +7,43 @@ import ga.components.materials.SimpleDNA;
 import ga.operations.dominanceMappings.DominanceMapping;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * This class is an implementation of a simple random recombination for simple diploids.
+ * This class is a simple implementation for diploid N-point recombination for simple diploids.
  * The match probability determines the likelihood of choosing combination over the other in the pairing part.
  * The gene value swapping is performed after chromosome pairing.
  *
  * @author Siu Kei Muk (David)
  * @since 8/09/16.
  */
-public class SimpleDiploidRecombiner implements Recombiner<SimpleDiploid> {
+public class SimpleDiploidNPRecombinationOperator implements RecombinationOperator<SimpleDiploid> {
 
-    private double swapProbability = 0.5;
     private double matchProbability = 0.5;
-    private boolean swap = false;
+    private int points = 1;
 
-    public SimpleDiploidRecombiner() {
+    public SimpleDiploidNPRecombinationOperator() {
     }
 
-    public SimpleDiploidRecombiner(final double matchProbability) {
+    public SimpleDiploidNPRecombinationOperator(final double matchProbability, final int points) {
         setMatchProbability(matchProbability);
+        setPoints(points);
     }
 
-    public SimpleDiploidRecombiner(final double swapProbability, final boolean swap) {
-        setSwapProbability(swapProbability);
-        setSwap(swap);
-    }
-
-    public SimpleDiploidRecombiner(final double swapProbability, final double matchProbability, final boolean swap) {
-        setMatchProbability(matchProbability);
-        setSwapProbability(swapProbability);
-        this.swap = swap;
-    }
-
-    private void filter(final double probability) {
+    private void probabilityFilter(final double probability) {
         if (probability < 0 || probability > 1)
             throw new IllegalArgumentException("Invalid probability value.");
     }
 
+    private void pointsFilter(final int points) {
+        if (points < 1)
+            throw new IllegalArgumentException("Invalid number of crossover points.");
+    }
+
     @Override
-    public List<SimpleDiploid> recombine(@NotNull final List<SimpleDiploid> mates) {
+    public List<SimpleDiploid> recombine(@NotNull List<SimpleDiploid> mates) {
         SimpleDiploid parent1 = mates.get(0);
         SimpleDiploid parent2 = mates.get(1);
         SimpleDNA dna1_1 = parent1.getMaterialsView().get(0).copy();
@@ -57,33 +53,43 @@ public class SimpleDiploidRecombiner implements Recombiner<SimpleDiploid> {
         DominanceMapping mapping1 = parent1.getMapping();
         DominanceMapping mapping2 = parent2.getMapping();
 
-        if (Math.random() > matchProbability) {
+        if (Math.random() < matchProbability) {
             SimpleDNA tmp = dna1_2;
             dna1_2 = dna2_2;
             dna2_2 = tmp;
         }
 
-        if (Math.random() > matchProbability) {
+        if (Math.random() < matchProbability) {
             DominanceMapping tmp = mapping1;
             mapping1 = mapping2;
             mapping2 = tmp;
         }
 
-        if (swap) {
-            swap(dna1_1, dna1_2);
-            swap(dna2_1, dna2_2);
-        }
+        swap(dna1_1, dna1_2);
+        swap(dna2_1, dna2_2);
 
         List<SimpleDiploid> children = new ArrayList<>(2);
-        children.add(new SimpleDiploid(dna1_1, dna1_2, mapping1));
-        children.add(new SimpleDiploid(dna2_1, dna2_2, mapping2));
+        children.add(new SimpleDiploid(dna1_1,dna1_2, mapping1));
+        children.add(new SimpleDiploid(dna2_1,dna2_2, mapping2));
+
         return children;
     }
 
     private void swap(SimpleDNA dna1, SimpleDNA dna2) {
         final int length = dna1.getSize();
+        List<Integer> crossoverPoints = generateCrossoverPoints(length);
+        int index = 0;
+        int crossIndex = crossoverPoints.get(0);
+        boolean swap = false;
         for (int i = 0; i < length; i++) {
-            if (Math.random() < swapProbability) {
+
+            if (i == crossIndex) {
+                swap = !swap;
+                index++;
+                crossIndex = (index < points) ? crossoverPoints.get(index) : length;
+            }
+
+            if (swap) {
                 Gene gene1 = dna1.getGene(i);
                 Gene gene2 = dna2.getGene(i);
                 Object value1 = gene1.getValue();
@@ -93,29 +99,32 @@ public class SimpleDiploidRecombiner implements Recombiner<SimpleDiploid> {
         }
     }
 
+    private List<Integer> generateCrossoverPoints(final int length) {
+        List<Integer> indices = new ArrayList<>(points);
+        while (indices.size() < points) {
+            final int index = ThreadLocalRandom.current().nextInt(1,length);
+            if (!indices.contains(index))
+                indices.add(index);
+        }
+        Collections.sort(indices);
+        return indices;
+    }
+
     public double getMatchProbability() {
         return matchProbability;
     }
 
     public void setMatchProbability(final double matchProbability) {
-        filter(matchProbability);
+        probabilityFilter(matchProbability);
         this.matchProbability = matchProbability;
     }
 
-    public double getSwapProbability() {
-        return swapProbability;
+    public int getPoints() {
+        return points;
     }
 
-    public void setSwapProbability(final double swapProbability) {
-        filter(swapProbability);
-        this.swapProbability = swapProbability;
-    }
-
-    public boolean isSwap() {
-        return swap;
-    }
-
-    public void setSwap(boolean swap) {
-        this.swap = swap;
+    public void setPoints(final int points) {
+        pointsFilter(points);
+        this.points = points;
     }
 }

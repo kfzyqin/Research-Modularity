@@ -5,20 +5,20 @@ import ga.collections.Individual;
 import ga.components.chromosome.SimpleDiploid;
 import ga.components.genes.Gene;
 import ga.components.materials.GeneticMaterial;
-import ga.operations.mutation.MutationOperator;
+import ga.operations.mutation.ChromosomeMutationOperator;
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Created by david on 12/09/16.
+ * Created by david on 11/09/16.
  */
-public class RyanAdditiveMutationOperator implements MutationOperator<SimpleDiploid> {
+public class NgWongChromosomeMutationOperator implements ChromosomeMutationOperator<SimpleDiploid> {
 
-    private static final char[] values = {'A','B','C','D'};
+    private static final char[] values = {'0','o','1','i'};
     private double probability;
 
-    public RyanAdditiveMutationOperator(double probability) {
+    public NgWongChromosomeMutationOperator(final double probability) {
         setProbability(probability);
     }
 
@@ -31,17 +31,18 @@ public class RyanAdditiveMutationOperator implements MutationOperator<SimpleDipl
         return probability;
     }
 
-    public void setProbability(double probability) {
+    public void setProbability(final double probability) {
         filter(probability);
         this.probability = probability;
     }
 
     @Override
-    public void mutate(@NotNull List<Individual<SimpleDiploid>> individuals) {
+    public void mutate(@NotNull final List<Individual<SimpleDiploid>> individuals) {
         for (Individual<SimpleDiploid> individual : individuals) {
-            GeneticMaterial material1 = individual.getChromosome().getMaterialsView().get(0);
-            GeneticMaterial material2 = individual.getChromosome().getMaterialsView().get(1);
-            for (int i = 0; i < material1.getSize(); i++) {
+            final GeneticMaterial material1 = individual.getChromosome().getMaterialsView().get(0);
+            final GeneticMaterial material2 = individual.getChromosome().getMaterialsView().get(1);
+            final int length = material1.getSize();
+            for (int i = 0; i < length; i++) {
                 if (Math.random() < probability) {
                     Gene gene = material1.getGene(i);
                     gene.setValue(generateValue((char)gene.getValue()));
@@ -55,10 +56,11 @@ public class RyanAdditiveMutationOperator implements MutationOperator<SimpleDipl
         }
     }
 
-    private char generateValue(final char invalidValue) {
+    private char generateValue(final char invalidChar) {
         char value = values[ThreadLocalRandom.current().nextInt(values.length)];
-        while (value == invalidValue)
+        while (value == invalidChar) {
             value = values[ThreadLocalRandom.current().nextInt(values.length)];
+        }
         return value;
     }
 }

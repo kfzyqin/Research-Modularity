@@ -16,11 +16,11 @@ import java.util.List;
  * @author Siu Kei Muk (David)
  * @since 8/09/16.
  */
-public class SimpleSimpleHaploidRecombiner implements Recombiner<SimpleHaploid>{
+public class SimpleSimpleHaploidRecombinationOperator implements RecombinationOperator<SimpleHaploid> {
 
     private double probability;
 
-    public SimpleSimpleHaploidRecombiner(final double probability) {
+    public SimpleSimpleHaploidRecombinationOperator(final double probability) {
         filter(probability);
         this.probability = probability;
     }

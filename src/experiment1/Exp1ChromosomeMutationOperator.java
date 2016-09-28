@@ -5,18 +5,18 @@ import ga.collections.Individual;
 import ga.components.chromosome.SimpleHaploid;
 import ga.components.genes.Gene;
 import ga.components.materials.SimpleDNA;
-import ga.operations.mutation.MutationOperator;
+import ga.operations.mutation.ChromosomeMutationOperator;
 
 import java.util.List;
 
 /**
  * Created by david on 31/08/16.
  */
-public class Exp1MutationOperator implements MutationOperator<SimpleHaploid> {
+public class Exp1ChromosomeMutationOperator implements ChromosomeMutationOperator<SimpleHaploid> {
 
     private double prob;
 
-    public Exp1MutationOperator(final double prob) {
+    public Exp1ChromosomeMutationOperator(final double prob) {
         if (prob < 0 || prob > 1)
             throw new IllegalArgumentException("Value out of bound");
         this.prob = prob;

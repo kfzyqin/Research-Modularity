@@ -6,10 +6,10 @@ import ga.collections.PopulationMode;
 import ga.collections.Statistics;
 import ga.components.chromosome.Chromosome;
 import ga.operations.fitnessfunction.FitnessFunction;
-import ga.operations.mutation.MutationOperator;
+import ga.operations.mutation.ChromosomeMutationOperator;
 import ga.operations.postOperators.PostOperator;
 import ga.operations.priorOperators.PriorOperator;
-import ga.operations.recombination.Recombiner;
+import ga.operations.recombination.RecombinationOperator;
 import ga.operations.selectors.Selector;
 
 /**
@@ -24,29 +24,29 @@ public abstract class GAState<T extends Chromosome> {
     protected int numOfMates;
     protected final Population<T> population;
     protected FitnessFunction fitnessFunction;
-    protected MutationOperator mutationOperator;
-    protected Recombiner<T> recombiner;
+    protected ChromosomeMutationOperator chromosomeMutationOperator;
+    protected RecombinationOperator<T> recombinationOperator;
     protected Selector<T> selector;
 
     /**
      * Constructs an initial state for the GA
      * @param population initial population
      * @param fitnessFunction fitnessfunction function
-     * @param mutationOperator mutation operator
-     * @param recombiner recombination operator
+     * @param chromosomeMutationOperator mutation operator
+     * @param recombinationOperator recombination operator
      * @param selector parents selector
      * @param numOfMates number of parents per recombination
      */
     public GAState(@NotNull final Population<T> population,
                    @NotNull final FitnessFunction fitnessFunction,
-                   @NotNull final MutationOperator mutationOperator,
-                   @NotNull final Recombiner<T> recombiner,
+                   @NotNull final ChromosomeMutationOperator chromosomeMutationOperator,
+                   @NotNull final RecombinationOperator<T> recombinationOperator,
                    @NotNull final Selector<T> selector,
                    final int numOfMates) {
         this.population = population;
         this.fitnessFunction = fitnessFunction;
-        this.mutationOperator = mutationOperator;
-        this.recombiner = recombiner;
+        this.chromosomeMutationOperator = chromosomeMutationOperator;
+        this.recombinationOperator = recombinationOperator;
         this.selector = selector;
         this.numOfMates = numOfMates;
         evaluate(true);
@@ -124,11 +124,11 @@ public abstract class GAState<T extends Chromosome> {
         this.fitnessFunction = fitnessFunction;
     }
 
-    public void setMutationOperator(@NotNull final MutationOperator mutationOperator) {
-        this.mutationOperator = mutationOperator;
+    public void setChromosomeMutationOperator(@NotNull final ChromosomeMutationOperator chromosomeMutationOperator) {
+        this.chromosomeMutationOperator = chromosomeMutationOperator;
     }
 
-    public void setRecombiner(@NotNull final Recombiner<T> recombiner) {
-        this.recombiner = recombiner;
+    public void setRecombinationOperator(@NotNull final RecombinationOperator<T> recombinationOperator) {
+        this.recombinationOperator = recombinationOperator;
     }
 }

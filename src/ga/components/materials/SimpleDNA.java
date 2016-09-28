@@ -4,6 +4,7 @@ import ga.components.genes.Gene;
 import org.apache.commons.collections4.list.FixedSizeList;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ import java.util.List;
  */
 public class SimpleDNA implements GeneticMaterial {
 
-    private final List<Gene> strand;
+    private final Gene[] strand;
     private final int size;
 
     /**
@@ -23,8 +24,10 @@ public class SimpleDNA implements GeneticMaterial {
      */
     public SimpleDNA(List<? extends Gene> strand) {
         size = strand.size();
-        List<Gene> contents = new ArrayList<>(strand);
-        this.strand = FixedSizeList.fixedSizeList(contents);
+        this.strand = new Gene[size];
+        for (int i = 0; i < size; i++) this.strand[i] = strand.get(i);
+        // List<Gene> contents = new ArrayList<>(strand);
+        // this.strand = FixedSizeList.fixedSizeList(contents);
     }
 
     @Override
@@ -34,7 +37,7 @@ public class SimpleDNA implements GeneticMaterial {
 
     @Override
     public Gene getGene(final int index){
-        return strand.get(index);
+        return strand[index];
     }
 
     /**
@@ -45,7 +48,7 @@ public class SimpleDNA implements GeneticMaterial {
     public SimpleDNA copy() {
         List<Gene> strand = new ArrayList<>(size);
         for (int i = 0; i < size; i++)
-            strand.add((Gene)this.strand.get(i).copy());
+            strand.add((Gene)this.strand[i].copy());
         return new SimpleDNA(strand);
     }
 
@@ -54,6 +57,6 @@ public class SimpleDNA implements GeneticMaterial {
      */
     @Override
     public String toString() {
-        return strand.toString();
+        return Arrays.toString(strand);
     }
 }

@@ -17,15 +17,15 @@ import java.util.*;
  */
 public class Population<T extends Chromosome> implements Copyable<Population<T>> {
 
-    private List<Individual<T>> individuals;
-    private List<Individual<T>> priorPool;
-    private List<Individual<T>> offspringPool;
-    private List<Individual<T>> postPool;
-    private Set<Integer> survivedIndices;
+    protected List<Individual<T>> individuals;
+    protected List<Individual<T>> priorPool;
+    protected List<Individual<T>> offspringPool;
+    protected List<Individual<T>> postPool;
+    protected Set<Integer> survivedIndices;
 
-    private PopulationMode mode;
-    private int nextGenSize;
-    private final int size;
+    protected PopulationMode mode;
+    protected int nextGenSize;
+    protected final int size;
 
     /**
      * Constructs an empty population.
@@ -43,7 +43,7 @@ public class Population<T extends Chromosome> implements Copyable<Population<T>>
         mode = PopulationMode.RECOMBINE;
     }
 
-    private Population(@NotNull final List<Individual<T>> individuals,
+    protected Population(@NotNull final List<Individual<T>> individuals,
                        final int size) {
         this.individuals = individuals;
         this.priorPool = new ArrayList<>(size);

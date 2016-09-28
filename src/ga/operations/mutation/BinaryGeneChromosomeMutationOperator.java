@@ -14,15 +14,15 @@ import java.util.List;
  * @author Siu Kei Muk (David)
  * @since 3/09/16.
  */
-public class BinaryGeneMutationOperator<T extends Chromosome> implements MutationOperator<T> {
+public class BinaryGeneChromosomeMutationOperator<T extends Chromosome> implements ChromosomeMutationOperator<T> {
 
     private double prob;
 
     /**
-     * Constructs a BinaryGeneMutationOperator object.
+     * Constructs a BinaryGeneChromosomeMutationOperator object.
      * @param prob mutation probability
      */
-    public BinaryGeneMutationOperator(final double prob) {
+    public BinaryGeneChromosomeMutationOperator(final double prob) {
         filter(prob);
         this.prob = prob;
     }

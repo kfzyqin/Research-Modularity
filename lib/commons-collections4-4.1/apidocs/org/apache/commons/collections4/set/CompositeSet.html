@@ -244,7 +244,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?
 <tr class="rowColor">
 <td class="colFirst"><code>protected <a href="../../../../../org/apache/commons/collections4/set/CompositeSet.SetMutator.html" title="interface in org.apache.commons.collections4.set">CompositeSet.SetMutator</a>&lt;<a href="../../../../../org/apache/commons/collections4/set/CompositeSet.html" title="type parameter in CompositeSet">E</a>&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/apache/commons/collections4/set/CompositeSet.html#getMutator()">getMutator</a></strong>()</code>
-<div class="block">Get the set mutationOperator to be used for this CompositeSet.</div>
+<div class="block">Get the set chromosomeMutationOperator to be used for this CompositeSet.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -297,7 +297,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/collections4/set/CompositeSet.html#setMutator(org.apache.commons.collections4.set.CompositeSet.SetMutator)">setMutator</a></strong>(<a href="../../../../../org/apache/commons/collections4/set/CompositeSet.SetMutator.html" title="interface in org.apache.commons.collections4.set">CompositeSet.SetMutator</a>&lt;<a href="../../../../../org/apache/commons/collections4/set/CompositeSet.html" title="type parameter in CompositeSet">E</a>&gt;&nbsp;mutationOperator)</code>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/collections4/set/CompositeSet.html#setMutator(org.apache.commons.collections4.set.CompositeSet.SetMutator)">setMutator</a></strong>(<a href="../../../../../org/apache/commons/collections4/set/CompositeSet.SetMutator.html" title="interface in org.apache.commons.collections4.set">CompositeSet.SetMutator</a>&lt;<a href="../../../../../org/apache/commons/collections4/set/CompositeSet.html" title="type parameter in CompositeSet">E</a>&gt;&nbsp;chromosomeMutationOperator)</code>
 <div class="block">Specify a SetMutator strategy instance to handle changes.</div>
 </td>
 </tr>
@@ -654,9 +654,9 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>setMutator</h4>
-<pre>public&nbsp;void&nbsp;setMutator(<a href="../../../../../org/apache/commons/collections4/set/CompositeSet.SetMutator.html" title="interface in org.apache.commons.collections4.set">CompositeSet.SetMutator</a>&lt;<a href="../../../../../org/apache/commons/collections4/set/CompositeSet.html" title="type parameter in CompositeSet">E</a>&gt;&nbsp;mutationOperator)</pre>
+<pre>public&nbsp;void&nbsp;setMutator(<a href="../../../../../org/apache/commons/collections4/set/CompositeSet.SetMutator.html" title="interface in org.apache.commons.collections4.set">CompositeSet.SetMutator</a>&lt;<a href="../../../../../org/apache/commons/collections4/set/CompositeSet.html" title="type parameter in CompositeSet">E</a>&gt;&nbsp;chromosomeMutationOperator)</pre>
 <div class="block">Specify a SetMutator strategy instance to handle changes.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>mutationOperator</code> - the mutationOperator to use</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>chromosomeMutationOperator</code> - the chromosomeMutationOperator to use</dd></dl>
 </li>
 </ul>
 <a name="addComposited(java.util.Set)">
@@ -738,8 +738,8 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?
 <li class="blockList">
 <h4>getMutator</h4>
 <pre>protected&nbsp;<a href="../../../../../org/apache/commons/collections4/set/CompositeSet.SetMutator.html" title="interface in org.apache.commons.collections4.set">CompositeSet.SetMutator</a>&lt;<a href="../../../../../org/apache/commons/collections4/set/CompositeSet.html" title="type parameter in CompositeSet">E</a>&gt;&nbsp;getMutator()</pre>
-<div class="block">Get the set mutationOperator to be used for this CompositeSet.</div>
-<dl><dt><span class="strong">Returns:</span></dt><dd>the set mutationOperator</dd></dl>
+<div class="block">Get the set chromosomeMutationOperator to be used for this CompositeSet.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>the set chromosomeMutationOperator</dd></dl>
 </li>
 </ul>
 <a name="equals(java.lang.Object)">

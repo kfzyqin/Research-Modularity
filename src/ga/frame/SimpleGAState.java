@@ -5,8 +5,8 @@ import ga.collections.Population;
 import ga.collections.PopulationMode;
 import ga.components.chromosome.Chromosome;
 import ga.operations.fitnessfunction.FitnessFunction;
-import ga.operations.mutation.MutationOperator;
-import ga.operations.recombination.Recombiner;
+import ga.operations.mutation.ChromosomeMutationOperator;
+import ga.operations.recombination.RecombinationOperator;
 import ga.operations.selectors.Selector;
 
 import java.util.List;
@@ -24,12 +24,12 @@ public class SimpleGAState<T extends Chromosome> extends GAState<T> {
 
     public SimpleGAState(@NotNull final Population<T> population,
                          @NotNull final FitnessFunction fitnessFunction,
-                         @NotNull final MutationOperator mutationOperator,
-                         @NotNull final Recombiner<T> recombiner,
+                         @NotNull final ChromosomeMutationOperator chromosomeMutationOperator,
+                         @NotNull final RecombinationOperator<T> recombinationOperator,
                          @NotNull final Selector<T> selector,
                          final int numOfMates,
                          final double recombinationRate) {
-        super(population, fitnessFunction, mutationOperator, recombiner, selector, numOfMates);
+        super(population, fitnessFunction, chromosomeMutationOperator, recombinationOperator, selector, numOfMates);
         setRecombinationRate(recombinationRate);
     }
 
@@ -47,7 +47,7 @@ public class SimpleGAState<T extends Chromosome> extends GAState<T> {
         final int size = (int) Math.round(population.getSize()*recombinationRate);
         while (count < size && !population.isReady()) {
             List<T> mates = selector.select(numOfMates);
-            List<T> children = recombiner.recombine(mates);
+            List<T> children = recombinationOperator.recombine(mates);
             population.addCandidateChromosomes(children);
             count += children.size();
         }
@@ -55,7 +55,7 @@ public class SimpleGAState<T extends Chromosome> extends GAState<T> {
 
     @Override
     public void mutate() {
-        mutationOperator.mutate(population.getOffspringPoolView());
+        chromosomeMutationOperator.mutate(population.getOffspringPoolView());
     }
 
     public double getRecombinationRate() {

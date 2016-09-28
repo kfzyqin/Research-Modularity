@@ -18,11 +18,11 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author Siu Kei Muk (David)
  * @since 8/09/16.
  */
-public class SimpleHaploidNPRecombiner implements Recombiner<SimpleHaploid> {
+public class SimpleHaploidNPRecombinationOperator implements RecombinationOperator<SimpleHaploid> {
 
     private final int point;
 
-    public SimpleHaploidNPRecombiner(final int point) {
+    public SimpleHaploidNPRecombinationOperator(final int point) {
         filter(point);
         this.point = point;
     }

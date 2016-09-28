@@ -183,7 +183,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><strong><a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html#CompositeMap(java.util.Map[],%20org.apache.commons.collections4.map.CompositeMap.MapMutator)">CompositeMap</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">K</a>,<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">V</a>&gt;[]&nbsp;composite,
-            <a href="../../../../../org/apache/commons/collections4/map/CompositeMap.MapMutator.html" title="interface in org.apache.commons.collections4.map">CompositeMap.MapMutator</a>&lt;<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">K</a>,<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">V</a>&gt;&nbsp;mutationOperator)</code>
+            <a href="../../../../../org/apache/commons/collections4/map/CompositeMap.MapMutator.html" title="interface in org.apache.commons.collections4.map">CompositeMap.MapMutator</a>&lt;<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">K</a>,<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">V</a>&gt;&nbsp;chromosomeMutationOperator)</code>
 <div class="block">Create a new CompositeMap which composites all of the Map instances in the
  argument.</div>
 </td>
@@ -197,7 +197,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <tr class="altColor">
 <td class="colOne"><code><strong><a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html#CompositeMap(java.util.Map,%20java.util.Map,%20org.apache.commons.collections4.map.CompositeMap.MapMutator)">CompositeMap</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">K</a>,<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">V</a>&gt;&nbsp;one,
             <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">K</a>,<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">V</a>&gt;&nbsp;two,
-            <a href="../../../../../org/apache/commons/collections4/map/CompositeMap.MapMutator.html" title="interface in org.apache.commons.collections4.map">CompositeMap.MapMutator</a>&lt;<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">K</a>,<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">V</a>&gt;&nbsp;mutationOperator)</code>
+            <a href="../../../../../org/apache/commons/collections4/map/CompositeMap.MapMutator.html" title="interface in org.apache.commons.collections4.map">CompositeMap.MapMutator</a>&lt;<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">K</a>,<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">V</a>&gt;&nbsp;chromosomeMutationOperator)</code>
 <div class="block">Create a new CompositeMap with two composited Map instances.</div>
 </td>
 </tr>
@@ -308,7 +308,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html#setMutator(org.apache.commons.collections4.map.CompositeMap.MapMutator)">setMutator</a></strong>(<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.MapMutator.html" title="interface in org.apache.commons.collections4.map">CompositeMap.MapMutator</a>&lt;<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">K</a>,<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">V</a>&gt;&nbsp;mutationOperator)</code>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html#setMutator(org.apache.commons.collections4.map.CompositeMap.MapMutator)">setMutator</a></strong>(<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.MapMutator.html" title="interface in org.apache.commons.collections4.map">CompositeMap.MapMutator</a>&lt;<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">K</a>,<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">V</a>&gt;&nbsp;chromosomeMutationOperator)</code>
 <div class="block">Specify the MapMutator to be used by mutation operations.</div>
 </td>
 </tr>
@@ -385,9 +385,9 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <h4>CompositeMap</h4>
 <pre>public&nbsp;CompositeMap(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">K</a>,<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">V</a>&gt;&nbsp;one,
             <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">K</a>,<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">V</a>&gt;&nbsp;two,
-            <a href="../../../../../org/apache/commons/collections4/map/CompositeMap.MapMutator.html" title="interface in org.apache.commons.collections4.map">CompositeMap.MapMutator</a>&lt;<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">K</a>,<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">V</a>&gt;&nbsp;mutationOperator)</pre>
+            <a href="../../../../../org/apache/commons/collections4/map/CompositeMap.MapMutator.html" title="interface in org.apache.commons.collections4.map">CompositeMap.MapMutator</a>&lt;<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">K</a>,<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">V</a>&gt;&nbsp;chromosomeMutationOperator)</pre>
 <div class="block">Create a new CompositeMap with two composited Map instances.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>one</code> - the first Map to be composited</dd><dd><code>two</code> - the second Map to be composited</dd><dd><code>mutationOperator</code> - MapMutator to be used for mutation operations</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>one</code> - the first Map to be composited</dd><dd><code>two</code> - the second Map to be composited</dd><dd><code>chromosomeMutationOperator</code> - MapMutator to be used for mutation operations</dd></dl>
 </li>
 </ul>
 <a name="CompositeMap(java.util.Map...)">
@@ -411,10 +411,10 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <li class="blockList">
 <h4>CompositeMap</h4>
 <pre>public&nbsp;CompositeMap(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">K</a>,<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">V</a>&gt;[]&nbsp;composite,
-            <a href="../../../../../org/apache/commons/collections4/map/CompositeMap.MapMutator.html" title="interface in org.apache.commons.collections4.map">CompositeMap.MapMutator</a>&lt;<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">K</a>,<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">V</a>&gt;&nbsp;mutationOperator)</pre>
+            <a href="../../../../../org/apache/commons/collections4/map/CompositeMap.MapMutator.html" title="interface in org.apache.commons.collections4.map">CompositeMap.MapMutator</a>&lt;<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">K</a>,<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">V</a>&gt;&nbsp;chromosomeMutationOperator)</pre>
 <div class="block">Create a new CompositeMap which composites all of the Map instances in the
  argument. It copies the argument array, it does not use it directly.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>composite</code> - Maps to be composited</dd><dd><code>mutationOperator</code> - MapMutator to be used for mutation operations</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>composite</code> - Maps to be composited</dd><dd><code>chromosomeMutationOperator</code> - MapMutator to be used for mutation operations</dd></dl>
 </li>
 </ul>
 </li>
@@ -431,9 +431,9 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializabl
 <ul class="blockList">
 <li class="blockList">
 <h4>setMutator</h4>
-<pre>public&nbsp;void&nbsp;setMutator(<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.MapMutator.html" title="interface in org.apache.commons.collections4.map">CompositeMap.MapMutator</a>&lt;<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">K</a>,<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">V</a>&gt;&nbsp;mutationOperator)</pre>
+<pre>public&nbsp;void&nbsp;setMutator(<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.MapMutator.html" title="interface in org.apache.commons.collections4.map">CompositeMap.MapMutator</a>&lt;<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">K</a>,<a href="../../../../../org/apache/commons/collections4/map/CompositeMap.html" title="type parameter in CompositeMap">V</a>&gt;&nbsp;chromosomeMutationOperator)</pre>
 <div class="block">Specify the MapMutator to be used by mutation operations.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>mutationOperator</code> - the MapMutator to be used for mutation delegation</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>chromosomeMutationOperator</code> - the MapMutator to be used for mutation delegation</dd></dl>
 </li>
 </ul>
 <a name="addComposited(java.util.Map)">
