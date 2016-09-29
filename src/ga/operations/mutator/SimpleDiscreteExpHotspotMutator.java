@@ -1,4 +1,4 @@
-package ga.operations.mutation;
+package ga.operations.mutator;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.hotspots.DiscreteExpHotspot;
@@ -9,16 +9,16 @@ import java.util.List;
 /**
  * Created by david on 28/09/16.
  */
-public class SimpleDiscreteExpHotspotMutation implements HotspotMutationOperator<Integer>{
+public class SimpleDiscreteExpHotspotMutator implements HotspotMutator<Integer> {
 
     private double control;
     private double promoteProbability = 0.5;
 
-    public SimpleDiscreteExpHotspotMutation(final double control) {
+    public SimpleDiscreteExpHotspotMutator(final double control) {
         setControl(control);
     }
 
-    public SimpleDiscreteExpHotspotMutation(final double control, final double promoteProbability) {
+    public SimpleDiscreteExpHotspotMutator(final double control, final double promoteProbability) {
         this(control);
         setPromoteProbability(promoteProbability);
     }

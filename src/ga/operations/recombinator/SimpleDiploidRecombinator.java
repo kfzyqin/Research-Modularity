@@ -1,4 +1,4 @@
-package ga.operations.recombination;
+package ga.operations.recombinator;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.chromosome.SimpleDiploid;
@@ -10,32 +10,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class is an implementation of a simple random recombination for simple diploids.
+ * This class is an implementation of a simple random recombinator for simple diploids.
  * The match probability determines the likelihood of choosing combination over the other in the pairing part.
  * The gene value swapping is performed after chromosome pairing.
  *
  * @author Siu Kei Muk (David)
  * @since 8/09/16.
  */
-public class SimpleDiploidRecombinationOperator implements RecombinationOperator<SimpleDiploid> {
+public class SimpleDiploidRecombinator implements Recombinator<SimpleDiploid> {
 
     private double swapProbability = 0.5;
     private double matchProbability = 0.5;
     private boolean swap = false;
 
-    public SimpleDiploidRecombinationOperator() {
+    public SimpleDiploidRecombinator() {
     }
 
-    public SimpleDiploidRecombinationOperator(final double matchProbability) {
+    public SimpleDiploidRecombinator(final double matchProbability) {
         setMatchProbability(matchProbability);
     }
 
-    public SimpleDiploidRecombinationOperator(final double swapProbability, final boolean swap) {
+    public SimpleDiploidRecombinator(final double swapProbability, final boolean swap) {
         setSwapProbability(swapProbability);
         setSwap(swap);
     }
 
-    public SimpleDiploidRecombinationOperator(final double swapProbability, final double matchProbability, final boolean swap) {
+    public SimpleDiploidRecombinator(final double swapProbability, final double matchProbability, final boolean swap) {
         setMatchProbability(matchProbability);
         setSwapProbability(swapProbability);
         this.swap = swap;

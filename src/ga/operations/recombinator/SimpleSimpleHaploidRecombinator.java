@@ -1,4 +1,4 @@
-package ga.operations.recombination;
+package ga.operations.recombinator;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.chromosome.SimpleHaploid;
@@ -9,18 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class is a simple implementation for simple haploid random recombination for simple haploids.
+ * This class is a simple implementation for simple haploid random recombinator for simple haploids.
  * The match probability determines the likelihood of choosing combination over the other in the pairing part.
  * The gene value swapping is performed after chromosome pairing.
  *
  * @author Siu Kei Muk (David)
  * @since 8/09/16.
  */
-public class SimpleSimpleHaploidRecombinationOperator implements RecombinationOperator<SimpleHaploid> {
+public class SimpleSimpleHaploidRecombinator implements Recombinator<SimpleHaploid> {
 
     private double probability;
 
-    public SimpleSimpleHaploidRecombinationOperator(final double probability) {
+    public SimpleSimpleHaploidRecombinator(final double probability) {
         filter(probability);
         this.probability = probability;
     }

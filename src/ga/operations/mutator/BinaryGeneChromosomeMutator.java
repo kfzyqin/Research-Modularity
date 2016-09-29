@@ -1,4 +1,4 @@
-package ga.operations.mutation;
+package ga.operations.mutator;
 
 import com.sun.istack.internal.NotNull;
 import ga.collections.Individual;
@@ -9,20 +9,20 @@ import ga.components.materials.GeneticMaterial;
 import java.util.List;
 
 /**
- * This class implements a mutation operation for chromosomes with pure binary genes.
+ * This class implements a mutator operation for chromosomes with pure binary genes.
  *
  * @author Siu Kei Muk (David)
  * @since 3/09/16.
  */
-public class BinaryGeneChromosomeMutationOperator<T extends Chromosome> implements ChromosomeMutationOperator<T> {
+public class BinaryGeneChromosomeMutator<T extends Chromosome> implements ChromosomeMutator<T> {
 
     private double prob;
 
     /**
-     * Constructs a BinaryGeneChromosomeMutationOperator object.
-     * @param prob mutation probability
+     * Constructs a BinaryGeneChromosomeMutator object.
+     * @param prob mutator probability
      */
-    public BinaryGeneChromosomeMutationOperator(final double prob) {
+    public BinaryGeneChromosomeMutator(final double prob) {
         filter(prob);
         this.prob = prob;
     }

@@ -247,7 +247,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collectio
 <tr class="rowColor">
 <td class="colFirst"><code>protected <a href="../../../../../org/apache/commons/collections4/collection/CompositeCollection.CollectionMutator.html" title="interface in org.apache.commons.collections4.collection">CompositeCollection.CollectionMutator</a>&lt;<a href="../../../../../org/apache/commons/collections4/collection/CompositeCollection.html" title="type parameter in CompositeCollection">E</a>&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/apache/commons/collections4/collection/CompositeCollection.html#getMutator()">getMutator</a></strong>()</code>
-<div class="block">Get the collection chromosomeMutationOperator to be used for this CompositeCollection.</div>
+<div class="block">Get the collection chromosomeMutator to be used for this CompositeCollection.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -290,7 +290,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collectio
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/collections4/collection/CompositeCollection.html#setMutator(org.apache.commons.collections4.collection.CompositeCollection.CollectionMutator)">setMutator</a></strong>(<a href="../../../../../org/apache/commons/collections4/collection/CompositeCollection.CollectionMutator.html" title="interface in org.apache.commons.collections4.collection">CompositeCollection.CollectionMutator</a>&lt;<a href="../../../../../org/apache/commons/collections4/collection/CompositeCollection.html" title="type parameter in CompositeCollection">E</a>&gt;&nbsp;chromosomeMutationOperator)</code>
+<td class="colLast"><code><strong><a href="../../../../../org/apache/commons/collections4/collection/CompositeCollection.html#setMutator(org.apache.commons.collections4.collection.CompositeCollection.CollectionMutator)">setMutator</a></strong>(<a href="../../../../../org/apache/commons/collections4/collection/CompositeCollection.CollectionMutator.html" title="interface in org.apache.commons.collections4.collection">CompositeCollection.CollectionMutator</a>&lt;<a href="../../../../../org/apache/commons/collections4/collection/CompositeCollection.html" title="type parameter in CompositeCollection">E</a>&gt;&nbsp;chromosomeMutator)</code>
 <div class="block">Specify a CollectionMutator strategy instance to handle changes.</div>
 </td>
 </tr>
@@ -647,9 +647,9 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collectio
 <ul class="blockList">
 <li class="blockList">
 <h4>setMutator</h4>
-<pre>public&nbsp;void&nbsp;setMutator(<a href="../../../../../org/apache/commons/collections4/collection/CompositeCollection.CollectionMutator.html" title="interface in org.apache.commons.collections4.collection">CompositeCollection.CollectionMutator</a>&lt;<a href="../../../../../org/apache/commons/collections4/collection/CompositeCollection.html" title="type parameter in CompositeCollection">E</a>&gt;&nbsp;chromosomeMutationOperator)</pre>
+<pre>public&nbsp;void&nbsp;setMutator(<a href="../../../../../org/apache/commons/collections4/collection/CompositeCollection.CollectionMutator.html" title="interface in org.apache.commons.collections4.collection">CompositeCollection.CollectionMutator</a>&lt;<a href="../../../../../org/apache/commons/collections4/collection/CompositeCollection.html" title="type parameter in CompositeCollection">E</a>&gt;&nbsp;chromosomeMutator)</pre>
 <div class="block">Specify a CollectionMutator strategy instance to handle changes.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>chromosomeMutationOperator</code> - the chromosomeMutationOperator to use</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>chromosomeMutator</code> - the chromosomeMutator to use</dd></dl>
 </li>
 </ul>
 <a name="addComposited(java.util.Collection)">
@@ -727,7 +727,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collectio
 <li class="blockList">
 <h4>getMutator</h4>
 <pre>protected&nbsp;<a href="../../../../../org/apache/commons/collections4/collection/CompositeCollection.CollectionMutator.html" title="interface in org.apache.commons.collections4.collection">CompositeCollection.CollectionMutator</a>&lt;<a href="../../../../../org/apache/commons/collections4/collection/CompositeCollection.html" title="type parameter in CompositeCollection">E</a>&gt;&nbsp;getMutator()</pre>
-<div class="block">Get the collection chromosomeMutationOperator to be used for this CompositeCollection.</div>
+<div class="block">Get the collection chromosomeMutator to be used for this CompositeCollection.</div>
 <dl><dt><span class="strong">Returns:</span></dt><dd>CollectionMutator<E></dd></dl>
 </li>
 </ul>

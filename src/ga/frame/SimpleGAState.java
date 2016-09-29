@@ -5,31 +5,31 @@ import ga.collections.Population;
 import ga.collections.PopulationMode;
 import ga.components.chromosome.Chromosome;
 import ga.operations.fitnessfunction.FitnessFunction;
-import ga.operations.mutation.ChromosomeMutationOperator;
-import ga.operations.recombination.RecombinationOperator;
+import ga.operations.mutator.ChromosomeMutator;
+import ga.operations.recombinator.Recombinator;
 import ga.operations.selectors.Selector;
 
 import java.util.List;
 
 /**
- * This class is a simple implementation of the state. The recombination rate determines the proportion of
- * individuals in the new generation that are produced by recombination.
+ * This class is a simple implementation of the state. The recombinator rate determines the proportion of
+ * individuals in the new generation that are produced by recombinator.
  *
  * @author Siu Kei Muk (David)
  * @since 12/09/16.
  */
 public class SimpleGAState<T extends Chromosome> extends GAState<T> {
 
-    private double recombinationRate;
+    protected double recombinationRate;
 
     public SimpleGAState(@NotNull final Population<T> population,
                          @NotNull final FitnessFunction fitnessFunction,
-                         @NotNull final ChromosomeMutationOperator chromosomeMutationOperator,
-                         @NotNull final RecombinationOperator<T> recombinationOperator,
+                         @NotNull final ChromosomeMutator chromosomeMutator,
+                         @NotNull final Recombinator<T> recombinator,
                          @NotNull final Selector<T> selector,
                          final int numOfMates,
                          final double recombinationRate) {
-        super(population, fitnessFunction, chromosomeMutationOperator, recombinationOperator, selector, numOfMates);
+        super(population, fitnessFunction, chromosomeMutator, recombinator, selector, numOfMates);
         setRecombinationRate(recombinationRate);
     }
 
@@ -47,7 +47,7 @@ public class SimpleGAState<T extends Chromosome> extends GAState<T> {
         final int size = (int) Math.round(population.getSize()*recombinationRate);
         while (count < size && !population.isReady()) {
             List<T> mates = selector.select(numOfMates);
-            List<T> children = recombinationOperator.recombine(mates);
+            List<T> children = recombinator.recombine(mates);
             population.addCandidateChromosomes(children);
             count += children.size();
         }
@@ -55,7 +55,7 @@ public class SimpleGAState<T extends Chromosome> extends GAState<T> {
 
     @Override
     public void mutate() {
-        chromosomeMutationOperator.mutate(population.getOffspringPoolView());
+        chromosomeMutator.mutate(population.getOffspringPoolView());
     }
 
     public double getRecombinationRate() {

@@ -1,4 +1,4 @@
-package ga.operations.recombination;
+package ga.operations.recombinator;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.chromosome.SimpleGenderDiploid;
@@ -14,7 +14,7 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * Created by david on 28/09/16.
  */
-public class SimpleGenderRecombination implements RecombinationOperator<SimpleGenderDiploid> {
+public class SimpleGenderRecombination implements Recombinator<SimpleGenderDiploid> {
 
     private int numOfChildren;
 

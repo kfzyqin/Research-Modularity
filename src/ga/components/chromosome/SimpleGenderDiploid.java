@@ -38,7 +38,25 @@ public class SimpleGenderDiploid<V> extends SimpleDiploid {
     }
 
     /*
-    public List<Double> getMaleHotspot(){
+    is.clazz = clazz;
+    }
+
+    public T buildOne() throws InstantiationException,
+        IllegalAccessException
+    {
+        return clazz.newInstance();
+    }
+}
+
+public class Bar
+{
+    public Bar()
+    {
+        System.out.println("Constructing");
+    }
+}
+
+Another option is to have a "factory" interface, and ypublic List<Double> getMaleHotspot(){
         return Collections.unmodifiableList(maleHotspot);
     }
 

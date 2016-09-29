@@ -10,11 +10,11 @@ import ga.frame.SimpleGAState;
 import ga.operations.fitnessfunction.FitnessFunction;
 import ga.operations.initializers.BinarySimpleHaploidInitializer;
 import ga.operations.initializers.Initializer;
-import ga.operations.mutation.ChromosomeMutationOperator;
+import ga.operations.mutator.ChromosomeMutator;
 import ga.operations.postOperators.PostOperator;
 import ga.operations.postOperators.SimpleFillingOperator;
 import ga.operations.priorOperators.PriorOperator;
-import ga.operations.recombination.RecombinationOperator;
+import ga.operations.recombinator.Recombinator;
 import ga.operations.selectors.ProportionateScheme;
 import ga.operations.selectors.Selector;
 import ga.operations.selectors.SimpleProportionateSelector;
@@ -38,17 +38,17 @@ public class Exp1Main {
         FitnessFunction fitnessFunction = new Exp1FitnessFunction(target);
         Initializer<SimpleHaploid> initializer = new BinarySimpleHaploidInitializer(size, 32);
         Population<SimpleHaploid> population = initializer.initialize();
-        ChromosomeMutationOperator chromosomeMutationOperator = new Exp1ChromosomeMutationOperator(mutationRate);
+        ChromosomeMutator chromosomeMutator = new Exp1ChromosomeMutator(mutationRate);
         Selector<SimpleHaploid> selector = new SimpleProportionateSelector<>();
         PriorOperator<SimpleHaploid> priorOperator = new Exp1PriorOperator(numElites, selector);
         PostOperator<SimpleHaploid> postOperator = new SimpleFillingOperator<>(new ProportionateScheme());
         Statistics<SimpleHaploid> statistics = new Exp1Statistics();
-        RecombinationOperator<SimpleHaploid> recombinationOperator = new Exp1RecombinationOperator();
+        Recombinator<SimpleHaploid> recombinator = new Exp1Recombinator();
 
-        GAState<SimpleHaploid> state = new SimpleGAState<>(population, fitnessFunction, chromosomeMutationOperator, recombinationOperator, selector, 2, crossoverRate);
+        GAState<SimpleHaploid> state = new SimpleGAState<>(population, fitnessFunction, chromosomeMutator, recombinator, selector, 2, crossoverRate);
         state.record(statistics);
         GAFrame<SimpleHaploid> frame = new SimpleGAFrame<>(state,postOperator,statistics);
-        // GAFrame<SimpleHaploid> frame = new SimpleGAFrame<>(fitnessfunction,initializer,recombinationOperator,chromosomeMutationOperator,selector,statistics, 2);
+        // GAFrame<SimpleHaploid> frame = new SimpleGAFrame<>(fitnessfunction,initializer,recombinator,chromosomeMutator,selector,statistics, 2);
         frame.setPriorOperator(priorOperator);
         statistics.print(0);
         for (int i = 1; i <= maxGen; i++) {

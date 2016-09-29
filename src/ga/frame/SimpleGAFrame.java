@@ -31,25 +31,25 @@ public class SimpleGAFrame<T extends Chromosome> extends GAFrame<T> {
 
     public SimpleGAFrame(@NotNull final FitnessFunction fitnessfunction,
                          @NotNull final Initializer<T> initializer,
-                         @NotNull final RecombinationOperator<T> recombinationOperator,
-                         @NotNull final ChromosomeMutationOperator chromosomeMutationOperator,
+                         @NotNull final Recombinator<T> recombinator,
+                         @NotNull final ChromosomeMutator chromosomeMutator,
                          @NotNull final Selector selector,
                          @NotNull final Statistics<T> statistics,
                          final int numOfMates) {
-        super(new SimpleGAState<T>(fitnessfunction, initializer, recombinationOperator, chromosomeMutationOperator, selector, statistics, numOfMates));
+        super(new SimpleGAState<T>(fitnessfunction, initializer, recombinator, chromosomeMutator, selector, statistics, numOfMates));
     }*/
 
     /*
 
     public SimpleGAFrame(@NotNull final FitnessFunction fitnessfunction,
                          @NotNull final Initializer<T> initializer,
-                         @NotNull final RecombinationOperator<T> recombinationOperator,
-                         @NotNull final ChromosomeMutationOperator chromosomeMutationOperator,
+                         @NotNull final Recombinator<T> recombinator,
+                         @NotNull final ChromosomeMutator chromosomeMutator,
                          @NotNull final Selector selector,
                          @NotNull final Statistics<T> statistics,
                          @NotNull final DynamicHandler<T> handler,
                          final int numOfMates) {
-        super(fitnessfunction, initializer, recombinationOperator, chromosomeMutationOperator, selector, statistics, numOfMates);
+        super(fitnessfunction, initializer, recombinator, chromosomeMutator, selector, statistics, numOfMates);
         this.handler = handler;
     }*/
 
