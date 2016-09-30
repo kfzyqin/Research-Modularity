@@ -6,7 +6,7 @@ import ga.components.chromosome.SimpleGenderDiploid;
 /**
  * Created by david on 29/09/16.
  */
-public class SimpleGenderPopulation<V> extends Population<SimpleGenderDiploid<V>> {
+public class GenderPopulation<V> extends Population<SimpleGenderDiploid<V>> {
 
     protected int numOfFemale;
     protected int numOfMale;
@@ -14,7 +14,7 @@ public class SimpleGenderPopulation<V> extends Population<SimpleGenderDiploid<V>
     protected int maxNumOfMale;
     protected int maxNumOfFemale;
 
-    public SimpleGenderPopulation(final int size) {
+    public GenderPopulation(final int size) {
         super(size);
         numOfFemale = 0;
         numOfMale = 0;
@@ -22,7 +22,7 @@ public class SimpleGenderPopulation<V> extends Population<SimpleGenderDiploid<V>
         maxNumOfFemale = size - maxNumOfMale;
     }
 
-    public SimpleGenderPopulation(final int size, final double maleProportion) {
+    public GenderPopulation(final int size, final double maleProportion) {
         super(size);
         setMaleProportion(maleProportion);
     }

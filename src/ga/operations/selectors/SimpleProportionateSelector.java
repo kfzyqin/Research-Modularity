@@ -12,7 +12,7 @@ import java.util.List;
  * @author Siu Kei Muk (David)
  * @since 11/09/16
  */
-public class SimpleProportionateSelector<T extends Chromosome> extends SimpleSelector<T> {
+public class SimpleProportionateSelector<T extends Chromosome> extends BaseSelector<T> {
 
     public SimpleProportionateSelector() {
         super(new ProportionateScheme());

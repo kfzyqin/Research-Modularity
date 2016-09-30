@@ -1,24 +1,22 @@
 package ga.operations.recombinator;
 
 import com.sun.istack.internal.NotNull;
-import ga.components.chromosome.SimpleGenderDiploid;
+import ga.components.chromosome.Chromosome;
+import ga.components.chromosome.Coupleable;
 import ga.components.genes.Gene;
-import ga.components.hotspots.Hotspot;
-import ga.components.materials.SimpleDNA;
-import ga.operations.dominanceMappings.DominanceMapping;
+import ga.components.materials.GeneticMaterial;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by david on 28/09/16.
  */
-public class SimpleGenderRecombination implements Recombinator<SimpleGenderDiploid> {
+public abstract class GenderRecombinator<T extends Chromosome & Coupleable> implements CoupleRecombinator<T> {
 
     private int numOfChildren;
 
-    public SimpleGenderRecombination(final int numOfChildren) {
+    public GenderRecombinator(final int numOfChildren) {
         setNumOfChildren(numOfChildren);
     }
 
@@ -27,17 +25,28 @@ public class SimpleGenderRecombination implements Recombinator<SimpleGenderDiplo
     }
 
     @Override
-    public List<SimpleGenderDiploid> recombine(@NotNull final List<SimpleGenderDiploid> mates) {
-        List<SimpleGenderDiploid> children = new ArrayList<>(numOfChildren);
+    public List<T> recombine(@NotNull final List<T> mates) {
+        List<T> children = new ArrayList<>(numOfChildren);
         for (int i = 0; i < numOfChildren; i++) children.add(reproduce(mates));
         return children;
     }
 
-    private SimpleGenderDiploid reproduce(@NotNull final List<SimpleGenderDiploid> mates) {
-        SimpleGenderDiploid father = mates.get(0);
-        SimpleGenderDiploid mother = mates.get(1);
-        List<SimpleDNA> maleGametes = crossover(father);
-        List<SimpleDNA> femaleGametes = crossover(mother);
+    protected abstract T reproduce(@NotNull final List<T> mates);
+
+    /*
+    @Override
+    public List<SimpleGenderDiploid> recombine(@NotNull final List<SimpleGenderDiploid> mates) {
+        List<SimpleGenderDiploid> children = new ArrayList<>(numOfChildren);
+        for (int i = 0; i < numOfChildren; i++) children.add(reproduce(mates));
+        return children;
+    }*/
+
+    /*
+    private T reproduce(@NotNull final List<T> mates) {
+        T father = mates.get(0);
+        T mother = mates.get(1);
+        List<GeneticMaterial> maleGametes = crossover(father);
+        List<GeneticMaterial> femaleGametes = crossover(mother);
         final int maleMatch = ThreadLocalRandom.current().nextInt(maleGametes.size());
         final int femaleMatch = ThreadLocalRandom.current().nextInt(femaleGametes.size());
         final boolean masculine = ThreadLocalRandom.current().nextBoolean();
@@ -46,13 +55,13 @@ public class SimpleGenderRecombination implements Recombinator<SimpleGenderDiplo
         return new SimpleGenderDiploid(maleGametes.get(maleMatch),
                                        femaleGametes.get(femaleMatch),
                                        mapping, hotspot, masculine);
-    }
+    }*/
 
-    private List<SimpleDNA> crossover(@NotNull final SimpleGenderDiploid parent) {
-        List<SimpleDNA> gametes = new ArrayList<>(2);
-        List<SimpleDNA> materialView = parent.getMaterialsView();
-        SimpleDNA dna1 = materialView.get(0).copy();
-        SimpleDNA dna2 = materialView.get(1).copy();
+    protected List<GeneticMaterial> crossover(@NotNull final T parent) {
+        List<GeneticMaterial> gametes = new ArrayList<>(2);
+        List<GeneticMaterial> materialView = parent.getMaterialsView();
+        GeneticMaterial dna1 = materialView.get(0).copy();
+        GeneticMaterial dna2 = materialView.get(1).copy();
         List<Double> recombinationRate = parent.getHotspot().getRecombinationRate();
         for (int i = 0; i < recombinationRate.size(); i++) {
             if (Math.random() < recombinationRate.get(i)) {

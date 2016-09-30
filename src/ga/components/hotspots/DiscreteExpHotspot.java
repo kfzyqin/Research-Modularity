@@ -28,7 +28,7 @@ public class DiscreteExpHotspot extends Hotspot<Integer>{
     }
 
     private void filter(final double control) {
-        if (control < -1) throw new IllegalArgumentException("Control parameter must be at least -1.");
+        if (control < 0) throw new IllegalArgumentException("Control parameter must be non-negative.");
     }
 
     @Override
@@ -49,7 +49,7 @@ public class DiscreteExpHotspot extends Hotspot<Integer>{
         else {
             recombinationRate.clear();
             for (int i = 0; i < size; i++) {
-                recombinationRate.add(Math.exp(-encoding.get(i) - control));
+                recombinationRate.add(Math.exp(encoding.get(i) - maxLevel - control));
             }
         }
     }

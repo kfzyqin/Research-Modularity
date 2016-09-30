@@ -12,7 +12,7 @@ import java.util.List;
  * @author Siu Kei Muk (David)
  * @since 11/09/16.
  */
-public class SimpleTournamentSelector<T extends Chromosome> extends SimpleSelector<T> {
+public class SimpleTournamentSelector<T extends Chromosome> extends BaseSelector<T> {
 
     public SimpleTournamentSelector(final int size, final double dominanceProbability) {
         super(new SimpleTournamentScheme(size, dominanceProbability));

@@ -17,13 +17,13 @@ import java.util.Set;
  * @author Siu Kei Muk (David)
  * @since 3/09/16.
  */
-public abstract class SimpleSelector<T extends Chromosome> implements Selector<T> {
+public abstract class BaseSelector<T extends Chromosome> implements Selector<T> {
 
     protected List<Individual<T>> individuals;
     protected List<Double> fitnessValues;
     protected SelectionScheme scheme;
 
-    public SimpleSelector(@NotNull final SelectionScheme scheme) {
+    public BaseSelector(@NotNull final SelectionScheme scheme) {
         this.scheme = scheme;
         fitnessValues = new ArrayList<>();
     }
