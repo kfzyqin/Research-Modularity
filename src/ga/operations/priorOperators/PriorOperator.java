@@ -9,6 +9,6 @@ import ga.components.chromosome.Chromosome;
  *
  * Created by david on 28/08/16.
  */
-public interface PriorOperator<T extends Chromosome> {
-    void preOperate(@NotNull final Population<T> population);
+public interface PriorOperator<C extends Chromosome> {
+    void preOperate(@NotNull final Population<C> population);
 }

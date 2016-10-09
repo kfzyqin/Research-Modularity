@@ -15,12 +15,12 @@ import java.util.*;
  * @author Siu Kei Muk (David)
  * @since 27/08/16.
  */
-public class Population<T extends Chromosome> implements Copyable<Population<T>> {
+public class Population<C extends Chromosome> implements Copyable<Population<C>> {
 
-    protected List<Individual<T>> individuals;
-    protected List<Individual<T>> priorPool;
-    protected List<Individual<T>> offspringPool;
-    protected List<Individual<T>> postPool;
+    protected List<Individual<C>> individuals;
+    protected List<Individual<C>> priorPool;
+    protected List<Individual<C>> offspringPool;
+    protected List<Individual<C>> postPool;
     protected Set<Integer> survivedIndices;
 
     protected PopulationMode mode;
@@ -43,7 +43,7 @@ public class Population<T extends Chromosome> implements Copyable<Population<T>>
         mode = PopulationMode.RECOMBINE;
     }
 
-    protected Population(@NotNull final List<Individual<T>> individuals,
+    protected Population(@NotNull final List<Individual<C>> individuals,
                        final int size) {
         this.individuals = individuals;
         this.priorPool = new ArrayList<>(size);
@@ -59,7 +59,7 @@ public class Population<T extends Chromosome> implements Copyable<Population<T>>
      * Adds an individual to the corresponding pool with the given chromosome.
      * @param chromosome chromosome of the candidate individual
      */
-    public void addCandidateChromosome(@NotNull final T chromosome) {
+    public void addCandidateChromosome(@NotNull final C chromosome) {
         addCandidate(new Individual<>(chromosome));
     }
 
@@ -67,16 +67,16 @@ public class Population<T extends Chromosome> implements Copyable<Population<T>>
      * Adds multiple individuals to the corresponding pool with the given chromosomes.
      * @param chromosomes a list of chromosomes of the candidate individuals
      */
-    public void addCandidateChromosomes(@NotNull final List<T> chromosomes) {
-        for (T child : chromosomes) addCandidateChromosome(child);
+    public void addCandidateChromosomes(@NotNull final List<C> chromosomes) {
+        for (C child : chromosomes) addCandidateChromosome(child);
     }
 
     /**
      * Adds multiple candidates to the corresponding pool.
      * @param candidates a list of candidate individuals
      */
-    public void addCandidates(@NotNull final List<Individual<T>> candidates) {
-        for (Individual<T> child : candidates) addCandidate(child);
+    public void addCandidates(@NotNull final List<Individual<C>> candidates) {
+        for (Individual<C> child : candidates) addCandidate(child);
     }
 
     /**
@@ -85,7 +85,7 @@ public class Population<T extends Chromosome> implements Copyable<Population<T>>
      * @param recompute determines whether to force re-computation of phenotype from genotype
      */
     public void evaluate(@NotNull final FitnessFunction fitnessFunction, final boolean recompute) {
-        for (Individual<T> i : individuals)
+        for (Individual<C> i : individuals)
             i.evaluate(fitnessFunction, recompute);
         Collections.sort(individuals);
     }
@@ -94,7 +94,7 @@ public class Population<T extends Chromosome> implements Copyable<Population<T>>
      * Adds a child/candidate to a pool for the next generation according to the mode.
      * @param candidate candidate to be added
      */
-    public void addCandidate(@NotNull final Individual<T> candidate) {
+    public void addCandidate(@NotNull final Individual<C> candidate) {
         if (isReady()) return;
         switch (mode) {
             case PRIOR:
@@ -172,7 +172,7 @@ public class Population<T extends Chromosome> implements Copyable<Population<T>>
      * Returns an unmodifiable view of the individuals.
      * @return unmodifiable view of the individuals
      */
-    public List<Individual<T>> getIndividualsView() {
+    public List<Individual<C>> getIndividualsView() {
         return Collections.unmodifiableList(individuals);
     }
 
@@ -180,7 +180,7 @@ public class Population<T extends Chromosome> implements Copyable<Population<T>>
      * Returns an unmodifiable view of the prior pool.
      * @return unmodifiable view of the prior pool
      */
-    public List<Individual<T>> getPriorPoolView() {
+    public List<Individual<C>> getPriorPoolView() {
         return Collections.unmodifiableList(priorPool);
     }
 
@@ -188,7 +188,7 @@ public class Population<T extends Chromosome> implements Copyable<Population<T>>
      * Returns an unmodifiable view of the offspring pool.
      * @return unmodifiable view of the offspring pool
      */
-    public List<Individual<T>> getOffspringPoolView() {
+    public List<Individual<C>> getOffspringPoolView() {
         return Collections.unmodifiableList(offspringPool);
     }
 
@@ -196,7 +196,7 @@ public class Population<T extends Chromosome> implements Copyable<Population<T>>
      * Returns an unmodifiable view of the post pool.
      * @return unmodifiable view of the post pool
      */
-    public List<Individual<T>> getPostPoolView() {
+    public List<Individual<C>> getPostPoolView() {
         return Collections.unmodifiableList(postPool);
     }
 
@@ -209,8 +209,8 @@ public class Population<T extends Chromosome> implements Copyable<Population<T>>
     }
 
     @Override
-    public Population<T> copy() {
-        List<Individual<T>> individualsCopy = new ArrayList<>(size);
+    public Population<C> copy() {
+        List<Individual<C>> individualsCopy = new ArrayList<>(size);
         for (int i = 0; i < size; i++) {
             individualsCopy.add(individuals.get(i).copy());
         }

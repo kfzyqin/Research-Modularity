@@ -14,7 +14,7 @@ import ga.operations.fitnessfunction.FitnessFunction;
 import ga.operations.initializers.Initializer;
 import ga.operations.mutator.ChromosomeMutator;
 import ga.operations.postOperators.PostOperator;
-import ga.operations.postOperators.SimpleFillingOperator;
+import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
 import ga.operations.priorOperators.PriorOperator;
 import ga.operations.priorOperators.SimpleElitismOperator;
 import ga.operations.recombinator.Recombinator;
@@ -50,7 +50,7 @@ public class NgWongMain {
         Recombinator<SimpleDiploid> recombinator = new SimpleDiploidRecombinator();
         ChromosomeMutator<SimpleDiploid> chromosomeMutator = new NgWongChromosomeMutator(mutationRate);
         Selector<SimpleDiploid> selector = new SimpleTournamentSelector<>(tournamentSize, selectivePressure);
-        PostOperator<SimpleDiploid> fillingOperator = new SimpleFillingOperator<>(new SimpleTournamentScheme(tournamentSize, selectivePressure));
+        PostOperator<SimpleDiploid> fillingOperator = new SimpleFillingOperatorForNormalizable<>(new SimpleTournamentScheme(tournamentSize, selectivePressure));
         PriorOperator<SimpleDiploid> elitismOperator = new SimpleElitismOperator<>(numElites);
         DynamicHandler<SimpleDiploid> handler = new NgWongDominanceChange(dominanceChangeThreshold, cycleLength);
         Statistics<SimpleDiploid> statistics = new SimpleElitesStatistics<>();

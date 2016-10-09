@@ -5,8 +5,6 @@ import ga.components.hotspots.Hotspot;
 import ga.components.materials.SimpleDNA;
 import ga.operations.dominanceMappings.DominanceMapping;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**

@@ -12,12 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * This class is an implementation of post-operator that fills up the remaining space by
- * selecting individuals from the current generation to survive in the next generation
- * according to a given selection scheme.
- *
- * @author Siu Kei Muk (David)
- * @since 12/09/16.
+ * Created by david on 9/10/16.
  */
 public class SimpleFillingOperator<T extends Chromosome> implements PostOperator<T> {
 
@@ -29,25 +24,18 @@ public class SimpleFillingOperator<T extends Chromosome> implements PostOperator
 
     @Override
     public void postOperate(@NotNull final Population<T> population) {
+        int size = population.getSize();
+        List<Double> fitnessValues = new ArrayList<>(size);
+        List<Individual<T>> individuals = population.getIndividualsView();
+        for (int i = 0; i < size; i++) fitnessValues.add(individuals.get(i).getFitness());
+        // Collections.sort(fitnessValues);
         Set<Integer> survivedIndices = population.getSurvivedIndicesView();
         Set<Integer> selected = new HashSet<>();
-        List<Individual<T>> individuals = population.getIndividualsView();
-        List<Double> normalized = normalizeFitness(individuals);
-        final int amount = population.getSize() - population.getNextGenSize();
-        while (selected.size() < amount) {
-            final int index = scheme.select(normalized);
-            if (!survivedIndices.contains(index)) selected.add(index);
+        while (!population.isReady()) {
+            final int index = scheme.select(fitnessValues);
+            if (survivedIndices.contains(index) || selected.contains(index)) continue;
+            population.addCandidate(individuals.get(index).copy());
+            selected.add(index);
         }
-        for (Integer i : selected) population.addCandidate(individuals.get(i).copy());
-    }
-
-    private List<Double> normalizeFitness(List<Individual<T>> individuals) {
-        final double sum = individuals.stream().mapToDouble(Individual::getFitness).sum();
-        final int size = individuals.size();
-        List<Double> normalized = new ArrayList<>(size);
-        for (int i = 0; i < size; i++) {
-            normalized.add(individuals.get(i).getFitness()/sum);
-        }
-        return normalized;
     }
 }

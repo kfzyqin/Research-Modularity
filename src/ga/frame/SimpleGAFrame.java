@@ -9,51 +9,23 @@ import ga.operations.postOperators.PostOperator;
 /**
  * Created by david on 2/09/16.
  */
-public class SimpleGAFrame<T extends Chromosome> extends GAFrame<T> {
+public class SimpleGAFrame<C extends Chromosome> extends GAFrame<C> {
 
-    protected DynamicHandler<T> handler = null;
-
-    public SimpleGAFrame(@NotNull final GAState<T> state,
-                         @NotNull final PostOperator<T> postOperator,
-                         @NotNull final Statistics<T> statistics,
-                         final DynamicHandler<T> handler) {
+    public SimpleGAFrame(@NotNull final GAState<C> state,
+                         @NotNull final PostOperator<C> postOperator,
+                         @NotNull final Statistics<C> statistics,
+                         final DynamicHandler<C> handler) {
         super(state, postOperator, statistics);
         this.handler = handler;
     }
 
-    public SimpleGAFrame(@NotNull final GAState<T> state,
-                         @NotNull final PostOperator<T> postOperator,
-                         @NotNull final Statistics<T> statistics) {
+    public SimpleGAFrame(@NotNull final GAState<C> state,
+                         @NotNull final PostOperator<C> postOperator,
+                         @NotNull final Statistics<C> statistics) {
         super(state, postOperator, statistics);
     }
 
-    /*
-
-    public SimpleGAFrame(@NotNull final FitnessFunction fitnessfunction,
-                         @NotNull final Initializer<T> initializer,
-                         @NotNull final Recombinator<T> recombinator,
-                         @NotNull final ChromosomeMutator chromosomeMutator,
-                         @NotNull final Selector selector,
-                         @NotNull final Statistics<T> statistics,
-                         final int numOfMates) {
-        super(new SimpleGAState<T>(fitnessfunction, initializer, recombinator, chromosomeMutator, selector, statistics, numOfMates));
-    }*/
-
-    /*
-
-    public SimpleGAFrame(@NotNull final FitnessFunction fitnessfunction,
-                         @NotNull final Initializer<T> initializer,
-                         @NotNull final Recombinator<T> recombinator,
-                         @NotNull final ChromosomeMutator chromosomeMutator,
-                         @NotNull final Selector selector,
-                         @NotNull final Statistics<T> statistics,
-                         @NotNull final DynamicHandler<T> handler,
-                         final int numOfMates) {
-        super(fitnessfunction, initializer, recombinator, chromosomeMutator, selector, statistics, numOfMates);
-        this.handler = handler;
-    }*/
-
-    public void setHandler(final DynamicHandler<T> handler) {
+    public void setHandler(final DynamicHandler<C> handler) {
         this.handler = handler;
     }
 

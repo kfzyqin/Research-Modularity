@@ -12,10 +12,11 @@ public class SimpleHotspot extends Hotspot<Double> {
 
     public SimpleHotspot(final int size) {
         super(size);
+        initialize();
     }
 
     protected SimpleHotspot(final int size, List<Double> encoding) {
-        super(size, encoding);
+        super(size, encoding, encoding);
     }
 
     @Override
@@ -40,6 +41,7 @@ public class SimpleHotspot extends Hotspot<Double> {
         if (index < 0 || index > size-1) return;
         if (value < 0 || value > 1) return;
         encoding.set(index, value);
+        modified = true;
     }
 
     @Override

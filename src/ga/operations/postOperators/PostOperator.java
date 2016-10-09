@@ -10,6 +10,6 @@ import ga.components.chromosome.Chromosome;
  * @author Siu Kei Muk (David)
  * @since 12/09/16.
  */
-public interface PostOperator<T extends Chromosome> {
-    void postOperate(@NotNull final Population<T> population);
+public interface PostOperator<C extends Chromosome> {
+    void postOperate(@NotNull final Population<C> population);
 }

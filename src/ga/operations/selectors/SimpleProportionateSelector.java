@@ -12,14 +12,14 @@ import java.util.List;
  * @author Siu Kei Muk (David)
  * @since 11/09/16
  */
-public class SimpleProportionateSelector<T extends Chromosome> extends BaseSelector<T> {
+public class SimpleProportionateSelector<C extends Chromosome> extends BaseSelector<C> {
 
     public SimpleProportionateSelector() {
         super(new ProportionateScheme());
     }
 
     @Override
-    public void setSelectionData(@NotNull final List<Individual<T>> individuals) {
+    public void setSelectionData(@NotNull final List<Individual<C>> individuals) {
         final int size = individuals.size();
         this.individuals = individuals;
         fitnessValues.clear();

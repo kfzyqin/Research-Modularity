@@ -15,15 +15,15 @@ import java.util.List;
  * @author Siu Kei Muk (David)
  * @since 26/08/16.
  * @param <M> class/type of genetic material as the genotype
- * @param <G> class/type of genetic material as the phenotype
+ * @param <P> class/type of genetic material as the phenotype
  */
-public abstract class Chromosome<M extends GeneticMaterial, G extends GeneticMaterial> implements Copyable<Chromosome> {
+public abstract class Chromosome<M extends GeneticMaterial, P extends GeneticMaterial> implements Copyable<Chromosome> {
 
     protected final int strands;
     protected final int length;
     protected List<M> materials;
-    protected DominanceMapping<M,G> mapping;
-    protected G phenotype = null;
+    protected DominanceMapping<M, P> mapping;
+    protected P phenotype = null;
 
     /**
      * Constructs a chromosome. Note that the 'materials' field is not initialized.
@@ -33,7 +33,7 @@ public abstract class Chromosome<M extends GeneticMaterial, G extends GeneticMat
      * @param length number of genes of each haploid in the genotype
      */
     public Chromosome(final int strands, final int length,
-                      @NotNull DominanceMapping<M,G> mapping) {
+                      @NotNull DominanceMapping<M, P> mapping) {
         this.strands = strands;
         this.length = length;
         this.mapping = mapping;
@@ -44,7 +44,7 @@ public abstract class Chromosome<M extends GeneticMaterial, G extends GeneticMat
      * @param recompute determines whether to force remapping of phenotype from genotype
      * @return phenotype of the chromosome
      */
-    public G getPhenotype(final boolean recompute) {
+    public P getPhenotype(final boolean recompute) {
         if (phenotype == null || recompute)
             phenotype = mapping.map(materials);
         return phenotype;
@@ -74,14 +74,14 @@ public abstract class Chromosome<M extends GeneticMaterial, G extends GeneticMat
     /**
      * @return current genotype-to-phenotype mapping of the chromosome
      */
-    public DominanceMapping<M, G> getMapping() {
+    public DominanceMapping<M, P> getMapping() {
         return mapping;
     }
 
     /**
      * @param mapping genotype-to-phenotype mapping to be set
      */
-    public void setMapping(@NotNull final DominanceMapping<M,G> mapping) {
+    public void setMapping(@NotNull final DominanceMapping<M, P> mapping) {
         this.mapping = mapping;
     }
 }

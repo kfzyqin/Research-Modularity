@@ -6,6 +6,6 @@ import ga.components.hotspots.Hotspot;
 /**
  * Created by david on 28/09/16.
  */
-public interface HotspotMutator<V> {
-    void mutate(@NotNull final Hotspot<V> hotspotMap);
+public interface HotspotMutator<H> {
+    void mutate(@NotNull final Hotspot<H> hotspotMap);
 }

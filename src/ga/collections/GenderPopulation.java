@@ -1,12 +1,13 @@
 package ga.collections;
 
 import com.sun.istack.internal.NotNull;
-import ga.components.chromosome.SimpleGenderDiploid;
+import ga.components.chromosome.Chromosome;
+import ga.components.chromosome.Coupleable;
 
 /**
  * Created by david on 29/09/16.
  */
-public class GenderPopulation<V> extends Population<SimpleGenderDiploid<V>> {
+public class GenderPopulation<G extends Chromosome & Coupleable> extends Population<G> {
 
     protected int numOfFemale;
     protected int numOfMale;
@@ -32,7 +33,7 @@ public class GenderPopulation<V> extends Population<SimpleGenderDiploid<V>> {
     }
 
     @Override
-    public void addCandidate(@NotNull final Individual<SimpleGenderDiploid<V>> candidate) {
+    public void addCandidate(@NotNull final Individual<G> candidate) {
         final boolean masculine = candidate.getChromosome().isMasculine();
         if (masculine && numOfMale < maxNumOfMale) {
             numOfMale++;

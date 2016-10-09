@@ -11,11 +11,11 @@ import java.util.List;
  * @author Siu Kei Muk (David)
  * @since 26/08/16.
  */
-public interface Recombinator<T extends Chromosome> {
+public interface Recombinator<C extends Chromosome> {
     /**
      * Performs recombination given parents
      * @param mates parents for recombination
      * @return children reproduced by parents
      */
-    List<T> recombine(@NotNull final List<T> mates);
+    List<C> recombine(@NotNull final List<C> mates);
 }

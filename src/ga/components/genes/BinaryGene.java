@@ -12,6 +12,10 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class BinaryGene implements Gene<Integer> {
 
+    public static BinaryGene generateRandomBinaryGene() {
+        return new BinaryGene((Math.random() < 0.5) ? 0 : 1);
+    }
+
     private int value;
 
     /**

@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by david on 28/09/16.
  */
-public abstract class GenderRecombinator<T extends Chromosome & Coupleable> implements CoupleRecombinator<T> {
+public abstract class GenderRecombinator<G extends Chromosome & Coupleable> implements CoupleRecombinator<G> {
 
     private int numOfChildren;
 
@@ -25,13 +25,13 @@ public abstract class GenderRecombinator<T extends Chromosome & Coupleable> impl
     }
 
     @Override
-    public List<T> recombine(@NotNull final List<T> mates) {
-        List<T> children = new ArrayList<>(numOfChildren);
+    public List<G> recombine(@NotNull final List<G> mates) {
+        List<G> children = new ArrayList<>(numOfChildren);
         for (int i = 0; i < numOfChildren; i++) children.add(reproduce(mates));
         return children;
     }
 
-    protected abstract T reproduce(@NotNull final List<T> mates);
+    protected abstract G reproduce(@NotNull final List<G> mates);
 
     /*
     @Override
@@ -42,9 +42,9 @@ public abstract class GenderRecombinator<T extends Chromosome & Coupleable> impl
     }*/
 
     /*
-    private T reproduce(@NotNull final List<T> mates) {
-        T father = mates.get(0);
-        T mother = mates.get(1);
+    private G reproduce(@NotNull final List<G> mates) {
+        G father = mates.get(0);
+        G mother = mates.get(1);
         List<GeneticMaterial> maleGametes = crossover(father);
         List<GeneticMaterial> femaleGametes = crossover(mother);
         final int maleMatch = ThreadLocalRandom.current().nextInt(maleGametes.size());
@@ -57,7 +57,7 @@ public abstract class GenderRecombinator<T extends Chromosome & Coupleable> impl
                                        mapping, hotspot, masculine);
     }*/
 
-    protected List<GeneticMaterial> crossover(@NotNull final T parent) {
+    protected List<GeneticMaterial> crossover(@NotNull final G parent) {
         List<GeneticMaterial> gametes = new ArrayList<>(2);
         List<GeneticMaterial> materialView = parent.getMaterialsView();
         GeneticMaterial dna1 = materialView.get(0).copy();

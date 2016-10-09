@@ -18,15 +18,15 @@ import java.util.List;
  * @author Siu Kei Muk (David)
  * @since 12/09/16.
  */
-public class SimpleGAState<T extends Chromosome> extends GAState<T> {
+public class SimpleGAState<C extends Chromosome> extends GAState<C> {
 
     protected double recombinationRate;
 
-    public SimpleGAState(@NotNull final Population<T> population,
+    public SimpleGAState(@NotNull final Population<C> population,
                          @NotNull final FitnessFunction fitnessFunction,
                          @NotNull final ChromosomeMutator chromosomeMutator,
-                         @NotNull final Recombinator<T> recombinator,
-                         @NotNull final Selector<T> selector,
+                         @NotNull final Recombinator<C> recombinator,
+                         @NotNull final Selector<C> selector,
                          final int numOfMates,
                          final double recombinationRate) {
         super(population, fitnessFunction, chromosomeMutator, recombinator, selector, numOfMates);
@@ -46,8 +46,8 @@ public class SimpleGAState<T extends Chromosome> extends GAState<T> {
         int count = 0;
         final int size = (int) Math.round(population.getSize()*recombinationRate);
         while (count < size && !population.isReady()) {
-            List<T> mates = selector.select(numOfMates);
-            List<T> children = recombinator.recombine(mates);
+            List<C> mates = selector.select(numOfMates);
+            List<C> children = recombinator.recombine(mates);
             population.addCandidateChromosomes(children);
             count += children.size();
         }

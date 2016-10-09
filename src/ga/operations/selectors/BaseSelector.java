@@ -17,9 +17,9 @@ import java.util.Set;
  * @author Siu Kei Muk (David)
  * @since 3/09/16.
  */
-public abstract class BaseSelector<T extends Chromosome> implements Selector<T> {
+public abstract class BaseSelector<C extends Chromosome> implements Selector<C> {
 
-    protected List<Individual<T>> individuals;
+    protected List<Individual<C>> individuals;
     protected List<Double> fitnessValues;
     protected SelectionScheme scheme;
 
@@ -29,13 +29,13 @@ public abstract class BaseSelector<T extends Chromosome> implements Selector<T> 
     }
 
     @Override
-    public List<T> select(final int numOfMates) {
+    public List<C> select(final int numOfMates) {
         Set<Integer> set = new HashSet<>(numOfMates);
         while (set.size() < numOfMates) {
             set.add(scheme.select(fitnessValues));
         }
 
-        List<T> parents = new ArrayList<>(numOfMates);
+        List<C> parents = new ArrayList<>(numOfMates);
 
         for (int i : set) {
             parents.add(individuals.get(i).getChromosome());

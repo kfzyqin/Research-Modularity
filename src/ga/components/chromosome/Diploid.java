@@ -16,7 +16,7 @@ import java.util.List;
  * @author Siu Kei Muk (David)
  * @since 2/09/16.
  */
-public abstract class Diploid<M extends GeneticMaterial, G extends GeneticMaterial> extends Chromosome<M,G>{
+public abstract class Diploid<M extends GeneticMaterial, P extends GeneticMaterial> extends Chromosome<M, P>{
 
     /**
      * Constructs a diploid object.
@@ -27,7 +27,7 @@ public abstract class Diploid<M extends GeneticMaterial, G extends GeneticMateri
      */
     public Diploid(@NotNull final M strand1,
                    @NotNull final M strand2,
-                   @NotNull final DominanceMapping<M,G> mapping) {
+                   @NotNull final DominanceMapping<M, P> mapping) {
         super(2, strand1.getSize(), mapping);
         if (strand2.getSize() != length)
             throw new IllegalArgumentException("Size of strands does not agree.");

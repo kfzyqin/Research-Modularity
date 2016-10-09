@@ -19,11 +19,13 @@ public class DiscreteExpHotspot extends Hotspot<Integer>{
         if (maxLevel < 1) throw new IllegalArgumentException("Maximum level must be at least 1.");
         this.maxLevel = maxLevel;
         setControl(control);
+        initialize();
     }
 
     private DiscreteExpHotspot(final int size, final int maxLevel,
-                               @NotNull final List<Integer> encoding) {
-        super(size, encoding);
+                               @NotNull final List<Integer> encoding,
+                               @NotNull final List<Double> rate) {
+        super(size, encoding,rate);
         this.maxLevel = maxLevel;
     }
 
@@ -34,12 +36,14 @@ public class DiscreteExpHotspot extends Hotspot<Integer>{
     @Override
     public DiscreteExpHotspot copy() {
         List<Integer> encodingCopy = new ArrayList<>(encoding);
-        return new DiscreteExpHotspot(size, maxLevel, encodingCopy);
+        List<Double> rateCopy = new ArrayList<>(recombinationRate);
+        return new DiscreteExpHotspot(size, maxLevel, encodingCopy, rateCopy);
     }
 
     @Override
     protected void initialize() {
         for (int i = 0; i < size; i++) encoding.add(ThreadLocalRandom.current().nextInt(1,maxLevel+1));
+        computeRate();
     }
 
     @Override
@@ -52,6 +56,7 @@ public class DiscreteExpHotspot extends Hotspot<Integer>{
                 recombinationRate.add(Math.exp(encoding.get(i) - maxLevel - control));
             }
         }
+        modified = false;
     }
 
     @Override
@@ -60,6 +65,7 @@ public class DiscreteExpHotspot extends Hotspot<Integer>{
         if (value < 1) value = (value % maxLevel) + maxLevel;
         if (value > maxLevel) value %= maxLevel;
         encoding.set(index, value);
+        modified = true;
     }
 
     public double getControl() {

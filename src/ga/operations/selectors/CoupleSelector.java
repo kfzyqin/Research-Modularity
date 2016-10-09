@@ -11,10 +11,10 @@ import java.util.List;
 /**
  * Created by david on 29/09/16.
  */
-public abstract class CoupleSelector<T extends Chromosome & Coupleable> implements Selector<T>{
+public abstract class CoupleSelector<G extends Chromosome & Coupleable> implements Selector<G>{
 
-    protected List<Individual<T>> maleIndividuals;
-    protected List<Individual<T>> femaleIndividuals;
+    protected List<Individual<G>> maleIndividuals;
+    protected List<Individual<G>> femaleIndividuals;
     protected List<Double> maleFitnessValues;
     protected List<Double> femaleFitnessValues;
     protected SelectionScheme scheme;
@@ -28,10 +28,10 @@ public abstract class CoupleSelector<T extends Chromosome & Coupleable> implemen
     }
 
     @Override
-    public List<T> select(final int numOfMates) {
-        List<T> parents = new ArrayList<>(2);
-        T male = maleIndividuals.get(scheme.select(maleFitnessValues)).getChromosome();
-        T female = femaleIndividuals.get(scheme.select(femaleFitnessValues)).getChromosome();
+    public List<G> select(final int numOfMates) {
+        List<G> parents = new ArrayList<>(2);
+        G male = maleIndividuals.get(scheme.select(maleFitnessValues)).getChromosome();
+        G female = femaleIndividuals.get(scheme.select(femaleFitnessValues)).getChromosome();
         parents.add(male);
         parents.add(female);
         return parents;

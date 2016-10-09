@@ -15,14 +15,14 @@ import java.util.List;
  * @author Siu Kei Muk (David)
  * @since 2/09/16.
  */
-public abstract class Haploid<M extends GeneticMaterial, G extends GeneticMaterial> extends Chromosome<M,G> {
+public abstract class Haploid<M extends GeneticMaterial, P extends GeneticMaterial> extends Chromosome<M, P> {
 
     /**
      * Constructs a Haploid object.
      * @param strand one single strand of genetic material
      * @param mapping genotype-to-phenotype mapping
      */
-    public Haploid(@NotNull final M strand, @NotNull DominanceMapping<M,G> mapping) {
+    public Haploid(@NotNull final M strand, @NotNull DominanceMapping<M, P> mapping) {
         super(1, strand.getSize(), mapping);
         List<M> strands = new ArrayList<>(1);
         strands.add(strand);

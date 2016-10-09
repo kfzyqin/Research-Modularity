@@ -12,7 +12,7 @@ import java.util.List;
  * @author Siu Kei Muk (David)
  * @since 31/08/16.
  */
-public interface Statistics<T extends Chromosome> extends Copyable<Statistics<T>>{
+public interface Statistics<C extends Chromosome> extends Copyable<Statistics<C>>{
 
     /**
      * Prints the information of the given generation to STDOUT.
@@ -27,7 +27,7 @@ public interface Statistics<T extends Chromosome> extends Copyable<Statistics<T>
      * Records information from the current generation.
      * @param data list of individuals of the current generation
      */
-    void record(@NotNull final List<Individual<T>> data);
+    void record(@NotNull final List<Individual<C>> data);
 
     /**
      * Saves the statistics to a file with given filename

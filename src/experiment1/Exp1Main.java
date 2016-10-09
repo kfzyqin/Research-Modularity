@@ -12,7 +12,7 @@ import ga.operations.initializers.BinarySimpleHaploidInitializer;
 import ga.operations.initializers.Initializer;
 import ga.operations.mutator.ChromosomeMutator;
 import ga.operations.postOperators.PostOperator;
-import ga.operations.postOperators.SimpleFillingOperator;
+import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
 import ga.operations.priorOperators.PriorOperator;
 import ga.operations.recombinator.Recombinator;
 import ga.operations.selectors.ProportionateScheme;
@@ -35,20 +35,29 @@ public class Exp1Main {
     private static final String outfile = "Exp1.out";
 
     public static void main(String[] args) {
+        // Fitness Function
         FitnessFunction fitnessFunction = new Exp1FitnessFunction(target);
+        // It is not necessary to write an initializer, but doing so is convenient to repeat the experiment
+        // using different parameter.
         Initializer<SimpleHaploid> initializer = new BinarySimpleHaploidInitializer(size, 32);
+        // Population
         Population<SimpleHaploid> population = initializer.initialize();
+        // Mutator for chromosomes
         ChromosomeMutator chromosomeMutator = new Exp1ChromosomeMutator(mutationRate);
+        // Selector for reproduction
         Selector<SimpleHaploid> selector = new SimpleProportionateSelector<>();
+        // PriorOperator is optional.
         PriorOperator<SimpleHaploid> priorOperator = new Exp1PriorOperator(numElites, selector);
-        PostOperator<SimpleHaploid> postOperator = new SimpleFillingOperator<>(new ProportionateScheme());
+        // PostOperator is required to fill up the vacancy.
+        PostOperator<SimpleHaploid> postOperator = new SimpleFillingOperatorForNormalizable<>(new ProportionateScheme());
+        // Statistics for keeping track the performance in generations
         Statistics<SimpleHaploid> statistics = new Exp1Statistics();
+        // Recombinator for reproduction
         Recombinator<SimpleHaploid> recombinator = new Exp1Recombinator();
 
         GAState<SimpleHaploid> state = new SimpleGAState<>(population, fitnessFunction, chromosomeMutator, recombinator, selector, 2, crossoverRate);
         state.record(statistics);
         GAFrame<SimpleHaploid> frame = new SimpleGAFrame<>(state,postOperator,statistics);
-        // GAFrame<SimpleHaploid> frame = new SimpleGAFrame<>(fitnessfunction,initializer,recombinator,chromosomeMutator,selector,statistics, 2);
         frame.setPriorOperator(priorOperator);
         statistics.print(0);
         for (int i = 1; i <= maxGen; i++) {

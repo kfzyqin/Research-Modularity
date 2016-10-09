@@ -5,7 +5,7 @@ import ga.components.hotspots.Hotspot;
 /**
  * Created by david on 29/09/16.
  */
-public interface Coupleable<V> {
+public interface Coupleable<H> {
     boolean isMasculine();
-    Hotspot<V> getHotspot();
+    Hotspot<H> getHotspot();
 }

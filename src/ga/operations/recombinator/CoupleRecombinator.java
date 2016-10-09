@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by david on 29/09/16.
  */
-public interface CoupleRecombinator<T extends Chromosome & Coupleable> extends Recombinator<T> {
+public interface CoupleRecombinator<G extends Chromosome & Coupleable> extends Recombinator<G> {
     @Override
-    List<T> recombine(@NotNull final List<T> mates);
+    List<G> recombine(@NotNull final List<G> mates);
 }

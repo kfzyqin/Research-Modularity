@@ -10,10 +10,10 @@ import java.util.List;
 /**
  * Created by david on 28/09/16.
  */
-public abstract class Hotspot<V> implements Copyable<Hotspot<V>>{
+public abstract class Hotspot<H> implements Copyable<Hotspot<H>>{
 
     protected final int size;
-    protected List<V> encoding;
+    protected List<H> encoding;
     protected List<Double> recombinationRate;
     protected boolean modified;
 
@@ -22,27 +22,26 @@ public abstract class Hotspot<V> implements Copyable<Hotspot<V>>{
         encoding = new ArrayList<>(size);
         recombinationRate = new ArrayList<>(size);
         modified = true;
-        initialize();
+        // initialize();
     }
 
-    protected Hotspot(final int size, List<V> encoding) {
+    protected Hotspot(final int size, @NotNull List<H> encoding, @NotNull List<Double> rate) {
         this.size = size;
         this.encoding = encoding;
-
+        this.recombinationRate = rate;
         modified = false;
     }
 
-    public abstract void setEncodingValue(final int index, @NotNull final V value);
+    public abstract void setEncodingValue(final int index, @NotNull final H value);
     protected abstract void initialize();
     protected abstract void computeRate();
 
     public List<Double> getRecombinationRate() {
         if (modified) computeRate();
-        modified = false;
         return Collections.unmodifiableList(recombinationRate);
     }
 
-    public List<V> getEncoding() {
+    public List<H> getEncoding() {
         return encoding;
     }
 }

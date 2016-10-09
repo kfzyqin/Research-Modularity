@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by david on 11/09/16.
  */
-public class SimpleElitismOperator<T extends Chromosome> implements PriorOperator<T>{
+public class SimpleElitismOperator<C extends Chromosome> implements PriorOperator<C>{
 
     private int numOfElites;
 
@@ -25,8 +25,8 @@ public class SimpleElitismOperator<T extends Chromosome> implements PriorOperato
     }
 
     @Override
-    public void preOperate(@NotNull Population<T> population) {
-        List<Individual<T>> individuals = population.getIndividualsView();
+    public void preOperate(@NotNull Population<C> population) {
+        List<Individual<C>> individuals = population.getIndividualsView();
         for (int i = 0; i < numOfElites; i++) {
             population.addCandidate(individuals.get(i).copy());
             population.markSurvivedIndex(i);

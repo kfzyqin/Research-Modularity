@@ -16,10 +16,10 @@ import java.util.List;
  * @author Siu Kei Muk (David)
  * Created by david on 11/09/16.
  */
-public class SimpleElitesStatistics<T extends Chromosome> implements Statistics<T> {
+public class SimpleElitesStatistics<C extends Chromosome> implements Statistics<C> {
 
     private int generation;
-    List<Individual<T>> elites;
+    List<Individual<C>> elites;
     List<Double> deltas;
 
     public SimpleElitesStatistics() {
@@ -37,7 +37,7 @@ public class SimpleElitesStatistics<T extends Chromosome> implements Statistics<
         deltas = new ArrayList<>(maxGen);
     }
 
-    private SimpleElitesStatistics(@NotNull final List<Individual<T>> elites,
+    private SimpleElitesStatistics(@NotNull final List<Individual<C>> elites,
                                    @NotNull final List<Double> deltas) {
         generation = elites.size();
         this.elites = new ArrayList<>(generation);
@@ -47,8 +47,8 @@ public class SimpleElitesStatistics<T extends Chromosome> implements Statistics<
     }
 
     @Override
-    public void record(@NotNull final List<Individual<T>> data) {
-        Individual<T> elite = data.get(0).copy();
+    public void record(@NotNull final List<Individual<C>> data) {
+        Individual<C> elite = data.get(0).copy();
         elites.add(elite);
         if (generation == 0)
             deltas.add(elite.getFitness());
@@ -87,7 +87,7 @@ public class SimpleElitesStatistics<T extends Chromosome> implements Statistics<
     }
 
     @Override
-    public SimpleElitesStatistics<T> copy() {
+    public SimpleElitesStatistics<C> copy() {
         return new SimpleElitesStatistics<>(elites, deltas);
     }
 

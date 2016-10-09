@@ -1,7 +1,6 @@
 package ga.components.materials;
 
 import ga.components.genes.Gene;
-import org.apache.commons.collections4.list.FixedSizeList;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -14,15 +14,15 @@ import java.util.List;
  * @author Siu Kei Muk (David)
  * @since 27/08/16.
  */
-public interface Selector<T extends Chromosome> {
+public interface Selector<C extends Chromosome> {
     /**
      * @param numOfMates number of parents of one recombinator (production of offspring)
      * @return parents for recombinator
      */
-    List<T> select(final int numOfMates);
+    List<C> select(final int numOfMates);
 
     /**
      * @param individuals list of individuals of the current generation sorted in descending order
      */
-    void setSelectionData(List<Individual<T>> individuals);
+    void setSelectionData(List<Individual<C>> individuals);
 }

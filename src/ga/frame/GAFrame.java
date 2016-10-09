@@ -14,17 +14,17 @@ import ga.operations.priorOperators.PriorOperator;
  * @author Siu Kei Muk (David)
  * @since 29/08/16.
  */
-public abstract class GAFrame<T extends Chromosome> {
+public abstract class GAFrame<C extends Chromosome> {
 
-    protected final GAState<T> state;
-    protected Statistics<T> statistics;
-    protected PriorOperator<T> priorOperator = null;
-    protected PostOperator<T> postOperator;
-    protected DynamicHandler<T> handler = null;
+    protected final GAState<C> state;
+    protected Statistics<C> statistics;
+    protected PriorOperator<C> priorOperator = null;
+    protected PostOperator<C> postOperator;
+    protected DynamicHandler<C> handler = null;
 
-    public GAFrame(@NotNull final GAState<T> state,
-                   @NotNull final PostOperator<T> postOperator,
-                   @NotNull final Statistics<T> statistics) {
+    public GAFrame(@NotNull final GAState<C> state,
+                   @NotNull final PostOperator<C> postOperator,
+                   @NotNull final Statistics<C> statistics) {
         this.state = state;
         this.postOperator = postOperator;
         this.statistics = statistics;
@@ -35,27 +35,27 @@ public abstract class GAFrame<T extends Chromosome> {
      */
     public abstract void evolve();
 
-    public GAState<T> getState() {
+    public GAState<C> getState() {
         return state;
     }
 
-    public Statistics<T> getStatistics() {
+    public Statistics<C> getStatistics() {
         return statistics;
     }
 
-    public void setStatistics(final Statistics<T> statistics) {
+    public void setStatistics(final Statistics<C> statistics) {
         this.statistics = statistics;
     }
 
-    public void setPriorOperator(final PriorOperator<T> priorOperator){
+    public void setPriorOperator(final PriorOperator<C> priorOperator){
         this.priorOperator = priorOperator;
     }
 
-    public void setPostOperator(@NotNull final PostOperator<T> postOperator) {
+    public void setPostOperator(@NotNull final PostOperator<C> postOperator) {
         this.postOperator = postOperator;
     }
 
-    public void setDynamicHandler(final DynamicHandler<T> handler) {
+    public void setDynamicHandler(final DynamicHandler<C> handler) {
         this.handler = handler;
     }
 }

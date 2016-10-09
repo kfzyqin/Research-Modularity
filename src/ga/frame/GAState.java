@@ -18,30 +18,30 @@ import ga.operations.selectors.Selector;
  * @author Siu Kei Muk (David)
  * @since 27/08/16.
  */
-public abstract class GAState<T extends Chromosome> {
+public abstract class GAState<C extends Chromosome> {
 
     protected int generation = 0;
     protected int numOfMates;
-    protected final Population<T> population;
+    protected final Population<C> population;
     protected FitnessFunction fitnessFunction;
     protected ChromosomeMutator chromosomeMutator;
-    protected Recombinator<T> recombinator;
-    protected Selector<T> selector;
+    protected Recombinator<C> recombinator;
+    protected Selector<C> selector;
 
     /**
      * Constructs an initial state for the GA
      * @param population initial population
-     * @param fitnessFunction fitnessfunction function
+     * @param fitnessFunction fitness function
      * @param chromosomeMutator mutator operator
      * @param recombinator recombinator operator
      * @param selector parents selector
-     * @param numOfMates number of parents per recombinator
+     * @param numOfMates number of parents per reproduction
      */
-    public GAState(@NotNull final Population<T> population,
+    public GAState(@NotNull final Population<C> population,
                    @NotNull final FitnessFunction fitnessFunction,
                    @NotNull final ChromosomeMutator chromosomeMutator,
-                   @NotNull final Recombinator<T> recombinator,
-                   @NotNull final Selector<T> selector,
+                   @NotNull final Recombinator<C> recombinator,
+                   @NotNull final Selector<C> selector,
                    final int numOfMates) {
         this.population = population;
         this.fitnessFunction = fitnessFunction;
@@ -74,7 +74,7 @@ public abstract class GAState<T extends Chromosome> {
      * Records the information of the current population to a given statistics bookkeeper
      * @param statistics
      */
-    public void record(Statistics<T> statistics) {
+    public void record(Statistics<C> statistics) {
         statistics.record(population.getIndividualsView());
     }
 
@@ -82,7 +82,7 @@ public abstract class GAState<T extends Chromosome> {
      * Performs operation before reproduction
      * @param priorOperator
      */
-    public void preOperate(PriorOperator<T> priorOperator){
+    public void preOperate(PriorOperator<C> priorOperator){
         population.setMode(PopulationMode.PRIOR);
         priorOperator.preOperate(population);
     }
@@ -91,7 +91,7 @@ public abstract class GAState<T extends Chromosome> {
      * Performs operation after reproduction
      * @param postOperator
      */
-    public void postOperate(PostOperator<T> postOperator) {
+    public void postOperate(PostOperator<C> postOperator) {
         population.setMode(PopulationMode.POST);
         postOperator.postOperate(population);
     }
@@ -105,7 +105,7 @@ public abstract class GAState<T extends Chromosome> {
         return population.nextGeneration();
     }
 
-    public Population<T> getPopulation(){
+    public Population<C> getPopulation(){
         return population;
     }
 
@@ -128,7 +128,7 @@ public abstract class GAState<T extends Chromosome> {
         this.chromosomeMutator = chromosomeMutator;
     }
 
-    public void setRecombinator(@NotNull final Recombinator<T> recombinator) {
+    public void setRecombinator(@NotNull final Recombinator<C> recombinator) {
         this.recombinator = recombinator;
     }
 }

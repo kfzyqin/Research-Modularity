@@ -9,13 +9,13 @@ import ga.components.materials.GeneticMaterial;
  * @author Siu Kei Muk (David)
  * @since 27/08/16.
  */
-public interface FitnessFunction<G extends GeneticMaterial> {
+public interface FitnessFunction<P extends GeneticMaterial> {
     /**
      * Evaluates the fitnessfunction function value of the given phenotype.
      *
      * @param phenotype phenotype of an individual
      * @return fitnessfunction function value
      */
-    double evaluate(@NotNull final G phenotype);
+    double evaluate(@NotNull final P phenotype);
     void update();
 }

@@ -10,7 +10,7 @@ import ga.components.chromosome.Chromosome;
  * @author Siu Kei Muk (David)
  * @since 29/08/16.
  */
-public interface Initializer<T extends Chromosome> {
+public interface Initializer<C extends Chromosome> {
     /**
      * Returns the size of population to be initialized.
      * @return size of population
@@ -27,5 +27,5 @@ public interface Initializer<T extends Chromosome> {
      * (Random) Initialization of the initial population
      * @return Randomly initialized population
      */
-    Population<T> initialize();
+    Population<C> initialize();
 }

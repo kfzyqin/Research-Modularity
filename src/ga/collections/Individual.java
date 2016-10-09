@@ -11,26 +11,26 @@ import ga.others.Copyable;
  *
  * Created by david on 27/08/16.
  */
-public class Individual<T extends Chromosome> implements Comparable<Individual<T>>, Copyable<Individual<T>> {
+public class Individual<C extends Chromosome> implements Comparable<Individual<C>>, Copyable<Individual<C>> {
 
-    private T chromosome;
+    private C chromosome;
     private double fitness = 0;
 
     /**
      * Constructs an individual.
      * @param chromosome chromosome of the individual
      */
-    public Individual(@NotNull final T chromosome) {
+    public Individual(@NotNull final C chromosome) {
         this.chromosome = chromosome;
     }
 
-    private Individual(@NotNull final T chromosome, final double fitness) {
-        this.chromosome = (T)chromosome.copy();
+    private Individual(@NotNull final C chromosome, final double fitness) {
+        this.chromosome = (C)chromosome.copy();
         this.fitness = fitness;
     }
 
     @Override
-    public int compareTo(final Individual<T> tIndividual) {
+    public int compareTo(final Individual<C> tIndividual) {
         final double tFitness = tIndividual.getFitness();
         // For descending sort
         if (fitness > tFitness)
@@ -42,7 +42,7 @@ public class Individual<T extends Chromosome> implements Comparable<Individual<T
     }
 
     @Override
-    public Individual<T> copy() {
+    public Individual<C> copy() {
         return new Individual<>(chromosome, fitness);
     }
 
@@ -55,7 +55,7 @@ public class Individual<T extends Chromosome> implements Comparable<Individual<T
         return fitness;
     }
 
-    public T getChromosome() {
+    public C getChromosome() {
         return chromosome;
     }
 

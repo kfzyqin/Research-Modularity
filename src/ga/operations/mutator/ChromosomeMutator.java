@@ -14,10 +14,10 @@ import java.util.List;
  * @author Siu Kei Muk (David)
  * @since 26/08/16.
  */
-public interface ChromosomeMutator<T extends Chromosome> {
+public interface ChromosomeMutator<C extends Chromosome> {
     /**
      * Mutates the given list of individuals.
      * @param individuals individuals to be mutated
      */
-    void mutate(@NotNull final List<Individual<T>> individuals);
+    void mutate(@NotNull final List<Individual<C>> individuals);
 }

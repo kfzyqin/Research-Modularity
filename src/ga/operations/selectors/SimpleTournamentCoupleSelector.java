@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class SimpleTournamentCoupleSelector<T extends Chromosome & Coupleable> extends CoupleSelector<T>{
 
-    public SimpleTournamentCoupleSelector(final int size, final int dominanceProbability) {
+    public SimpleTournamentCoupleSelector(final int size, final double dominanceProbability) {
         super(new SimpleTournamentScheme(size, dominanceProbability));
     }
 
