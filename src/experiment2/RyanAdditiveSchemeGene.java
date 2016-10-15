@@ -6,14 +6,15 @@ import ga.components.genes.Gene;
 /**
  * Created by david on 3/09/16.
  */
-public class RyanAdditiveSchemeGene implements Gene<Character> {
+public class RyanAdditiveSchemeGene extends Gene<Character> {
 
     private static final char[] values = {'A','B','C','D'};
     private char value;
 
     public RyanAdditiveSchemeGene(final char value) {
+        super(value);
         filter(value);
-        this.value = value;
+        // this.value = value;
     }
 
     private void filter(final char value) {
@@ -24,11 +25,6 @@ public class RyanAdditiveSchemeGene implements Gene<Character> {
     @Override
     public Gene<Character> copy() {
         return new RyanAdditiveSchemeGene(value);
-    }
-
-    @Override
-    public Character getValue() {
-        return value;
     }
 
     @Override

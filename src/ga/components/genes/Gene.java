@@ -10,14 +10,23 @@ import ga.others.Copyable;
  * @since 26/08/2016
  * @param <V> Class/Type of value.
  */
-public interface Gene<V> extends Copyable<Gene<V>> {
+public abstract class Gene<V> implements Copyable<Gene<V>> {
+
+    protected V value;
+
+    public Gene(@NotNull V value) {
+        this.value = value;
+    }
+
     /**
      * @return value of the gene
      */
-    V getValue();
+    public V getValue(){
+        return value;
+    }
 
     /**
      * @param value value to be assigned to the gene, may be subject to restrictions according to implementations.
      */
-    void setValue(@NotNull final V value);
+    public abstract void setValue(@NotNull final V value);
 }
