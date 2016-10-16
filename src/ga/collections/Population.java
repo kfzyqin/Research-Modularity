@@ -1,7 +1,7 @@
 package ga.collections;
 
 import com.sun.istack.internal.NotNull;
-import ga.components.chromosome.Chromosome;
+import ga.components.chromosomes.Chromosome;
 import ga.operations.fitnessfunction.FitnessFunction;
 import ga.others.Copyable;
 
@@ -56,8 +56,8 @@ public class Population<C extends Chromosome> implements Copyable<Population<C>>
     }
 
     /**
-     * Adds an individual to the corresponding pool with the given chromosome.
-     * @param chromosome chromosome of the candidate individual
+     * Adds an individual to the corresponding pool with the given chromosomes.
+     * @param chromosome chromosomes of the candidate individual
      */
     public void addCandidateChromosome(@NotNull final C chromosome) {
         addCandidate(new Individual<>(chromosome));

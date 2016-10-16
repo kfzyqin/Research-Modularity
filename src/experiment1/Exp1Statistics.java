@@ -3,7 +3,7 @@ package experiment1;
 import com.sun.istack.internal.NotNull;
 import ga.collections.Individual;
 import ga.collections.Statistics;
-import ga.components.chromosome.SimpleHaploid;
+import ga.components.chromosomes.SimpleHaploid;
 
 import java.io.File;
 import java.io.IOException;

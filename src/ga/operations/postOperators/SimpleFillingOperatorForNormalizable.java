@@ -3,8 +3,8 @@ package ga.operations.postOperators;
 import com.sun.istack.internal.NotNull;
 import ga.collections.Individual;
 import ga.collections.Population;
-import ga.components.chromosome.Chromosome;
-import ga.operations.selectors.SelectionScheme;
+import ga.components.chromosomes.Chromosome;
+import ga.operations.selectionOperators.selectionSchemes.SelectionScheme;
 
 import java.util.ArrayList;
 import java.util.HashSet;

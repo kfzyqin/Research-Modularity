@@ -3,7 +3,7 @@ package ga.operations.priorOperators;
 import com.sun.istack.internal.NotNull;
 import ga.collections.Individual;
 import ga.collections.Population;
-import ga.components.chromosome.Chromosome;
+import ga.components.chromosomes.Chromosome;
 
 import java.util.List;
 

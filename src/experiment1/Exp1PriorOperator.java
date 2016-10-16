@@ -4,10 +4,10 @@ import com.sun.istack.internal.NotNull;
 import ga.collections.Individual;
 import ga.collections.Population;
 import ga.collections.PopulationMode;
-import ga.components.chromosome.SimpleHaploid;
-import ga.operations.mutator.ChromosomeMutator;
+import ga.components.chromosomes.SimpleHaploid;
+import ga.operations.mutators.Mutator;
 import ga.operations.priorOperators.PriorOperator;
-import ga.operations.selectors.Selector;
+import ga.operations.selectionOperators.selectors.Selector;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ public class Exp1PriorOperator implements PriorOperator<SimpleHaploid> {
 
     private int numOfElites;
     private Selector selector;
-    private ChromosomeMutator<SimpleHaploid> chromosomeMutator = null;
+    private Mutator<SimpleHaploid> mutator = null;
 
     public Exp1PriorOperator(final int numOfElites, Selector selector) {
         if (numOfElites < 1)
@@ -45,8 +45,8 @@ public class Exp1PriorOperator implements PriorOperator<SimpleHaploid> {
     }
 
     private void mutate(@NotNull final List<Individual<SimpleHaploid>> mutant,
-                        @NotNull final ChromosomeMutator<SimpleHaploid> chromosomeMutator) {
-        chromosomeMutator.mutate(mutant);
+                        @NotNull final Mutator<SimpleHaploid> mutator) {
+        mutator.mutate(mutant);
     }
 
     public int getNumOfElites() {
@@ -61,7 +61,7 @@ public class Exp1PriorOperator implements PriorOperator<SimpleHaploid> {
         this.selector = selector;
     }
 
-    public void setChromosomeMutator(final ChromosomeMutator<SimpleHaploid> chromosomeMutator) {
-        this.chromosomeMutator = chromosomeMutator;
+    public void setMutator(final Mutator<SimpleHaploid> mutator) {
+        this.mutator = mutator;
     }
 }

@@ -1,7 +1,7 @@
 package ga.operations.dynamicHandler;
 
 import com.sun.istack.internal.NotNull;
-import ga.components.chromosome.Chromosome;
+import ga.components.chromosomes.Chromosome;
 import ga.frame.GAState;
 
 /**

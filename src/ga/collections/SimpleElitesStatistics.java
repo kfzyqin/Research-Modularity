@@ -1,7 +1,7 @@
 package ga.collections;
 
 import com.sun.istack.internal.NotNull;
-import ga.components.chromosome.Chromosome;
+import ga.components.chromosomes.Chromosome;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,7 +1,7 @@
 package experiment1;
 
 import com.sun.istack.internal.NotNull;
-import ga.operations.selectors.SelectionScheme;
+import ga.operations.selectionOperators.selectionSchemes.SelectionScheme;
 
 import java.util.List;
 

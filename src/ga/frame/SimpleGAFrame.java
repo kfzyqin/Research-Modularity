@@ -2,7 +2,7 @@ package ga.frame;
 
 import com.sun.istack.internal.NotNull;
 import ga.collections.Statistics;
-import ga.components.chromosome.Chromosome;
+import ga.components.chromosomes.Chromosome;
 import ga.operations.dynamicHandler.DynamicHandler;
 import ga.operations.postOperators.PostOperator;
 

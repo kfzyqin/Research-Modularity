@@ -1,7 +1,7 @@
 package experiment2;
 
 import ga.collections.Population;
-import ga.components.chromosome.SimpleDiploid;
+import ga.components.chromosomes.SimpleDiploid;
 import ga.components.materials.SimpleDNA;
 import ga.operations.dominanceMappings.DominanceMapping;
 import ga.operations.initializers.Initializer;

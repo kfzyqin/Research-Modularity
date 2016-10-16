@@ -2,7 +2,7 @@ package experiment2;
 
 import com.sun.istack.internal.NotNull;
 import ga.collections.Individual;
-import ga.components.chromosome.SimpleDiploid;
+import ga.components.chromosomes.SimpleDiploid;
 import ga.components.materials.GeneticMaterial;
 import ga.frame.GAState;
 import ga.operations.dynamicHandler.DynamicHandler;

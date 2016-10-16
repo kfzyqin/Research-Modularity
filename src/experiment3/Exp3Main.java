@@ -1,24 +1,24 @@
 package experiment3;
 
-import ga.collections.GenderPopulation;
-import ga.collections.SimpleGenderElitesStatistics;
-import ga.components.chromosome.SimpleGenderDiploid;
+import genderGAWithHotspots.collections.GenderPopulation;
+import genderGAWithHotspots.collections.SimpleGenderElitesStatistics;
+import genderGAWithHotspots.components.chromosomes.SimpleGenderDiploid;
 import ga.frame.GAFrame;
-import ga.frame.GenderGAState;
-import ga.frame.SimpleGenderGAFrame;
-import ga.frame.SimpleGenderGAState;
+import genderGAWithHotspots.frame.GenderGAState;
+import genderGAWithHotspots.frame.SimpleGenderGAFrame;
+import genderGAWithHotspots.frame.SimpleGenderGAState;
 import ga.operations.fitnessfunction.FitnessFunction;
-import ga.operations.mutator.BinaryGeneChromosomeMutator;
-import ga.operations.mutator.ChromosomeMutator;
-import ga.operations.mutator.HotspotMutator;
-import ga.operations.mutator.SimpleDiscreteExpHotspotMutator;
+import ga.operations.mutators.BinaryGeneMutator;
+import ga.operations.mutators.Mutator;
+import genderGAWithHotspots.operations.hotspotMutator.HotspotMutator;
+import genderGAWithHotspots.operations.hotspotMutator.SimpleDiscreteExpHotspotMutator;
 import ga.operations.postOperators.SimpleFillingOperator;
-import ga.operations.priorOperators.SimpleGenderElitismOperator;
-import ga.operations.recombinator.CoupleRecombinator;
-import ga.operations.recombinator.SimpleGenderRecombinator;
-import ga.operations.selectors.CoupleSelector;
-import ga.operations.selectors.SimpleTournamentCoupleSelector;
-import ga.operations.selectors.SimpleTournamentScheme;
+import genderGAWithHotspots.operations.priorOperators.SimpleGenderElitismOperator;
+import genderGAWithHotspots.operations.recombinators.CoupleRecombinator;
+import genderGAWithHotspots.operations.recombinators.SimpleGenderRecombinator;
+import genderGAWithHotspots.operations.selectors.CoupleSelector;
+import genderGAWithHotspots.operations.selectors.SimpleTournamentCoupleSelector;
+import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 
 /**
  * Created by david on 30/09/16.
@@ -45,7 +45,7 @@ public class Exp3Main {
         // Population
         GenderPopulation<SimpleGenderDiploid<Integer>> population = initializer.initialize();
         // Mutator
-        ChromosomeMutator<SimpleGenderDiploid<Integer>> mutator = new BinaryGeneChromosomeMutator<>(mutationRate);
+        Mutator<SimpleGenderDiploid<Integer>> mutator = new BinaryGeneMutator<>(mutationRate);
         // Selector for reproduction
         CoupleSelector<SimpleGenderDiploid<Integer>> selector = new SimpleTournamentCoupleSelector<>(tournamentSize, selectivePressure);
         // Elitism operator for gender-based diploids
@@ -56,7 +56,7 @@ public class Exp3Main {
         SimpleGenderElitesStatistics<SimpleGenderDiploid<Integer>> statistics = new SimpleGenderElitesStatistics<>(maxGen);
         // Recombinator
         CoupleRecombinator<SimpleGenderDiploid<Integer>> recombinator = new SimpleGenderRecombinator(1);
-        // Hotspot mutator
+        // Hotspot mutators
         HotspotMutator<Integer> hotspotMutator = new SimpleDiscreteExpHotspotMutator(1);
 
         GenderGAState<SimpleGenderDiploid<Integer>,Integer> state = new SimpleGenderGAState<>(

@@ -2,7 +2,7 @@ package experiment1;
 
 import ga.collections.Population;
 import ga.collections.Statistics;
-import ga.components.chromosome.SimpleHaploid;
+import ga.components.chromosomes.SimpleHaploid;
 import ga.frame.GAFrame;
 import ga.frame.GAState;
 import ga.frame.SimpleGAFrame;
@@ -10,14 +10,14 @@ import ga.frame.SimpleGAState;
 import ga.operations.fitnessfunction.FitnessFunction;
 import ga.operations.initializers.BinarySimpleHaploidInitializer;
 import ga.operations.initializers.Initializer;
-import ga.operations.mutator.ChromosomeMutator;
+import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
 import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
 import ga.operations.priorOperators.PriorOperator;
-import ga.operations.recombinator.Recombinator;
-import ga.operations.selectors.ProportionateScheme;
-import ga.operations.selectors.Selector;
-import ga.operations.selectors.SimpleProportionateSelector;
+import ga.operations.recombinators.Recombinator;
+import ga.operations.selectionOperators.selectionSchemes.ProportionateScheme;
+import ga.operations.selectionOperators.selectors.Selector;
+import ga.operations.selectionOperators.selectors.SimpleProportionateSelector;
 
 /**
  * Created by david on 31/08/16.
@@ -43,7 +43,7 @@ public class Exp1Main {
         // Population
         Population<SimpleHaploid> population = initializer.initialize();
         // Mutator for chromosomes
-        ChromosomeMutator chromosomeMutator = new Exp1ChromosomeMutator(mutationRate);
+        Mutator mutator = new Exp1Mutator(mutationRate);
         // Selector for reproduction
         Selector<SimpleHaploid> selector = new SimpleProportionateSelector<>();
         // PriorOperator is optional.
@@ -55,7 +55,7 @@ public class Exp1Main {
         // Recombinator for reproduction
         Recombinator<SimpleHaploid> recombinator = new Exp1Recombinator();
 
-        GAState<SimpleHaploid> state = new SimpleGAState<>(population, fitnessFunction, chromosomeMutator, recombinator, selector, 2, crossoverRate);
+        GAState<SimpleHaploid> state = new SimpleGAState<>(population, fitnessFunction, mutator, recombinator, selector, 2, crossoverRate);
         state.record(statistics);
         GAFrame<SimpleHaploid> frame = new SimpleGAFrame<>(state,postOperator,statistics);
         frame.setPriorOperator(priorOperator);

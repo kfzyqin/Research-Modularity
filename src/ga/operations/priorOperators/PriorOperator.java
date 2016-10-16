@@ -2,7 +2,7 @@ package ga.operations.priorOperators;
 
 import com.sun.istack.internal.NotNull;
 import ga.collections.Population;
-import ga.components.chromosome.Chromosome;
+import ga.components.chromosomes.Chromosome;
 
 /**
  *

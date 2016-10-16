@@ -1,7 +1,7 @@
 package ga.operations.initializers;
 
 import ga.collections.Population;
-import ga.components.chromosome.Chromosome;
+import ga.components.chromosomes.Chromosome;
 
 /**
  * This interface provides an abstraction for the (random) initializer of population.

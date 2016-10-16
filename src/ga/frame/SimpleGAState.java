@@ -3,17 +3,17 @@ package ga.frame;
 import com.sun.istack.internal.NotNull;
 import ga.collections.Population;
 import ga.collections.PopulationMode;
-import ga.components.chromosome.Chromosome;
+import ga.components.chromosomes.Chromosome;
 import ga.operations.fitnessfunction.FitnessFunction;
-import ga.operations.mutator.ChromosomeMutator;
-import ga.operations.recombinator.Recombinator;
-import ga.operations.selectors.Selector;
+import ga.operations.mutators.Mutator;
+import ga.operations.recombinators.Recombinator;
+import ga.operations.selectionOperators.selectors.Selector;
 
 import java.util.List;
 
 /**
- * This class is a simple implementation of the state. The recombinator rate determines the proportion of
- * individuals in the new generation that are produced by recombinator.
+ * This class is a simple implementation of the state. The recombinators rate determines the proportion of
+ * individuals in the new generation that are produced by recombinators.
  *
  * @author Siu Kei Muk (David)
  * @since 12/09/16.
@@ -24,12 +24,12 @@ public class SimpleGAState<C extends Chromosome> extends GAState<C> {
 
     public SimpleGAState(@NotNull final Population<C> population,
                          @NotNull final FitnessFunction fitnessFunction,
-                         @NotNull final ChromosomeMutator chromosomeMutator,
+                         @NotNull final Mutator mutator,
                          @NotNull final Recombinator<C> recombinator,
                          @NotNull final Selector<C> selector,
                          final int numOfMates,
                          final double recombinationRate) {
-        super(population, fitnessFunction, chromosomeMutator, recombinator, selector, numOfMates);
+        super(population, fitnessFunction, mutator, recombinator, selector, numOfMates);
         setRecombinationRate(recombinationRate);
     }
 
@@ -55,7 +55,7 @@ public class SimpleGAState<C extends Chromosome> extends GAState<C> {
 
     @Override
     public void mutate() {
-        chromosomeMutator.mutate(population.getOffspringPoolView());
+        mutator.mutate(population.getOffspringPoolView());
     }
 
     public double getRecombinationRate() {

@@ -4,13 +4,13 @@ import com.sun.istack.internal.NotNull;
 import ga.collections.Population;
 import ga.collections.PopulationMode;
 import ga.collections.Statistics;
-import ga.components.chromosome.Chromosome;
+import ga.components.chromosomes.Chromosome;
 import ga.operations.fitnessfunction.FitnessFunction;
-import ga.operations.mutator.ChromosomeMutator;
+import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
 import ga.operations.priorOperators.PriorOperator;
-import ga.operations.recombinator.Recombinator;
-import ga.operations.selectors.Selector;
+import ga.operations.recombinators.Recombinator;
+import ga.operations.selectionOperators.selectors.Selector;
 
 /**
  * This class provides an overall base implementation for the state of current generation of genetic algorithm.
@@ -24,7 +24,7 @@ public abstract class GAState<C extends Chromosome> {
     protected int numOfMates;
     protected final Population<C> population;
     protected FitnessFunction fitnessFunction;
-    protected ChromosomeMutator chromosomeMutator;
+    protected Mutator mutator;
     protected Recombinator<C> recombinator;
     protected Selector<C> selector;
 
@@ -32,20 +32,20 @@ public abstract class GAState<C extends Chromosome> {
      * Constructs an initial state for the GA
      * @param population initial population
      * @param fitnessFunction fitness function
-     * @param chromosomeMutator mutator operator
-     * @param recombinator recombinator operator
+     * @param mutator mutators operator
+     * @param recombinator recombinators operator
      * @param selector parents selector
      * @param numOfMates number of parents per reproduction
      */
     public GAState(@NotNull final Population<C> population,
                    @NotNull final FitnessFunction fitnessFunction,
-                   @NotNull final ChromosomeMutator chromosomeMutator,
+                   @NotNull final Mutator mutator,
                    @NotNull final Recombinator<C> recombinator,
                    @NotNull final Selector<C> selector,
                    final int numOfMates) {
         this.population = population;
         this.fitnessFunction = fitnessFunction;
-        this.chromosomeMutator = chromosomeMutator;
+        this.mutator = mutator;
         this.recombinator = recombinator;
         this.selector = selector;
         this.numOfMates = numOfMates;
@@ -53,12 +53,12 @@ public abstract class GAState<C extends Chromosome> {
     }
 
     /**
-     * Performs recombinator using the recombinator operator.
+     * Performs recombinators using the recombinators operator.
      */
     public abstract void recombine();
 
     /**
-     * Performs mutator using the mutator operator.
+     * Performs mutators using the mutators operator.
      */
     public abstract void mutate();
 
@@ -124,8 +124,8 @@ public abstract class GAState<C extends Chromosome> {
         this.fitnessFunction = fitnessFunction;
     }
 
-    public void setChromosomeMutator(@NotNull final ChromosomeMutator chromosomeMutator) {
-        this.chromosomeMutator = chromosomeMutator;
+    public void setMutator(@NotNull final Mutator mutator) {
+        this.mutator = mutator;
     }
 
     public void setRecombinator(@NotNull final Recombinator<C> recombinator) {

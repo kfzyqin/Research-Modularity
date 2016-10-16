@@ -2,7 +2,7 @@ package ga.operations.postOperators;
 
 import com.sun.istack.internal.NotNull;
 import ga.collections.Population;
-import ga.components.chromosome.Chromosome;
+import ga.components.chromosomes.Chromosome;
 
 /**
  * This interface provides an abstraction for any possible post-operation after reproduction.

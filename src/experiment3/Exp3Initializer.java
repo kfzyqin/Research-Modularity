@@ -1,10 +1,10 @@
 package experiment3;
 
-import ga.collections.GenderPopulation;
-import ga.components.chromosome.SimpleGenderDiploid;
+import genderGAWithHotspots.collections.GenderPopulation;
+import genderGAWithHotspots.components.chromosomes.SimpleGenderDiploid;
 import ga.components.genes.BinaryGene;
-import ga.components.hotspots.DiscreteExpHotspot;
-import ga.components.hotspots.Hotspot;
+import genderGAWithHotspots.components.hotspots.DiscreteExpHotspot;
+import genderGAWithHotspots.components.hotspots.Hotspot;
 import ga.components.materials.SimpleDNA;
 import ga.operations.dominanceMappings.DominanceMapping;
 import ga.operations.dominanceMappings.SimpleDiploidRandomMapping;

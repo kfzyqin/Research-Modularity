@@ -2,7 +2,7 @@ package ga.operations.initializers;
 
 import ga.collections.Individual;
 import ga.collections.Population;
-import ga.components.chromosome.SimpleHaploid;
+import ga.components.chromosomes.SimpleHaploid;
 import ga.components.genes.BinaryGene;
 import ga.components.genes.Gene;
 import ga.components.materials.SimpleDNA;

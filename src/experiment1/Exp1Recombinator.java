@@ -1,10 +1,10 @@
 package experiment1;
 
 import com.sun.istack.internal.NotNull;
-import ga.components.chromosome.SimpleHaploid;
+import ga.components.chromosomes.SimpleHaploid;
 import ga.components.genes.Gene;
 import ga.components.materials.SimpleDNA;
-import ga.operations.recombinator.Recombinator;
+import ga.operations.recombinators.Recombinator;
 
 import java.util.ArrayList;
 import java.util.List;
