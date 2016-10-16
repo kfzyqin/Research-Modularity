@@ -1,4 +1,4 @@
-package ga.operations.dominanceMappings;
+package ga.operations.dominanceMap;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.materials.GeneticMaterial;
@@ -12,11 +12,11 @@ import java.util.List;
  * @author Siu Kei Muk (David)
  * @since 12/09/16.
  */
-public class ProjectionMapping<M extends GeneticMaterial> implements DominanceMapping<M,M> {
+public class ProjectionMap<M extends GeneticMaterial> implements DominanceMap<M,M> {
 
     private int projectionIndex;
 
-    public ProjectionMapping(final int projectionIndex) {
+    public ProjectionMap(final int projectionIndex) {
         setProjectionIndex(projectionIndex);
     }
 
@@ -26,8 +26,8 @@ public class ProjectionMapping<M extends GeneticMaterial> implements DominanceMa
     }
 
     @Override
-    public DominanceMapping<M, M> copy() {
-        return new ProjectionMapping<>(projectionIndex);
+    public DominanceMap<M, M> copy() {
+        return new ProjectionMap<>(projectionIndex);
     }
 
     @Override

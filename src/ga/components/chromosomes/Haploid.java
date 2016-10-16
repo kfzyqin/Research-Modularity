@@ -2,7 +2,7 @@ package ga.components.chromosomes;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.materials.GeneticMaterial;
-import ga.operations.dominanceMappings.DominanceMapping;
+import ga.operations.dominanceMap.DominanceMap;
 import org.apache.commons.collections4.list.FixedSizeList;
 
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public abstract class Haploid<M extends GeneticMaterial, P extends GeneticMateri
      * @param strand one single strand of genetic material
      * @param mapping genotype-to-phenotype mapping
      */
-    public Haploid(@NotNull final M strand, @NotNull DominanceMapping<M, P> mapping) {
+    public Haploid(@NotNull final M strand, @NotNull DominanceMap<M, P> mapping) {
         super(1, strand.getSize(), mapping);
         List<M> strands = new ArrayList<>(1);
         strands.add(strand);

@@ -2,7 +2,7 @@ package ga.components.chromosomes;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.materials.SimpleDNA;
-import ga.operations.dominanceMappings.DominanceMapping;
+import ga.operations.dominanceMap.DominanceMap;
 
 /**
  * This class implements a simple diploid that uses SimpleDNA class as genotype and phenotype.
@@ -14,7 +14,7 @@ public class SimpleDiploid extends Diploid<SimpleDNA, SimpleDNA>{
 
     public SimpleDiploid(@NotNull final SimpleDNA dna1,
                          @NotNull final SimpleDNA dna2,
-                         @NotNull final DominanceMapping<SimpleDNA, SimpleDNA> mapping) {
+                         @NotNull final DominanceMap<SimpleDNA, SimpleDNA> mapping) {
         super(dna1, dna2, mapping);
     }
 

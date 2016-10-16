@@ -4,7 +4,7 @@ import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.SimpleDiploid;
 import ga.components.genes.Gene;
 import ga.components.materials.SimpleDNA;
-import ga.operations.dominanceMappings.DominanceMapping;
+import ga.operations.dominanceMap.DominanceMap;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -50,8 +50,8 @@ public class SimpleDiploidNPRecombinator implements Recombinator<SimpleDiploid> 
         SimpleDNA dna1_2 = parent2.getMaterialsView().get(0).copy();
         SimpleDNA dna2_1 = parent1.getMaterialsView().get(1).copy();
         SimpleDNA dna2_2 = parent2.getMaterialsView().get(1).copy();
-        DominanceMapping mapping1 = parent1.getMapping();
-        DominanceMapping mapping2 = parent2.getMapping();
+        DominanceMap mapping1 = parent1.getMapping();
+        DominanceMap mapping2 = parent2.getMapping();
 
         if (Math.random() < matchProbability) {
             SimpleDNA tmp = dna1_2;
@@ -60,7 +60,7 @@ public class SimpleDiploidNPRecombinator implements Recombinator<SimpleDiploid> 
         }
 
         if (Math.random() < matchProbability) {
-            DominanceMapping tmp = mapping1;
+            DominanceMap tmp = mapping1;
             mapping1 = mapping2;
             mapping2 = tmp;
         }

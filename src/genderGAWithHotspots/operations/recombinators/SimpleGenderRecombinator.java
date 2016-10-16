@@ -1,11 +1,11 @@
 package genderGAWithHotspots.operations.recombinators;
 
 import com.sun.istack.internal.NotNull;
+import ga.operations.dominanceMap.DominanceMap;
 import genderGAWithHotspots.components.chromosomes.SimpleGenderDiploid;
 import genderGAWithHotspots.components.hotspots.Hotspot;
 import ga.components.materials.GeneticMaterial;
 import ga.components.materials.SimpleDNA;
-import ga.operations.dominanceMappings.DominanceMapping;
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -29,7 +29,7 @@ public class SimpleGenderRecombinator extends GenderRecombinator<SimpleGenderDip
         final int femaleMatch = ThreadLocalRandom.current().nextInt(femaleGametes.size());
         final boolean masculine = ThreadLocalRandom.current().nextBoolean();
         final Hotspot<Integer> hotspot = (Hotspot<Integer>) ((masculine) ? father.getHotspot().copy() : mother.getHotspot().copy());
-        final DominanceMapping<SimpleDNA, SimpleDNA> mapping = (masculine) ? father.getMapping().copy() : mother.getMapping().copy();
+        final DominanceMap<SimpleDNA, SimpleDNA> mapping = (masculine) ? father.getMapping().copy() : mother.getMapping().copy();
         return new SimpleGenderDiploid<>((SimpleDNA) maleGametes.get(maleMatch),
                                          (SimpleDNA) femaleGametes.get(femaleMatch),
                                           mapping, hotspot, masculine);

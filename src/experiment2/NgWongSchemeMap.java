@@ -4,7 +4,7 @@ import com.sun.istack.internal.NotNull;
 import ga.components.genes.BinaryGene;
 import ga.components.genes.Gene;
 import ga.components.materials.SimpleDNA;
-import ga.operations.dominanceMappings.DominanceMapping;
+import ga.operations.dominanceMap.DominanceMap;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by david on 2/09/16.
  */
-public class NgWongSchemeMapping implements DominanceMapping<SimpleDNA, SimpleDNA>{
+public class NgWongSchemeMap implements DominanceMap<SimpleDNA, SimpleDNA> {
 
     private final double[][] matrix = new double[][] {{   0,  0,0.5,  1},
                                                       {   0,  0,  1,0.5},
@@ -20,8 +20,8 @@ public class NgWongSchemeMapping implements DominanceMapping<SimpleDNA, SimpleDN
                                                       {   0,0.5,  1,  1}};
 
     @Override
-    public DominanceMapping<SimpleDNA, SimpleDNA> copy() {
-        return new NgWongSchemeMapping();
+    public DominanceMap<SimpleDNA, SimpleDNA> copy() {
+        return new NgWongSchemeMap();
     }
 
     @Override

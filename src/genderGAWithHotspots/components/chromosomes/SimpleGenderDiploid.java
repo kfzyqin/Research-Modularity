@@ -2,9 +2,9 @@ package genderGAWithHotspots.components.chromosomes;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.SimpleDiploid;
+import ga.operations.dominanceMap.DominanceMap;
 import genderGAWithHotspots.components.hotspots.Hotspot;
 import ga.components.materials.SimpleDNA;
-import ga.operations.dominanceMappings.DominanceMapping;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ public class SimpleGenderDiploid<V> extends SimpleDiploid implements Coupleable<
 
     public SimpleGenderDiploid(@NotNull final SimpleDNA dna1,
                                @NotNull final SimpleDNA dna2,
-                               @NotNull final DominanceMapping<SimpleDNA, SimpleDNA> mapping,
+                               @NotNull final DominanceMap<SimpleDNA, SimpleDNA> mapping,
                                @NotNull final Hotspot<V> hotspot,
                                final boolean masculine) {
 
@@ -41,7 +41,7 @@ public class SimpleGenderDiploid<V> extends SimpleDiploid implements Coupleable<
     public SimpleGenderDiploid copy() {
         SimpleDNA dna1 = materials.get(0).copy();
         SimpleDNA dna2 = materials.get(1).copy();
-        DominanceMapping mapping = super.mapping.copy();
+        DominanceMap mapping = super.mapping.copy();
         Hotspot<V> hotspotCopy = hotspot.copy();
         return new SimpleGenderDiploid(dna1, dna2, mapping, hotspotCopy, masculine);
     }

@@ -1,8 +1,8 @@
 package ga.components.chromosomes;
 
 import ga.components.materials.SimpleDNA;
-import ga.operations.dominanceMappings.DominanceMapping;
-import ga.operations.dominanceMappings.ProjectionMapping;
+import ga.operations.dominanceMap.DominanceMap;
+import ga.operations.dominanceMap.ProjectionMap;
 
 /**
  * This is a simple implementation of Haploid. The genotype is the same as the phenotype.
@@ -12,7 +12,7 @@ import ga.operations.dominanceMappings.ProjectionMapping;
  */
 public class SimpleHaploid extends Haploid<SimpleDNA, SimpleDNA> {
 
-    private static final DominanceMapping<SimpleDNA,SimpleDNA> identityMapping = new ProjectionMapping<>(0);
+    private static final DominanceMap<SimpleDNA,SimpleDNA> identityMapping = new ProjectionMap<>(0);
 
     /**
      * Constructs a simple haploid. The mapping is the identity map.

@@ -51,7 +51,7 @@ public abstract class GenderRecombinator<G extends Chromosome & Coupleable> impl
         final int femaleMatch = ThreadLocalRandom.current().nextInt(femaleGametes.size());
         final boolean masculine = ThreadLocalRandom.current().nextBoolean();
         final Hotspot hotspot = (Hotspot) ((masculine) ? father.getHotspot().copy() : mother.getHotspot().copy());
-        final DominanceMapping mapping = (DominanceMapping) ((masculine) ? father.getMapping().copy() : mother.getMapping().copy());
+        final DominanceMap mapping = (DominanceMap) ((masculine) ? father.getMapping().copy() : mother.getMapping().copy());
         return new SimpleGenderDiploid(maleGametes.get(maleMatch),
                                        femaleGametes.get(femaleMatch),
                                        mapping, hotspot, masculine);

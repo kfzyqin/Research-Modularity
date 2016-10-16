@@ -2,7 +2,7 @@ package ga.components.chromosomes;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.materials.GeneticMaterial;
-import ga.operations.dominanceMappings.DominanceMapping;
+import ga.operations.dominanceMap.DominanceMap;
 import ga.others.Copyable;
 
 import java.util.Collections;
@@ -22,7 +22,7 @@ public abstract class Chromosome<M extends GeneticMaterial, P extends GeneticMat
     protected final int strands;
     protected final int length;
     protected List<M> materials;
-    protected DominanceMapping<M, P> mapping;
+    protected DominanceMap<M, P> mapping;
     protected P phenotype = null;
 
     /**
@@ -33,7 +33,7 @@ public abstract class Chromosome<M extends GeneticMaterial, P extends GeneticMat
      * @param length number of genes of each haploid in the genotype
      */
     public Chromosome(final int strands, final int length,
-                      @NotNull DominanceMapping<M, P> mapping) {
+                      @NotNull DominanceMap<M, P> mapping) {
         this.strands = strands;
         this.length = length;
         this.mapping = mapping;
@@ -74,14 +74,14 @@ public abstract class Chromosome<M extends GeneticMaterial, P extends GeneticMat
     /**
      * @return current genotype-to-phenotype mapping of the chromosomes
      */
-    public DominanceMapping<M, P> getMapping() {
+    public DominanceMap<M, P> getMapping() {
         return mapping;
     }
 
     /**
      * @param mapping genotype-to-phenotype mapping to be set
      */
-    public void setMapping(@NotNull final DominanceMapping<M, P> mapping) {
+    public void setMapping(@NotNull final DominanceMap<M, P> mapping) {
         this.mapping = mapping;
     }
 }
