@@ -1,7 +1,7 @@
 package ga.components.chromosomes;
 
 import com.sun.istack.internal.NotNull;
-import ga.components.materials.GeneticMaterial;
+import ga.components.materials.Material;
 import ga.operations.dominanceMap.DominanceMap;
 import ga.others.Copyable;
 
@@ -17,7 +17,7 @@ import java.util.List;
  * @param <M> class/type of genetic material as the genotype
  * @param <P> class/type of genetic material as the phenotype
  */
-public abstract class Chromosome<M extends GeneticMaterial, P extends GeneticMaterial> implements Copyable<Chromosome> {
+public abstract class Chromosome<M extends Material, P extends Material> implements Copyable<Chromosome> {
 
     protected final int strands;
     protected final int length;

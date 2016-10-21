@@ -12,7 +12,7 @@ import java.util.List;
  * @author Siu Kei Muk (David)
  * @since 26/08/16.
  */
-public class SimpleDNA implements GeneticMaterial {
+public class SimpleDNA implements Material {
 
     private final Gene[] strand;
     private final int size;

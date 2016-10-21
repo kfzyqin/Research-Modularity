@@ -4,7 +4,7 @@ import com.sun.istack.internal.NotNull;
 import ga.collections.Individual;
 import ga.components.chromosomes.SimpleDiploid;
 import ga.components.genes.Gene;
-import ga.components.materials.GeneticMaterial;
+import ga.components.materials.Material;
 import ga.operations.mutators.Mutator;
 
 import java.util.List;
@@ -39,8 +39,8 @@ public class NgWongMutator implements Mutator<SimpleDiploid> {
     @Override
     public void mutate(@NotNull final List<Individual<SimpleDiploid>> individuals) {
         for (Individual<SimpleDiploid> individual : individuals) {
-            final GeneticMaterial material1 = individual.getChromosome().getMaterialsView().get(0);
-            final GeneticMaterial material2 = individual.getChromosome().getMaterialsView().get(1);
+            final Material material1 = individual.getChromosome().getMaterialsView().get(0);
+            final Material material2 = individual.getChromosome().getMaterialsView().get(1);
             final int length = material1.getSize();
             for (int i = 0; i < length; i++) {
                 if (Math.random() < probability) {

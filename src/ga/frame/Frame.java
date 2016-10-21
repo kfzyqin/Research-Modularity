@@ -14,17 +14,17 @@ import ga.operations.priorOperators.PriorOperator;
  * @author Siu Kei Muk (David)
  * @since 29/08/16.
  */
-public abstract class GAFrame<C extends Chromosome> {
+public abstract class Frame<C extends Chromosome> {
 
-    protected final GAState<C> state;
+    protected final State<C> state;
     protected Statistics<C> statistics;
     protected PriorOperator<C> priorOperator = null;
     protected PostOperator<C> postOperator;
     protected DynamicHandler<C> handler = null;
 
-    public GAFrame(@NotNull final GAState<C> state,
-                   @NotNull final PostOperator<C> postOperator,
-                   @NotNull final Statistics<C> statistics) {
+    public Frame(@NotNull final State<C> state,
+                 @NotNull final PostOperator<C> postOperator,
+                 @NotNull final Statistics<C> statistics) {
         this.state = state;
         this.postOperator = postOperator;
         this.statistics = statistics;
@@ -35,7 +35,7 @@ public abstract class GAFrame<C extends Chromosome> {
      */
     public abstract void evolve();
 
-    public GAState<C> getState() {
+    public State<C> getState() {
         return state;
     }
 

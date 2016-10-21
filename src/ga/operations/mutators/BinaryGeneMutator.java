@@ -4,7 +4,7 @@ import com.sun.istack.internal.NotNull;
 import ga.collections.Individual;
 import ga.components.chromosomes.Chromosome;
 import ga.components.genes.BinaryGene;
-import ga.components.materials.GeneticMaterial;
+import ga.components.materials.Material;
 
 import java.util.List;
 
@@ -46,7 +46,7 @@ public class BinaryGeneMutator<T extends Chromosome> implements Mutator<T> {
         for (int i = 0; i < individuals.size(); i++) {
             Individual<T> individual = individuals.get(i);
             for (Object object :  individual.getChromosome().getMaterialsView()) {
-                GeneticMaterial material = (GeneticMaterial) object;
+                Material material = (Material) object;
                 for (int j = 0; j < material.getSize(); j++) {
                     flipAllele((BinaryGene) material.getGene(j));
                 }

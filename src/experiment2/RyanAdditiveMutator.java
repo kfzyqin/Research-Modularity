@@ -4,7 +4,7 @@ import com.sun.istack.internal.NotNull;
 import ga.collections.Individual;
 import ga.components.chromosomes.SimpleDiploid;
 import ga.components.genes.Gene;
-import ga.components.materials.GeneticMaterial;
+import ga.components.materials.Material;
 import ga.operations.mutators.Mutator;
 
 import java.util.List;
@@ -39,8 +39,8 @@ public class RyanAdditiveMutator implements Mutator<SimpleDiploid> {
     @Override
     public void mutate(@NotNull List<Individual<SimpleDiploid>> individuals) {
         for (Individual<SimpleDiploid> individual : individuals) {
-            GeneticMaterial material1 = individual.getChromosome().getMaterialsView().get(0);
-            GeneticMaterial material2 = individual.getChromosome().getMaterialsView().get(1);
+            Material material1 = individual.getChromosome().getMaterialsView().get(0);
+            Material material2 = individual.getChromosome().getMaterialsView().get(1);
             for (int i = 0; i < material1.getSize(); i++) {
                 if (Math.random() < probability) {
                     Gene gene = material1.getGene(i);

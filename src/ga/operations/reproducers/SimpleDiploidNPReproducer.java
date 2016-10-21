@@ -1,4 +1,4 @@
-package ga.operations.recombinators;
+package ga.operations.reproducers;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.SimpleDiploid;
@@ -12,22 +12,22 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * This class is a simple implementation for diploid N-point recombinators for simple diploids.
+ * This class is a simple implementation for diploid N-point reproducers for simple diploids.
  * The match probability determines the likelihood of choosing combination over the other in the pairing part.
  * The gene value swapping is performed after chromosomes pairing.
  *
  * @author Siu Kei Muk (David)
  * @since 8/09/16.
  */
-public class SimpleDiploidNPRecombinator implements Recombinator<SimpleDiploid> {
+public class SimpleDiploidNPReproducer implements Reproducer<SimpleDiploid> {
 
     private double matchProbability = 0.5;
     private int points = 1;
 
-    public SimpleDiploidNPRecombinator() {
+    public SimpleDiploidNPReproducer() {
     }
 
-    public SimpleDiploidNPRecombinator(final double matchProbability, final int points) {
+    public SimpleDiploidNPReproducer(final double matchProbability, final int points) {
         setMatchProbability(matchProbability);
         setPoints(points);
     }
@@ -43,7 +43,7 @@ public class SimpleDiploidNPRecombinator implements Recombinator<SimpleDiploid> 
     }
 
     @Override
-    public List<SimpleDiploid> recombine(@NotNull List<SimpleDiploid> mates) {
+    public List<SimpleDiploid> reproduce(@NotNull List<SimpleDiploid> mates) {
         SimpleDiploid parent1 = mates.get(0);
         SimpleDiploid parent2 = mates.get(1);
         SimpleDNA dna1_1 = parent1.getMaterialsView().get(0).copy();

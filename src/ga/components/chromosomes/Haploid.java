@@ -1,7 +1,7 @@
 package ga.components.chromosomes;
 
 import com.sun.istack.internal.NotNull;
-import ga.components.materials.GeneticMaterial;
+import ga.components.materials.Material;
 import ga.operations.dominanceMap.DominanceMap;
 import org.apache.commons.collections4.list.FixedSizeList;
 
@@ -15,7 +15,7 @@ import java.util.List;
  * @author Siu Kei Muk (David)
  * @since 2/09/16.
  */
-public abstract class Haploid<M extends GeneticMaterial, P extends GeneticMaterial> extends Chromosome<M, P> {
+public abstract class Haploid<M extends Material, P extends Material> extends Chromosome<M, P> {
 
     /**
      * Constructs a Haploid object.

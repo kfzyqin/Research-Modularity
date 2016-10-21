@@ -3,8 +3,8 @@ package experiment2;
 import com.sun.istack.internal.NotNull;
 import ga.collections.Individual;
 import ga.components.chromosomes.SimpleDiploid;
-import ga.components.materials.GeneticMaterial;
-import ga.frame.GAState;
+import ga.components.materials.Material;
+import ga.frame.State;
 import ga.operations.dynamicHandler.DynamicHandler;
 
 import java.util.ArrayList;
@@ -32,7 +32,7 @@ public class RyanAdditiveDominanceChange implements DynamicHandler<SimpleDiploid
     }
 
     @Override
-    public boolean handle(@NotNull GAState<SimpleDiploid> state) {
+    public boolean handle(@NotNull State<SimpleDiploid> state) {
         final int currGen = state.getGeneration();
         if (currGen == 0 || currGen % cycleLength != 0)
             return false;
@@ -47,8 +47,8 @@ public class RyanAdditiveDominanceChange implements DynamicHandler<SimpleDiploid
             final double fitness1 = preValues.get(i);
             final double fitness2 = postValues.get(i);
             if (fitness1 - fitness2 > threshold*fitness1) {
-                GeneticMaterial material1 = individuals.get(i).getChromosome().getMaterialsView().get(0);
-                GeneticMaterial material2 = individuals.get(i).getChromosome().getMaterialsView().get(1);
+                Material material1 = individuals.get(i).getChromosome().getMaterialsView().get(0);
+                Material material2 = individuals.get(i).getChromosome().getMaterialsView().get(1);
                 for (int j = 0; j < length; j++) {
                     RyanAdditiveSchemeGene gene1 = (RyanAdditiveSchemeGene) material1.getGene(j);
                     RyanAdditiveSchemeGene gene2 = (RyanAdditiveSchemeGene) material2.getGene(j);

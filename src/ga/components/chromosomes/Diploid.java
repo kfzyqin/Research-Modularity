@@ -1,7 +1,7 @@
 package ga.components.chromosomes;
 
 import com.sun.istack.internal.NotNull;
-import ga.components.materials.GeneticMaterial;
+import ga.components.materials.Material;
 import ga.operations.dominanceMap.DominanceMap;
 import org.apache.commons.collections4.list.FixedSizeList;
 
@@ -11,12 +11,12 @@ import java.util.List;
 /**
  * This class represents a chromosomes with genotype that comprises two strands of genetic materials.
  * It requires a dominance mapping for genotype-to-phenotype mapping.
- * The length of each GeneticMaterial must agree. The mapping can be changed during runtime.
+ * The length of each Material must agree. The mapping can be changed during runtime.
  *
  * @author Siu Kei Muk (David)
  * @since 2/09/16.
  */
-public abstract class Diploid<M extends GeneticMaterial, P extends GeneticMaterial> extends Chromosome<M, P>{
+public abstract class Diploid<M extends Material, P extends Material> extends Chromosome<M, P>{
 
     /**
      * Constructs a diploid object.

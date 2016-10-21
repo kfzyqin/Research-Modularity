@@ -9,19 +9,19 @@ import ga.operations.postOperators.PostOperator;
 /**
  * Created by david on 2/09/16.
  */
-public class SimpleGAFrame<C extends Chromosome> extends GAFrame<C> {
+public class SimpleFrame<C extends Chromosome> extends Frame<C> {
 
-    public SimpleGAFrame(@NotNull final GAState<C> state,
-                         @NotNull final PostOperator<C> postOperator,
-                         @NotNull final Statistics<C> statistics,
-                         final DynamicHandler<C> handler) {
+    public SimpleFrame(@NotNull final State<C> state,
+                       @NotNull final PostOperator<C> postOperator,
+                       @NotNull final Statistics<C> statistics,
+                       final DynamicHandler<C> handler) {
         super(state, postOperator, statistics);
         this.handler = handler;
     }
 
-    public SimpleGAFrame(@NotNull final GAState<C> state,
-                         @NotNull final PostOperator<C> postOperator,
-                         @NotNull final Statistics<C> statistics) {
+    public SimpleFrame(@NotNull final State<C> state,
+                       @NotNull final PostOperator<C> postOperator,
+                       @NotNull final Statistics<C> statistics) {
         super(state, postOperator, statistics);
     }
 
@@ -38,7 +38,7 @@ public class SimpleGAFrame<C extends Chromosome> extends GAFrame<C> {
         }
         if (priorOperator != null)
             state.preOperate(priorOperator);
-        state.recombine();
+        state.reproduce();
         state.mutate();
         state.postOperate(postOperator);
         state.nextGeneration();

@@ -1,7 +1,7 @@
 package ga.operations.dominanceMap;
 
 import com.sun.istack.internal.NotNull;
-import ga.components.materials.GeneticMaterial;
+import ga.components.materials.Material;
 import ga.others.Copyable;
 
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
  * @author Siu Kei Muk (David)
  * @since 27/08/16.
  */
-public interface DominanceMap<M extends GeneticMaterial, P extends GeneticMaterial> extends Copyable<DominanceMap<M, P>> {
+public interface DominanceMap<M extends Material, P extends Material> extends Copyable<DominanceMap<M, P>> {
     /**
      * Performs the genotype-to-phenotype mapping.
      *

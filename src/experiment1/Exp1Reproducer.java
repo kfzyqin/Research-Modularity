@@ -4,7 +4,7 @@ import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.SimpleHaploid;
 import ga.components.genes.Gene;
 import ga.components.materials.SimpleDNA;
-import ga.operations.recombinators.Recombinator;
+import ga.operations.reproducers.Reproducer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,13 +13,13 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * Created by david on 31/08/16.
  */
-public class Exp1Recombinator implements Recombinator<SimpleHaploid> {
+public class Exp1Reproducer implements Reproducer<SimpleHaploid> {
 
-    public Exp1Recombinator() {
+    public Exp1Reproducer() {
     }
 
     @Override
-    public List<SimpleHaploid> recombine(@NotNull List<SimpleHaploid> mates) {
+    public List<SimpleHaploid> reproduce(@NotNull List<SimpleHaploid> mates) {
         List<SimpleHaploid> children = new ArrayList<>(2);
 
         SimpleHaploid child1 = mates.get(0).copy();

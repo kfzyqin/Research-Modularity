@@ -11,7 +11,7 @@ import ga.others.Copyable;
  * @author Siu Kei Muk (David)
  * @since 30/08/16.
  */
-public interface GeneticMaterial extends Copyable<GeneticMaterial> {
+public interface Material extends Copyable<Material> {
     /**
      * @return Number of genes contained in the material.
      */

@@ -5,10 +5,10 @@ import ga.collections.SimpleElitesStatistics;
 import ga.collections.Statistics;
 import ga.components.chromosomes.SimpleDiploid;
 import ga.components.materials.SimpleDNA;
-import ga.frame.GAFrame;
-import ga.frame.GAState;
-import ga.frame.SimpleGAFrame;
-import ga.frame.SimpleGAState;
+import ga.frame.Frame;
+import ga.frame.State;
+import ga.frame.SimpleFrame;
+import ga.frame.SimpleState;
 import ga.operations.dynamicHandler.DynamicHandler;
 import ga.operations.fitnessfunction.FitnessFunction;
 import ga.operations.initializers.Initializer;
@@ -17,8 +17,8 @@ import ga.operations.postOperators.PostOperator;
 import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
 import ga.operations.priorOperators.PriorOperator;
 import ga.operations.priorOperators.SimpleElitismOperator;
-import ga.operations.recombinators.Recombinator;
-import ga.operations.recombinators.SimpleDiploidRecombinator;
+import ga.operations.reproducers.Reproducer;
+import ga.operations.reproducers.SimpleDiploidReproducer;
 import ga.operations.selectionOperators.selectors.Selector;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
@@ -46,7 +46,7 @@ public class RyanAdditivieMain {
         FitnessFunction<SimpleDNA> fitnessFunction = new DynamicOneMax(length, rho);
         Initializer<SimpleDiploid> initializer = new RyanAdditiveInitializer(length, size);
         Population<SimpleDiploid> population = initializer.initialize();
-        Recombinator<SimpleDiploid> recombinator = new SimpleDiploidRecombinator();
+        Reproducer<SimpleDiploid> reproducer = new SimpleDiploidReproducer();
         Mutator<SimpleDiploid> mutator = new RyanAdditiveMutator(mutationRate);
         Selector<SimpleDiploid> selector = new SimpleTournamentSelector<>(tournamentSize, selectivePressure);
         PostOperator<SimpleDiploid> fillingOperator = new SimpleFillingOperatorForNormalizable<>(new SimpleTournamentScheme(tournamentSize, selectivePressure));
@@ -54,9 +54,9 @@ public class RyanAdditivieMain {
         DynamicHandler<SimpleDiploid> handler = new RyanAdditiveDominanceChange(dominanceChangeThreshold, cycleLength);
         Statistics<SimpleDiploid> statistics = new SimpleElitesStatistics<>();
 
-        GAState<SimpleDiploid> state = new SimpleGAState<>(population, fitnessFunction, mutator, recombinator, selector, 2, recombinationRate);
+        State<SimpleDiploid> state = new SimpleState<>(population, fitnessFunction, mutator, reproducer, selector, 2, recombinationRate);
         state.record(statistics);
-        GAFrame<SimpleDiploid> frame = new SimpleGAFrame<>(state, fillingOperator, statistics, handler);
+        Frame<SimpleDiploid> frame = new SimpleFrame<>(state, fillingOperator, statistics, handler);
         frame.setPriorOperator(elitismOperator);
         statistics.print(0);
 

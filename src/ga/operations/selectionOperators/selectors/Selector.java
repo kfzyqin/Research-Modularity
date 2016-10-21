@@ -16,8 +16,8 @@ import java.util.List;
  */
 public interface Selector<C extends Chromosome> {
     /**
-     * @param numOfMates number of parents of one recombinators (production of offspring)
-     * @return parents for recombinators
+     * @param numOfMates number of parents of one reproducers (production of offspring)
+     * @return parents for reproducers
      */
     List<C> select(final int numOfMates);
 

@@ -3,10 +3,10 @@ package experiment1;
 import ga.collections.Population;
 import ga.collections.Statistics;
 import ga.components.chromosomes.SimpleHaploid;
-import ga.frame.GAFrame;
-import ga.frame.GAState;
-import ga.frame.SimpleGAFrame;
-import ga.frame.SimpleGAState;
+import ga.frame.Frame;
+import ga.frame.State;
+import ga.frame.SimpleFrame;
+import ga.frame.SimpleState;
 import ga.operations.fitnessfunction.FitnessFunction;
 import ga.operations.initializers.BinarySimpleHaploidInitializer;
 import ga.operations.initializers.Initializer;
@@ -14,7 +14,7 @@ import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
 import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
 import ga.operations.priorOperators.PriorOperator;
-import ga.operations.recombinators.Recombinator;
+import ga.operations.reproducers.Reproducer;
 import ga.operations.selectionOperators.selectionSchemes.ProportionateScheme;
 import ga.operations.selectionOperators.selectors.Selector;
 import ga.operations.selectionOperators.selectors.SimpleProportionateSelector;
@@ -52,12 +52,12 @@ public class Exp1Main {
         PostOperator<SimpleHaploid> postOperator = new SimpleFillingOperatorForNormalizable<>(new ProportionateScheme());
         // Statistics for keeping track the performance in generations
         Statistics<SimpleHaploid> statistics = new Exp1Statistics();
-        // Recombinator for reproduction
-        Recombinator<SimpleHaploid> recombinator = new Exp1Recombinator();
+        // Reproducer for reproduction
+        Reproducer<SimpleHaploid> reproducer = new Exp1Reproducer();
 
-        GAState<SimpleHaploid> state = new SimpleGAState<>(population, fitnessFunction, mutator, recombinator, selector, 2, crossoverRate);
+        State<SimpleHaploid> state = new SimpleState<>(population, fitnessFunction, mutator, reproducer, selector, 2, crossoverRate);
         state.record(statistics);
-        GAFrame<SimpleHaploid> frame = new SimpleGAFrame<>(state,postOperator,statistics);
+        Frame<SimpleHaploid> frame = new SimpleFrame<>(state,postOperator,statistics);
         frame.setPriorOperator(priorOperator);
         statistics.print(0);
         for (int i = 1; i <= maxGen; i++) {

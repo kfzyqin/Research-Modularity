@@ -1,9 +1,9 @@
-package ga.operations.recombinators;
+package ga.operations.reproducers;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.SimpleHaploid;
 import ga.components.genes.Gene;
-import ga.components.materials.GeneticMaterial;
+import ga.components.materials.Material;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,18 +11,18 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * This class is a simple implementation for haploid N-point recombinators for simple haploids.
+ * This class is a simple implementation for haploid N-point reproducers for simple haploids.
  * The match probability determines the likelihood of choosing combination over the other in the pairing part.
  * The gene value swapping is performed after chromosomes pairing.
  *
  * @author Siu Kei Muk (David)
  * @since 8/09/16.
  */
-public class SimpleHaploidNPRecombinator implements Recombinator<SimpleHaploid> {
+public class SimpleHaploidNPReproducer implements Reproducer<SimpleHaploid> {
 
     private final int point;
 
-    public SimpleHaploidNPRecombinator(final int point) {
+    public SimpleHaploidNPReproducer(final int point) {
         filter(point);
         this.point = point;
     }
@@ -33,14 +33,14 @@ public class SimpleHaploidNPRecombinator implements Recombinator<SimpleHaploid> 
     }
 
     @Override
-    public List<SimpleHaploid> recombine(@NotNull List<SimpleHaploid> mates) {
+    public List<SimpleHaploid> reproduce(@NotNull List<SimpleHaploid> mates) {
         SimpleHaploid hap1 = mates.get(0).copy();
         SimpleHaploid hap2 = mates.get(1).copy();
         final int length = hap1.getLength();
         if (length-1 < point)
             throw new IllegalArgumentException("Length must be larger than crossover points.");
-        GeneticMaterial material1 = hap1.getMaterialsView().get(0);
-        GeneticMaterial material2 = hap1.getMaterialsView().get(1);
+        Material material1 = hap1.getMaterialsView().get(0);
+        Material material2 = hap1.getMaterialsView().get(1);
         List<Integer> crossoverPoints = generateCrossoverPoints(length);
         int index = 0;
         int crossIndex = crossoverPoints.get(0);
