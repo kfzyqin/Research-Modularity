@@ -41,7 +41,7 @@ public class SimpleState<C extends Chromosome> extends State<C> {
 
     @Override
     public void reproduce() {
-        population.setMode(PopulationMode.RECOMBINE);
+        population.setMode(PopulationMode.REPRODUCE);
         selector.setSelectionData(population.getIndividualsView());
         int count = 0;
         final int size = (int) Math.round(population.getSize()*recombinationRate);

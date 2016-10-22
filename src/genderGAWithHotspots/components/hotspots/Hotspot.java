@@ -22,7 +22,6 @@ public abstract class Hotspot<H> implements Copyable<Hotspot<H>>{
         encoding = new ArrayList<>(size);
         recombinationRate = new ArrayList<>(size);
         modified = true;
-        // initialize();
     }
 
     protected Hotspot(final int size, @NotNull List<H> encoding, @NotNull List<Double> rate) {

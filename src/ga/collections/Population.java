@@ -40,7 +40,7 @@ public class Population<C extends Chromosome> implements Copyable<Population<C>>
         survivedIndices = new HashSet<>();
         this.size = size;
         nextGenSize = 0;
-        mode = PopulationMode.RECOMBINE;
+        mode = PopulationMode.REPRODUCE;
     }
 
     protected Population(@NotNull final List<Individual<C>> individuals,
@@ -50,7 +50,7 @@ public class Population<C extends Chromosome> implements Copyable<Population<C>>
         this.offspringPool = new ArrayList<>(size);
         this.postPool = new ArrayList<>(size);
         this.survivedIndices = new HashSet<>();
-        this.mode = PopulationMode.RECOMBINE;
+        this.mode = PopulationMode.REPRODUCE;
         this.nextGenSize = 0;
         this.size = size;
     }
@@ -100,7 +100,7 @@ public class Population<C extends Chromosome> implements Copyable<Population<C>>
             case PRIOR:
                 priorPool.add(candidate);
                 break;
-            case RECOMBINE:
+            case REPRODUCE:
                 offspringPool.add(candidate);
                 break;
             case POST:
@@ -111,7 +111,7 @@ public class Population<C extends Chromosome> implements Copyable<Population<C>>
     }
 
     /**
-     * Sets the mode to be PRIOR, RECOMBINE, or POST
+     * Sets the mode to be PRIOR, REPRODUCE, or POST
      * @param mode
      */
     public void setMode(final PopulationMode mode) {

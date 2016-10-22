@@ -38,4 +38,23 @@ public abstract class CoupleSelector<G extends Chromosome & Coupleable> implemen
         parents.add(female);
         return parents;
     }
+
+    @Override
+    public void setSelectionData(@NotNull final List<Individual<G>> individuals) {
+        maleIndividuals.clear();
+        maleFitnessValues.clear();
+        femaleIndividuals.clear();
+        femaleFitnessValues.clear();
+
+        for (int i = 0; i < individuals.size(); i++) {
+            Individual<G> individual = individuals.get(i);
+            if (individual.getChromosome().isMasculine()) {
+                maleIndividuals.add(individual);
+                maleFitnessValues.add(individual.getFitness());
+            } else {
+                femaleIndividuals.add(individual);
+                femaleFitnessValues.add(individual.getFitness());
+            }
+        }
+    }
 }

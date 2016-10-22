@@ -8,6 +8,6 @@ package ga.collections;
  */
 public enum PopulationMode {
     PRIOR,
-    RECOMBINE,
+    REPRODUCE,
     POST
 }

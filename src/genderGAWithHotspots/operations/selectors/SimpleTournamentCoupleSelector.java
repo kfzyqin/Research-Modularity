@@ -1,38 +1,15 @@
 package genderGAWithHotspots.operations.selectors;
 
-import com.sun.istack.internal.NotNull;
-import ga.collections.Individual;
 import ga.components.chromosomes.Chromosome;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import genderGAWithHotspots.components.chromosomes.Coupleable;
 
-import java.util.List;
-
 /**
  * Created by david on 29/09/16.
  */
-public class SimpleTournamentCoupleSelector<T extends Chromosome & Coupleable> extends CoupleSelector<T>{
+public class SimpleTournamentCoupleSelector<G extends Chromosome & Coupleable> extends CoupleSelector<G>{
 
     public SimpleTournamentCoupleSelector(final int size, final double dominanceProbability) {
         super(new SimpleTournamentScheme(size, dominanceProbability));
-    }
-
-    @Override
-    public void setSelectionData(@NotNull final List<Individual<T>> individuals) {
-        maleIndividuals.clear();
-        maleFitnessValues.clear();
-        femaleIndividuals.clear();
-        femaleFitnessValues.clear();
-
-        for (int i = 0; i < individuals.size(); i++) {
-            Individual<T> individual = individuals.get(i);
-            if (individual.getChromosome().isMasculine()) {
-                maleIndividuals.add(individual);
-                maleFitnessValues.add(individual.getFitness());
-            } else {
-                femaleIndividuals.add(individual);
-                femaleFitnessValues.add(individual.getFitness());
-            }
-        }
     }
 }

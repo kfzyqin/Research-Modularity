@@ -39,7 +39,7 @@ public class SimpleGenderState<G extends Chromosome & Coupleable<H>, H> extends 
 
     @Override
     public void reproduce() {
-        population.setMode(PopulationMode.RECOMBINE);
+        population.setMode(PopulationMode.REPRODUCE);
         selector.setSelectionData(population.getIndividualsView());
         int count = 0;
         final int size = (int) Math.round(population.getSize()*recombinationRate);
