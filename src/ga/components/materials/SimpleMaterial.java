@@ -7,21 +7,21 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * SimpleDNA is an implementation where the genes are stored in a List.
+ * SimpleMaterial is an implementation where the genes are stored in a List.
  *
  * @author Siu Kei Muk (David)
  * @since 26/08/16.
  */
-public class SimpleDNA implements Material {
+public class SimpleMaterial implements Material {
 
     private final Gene[] strand;
     private final int size;
 
     /**
-     * Constructs a SimpleDNA by a list of genes.
+     * Constructs a SimpleMaterial by a list of genes.
      * @param strand a list of genes
      */
-    public SimpleDNA(List<? extends Gene> strand) {
+    public SimpleMaterial(List<? extends Gene> strand) {
         size = strand.size();
         this.strand = new Gene[size];
         for (int i = 0; i < size; i++) this.strand[i] = strand.get(i);
@@ -40,15 +40,15 @@ public class SimpleDNA implements Material {
     }
 
     /**
-     * Constructs a deep copy of SimpleDNA
-     * @return a deep copy of the current SimpleDNA
+     * Constructs a deep copy of SimpleMaterial
+     * @return a deep copy of the current SimpleMaterial
      */
     @Override
-    public SimpleDNA copy() {
+    public SimpleMaterial copy() {
         List<Gene> strand = new ArrayList<>(size);
         for (int i = 0; i < size; i++)
             strand.add((Gene)this.strand[i].copy());
-        return new SimpleDNA(strand);
+        return new SimpleMaterial(strand);
     }
 
     /**

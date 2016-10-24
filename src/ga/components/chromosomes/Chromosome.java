@@ -2,7 +2,7 @@ package ga.components.chromosomes;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.materials.Material;
-import ga.operations.dominanceMap.DominanceMap;
+import ga.operations.dominanceMaps.DominanceMap;
 import ga.others.Copyable;
 
 import java.util.Collections;
@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * This class represents a general chromosomes that encodes a candidate solution of an optimization problem.
- * A chromosomes comprises a genotype, which consists of a number of genetic materials.
+ * A chromosomes comprises a genotype, which consists of a number of genetic genotype.
  *
  * @author Siu Kei Muk (David)
  * @since 26/08/16.
@@ -21,12 +21,12 @@ public abstract class Chromosome<M extends Material, P extends Material> impleme
 
     protected final int strands;
     protected final int length;
-    protected List<M> materials;
+    protected List<M> genotype;
     protected DominanceMap<M, P> mapping;
     protected P phenotype = null;
 
     /**
-     * Constructs a chromosomes. Note that the 'materials' field is not initialized.
+     * Constructs a chromosomes. Note that the 'genotype' field is not initialized.
      * It is recommended to use a FixedSizedList from Apache Commons Collections Library.
      *
      * @param strands ploidy of the chromosomes
@@ -46,7 +46,7 @@ public abstract class Chromosome<M extends Material, P extends Material> impleme
      */
     public P getPhenotype(final boolean recompute) {
         if (phenotype == null || recompute)
-            phenotype = mapping.map(materials);
+            phenotype = mapping.map(genotype);
         return phenotype;
     }
 
@@ -68,7 +68,7 @@ public abstract class Chromosome<M extends Material, P extends Material> impleme
      * @return an unmodifiable list containing the genotypes
      */
     public List<M> getMaterialsView() {
-        return Collections.unmodifiableList(materials);
+        return Collections.unmodifiableList(genotype);
     }
 
     /**

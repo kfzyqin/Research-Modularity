@@ -3,7 +3,7 @@ package experiment1;
 import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.SimpleHaploid;
 import ga.components.genes.Gene;
-import ga.components.materials.SimpleDNA;
+import ga.components.materials.SimpleMaterial;
 import ga.operations.reproducers.Reproducer;
 
 import java.util.ArrayList;
@@ -25,8 +25,8 @@ public class Exp1Reproducer implements Reproducer<SimpleHaploid> {
         SimpleHaploid child1 = mates.get(0).copy();
         SimpleHaploid child2 = mates.get(1).copy();
 
-        SimpleDNA dna1 = child1.getMaterialsView().get(0);
-        SimpleDNA dna2 = child2.getMaterialsView().get(0);
+        SimpleMaterial dna1 = child1.getMaterialsView().get(0);
+        SimpleMaterial dna2 = child2.getMaterialsView().get(0);
 
         final int length = child1.getLength();
         final int crossIndex = ThreadLocalRandom.current().nextInt(1,length-1);

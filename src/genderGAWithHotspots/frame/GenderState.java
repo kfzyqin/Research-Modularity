@@ -6,8 +6,8 @@ import ga.operations.mutators.Mutator;
 import genderGAWithHotspots.collections.GenderPopulation;
 import ga.components.chromosomes.Chromosome;
 import genderGAWithHotspots.components.chromosomes.Coupleable;
-import ga.operations.fitnessfunction.FitnessFunction;
-import genderGAWithHotspots.operations.hotspotMutator.HotspotMutator;
+import ga.operations.fitnessFunctions.FitnessFunction;
+import genderGAWithHotspots.operations.hotspotMutators.HotspotMutator;
 import genderGAWithHotspots.operations.reproducers.CoupleReproducer;
 import genderGAWithHotspots.operations.selectors.CoupleSelector;
 

@@ -1,13 +1,13 @@
 package experiment3;
 
-import ga.operations.dominanceMap.SimpleDiploidRandomMap;
+import ga.components.materials.SimpleMaterial;
+import ga.operations.dominanceMaps.SimpleDiploidRandomMap;
 import genderGAWithHotspots.collections.GenderPopulation;
 import genderGAWithHotspots.components.chromosomes.SimpleGenderDiploid;
 import ga.components.genes.BinaryGene;
 import genderGAWithHotspots.components.hotspots.DiscreteExpHotspot;
 import genderGAWithHotspots.components.hotspots.Hotspot;
-import ga.components.materials.SimpleDNA;
-import ga.operations.dominanceMap.DominanceMap;
+import ga.operations.dominanceMaps.DominanceMap;
 import ga.operations.initializers.Initializer;
 
 import java.util.ArrayList;
@@ -45,20 +45,20 @@ public class Exp3Initializer implements Initializer<SimpleGenderDiploid<Integer>
     @Override
     public GenderPopulation<SimpleGenderDiploid<Integer>> initialize() {
         GenderPopulation<SimpleGenderDiploid<Integer>> population = new GenderPopulation<>(size);
-        DominanceMap<SimpleDNA,SimpleDNA> mapping = new SimpleDiploidRandomMap(0.5);
+        DominanceMap<SimpleMaterial,SimpleMaterial> mapping = new SimpleDiploidRandomMap(0.5);
         while (!population.isReady()) {
             Hotspot<Integer> hotspot = new DiscreteExpHotspot(length, 6, 1);
-            SimpleDNA dna1 = generate();
-            SimpleDNA dna2 = generate();
+            SimpleMaterial dna1 = generate();
+            SimpleMaterial dna2 = generate();
             population.addCandidateChromosome(new SimpleGenderDiploid<>(dna1,dna2,mapping,hotspot, Math.random() < 0.5));
         }
         population.nextGeneration();
         return population;
     }
 
-    private SimpleDNA generate() {
+    private SimpleMaterial generate() {
         List<BinaryGene> genes = new ArrayList<>(length);
         for (int i = 0; i < length; i++) genes.add(BinaryGene.generateRandomBinaryGene());
-        return new SimpleDNA(genes);
+        return new SimpleMaterial(genes);
     }
 }

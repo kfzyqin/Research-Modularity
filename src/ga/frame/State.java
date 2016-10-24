@@ -5,7 +5,7 @@ import ga.collections.Population;
 import ga.collections.PopulationMode;
 import ga.collections.Statistics;
 import ga.components.chromosomes.Chromosome;
-import ga.operations.fitnessfunction.FitnessFunction;
+import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
 import ga.operations.priorOperators.PriorOperator;
@@ -63,7 +63,7 @@ public abstract class State<C extends Chromosome> {
     public abstract void mutate();
 
     /**
-     * Evaluates the fitnessfunction function value of the whole population
+     * Evaluates the fitnessFunctions function value of the whole population
      * @param recomputePhenotype determines whether to force re-computation of phenotype from genotype
      */
     public void evaluate(final boolean recomputePhenotype){
@@ -114,7 +114,7 @@ public abstract class State<C extends Chromosome> {
     }
 
     /**
-     * @return the fitnessfunction function (not value) being used in the GA
+     * @return the fitnessFunctions function (not value) being used in the GA
      */
     public FitnessFunction getFitnessFunction() {
         return fitnessFunction;

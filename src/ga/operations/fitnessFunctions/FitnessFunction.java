@@ -1,4 +1,4 @@
-package ga.operations.fitnessfunction;
+package ga.operations.fitnessFunctions;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.materials.Material;

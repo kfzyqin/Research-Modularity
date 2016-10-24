@@ -4,7 +4,7 @@ import com.sun.istack.internal.NotNull;
 import ga.collections.Population;
 import ga.collections.PopulationMode;
 import ga.components.chromosomes.Chromosome;
-import ga.operations.fitnessfunction.FitnessFunction;
+import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.mutators.Mutator;
 import ga.operations.reproducers.Reproducer;
 import ga.operations.selectionOperators.selectors.Selector;
@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class SimpleState<C extends Chromosome> extends State<C> {
 
-    protected double recombinationRate;
+    protected double reproductionRate;
 
     public SimpleState(@NotNull final Population<C> population,
                        @NotNull final FitnessFunction fitnessFunction,
@@ -28,9 +28,9 @@ public class SimpleState<C extends Chromosome> extends State<C> {
                        @NotNull final Reproducer<C> reproducer,
                        @NotNull final Selector<C> selector,
                        final int numOfMates,
-                       final double recombinationRate) {
+                       final double reproductionRate) {
         super(population, fitnessFunction, mutator, reproducer, selector, numOfMates);
-        setRecombinationRate(recombinationRate);
+        setReproductionRate(reproductionRate);
     }
 
     private void filter(final double probability) {
@@ -44,7 +44,7 @@ public class SimpleState<C extends Chromosome> extends State<C> {
         population.setMode(PopulationMode.REPRODUCE);
         selector.setSelectionData(population.getIndividualsView());
         int count = 0;
-        final int size = (int) Math.round(population.getSize()*recombinationRate);
+        final int size = (int) Math.round(population.getSize()* reproductionRate);
         while (count < size && !population.isReady()) {
             List<C> mates = selector.select(numOfMates);
             List<C> children = reproducer.reproduce(mates);
@@ -58,12 +58,12 @@ public class SimpleState<C extends Chromosome> extends State<C> {
         mutator.mutate(population.getOffspringPoolView());
     }
 
-    public double getRecombinationRate() {
-        return recombinationRate;
+    public double getReproductionRate() {
+        return reproductionRate;
     }
 
-    public void setRecombinationRate(final double recombinationRate) {
-        filter(recombinationRate);
-        this.recombinationRate = recombinationRate;
+    public void setReproductionRate(final double reproductionRate) {
+        filter(reproductionRate);
+        this.reproductionRate = reproductionRate;
     }
 }

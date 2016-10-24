@@ -1,4 +1,4 @@
-package ga.operations.dominanceMap;
+package ga.operations.dominanceMaps;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.materials.Material;

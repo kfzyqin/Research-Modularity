@@ -3,8 +3,8 @@ package ga.operations.reproducers;
 import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.SimpleDiploid;
 import ga.components.genes.Gene;
-import ga.components.materials.SimpleDNA;
-import ga.operations.dominanceMap.DominanceMap;
+import ga.components.materials.SimpleMaterial;
+import ga.operations.dominanceMaps.DominanceMap;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,15 +50,15 @@ public class SimpleDiploidReproducer implements Reproducer<SimpleDiploid> {
     public List<SimpleDiploid> reproduce(@NotNull final List<SimpleDiploid> mates) {
         SimpleDiploid parent1 = mates.get(0);
         SimpleDiploid parent2 = mates.get(1);
-        SimpleDNA dna1_1 = parent1.getMaterialsView().get(0).copy();
-        SimpleDNA dna1_2 = parent2.getMaterialsView().get(0).copy();
-        SimpleDNA dna2_1 = parent1.getMaterialsView().get(1).copy();
-        SimpleDNA dna2_2 = parent2.getMaterialsView().get(1).copy();
+        SimpleMaterial dna1_1 = parent1.getMaterialsView().get(0).copy();
+        SimpleMaterial dna1_2 = parent2.getMaterialsView().get(0).copy();
+        SimpleMaterial dna2_1 = parent1.getMaterialsView().get(1).copy();
+        SimpleMaterial dna2_2 = parent2.getMaterialsView().get(1).copy();
         DominanceMap mapping1 = parent1.getMapping();
         DominanceMap mapping2 = parent2.getMapping();
 
         if (Math.random() > matchProbability) {
-            SimpleDNA tmp = dna1_2;
+            SimpleMaterial tmp = dna1_2;
             dna1_2 = dna2_2;
             dna2_2 = tmp;
         }
@@ -80,7 +80,7 @@ public class SimpleDiploidReproducer implements Reproducer<SimpleDiploid> {
         return children;
     }
 
-    private void swap(SimpleDNA dna1, SimpleDNA dna2) {
+    private void swap(SimpleMaterial dna1, SimpleMaterial dna2) {
         final int length = dna1.getSize();
         for (int i = 0; i < length; i++) {
             if (Math.random() < swapProbability) {

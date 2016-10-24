@@ -2,14 +2,14 @@ package ga.components.chromosomes;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.materials.Material;
-import ga.operations.dominanceMap.DominanceMap;
+import ga.operations.dominanceMaps.DominanceMap;
 import org.apache.commons.collections4.list.FixedSizeList;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class represents a chromosomes with genotype that comprises two strands of genetic materials.
+ * This class represents a chromosomes with genotype that comprises two strands of genetic genotype.
  * It requires a dominance mapping for genotype-to-phenotype mapping.
  * The length of each Material must agree. The mapping can be changed during runtime.
  *
@@ -34,6 +34,6 @@ public abstract class Diploid<M extends Material, P extends Material> extends Ch
         List<M> strands = new ArrayList<>(2);
         strands.add(strand1);
         strands.add(strand2);
-        materials = FixedSizeList.fixedSizeList(strands);
+        genotype = FixedSizeList.fixedSizeList(strands);
     }
 }

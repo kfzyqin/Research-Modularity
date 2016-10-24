@@ -4,13 +4,13 @@ import ga.collections.Population;
 import ga.collections.SimpleElitesStatistics;
 import ga.collections.Statistics;
 import ga.components.chromosomes.SimpleDiploid;
-import ga.components.materials.SimpleDNA;
+import ga.components.materials.SimpleMaterial;
 import ga.frame.Frame;
 import ga.frame.State;
 import ga.frame.SimpleFrame;
 import ga.frame.SimpleState;
-import ga.operations.dynamicHandler.DynamicHandler;
-import ga.operations.fitnessfunction.FitnessFunction;
+import ga.operations.dynamicHandlers.DynamicHandler;
+import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.initializers.Initializer;
 import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
@@ -44,7 +44,7 @@ public class NgWongMain {
     private static final String outfile = "NgWong.out";
 
     public static void main(String[] args) {
-        FitnessFunction<SimpleDNA> fitnessFunction = new DynamicOneMax(length, rho);
+        FitnessFunction<SimpleMaterial> fitnessFunction = new DynamicOneMax(length, rho);
         Initializer<SimpleDiploid> initializer = new NgWongInitializer(length, size);
         Population<SimpleDiploid> population = initializer.initialize();
         Reproducer<SimpleDiploid> reproducer = new SimpleDiploidReproducer();

@@ -3,7 +3,7 @@ package ga.frame;
 import com.sun.istack.internal.NotNull;
 import ga.collections.Statistics;
 import ga.components.chromosomes.Chromosome;
-import ga.operations.dynamicHandler.DynamicHandler;
+import ga.operations.dynamicHandlers.DynamicHandler;
 import ga.operations.postOperators.PostOperator;
 import ga.operations.priorOperators.PriorOperator;
 
@@ -28,6 +28,31 @@ public abstract class Frame<C extends Chromosome> {
         this.state = state;
         this.postOperator = postOperator;
         this.statistics = statistics;
+    }
+
+    public Frame(@NotNull final State<C> state,
+                 @NotNull final PostOperator<C> postOperator,
+                 @NotNull final Statistics<C> statistics,
+                 @NotNull final DynamicHandler<C> handler) {
+        this(state, postOperator, statistics);
+        this.handler = handler;
+    }
+
+    public Frame(@NotNull final State<C> state,
+                 @NotNull final PostOperator<C> postOperator,
+                 @NotNull final Statistics<C> statistics,
+                 @NotNull final PriorOperator<C> priorOperator) {
+        this(state, postOperator, statistics);
+        this.priorOperator = priorOperator;
+    }
+
+    public Frame(@NotNull final State<C> state,
+                 @NotNull final PostOperator<C> postOperator,
+                 @NotNull final Statistics<C> statistics,
+                 @NotNull final PriorOperator<C> priorOperator,
+                 @NotNull final DynamicHandler<C> handler) {
+        this(state, postOperator, statistics, priorOperator);
+        this.handler = handler;
     }
 
     /**

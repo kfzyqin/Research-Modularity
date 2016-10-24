@@ -42,9 +42,9 @@ public interface Statistics<C extends Chromosome> extends Copyable<Statistics<C>
     // double getDelta(final int generation);
 
     /**
-     * Returns the optimum fitnessfunction value reached of a given generation.
+     * Returns the optimum fitnessFunctions value reached of a given generation.
      * @param generation
-     * @return optimum fitnessfunction value of the given generation
+     * @return optimum fitnessFunctions value of the given generation
      */
     double getOptimum(final int generation);
 

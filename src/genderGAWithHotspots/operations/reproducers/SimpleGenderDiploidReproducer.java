@@ -2,10 +2,10 @@ package genderGAWithHotspots.operations.reproducers;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.materials.Material;
-import ga.operations.dominanceMap.DominanceMap;
+import ga.operations.dominanceMaps.DominanceMap;
 import genderGAWithHotspots.components.chromosomes.SimpleGenderDiploid;
 import genderGAWithHotspots.components.hotspots.Hotspot;
-import ga.components.materials.SimpleDNA;
+import ga.components.materials.SimpleMaterial;
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -13,9 +13,9 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * Created by david on 29/09/16.
  */
-public class SimpleGenderReproducer extends GenderReproducer<SimpleGenderDiploid<Integer>> {
+public class SimpleGenderDiploidReproducer extends GenderReproducer<SimpleGenderDiploid<Integer>> {
 
-    public SimpleGenderReproducer(final int numOfChildren) {
+    public SimpleGenderDiploidReproducer(final int numOfChildren) {
         super(numOfChildren);
     }
 
@@ -29,9 +29,9 @@ public class SimpleGenderReproducer extends GenderReproducer<SimpleGenderDiploid
         final int femaleMatch = ThreadLocalRandom.current().nextInt(femaleGametes.size());
         final boolean masculine = ThreadLocalRandom.current().nextBoolean();
         final Hotspot<Integer> hotspot = (Hotspot<Integer>) ((masculine) ? father.getHotspot().copy() : mother.getHotspot().copy());
-        final DominanceMap<SimpleDNA, SimpleDNA> mapping = (masculine) ? father.getMapping().copy() : mother.getMapping().copy();
-        return new SimpleGenderDiploid<>((SimpleDNA) maleGametes.get(maleMatch),
-                                         (SimpleDNA) femaleGametes.get(femaleMatch),
+        final DominanceMap<SimpleMaterial, SimpleMaterial> mapping = (masculine) ? father.getMapping().copy() : mother.getMapping().copy();
+        return new SimpleGenderDiploid<>((SimpleMaterial) maleGametes.get(maleMatch),
+                                         (SimpleMaterial) femaleGametes.get(femaleMatch),
                                           mapping, hotspot, masculine);
     }
 }

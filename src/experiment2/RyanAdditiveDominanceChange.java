@@ -5,7 +5,7 @@ import ga.collections.Individual;
 import ga.components.chromosomes.SimpleDiploid;
 import ga.components.materials.Material;
 import ga.frame.State;
-import ga.operations.dynamicHandler.DynamicHandler;
+import ga.operations.dynamicHandlers.DynamicHandler;
 
 import java.util.ArrayList;
 import java.util.List;

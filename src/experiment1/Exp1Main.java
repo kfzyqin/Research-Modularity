@@ -7,7 +7,7 @@ import ga.frame.Frame;
 import ga.frame.State;
 import ga.frame.SimpleFrame;
 import ga.frame.SimpleState;
-import ga.operations.fitnessfunction.FitnessFunction;
+import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.initializers.BinarySimpleHaploidInitializer;
 import ga.operations.initializers.Initializer;
 import ga.operations.mutators.Mutator;
@@ -15,9 +15,9 @@ import ga.operations.postOperators.PostOperator;
 import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
 import ga.operations.priorOperators.PriorOperator;
 import ga.operations.reproducers.Reproducer;
-import ga.operations.selectionOperators.selectionSchemes.ProportionateScheme;
+import ga.operations.selectionOperators.selectionSchemes.ProportionalScheme;
 import ga.operations.selectionOperators.selectors.Selector;
-import ga.operations.selectionOperators.selectors.SimpleProportionateSelector;
+import ga.operations.selectionOperators.selectors.SimpleProportionalSelector;
 
 /**
  * Created by david on 31/08/16.
@@ -45,11 +45,11 @@ public class Exp1Main {
         // Mutator for chromosomes
         Mutator mutator = new Exp1Mutator(mutationRate);
         // Selector for reproduction
-        Selector<SimpleHaploid> selector = new SimpleProportionateSelector<>();
+        Selector<SimpleHaploid> selector = new SimpleProportionalSelector<>();
         // PriorOperator is optional.
         PriorOperator<SimpleHaploid> priorOperator = new Exp1PriorOperator(numElites, selector);
         // PostOperator is required to fill up the vacancy.
-        PostOperator<SimpleHaploid> postOperator = new SimpleFillingOperatorForNormalizable<>(new ProportionateScheme());
+        PostOperator<SimpleHaploid> postOperator = new SimpleFillingOperatorForNormalizable<>(new ProportionalScheme());
         // Statistics for keeping track the performance in generations
         Statistics<SimpleHaploid> statistics = new Exp1Statistics();
         // Reproducer for reproduction

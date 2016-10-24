@@ -7,15 +7,15 @@ import ga.frame.Frame;
 import genderGAWithHotspots.frame.GenderState;
 import genderGAWithHotspots.frame.SimpleGenderFrame;
 import genderGAWithHotspots.frame.SimpleGenderState;
-import ga.operations.fitnessfunction.FitnessFunction;
+import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.mutators.BinaryGeneMutator;
 import ga.operations.mutators.Mutator;
-import genderGAWithHotspots.operations.hotspotMutator.HotspotMutator;
-import genderGAWithHotspots.operations.hotspotMutator.SimpleDiscreteExpHotspotMutator;
+import genderGAWithHotspots.operations.hotspotMutators.HotspotMutator;
+import genderGAWithHotspots.operations.hotspotMutators.SimpleDiscreteExpHotspotMutator;
 import ga.operations.postOperators.SimpleFillingOperator;
 import genderGAWithHotspots.operations.priorOperators.SimpleGenderElitismOperator;
 import genderGAWithHotspots.operations.reproducers.CoupleReproducer;
-import genderGAWithHotspots.operations.reproducers.SimpleGenderReproducer;
+import genderGAWithHotspots.operations.reproducers.SimpleGenderDiploidReproducer;
 import genderGAWithHotspots.operations.selectors.CoupleSelector;
 import genderGAWithHotspots.operations.selectors.SimpleTournamentCoupleSelector;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
@@ -55,7 +55,7 @@ public class Exp3Main {
         // Statistics
         SimpleGenderElitesStatistics<SimpleGenderDiploid<Integer>> statistics = new SimpleGenderElitesStatistics<>(maxGen);
         // Reproducer
-        CoupleReproducer<SimpleGenderDiploid<Integer>> recombinator = new SimpleGenderReproducer(1);
+        CoupleReproducer<SimpleGenderDiploid<Integer>> recombinator = new SimpleGenderDiploidReproducer(1);
         // Hotspot mutators
         HotspotMutator<Integer> hotspotMutator = new SimpleDiscreteExpHotspotMutator(1);
 

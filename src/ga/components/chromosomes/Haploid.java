@@ -2,7 +2,7 @@ package ga.components.chromosomes;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.materials.Material;
-import ga.operations.dominanceMap.DominanceMap;
+import ga.operations.dominanceMaps.DominanceMap;
 import org.apache.commons.collections4.list.FixedSizeList;
 
 import java.util.ArrayList;
@@ -26,11 +26,11 @@ public abstract class Haploid<M extends Material, P extends Material> extends Ch
         super(1, strand.getSize(), mapping);
         List<M> strands = new ArrayList<>(1);
         strands.add(strand);
-        materials = FixedSizeList.fixedSizeList(strands);
+        genotype = FixedSizeList.fixedSizeList(strands);
     }
 
     @Override
     public String toString() {
-        return "Genotype: " + materials.get(0).toString();
+        return "Genotype: " + genotype.get(0).toString();
     }
 }

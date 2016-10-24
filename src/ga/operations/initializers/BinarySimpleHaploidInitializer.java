@@ -5,7 +5,7 @@ import ga.collections.Population;
 import ga.components.chromosomes.SimpleHaploid;
 import ga.components.genes.BinaryGene;
 import ga.components.genes.Gene;
-import ga.components.materials.SimpleDNA;
+import ga.components.materials.SimpleMaterial;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,6 +87,6 @@ public class BinarySimpleHaploidInitializer implements Initializer<SimpleHaploid
         for (int i = 0; i < length; i++) {
             genes.add((Math.random() < probability) ? new BinaryGene(1) : new BinaryGene(0));
         }
-        return new Individual<>(new SimpleHaploid(new SimpleDNA(genes)));
+        return new Individual<>(new SimpleHaploid(new SimpleMaterial(genes)));
     }
 }

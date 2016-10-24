@@ -3,7 +3,7 @@ package ga.operations.selectionOperators.selectors;
 import com.sun.istack.internal.NotNull;
 import ga.collections.Individual;
 import ga.components.chromosomes.Chromosome;
-import ga.operations.selectionOperators.selectionSchemes.ProportionateScheme;
+import ga.operations.selectionOperators.selectionSchemes.ProportionalScheme;
 
 import java.util.List;
 
@@ -13,10 +13,10 @@ import java.util.List;
  * @author Siu Kei Muk (David)
  * @since 11/09/16
  */
-public class SimpleProportionateSelector<C extends Chromosome> extends BaseSelector<C> {
+public class SimpleProportionalSelector<C extends Chromosome> extends BaseSelector<C> {
 
-    public SimpleProportionateSelector() {
-        super(new ProportionateScheme());
+    public SimpleProportionalSelector() {
+        super(new ProportionalScheme());
     }
 
     @Override
@@ -24,7 +24,8 @@ public class SimpleProportionateSelector<C extends Chromosome> extends BaseSelec
         final int size = individuals.size();
         this.individuals = individuals;
         fitnessValues.clear();
-        double sum = individuals.stream().mapToDouble(Individual::getFitness).sum();
+        double sum = 0;
+        for (Individual<C> individual : individuals) sum += individual.getFitness();
         for (int i = 0; i < size; i++) {
             fitnessValues.add(individuals.get(i).getFitness() / sum);
         }

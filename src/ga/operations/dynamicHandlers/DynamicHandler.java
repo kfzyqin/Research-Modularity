@@ -1,4 +1,4 @@
-package ga.operations.dynamicHandler;
+package ga.operations.dynamicHandlers;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.Chromosome;

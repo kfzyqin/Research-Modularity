@@ -1,8 +1,8 @@
-package ga.operations.dominanceMap;
+package ga.operations.dominanceMaps;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.genes.Gene;
-import ga.components.materials.SimpleDNA;
+import ga.components.materials.SimpleMaterial;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by david on 9/10/16.
  */
-public class SimpleDiploidRandomMap implements DominanceMap<SimpleDNA, SimpleDNA> {
+public class SimpleDiploidRandomMap implements DominanceMap<SimpleMaterial, SimpleMaterial> {
 
     private double probability;
 
@@ -24,20 +24,20 @@ public class SimpleDiploidRandomMap implements DominanceMap<SimpleDNA, SimpleDNA
     }
 
     @Override
-    public DominanceMap<SimpleDNA, SimpleDNA> copy() {
+    public DominanceMap<SimpleMaterial, SimpleMaterial> copy() {
         return new SimpleDiploidRandomMap(probability);
     }
 
     @Override
-    public SimpleDNA map(@NotNull List<SimpleDNA> materials) {
-        SimpleDNA dna1 = materials.get(0);
-        SimpleDNA dna2 = materials.get(1);
-        // SimpleDNA dna = new SimpleDNA();
+    public SimpleMaterial map(@NotNull List<SimpleMaterial> materials) {
+        SimpleMaterial dna1 = materials.get(0);
+        SimpleMaterial dna2 = materials.get(1);
+        // SimpleMaterial dna = new SimpleMaterial();
         List<Gene> genes = new ArrayList<>(dna1.getSize());
         for (int i = 0; i < dna1.getSize(); i++) {
             genes.add(i, (Math.random() < probability) ? (Gene) (dna1.getGene(i).copy()) : (Gene) dna2.getGene(i).copy());
         }
-        return new SimpleDNA(genes);
+        return new SimpleMaterial(genes);
     }
 
     @Override

@@ -4,7 +4,7 @@ import com.sun.istack.internal.NotNull;
 import ga.collections.Individual;
 import ga.components.chromosomes.SimpleHaploid;
 import ga.components.genes.Gene;
-import ga.components.materials.SimpleDNA;
+import ga.components.materials.SimpleMaterial;
 import ga.operations.mutators.Mutator;
 
 import java.util.List;
@@ -33,7 +33,7 @@ public class Exp1Mutator implements Mutator<SimpleHaploid> {
     @Override
     public void mutate(@NotNull List<Individual<SimpleHaploid>> individuals) {
         for (Individual<SimpleHaploid> h : individuals) {
-            SimpleDNA dna = h.getChromosome().getMaterialsView().get(0);
+            SimpleMaterial dna = h.getChromosome().getMaterialsView().get(0);
             for (int i = 0; i < dna.getSize(); i++) {
                 if (!toFlip()) continue;
                 Gene<Integer> gene = (Gene<Integer>) dna.getGene(i);

@@ -1,4 +1,4 @@
-package genderGAWithHotspots.operations.hotspotMutator;
+package genderGAWithHotspots.operations.hotspotMutators;
 
 import com.sun.istack.internal.NotNull;
 import genderGAWithHotspots.components.hotspots.Hotspot;

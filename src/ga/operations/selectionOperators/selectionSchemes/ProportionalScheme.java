@@ -6,18 +6,18 @@ import java.util.List;
 
 /**
  * This class implements the proportionate selection scheme.
- * The given fitnessfunction values are assumed to be normalized.
+ * The given fitnessFunctions values are assumed to be normalized.
  *
  * @author Siu Kei Muk (David)
  * @since 9/09/16.
  */
-public class ProportionateScheme implements SelectionScheme{
+public class ProportionalScheme implements SelectionScheme{
 
-    public ProportionateScheme() {
+    public ProportionalScheme() {
     }
 
     /**
-     * @param fitnessValues descending sorted normalized (range from 0 to 1, sum to 1) fitnessfunction values of individuals.
+     * @param fitnessValues descending sorted normalized (range from 0 to 1, sum to 1) fitnessFunctions values of individuals.
      * @return index of selected individual
      */
     @Override

@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * This interface abstracts the selection of parents from a given list of individuals.
- * The given list of individuals is assumed to be sorted in descending order according to fitnessfunction function value.
+ * The given list of individuals is assumed to be sorted in descending order according to fitnessFunctions function value.
  * Before a selection can be performed, the client code must provide the sorted individuals of the current generation
  * for efficiency reason. The selection can be done by calling the 'select' method.
  *

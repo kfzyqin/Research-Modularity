@@ -3,8 +3,8 @@ package experiment2;
 import com.sun.istack.internal.NotNull;
 import ga.components.genes.BinaryGene;
 import ga.components.genes.Gene;
-import ga.components.materials.SimpleDNA;
-import ga.operations.fitnessfunction.FitnessFunction;
+import ga.components.materials.SimpleMaterial;
+import ga.operations.fitnessFunctions.FitnessFunction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,9 +12,9 @@ import java.util.List;
 /**
  * Created by david on 2/09/16.
  */
-public class DynamicOneMax implements FitnessFunction<SimpleDNA> {
+public class DynamicOneMax implements FitnessFunction<SimpleMaterial> {
 
-    private SimpleDNA mask;
+    private SimpleMaterial mask;
     private double flipProb;
     private final int length;
 
@@ -26,10 +26,10 @@ public class DynamicOneMax implements FitnessFunction<SimpleDNA> {
         List<Gene<Integer>> strand = new ArrayList<>(length);
         for (int i = 0; i < length; i++)
             strand.add(new BinaryGene(0));
-        mask = new SimpleDNA(strand);
+        mask = new SimpleMaterial(strand);
     }
 
-    public SimpleDNA getMask() {
+    public SimpleMaterial getMask() {
         return mask;
     }
 
@@ -45,7 +45,7 @@ public class DynamicOneMax implements FitnessFunction<SimpleDNA> {
     }
 
     @Override
-    public double evaluate(@NotNull SimpleDNA phenotype) {
+    public double evaluate(@NotNull SimpleMaterial phenotype) {
         double fitness = 0;
         for (int i = 0; i < length; i++)
             fitness += (int) phenotype.getGene(i).getValue() ^ (int) mask.getGene(i).getValue();

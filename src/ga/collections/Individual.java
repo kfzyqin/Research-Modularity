@@ -2,11 +2,11 @@ package ga.collections;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.Chromosome;
-import ga.operations.fitnessfunction.FitnessFunction;
+import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.others.Copyable;
 
 /**
- * This class represents an individual in the population. An individual consists of a chromosomes and fitnessfunction function value.
+ * This class represents an individual in the population. An individual consists of a chromosomes and fitnessFunctions function value.
  * This class implements Comparable for sorting purpose (in descending order).
  *
  * Created by david on 27/08/16.

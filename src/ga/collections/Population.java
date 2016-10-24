@@ -2,7 +2,7 @@ package ga.collections;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.Chromosome;
-import ga.operations.fitnessfunction.FitnessFunction;
+import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.others.Copyable;
 
 import java.util.*;
@@ -80,8 +80,8 @@ public class Population<C extends Chromosome> implements Copyable<Population<C>>
     }
 
     /**
-     * Evaluates the fitnessfunction function values of the individuals
-     * @param fitnessFunction fitnessfunction function
+     * Evaluates the fitnessFunctions function values of the individuals
+     * @param fitnessFunction fitnessFunctions function
      * @param recompute determines whether to force re-computation of phenotype from genotype
      */
     public void evaluate(@NotNull final FitnessFunction fitnessFunction, final boolean recompute) {
