@@ -1,4 +1,4 @@
-package ga.operations.dominanceMaps;
+package ga.operations.expressionMaps;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.materials.Material;
@@ -12,7 +12,7 @@ import java.util.List;
  * @author Siu Kei Muk (David)
  * @since 12/09/16.
  */
-public class ProjectionMap<M extends Material> implements DominanceMap<M,M> {
+public class ProjectionMap<M extends Material> implements ExpressionMap<M,M> {
 
     private int projectionIndex;
 
@@ -26,7 +26,7 @@ public class ProjectionMap<M extends Material> implements DominanceMap<M,M> {
     }
 
     @Override
-    public DominanceMap<M, M> copy() {
+    public ExpressionMap<M, M> copy() {
         return new ProjectionMap<>(projectionIndex);
     }
 

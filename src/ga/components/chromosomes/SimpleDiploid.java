@@ -2,7 +2,7 @@ package ga.components.chromosomes;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.materials.SimpleMaterial;
-import ga.operations.dominanceMaps.DominanceMap;
+import ga.operations.expressionMaps.ExpressionMap;
 
 /**
  * This class implements a simple diploid that uses SimpleMaterial class as genotype and phenotype.
@@ -14,7 +14,7 @@ public class SimpleDiploid extends Diploid<SimpleMaterial, SimpleMaterial>{
 
     public SimpleDiploid(@NotNull final SimpleMaterial dna1,
                          @NotNull final SimpleMaterial dna2,
-                         @NotNull final DominanceMap<SimpleMaterial, SimpleMaterial> mapping) {
+                         @NotNull final ExpressionMap<SimpleMaterial, SimpleMaterial> mapping) {
         super(dna1, dna2, mapping);
     }
 

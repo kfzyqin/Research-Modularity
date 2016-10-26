@@ -4,7 +4,7 @@ import com.sun.istack.internal.NotNull;
 import ga.components.genes.BinaryGene;
 import ga.components.genes.Gene;
 import ga.components.materials.SimpleMaterial;
-import ga.operations.dominanceMaps.DominanceMap;
+import ga.operations.expressionMaps.ExpressionMap;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by david on 3/09/16.
  */
-public class RyanAdditiveScheme implements DominanceMap<SimpleMaterial, SimpleMaterial> {
+public class RyanAdditiveScheme implements ExpressionMap<SimpleMaterial, SimpleMaterial> {
 
     public RyanAdditiveScheme() {
     }
@@ -33,7 +33,7 @@ public class RyanAdditiveScheme implements DominanceMap<SimpleMaterial, SimpleMa
     }
 
     @Override
-    public DominanceMap<SimpleMaterial, SimpleMaterial> copy() {
+    public ExpressionMap<SimpleMaterial, SimpleMaterial> copy() {
         return new RyanAdditiveScheme();
     }
 

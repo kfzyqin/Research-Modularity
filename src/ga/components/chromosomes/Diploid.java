@@ -2,7 +2,7 @@ package ga.components.chromosomes;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.materials.Material;
-import ga.operations.dominanceMaps.DominanceMap;
+import ga.operations.expressionMaps.ExpressionMap;
 import org.apache.commons.collections4.list.FixedSizeList;
 
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public abstract class Diploid<M extends Material, P extends Material> extends Ch
      */
     public Diploid(@NotNull final M strand1,
                    @NotNull final M strand2,
-                   @NotNull final DominanceMap<M, P> mapping) {
+                   @NotNull final ExpressionMap<M, P> mapping) {
         super(2, strand1.getSize(), mapping);
         if (strand2.getSize() != length)
             throw new IllegalArgumentException("Size of strands does not agree.");

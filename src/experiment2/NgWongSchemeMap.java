@@ -4,7 +4,7 @@ import com.sun.istack.internal.NotNull;
 import ga.components.genes.BinaryGene;
 import ga.components.genes.Gene;
 import ga.components.materials.SimpleMaterial;
-import ga.operations.dominanceMaps.DominanceMap;
+import ga.operations.expressionMaps.ExpressionMap;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by david on 2/09/16.
  */
-public class NgWongSchemeMap implements DominanceMap<SimpleMaterial, SimpleMaterial> {
+public class NgWongSchemeMap implements ExpressionMap<SimpleMaterial, SimpleMaterial> {
 
     private final double[][] matrix = new double[][] {{   0,  0,0.5,  1},
                                                       {   0,  0,  1,0.5},
@@ -20,7 +20,7 @@ public class NgWongSchemeMap implements DominanceMap<SimpleMaterial, SimpleMater
                                                       {   0,0.5,  1,  1}};
 
     @Override
-    public DominanceMap<SimpleMaterial, SimpleMaterial> copy() {
+    public ExpressionMap<SimpleMaterial, SimpleMaterial> copy() {
         return new NgWongSchemeMap();
     }
 

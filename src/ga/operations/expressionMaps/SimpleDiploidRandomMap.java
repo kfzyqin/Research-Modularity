@@ -1,4 +1,4 @@
-package ga.operations.dominanceMaps;
+package ga.operations.expressionMaps;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.genes.Gene;
@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by david on 9/10/16.
  */
-public class SimpleDiploidRandomMap implements DominanceMap<SimpleMaterial, SimpleMaterial> {
+public class SimpleDiploidRandomMap implements ExpressionMap<SimpleMaterial, SimpleMaterial> {
 
     private double probability;
 
@@ -24,7 +24,7 @@ public class SimpleDiploidRandomMap implements DominanceMap<SimpleMaterial, Simp
     }
 
     @Override
-    public DominanceMap<SimpleMaterial, SimpleMaterial> copy() {
+    public ExpressionMap<SimpleMaterial, SimpleMaterial> copy() {
         return new SimpleDiploidRandomMap(probability);
     }
 

@@ -2,7 +2,7 @@ package genderGAWithHotspots.operations.reproducers;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.materials.Material;
-import ga.operations.dominanceMaps.DominanceMap;
+import ga.operations.expressionMaps.ExpressionMap;
 import genderGAWithHotspots.components.chromosomes.SimpleGenderDiploid;
 import genderGAWithHotspots.components.hotspots.Hotspot;
 import ga.components.materials.SimpleMaterial;
@@ -29,7 +29,7 @@ public class SimpleGenderDiploidReproducer extends GenderReproducer<SimpleGender
         final int femaleMatch = ThreadLocalRandom.current().nextInt(femaleGametes.size());
         final boolean masculine = ThreadLocalRandom.current().nextBoolean();
         final Hotspot<Integer> hotspot = (Hotspot<Integer>) ((masculine) ? father.getHotspot().copy() : mother.getHotspot().copy());
-        final DominanceMap<SimpleMaterial, SimpleMaterial> mapping = (masculine) ? father.getMapping().copy() : mother.getMapping().copy();
+        final ExpressionMap<SimpleMaterial, SimpleMaterial> mapping = (masculine) ? father.getMapping().copy() : mother.getMapping().copy();
         return new SimpleGenderDiploid<>((SimpleMaterial) maleGametes.get(maleMatch),
                                          (SimpleMaterial) femaleGametes.get(femaleMatch),
                                           mapping, hotspot, masculine);

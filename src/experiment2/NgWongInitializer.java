@@ -3,7 +3,7 @@ package experiment2;
 import ga.collections.Population;
 import ga.components.chromosomes.SimpleDiploid;
 import ga.components.materials.SimpleMaterial;
-import ga.operations.dominanceMaps.DominanceMap;
+import ga.operations.expressionMaps.ExpressionMap;
 import ga.operations.initializers.Initializer;
 
 import java.util.ArrayList;
@@ -42,7 +42,7 @@ public class NgWongInitializer implements Initializer<SimpleDiploid> {
 
     @Override
     public Population<SimpleDiploid> initialize() {
-        DominanceMap<SimpleMaterial, SimpleMaterial> mapping = new NgWongSchemeMap();
+        ExpressionMap<SimpleMaterial, SimpleMaterial> mapping = new NgWongSchemeMap();
         Population<SimpleDiploid> population = new Population<>(size);
         for (int i = 0; i < size; i++) {
             List<NgWongSchemeGene> genes1 = new ArrayList<>(length);

@@ -3,7 +3,7 @@ package experiment2;
 import ga.collections.Population;
 import ga.components.chromosomes.SimpleDiploid;
 import ga.components.materials.SimpleMaterial;
-import ga.operations.dominanceMaps.DominanceMap;
+import ga.operations.expressionMaps.ExpressionMap;
 import ga.operations.initializers.Initializer;
 
 import java.util.ArrayList;
@@ -43,7 +43,7 @@ public class RyanAdditiveInitializer implements Initializer<SimpleDiploid> {
     @Override
     public Population<SimpleDiploid> initialize() {
         Population<SimpleDiploid> population = new Population<>(size);
-        DominanceMap mapping = new RyanAdditiveScheme();
+        ExpressionMap mapping = new RyanAdditiveScheme();
         for (int i = 0; i < size; i++) {
             List<RyanAdditiveSchemeGene> genes1 = new ArrayList<>(length);
             List<RyanAdditiveSchemeGene> genes2 = new ArrayList<>(length);

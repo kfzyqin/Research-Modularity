@@ -4,7 +4,7 @@ import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.SimpleDiploid;
 import ga.components.genes.Gene;
 import ga.components.materials.SimpleMaterial;
-import ga.operations.dominanceMaps.DominanceMap;
+import ga.operations.expressionMaps.ExpressionMap;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -50,8 +50,8 @@ public class SimpleDiploidNPReproducer implements Reproducer<SimpleDiploid> {
         SimpleMaterial dna1_2 = parent2.getMaterialsView().get(0).copy();
         SimpleMaterial dna2_1 = parent1.getMaterialsView().get(1).copy();
         SimpleMaterial dna2_2 = parent2.getMaterialsView().get(1).copy();
-        DominanceMap mapping1 = parent1.getMapping();
-        DominanceMap mapping2 = parent2.getMapping();
+        ExpressionMap mapping1 = parent1.getMapping();
+        ExpressionMap mapping2 = parent2.getMapping();
 
         if (Math.random() < matchProbability) {
             SimpleMaterial tmp = dna1_2;
@@ -60,7 +60,7 @@ public class SimpleDiploidNPReproducer implements Reproducer<SimpleDiploid> {
         }
 
         if (Math.random() < matchProbability) {
-            DominanceMap tmp = mapping1;
+            ExpressionMap tmp = mapping1;
             mapping1 = mapping2;
             mapping2 = tmp;
         }

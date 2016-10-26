@@ -1,13 +1,13 @@
 package experiment3;
 
 import ga.components.materials.SimpleMaterial;
-import ga.operations.dominanceMaps.SimpleDiploidRandomMap;
+import ga.operations.expressionMaps.SimpleDiploidRandomMap;
 import genderGAWithHotspots.collections.GenderPopulation;
 import genderGAWithHotspots.components.chromosomes.SimpleGenderDiploid;
 import ga.components.genes.BinaryGene;
 import genderGAWithHotspots.components.hotspots.DiscreteExpHotspot;
 import genderGAWithHotspots.components.hotspots.Hotspot;
-import ga.operations.dominanceMaps.DominanceMap;
+import ga.operations.expressionMaps.ExpressionMap;
 import ga.operations.initializers.Initializer;
 
 import java.util.ArrayList;
@@ -45,7 +45,7 @@ public class Exp3Initializer implements Initializer<SimpleGenderDiploid<Integer>
     @Override
     public GenderPopulation<SimpleGenderDiploid<Integer>> initialize() {
         GenderPopulation<SimpleGenderDiploid<Integer>> population = new GenderPopulation<>(size);
-        DominanceMap<SimpleMaterial,SimpleMaterial> mapping = new SimpleDiploidRandomMap(0.5);
+        ExpressionMap<SimpleMaterial,SimpleMaterial> mapping = new SimpleDiploidRandomMap(0.5);
         while (!population.isReady()) {
             Hotspot<Integer> hotspot = new DiscreteExpHotspot(length, 6, 1);
             SimpleMaterial dna1 = generate();
