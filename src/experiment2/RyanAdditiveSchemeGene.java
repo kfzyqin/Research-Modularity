@@ -13,7 +13,7 @@ public class RyanAdditiveSchemeGene extends Gene<Character> {
 
     public RyanAdditiveSchemeGene(final char value) {
         super(value);
-        filter(value);
+        setValue(value);
         // this.value = value;
     }
 
