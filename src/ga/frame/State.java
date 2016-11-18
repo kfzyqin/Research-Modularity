@@ -12,6 +12,26 @@ import ga.operations.priorOperators.PriorOperator;
 import ga.operations.reproducers.Reproducer;
 import ga.operations.selectionOperators.selectors.Selector;
 
+/*
+    GASEE is a Java-based genetic algorithm library for scientific exploration and experiment.
+    Copyright 2016 Siu-Kei Muk
+
+    This file is part of GASEE.
+
+    GASEE is free library: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, either version 2.1 of the License, or
+    (at your option) any later version.
+
+    GASEE is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public License
+    along with GASEE.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 /**
  * This class provides an overall base implementation for the state of current generation of genetic algorithm.
  *
@@ -58,7 +78,7 @@ public abstract class State<C extends Chromosome> {
     public abstract void reproduce();
 
     /**
-     * Performs mutators using the mutators operator.
+     * Performs mutators using the mutation operator.
      */
     public abstract void mutate();
 
@@ -114,7 +134,7 @@ public abstract class State<C extends Chromosome> {
     }
 
     /**
-     * @return the fitnessFunctions function (not value) being used in the GA
+     * @return the fitness function (not value) being used in the GA
      */
     public FitnessFunction getFitnessFunction() {
         return fitnessFunction;

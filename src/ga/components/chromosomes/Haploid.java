@@ -3,10 +3,28 @@ package ga.components.chromosomes;
 import com.sun.istack.internal.NotNull;
 import ga.components.materials.Material;
 import ga.operations.expressionMaps.ExpressionMap;
-import org.apache.commons.collections4.list.FixedSizeList;
 
 import java.util.ArrayList;
-import java.util.List;
+
+/*
+    GASEE is a Java-based genetic algorithm library for scientific exploration and experiment.
+    Copyright 2016 Siu-Kei Muk
+
+    This file is part of GASEE.
+
+    GASEE is free library: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, either version 2.1 of the License, or
+    (at your option) any later version.
+
+    GASEE is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public License
+    along with GASEE.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 /**
  * This class represents a chromosomes with genotype consisting of exactly one single strand of genetic material.
@@ -24,9 +42,8 @@ public abstract class Haploid<M extends Material, P extends Material> extends Ch
      */
     public Haploid(@NotNull final M strand, @NotNull ExpressionMap<M, P> mapping) {
         super(1, strand.getSize(), mapping);
-        List<M> strands = new ArrayList<>(1);
-        strands.add(strand);
-        genotype = FixedSizeList.fixedSizeList(strands);
+        genotype = new ArrayList<>(1);
+        genotype.add(strand);
     }
 
     @Override

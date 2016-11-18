@@ -14,12 +14,36 @@ import genderGAWithHotspots.operations.selectors.CoupleSelector;
 
 import java.util.List;
 
+/*
+    GASEE is a Java-based genetic algorithm library for scientific exploration and experiment.
+    Copyright 2016 Siu-Kei Muk
+
+    This file is part of GASEE.
+
+    GASEE is free library: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, either version 2.1 of the License, or
+    (at your option) any later version.
+
+    GASEE is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public License
+    along with GASEE.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 /**
- * Created by david on 9/10/16.
+ * This class is almost identical to SimpleState, except that it restricts the individuals to be Coupleable,
+ * and every related components and operations to be compatible.
+ *
+ * @author Siu Kei Muk (David)
+ * @since 9/10/16.
  */
 public class SimpleGenderState<G extends Chromosome & Coupleable<H>, H> extends GenderState<G, H> {
 
-    protected double recombinationRate;
+    protected double reproductionRate;
 
     public SimpleGenderState(@NotNull GenderPopulation<G> population,
                              @NotNull FitnessFunction fitnessFunction,
@@ -29,11 +53,11 @@ public class SimpleGenderState<G extends Chromosome & Coupleable<H>, H> extends 
                              HotspotMutator<H> hotspotMutator,
                              final double recombinationRate) {
         super(population, fitnessFunction, mutator, recombinator, selector, hotspotMutator);
-        setRecombinationRate(recombinationRate);
+        setReproductionRate(recombinationRate);
     }
 
-    private void filter(final double recombinationRate) {
-        if (recombinationRate < 0 || recombinationRate > 1)
+    private void filter(final double reproductionRate) {
+        if (reproductionRate < 0 || reproductionRate > 1)
             throw new IllegalArgumentException("Invalid probability value.");
     }
 
@@ -42,7 +66,7 @@ public class SimpleGenderState<G extends Chromosome & Coupleable<H>, H> extends 
         population.setMode(PopulationMode.REPRODUCE);
         selector.setSelectionData(population.getIndividualsView());
         int count = 0;
-        final int size = (int) Math.round(population.getSize()*recombinationRate);
+        final int size = (int) Math.round(population.getSize()* reproductionRate);
         while (count < size && !population.isReady()) {
             List<G> mates = selector.select(numOfMates);
             List<G> children = reproducer.reproduce(mates);
@@ -63,12 +87,12 @@ public class SimpleGenderState<G extends Chromosome & Coupleable<H>, H> extends 
             hotspotMutator.mutate(individual.getChromosome().getHotspot());
     }
 
-    public double getRecombinationRate() {
-        return recombinationRate;
+    public double getReproductionRate() {
+        return reproductionRate;
     }
 
-    public void setRecombinationRate(final double recombinationRate) {
-        filter(recombinationRate);
-        this.recombinationRate = recombinationRate;
+    public void setReproductionRate(final double reproductionRate) {
+        filter(reproductionRate);
+        this.reproductionRate = reproductionRate;
     }
 }
