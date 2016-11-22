@@ -1,4 +1,4 @@
-package experiment2;
+package examples.experiment2;
 
 import ga.collections.Population;
 import ga.collections.SimpleElitesStatistics;
@@ -6,9 +6,9 @@ import ga.collections.Statistics;
 import ga.components.chromosomes.SimpleDiploid;
 import ga.components.materials.SimpleMaterial;
 import ga.frame.Frame;
-import ga.frame.State;
 import ga.frame.SimpleFrame;
 import ga.frame.SimpleState;
+import ga.frame.State;
 import ga.operations.dynamicHandlers.DynamicHandler;
 import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.initializers.Initializer;
@@ -19,8 +19,8 @@ import ga.operations.priorOperators.PriorOperator;
 import ga.operations.priorOperators.SimpleElitismOperator;
 import ga.operations.reproducers.Reproducer;
 import ga.operations.reproducers.SimpleDiploidReproducer;
-import ga.operations.selectionOperators.selectors.Selector;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
+import ga.operations.selectionOperators.selectors.Selector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
 
 /*
@@ -48,33 +48,32 @@ import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
  * @author Siu Kei Muk (David)
  * @since 11/09/16.
  */
-public class NgWongMain {
-
+public class RyanAdditivieMain {
     private static final int size = 100;
     private static final int maxGen = 2000;
     private static final int numElites = 1;
     private static final int length = 100;
     private static final double mutationRate = 0.05;
     private static final double recombinationRate = 0.6;
-    private static final int cycleLength = 50;
-    private static final double dominanceChangeThreshold = 0.2;
+    private static final int cycleLength = 100;
+    private static final double dominanceChangeThreshold = 0.05;
     private static final int tournamentSize = 2;
     private static final double selectivePressure = 0.7;
     // private static final double epsilon = .5;
     private static final double rho = 0.1;
     // private static final double maxFit = 32;
-    private static final String outfile = "NgWong.out";
+    private static final String outfile = "RyanAdditive.out";
 
     public static void main(String[] args) {
         FitnessFunction<SimpleMaterial> fitnessFunction = new DynamicOneMax(length, rho);
-        Initializer<SimpleDiploid> initializer = new NgWongInitializer(length, size);
+        Initializer<SimpleDiploid> initializer = new RyanAdditiveInitializer(length, size);
         Population<SimpleDiploid> population = initializer.initialize();
         Reproducer<SimpleDiploid> reproducer = new SimpleDiploidReproducer();
-        Mutator<SimpleDiploid> mutator = new NgWongMutator(mutationRate);
+        Mutator<SimpleDiploid> mutator = new RyanAdditiveMutator(mutationRate);
         Selector<SimpleDiploid> selector = new SimpleTournamentSelector<>(tournamentSize, selectivePressure);
         PostOperator<SimpleDiploid> fillingOperator = new SimpleFillingOperatorForNormalizable<>(new SimpleTournamentScheme(tournamentSize, selectivePressure));
         PriorOperator<SimpleDiploid> elitismOperator = new SimpleElitismOperator<>(numElites);
-        DynamicHandler<SimpleDiploid> handler = new NgWongDominanceChange(dominanceChangeThreshold, cycleLength);
+        DynamicHandler<SimpleDiploid> handler = new RyanAdditiveDominanceChange(dominanceChangeThreshold, cycleLength);
         Statistics<SimpleDiploid> statistics = new SimpleElitesStatistics<>();
 
         State<SimpleDiploid> state = new SimpleState<>(population, fitnessFunction, mutator, reproducer, selector, 2, recombinationRate);

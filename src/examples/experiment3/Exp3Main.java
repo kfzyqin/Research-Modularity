@@ -1,24 +1,24 @@
-package experiment3;
+package examples.experiment3;
 
-import genderGAWithHotspots.collections.GenderPopulation;
-import genderGAWithHotspots.collections.SimpleGenderElitesStatistics;
-import genderGAWithHotspots.components.chromosomes.SimpleGenderDiploid;
 import ga.frame.Frame;
-import genderGAWithHotspots.frame.GenderState;
-import genderGAWithHotspots.frame.SimpleGenderFrame;
-import genderGAWithHotspots.frame.SimpleGenderState;
 import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.mutators.BinaryGeneMutator;
 import ga.operations.mutators.Mutator;
+import ga.operations.postOperators.SimpleFillingOperator;
+import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
+import genderGAWithHotspots.collections.GenderPopulation;
+import genderGAWithHotspots.collections.SimpleGenderElitesStatistics;
+import genderGAWithHotspots.components.chromosomes.SimpleGenderDiploid;
+import genderGAWithHotspots.frame.GenderState;
+import genderGAWithHotspots.frame.SimpleGenderFrame;
+import genderGAWithHotspots.frame.SimpleGenderState;
 import genderGAWithHotspots.operations.hotspotMutators.HotspotMutator;
 import genderGAWithHotspots.operations.hotspotMutators.SimpleDiscreteExpHotspotMutator;
-import ga.operations.postOperators.SimpleFillingOperator;
 import genderGAWithHotspots.operations.priorOperators.SimpleGenderElitismOperator;
 import genderGAWithHotspots.operations.reproducers.CoupleReproducer;
 import genderGAWithHotspots.operations.reproducers.SimpleGenderDiploidReproducer;
 import genderGAWithHotspots.operations.selectors.CoupleSelector;
 import genderGAWithHotspots.operations.selectors.SimpleTournamentCoupleSelector;
-import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 
 /*
     GASEE is a Java-based genetic algorithm library for scientific exploration and experiment.

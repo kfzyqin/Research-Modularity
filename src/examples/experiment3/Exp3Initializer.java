@@ -1,14 +1,14 @@
-package experiment3;
+package examples.experiment3;
 
+import ga.components.genes.BinaryGene;
 import ga.components.materials.SimpleMaterial;
+import ga.operations.expressionMaps.ExpressionMap;
 import ga.operations.expressionMaps.SimpleDiploidRandomMap;
+import ga.operations.initializers.Initializer;
 import genderGAWithHotspots.collections.GenderPopulation;
 import genderGAWithHotspots.components.chromosomes.SimpleGenderDiploid;
-import ga.components.genes.BinaryGene;
 import genderGAWithHotspots.components.hotspots.DiscreteExpHotspot;
 import genderGAWithHotspots.components.hotspots.Hotspot;
-import ga.operations.expressionMaps.ExpressionMap;
-import ga.operations.initializers.Initializer;
 
 import java.util.ArrayList;
 import java.util.List;

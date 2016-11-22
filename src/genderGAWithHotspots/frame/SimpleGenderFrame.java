@@ -3,9 +3,9 @@ package genderGAWithHotspots.frame;
 import com.sun.istack.internal.NotNull;
 import ga.collections.Statistics;
 import ga.components.chromosomes.Chromosome;
-import genderGAWithHotspots.components.chromosomes.Coupleable;
 import ga.frame.Frame;
 import ga.operations.postOperators.PostOperator;
+import genderGAWithHotspots.components.chromosomes.Coupleable;
 
 /*
     GASEE is a Java-based genetic algorithm library for scientific exploration and experiment.

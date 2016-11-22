@@ -1,13 +1,14 @@
-package experiment1;
+package examples.experiment1;
 
 import com.sun.istack.internal.NotNull;
-import ga.collections.Individual;
 import ga.components.chromosomes.SimpleHaploid;
 import ga.components.genes.Gene;
 import ga.components.materials.SimpleMaterial;
-import ga.operations.mutators.Mutator;
+import ga.operations.reproducers.Reproducer;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 /*
     GASEE is a Java-based genetic algorithm library for scientific exploration and experiment.
@@ -31,41 +32,37 @@ import java.util.List;
 
 /**
  *
- *
  * @author Siu Kei Muk (David)
  * @since 31/08/16.
  */
-public class Exp1Mutator implements Mutator<SimpleHaploid> {
+public class Exp1Reproducer implements Reproducer<SimpleHaploid> {
 
-    private double prob;
-
-    public Exp1Mutator(final double prob) {
-        if (prob < 0 || prob > 1)
-            throw new IllegalArgumentException("Value out of bound");
-        this.prob = prob;
-    }
-
-    public double getProbability() {
-        return prob;
-    }
-
-    public void setProbability(final double prob) {
-        this.prob = prob;
+    public Exp1Reproducer() {
     }
 
     @Override
-    public void mutate(@NotNull List<Individual<SimpleHaploid>> individuals) {
-        for (Individual<SimpleHaploid> h : individuals) {
-            SimpleMaterial dna = h.getChromosome().getMaterialsView().get(0);
-            for (int i = 0; i < dna.getSize(); i++) {
-                if (!toFlip()) continue;
-                Gene<Integer> gene = (Gene<Integer>) dna.getGene(i);
-                gene.setValue(gene.getValue() ^ 1);
-            }
-        }
-    }
+    public List<SimpleHaploid> reproduce(@NotNull List<SimpleHaploid> mates) {
+        List<SimpleHaploid> children = new ArrayList<>(2);
 
-    private boolean toFlip() {
-        return prob < Math.random();
+        SimpleHaploid child1 = mates.get(0).copy();
+        SimpleHaploid child2 = mates.get(1).copy();
+
+        SimpleMaterial dna1 = child1.getMaterialsView().get(0);
+        SimpleMaterial dna2 = child2.getMaterialsView().get(0);
+
+        final int length = child1.getLength();
+        final int crossIndex = ThreadLocalRandom.current().nextInt(1,length-1);
+
+        for (int i = crossIndex; i < length; i++) {
+            final int i1 = ((Gene<Integer>) dna1.getGene(i)).getValue();
+            final int i2 = ((Gene<Integer>) dna2.getGene(i)).getValue();
+            dna1.getGene(i).setValue(i2);
+            dna2.getGene(i).setValue(i1);
+        }
+
+        children.add(child1);
+        children.add(child2);
+
+        return children;
     }
 }

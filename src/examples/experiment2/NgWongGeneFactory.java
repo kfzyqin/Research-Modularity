@@ -1,4 +1,4 @@
-package experiment2;
+package examples.experiment2;
 
 import ga.components.genes.GeneFactory;
 
@@ -29,12 +29,12 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author Siu Kei Muk (David)
  * @since 11/09/16.
  */
-public class RyanAdditiveGeneFactory implements GeneFactory<Character> {
+public class NgWongGeneFactory implements GeneFactory<Character> {
 
-    private static final char[] values = {'A','B','C','D'};
+    private static final char[] values = {'0','o','1','i'};
 
     @Override
-    public RyanAdditiveSchemeGene generateGene() {
-        return new RyanAdditiveSchemeGene(values[ThreadLocalRandom.current().nextInt(values.length)]);
+    public NgWongSchemeGene generateGene() {
+        return new NgWongSchemeGene(values[ThreadLocalRandom.current().nextInt(values.length)]);
     }
 }

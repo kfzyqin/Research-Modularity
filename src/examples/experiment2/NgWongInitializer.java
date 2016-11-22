@@ -1,4 +1,4 @@
-package experiment2;
+package examples.experiment2;
 
 import ga.collections.Population;
 import ga.components.chromosomes.SimpleDiploid;

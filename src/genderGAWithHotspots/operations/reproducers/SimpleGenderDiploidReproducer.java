@@ -2,10 +2,10 @@ package genderGAWithHotspots.operations.reproducers;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.materials.Material;
+import ga.components.materials.SimpleMaterial;
 import ga.operations.expressionMaps.ExpressionMap;
 import genderGAWithHotspots.components.chromosomes.SimpleGenderDiploid;
 import genderGAWithHotspots.components.hotspots.Hotspot;
-import ga.components.materials.SimpleMaterial;
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;

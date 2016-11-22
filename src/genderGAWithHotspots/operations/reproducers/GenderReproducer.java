@@ -2,9 +2,9 @@ package genderGAWithHotspots.operations.reproducers;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.Chromosome;
+import ga.components.genes.Gene;
 import ga.components.materials.Material;
 import genderGAWithHotspots.components.chromosomes.Coupleable;
-import ga.components.genes.Gene;
 
 import java.util.ArrayList;
 import java.util.List;

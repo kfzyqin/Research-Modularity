@@ -1,13 +1,13 @@
 package genderGAWithHotspots.frame;
 
 import com.sun.istack.internal.NotNull;
-import ga.operations.mutators.Mutator;
-import genderGAWithHotspots.collections.GenderPopulation;
 import ga.collections.Individual;
 import ga.collections.PopulationMode;
 import ga.components.chromosomes.Chromosome;
-import genderGAWithHotspots.components.chromosomes.Coupleable;
 import ga.operations.fitnessFunctions.FitnessFunction;
+import ga.operations.mutators.Mutator;
+import genderGAWithHotspots.collections.GenderPopulation;
+import genderGAWithHotspots.components.chromosomes.Coupleable;
 import genderGAWithHotspots.operations.hotspotMutators.HotspotMutator;
 import genderGAWithHotspots.operations.reproducers.CoupleReproducer;
 import genderGAWithHotspots.operations.selectors.CoupleSelector;

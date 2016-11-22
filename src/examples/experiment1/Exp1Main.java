@@ -1,12 +1,12 @@
-package experiment1;
+package examples.experiment1;
 
 import ga.collections.Population;
 import ga.collections.Statistics;
 import ga.components.chromosomes.SimpleHaploid;
 import ga.frame.Frame;
-import ga.frame.State;
 import ga.frame.SimpleFrame;
 import ga.frame.SimpleState;
+import ga.frame.State;
 import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.initializers.BinarySimpleHaploidInitializer;
 import ga.operations.initializers.Initializer;

@@ -1,4 +1,4 @@
-package experiment1;
+package examples.experiment1;
 
 import com.sun.istack.internal.NotNull;
 import ga.collections.Individual;

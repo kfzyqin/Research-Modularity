@@ -1,4 +1,4 @@
-package experiment2;
+package examples.experiment2;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.genes.BinaryGene;

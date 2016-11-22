@@ -1,9 +1,8 @@
-package experiment1;
+package examples.experiment3;
 
 import com.sun.istack.internal.NotNull;
-import ga.operations.selectionOperators.selectionSchemes.SelectionScheme;
-
-import java.util.List;
+import ga.components.materials.SimpleMaterial;
+import ga.operations.fitnessFunctions.FitnessFunction;
 
 /*
     GASEE is a Java-based genetic algorithm library for scientific exploration and experiment.
@@ -28,23 +27,20 @@ import java.util.List;
 /**
  *
  * @author Siu Kei Muk (David)
- * @since 31/08/16.
+ * @since 30/09/16.
  */
-public class Exp1Selector implements SelectionScheme{
-
-    public Exp1Selector() {
+public class Exp3Fitness implements FitnessFunction<SimpleMaterial> {
+    @Override
+    public double evaluate(@NotNull final SimpleMaterial phenotype) {
+        int sum = 0;
+        for (int i = 0; i < phenotype.getSize(); i++) {
+            sum += (Integer) phenotype.getGene(i).getValue();
+        }
+        return sum;
     }
 
     @Override
-    public int select(@NotNull List<Double> fitnessValues) {
-        double r = Math.random();
-        double currentValue = 0;
-        for (int i = 0; i < fitnessValues.size(); i++) {
-            currentValue = fitnessValues.get(i);
-            if (r < currentValue)
-                return i;
-            r -= currentValue;
-        }
-        return fitnessValues.size()-1;
+    public void update() {
+
     }
 }
