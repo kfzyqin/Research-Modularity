@@ -1,3 +1,5 @@
 GASEE (Genetic Algorithm library for Scientific Exploration and Experiments) is a Java-based library that provides a base structure for genetic algorithm experiments. This library is initially developed as a preparation for further exploratory researches on abstractions of algorithmically important aspects from real biology. For further details on the genesis of this library and its high level architecture, please refer to the paper "Flexible Code Foundation Development For Further Study In Gender-based GA with Recombination Hotspots" attached in the root directory of this project.
 
-Three example implementations are provided in the 
+Three example implementations are provided in the "examples" package. Please refer to the appendix of the paper for a brief implementation guide.
+
+It is recommended to add an extension module specific to the abstraction of biological details being tested. If there is any restriction on the chromosome, a good way to do this is to define an interface and have the self-defined chromosome class implement it. The newly introduced restriction may also be required in other components, such as State and Frame, to ensure compatibility within the code.
