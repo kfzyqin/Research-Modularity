@@ -77,7 +77,7 @@ public class SimpleGenderState<G extends Chromosome & Coupleable<H>, H> extends 
 
     @Override
     public void mutate() {
-
+        mutator.mutate(population.getOffspringPoolView());
     }
 
     @Override

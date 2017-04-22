@@ -2,6 +2,7 @@ package genderGAWithHotspots.components.chromosomes;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.SimpleDiploid;
+import ga.components.materials.GeneRegulatoryNetwork;
 import ga.components.materials.SimpleMaterial;
 import ga.operations.expressionMaps.ExpressionMap;
 import genderGAWithHotspots.components.hotspots.Hotspot;

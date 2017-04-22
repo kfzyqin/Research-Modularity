@@ -34,8 +34,8 @@ import java.util.List;
  */
 public class SimpleMaterial implements Material {
 
-    private final Gene[] strand;
-    private final int size;
+    protected final Gene[] strand;
+    protected final int size;
 
     /**
      * Constructs a SimpleMaterial by a list of genes.

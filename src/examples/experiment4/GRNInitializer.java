@@ -2,7 +2,9 @@ package examples.experiment4;
 
 import com.sun.javafx.geom.Edge;
 import ga.collections.Population;
+import ga.components.genes.DataGene;
 import ga.components.genes.EdgeGene;
+import ga.components.materials.GeneRegulatoryNetwork;
 import ga.components.materials.SimpleMaterial;
 import ga.operations.expressionMaps.ExpressionMap;
 import ga.operations.expressionMaps.SimpleDiploidRandomMap;
@@ -22,12 +24,21 @@ import java.util.List;
 public class GRNInitializer implements Initializer<SimpleGenderDiploid<Integer>>{
 
     private int size;
-    private int length;
+    private int networkSize;
+    private final SimpleMaterial target;
+    private final int maxCycle;
 
-    public GRNInitializer(final int size, final int length) {
+    public GRNInitializer(final int size, final int[] target, final int maxCycle) {
+        this.size = size;
         setSize(size);
-        filter(length);
-        this.length = length;
+        filter(size);
+        this.networkSize = target.length * target.length;
+        ArrayList<DataGene> tempTargetList = new ArrayList<>();
+        for (int i=0; i<target.length; i++) {
+            tempTargetList.add(new DataGene(target[i]));
+        }
+        this.target = new SimpleMaterial(tempTargetList);
+        this.maxCycle = maxCycle;
     }
 
     private void filter(final int size) {
@@ -52,20 +63,20 @@ public class GRNInitializer implements Initializer<SimpleGenderDiploid<Integer>>
         GenderPopulation<SimpleGenderDiploid<Integer>> population = new GenderPopulation<>(size);
         ExpressionMap<SimpleMaterial,SimpleMaterial> mapping = new SimpleDiploidRandomMap(0.5);
         while (!population.isReady()) {
-            Hotspot<Integer> hotspot = new DiscreteExpHotspot(length, 6, 1);
-            SimpleMaterial dna1 = generate();
-            SimpleMaterial dna2 = generate();
+            Hotspot<Integer> hotspot = new DiscreteExpHotspot(this.networkSize, 6, 1);
+            GeneRegulatoryNetwork dna1 = generate();
+            GeneRegulatoryNetwork dna2 = generate();
             population.addCandidateChromosome(new SimpleGenderDiploid<>(dna1,dna2,mapping,hotspot, Math.random() < 0.5));
         }
         population.nextGeneration();
         return population;
     }
 
-    private SimpleMaterial generate() {
-        List<EdgeGene> genes = new ArrayList<>(length);
-        for (int i=0; i<length; i++) {
+    private GeneRegulatoryNetwork generate() {
+        List<EdgeGene> genes = new ArrayList<>(networkSize);
+        for (int i=0; i<networkSize; i++) {
             genes.add(EdgeGene.generateRandomEdgeGene());
         }
-        return new SimpleMaterial(genes);
+        return new GeneRegulatoryNetwork(this.target, genes, this.maxCycle);
     }
 }

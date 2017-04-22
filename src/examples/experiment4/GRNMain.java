@@ -29,6 +29,9 @@ import java.awt.*;
  */
 public class GRNMain {
 
+    private static final int[] target = {-1, 1, -1, 1, -1, 1};
+    private static final int maxCycle = 30;
+
     private static final int size = 200;
     private static final int maxGen = 2000;
     private static final int numElites = 10;
@@ -37,7 +40,7 @@ public class GRNMain {
     private static final double mutationRate = 0.05;
     private static final double crossoverRate = .8;
     private static final double epsilon = .5;
-    private static final int maxFit = 32;
+    private static final int maxFit = 36;
     private static final String outfile = "Exp4.out";
 
     public static void main(String[] args) {
@@ -45,7 +48,7 @@ public class GRNMain {
         FitnessFunction fitnessFunction = new GRNFitnessFunction();
 
         // Initializer
-        GRNInitializer initializer = new GRNInitializer(size, maxFit);
+        GRNInitializer initializer = new GRNInitializer(size, target, maxCycle);
 
         // Population
         GenderPopulation<SimpleGenderDiploid<Integer>> population = initializer.initialize();
@@ -86,7 +89,6 @@ public class GRNMain {
             statistics.print(i);
             if (statistics.getOptimum(i) > maxFit - epsilon) break;
         }
-
         statistics.save(outfile);
     }
 }

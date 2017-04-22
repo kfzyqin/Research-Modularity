@@ -4,7 +4,9 @@ import ga.collections.Individual;
 import ga.components.chromosomes.Chromosome;
 import ga.components.genes.BinaryGene;
 import ga.components.genes.EdgeGene;
+import ga.components.materials.GeneRegulatoryNetwork;
 import ga.components.materials.Material;
+import ga.components.materials.SimpleMaterial;
 
 import java.util.List;
 
@@ -34,7 +36,6 @@ public class GRNEdgeMutator<T extends Chromosome> implements Mutator<T> {
         this.prob = prob;
     }
 
-
     @Override
     public void mutate(List<Individual<T>> individuals) {
         for (int i = 0; i < individuals.size(); i++) {
@@ -53,7 +54,7 @@ public class GRNEdgeMutator<T extends Chromosome> implements Mutator<T> {
             if (gene.getValue() == -1) {
                 gene.setValue(Math.random() < 0.5 ? 0 : 1);
             } else {
-                gene.setValue(1 - gene.getValue());
+                gene.setValue(Math.random() < 0.5 ? -1 : (1 - gene.getValue()));
             }
         }
     }
