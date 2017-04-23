@@ -49,14 +49,14 @@ public class Exp3Main {
 
     private static final int target = 0xf71b72e5;
     private static final int size = 200;
-    private static final int maxGen = 2000;
+    private static final int maxGen = 4000;
     private static final int numElites = 10;
     private static final int tournamentSize = 2;
     private static final double selectivePressure = 0.7;
     private static final double mutationRate = 0.05;
     private static final double crossoverRate = .8;
     private static final double epsilon = .5;
-    private static final int maxFit = 32;
+    private static final int maxFit = 100;
     private static final String outfile = "Exp3.out";
 
     public static void main(String[] args) {

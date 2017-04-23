@@ -1,5 +1,6 @@
 package genderGAWithHotspots.collections;
 
+import com.opencsv.CSVWriter;
 import com.sun.istack.internal.NotNull;
 import ga.collections.Individual;
 import ga.collections.Statistics;
@@ -7,6 +8,7 @@ import ga.components.chromosomes.Chromosome;
 import genderGAWithHotspots.components.chromosomes.Coupleable;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -154,5 +156,18 @@ public class SimpleGenderElitesStatistics<G extends Chromosome & Coupleable> imp
                 generation,
                 maleDeltas.get(generation), maleElites.get(generation).toString(),
                 femaleDeltas.get(generation), femaleElites.get(generation));
+    }
+
+    public void generateCSVFile(String fileName) throws IOException {
+        CSVWriter writer = new CSVWriter(new FileWriter(fileName), '\t');
+        String[] entries = "Best#MaleElite#FemaleElites".split("#");
+        writer.writeNext(entries);
+        for (int i=0; i<=generation; i++) {
+            double bigger = maleElites.get(i).getFitness() > femaleElites.get(i).getFitness() ?
+                    maleElites.get(i).getFitness() : femaleElites.get(i).getFitness();
+            entries = (maleElites.get(i).getFitness() + "#" + femaleElites.get(i).getFitness() + "#" + bigger).split("#");
+            writer.writeNext(entries);
+        }
+        writer.close();
     }
 }

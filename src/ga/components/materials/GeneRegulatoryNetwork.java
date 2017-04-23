@@ -16,7 +16,7 @@ public class GeneRegulatoryNetwork extends EdgeMaterial {
      * Constructs a SimpleMaterial by a list of genes.
      *
      */
-    public GeneRegulatoryNetwork(SimpleMaterial target, List<EdgeGene> edgeList, int maxCycle) {
+    public GeneRegulatoryNetwork(SimpleMaterial target, List<EdgeGene> edgeList) {
         super(edgeList, target.getSize());
         this.target = target;
 

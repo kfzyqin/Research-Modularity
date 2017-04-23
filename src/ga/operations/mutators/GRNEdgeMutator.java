@@ -8,7 +8,9 @@ import ga.components.materials.GeneRegulatoryNetwork;
 import ga.components.materials.Material;
 import ga.components.materials.SimpleMaterial;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Zhenyue Qin on 22/04/2017.
@@ -47,6 +49,71 @@ public class GRNEdgeMutator<T extends Chromosome> implements Mutator<T> {
                 }
             }
         }
+
+        /*
+        Mutates the specified gene at index i according to the rule specified in page 9 of the original paper.
+         */
+
+//        for (int ind = 0; ind < individuals.size(); ind++) {
+//            Individual<T> individual = individuals.get(ind);
+//            for (Object object : individual.getChromosome().getMaterialsView()) {
+//                SimpleMaterial material = (SimpleMaterial) object;
+//                int nodeNumber = (int) Math.sqrt(material.getSize()); // number of nodes in the network.
+//                int regulatorNumber = 0; // number of regulators for this gene.
+//
+//                for (int i=0; i<nodeNumber; i++) {
+//                    if (Math.random() < this.prob) {
+//                        continue;
+//                    }
+//                    for (int j = 0; j < nodeNumber; j++) {
+//                        // if the mutated node is regulated by j.
+//                        if ((int) material.getGene(j * nodeNumber + i).getValue() != 0) {
+//                            regulatorNumber += 1;
+//                        }
+//
+//                        double probabilityToLoseInteraction = (4.0 * regulatorNumber) / (4.0 * regulatorNumber + (nodeNumber - regulatorNumber));
+//
+//                        if (Math.random() <= probabilityToLoseInteraction) { // lose an interaction
+//                            List<Integer> interactions = new ArrayList<>();
+//                            for (int edgeIdx = 0; edgeIdx < nodeNumber; edgeIdx++) {
+//                                if ((int) material.getGene(j * nodeNumber + i).getValue() != 0) {
+//                                    interactions.add(edgeIdx);
+//                                }
+//                            }
+//                            if (interactions.size() > 0) {
+//                                int toRemove = this.generateAnInteger(interactions.size());
+//                                material.getGene(toRemove * nodeNumber + i).setValue(0);
+//                            }
+//                        } else {
+//                            List<Integer> nonInteractions = new ArrayList<>();
+//                            for (int edgeIdx = 0; edgeIdx < nodeNumber; edgeIdx++) {
+//                                if ((int) material.getGene(edgeIdx * nodeNumber + i).getValue() == 0) {
+//                                    nonInteractions.add(edgeIdx);
+//                                }
+//                            }
+//                            if (nonInteractions.size() > 0) {
+//                                int toAdd = this.generateAnInteger(nonInteractions.size());
+//                                if (this.flipACoin()) {
+//                                    material.getGene(toAdd * nodeNumber + i).setValue(1);
+//                                } else {
+//                                    material.getGene(toAdd * nodeNumber + i).setValue(-1);
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+
+    }
+
+    private boolean flipACoin() {
+        return 0.5 < Math.random();
+    }
+
+    private int generateAnInteger(int upBound) {
+        Random randomGenerator = new Random();
+        return randomGenerator.nextInt(upBound);
     }
 
     private void flipAllele(EdgeGene gene) {
