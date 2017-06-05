@@ -87,3 +87,4 @@ public abstract class GenderReproducer<G extends Chromosome & Coupleable> implem
         this.numOfChildren = numOfChildren;
     }
 }
+

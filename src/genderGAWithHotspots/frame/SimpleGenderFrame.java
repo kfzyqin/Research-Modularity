@@ -56,7 +56,7 @@ public class SimpleGenderFrame<G extends Chromosome & Coupleable<H>, H> extends 
         state.postOperate(postOperator);
         state.nextGeneration();
         state.evaluate(true);
-        ((GenderState<G, H>) state).mutateHotspots();
+//        ((GenderState<G, H>) state).mutateHotspots();
         statistics.nextGeneration();
         state.record(statistics);
     }

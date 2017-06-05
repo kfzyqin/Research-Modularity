@@ -23,28 +23,36 @@ import ga.operations.reproducers.Reproducer;
 import ga.operations.selectionOperators.selectionSchemes.ProportionalScheme;
 import ga.operations.selectionOperators.selectors.Selector;
 import ga.operations.selectionOperators.selectors.SimpleProportionalSelector;
+import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
+
+import java.io.IOException;
 
 /**
  * Created by Zhenyue Qin on 23/04/2017.
  * The Australian National University.
  */
 public class HaploidGRNMain {
-    private static final int[] target = {-1, 1, -1, 1, -1, -1, 1};
-    private static final int maxCycle = 30;
-    private static final int edgeSize = 10;
+    private static final int[] target = {-1, 1, -1, 1, -1, -1, 1, -1, 1, -1};
+    private static final int maxCycle = 100;
+    private static final int edgeSize = 20;
+    private static final int perturbations = 500;
 
     private static final int size = 200;
+
+    private static final int tournamentSize = 5;
+    private static final double selectivePressure = 0.7;
+
     private static final int maxGen = 2000;
     private static final int numElites = 20;
     private static final double mutationRate = 0.05;
     private static final double crossoverRate = .8;
     private static final double epsilon = .5;
-    private static final double maxFit = 49;
+    private static final double maxFit = 501;
     private static final String outfile = "Exp5.out";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // Fitness Function
-        FitnessFunction fitnessFunction = new GRNFitnessFunction(target, maxCycle);
+        FitnessFunction fitnessFunction = new GRNFitnessFunction(target, maxCycle, perturbations);
 
         // It is not necessary to write an initializer, but doing so is convenient to repeat the experiment
         // using different parameter.
@@ -57,13 +65,17 @@ public class HaploidGRNMain {
         Mutator mutator = new GRNEdgeMutator(mutationRate);
 
         // Selector for reproduction
-        Selector<SimpleHaploid> selector = new SimpleProportionalSelector<>();
+        // Selector<SimpleHaploid> selector = new SimpleProportionalSelector<>();
+        Selector<SimpleHaploid> selector = new SimpleTournamentSelector<>(tournamentSize, selectivePressure);
+
         // PriorOperator is optional.
         PriorOperator<SimpleHaploid> priorOperator = new Exp1PriorOperator(numElites, selector);
         // PostOperator is required to fill up the vacancy.
         PostOperator<SimpleHaploid> postOperator = new SimpleFillingOperatorForNormalizable<>(new ProportionalScheme());
+
+
         // Statistics for keeping track the performance in generations
-        Statistics<SimpleHaploid> statistics = new Exp1Statistics();
+        Exp1Statistics statistics = new Exp1Statistics();
         // Reproducer for reproduction
         Reproducer<SimpleHaploid> reproducer = new Exp1Reproducer();
 
@@ -79,5 +91,7 @@ public class HaploidGRNMain {
                 break;
         }
         statistics.save(outfile);
+        statistics.generateCSVFile("Simple-Haploid-10-Targets.csv");
     }
 }
+

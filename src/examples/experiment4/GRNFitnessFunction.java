@@ -13,10 +13,12 @@ public class GRNFitnessFunction implements FitnessFunction<SimpleMaterial>{
 
     private final int[] target;
     private final int maxCycle;
+    private final int perturbations;
 
-    public GRNFitnessFunction(final int[] target, final int maxCycle) {
+    public GRNFitnessFunction(final int[] target, final int maxCycle, int perturbations) {
         this.target = target;
         this.maxCycle = maxCycle;
+        this.perturbations = perturbations;
     }
 
     public boolean hasNotAttainedAttractor(final DataGene[] currentState, final DataGene[] updatedState) {
@@ -60,39 +62,40 @@ public class GRNFitnessFunction implements FitnessFunction<SimpleMaterial>{
 
     @Override
     public double evaluate(@NotNull SimpleMaterial phenotype) {
-//        DataGene[][] startAttractors = this.generateInitialAttractors(500, 0.15);
-//        double fitnessValues = 0;
-//        for (int attractorIndex=0; attractorIndex<startAttractors.length; attractorIndex++) {
-//            DataGene[] currentAttractor = startAttractors[attractorIndex];
-//            int currentRound = 0;
-//            boolean isNotStable;
-//            do {
-//                DataGene[] updatedState = this.updateState(currentAttractor, phenotype);
-//                isNotStable = this.hasNotAttainedAttractor(currentAttractor, updatedState);
-//                currentAttractor = updatedState;
-//                currentRound += 1;
-//            }
-//            while (currentRound < this.maxCycle && isNotStable);
-//
-//            if (currentRound < maxCycle) {
-//                int hammingDistance = this.getHammingDistance(currentAttractor);
-//                double thisFitness = Math.pow((1 - (hammingDistance / ((double) this.target.length))), 5);
-//                fitnessValues += thisFitness;
-//            } else {
-//                fitnessValues += 0;
-//            }
-//        }
-////        double arithmeticMean = fitnessValues / 500.0;
-//        return fitnessValues;
+        DataGene[][] startAttractors = this.generateInitialAttractors(this.perturbations, 0.15);
+        double fitnessValues = 0;
+        for (int attractorIndex=0; attractorIndex<startAttractors.length; attractorIndex++) {
+            DataGene[] currentAttractor = startAttractors[attractorIndex];
+            int currentRound = 0;
+            boolean isNotStable;
+            do {
+                DataGene[] updatedState = this.updateState(currentAttractor, phenotype);
+                isNotStable = this.hasNotAttainedAttractor(currentAttractor, updatedState);
+                currentAttractor = updatedState;
+                currentRound += 1;
+            }
+            while (currentRound < this.maxCycle && isNotStable);
 
-        int ones = 0;
-        for (int i=0; i<phenotype.getSize(); i++) {
-            int aPosition = (Integer) phenotype.getGene(i).getValue();
-            if (aPosition == 1) {
-                ones += 1;
+            if (currentRound < maxCycle) {
+                int hammingDistance = this.getHammingDistance(currentAttractor);
+                double thisFitness = Math.pow((1 - (hammingDistance / ((double) this.target.length))), 5);
+                fitnessValues += thisFitness;
+            } else {
+                fitnessValues += 0;
             }
         }
-        return ones;
+        double arithmeticMean = fitnessValues / this.perturbations;
+        double networkFitness = 1 - Math.pow(Math.E, (-3 * arithmeticMean));
+        return networkFitness;
+
+//        int ones = 0;
+//        for (int i=0; i<phenotype.getSize(); i++) {
+//            int aPosition = (Integer) phenotype.getGene(i).getValue();
+//            if (aPosition == 1) {
+//                ones += 1;
+//            }
+//        }
+//        return ones;
     }
 
     private DataGene[][] generateInitialAttractors(int setSize, double prob) {

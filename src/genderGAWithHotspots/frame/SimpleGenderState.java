@@ -53,6 +53,7 @@ public class SimpleGenderState<G extends Chromosome & Coupleable<H>, H> extends 
                              HotspotMutator<H> hotspotMutator,
                              final double recombinationRate) {
         super(population, fitnessFunction, mutator, recombinator, selector, hotspotMutator);
+        // Todo: Is this a bug?
         setReproductionRate(recombinationRate);
     }
 

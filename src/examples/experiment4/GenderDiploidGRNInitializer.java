@@ -14,6 +14,7 @@ import genderGAWithHotspots.collections.GenderPopulation;
 import genderGAWithHotspots.components.chromosomes.SimpleGenderDiploid;
 import genderGAWithHotspots.components.hotspots.DiscreteExpHotspot;
 import genderGAWithHotspots.components.hotspots.Hotspot;
+import genderGAWithHotspots.components.hotspots.UniformHotspot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +65,8 @@ public class GenderDiploidGRNInitializer implements Initializer<SimpleGenderDipl
         GenderPopulation<SimpleGenderDiploid<Integer>> population = new GenderPopulation<>(size);
         ExpressionMap<SimpleMaterial,SimpleMaterial> mapping = new SimpleDiploidRandomMap(0.5);
         while (!population.isReady()) {
-            Hotspot<Integer> hotspot = new DiscreteExpHotspot(this.networkSize, 6, 1);
+//            Hotspot<Integer> hotspot = new DiscreteExpHotspot(this.networkSize, 6, 1);
+            Hotspot<Integer> hotspot = new UniformHotspot(this.networkSize);
             GeneRegulatoryNetwork dna1 = generate();
             GeneRegulatoryNetwork dna2 = generate();
             population.addCandidateChromosome(new SimpleGenderDiploid<>(dna1,dna2,mapping,hotspot, Math.random() < 0.5));

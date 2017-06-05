@@ -1,11 +1,13 @@
 package examples.experiment1;
 
+import com.opencsv.CSVWriter;
 import com.sun.istack.internal.NotNull;
 import ga.collections.Individual;
 import ga.collections.Statistics;
 import ga.components.chromosomes.SimpleHaploid;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -128,5 +130,16 @@ public class Exp1Statistics implements Statistics<SimpleHaploid> {
     public String getSummary(int generation) {
         return String.format("Generation: %d; Delta: %.4f, Best >> %s <<",
                 generation, deltas.get(generation), elites.get(generation).toString());
+    }
+
+    public void generateCSVFile(String fileName) throws IOException {
+        CSVWriter writer = new CSVWriter(new FileWriter(fileName), '\t');
+        String[] entries = "Best#".split("#");
+        writer.writeNext(entries);
+        for (int i=0; i<=currentGen; i++) {
+            entries = (Double.toString(elites.get(i).getFitness()) + "#").split("#");
+            writer.writeNext(entries);
+        }
+        writer.close();
     }
 }

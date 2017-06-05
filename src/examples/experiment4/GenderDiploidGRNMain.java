@@ -28,9 +28,10 @@ import java.io.IOException;
  */
 public class GenderDiploidGRNMain {
 
-    private static final int[] target = {-1, 1, -1, 1};
+    private static final int[] target = {-1, 1, -1, 1, -1, 1, -1, 1, -1, 1};
     private static final int maxCycle = 30;
-    private static final int edgeSize = 3;
+    private static final int edgeSize = 20;
+    private static final int perturbations = 500;
 
     private static final int size = 200;
     private static final int maxGen = 1000;
@@ -45,7 +46,7 @@ public class GenderDiploidGRNMain {
 
     public static void main(String[] args) throws IOException {
         // Fitness Function
-        FitnessFunction fitnessFunction = new GRNFitnessFunction(target, maxCycle);
+        FitnessFunction fitnessFunction = new GRNFitnessFunction(target, maxCycle, perturbations);
 
         // Initializer
         GenderDiploidGRNInitializer initializer = new GenderDiploidGRNInitializer(size, target, edgeSize);
@@ -72,7 +73,8 @@ public class GenderDiploidGRNMain {
         CoupleReproducer<SimpleGenderDiploid<Integer>> recombinator = new SimpleGenderDiploidReproducer(1);
 
         // Hotspot mutators
-        HotspotMutator<Integer> hotspotMutator = new SimpleDiscreteExpHotspotMutator(1);
+        //HotspotMutator<Integer> hotspotMutator = new SimpleDiscreteExpHotspotMutator(1);
+        HotspotMutator<Integer> hotspotMutator = null;
 
         GenderState<SimpleGenderDiploid<Integer>,Integer> state = new SimpleGenderState<>(
                 population, fitnessFunction, mutator, recombinator, selector, hotspotMutator, crossoverRate);
@@ -90,6 +92,6 @@ public class GenderDiploidGRNMain {
             if (statistics.getOptimum(i) > maxFit - epsilon) break;
         }
         statistics.save(outfile);
-        statistics.generateCSVFile("Soto-6-Targets.csv");
+        statistics.generateCSVFile("Soto-10-Targets-Uniform_Hotspot.csv");
     }
 }
