@@ -3,6 +3,11 @@ package ga.collections;
 import com.opencsv.CSVWriter;
 import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.Chromosome;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -21,7 +26,7 @@ import java.util.List;
 public class DetailedStatistics <C extends Chromosome> implements Statistics<C> {
 
     private int generation;
-    private String directoryPath = "";
+    private String directoryPath = "generated-outputs";
     List<Individual<C>> elites; // best individuals
     List<Individual<C>> worsts;  // worst individuals
     List<Individual<C>> medians;  // median individuals
@@ -96,15 +101,17 @@ public class DetailedStatistics <C extends Chromosome> implements Statistics<C> 
     }
 
     public void setDirectory(@NotNull String directoryName) {
-        this.directoryPath = "csv-outputs/" + directoryName + "/";
-        File dir = new File(this.directoryPath);
-        // attempt to create the directory here
-        try {
-            dir.mkdir();
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to create the director: " + directoryName);
+        this.directoryPath += "/" + directoryName + "/";
+        boolean isCreated = this.createDirectory(this.directoryPath);
+        if (!isCreated) {
+            throw new RuntimeException("Failed to create the directory: " + this.directoryPath);
         }
+    }
 
+    private boolean createDirectory(String directoryPath) {
+      File dir = new File(directoryPath);
+      boolean isDirCreated = dir.mkdir();
+      return isDirCreated || dir.mkdirs();
     }
 
     @Override
@@ -164,15 +171,30 @@ public class DetailedStatistics <C extends Chromosome> implements Statistics<C> 
             writer.writeNext(entries);
         }
         writer.close();
-        this.executePythonScript();
     }
 
-    public void executePythonScript() throws IOException {
-        String[] cmd = {
-            "/bin/bash",
-            "-c",
-            "echo python chin.py"
-        };
-        Process p = Runtime.getRuntime().exec(cmd);
+    public void generatePlot(String chartTitle, String fileName) throws IOException {
+        JFreeChart lineChartObject = ChartFactory.createLineChart(chartTitle,
+          "Generation",
+          "Fitness",
+          this.createDataSet(),
+          PlotOrientation.VERTICAL,
+          true,true,false);
+
+        int width = 960;    /* Width of the image */
+        int height = 720;   /* Height of the image */
+        File lineChartFile = new File( this.directoryPath + fileName);
+        ChartUtilities.saveChartAsJPEG(lineChartFile ,lineChartObject, width ,height);
+    }
+
+    private DefaultCategoryDataset createDataSet() {
+        DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
+        for (int i=0; i<=generation; i++) {
+            dataSet.addValue(elites.get(i).getFitness(), "Best", Integer.toString(i));
+            dataSet.addValue(worsts.get(i).getFitness(), "Worst", Integer.toString(i));
+            dataSet.addValue(medians.get(i).getFitness(), "Median", Integer.toString(i));
+            dataSet.addValue(means.get(i), "Mean", Integer.toString(i));
+        }
+        return dataSet;
     }
 }

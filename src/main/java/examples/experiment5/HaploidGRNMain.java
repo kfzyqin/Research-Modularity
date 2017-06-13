@@ -38,14 +38,14 @@ public class HaploidGRNMain {
     private static final int[] target = {-1, 1, -1, 1, -1, 1, -1, 1, -1, 1};
     private static final int maxCycle = 100;
     private static final int edgeSize = 20;
-    private static final int perturbations = 100;
+    private static final int perturbations = 500;
 
     private static final int size = 200;
 
     private static final int tournamentSize = 5;
     private static final double selectivePressure = 0.5;
 
-    private static final int maxGen = 10;
+    private static final int maxGen = 30;
     private static final int numElites = 20;
     private static final double mutationRate = 0.05;
     private static final double crossoverRate = .8;
@@ -102,6 +102,6 @@ public class HaploidGRNMain {
         }
         statistics.save(summaryFileName);
         statistics.generateCSVFile(csvFileName);
+        statistics.generatePlot("Evolution Summary", "Evolution-Chart.png");
     }
 }
-
