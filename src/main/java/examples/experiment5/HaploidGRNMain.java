@@ -3,16 +3,15 @@ package examples.experiment5;
 import examples.experiment1.Exp1PriorOperator;
 import examples.experiment1.Exp1Reproducer;
 import examples.experiment1.Exp1Statistics;
-import examples.experiment4.GRNFitnessFunction;
 import ga.collections.DetailedStatistics;
 import ga.collections.Population;
-import ga.components.chromosomes.SimpleDiploid;
 import ga.components.chromosomes.SimpleHaploid;
 import ga.frame.Frame;
 import ga.frame.SimpleFrame;
 import ga.frame.SimpleState;
 import ga.frame.State;
 import ga.operations.fitnessFunctions.FitnessFunction;
+import ga.operations.fitnessFunctions.GRNFitnessFunction;
 import ga.operations.initializers.HaploidGRNInitializer;
 import ga.operations.initializers.Initializer;
 import ga.operations.mutators.GRNEdgeMutator;
@@ -39,16 +38,14 @@ public class HaploidGRNMain {
     private static final int maxCycle = 100;
     private static final int edgeSize = 20;
     private static final int perturbations = 500;
+    private static final double mutationRate = 0.004;
 
     private static final int size = 200;
-
     private static final int tournamentSize = 5;
-    private static final double selectivePressure = 0.5;
+    private static final double selectivePressure = 1.0;
 
-    private static final int maxGen = 30;
-    private static final int numElites = 20;
-    private static final double mutationRate = 0.05;
-    private static final double crossoverRate = .8;
+    private static final int maxGen = 2000;
+    private static final double crossoverRate = 1.0;
     private static final double epsilon = .5;
     private static final double maxFit = 501;
 
@@ -76,9 +73,6 @@ public class HaploidGRNMain {
         // Selector<SimpleHaploid> selector = new SimpleProportionalSelector<>();
         Selector<SimpleHaploid> selector = new SimpleTournamentSelector<>(tournamentSize, selectivePressure);
 
-        // PriorOperator is optional.
-        PriorOperator<SimpleHaploid> priorOperator = new Exp1PriorOperator(numElites, selector);
-
         // PostOperator is required to fill up the vacancy.
         PostOperator<SimpleHaploid> postOperator = new SimpleFillingOperatorForNormalizable<>(new ProportionalScheme());
 
@@ -90,7 +84,6 @@ public class HaploidGRNMain {
         State<SimpleHaploid> state = new SimpleState<>(population, fitnessFunction, mutator, reproducer, selector, 2, crossoverRate);
         state.record(statistics);
         Frame<SimpleHaploid> frame = new SimpleFrame<>(state,postOperator,statistics);
-        frame.setPriorOperator(priorOperator);
 
         statistics.print(0);
         statistics.setDirectory(outputDirectory + "/" + dateFormat.format(date));
@@ -102,6 +95,6 @@ public class HaploidGRNMain {
         }
         statistics.save(summaryFileName);
         statistics.generateCSVFile(csvFileName);
-        statistics.generatePlot("Evolution Summary", "Evolution-Chart.png");
+        statistics.generatePlot("Haploid GRN Summary", "Haploid-GRN-Chart.png");
     }
 }

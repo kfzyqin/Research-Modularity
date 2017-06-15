@@ -1,9 +1,8 @@
-package examples.experiment4;
+package ga.operations.fitnessFunctions;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.genes.DataGene;
 import ga.components.materials.SimpleMaterial;
-import ga.operations.fitnessFunctions.FitnessFunction;
 
 /**
  * Created by Zhenyue Qin on 22/04/2017.

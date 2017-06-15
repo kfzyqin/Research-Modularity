@@ -24,6 +24,18 @@ public class EdgeGene extends Gene<Integer> {
         this.value = ThreadLocalRandom.current().nextInt(3) - 1;
     }
 
+    public void mutate() {
+        if (this.value == -1) {
+            setValue(Math.random() < 0.5 ? 0 : 1);
+        } else if (this.value == 0) {
+            setValue(Math.random() < 0.5 ? -1 : 1);
+        } else if (this.value == 1) {
+            setValue(Math.random() < 0.5 ? -1 : 0);
+        } else {
+            throw new RuntimeException("Invalid value in edge gene. ");
+        }
+    }
+
     @Override
     public Gene<Integer> copy() {
         return new EdgeGene(this.value);

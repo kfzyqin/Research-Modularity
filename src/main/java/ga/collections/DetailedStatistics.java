@@ -95,9 +95,9 @@ public class DetailedStatistics <C extends Chromosome> implements Statistics<C> 
         medians.add(median);
         means.add(averageFitnessValue);
         if (generation == 0)
-          deltas.add(elite.getFitness());
+            deltas.add(elite.getFitness());
         else
-          deltas.add(elite.getFitness() - elites.get(generation-1).getFitness());
+            deltas.add(elite.getFitness() - elites.get(generation-1).getFitness());
     }
 
     public void setDirectory(@NotNull String directoryName) {
@@ -181,8 +181,8 @@ public class DetailedStatistics <C extends Chromosome> implements Statistics<C> 
           PlotOrientation.VERTICAL,
           true,true,false);
 
-        int width = 960;    /* Width of the image */
-        int height = 720;   /* Height of the image */
+        int width = 720;    /* Width of the image */
+        int height = 540;   /* Height of the image */
         File lineChartFile = new File( this.directoryPath + fileName);
         ChartUtilities.saveChartAsJPEG(lineChartFile ,lineChartObject, width ,height);
     }
