@@ -1,11 +1,10 @@
-package genderGAWithHotspots.operations.priorOperators;
+package ga.operations.priorOperators;
 
 import com.sun.istack.internal.NotNull;
 import ga.collections.Individual;
 import ga.collections.Population;
 import ga.components.chromosomes.Chromosome;
-import ga.operations.priorOperators.PriorOperator;
-import genderGAWithHotspots.components.chromosomes.Coupleable;
+import ga.components.chromosomes.Coupleable;
 
 import java.util.List;
 

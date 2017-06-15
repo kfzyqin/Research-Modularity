@@ -3,10 +3,7 @@ package ga.components.hotspots;
 import com.sun.istack.internal.NotNull;
 import ga.others.Copyable;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Zhenyue Qin on 15/06/2017.
@@ -14,19 +11,37 @@ import java.util.Map;
  */
 public class Hotspot implements Copyable<Hotspot> {
     protected final int size;
+    protected final int dnaLenght;
     protected Map<Integer, Double> recombinationRate;
     protected final double mutationRate;
 
-    public Hotspot(final int size, final double mutationRate) {
+    public Hotspot(final int size, final int dnaLength, final double mutationRate) {
         this.size = size;
         this.recombinationRate = new HashMap<>(this.size);
+        this.dnaLenght = dnaLength;
+        this.generateRandomRecombinationRate();
         this.mutationRate = mutationRate;
     }
 
-    public Hotspot(final int size, @NotNull Map<Integer, Double> recombinationRate, double mutationRate) {
+    public Hotspot(final int size, final int dnaLength, @NotNull Map<Integer, Double> recombinationRate, double mutationRate) {
         this.size = size;
+        this.dnaLenght = dnaLength;
         this.recombinationRate = recombinationRate;
         this.mutationRate = mutationRate;
+    }
+
+    public void generateRandomRecombinationRate() {
+        int[] hotspotPositions = new Random().ints(0, dnaLenght).distinct().limit(size).toArray();
+        double[] unNormalizedRates = new double[size];
+        double rateSum = 0;
+        for (int i=0; i<size; i++) {
+            double aRate = Math.random();
+            unNormalizedRates[i] = aRate;
+            rateSum += aRate;
+        }
+        for (int i=0; i<size; i++) {
+            setRecombinationRateAtPosition(hotspotPositions[i], unNormalizedRates[i] / rateSum);
+        }
     }
 
     public void setRecombinationRateAtPosition(int i, double rate) {
@@ -41,8 +56,8 @@ public class Hotspot implements Copyable<Hotspot> {
         return new ArrayList<>(this.recombinationRate.values());
     }
 
-  @Override
-  public Hotspot copy() {
-      return new Hotspot(this.size, this.recombinationRate, this.mutationRate);
-  }
+    @Override
+    public Hotspot copy() {
+          return new Hotspot(this.size, this.dnaLenght, this.recombinationRate, this.mutationRate);
+    }
 }

@@ -1,10 +1,9 @@
-package genderGAWithHotspots.components.chromosomes;
+package ga.components.chromosomes;
 
 import com.sun.istack.internal.NotNull;
-import ga.components.chromosomes.SimpleDiploid;
+import ga.components.hotspots.Hotspot;
 import ga.components.materials.SimpleMaterial;
 import ga.operations.expressionMaps.ExpressionMap;
-import genderGAWithHotspots.components.hotspots.Hotspot;
 
 import java.util.List;
 
@@ -31,22 +30,20 @@ import java.util.List;
 /**
  * This class is a Coupleable extension of SimpleDiploid.
  *
- * @author Siu Kei Muk (David)
+ * @author Siu Kei Muk (David) and Zhenyue Qin
  * @since 27/08/16.
  */
-public class SimpleGenderDiploid<H> extends SimpleDiploid implements Coupleable<H>{
+public class GenderHotspotDiploid extends GenderDiploid {
 
-    protected final boolean masculine;
-    protected final Hotspot<H> hotspot;
+    protected final Hotspot hotspot;
 
-    public SimpleGenderDiploid(@NotNull final SimpleMaterial dna1,
-                               @NotNull final SimpleMaterial dna2,
-                               @NotNull final ExpressionMap<SimpleMaterial, SimpleMaterial> mapping,
-                               @NotNull final Hotspot<H> hotspot,
-                               final boolean masculine) {
+    public GenderHotspotDiploid(@NotNull final SimpleMaterial dna1,
+                                @NotNull final SimpleMaterial dna2,
+                                @NotNull final ExpressionMap<SimpleMaterial, SimpleMaterial> mapping,
+                                @NotNull final Hotspot hotspot,
+                                final boolean masculine) {
 
-        super(dna1, dna2, mapping);
-        this.masculine = masculine;
+        super(dna1, dna2, mapping, masculine);
         this.hotspot = hotspot;
     }
 
@@ -55,26 +52,22 @@ public class SimpleGenderDiploid<H> extends SimpleDiploid implements Coupleable<
         return masculine;
     }
 
-    @Override
     public Hotspot getHotspot() {
         return hotspot;
     }
 
     @Override
-    public SimpleGenderDiploid copy() {
+    public GenderHotspotDiploid copy() {
         SimpleMaterial dna1 = genotype.get(0).copy();
         SimpleMaterial dna2 = genotype.get(1).copy();
         ExpressionMap mapping = super.mapping.copy();
-        Hotspot<H> hotspotCopy = hotspot.copy();
-        return new SimpleGenderDiploid(dna1, dna2, mapping, hotspotCopy, masculine);
+        Hotspot hotspotCopy = hotspot.copy();
+        return new GenderHotspotDiploid(dna1, dna2, mapping, hotspotCopy, masculine);
     }
 
     @Override
     public String toString() {
-        String gender = (masculine) ? "M" : "F";
-        List<Double> map = hotspot.getRecombinationRate();
-        return "Gender: " + gender +
-                ", " + super.toString() +
-                ", Recombination probability: " + map.toString();
+        List<Double> map = hotspot.getRecombinationRates();
+        return super.toString() + ", Recombination probability: " + map.toString();
     }
 }

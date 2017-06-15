@@ -1,8 +1,5 @@
 package examples.experiment5;
 
-import examples.experiment1.Exp1PriorOperator;
-import examples.experiment1.Exp1Reproducer;
-import examples.experiment1.Exp1Statistics;
 import ga.collections.DetailedStatistics;
 import ga.collections.Population;
 import ga.components.chromosomes.SimpleHaploid;
@@ -20,6 +17,7 @@ import ga.operations.postOperators.PostOperator;
 import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
 import ga.operations.priorOperators.PriorOperator;
 import ga.operations.reproducers.Reproducer;
+import ga.operations.reproducers.SimpleHaploidReproducer;
 import ga.operations.selectionOperators.selectionSchemes.ProportionalScheme;
 import ga.operations.selectionOperators.selectors.Selector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
@@ -79,7 +77,7 @@ public class HaploidGRNMain {
         // Statistics for keeping track the performance in generations
         DetailedStatistics<SimpleHaploid> statistics = new DetailedStatistics();
         // Reproducer for reproduction
-        Reproducer<SimpleHaploid> reproducer = new Exp1Reproducer();
+        Reproducer<SimpleHaploid> reproducer = new SimpleHaploidReproducer();
 
         State<SimpleHaploid> state = new SimpleState<>(population, fitnessFunction, mutator, reproducer, selector, 2, crossoverRate);
         state.record(statistics);

@@ -1,7 +1,4 @@
-package genderGAWithHotspots.operations.hotspotMutators;
-
-import com.sun.istack.internal.NotNull;
-import genderGAWithHotspots.components.hotspots.Hotspot;
+package ga.components.chromosomes;
 
 /*
     GASEE is a Java-based genetic algorithm library for scientific exploration and experiment.
@@ -23,12 +20,15 @@ import genderGAWithHotspots.components.hotspots.Hotspot;
     along with GASEE.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import ga.components.hotspots.Hotspot;
+
 /**
- * This interface provides an abstraction for mutation of hotspot encodings.
+ * This interface requires a Chromosome to have a gender and contain a Hotspot object that guides
+ * the recombination process in the reproduction.
  *
- * @author Siu Kei Muk (David)
- * @since 28/09/16.
+ * @author Siu Kei Muk (David) and Zhenyue Qin
+ * @since 29/09/16.
  */
-public interface HotspotMutator<H> {
-    void mutate(@NotNull final Hotspot<H> hotspotMap);
+public interface Coupleable {
+    boolean isMasculine();
 }

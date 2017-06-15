@@ -2,28 +2,30 @@ package ga.operations.initializers;
 
 import ga.collections.Individual;
 import ga.collections.Population;
-import ga.components.chromosomes.SimpleDiploid;
+import ga.components.chromosomes.GenderDiploid;
+import ga.components.chromosomes.GenderHotspotDiploid;
 import ga.components.genes.DataGene;
+import ga.components.hotspots.Hotspot;
 import ga.components.materials.GeneRegulatoryNetwork;
 import ga.components.materials.GeneRegulatoryNetworkFactory;
 import ga.components.materials.SimpleMaterial;
 import ga.operations.expressionMaps.DiploidEvolvedMap;
 import ga.operations.expressionMaps.ExpressionMap;
-import ga.operations.expressionMaps.SimpleDiploidRandomMap;
 
 import java.util.ArrayList;
 
 /**
- * Created by Zhenyue Qin on 6/06/2017.
- * The Australian National University.
+ * Created by zhenyueqin on 15/6/17.
  */
-public class DiploidGRNInitializer implements Initializer<SimpleDiploid> {
-    private int size;
-    private final SimpleMaterial target;
-    private final int edgeSize;
-    private final double dominanceMutationRate;
 
-    public DiploidGRNInitializer(final int size, final int[] target, final int edgeSize, double dominanceMutationRate) {
+public class GenderDiploidGRNInitializer implements Initializer<GenderDiploid> {
+    protected int size;
+    protected final SimpleMaterial target;
+    protected final int edgeSize;
+    protected final double dominanceMutationRate;
+
+    public GenderDiploidGRNInitializer(final int size, final int[] target, final int edgeSize,
+                                       final double dominanceMutationRate) {
         setSize(size);
         ArrayList<DataGene> tempTargetList = new ArrayList<>();
         for (int i=0; i<target.length; i++) {
@@ -52,8 +54,8 @@ public class DiploidGRNInitializer implements Initializer<SimpleDiploid> {
     }
 
     @Override
-    public Population<SimpleDiploid> initialize() {
-        Population<SimpleDiploid> population = new Population<>(size);
+    public Population<GenderDiploid> initialize() {
+        Population<GenderDiploid> population = new Population<>(size);
         for (int i = 0; i < size; i++) {
             population.addCandidate(generateIndividual());
         }
@@ -61,12 +63,12 @@ public class DiploidGRNInitializer implements Initializer<SimpleDiploid> {
         return population;
     }
 
-    private Individual<SimpleDiploid> generateIndividual() {
+    protected Individual<GenderDiploid> generateIndividual() {
         GeneRegulatoryNetworkFactory grnFactor = new GeneRegulatoryNetworkFactory(this.target, this.edgeSize);
         ExpressionMap<SimpleMaterial,SimpleMaterial> mapping = new DiploidEvolvedMap(
-          this.target.getSize() * this.target.getSize(), this.dominanceMutationRate);
+                this.target.getSize() * this.target.getSize(), this.dominanceMutationRate);
         GeneRegulatoryNetwork dna1 = grnFactor.generateGeneRegulatoryNetwork();
         GeneRegulatoryNetwork dna2 = grnFactor.generateGeneRegulatoryNetwork();
-        return new Individual<>(new SimpleDiploid(dna1, dna2, mapping));
+        return new Individual<>(new GenderDiploid(dna1, dna2, mapping, Math.random() < 0.5));
     }
 }
