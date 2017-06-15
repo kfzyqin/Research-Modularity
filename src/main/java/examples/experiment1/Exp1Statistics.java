@@ -1,6 +1,6 @@
 package examples.experiment1;
 
-import com.opencsv.CSVWriter;
+import au.com.bytecode.opencsv.CSVWriter;
 import com.sun.istack.internal.NotNull;
 import ga.collections.Individual;
 import ga.collections.Statistics;

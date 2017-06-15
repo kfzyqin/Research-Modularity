@@ -1,6 +1,6 @@
 package ga.collections;
 
-import com.opencsv.CSVWriter;
+import au.com.bytecode.opencsv.CSVWriter;
 import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.Chromosome;
 
