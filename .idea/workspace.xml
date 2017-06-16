@@ -2,58 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="de5f1476-9551-404c-abb5-385bc0c5573f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/examples/experiment4/GenderHotspotDiploidGRNMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ga/components/chromosomes/GenderDiploid.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ga/operations/initializers/GenderDiploidGRNInitializer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ga/operations/initializers/GenderHotspotDiploidGRNInitializer.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/examples/experiment1/Exp1FitnessFunction.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/examples/experiment1/Exp1Main.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/examples/experiment1/Exp1Mutator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/examples/experiment1/Exp1PriorOperator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/examples/experiment1/Exp1Selector.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/examples/experiment1/Exp1Statistics.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/examples/experiment2/DynamicOneMax.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/examples/experiment2/NgWongDominanceChange.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/examples/experiment2/NgWongGeneFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/examples/experiment2/NgWongInitializer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/examples/experiment2/NgWongMain.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/examples/experiment2/NgWongMutator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/examples/experiment2/NgWongSchemeGene.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/examples/experiment2/NgWongSchemeMap.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/examples/experiment2/RyanAdditiveDominanceChange.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/examples/experiment2/RyanAdditiveGeneFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/examples/experiment2/RyanAdditiveInitializer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/examples/experiment2/RyanAdditiveMutator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/examples/experiment2/RyanAdditiveScheme.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/examples/experiment2/RyanAdditiveSchemeGene.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/examples/experiment2/RyanAdditivieMain.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/examples/experiment3/Exp3Fitness.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/examples/experiment3/Exp3Initializer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/examples/experiment3/Exp3Main.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/genderGAWithHotspots/collections/GenderPopulation.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/genderGAWithHotspots/collections/SimpleGenderElitesStatistics.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/genderGAWithHotspots/components/hotspots/DiscreteExpHotspot.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/genderGAWithHotspots/components/hotspots/Hotspot.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/genderGAWithHotspots/components/hotspots/SimpleHotspot.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/genderGAWithHotspots/frame/GenderState.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/genderGAWithHotspots/frame/SimpleGenderFrame.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/genderGAWithHotspots/frame/SimpleGenderState.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/genderGAWithHotspots/operations/hotspotMutators/HotspotMutator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/genderGAWithHotspots/operations/hotspotMutators/SimpleDiscreteExpHotspotMutator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/genderGAWithHotspots/operations/reproducers/CoupleReproducer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/genderGAWithHotspots/operations/reproducers/GenderReproducer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/genderGAWithHotspots/operations/reproducers/SimpleGenderDiploidReproducer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/genderGAWithHotspots/operations/selectors/CoupleSelector.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/genderGAWithHotspots/operations/selectors/SimpleTournamentCoupleSelector.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/examples/experiment1/Exp1Reproducer.java" afterPath="$PROJECT_DIR$/src/main/java/ga/operations/reproducers/SimpleHaploidReproducer.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/genderGAWithHotspots/components/chromosomes/Coupleable.java" afterPath="$PROJECT_DIR$/src/main/java/ga/components/chromosomes/Coupleable.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/genderGAWithHotspots/components/chromosomes/SimpleGenderDiploid.java" afterPath="$PROJECT_DIR$/src/main/java/ga/components/chromosomes/GenderHotspotDiploid.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/genderGAWithHotspots/operations/priorOperators/SimpleGenderElitismOperator.java" afterPath="$PROJECT_DIR$/src/main/java/ga/operations/priorOperators/SimpleGenderElitismOperator.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ga/collections/DetailedGenderStatistics.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/examples/experiment5/HaploidGRNMain.java" afterPath="$PROJECT_DIR$/src/main/java/examples/experiment5/HaploidGRNMain.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/examples/experiment6/DiploidGRNMain.java" afterPath="$PROJECT_DIR$/src/main/java/examples/experiment6/DiploidGRNMain.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ga/components/hotspots/Hotspot.java" afterPath="$PROJECT_DIR$/src/main/java/ga/components/hotspots/Hotspot.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ga/operations/initializers/DiploidGRNInitializer.java" afterPath="$PROJECT_DIR$/src/main/java/ga/operations/initializers/DiploidGRNInitializer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ga/collections/DetailedStatistics.java" afterPath="$PROJECT_DIR$/src/main/java/ga/collections/DetailedStatistics.java" />
     </list>
     <ignored path="ga-project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -173,20 +124,59 @@
       <file leaf-file-name="DiploidGRNMain.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/examples/experiment6/DiploidGRNMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
+            <state relative-caret-position="795">
               <caret line="78" column="65" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GenderHotspotDiploidGRNMain.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GenderHotspotDiploidGRNMain.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/examples/experiment4/GenderHotspotDiploidGRNMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="78" column="0" lean-forward="true" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+            <state relative-caret-position="810">
+              <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DetailedStatistics.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ga/collections/DetailedStatistics.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="460">
+              <caret line="145" column="0" lean-forward="true" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DetailedGenderStatistics.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ga/collections/DetailedGenderStatistics.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="502">
+              <caret line="226" column="51" lean-forward="false" selection-start-line="226" selection-start-column="51" selection-end-line="226" selection-end-column="51" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#8380#8381#0" expanded="true" />
+                <element signature="e#8416#8417#0" expanded="true" />
+                <element signature="e#8478#8479#0" expanded="true" />
+                <element signature="e#8536#8537#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="State.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ga/frame/State.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1260">
+              <caret line="97" column="19" lean-forward="false" selection-start-line="97" selection-start-column="19" selection-end-line="97" selection-end-column="19" />
+              <folding>
+                <element signature="e#3478#3479#0" expanded="true" />
+                <element signature="e#3544#3545#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -195,11 +185,9 @@
       <file leaf-file-name="GenderHotspotDiploidGRNInitializer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ga/operations/initializers/GenderHotspotDiploidGRNInitializer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
+            <state relative-caret-position="165">
               <caret line="19" column="11" lean-forward="false" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -217,7 +205,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>copy</find>
       <find>statistics</find>
       <find>csv</find>
       <find>dependenc</find>
@@ -247,6 +234,7 @@
       <find>mave</find>
       <find>mav</find>
       <find>ma</find>
+      <find>C</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -263,8 +251,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/genderGAWithHotspots/operations/reproducers/GenderReproducer.java" />
-        <option value="$PROJECT_DIR$/src/examples/experiment1/Exp1Statistics.java" />
         <option value="$PROJECT_DIR$/src/ga/operations/initializers/HaploidInitializer.java" />
         <option value="$PROJECT_DIR$/src/ga/operations/initializers/HaploidGRNInitializer.java" />
         <option value="$PROJECT_DIR$/src/ga/components/materials/GeneRegulatoryNetworkFactory.java" />
@@ -295,7 +281,6 @@
         <option value="$PROJECT_DIR$/src/main/java/ga/operations/fitnessFunctions/GRNFitnessFunction.java" />
         <option value="$PROJECT_DIR$/src/main/java/ga/components/GRNs/EvolvedHotspot.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/ga/collections/DetailedStatistics.java" />
         <option value="$PROJECT_DIR$/src/main/java/ga/collections/SimpleElitesStatistics.java" />
         <option value="$PROJECT_DIR$/src/main/java/examples/experiment1/Exp1Statistics.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
@@ -314,6 +299,9 @@
         <option value="$PROJECT_DIR$/src/main/java/ga/operations/initializers/GenderHotspotDiploidGRNInitializer.java" />
         <option value="$PROJECT_DIR$/src/main/java/ga/operations/priorOperators/SimpleGenderElitismOperator.java" />
         <option value="$PROJECT_DIR$/src/main/java/examples/experiment4/GenderHotspotDiploidGRNMain.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ga/collections/SimpleGenderElitesStatistics.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ga/collections/DetailedStatistics.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ga/collections/DetailedGenderStatistics.java" />
       </list>
     </option>
   </component>
@@ -354,7 +342,7 @@
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="793" />
+    <option name="height" value="803" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -424,9 +412,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -501,104 +486,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="operations" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Genetic-Hotspots" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Genetic-Hotspots" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ga" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="operations" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="reproducers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Genetic-Hotspots" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Genetic-Hotspots" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ga" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="operations" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="initializers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Genetic-Hotspots" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Genetic-Hotspots" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ga" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="components" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -634,6 +521,36 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="chromosomes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Genetic-Hotspots" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Genetic-Hotspots" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ga" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="collections" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -725,10 +642,13 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="maven&#9;ACTION&#9;ActivateMavenProjectsToolWindow&#10;pom.xml&#9;null&#9;null&#10;elites&#9;PSI&#9;JAVA://ga.collections.SimpleElitesStatistics&#10;detailed&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/main/java/ga/collections/DetailedStatistics.java&#10;fitness&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/main/java/examples/experiment4/GRNFitnessFunction.java&#10;mutator&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/main/java/ga/operations/mutators/GRNEdgeMutator.java&#10;init&#9;PSI&#9;JAVA://ga.operations.initializers.DiploidGRNInitializer&#10;detail&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/main/java/ga/collections/DetailedStatistics.java&#10;evo&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/main/java/ga/operations/expressionMaps/DiploidEvolvedMap.java&#10;diploidgrn&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/main/java/examples/experiment6/DiploidGRNMain.java&#10;grninit&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/main/java/ga/operations/initializers/DiploidGRNInitializer.java&#10;simplemap&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/main/java/ga/operations/expressionMaps/SimpleDiploidRandomMap.java&#10;grnmutator&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/main/java/ga/operations/mutators/GRNEdgeMutator.java&#10;grn&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/main/java/examples/experiment6/DiploidGRNMain.java&#10;fixed&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/main/java/ga/operations/expressionMaps/DiploidFixedMap.java&#10;diplo&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/main/java/ga/operations/expressionMaps/DiploidFixedMap.java&#10;gene&#9;PSI&#9;JAVA://ga.components.genes.DataGene&#10;map&#9;PSI&#9;JAVA://examples.experiment2.NgWongSchemeMap&#10;pom.&#9;FILE&#9;jar:///Users/ChinYuer/Downloads/opencsv-3.9.jar!/META-INF/maven/com.opencsv/opencsv/pom.xml&#10;pom.xm&#9;FILE&#9;jar:///Users/ChinYuer/Downloads/opencsv-3.9.jar!/META-INF/maven/com.opencsv/opencsv/pom.xml&#10;test&#9;PSI&#9;JAVA://examples.experiment4.TestField&#10;grnmutat&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/ga/operations/mutators/GRNEdgeMutator.java&#10;grnfit&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/examples/experiment4/GRNFitnessFunction.java&#10;exp1statistics&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/examples/experiment1/Exp1Statistics.java&#10;statistics&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/examples/experiment1/Exp1Statistics.java&#10;selector&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/ga/operations/selectionOperators/selectors/SimpleTournamentSelector.java&#10;generegu&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/ga/components/materials/GeneRegulatoryNetwork.java&#10;simplegenderstat&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/genderGAWithHotspots/frame/SimpleGenderState.java&#10;disc&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/genderGAWithHotspots/components/hotspots/DiscreteExpHotspot.java&#10;genderstat&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/genderGAWithHotspots/frame/GenderState.java&#10;discr&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/genderGAWithHotspots/components/hotspots/DiscreteExpHotspot.java&#10;simplediscr&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/genderGAWithHotspots/operations/hotspotMutators/SimpleDiscreteExpHotspotMutator.java&#10;simplege&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/genderGAWithHotspots/frame/SimpleGenderState.java&#10;simpledis&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/genderGAWithHotspots/operations/hotspotMutators/SimpleDiscreteExpHotspotMutator.java&#10;simpletour&#9;PSI&#9;JAVA://ga.operations.selectionOperators.selectors.SimpleTournamentSelector&#10;initial&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/examples/experiment4/GenderDiploidGRNInitializer.java&#10;genere&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/ga/components/materials/GeneRegulatoryNetwork.java&#10;gender&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/genderGAWithHotspots/components/chromosomes/SimpleGenderDiploid.java&#10;func&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/examples/experiment4/GRNFitnessFunction.java&#10;fitnes&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/examples/experiment4/GRNFitnessFunction.java&#10;datag&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/ga/components/genes/DataGene.java&#10;fitn&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/examples/experiment4/GRNFitnessFunction.java&#10;simplematerial&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/ga/components/materials/SimpleMaterial.java&#10;simplegenderdip&#9;PSI&#9;JAVA://genderGAWithHotspots.components.chromosomes.SimpleGenderDiploid&#10;simplegend&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/genderGAWithHotspots/components/chromosomes/SimpleGenderDiploid.java&#10;edgem&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/ga/operations/mutators/GRNEdgeMutator.java&#10;simpledi&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/genderGAWithHotspots/components/chromosomes/SimpleGenderDiploid.java&#10;grnmuta&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/ga/operations/mutators/GRNEdgeMutator.java&#10;genderd&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/genderGAWithHotspots/components/chromosomes/SimpleGenderDiploid.java&#10;simplestat&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/ga/frame/SimpleState.java" />
+    <property name="SearchEverywhereHistoryKey" value="coupleable&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/components/chromosomes/Coupleable.java&#10;maven&#9;ACTION&#9;ActivateMavenProjectsToolWindow&#10;pom.xml&#9;null&#9;null&#10;elites&#9;PSI&#9;JAVA://ga.collections.SimpleElitesStatistics&#10;detailed&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/main/java/ga/collections/DetailedStatistics.java&#10;fitness&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/main/java/examples/experiment4/GRNFitnessFunction.java&#10;mutator&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/main/java/ga/operations/mutators/GRNEdgeMutator.java&#10;init&#9;PSI&#9;JAVA://ga.operations.initializers.DiploidGRNInitializer&#10;detail&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/main/java/ga/collections/DetailedStatistics.java&#10;evo&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/main/java/ga/operations/expressionMaps/DiploidEvolvedMap.java&#10;diploidgrn&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/main/java/examples/experiment6/DiploidGRNMain.java&#10;grninit&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/main/java/ga/operations/initializers/DiploidGRNInitializer.java&#10;simplemap&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/main/java/ga/operations/expressionMaps/SimpleDiploidRandomMap.java&#10;grnmutator&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/main/java/ga/operations/mutators/GRNEdgeMutator.java&#10;grn&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/main/java/examples/experiment6/DiploidGRNMain.java&#10;fixed&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/main/java/ga/operations/expressionMaps/DiploidFixedMap.java&#10;diplo&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/main/java/ga/operations/expressionMaps/DiploidFixedMap.java&#10;gene&#9;PSI&#9;JAVA://ga.components.genes.DataGene&#10;map&#9;PSI&#9;JAVA://examples.experiment2.NgWongSchemeMap&#10;pom.&#9;FILE&#9;jar:///Users/ChinYuer/Downloads/opencsv-3.9.jar!/META-INF/maven/com.opencsv/opencsv/pom.xml&#10;pom.xm&#9;FILE&#9;jar:///Users/ChinYuer/Downloads/opencsv-3.9.jar!/META-INF/maven/com.opencsv/opencsv/pom.xml&#10;test&#9;PSI&#9;JAVA://examples.experiment4.TestField&#10;grnmutat&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/ga/operations/mutators/GRNEdgeMutator.java&#10;grnfit&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/examples/experiment4/GRNFitnessFunction.java&#10;exp1statistics&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/examples/experiment1/Exp1Statistics.java&#10;statistics&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/examples/experiment1/Exp1Statistics.java&#10;selector&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/ga/operations/selectionOperators/selectors/SimpleTournamentSelector.java&#10;generegu&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/ga/components/materials/GeneRegulatoryNetwork.java&#10;simplegenderstat&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/genderGAWithHotspots/frame/SimpleGenderState.java&#10;disc&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/genderGAWithHotspots/components/hotspots/DiscreteExpHotspot.java&#10;genderstat&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/genderGAWithHotspots/frame/GenderState.java&#10;discr&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/genderGAWithHotspots/components/hotspots/DiscreteExpHotspot.java&#10;simplediscr&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/genderGAWithHotspots/operations/hotspotMutators/SimpleDiscreteExpHotspotMutator.java&#10;simplege&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/genderGAWithHotspots/frame/SimpleGenderState.java&#10;simpledis&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/genderGAWithHotspots/operations/hotspotMutators/SimpleDiscreteExpHotspotMutator.java&#10;simpletour&#9;PSI&#9;JAVA://ga.operations.selectionOperators.selectors.SimpleTournamentSelector&#10;initial&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/examples/experiment4/GenderDiploidGRNInitializer.java&#10;genere&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/ga/components/materials/GeneRegulatoryNetwork.java&#10;gender&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/genderGAWithHotspots/components/chromosomes/SimpleGenderDiploid.java&#10;func&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/examples/experiment4/GRNFitnessFunction.java&#10;fitnes&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/examples/experiment4/GRNFitnessFunction.java&#10;datag&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/ga/components/genes/DataGene.java&#10;fitn&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/examples/experiment4/GRNFitnessFunction.java&#10;simplematerial&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/ga/components/materials/SimpleMaterial.java&#10;simplegenderdip&#9;PSI&#9;JAVA://genderGAWithHotspots.components.chromosomes.SimpleGenderDiploid&#10;simplegend&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/genderGAWithHotspots/components/chromosomes/SimpleGenderDiploid.java&#10;edgem&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/ga/operations/mutators/GRNEdgeMutator.java&#10;simpledi&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/genderGAWithHotspots/components/chromosomes/SimpleGenderDiploid.java&#10;grnmuta&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/ga/operations/mutators/GRNEdgeMutator.java&#10;genderd&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/genderGAWithHotspots/components/chromosomes/SimpleGenderDiploid.java" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -741,11 +661,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ga.collections" />
       <recent name="ga.operations.priorOperators" />
       <recent name="ga.components.chromosomes" />
       <recent name="ga.operations.fitnessFunctions" />
       <recent name="ga.components.GRNs" />
-      <recent name="ga.components.genes" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java" />
@@ -1344,7 +1264,8 @@
       <workItem from="1497435694475" duration="5614000" />
       <workItem from="1497512751686" duration="601000" />
       <workItem from="1497513772896" duration="451000" />
-      <workItem from="1497514384649" duration="10434000" />
+      <workItem from="1497514384649" duration="14342000" />
+      <workItem from="1497569359398" duration="2398000" />
     </task>
     <task id="LOCAL-00001" summary="mimic david's experiment 4 ready">
       <created>1492845246744</created>
@@ -1395,11 +1316,18 @@
       <option name="project" value="LOCAL" />
       <updated>1497515539097</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="implemented gender diploid">
+      <created>1497528887283</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1497528887283</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="131814000" />
+    <option name="totallyTimeSpent" value="138120000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1411,39 +1339,39 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="793" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="803" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32831737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32596686" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16666667" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27900553" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956153" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27900553" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3281471" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21041666" sideWeight="0.49156117" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21041666" sideWeight="0.49156117" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32596686" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24938272" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24978614" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3956044" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24938272" sideWeight="0.5084388" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3956044" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32596686" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298611" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32596686" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1478,7 +1406,8 @@
     <MESSAGE value="add maven" />
     <MESSAGE value="automatically generate plots" />
     <MESSAGE value="setting up marvel on my new laptop" />
-    <option name="LAST_COMMIT_MESSAGE" value="setting up marvel on my new laptop" />
+    <MESSAGE value="implemented gender diploid" />
+    <option name="LAST_COMMIT_MESSAGE" value="implemented gender diploid" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1505,17 +1434,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/ga/pythons/statistics_summary_plotter.py" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/genderGAWithHotspots/components/hotspots/UniformHotspot.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/genderGAWithHotspots/components/hotspots/DiscreteExpHotspot.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/examples/experiment4/GenderDiploidGRNInitializer.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/ga/operations/fitnessFunctions/GRNFitnessFunction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1526,7 +1448,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="13" column="23" lean-forward="false" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1534,7 +1455,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1542,7 +1462,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="15" column="10" lean-forward="false" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1550,7 +1469,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1562,23 +1480,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/genderGAWithHotspots/frame/GenderState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-93">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/genderGAWithHotspots/frame/GenderState.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/ga/operations/postOperators/SimpleFillingOperatorForNormalizable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="58" column="56" lean-forward="false" selection-start-line="58" selection-start-column="56" selection-end-line="58" selection-end-column="56" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1751#1752#0" expanded="false" />
-            <element signature="e#1787#1788#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1586,18 +1492,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="89">
           <caret line="7" column="81" lean-forward="false" selection-start-line="7" selection-start-column="81" selection-end-line="7" selection-end-column="81" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/examples/experiment1/Exp1Statistics.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="139" column="8" lean-forward="false" selection-start-line="139" selection-start-column="8" selection-end-line="139" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/examples/experiment1/Exp1Statistics.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/ga/collections/SimpleElitesStatistics.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -1612,10 +1510,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="127">
           <caret line="45" column="20" lean-forward="false" selection-start-line="45" selection-start-column="20" selection-end-line="45" selection-end-column="20" />
-          <folding>
-            <element signature="e#1662#1663#0" expanded="false" />
-            <element signature="e#1698#1699#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1632,29 +1526,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/examples/experiment3/Exp3Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="75" column="79" lean-forward="false" selection-start-line="75" selection-start-column="79" selection-end-line="75" selection-end-column="79" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/examples/experiment3/Exp3Main.java" />
     <entry file="file://$PROJECT_DIR$/COPYING">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2554">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ga/collections/DetailedStatistics.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="161" column="0" lean-forward="false" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1674,51 +1550,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/genderGAWithHotspots/components/hotspots/Hotspot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/genderGAWithHotspots/components/chromosomes/Coupleable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" column="17" lean-forward="false" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/genderGAWithHotspots/components/chromosomes/SimpleGenderDiploid.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="36" column="13" lean-forward="false" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/examples/experiment1/Exp1Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="45" column="13" lean-forward="false" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/examples/experiment3/Exp3Initializer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-455">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/genderGAWithHotspots/components/hotspots/Hotspot.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/genderGAWithHotspots/components/chromosomes/Coupleable.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/genderGAWithHotspots/components/chromosomes/SimpleGenderDiploid.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/examples/experiment1/Exp1Main.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/examples/experiment3/Exp3Initializer.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/ga/operations/reproducers/SimpleHaploidNPReproducer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="40" column="13" lean-forward="false" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1727,7 +1567,7 @@
         <state relative-caret-position="1185">
           <caret line="79" column="76" lean-forward="false" selection-start-line="79" selection-start-column="76" selection-end-line="79" selection-end-column="76" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1736,9 +1576,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1746,7 +1583,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="960">
           <caret line="70" column="53" lean-forward="false" selection-start-line="70" selection-start-column="53" selection-end-line="70" selection-end-column="53" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1754,10 +1590,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-192">
           <caret line="17" column="11" lean-forward="false" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
-          <folding>
-            <element signature="e#1957#1958#0" expanded="true" />
-            <element signature="e#2063#2064#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1765,7 +1597,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="52" column="110" lean-forward="true" selection-start-line="52" selection-start-column="34" selection-end-line="52" selection-end-column="110" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1773,15 +1604,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-208">
           <caret line="19" column="63" lean-forward="true" selection-start-line="19" selection-start-column="63" selection-end-line="19" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ga/components/chromosomes/Coupleable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1790,9 +1612,9 @@
         <state relative-caret-position="41">
           <caret line="12" column="26" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="26" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#792#793#0" expanded="true" />
-            <element signature="e#824#825#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#792#793#0" expanded="false" />
+            <element signature="e#824#825#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1802,20 +1624,18 @@
         <state relative-caret-position="691">
           <caret line="57" column="0" lean-forward="true" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1853#1854#0" expanded="true" />
-            <element signature="e#1883#1884#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1853#1854#0" expanded="false" />
+            <element signature="e#1883#1884#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ga/operations/initializers/GenderHotspotDiploidGRNInitializer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
+        <state relative-caret-position="165">
           <caret line="19" column="11" lean-forward="false" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1823,9 +1643,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="163">
           <caret line="56" column="37" lean-forward="false" selection-start-line="56" selection-start-column="37" selection-end-line="56" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1833,7 +1650,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="98">
           <caret line="45" column="11" lean-forward="false" selection-start-line="45" selection-start-column="11" selection-end-line="45" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1841,7 +1657,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="406">
           <caret line="50" column="11" lean-forward="false" selection-start-line="50" selection-start-column="11" selection-end-line="50" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1849,7 +1664,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
           <caret line="38" column="28" lean-forward="false" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1877,25 +1691,82 @@
         <state relative-caret-position="156">
           <caret line="41" column="11" lean-forward="false" selection-start-line="41" selection-start-column="11" selection-end-line="41" selection-end-column="11" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/examples/experiment6/DiploidGRNMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
+        <state relative-caret-position="795">
           <caret line="78" column="65" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ga/frame/State.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1260">
+          <caret line="97" column="19" lean-forward="false" selection-start-line="97" selection-start-column="19" selection-end-line="97" selection-end-column="19" />
+          <folding>
+            <element signature="e#3478#3479#0" expanded="true" />
+            <element signature="e#3544#3545#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ga/collections/Statistics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="34" column="17" lean-forward="false" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ga/components/chromosomes/Coupleable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="389">
+          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/examples/experiment4/GenderHotspotDiploidGRNMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="78" column="0" lean-forward="true" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+        <state relative-caret-position="810">
+          <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ga/collections/SimpleGenderElitesStatistics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1395">
+          <caret line="101" column="33" lean-forward="false" selection-start-line="101" selection-start-column="33" selection-end-line="101" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ga/collections/DetailedStatistics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="145" column="0" lean-forward="true" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ga/collections/DetailedGenderStatistics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="502">
+          <caret line="226" column="51" lean-forward="false" selection-start-line="226" selection-start-column="51" selection-end-line="226" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#8380#8381#0" expanded="true" />
+            <element signature="e#8416#8417#0" expanded="true" />
+            <element signature="e#8478#8479#0" expanded="true" />
+            <element signature="e#8536#8537#0" expanded="true" />
           </folding>
         </state>
       </provider>

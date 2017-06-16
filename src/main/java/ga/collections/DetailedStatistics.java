@@ -76,7 +76,7 @@ public class DetailedStatistics <C extends Chromosome> implements Statistics<C> 
         return new DetailedStatistics<>(elites, worsts, medians, means, deltas);
     }
 
-    public double getAverageFitnessValueOfAPopulation(@NotNull final List<Individual<C>> data) {
+    private double getAverageFitnessValueOfAPopulation(@NotNull final List<Individual<C>> data) {
         double fitnessValueSum = 0;
         for (Individual<C> individual : data) {
             fitnessValueSum += individual.getFitness();
