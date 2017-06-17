@@ -3,11 +3,9 @@ package examples.experiment3;
 import ga.collections.DetailedGenderStatistics;
 import ga.collections.Population;
 import ga.components.chromosomes.GenderDiploid;
-import ga.components.chromosomes.SimpleDiploid;
-import ga.frame.Frame;
-import ga.frame.SimpleFrame;
-import ga.frame.SimpleState;
-import ga.frame.State;
+import ga.frame.*;
+import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
+import ga.operations.dominanceMapMutators.ExpressionMapMutator;
 import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.GRNFitnessFunction;
 import ga.operations.initializers.GenderDiploidGRNInitializer;
@@ -17,9 +15,8 @@ import ga.operations.postOperators.PostOperator;
 import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
 import ga.operations.priorOperators.PriorOperator;
 import ga.operations.priorOperators.SimpleGenderElitismOperator;
-import ga.operations.reproducers.GenderDiploidReproducer;
+import ga.operations.reproducers.SimpleGenderReproducer;
 import ga.operations.reproducers.Reproducer;
-import ga.operations.reproducers.SimpleDiploidReproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
@@ -41,13 +38,13 @@ public class GenderDiploidGRNMain {
     private static final double dominanceMutationRate = 0.001;
     private static final int numElites = 10;
 
-    private static final int size = 200;
+    private static final int size = 1000;
     private static final int tournamentSize = 3;
     private static final double selectivePressure = 1.0;
     private static final double reproductionRate = 0.8;
-    private static final int maxGen = 10;
+    private static final int maxGen = 200;
 
-    private static final double maxFit = 501;
+    private static final double maxFit = 300;
     private static final double epsilon = .5;
 
     private static final int numberOfChildren = 2;
@@ -67,7 +64,7 @@ public class GenderDiploidGRNMain {
 
         // Initializer
         GenderDiploidGRNInitializer initializer =
-                new GenderDiploidGRNInitializer(size, target, edgeSize, dominanceMutationRate);
+                new GenderDiploidGRNInitializer(size, target, edgeSize);
 
         // Population
         Population<GenderDiploid> population = initializer.initialize();
@@ -82,15 +79,18 @@ public class GenderDiploidGRNMain {
 
         PostOperator<GenderDiploid> fillingOperator = new SimpleFillingOperatorForNormalizable<>(new SimpleTournamentScheme(tournamentSize, selectivePressure));
 
-        Reproducer<GenderDiploid> reproducer = new GenderDiploidReproducer(numberOfChildren, dominanceMutationRate);
+        Reproducer<GenderDiploid> reproducer = new SimpleGenderReproducer(numberOfChildren);
 
         DetailedGenderStatistics<GenderDiploid> statistics = new DetailedGenderStatistics<>();
 
-        State<GenderDiploid> state = new SimpleState<>(population, fitnessFunction, mutator, reproducer, selector, 2, reproductionRate);
+        ExpressionMapMutator expressionMapMutator = new DiploidDominanceMapMutator(dominanceMutationRate);
+
+        State<GenderDiploid> state = new SimpleDiploidState<>(population, fitnessFunction, mutator, reproducer,
+                selector, 2, reproductionRate, expressionMapMutator);
 
         state.record(statistics);
 
-        Frame<GenderDiploid> frame = new SimpleFrame<>(state, fillingOperator, statistics, priorOperator);
+        Frame<GenderDiploid> frame = new DiploidFrame<>(state, fillingOperator, statistics, priorOperator);
 
         statistics.print(0);
         statistics.setDirectory(outputDirectory + "/" + dateFormat.format(date));

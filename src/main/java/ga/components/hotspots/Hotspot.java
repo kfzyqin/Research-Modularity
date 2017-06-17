@@ -41,6 +41,9 @@ public class Hotspot implements Copyable<Hotspot> {
         }
     }
 
+    /*
+    Get the number of hotspot positions.
+     */
     public int getSize() {
         return this.size;
     }
@@ -64,5 +67,10 @@ public class Hotspot implements Copyable<Hotspot> {
     @Override
     public Hotspot copy() {
           return new Hotspot(this.size, this.dnaLength, this.recombinationRate);
+    }
+
+    public SortedSet<Integer> getSortedHotspotPositions() {
+        SortedSet<Integer> positions = new TreeSet<Integer>(recombinationRate.keySet());
+        return positions;
     }
 }

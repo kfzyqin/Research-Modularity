@@ -13,10 +13,10 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * Created by zhenyueqin on 17/6/17.
  */
-public class GenderDiploidReproducer extends GenderReproducer<GenderDiploid> {
+public class SimpleGenderReproducer extends GenderReproducer<GenderDiploid> {
 
-    public GenderDiploidReproducer(final int numOfChildren, final double dominanceMapMutationRate) {
-        super(numOfChildren, dominanceMapMutationRate);
+    public SimpleGenderReproducer(final int numOfChildren) {
+        super(numOfChildren);
     }
 
     @Override

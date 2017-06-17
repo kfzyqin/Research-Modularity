@@ -22,10 +22,8 @@ public class GenderDiploidGRNInitializer implements Initializer<GenderDiploid> {
     protected int size;
     protected final SimpleMaterial target;
     protected final int edgeSize;
-    protected final double dominanceMutationRate;
 
-    public GenderDiploidGRNInitializer(final int size, final int[] target, final int edgeSize,
-                                       final double dominanceMutationRate) {
+    public GenderDiploidGRNInitializer(final int size, final int[] target, final int edgeSize) {
         setSize(size);
         ArrayList<DataGene> tempTargetList = new ArrayList<>();
         for (int i=0; i<target.length; i++) {
@@ -33,7 +31,6 @@ public class GenderDiploidGRNInitializer implements Initializer<GenderDiploid> {
         }
         this.target = new SimpleMaterial(tempTargetList);
         this.edgeSize = edgeSize;
-        this.dominanceMutationRate = dominanceMutationRate;
     }
 
     @Override

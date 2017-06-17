@@ -16,11 +16,9 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public abstract class GenderReproducer <G extends Chromosome & Coupleable> implements CoupleReproducer<G> {
     protected int numOfChildren;
-    protected final double dominanceMapMutationRate;
 
-    public GenderReproducer(final int numOfChildren, final double dominanceMapMutationRate) {
+    public GenderReproducer(final int numOfChildren) {
         setNumOfChildren(numOfChildren);
-        this.dominanceMapMutationRate = dominanceMapMutationRate;
     }
 
     public void setNumOfChildren(final int numOfChildren) {
@@ -50,15 +48,20 @@ public abstract class GenderReproducer <G extends Chromosome & Coupleable> imple
         // We assume that crossover is bound to happen, so the range starts from 1 and end with the second last.
         final int crossIndex = ThreadLocalRandom.current().nextInt(1,dna1.getSize()-1);
 
+        this.crossoverTwoDNAsAt(dna1, dna2, crossIndex);
+
+        gametes.add(dna1);
+        gametes.add(dna2);
+        return gametes;
+    }
+
+    protected void crossoverTwoDNAsAt(Material dna1, Material dna2, int crossIndex) {
         for (int i = crossIndex; i < dna1.getSize(); i++) {
             final int i1 = ((Gene<Integer>) dna1.getGene(i)).getValue();
             final int i2 = ((Gene<Integer>) dna2.getGene(i)).getValue();
             dna1.getGene(i).setValue(i2);
             dna2.getGene(i).setValue(i1);
         }
-        gametes.add(dna1);
-        gametes.add(dna2);
-        return gametes;
     }
 
     public int getNumOfChildren() {
