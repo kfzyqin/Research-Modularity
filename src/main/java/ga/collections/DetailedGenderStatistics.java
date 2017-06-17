@@ -1,9 +1,19 @@
 package ga.collections;
 
+import au.com.bytecode.opencsv.CSVWriter;
 import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.Chromosome;
 import ga.components.chromosomes.Coupleable;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -213,8 +223,23 @@ public class DetailedGenderStatistics<G extends Chromosome & Coupleable> impleme
     }
 
     @Override
-    public void save(String filename) {
+    public void save(@NotNull final String filename) {
+        final File file = new File(filename);
+        PrintWriter pw = null;
+        try {
+            file.createNewFile();
+            pw = new PrintWriter(file);
+            for (int i = 0; i <= generation; i++){
+                pw.println(getSummary(i));
+                pw.println();
+            }
 
+        } catch (IOException e) {
+            System.err.println("Failed to save file.");
+        } finally {
+            if (pw != null)
+                pw.close();
+        }
     }
 
     @Override
@@ -229,6 +254,93 @@ public class DetailedGenderStatistics<G extends Chromosome & Coupleable> impleme
 
     @Override
     public String getSummary(int generation) {
-        return null;
+        return String.format("Generation: %d; Delta: %.4f, \n" +
+                        "Male Best >> %s <<\nMale Worst >> %s <<\nMale Median >> %s <<\nMale Mean: >> %.4f <<" +
+                        "Female Best >> %s <<\nFemale Worst >> %s <<\nFemale Median >> %s <<\nFemale Mean: >> %.4f <<" +
+                        "Best >> %s <<\nWorst >> %s <<\nMedian >> %s <<\nMean: >> %.4f <<",
+                generation,
+                deltas.get(generation),
+                maleElites.get(generation).toString(), maleWorsts.get(generation).toString(), maleMedians.get(generation).toString(), maleMeans.get(generation),
+                femaleElites.get(generation).toString(), femaleWorsts.get(generation).toString(), femaleMedians.get(generation).toString(), femaleMeans.get(generation),
+                elites.get(generation).toString(), worsts.get(generation).toString(), medians.get(generation).toString(), means.get(generation));
+    }
+
+    public void setDirectory(@NotNull String directoryName) {
+        this.directoryPath += "/" + directoryName + "/";
+        boolean isCreated = this.createDirectory(this.directoryPath);
+        if (!isCreated) {
+            throw new RuntimeException("Failed to create the directory: " + this.directoryPath);
+        }
+    }
+
+    private boolean createDirectory(String directoryPath) {
+        File dir = new File(directoryPath);
+        boolean isDirCreated = dir.mkdir();
+        return isDirCreated || dir.mkdirs();
+    }
+
+    public void generateCSVFile(String fileName) throws IOException {
+        final File file = new File(this.directoryPath + fileName);
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            System.err.println("Failed to save csv file.");
+        }
+
+        CSVWriter writer = new CSVWriter(new FileWriter(this.directoryPath + fileName), '\t');
+        String[] entries = "Best#Worst#Median#Mean#Male_Best#Male_Worst#Male_Median#Male_Mean#Female_Worst#Female_Median#FeFemale_Mean".split("#");
+        writer.writeNext(entries);
+        for (int i=0; i<=generation; i++) {
+            entries = (Double.toString(elites.get(i).getFitness()) + "#" +
+                    Double.toString(worsts.get(i).getFitness()) + "#" +
+                    Double.toString(medians.get(i).getFitness()) + "#" +
+                    Double.toString(means.get(i))+ "#" +
+                    Double.toString(maleElites.get(i).getFitness()) + "#" +
+                    Double.toString(maleWorsts.get(i).getFitness()) + "#" +
+                    Double.toString(maleMedians.get(i).getFitness()) + "#" +
+                    Double.toString(maleMeans.get(i)) + "#" +
+                    Double.toString(femaleElites.get(i).getFitness()) + "#" +
+                    Double.toString(femaleWorsts.get(i).getFitness()) + "#" +
+                    Double.toString(femaleMedians.get(i).getFitness()) + "#" +
+                    Double.toString(femaleMeans.get(i))
+            ).split("#");
+            writer.writeNext(entries);
+        }
+        writer.close();
+    }
+
+    public void generatePlot(String chartTitle, String fileName) throws IOException {
+        JFreeChart lineChartObject = ChartFactory.createLineChart(chartTitle,
+                "Generation",
+                "Fitness",
+                this.createDataSet(),
+                PlotOrientation.VERTICAL,
+                true,true,false);
+
+        int width = 720;    /* Width of the image */
+        int height = 540;   /* Height of the image */
+        File lineChartFile = new File( this.directoryPath + fileName);
+        ChartUtilities.saveChartAsJPEG(lineChartFile ,lineChartObject, width ,height);
+    }
+
+    private DefaultCategoryDataset createDataSet() {
+        DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
+        for (int i=0; i<=generation; i++) {
+            dataSet.addValue(elites.get(i).getFitness(), "Best", Integer.toString(i));
+            dataSet.addValue(worsts.get(i).getFitness(), "Worst", Integer.toString(i));
+            dataSet.addValue(medians.get(i).getFitness(), "Median", Integer.toString(i));
+            dataSet.addValue(means.get(i), "Mean", Integer.toString(i));
+
+            dataSet.addValue(maleElites.get(i).getFitness(), "Male Best", Integer.toString(i));
+            dataSet.addValue(maleWorsts.get(i).getFitness(), "Male Worst", Integer.toString(i));
+            dataSet.addValue(maleMedians.get(i).getFitness(), "Male Median", Integer.toString(i));
+            dataSet.addValue(maleMeans.get(i), "Male Mean", Integer.toString(i));
+
+            dataSet.addValue(femaleElites.get(i).getFitness(), "Best", Integer.toString(i));
+            dataSet.addValue(femaleWorsts.get(i).getFitness(), "Worst", Integer.toString(i));
+            dataSet.addValue(femaleMedians.get(i).getFitness(), "Median", Integer.toString(i));
+            dataSet.addValue(femaleMeans.get(i), "Mean", Integer.toString(i));
+        }
+        return dataSet;
     }
 }

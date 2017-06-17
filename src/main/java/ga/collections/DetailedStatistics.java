@@ -167,7 +167,7 @@ public class DetailedStatistics <C extends Chromosome> implements Statistics<C> 
             entries = (Double.toString(elites.get(i).getFitness()) + "#" +
                 Double.toString(worsts.get(i).getFitness()) + "#" +
                 Double.toString(medians.get(i).getFitness()) + "#" +
-                means.get(i)).split("#");
+                Double.toString(means.get(i))).split("#");
             writer.writeNext(entries);
         }
         writer.close();
