@@ -17,25 +17,30 @@ import java.util.List;
 public class DiploidEvolvedMap implements ExpressionMap<SimpleMaterial, SimpleMaterial> {
 
     private SimpleMaterial dominanceMap;
-    private final double evolvingMutationRate;
 
-    public DiploidEvolvedMap(final SimpleMaterial dominanceValue, double evolvingMutationRate) {
+    public DiploidEvolvedMap(final SimpleMaterial dominanceValue) {
         this.dominanceMap = dominanceValue.copy();
-        this.evolvingMutationRate = evolvingMutationRate;
     }
 
-    public DiploidEvolvedMap(final int mapSize, double evolvingMutationRate) {
+    public DiploidEvolvedMap(final int mapSize) {
         List<Gene> genes = new ArrayList<>(mapSize);
         for (int i=0; i<mapSize; i++) {
             genes.add(new EdgeGene());
         }
         this.dominanceMap = new SimpleMaterial(genes);
-        this.evolvingMutationRate = evolvingMutationRate;
     }
 
     @Override
     public ExpressionMap<SimpleMaterial, SimpleMaterial> copy() {
-        return new DiploidEvolvedMap(this.dominanceMap.copy(), this.evolvingMutationRate);
+        return new DiploidEvolvedMap(this.dominanceMap.copy());
+    }
+
+    public int getSize() {
+        return this.dominanceMap.getSize();
+    }
+
+    public SimpleMaterial getDominanceMap() {
+        return this.dominanceMap;
     }
 
     @Override
@@ -54,16 +59,7 @@ public class DiploidEvolvedMap implements ExpressionMap<SimpleMaterial, SimpleMa
                 genes.add(new EdgeGene(dna1Value));
             }
         }
-        evolveDominanceMap();
         return new SimpleMaterial(genes);
-    }
-
-    private void evolveDominanceMap() {
-        for (int i=0; i<this.dominanceMap.getSize(); i++) {
-            if (Math.random() < this.evolvingMutationRate) {
-                ((EdgeGene) this.dominanceMap.getGene(i)).mutate();
-            }
-        }
     }
 
     @Override

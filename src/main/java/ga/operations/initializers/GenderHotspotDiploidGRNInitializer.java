@@ -27,8 +27,7 @@ public class GenderHotspotDiploidGRNInitializer extends GenderDiploidGRNInitiali
     @Override
     protected Individual<GenderDiploid> generateIndividual() {
         GeneRegulatoryNetworkFactory grnFactor = new GeneRegulatoryNetworkFactory(this.target, this.edgeSize);
-        ExpressionMap<SimpleMaterial,SimpleMaterial> mapping = new DiploidEvolvedMap(
-                this.target.getSize() * this.target.getSize(), this.dominanceMutationRate);
+        ExpressionMap<SimpleMaterial,SimpleMaterial> mapping = new DiploidEvolvedMap(this.target.getSize() * this.target.getSize());
         GeneRegulatoryNetwork dna1 = grnFactor.generateGeneRegulatoryNetwork();
         GeneRegulatoryNetwork dna2 = grnFactor.generateGeneRegulatoryNetwork();
         Hotspot hotspot = new Hotspot(this.hotspotSize, target.getSize() * target.getSize());

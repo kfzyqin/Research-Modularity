@@ -31,7 +31,7 @@ import ga.operations.priorOperators.PriorOperator;
  * This class provides a general framework for the genetic algorithm to run.
  * The abstract method 'evolve' is the content for one iteration of GA.
  *
- * @author Siu Kei Muk (David)
+ * @author Siu Kei Muk (David) and Zhenyue Qin
  * @since 29/08/16.
  */
 public abstract class Frame<C extends Chromosome> {

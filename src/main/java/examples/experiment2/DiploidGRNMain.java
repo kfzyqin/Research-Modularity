@@ -3,10 +3,9 @@ package examples.experiment2;
 import ga.collections.DetailedStatistics;
 import ga.collections.Population;
 import ga.components.chromosomes.SimpleDiploid;
-import ga.frame.Frame;
-import ga.frame.SimpleFrame;
-import ga.frame.SimpleState;
-import ga.frame.State;
+import ga.frame.*;
+import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
+import ga.operations.dominanceMapMutators.ExpressionMapMutator;
 import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.GRNFitnessFunction;
 import ga.operations.initializers.DiploidGRNInitializer;
@@ -82,10 +81,13 @@ public class DiploidGRNMain {
 
         DetailedStatistics<SimpleDiploid> statistics = new DetailedStatistics<>();
 
-        State<SimpleDiploid> state = new SimpleState<>(population, fitnessFunction, mutator, reproducer, selector, 2, reproductionRate);
+        ExpressionMapMutator expressionMapMutator = new DiploidDominanceMapMutator(dominanceMutationRate);
+
+        State<SimpleDiploid> state = new SimpleDiploidState<>(population, fitnessFunction, mutator, reproducer,
+                selector, 2, reproductionRate, expressionMapMutator);
 
         state.record(statistics);
-        Frame<SimpleDiploid> frame = new SimpleFrame<>(state, fillingOperator, statistics, priorOperator);
+        Frame<SimpleDiploid> frame = new DiploidFrame<>(state, fillingOperator, statistics, priorOperator);
 
         statistics.print(0);
         statistics.setDirectory(outputDirectory + "/" + dateFormat.format(date));

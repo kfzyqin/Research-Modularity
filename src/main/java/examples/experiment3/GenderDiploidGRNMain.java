@@ -36,18 +36,16 @@ public class GenderDiploidGRNMain {
     private static final int[] target = {-1, 1, -1, 1, -1, 1, -1, 1, -1, 1};
     private static final int maxCycle = 100;
     private static final int edgeSize = 20;
-    private static final int perturbations = 500;
-    private static final int hotspotSize = 9;
+    private static final int perturbations = 300;
     private static final double geneMutationRate = 0.002;
     private static final double dominanceMutationRate = 0.001;
-    private static final double hotspotMutationRate = 0.0005;
     private static final int numElites = 10;
 
     private static final int size = 200;
     private static final int tournamentSize = 3;
     private static final double selectivePressure = 1.0;
     private static final double reproductionRate = 0.8;
-    private static final int maxGen = 200;
+    private static final int maxGen = 10;
 
     private static final double maxFit = 501;
     private static final double epsilon = .5;
@@ -105,7 +103,7 @@ public class GenderDiploidGRNMain {
         }
         statistics.save(summaryFileName);
         statistics.generateCSVFile(csvFileName);
-
+        statistics.generatePlot(plotTitle, plotFileName);
 
     }
 }

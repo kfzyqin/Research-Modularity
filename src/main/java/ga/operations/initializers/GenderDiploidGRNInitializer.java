@@ -65,8 +65,7 @@ public class GenderDiploidGRNInitializer implements Initializer<GenderDiploid> {
 
     protected Individual<GenderDiploid> generateIndividual() {
         GeneRegulatoryNetworkFactory grnFactor = new GeneRegulatoryNetworkFactory(this.target, this.edgeSize);
-        ExpressionMap<SimpleMaterial,SimpleMaterial> mapping = new DiploidEvolvedMap(
-                this.target.getSize() * this.target.getSize(), this.dominanceMutationRate);
+        ExpressionMap<SimpleMaterial,SimpleMaterial> mapping = new DiploidEvolvedMap(this.target.getSize() * this.target.getSize());
         GeneRegulatoryNetwork dna1 = grnFactor.generateGeneRegulatoryNetwork();
         GeneRegulatoryNetwork dna2 = grnFactor.generateGeneRegulatoryNetwork();
         return new Individual<>(new GenderDiploid(dna1, dna2, mapping, Math.random() < 0.5));

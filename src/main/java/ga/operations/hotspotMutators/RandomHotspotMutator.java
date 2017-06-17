@@ -14,7 +14,7 @@ public class RandomHotspotMutator implements HotspotMutator {
     private double hotspotMutationProbability;
 
     public RandomHotspotMutator(final double hotspotMutatorProbability) {
-        this.hotspotMutationProbability = hotspotMutatorProbability;
+        setHotspotMutationProbability(hotspotMutatorProbability);
     }
 
     public void setHotspotMutationProbability(double probability) {

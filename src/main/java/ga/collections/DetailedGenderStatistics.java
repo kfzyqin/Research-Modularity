@@ -185,7 +185,7 @@ public class DetailedGenderStatistics<G extends Chromosome & Coupleable> impleme
         Individual<G> maleMedian = maleIndividuals.get(maleIndividuals.size() / 2).copy();
         Individual<G> femaleMedian = femaleIndividuals.get(femaleIndividuals.size() / 2).copy();
         maleMedians.add(maleMedian);
-        femaleElites.add(femaleMedian);
+        femaleMedians.add(femaleMedian);
 
         maleMeans.add(getAverageFitnessValueOfAPopulation(maleIndividuals));
         femaleMeans.add(getAverageFitnessValueOfAPopulation(femaleIndividuals));
@@ -224,7 +224,7 @@ public class DetailedGenderStatistics<G extends Chromosome & Coupleable> impleme
 
     @Override
     public void save(@NotNull final String filename) {
-        final File file = new File(filename);
+        final File file = new File(this.directoryPath + filename);
         PrintWriter pw = null;
         try {
             file.createNewFile();
@@ -336,10 +336,10 @@ public class DetailedGenderStatistics<G extends Chromosome & Coupleable> impleme
             dataSet.addValue(maleMedians.get(i).getFitness(), "Male Median", Integer.toString(i));
             dataSet.addValue(maleMeans.get(i), "Male Mean", Integer.toString(i));
 
-            dataSet.addValue(femaleElites.get(i).getFitness(), "Best", Integer.toString(i));
-            dataSet.addValue(femaleWorsts.get(i).getFitness(), "Worst", Integer.toString(i));
-            dataSet.addValue(femaleMedians.get(i).getFitness(), "Median", Integer.toString(i));
-            dataSet.addValue(femaleMeans.get(i), "Mean", Integer.toString(i));
+            dataSet.addValue(femaleElites.get(i).getFitness(), "Female Best", Integer.toString(i));
+            dataSet.addValue(femaleWorsts.get(i).getFitness(), "Female Worst", Integer.toString(i));
+            dataSet.addValue(femaleMedians.get(i).getFitness(), "Female Median", Integer.toString(i));
+            dataSet.addValue(femaleMeans.get(i), "Female Mean", Integer.toString(i));
         }
         return dataSet;
     }

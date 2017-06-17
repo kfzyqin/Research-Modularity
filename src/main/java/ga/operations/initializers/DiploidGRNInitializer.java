@@ -63,8 +63,7 @@ public class DiploidGRNInitializer implements Initializer<SimpleDiploid> {
 
     private Individual<SimpleDiploid> generateIndividual() {
         GeneRegulatoryNetworkFactory grnFactor = new GeneRegulatoryNetworkFactory(this.target, this.edgeSize);
-        ExpressionMap<SimpleMaterial,SimpleMaterial> mapping = new DiploidEvolvedMap(
-          this.target.getSize() * this.target.getSize(), this.dominanceMutationRate);
+        ExpressionMap<SimpleMaterial,SimpleMaterial> mapping = new DiploidEvolvedMap(this.target.getSize() * this.target.getSize());
         GeneRegulatoryNetwork dna1 = grnFactor.generateGeneRegulatoryNetwork();
         GeneRegulatoryNetwork dna2 = grnFactor.generateGeneRegulatoryNetwork();
         return new Individual<>(new SimpleDiploid(dna1, dna2, mapping));
