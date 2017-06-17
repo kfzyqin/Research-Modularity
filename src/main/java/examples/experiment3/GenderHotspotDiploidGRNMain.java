@@ -1,23 +1,17 @@
-package examples.experiment4;
+package examples.experiment3;
 
+import ga.collections.DetailedGenderStatistics;
 import ga.collections.Population;
 import ga.components.chromosomes.GenderDiploid;
-import ga.components.chromosomes.GenderHotspotDiploid;
-import ga.components.chromosomes.SimpleDiploid;
 import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.GRNFitnessFunction;
-import ga.operations.initializers.DiploidGRNInitializer;
-import ga.operations.initializers.GenderDiploidGRNInitializer;
 import ga.operations.initializers.GenderHotspotDiploidGRNInitializer;
 import ga.operations.mutators.GRNEdgeMutator;
 import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
 import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
 import ga.operations.priorOperators.PriorOperator;
-import ga.operations.priorOperators.SimpleElitismOperator;
 import ga.operations.priorOperators.SimpleGenderElitismOperator;
-import ga.operations.reproducers.Reproducer;
-import ga.operations.reproducers.SimpleDiploidReproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
@@ -76,6 +70,8 @@ public class GenderHotspotDiploidGRNMain {
         PriorOperator<GenderDiploid> priorOperator = new SimpleGenderElitismOperator<>(numElites);
 
         PostOperator<GenderDiploid> fillingOperator = new SimpleFillingOperatorForNormalizable<>(new SimpleTournamentScheme(tournamentSize, selectivePressure));
+
+        DetailedGenderStatistics<GenderDiploid> statistics = new DetailedGenderStatistics<>();
 
 
     }

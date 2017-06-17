@@ -1,4 +1,4 @@
-package examples.experiment5;
+package examples.experiment1;
 
 import ga.collections.DetailedStatistics;
 import ga.collections.Population;
@@ -15,7 +15,6 @@ import ga.operations.mutators.GRNEdgeMutator;
 import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
 import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
-import ga.operations.priorOperators.PriorOperator;
 import ga.operations.reproducers.Reproducer;
 import ga.operations.reproducers.SimpleHaploidReproducer;
 import ga.operations.selectionOperators.selectionSchemes.ProportionalScheme;

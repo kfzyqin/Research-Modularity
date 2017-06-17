@@ -31,7 +31,7 @@ public class GenderHotspotDiploidGRNInitializer extends GenderDiploidGRNInitiali
                 this.target.getSize() * this.target.getSize(), this.dominanceMutationRate);
         GeneRegulatoryNetwork dna1 = grnFactor.generateGeneRegulatoryNetwork();
         GeneRegulatoryNetwork dna2 = grnFactor.generateGeneRegulatoryNetwork();
-        Hotspot hotspot = new Hotspot(this.hotspotSize, target.getSize() * target.getSize(), hotspotMutationRate);
+        Hotspot hotspot = new Hotspot(this.hotspotSize, target.getSize() * target.getSize());
         return new Individual<>(new GenderHotspotDiploid(dna1, dna2, mapping, hotspot, Math.random() < 0.5));
     }
 }

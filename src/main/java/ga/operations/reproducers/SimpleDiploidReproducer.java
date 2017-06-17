@@ -70,7 +70,8 @@ public class SimpleDiploidReproducer implements Reproducer<SimpleDiploid> {
      * Generate children of parents
      * @param mates parents (two or more chromosomes) for recombination
      * @return children
-     * @// TODO: 6/06/2017 why there are two duplicated DNAs, why potentially swap the map, ask.
+     * TODO: 6/06/2017 why there are two duplicated DNAs, why potentially swap the map, ask.
+     * Todo: there is no crossover here.
      */
     @Override
     public List<SimpleDiploid> reproduce(@NotNull final List<SimpleDiploid> mates) {

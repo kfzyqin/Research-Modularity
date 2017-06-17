@@ -11,27 +11,24 @@ import java.util.*;
  */
 public class Hotspot implements Copyable<Hotspot> {
     protected final int size;
-    protected final int dnaLenght;
+    protected final int dnaLength;
     protected Map<Integer, Double> recombinationRate;
-    protected final double mutationRate;
 
-    public Hotspot(final int size, final int dnaLength, final double mutationRate) {
+    public Hotspot(final int size, final int dnaLength) {
         this.size = size;
         this.recombinationRate = new HashMap<>(this.size);
-        this.dnaLenght = dnaLength;
+        this.dnaLength = dnaLength;
         this.generateRandomRecombinationRate();
-        this.mutationRate = mutationRate;
     }
 
-    public Hotspot(final int size, final int dnaLength, @NotNull Map<Integer, Double> recombinationRate, double mutationRate) {
+    public Hotspot(final int size, final int dnaLength, @NotNull Map<Integer, Double> recombinationRate) {
         this.size = size;
-        this.dnaLenght = dnaLength;
+        this.dnaLength = dnaLength;
         this.recombinationRate = recombinationRate;
-        this.mutationRate = mutationRate;
     }
 
     public void generateRandomRecombinationRate() {
-        int[] hotspotPositions = new Random().ints(0, dnaLenght).distinct().limit(size).toArray();
+        int[] hotspotPositions = new Random().ints(0, dnaLength).distinct().limit(size).toArray();
         double[] unNormalizedRates = new double[size];
         double rateSum = 0;
         for (int i=0; i<size; i++) {
@@ -42,6 +39,10 @@ public class Hotspot implements Copyable<Hotspot> {
         for (int i=0; i<size; i++) {
             setRecombinationRateAtPosition(hotspotPositions[i], unNormalizedRates[i] / rateSum);
         }
+    }
+
+    public int getSize() {
+        return this.size;
     }
 
     public void setRecombinationRateAtPosition(int i, double rate) {
@@ -56,8 +57,12 @@ public class Hotspot implements Copyable<Hotspot> {
         return new ArrayList<>(this.recombinationRate.values());
     }
 
+    public Map<Integer, Double> getRecombinationRateMap() {
+        return this.recombinationRate;
+    }
+
     @Override
     public Hotspot copy() {
-          return new Hotspot(this.size, this.dnaLenght, this.recombinationRate, this.mutationRate);
+          return new Hotspot(this.size, this.dnaLength, this.recombinationRate);
     }
 }

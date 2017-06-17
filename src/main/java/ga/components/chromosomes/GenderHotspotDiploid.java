@@ -33,9 +33,9 @@ import java.util.List;
  * @author Siu Kei Muk (David) and Zhenyue Qin
  * @since 27/08/16.
  */
-public class GenderHotspotDiploid extends GenderDiploid {
+public class GenderHotspotDiploid extends GenderDiploid implements CoupleableWithHotspot {
 
-    protected final Hotspot hotspot;
+    protected Hotspot hotspot;
 
     public GenderHotspotDiploid(@NotNull final SimpleMaterial dna1,
                                 @NotNull final SimpleMaterial dna2,
@@ -69,5 +69,12 @@ public class GenderHotspotDiploid extends GenderDiploid {
     public String toString() {
         List<Double> map = hotspot.getRecombinationRates();
         return super.toString() + ", Recombination probability: " + map.toString();
+    }
+
+     /*
+     Todo: make this inheritance from CoupleableWithHotspot work
+      */
+    public Hotspot getHotSpot(){
+        return this.hotspot;
     }
 }
