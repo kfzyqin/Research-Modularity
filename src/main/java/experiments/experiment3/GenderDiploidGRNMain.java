@@ -1,9 +1,12 @@
-package examples.experiment3;
+package experiments.experiment3;
 
 import ga.collections.DetailedGenderStatistics;
 import ga.collections.Population;
 import ga.components.chromosomes.GenderDiploid;
-import ga.frame.*;
+import ga.frame.frames.Frame;
+import ga.frame.frames.SingleObjectDiploidFrame;
+import ga.frame.states.SimpleDiploidState;
+import ga.frame.states.State;
 import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
 import ga.operations.fitnessFunctions.FitnessFunction;
@@ -19,6 +22,7 @@ import ga.operations.reproducers.SimpleGenderReproducer;
 import ga.operations.reproducers.Reproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
+import ga.operations.selectionOperators.selectors.SimpleTournamentCoupleSelector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
 
 import java.io.IOException;
@@ -40,7 +44,6 @@ public class GenderDiploidGRNMain {
 
     private static final int size = 1000;
     private static final int tournamentSize = 3;
-    private static final double selectivePressure = 1.0;
     private static final double reproductionRate = 0.8;
     private static final int maxGen = 200;
 
@@ -73,11 +76,11 @@ public class GenderDiploidGRNMain {
         Mutator mutator = new GRNEdgeMutator(geneMutationRate);
 
         // Selector for reproduction
-        Selector<GenderDiploid> selector = new SimpleTournamentSelector<>(tournamentSize, selectivePressure);
+        Selector<GenderDiploid> selector = new SimpleTournamentCoupleSelector<>(tournamentSize);
 
         PriorOperator<GenderDiploid> priorOperator = new SimpleGenderElitismOperator<>(numElites);
 
-        PostOperator<GenderDiploid> fillingOperator = new SimpleFillingOperatorForNormalizable<>(new SimpleTournamentScheme(tournamentSize, selectivePressure));
+        PostOperator<GenderDiploid> fillingOperator = new SimpleFillingOperatorForNormalizable<>(new SimpleTournamentScheme(tournamentSize));
 
         Reproducer<GenderDiploid> reproducer = new SimpleGenderReproducer(numberOfChildren);
 
@@ -90,7 +93,7 @@ public class GenderDiploidGRNMain {
 
         state.record(statistics);
 
-        Frame<GenderDiploid> frame = new DiploidFrame<>(state, fillingOperator, statistics, priorOperator);
+        Frame<GenderDiploid> frame = new SingleObjectDiploidFrame<>(state, fillingOperator, statistics, priorOperator);
 
         statistics.print(0);
         statistics.setDirectory(outputDirectory + "/" + dateFormat.format(date));

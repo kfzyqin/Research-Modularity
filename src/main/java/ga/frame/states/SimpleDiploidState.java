@@ -1,10 +1,11 @@
-package ga.frame;
+package ga.frame.states;
 
 import com.sun.istack.internal.NotNull;
 import ga.collections.Individual;
 import ga.collections.Population;
 import ga.collections.PopulationMode;
 import ga.components.chromosomes.Chromosome;
+import ga.frame.states.DiploidState;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
 import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.mutators.Mutator;

@@ -2,7 +2,7 @@ package ga.operations.dynamicHandlers;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.Chromosome;
-import ga.frame.State;
+import ga.frame.states.State;
 
 /*
     GASEE is a Java-based genetic algorithm library for scientific exploration and experiment.

@@ -35,8 +35,8 @@ import java.util.List;
  */
 public class SimpleTournamentSelector<C extends Chromosome> extends BaseSelector<C> {
 
-    public SimpleTournamentSelector(final int size, final double dominanceProbability) {
-        super(new SimpleTournamentScheme(size, dominanceProbability));
+    public SimpleTournamentSelector(final int size) {
+        super(new SimpleTournamentScheme(size));
     }
 
     /**

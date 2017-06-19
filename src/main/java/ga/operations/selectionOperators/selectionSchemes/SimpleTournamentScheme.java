@@ -34,25 +34,21 @@ import java.util.concurrent.ThreadLocalRandom;
  * The one with second highest fitness function value will be selection with p(1-p), and the third one with p(1-p)^2, and so on.
  * If none of the first K-1 individual is selected, the last one is selected.
  *
- * @author Siu Kei Muk (David) and Zhenyue Qin
+ * @author Siu Kei Muk (David)
  * @since 11/09/16.
  */
 public class SimpleTournamentScheme implements SelectionScheme {
 
     private int size;
-    private double dominanceProbability;
 
     /**
      * Constructs a tournament selection scheme.
      *
      * @param size tournament size
-     * @param dominanceProbability probability p of individual with highest probability to be selected
      */
-    public SimpleTournamentScheme(final int size, final double dominanceProbability) {
+    public SimpleTournamentScheme(final int size) {
         sizeFilter(size);
-        probabilityFilter(dominanceProbability);
         this.size = size;
-        this.dominanceProbability = dominanceProbability;
     }
 
     private void sizeFilter(final int size) {
@@ -60,31 +56,10 @@ public class SimpleTournamentScheme implements SelectionScheme {
             throw new IllegalArgumentException("Size must be at least 1.");
     }
 
-    private void probabilityFilter(final double dominanceProbability) {
-        if (dominanceProbability <= 0 || dominanceProbability > 1)
-            throw new IllegalArgumentException("Invalid probability value.");
-    }
-
-    /**
-     * @param candidates candidates selected in the tournament pool
-     * @return index of selected individual
-     */
-    private int getSurvivor(@NotNull final List<Integer> candidates) {
-        int currentIndex = 0;
-        double r = Math.random();
-        for (int i = 0; i < size; i++) {
-            currentIndex = candidates.get(i);
-            if (r < dominanceProbability)
-                break;
-            r = (r - dominanceProbability)/(1-dominanceProbability);
-        }
-        return currentIndex;
-    }
-
     /**
      *
      * @param fitnessValues descending sorted fitness function values of individuals.
-     * @return
+     * @return the index of the best individual in the tournament pool.
      */
     @Override
     public int select(@NotNull List<Double> fitnessValues) {
@@ -96,6 +71,6 @@ public class SimpleTournamentScheme implements SelectionScheme {
                 indices.add(index);
         }
         Collections.sort(indices);
-        return getSurvivor(indices);
+        return indices.get(0);
     }
 }

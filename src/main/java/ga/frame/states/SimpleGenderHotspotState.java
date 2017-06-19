@@ -1,10 +1,11 @@
-package ga.frame;
+package ga.frame.states;
 
 import ga.collections.Individual;
 import ga.collections.Population;
 import ga.collections.PopulationMode;
 import ga.components.chromosomes.Chromosome;
 import ga.components.chromosomes.CoupleableWithHotspot;
+import ga.frame.states.GenderHotspotState;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
 import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.hotspotMutators.HotspotMutator;

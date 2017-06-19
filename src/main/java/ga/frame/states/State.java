@@ -1,4 +1,4 @@
-package ga.frame;
+package ga.frame.states;
 
 import com.sun.istack.internal.NotNull;
 import ga.collections.Population;

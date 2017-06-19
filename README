@@ -13,6 +13,6 @@ It would be greatly appreciated if a citation is given to the paper of this proj
 
 **How To Use**
 
-Three example implementations are provided in the "examples" package. Please refer to the appendix of the paper for a brief implementation guide.
+Three example implementations are provided in the "experiments" package. Please refer to the appendix of the paper for a brief implementation guide.
 
 It is recommended to add an extension module specific to the abstraction of biological details being tested. If there is any restriction on the chromosome, a good way to do this is to define an interface and have the self-defined chromosome class implement it. The newly introduced restriction may also be required in other components, such as State and Frame, to ensure compatibility within the code.
