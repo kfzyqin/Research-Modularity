@@ -13,14 +13,16 @@ public class GRNFitnessFunctionWithSingleTarget implements FitnessFunction<Simpl
     private final int[] target;
     private final int maxCycle;
     private final int perturbations;
+    private final double perturbationRate;
 
-    public GRNFitnessFunctionWithSingleTarget(final int[] target, final int maxCycle, int perturbations) {
+    public GRNFitnessFunctionWithSingleTarget(final int[] target, final int maxCycle, int perturbations, final double perturbationRate) {
         this.target = target;
         this.maxCycle = maxCycle;
         this.perturbations = perturbations;
+        this.perturbationRate = perturbationRate;
     }
 
-    public boolean hasNotAttainedAttractor(final DataGene[] currentState, final DataGene[] updatedState) {
+    private boolean hasNotAttainedAttractor(final DataGene[] currentState, final DataGene[] updatedState) {
         int differenceCounts = 0;
         for (int i=0; i<currentState.length; i++) {
             if (currentState[i].getValue() != updatedState[i].getValue()) {
@@ -30,7 +32,7 @@ public class GRNFitnessFunctionWithSingleTarget implements FitnessFunction<Simpl
         return differenceCounts != 0;
     }
 
-    public int checkActivationOrRepression(double influence) {
+    private int checkActivationOrRepression(double influence) {
         if (influence > 0) {
             return 1;
         } else {
@@ -52,19 +54,19 @@ public class GRNFitnessFunctionWithSingleTarget implements FitnessFunction<Simpl
     }
 
     private DataGene[] initializeDataGeneArray(DataGene[] dataGenes) {
-        DataGene[] temp = dataGenes.clone();
-        for (int i=0; i<temp.length; i++) {
-            temp[i] = new DataGene();
+        DataGene[] emptyDataGeneArray = dataGenes.clone();
+        for (int i=0; i<emptyDataGeneArray.length; i++) {
+            emptyDataGeneArray[i] = new DataGene();
         }
-        return temp;
+        return emptyDataGeneArray;
     }
 
     @Override
     public double evaluate(@NotNull SimpleMaterial phenotype) {
-        DataGene[][] startAttractors = this.generateInitialAttractors(this.perturbations, 0.15);
-        double fitnessValues = 0;
-        for (int attractorIndex=0; attractorIndex<startAttractors.length; attractorIndex++) {
-            DataGene[] currentAttractor = startAttractors[attractorIndex];
+        DataGene[][] startAttractors = this.generateInitialAttractors(this.perturbations, this.perturbationRate);
+        double fitnessValue = 0;
+        for (DataGene[] startAttractor : startAttractors) {
+            DataGene[] currentAttractor = startAttractor;
             int currentRound = 0;
             boolean isNotStable;
             do {
@@ -72,20 +74,19 @@ public class GRNFitnessFunctionWithSingleTarget implements FitnessFunction<Simpl
                 isNotStable = this.hasNotAttainedAttractor(currentAttractor, updatedState);
                 currentAttractor = updatedState;
                 currentRound += 1;
-            }
-            while (currentRound < this.maxCycle && isNotStable);
+            } while (currentRound < this.maxCycle && isNotStable);
 
             if (currentRound < maxCycle) {
                 int hammingDistance = this.getHammingDistance(currentAttractor);
                 double thisFitness = Math.pow((1 - (hammingDistance / ((double) this.target.length))), 5);
-                fitnessValues += thisFitness;
+                fitnessValue += thisFitness;
             } else {
-                fitnessValues += 0;
+                fitnessValue += 0;
             }
         }
-        double arithmeticMean = fitnessValues / this.perturbations;
+        double arithmeticMean = fitnessValue / this.perturbations;
         double networkFitness = 1 - Math.pow(Math.E, (-3 * arithmeticMean));
-        return fitnessValues;
+        return fitnessValue;
 
 //        int ones = 0;
 //        for (int i=0; i<phenotype.getSize(); i++) {
@@ -106,7 +107,7 @@ public class GRNFitnessFunctionWithSingleTarget implements FitnessFunction<Simpl
             for (int j=0; j<this.target.length; j++) {
                 returnables[i][j] = new DataGene(this.target[j]);
                 if (Math.random() < prob) {
-                    returnables[i][j].setRandomValue();
+                    returnables[i][j].flip();
                 }
             }
         }
@@ -114,9 +115,6 @@ public class GRNFitnessFunctionWithSingleTarget implements FitnessFunction<Simpl
     }
 
     private int getHammingDistance(DataGene[] attractor) {
-        /*
-        TODO: make this cooler!
-         */
         int count = 0;
         for (int i=0; i<attractor.length; i++) {
             if (attractor[i].getValue() == this.target[i]) {

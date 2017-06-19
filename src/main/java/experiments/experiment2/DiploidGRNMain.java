@@ -5,7 +5,7 @@ import ga.collections.Population;
 import ga.components.chromosomes.SimpleDiploid;
 import ga.frame.frames.Frame;
 import ga.frame.frames.SimpleDiploidFrame;
-import ga.frame.states.SimpleDiploidState;
+import ga.frame.states.SimpleDiploidMultipleTargetState;
 import ga.frame.states.State;
 import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
@@ -40,6 +40,7 @@ public class DiploidGRNMain {
     private static final int perturbations = 300;
     private static final double geneMutationRate = 0.002;
     private static final double dominanceMutationRate = 0.001;
+    private static final double perturbationRate = 0.15;
     private static final int numElites = 20;
 
     private static final int size = 200;
@@ -61,7 +62,7 @@ public class DiploidGRNMain {
 
     public static void main(String[] args) throws IOException {
         // Fitness Function
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionWithSingleTarget(target, maxCycle, perturbations);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionWithSingleTarget(target, maxCycle, perturbations, perturbationRate);
 
         // Initializer
         DiploidGRNInitializer initializer = new DiploidGRNInitializer(size, target.length, edgeSize);
@@ -85,7 +86,7 @@ public class DiploidGRNMain {
 
         ExpressionMapMutator expressionMapMutator = new DiploidDominanceMapMutator(dominanceMutationRate);
 
-        State<SimpleDiploid> state = new SimpleDiploidState<>(population, fitnessFunction, mutator, reproducer,
+        State<SimpleDiploid> state = new SimpleDiploidMultipleTargetState<>(population, fitnessFunction, mutator, reproducer,
                 selector, 2, reproductionRate, expressionMapMutator);
 
         state.record(statistics);

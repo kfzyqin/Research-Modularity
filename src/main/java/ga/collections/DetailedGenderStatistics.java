@@ -4,6 +4,7 @@ import au.com.bytecode.opencsv.CSVWriter;
 import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.Chromosome;
 import ga.components.chromosomes.Coupleable;
+import org.apache.commons.io.FileUtils;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
@@ -265,6 +266,11 @@ public class DetailedGenderStatistics<G extends Chromosome & Coupleable> impleme
                 elites.get(generation).toString(), worsts.get(generation).toString(), medians.get(generation).toString(), means.get(generation));
     }
 
+    @Override
+    public int getGeneration() {
+        return this.generation;
+    }
+
     public void setDirectory(@NotNull String directoryName) {
         this.directoryPath += "/" + directoryName + "/";
         boolean isCreated = this.createDirectory(this.directoryPath);
@@ -317,8 +323,8 @@ public class DetailedGenderStatistics<G extends Chromosome & Coupleable> impleme
                 PlotOrientation.VERTICAL,
                 true,true,false);
 
-        int width = 720;    /* Width of the image */
-        int height = 540;   /* Height of the image */
+        int width = 1440;    /* Width of the image */
+        int height = 1080;   /* Height of the image */
         File lineChartFile = new File( this.directoryPath + fileName);
         ChartUtilities.saveChartAsJPEG(lineChartFile ,lineChartObject, width ,height);
     }
@@ -342,5 +348,16 @@ public class DetailedGenderStatistics<G extends Chromosome & Coupleable> impleme
             dataSet.addValue(femaleMeans.get(i), "Female Mean", Integer.toString(i));
         }
         return dataSet;
+    }
+
+    public void copyMainFile(String fileName, String sourcePath) {
+        String currentFilePath = System.getProperty("user.dir") + "/" + directoryPath + fileName;
+        File source = new File(sourcePath);
+        File destination = new File(currentFilePath);
+        try {
+            FileUtils.copyFile(source, destination);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

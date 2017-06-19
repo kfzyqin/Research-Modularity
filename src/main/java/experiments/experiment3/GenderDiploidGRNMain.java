@@ -5,7 +5,7 @@ import ga.collections.Population;
 import ga.components.chromosomes.GenderDiploid;
 import ga.frame.frames.Frame;
 import ga.frame.frames.SimpleDiploidFrame;
-import ga.frame.states.SimpleDiploidState;
+import ga.frame.states.SimpleDiploidMultipleTargetState;
 import ga.frame.states.State;
 import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
@@ -39,9 +39,10 @@ public class GenderDiploidGRNMain {
     private static final int perturbations = 300;
     private static final double geneMutationRate = 0.002;
     private static final double dominanceMutationRate = 0.001;
+    private static final double perturbationRate = 0.15;
     private static final int numElites = 10;
 
-    private static final int size = 1000;
+    private static final int size = 100;
     private static final int tournamentSize = 3;
     private static final double reproductionRate = 0.8;
     private static final int maxGen = 200;
@@ -54,6 +55,7 @@ public class GenderDiploidGRNMain {
     private static final String summaryFileName = "Gender-Diploid-GRN.sum";
     private static final String csvFileName = "Gender-Diploid-GRN.csv";
     private static final String outputDirectory = "gender-diploid-grn";
+    private static final String mainFileName = "GenderDiploidGRNMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
 
@@ -62,7 +64,7 @@ public class GenderDiploidGRNMain {
 
     public static void main(String[] args) throws IOException {
         // Fitness Function
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionWithSingleTarget(target, maxCycle, perturbations);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionWithSingleTarget(target, maxCycle, perturbations, perturbationRate);
 
         // Initializer
         GenderDiploidGRNInitializer initializer =
@@ -87,7 +89,7 @@ public class GenderDiploidGRNMain {
 
         ExpressionMapMutator expressionMapMutator = new DiploidDominanceMapMutator(dominanceMutationRate);
 
-        State<GenderDiploid> state = new SimpleDiploidState<>(population, fitnessFunction, mutator, reproducer,
+        State<GenderDiploid> state = new SimpleDiploidMultipleTargetState<>(population, fitnessFunction, mutator, reproducer,
                 selector, 2, reproductionRate, expressionMapMutator);
 
         state.record(statistics);
@@ -96,6 +98,8 @@ public class GenderDiploidGRNMain {
 
         statistics.print(0);
         statistics.setDirectory(outputDirectory + "/" + dateFormat.format(date));
+        statistics.copyMainFile(mainFileName, System.getProperty("user.dir") +
+                "/src/main/java/experiments/experiment3/" + mainFileName);
         for (int i = 0; i < maxGen; i++) {
             frame.evolve();
             statistics.print(i);

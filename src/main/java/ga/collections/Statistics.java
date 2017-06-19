@@ -74,4 +74,6 @@ public interface Statistics<C extends Chromosome> extends Copyable<Statistics<C>
      * @return a summary of the given generation
      */
     String getSummary(final int generation);
+
+    int getGeneration();
 }

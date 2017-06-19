@@ -5,7 +5,7 @@ import ga.collections.Population;
 import ga.components.chromosomes.GenderHotspotDiploid;
 import ga.frame.frames.SimpleDiploidHotspotFrame;
 import ga.frame.frames.Frame;
-import ga.frame.states.SimpleGenderHotspotState;
+import ga.frame.states.SimpleGenderHotspotMultipleTargetState;
 import ga.frame.states.State;
 import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
@@ -43,6 +43,7 @@ public class GenderHotspotDiploidGRNMain {
     private static final double geneMutationRate = 0.002;
     private static final double dominanceMutationRate = 0.001;
     private static final double hotspotMutationRate = 0.0005;
+    private static final double perturbationRate = 0.15;
     private static final int numElites = 10;
 
     private static final int size = 200;
@@ -58,6 +59,7 @@ public class GenderHotspotDiploidGRNMain {
     private static final String summaryFileName = "Gender-Hotspot-Diploid-GRN.sum";
     private static final String csvFileName = "Gender-Hotspot-Diploid-GRN.csv";
     private static final String outputDirectory = "gender-hotspot-diploid-grn";
+    private static final String mainFileName = "GenderHotspotDiploidGRNMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
 
@@ -66,7 +68,7 @@ public class GenderHotspotDiploidGRNMain {
 
     public static void main(String[] args) throws IOException {
         // Fitness Function
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionWithSingleTarget(target, maxCycle, perturbations);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionWithSingleTarget(target, maxCycle, perturbations, perturbationRate);
 
         // Initializer
         GenderHotspotDiploidGRNInitializer initializer = new GenderHotspotDiploidGRNInitializer(size, target.length, edgeSize, hotspotSize);
@@ -92,7 +94,7 @@ public class GenderHotspotDiploidGRNMain {
 
         Reproducer<GenderHotspotDiploid> reproducer = new SimpleGenderHotspotReproducer(numberOfChildren);
 
-        State<GenderHotspotDiploid> state = new SimpleGenderHotspotState<>(population, fitnessFunction, mutator,
+        State<GenderHotspotDiploid> state = new SimpleGenderHotspotMultipleTargetState<>(population, fitnessFunction, mutator,
                 reproducer, selector, 2, reproductionRate, expressionMapMutator, hotspotMutator);
 
         state.record(statistics);
@@ -101,6 +103,8 @@ public class GenderHotspotDiploidGRNMain {
 
         statistics.print(0);
         statistics.setDirectory(outputDirectory + "/" + dateFormat.format(date));
+        statistics.copyMainFile(mainFileName, System.getProperty("user.dir") +
+                "/src/main/java/experiments/experiment3/" + mainFileName);
         for (int i = 0; i < maxGen; i++) {
             frame.evolve();
             statistics.print(i);

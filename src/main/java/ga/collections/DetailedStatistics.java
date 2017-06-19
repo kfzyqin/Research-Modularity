@@ -3,16 +3,15 @@ package ga.collections;
 import au.com.bytecode.opencsv.CSVWriter;
 import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.Chromosome;
+import org.apache.commons.io.FileUtils;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -152,6 +151,11 @@ public class DetailedStatistics <C extends Chromosome> implements Statistics<C> 
             medians.get(generation).toString(), means.get(generation));
     }
 
+    @Override
+    public int getGeneration() {
+        return this.generation;
+    }
+
     public void generateCSVFile(String fileName) throws IOException {
         final File file = new File(this.directoryPath + fileName);
         try {
@@ -196,5 +200,15 @@ public class DetailedStatistics <C extends Chromosome> implements Statistics<C> 
             dataSet.addValue(means.get(i), "Mean", Integer.toString(i));
         }
         return dataSet;
+    }
+
+    private static void copyMainFile(String sourcePath, String destinationPath) {
+        File source = new File(sourcePath);
+        File destination = new File(destinationPath);
+        try {
+            FileUtils.copyDirectory(source, destination);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

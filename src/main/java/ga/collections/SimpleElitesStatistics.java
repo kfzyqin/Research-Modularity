@@ -119,6 +119,11 @@ public class SimpleElitesStatistics<C extends Chromosome> implements Statistics<
                 generation, deltas.get(generation), elites.get(generation).toString());
     }
 
+    @Override
+    public int getGeneration() {
+        return this.generation;
+    }
+
     public void generateCSVFile(String fileName) throws IOException {
         CSVWriter writer = new CSVWriter(new FileWriter(fileName), '\t');
         String[] entries = "Best#".split("#");

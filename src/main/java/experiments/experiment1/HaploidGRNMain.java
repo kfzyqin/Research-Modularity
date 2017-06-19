@@ -35,6 +35,7 @@ public class HaploidGRNMain {
     private static final int maxCycle = 100;
     private static final int edgeSize = 20;
     private static final int perturbations = 500;
+    private static final double perturbationRate = 0.15;
     private static final double mutationRate = 0.004;
 
     private static final int size = 200;
@@ -53,7 +54,7 @@ public class HaploidGRNMain {
 
     public static void main(String[] args) throws IOException {
         // Fitness Function
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionWithSingleTarget(target, maxCycle, perturbations);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionWithSingleTarget(target, maxCycle, perturbations, perturbationRate);
 
         // It is not necessary to write an initializer, but doing so is convenient to repeat the experiment
         // using different parameter.

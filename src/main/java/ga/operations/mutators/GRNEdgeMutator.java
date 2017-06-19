@@ -53,14 +53,13 @@ public class GRNEdgeMutator<T extends Chromosome> implements Mutator<T> {
         /*
         Mutates the specified gene at index i according to the rule specified in page 9 of the original paper.
          */
-        for (int ind = 0; ind < individuals.size(); ind++) {
-            Individual<T> individual = individuals.get(ind);
+        for (Individual<T> individual : individuals) {
             for (Object object : individual.getChromosome().getMaterialsView()) {
                 SimpleMaterial material = (SimpleMaterial) object;
                 int nodeNumber = (int) Math.sqrt(material.getSize()); // number of nodes in the network.
                 int regulatorNumber = 0; // number of regulators for this gene.
 
-                for (int i=0; i<nodeNumber; i++) {
+                for (int i = 0; i < nodeNumber; i++) {
                     if (Math.random() < this.prob) {
                         continue;
                     }

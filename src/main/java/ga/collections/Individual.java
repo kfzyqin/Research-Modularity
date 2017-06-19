@@ -3,6 +3,7 @@ package ga.collections;
 import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.Chromosome;
 import ga.operations.fitnessFunctions.FitnessFunction;
+import ga.operations.fitnessFunctions.FitnessFunctionWithMultipleTargets;
 import ga.others.Copyable;
 
 /*
@@ -70,6 +71,11 @@ public class Individual<C extends Chromosome> implements Comparable<Individual<C
 
     public double evaluate(final FitnessFunction objective, final boolean recompute) {
         fitness = objective.evaluate(chromosome.getPhenotype(recompute));
+        return fitness;
+    }
+
+    public double evaluate(final FitnessFunctionWithMultipleTargets objective, final boolean recompute, int generation) {
+        fitness = objective.evaluate(chromosome.getPhenotype(recompute), generation);
         return fitness;
     }
 

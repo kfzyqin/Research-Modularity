@@ -3,6 +3,7 @@ package ga.collections;
 import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.Chromosome;
 import ga.operations.fitnessFunctions.FitnessFunction;
+import ga.operations.fitnessFunctions.FitnessFunctionWithMultipleTargets;
 import ga.others.Copyable;
 
 import java.util.*;
@@ -107,6 +108,12 @@ public class Population<C extends Chromosome> implements Copyable<Population<C>>
     public void evaluate(@NotNull final FitnessFunction fitnessFunction, final boolean recompute) {
         for (Individual<C> i : individuals)
             i.evaluate(fitnessFunction, recompute);
+        Collections.sort(individuals);
+    }
+
+    public void evaluate(@NotNull final FitnessFunctionWithMultipleTargets fitnessFunction, final boolean recompute, int generation) {
+        for (Individual<C> i : individuals)
+            i.evaluate(fitnessFunction, recompute, generation);
         Collections.sort(individuals);
     }
 
