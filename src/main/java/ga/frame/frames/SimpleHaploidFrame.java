@@ -31,33 +31,33 @@ import ga.operations.priorOperators.PriorOperator;
 /**
  * Created by david and Zhenyue Qin on 2/09/16.
  */
-public class SimpleFrame<C extends Chromosome> extends Frame<C> {
+public class SimpleHaploidFrame<C extends Chromosome> extends Frame<C> {
 
-    public SimpleFrame(@NotNull final State<C> state,
-                       @NotNull final PostOperator<C> postOperator,
-                       @NotNull final Statistics<C> statistics,
-                       @NotNull final DynamicHandler<C> handler) {
+    public SimpleHaploidFrame(@NotNull final State<C> state,
+                              @NotNull final PostOperator<C> postOperator,
+                              @NotNull final Statistics<C> statistics,
+                              @NotNull final DynamicHandler<C> handler) {
         super(state, postOperator, statistics, handler);
     }
 
-    public SimpleFrame(@NotNull final State<C> state,
-                       @NotNull final PostOperator<C> postOperator,
-                       @NotNull final Statistics<C> statistics) {
+    public SimpleHaploidFrame(@NotNull final State<C> state,
+                              @NotNull final PostOperator<C> postOperator,
+                              @NotNull final Statistics<C> statistics) {
         super(state, postOperator, statistics);
     }
 
-    public SimpleFrame(@NotNull final State<C> state,
-                       @NotNull final PostOperator<C> postOperator,
-                       @NotNull final Statistics<C> statistics,
-                       @NotNull final PriorOperator<C> priorOperator) {
+    public SimpleHaploidFrame(@NotNull final State<C> state,
+                              @NotNull final PostOperator<C> postOperator,
+                              @NotNull final Statistics<C> statistics,
+                              @NotNull final PriorOperator<C> priorOperator) {
         super(state, postOperator, statistics, priorOperator);
     }
 
-    public SimpleFrame(@NotNull final State<C> state,
-                       @NotNull final PostOperator<C> postOperator,
-                       @NotNull final Statistics<C> statistics,
-                       @NotNull final PriorOperator<C> priorOperator,
-                       @NotNull final DynamicHandler<C> handler) {
+    public SimpleHaploidFrame(@NotNull final State<C> state,
+                              @NotNull final PostOperator<C> postOperator,
+                              @NotNull final Statistics<C> statistics,
+                              @NotNull final PriorOperator<C> priorOperator,
+                              @NotNull final DynamicHandler<C> handler) {
         super(state, postOperator, statistics, priorOperator, handler);
     }
 

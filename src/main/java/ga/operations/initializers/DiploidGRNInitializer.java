@@ -3,15 +3,11 @@ package ga.operations.initializers;
 import ga.collections.Individual;
 import ga.collections.Population;
 import ga.components.chromosomes.SimpleDiploid;
-import ga.components.genes.DataGene;
 import ga.components.materials.GeneRegulatoryNetwork;
 import ga.components.materials.GeneRegulatoryNetworkFactory;
 import ga.components.materials.SimpleMaterial;
 import ga.operations.expressionMaps.DiploidEvolvedMap;
 import ga.operations.expressionMaps.ExpressionMap;
-import ga.operations.expressionMaps.SimpleDiploidRandomMap;
-
-import java.util.ArrayList;
 
 /**
  * Created by Zhenyue Qin on 6/06/2017.
@@ -19,19 +15,15 @@ import java.util.ArrayList;
  */
 public class DiploidGRNInitializer implements Initializer<SimpleDiploid> {
     private int size;
-    private final SimpleMaterial target;
+    private final int targetLength;
+    private final int grnSize;
     private final int edgeSize;
-    private final double dominanceMutationRate;
 
-    public DiploidGRNInitializer(final int size, final int[] target, final int edgeSize, double dominanceMutationRate) {
+    public DiploidGRNInitializer(final int size, final int targetLength, final int edgeSize) {
         setSize(size);
-        ArrayList<DataGene> tempTargetList = new ArrayList<>();
-        for (int i=0; i<target.length; i++) {
-            tempTargetList.add(new DataGene(target[i]));
-        }
-        this.target = new SimpleMaterial(tempTargetList);
+        this.targetLength = targetLength;
+        grnSize = targetLength * targetLength;
         this.edgeSize = edgeSize;
-        this.dominanceMutationRate = dominanceMutationRate;
     }
 
     @Override
@@ -62,10 +54,10 @@ public class DiploidGRNInitializer implements Initializer<SimpleDiploid> {
     }
 
     private Individual<SimpleDiploid> generateIndividual() {
-        GeneRegulatoryNetworkFactory grnFactor = new GeneRegulatoryNetworkFactory(this.target, this.edgeSize);
-        ExpressionMap<SimpleMaterial,SimpleMaterial> mapping = new DiploidEvolvedMap(this.target.getSize() * this.target.getSize());
-        GeneRegulatoryNetwork dna1 = grnFactor.generateGeneRegulatoryNetwork();
-        GeneRegulatoryNetwork dna2 = grnFactor.generateGeneRegulatoryNetwork();
+        GeneRegulatoryNetworkFactory grnFactory = new GeneRegulatoryNetworkFactory(targetLength, this.edgeSize);
+        ExpressionMap<SimpleMaterial,SimpleMaterial> mapping = new DiploidEvolvedMap(grnSize);
+        GeneRegulatoryNetwork dna1 = grnFactory.generateGeneRegulatoryNetwork();
+        GeneRegulatoryNetwork dna2 = grnFactory.generateGeneRegulatoryNetwork();
         return new Individual<>(new SimpleDiploid(dna1, dna2, mapping));
     }
 }

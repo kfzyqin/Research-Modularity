@@ -4,13 +4,13 @@ import ga.collections.DetailedGenderStatistics;
 import ga.collections.Population;
 import ga.components.chromosomes.GenderDiploid;
 import ga.frame.frames.Frame;
-import ga.frame.frames.SingleObjectDiploidFrame;
+import ga.frame.frames.SimpleDiploidFrame;
 import ga.frame.states.SimpleDiploidState;
 import ga.frame.states.State;
 import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
 import ga.operations.fitnessFunctions.FitnessFunction;
-import ga.operations.fitnessFunctions.GRNFitnessFunction;
+import ga.operations.fitnessFunctions.GRNFitnessFunctionWithSingleTarget;
 import ga.operations.initializers.GenderDiploidGRNInitializer;
 import ga.operations.mutators.GRNEdgeMutator;
 import ga.operations.mutators.Mutator;
@@ -23,7 +23,6 @@ import ga.operations.reproducers.Reproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentCoupleSelector;
-import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -63,11 +62,11 @@ public class GenderDiploidGRNMain {
 
     public static void main(String[] args) throws IOException {
         // Fitness Function
-        FitnessFunction fitnessFunction = new GRNFitnessFunction(target, maxCycle, perturbations);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionWithSingleTarget(target, maxCycle, perturbations);
 
         // Initializer
         GenderDiploidGRNInitializer initializer =
-                new GenderDiploidGRNInitializer(size, target, edgeSize);
+                new GenderDiploidGRNInitializer(size, target.length, edgeSize);
 
         // Population
         Population<GenderDiploid> population = initializer.initialize();
@@ -93,7 +92,7 @@ public class GenderDiploidGRNMain {
 
         state.record(statistics);
 
-        Frame<GenderDiploid> frame = new SingleObjectDiploidFrame<>(state, fillingOperator, statistics, priorOperator);
+        Frame<GenderDiploid> frame = new SimpleDiploidFrame<>(state, fillingOperator, statistics, priorOperator);
 
         statistics.print(0);
         statistics.setDirectory(outputDirectory + "/" + dateFormat.format(date));

@@ -8,13 +8,13 @@ import ga.components.materials.SimpleMaterial;
  * Created by Zhenyue Qin on 22/04/2017.
  * The Australian National University.
  */
-public class GRNFitnessFunction implements FitnessFunction<SimpleMaterial>{
+public class GRNFitnessFunctionWithSingleTarget implements FitnessFunction<SimpleMaterial>{
 
     private final int[] target;
     private final int maxCycle;
     private final int perturbations;
 
-    public GRNFitnessFunction(final int[] target, final int maxCycle, int perturbations) {
+    public GRNFitnessFunctionWithSingleTarget(final int[] target, final int maxCycle, int perturbations) {
         this.target = target;
         this.maxCycle = maxCycle;
         this.perturbations = perturbations;

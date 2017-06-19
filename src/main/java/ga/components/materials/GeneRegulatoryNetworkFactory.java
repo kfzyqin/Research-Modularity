@@ -14,18 +14,14 @@ import java.util.Random;
  */
 public class GeneRegulatoryNetworkFactory {
 
-    private final SimpleMaterial target;
+    private final int targetLength;
     private final int networkSize;
     private final int edgeSize;
 
-    public GeneRegulatoryNetworkFactory(int[] target, int edgeSize) {
-        ArrayList<DataGene> tempTargetList = new ArrayList<>();
-        for (int i=0; i<target.length; i++) {
-            tempTargetList.add(new DataGene(target[i]));
-        }
-        this.target = new SimpleMaterial(tempTargetList);
+    public GeneRegulatoryNetworkFactory(final int targetLength, int edgeSize) {
+        this.targetLength = targetLength;
 
-        this.networkSize = target.length * target.length;
+        this.networkSize = targetLength * targetLength;
 
         this.edgeSize = edgeSize;
 
@@ -34,16 +30,7 @@ public class GeneRegulatoryNetworkFactory {
         }
     }
 
-    public GeneRegulatoryNetworkFactory(SimpleMaterial target, int edgeSize) {
-        this.target = target;
-        this.networkSize = target.getSize() * target.getSize();
-        this.edgeSize = edgeSize;
-        if (this.edgeSize > this.networkSize) {
-            throw new IllegalArgumentException("The edge size in GRN cannot be bigger than network size. ");
-        }
-    }
-
-    public List<EdgeGene> initializeEdges() {
+    private List<EdgeGene> initializeEdges() {
         List<DirectedEdge> candidates = new ArrayList<>();
         for (int i=0; i<networkSize; i++) {
             for (int j=0; j<networkSize; j++) {
@@ -64,9 +51,9 @@ public class GeneRegulatoryNetworkFactory {
 
         for (DirectedEdge edge : edges) {
             if (this.flipACoin()) {
-                edgeGenes.get(edge.getLeft() * this.target.getSize() + edge.getRight()).setValue(1);
+                edgeGenes.get(edge.getLeft() * this.targetLength + edge.getRight()).setValue(1);
             } else {
-                edgeGenes.get(edge.getLeft() * this.target.getSize() + edge.getRight()).setValue(-1);
+                edgeGenes.get(edge.getLeft() * this.targetLength + edge.getRight()).setValue(-1);
             }
         }
         return edgeGenes;
@@ -77,6 +64,6 @@ public class GeneRegulatoryNetworkFactory {
     }
 
     public GeneRegulatoryNetwork generateGeneRegulatoryNetwork() {
-        return new GeneRegulatoryNetwork(this.target, this.initializeEdges());
+        return new GeneRegulatoryNetwork(this.initializeEdges());
     }
 }

@@ -17,9 +17,9 @@ public class EdgeMaterial extends SimpleMaterial {
      *
      * @param strand a list of genes
      */
-    public EdgeMaterial(List<? extends Gene> strand, final int networkSideSize) {
+    public EdgeMaterial(List<? extends Gene> strand) {
         super(strand);
-        this.networkSideSize = networkSideSize;
+        this.networkSideSize = (int) Math.sqrt(strand.size());
         if (this.networkSideSize * this.networkSideSize != strand.size()) {
             throw new IllegalArgumentException("An edge material is wrong");
         }

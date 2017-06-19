@@ -4,13 +4,13 @@ import ga.collections.DetailedStatistics;
 import ga.collections.Population;
 import ga.components.chromosomes.SimpleDiploid;
 import ga.frame.frames.Frame;
-import ga.frame.frames.SingleObjectDiploidFrame;
+import ga.frame.frames.SimpleDiploidFrame;
 import ga.frame.states.SimpleDiploidState;
 import ga.frame.states.State;
 import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
 import ga.operations.fitnessFunctions.FitnessFunction;
-import ga.operations.fitnessFunctions.GRNFitnessFunction;
+import ga.operations.fitnessFunctions.GRNFitnessFunctionWithSingleTarget;
 import ga.operations.initializers.DiploidGRNInitializer;
 import ga.operations.mutators.GRNEdgeMutator;
 import ga.operations.mutators.Mutator;
@@ -61,10 +61,10 @@ public class DiploidGRNMain {
 
     public static void main(String[] args) throws IOException {
         // Fitness Function
-        FitnessFunction fitnessFunction = new GRNFitnessFunction(target, maxCycle, perturbations);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionWithSingleTarget(target, maxCycle, perturbations);
 
         // Initializer
-        DiploidGRNInitializer initializer = new DiploidGRNInitializer(size, target, edgeSize, dominanceMutationRate);
+        DiploidGRNInitializer initializer = new DiploidGRNInitializer(size, target.length, edgeSize);
 
         // Population
         Population<SimpleDiploid> population = initializer.initialize();
@@ -89,7 +89,7 @@ public class DiploidGRNMain {
                 selector, 2, reproductionRate, expressionMapMutator);
 
         state.record(statistics);
-        Frame<SimpleDiploid> frame = new SingleObjectDiploidFrame<>(state, fillingOperator, statistics, priorOperator);
+        Frame<SimpleDiploid> frame = new SimpleDiploidFrame<>(state, fillingOperator, statistics, priorOperator);
 
         statistics.print(0);
         statistics.setDirectory(outputDirectory + "/" + dateFormat.format(date));

@@ -10,31 +10,12 @@ import java.util.List;
  * The Australian National University.
  */
 public class GeneRegulatoryNetwork extends EdgeMaterial {
-    private SimpleMaterial target;
 
     /**
      * Constructs a SimpleMaterial by a list of genes.
      *
      */
-    public GeneRegulatoryNetwork(SimpleMaterial target, List<EdgeGene> edgeList) {
-        super(edgeList, target.getSize());
-        this.target = target;
-
-    }
-
-    public void perturb(double mu) {
-        for (int i=0; i<this.target.getSize() * this.target.getSize(); i++) {
-            if (Math.random() <= mu) {
-                this.toMutate(i);
-            }
-        }
-    }
-
-    public void toMutate(int i) {
-        if ((Integer) this.strand[i].getValue() == -1) {
-            this.strand[i].setValue(Math.random() < 0.5 ? 0 : 1);
-        } else {
-            this.strand[i].setValue(Math.random() < 0.5 ? (1-(int)this.strand[i].getValue()) : -1);
-        }
+    public GeneRegulatoryNetwork(List<EdgeGene> edgeList) {
+        super(edgeList);
     }
 }

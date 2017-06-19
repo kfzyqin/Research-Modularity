@@ -4,11 +4,11 @@ import ga.collections.DetailedStatistics;
 import ga.collections.Population;
 import ga.components.chromosomes.SimpleHaploid;
 import ga.frame.frames.Frame;
-import ga.frame.frames.SimpleFrame;
+import ga.frame.frames.SimpleHaploidFrame;
 import ga.frame.states.SimpleState;
 import ga.frame.states.State;
 import ga.operations.fitnessFunctions.FitnessFunction;
-import ga.operations.fitnessFunctions.GRNFitnessFunction;
+import ga.operations.fitnessFunctions.GRNFitnessFunctionWithSingleTarget;
 import ga.operations.initializers.HaploidGRNInitializer;
 import ga.operations.initializers.Initializer;
 import ga.operations.mutators.GRNEdgeMutator;
@@ -53,11 +53,11 @@ public class HaploidGRNMain {
 
     public static void main(String[] args) throws IOException {
         // Fitness Function
-        FitnessFunction fitnessFunction = new GRNFitnessFunction(target, maxCycle, perturbations);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionWithSingleTarget(target, maxCycle, perturbations);
 
         // It is not necessary to write an initializer, but doing so is convenient to repeat the experiment
         // using different parameter.
-        Initializer<SimpleHaploid> initializer = new HaploidGRNInitializer(size, target, edgeSize);
+        Initializer<SimpleHaploid> initializer = new HaploidGRNInitializer(size, target.length, edgeSize);
 
         // Population
         Population<SimpleHaploid> population = initializer.initialize();
@@ -79,7 +79,7 @@ public class HaploidGRNMain {
 
         State<SimpleHaploid> state = new SimpleState<>(population, fitnessFunction, mutator, reproducer, selector, 2, crossoverRate);
         state.record(statistics);
-        Frame<SimpleHaploid> frame = new SimpleFrame<>(state,postOperator,statistics);
+        Frame<SimpleHaploid> frame = new SimpleHaploidFrame<>(state,postOperator,statistics);
 
         statistics.print(0);
         statistics.setDirectory(outputDirectory + "/" + dateFormat.format(date));

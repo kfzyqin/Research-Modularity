@@ -15,20 +15,13 @@ import java.util.ArrayList;
  */
 public class HaploidGRNInitializer implements Initializer<SimpleHaploid> {
     private int size;
-    private int networkSize;
-    private final SimpleMaterial target;
+    private final int targetLength;
     private final int edgeSize;
 
-    public HaploidGRNInitializer(final int size, final int[] target, final int edgeSize) {
+    public HaploidGRNInitializer(final int size, final int targetLength, final int edgeSize) {
         this.size = size;
         setSize(size);
-        filter(size);
-        this.networkSize = target.length * target.length;
-        ArrayList<DataGene> tempTargetList = new ArrayList<>();
-        for (int i=0; i<target.length; i++) {
-            tempTargetList.add(new DataGene(target[i]));
-        }
-        this.target = new SimpleMaterial(tempTargetList);
+        this.targetLength = targetLength;
         this.edgeSize = edgeSize;
     }
 
@@ -65,7 +58,7 @@ public class HaploidGRNInitializer implements Initializer<SimpleHaploid> {
     }
 
     private Individual<SimpleHaploid> generateIndividual() {
-        GeneRegulatoryNetworkFactory grnFactor = new GeneRegulatoryNetworkFactory(this.target, this.edgeSize);
+        GeneRegulatoryNetworkFactory grnFactor = new GeneRegulatoryNetworkFactory(targetLength, this.edgeSize);
         return new Individual<>(new SimpleHaploid(grnFactor.generateGeneRegulatoryNetwork()));
     }
 }

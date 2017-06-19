@@ -3,14 +3,14 @@ package experiments.experiment3;
 import ga.collections.DetailedGenderStatistics;
 import ga.collections.Population;
 import ga.components.chromosomes.GenderHotspotDiploid;
-import ga.frame.frames.SingleObjectDiploidHotspotFrame;
+import ga.frame.frames.SimpleDiploidHotspotFrame;
 import ga.frame.frames.Frame;
 import ga.frame.states.SimpleGenderHotspotState;
 import ga.frame.states.State;
 import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
 import ga.operations.fitnessFunctions.FitnessFunction;
-import ga.operations.fitnessFunctions.GRNFitnessFunction;
+import ga.operations.fitnessFunctions.GRNFitnessFunctionWithSingleTarget;
 import ga.operations.hotspotMutators.HotspotMutator;
 import ga.operations.hotspotMutators.RandomHotspotMutator;
 import ga.operations.initializers.GenderHotspotDiploidGRNInitializer;
@@ -25,7 +25,6 @@ import ga.operations.reproducers.SimpleGenderHotspotReproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentCoupleSelector;
-import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -67,10 +66,10 @@ public class GenderHotspotDiploidGRNMain {
 
     public static void main(String[] args) throws IOException {
         // Fitness Function
-        FitnessFunction fitnessFunction = new GRNFitnessFunction(target, maxCycle, perturbations);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionWithSingleTarget(target, maxCycle, perturbations);
 
         // Initializer
-        GenderHotspotDiploidGRNInitializer initializer = new GenderHotspotDiploidGRNInitializer(size, target, edgeSize, hotspotSize);
+        GenderHotspotDiploidGRNInitializer initializer = new GenderHotspotDiploidGRNInitializer(size, target.length, edgeSize, hotspotSize);
 
         // Population
         Population<GenderHotspotDiploid> population = initializer.initialize();
@@ -98,7 +97,7 @@ public class GenderHotspotDiploidGRNMain {
 
         state.record(statistics);
 
-        Frame<GenderHotspotDiploid> frame = new SingleObjectDiploidHotspotFrame<>(state, fillingOperator, statistics, priorOperator);
+        Frame<GenderHotspotDiploid> frame = new SimpleDiploidHotspotFrame<>(state, fillingOperator, statistics, priorOperator);
 
         statistics.print(0);
         statistics.setDirectory(outputDirectory + "/" + dateFormat.format(date));
