@@ -36,7 +36,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * The match probability determines the likelihood of choosing combination over the other in the pairing part.
  * The gene value swapping is performed after chromosomes pairing.
  *
- * @author Siu Kei Muk (David)
+ * @author Siu Kei Muk (David) and Zhenyue Qin
  * @since 8/09/16.
  */
 public class SimpleDiploidNPReproducer implements Reproducer<SimpleDiploid> {
@@ -63,6 +63,9 @@ public class SimpleDiploidNPReproducer implements Reproducer<SimpleDiploid> {
     }
 
     @Override
+    /**
+     * Todo: check with Bob on whether map should be swapped.
+     */
     public List<SimpleDiploid> reproduce(@NotNull List<SimpleDiploid> mates) {
         SimpleDiploid parent1 = mates.get(0);
         SimpleDiploid parent2 = mates.get(1);
@@ -119,6 +122,11 @@ public class SimpleDiploidNPReproducer implements Reproducer<SimpleDiploid> {
         }
     }
 
+    /**
+     * Generate a "points" number of crossover points.
+     * @param length the number of crossover points
+     * @return cross over point indices
+     */
     private List<Integer> generateCrossoverPoints(final int length) {
         List<Integer> indices = new ArrayList<>(points);
         while (indices.size() < points) {

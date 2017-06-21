@@ -3,6 +3,7 @@ package ga.operations.reproducers;
 import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.SimpleDiploid;
 import ga.components.genes.Gene;
+import ga.components.materials.Material;
 import ga.components.materials.SimpleMaterial;
 import ga.operations.expressionMaps.ExpressionMap;
 
@@ -37,46 +38,25 @@ import java.util.List;
  * @author Siu Kei Muk (David) and Zhenyue Qin
  * @since 8/09/16.
  */
-public class SimpleDiploidReproducer implements Reproducer<SimpleDiploid> {
-
-    private double swapProbability = 0.5;
-    private double matchProbability = 0.5;
-    private boolean swap = false;
+public class SimpleDiploidReproducer extends DiploidReproducer<SimpleDiploid> {
 
     public SimpleDiploidReproducer() {
+        super();
     }
 
     public SimpleDiploidReproducer(final double matchProbability) {
-        setMatchProbability(matchProbability);
+        super(matchProbability);
     }
 
-    public SimpleDiploidReproducer(final double swapProbability, final boolean swap) {
-        setSwapProbability(swapProbability);
-        setSwap(swap);
+    public SimpleDiploidReproducer(final double matchProbability, final boolean toDoCrossover) {
+        super(matchProbability, toDoCrossover);
     }
 
-    public SimpleDiploidReproducer(final double swapProbability, final double matchProbability, final boolean swap) {
-        setMatchProbability(matchProbability);
-        setSwapProbability(swapProbability);
-        this.swap = swap;
-    }
-
-    private void filter(final double probability) {
-        if (probability < 0 || probability > 1)
-            throw new IllegalArgumentException("Invalid probability value.");
-    }
-
-    /**
-     * Generate children of parents
-     * @param mates parents (two or more chromosomes) for recombination
-     * @return children
-     * TODO: 6/06/2017 why there are two duplicated DNAs, why potentially swap the map, ask.
-     * Todo: there is no crossover here.
-     */
     @Override
-    public List<SimpleDiploid> reproduce(@NotNull final List<SimpleDiploid> mates) {
-        SimpleDiploid parent1 = mates.get(0); // one chromosome
-        SimpleDiploid parent2 = mates.get(1); // another chromosome
+    protected List<SimpleDiploid> recombine(List<SimpleDiploid> mates) {
+        List<SimpleDiploid> rtn = new ArrayList<>();
+        SimpleDiploid parent1 = mates.get(0);
+        SimpleDiploid parent2 = mates.get(1);
         SimpleMaterial dna1_1 = parent1.getMaterialsView().get(0).copy();
         SimpleMaterial dna1_2 = parent2.getMaterialsView().get(0).copy();
         SimpleMaterial dna2_1 = parent1.getMaterialsView().get(1).copy();
@@ -95,54 +75,9 @@ public class SimpleDiploidReproducer implements Reproducer<SimpleDiploid> {
             mapping1 = mapping2;
             mapping2 = tmp;
         }
-
-        if (swap) {
-            swap(dna1_1, dna1_2);
-            swap(dna2_1, dna2_2);
-        }
-
-        List<SimpleDiploid> children = new ArrayList<>(2);
-        children.add(new SimpleDiploid(dna1_1, dna1_2, mapping1));
-        children.add(new SimpleDiploid(dna2_1, dna2_2, mapping2));
-        return children;
+        rtn.add(new SimpleDiploid(dna1_1, dna1_2, mapping1));
+        rtn.add(new SimpleDiploid(dna2_1, dna2_2, mapping2));
+        return rtn;
     }
 
-    private void swap(SimpleMaterial dna1, SimpleMaterial dna2) {
-        final int length = dna1.getSize();
-        for (int i = 0; i < length; i++) {
-            if (Math.random() < swapProbability) {
-                Gene gene1 = dna1.getGene(i);
-                Gene gene2 = dna2.getGene(i);
-                Object value1 = gene1.getValue();
-                gene1.setValue(gene2.getValue());
-                gene2.setValue(value1);
-            }
-        }
-    }
-
-    public double getMatchProbability() {
-        return matchProbability;
-    }
-
-    public void setMatchProbability(final double matchProbability) {
-        filter(matchProbability);
-        this.matchProbability = matchProbability;
-    }
-
-    public double getSwapProbability() {
-        return swapProbability;
-    }
-
-    public void setSwapProbability(final double swapProbability) {
-        filter(swapProbability);
-        this.swapProbability = swapProbability;
-    }
-
-    public boolean isSwap() {
-        return swap;
-    }
-
-    public void setSwap(boolean swap) {
-        this.swap = swap;
-    }
 }

@@ -1,6 +1,5 @@
-package experiments.experiment4;
+package experiments.experiment5;
 
-import ga.components.genes.DataGene;
 import ga.components.genes.EdgeGene;
 import ga.components.materials.SimpleMaterial;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionWithMultipleTargets;

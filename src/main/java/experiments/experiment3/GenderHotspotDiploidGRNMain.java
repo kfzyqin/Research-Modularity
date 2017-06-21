@@ -3,7 +3,7 @@ package experiments.experiment3;
 import ga.collections.DetailedGenderStatistics;
 import ga.collections.Population;
 import ga.components.chromosomes.GenderHotspotDiploid;
-import ga.frame.frames.SimpleDiploidHotspotFrame;
+import ga.frame.frames.SimpleGenderHotspotDiploidFrame;
 import ga.frame.frames.Frame;
 import ga.frame.states.SimpleGenderHotspotMultipleTargetState;
 import ga.frame.states.State;
@@ -99,7 +99,7 @@ public class GenderHotspotDiploidGRNMain {
 
         state.record(statistics);
 
-        Frame<GenderHotspotDiploid> frame = new SimpleDiploidHotspotFrame<>(state, fillingOperator, statistics, priorOperator);
+        Frame<GenderHotspotDiploid> frame = new SimpleGenderHotspotDiploidFrame<>(state, fillingOperator, statistics, priorOperator);
 
         statistics.print(0);
         statistics.setDirectory(outputDirectory + "/" + dateFormat.format(date));

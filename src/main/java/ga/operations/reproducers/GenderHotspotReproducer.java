@@ -21,6 +21,7 @@ public abstract class GenderHotspotReproducer <G extends Chromosome & Coupleable
         super(numOfChildren);
     }
 
+    @Override
     protected List<Material> crossover(@NotNull final G parent) {
         List<Material> gametes = new ArrayList<>(2);
         List<Material> materialView = parent.getMaterialsView();

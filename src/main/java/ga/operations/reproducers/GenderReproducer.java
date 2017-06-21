@@ -46,7 +46,7 @@ public abstract class GenderReproducer <G extends Chromosome & Coupleable> imple
         Material dna2 = materialView.get(1).copy();
 
         // We assume that crossover is bound to happen, so the range starts from 1 and end with the second last.
-        final int crossIndex = ThreadLocalRandom.current().nextInt(1,dna1.getSize()-1);
+        final int crossIndex = ThreadLocalRandom.current().nextInt(1,dna1.getSize());
 
         this.crossoverTwoDNAsAt(dna1, dna2, crossIndex);
 

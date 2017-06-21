@@ -32,6 +32,7 @@ public class GenderHotspotDiploid extends GenderDiploid implements CoupleableWit
         return masculine;
     }
 
+    @Override
     public Hotspot getHotspot() {
         return hotspot;
     }
@@ -49,12 +50,5 @@ public class GenderHotspotDiploid extends GenderDiploid implements CoupleableWit
     public String toString() {
         List<Double> map = hotspot.getRecombinationRates();
         return super.toString() + ", Recombination probability: " + map.toString();
-    }
-
-     /*
-     Todo: make this inheritance from CoupleableWithHotspot work
-      */
-    public Hotspot getHotSpot(){
-        return this.hotspot;
     }
 }
