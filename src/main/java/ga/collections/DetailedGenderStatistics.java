@@ -256,14 +256,15 @@ public class DetailedGenderStatistics<G extends Chromosome & Coupleable> impleme
     @Override
     public String getSummary(int generation) {
         return String.format("Generation: %d; Delta: %.4f, \n" +
-                        "Male Best >> %s <<\nMale Worst >> %s <<\nMale Median >> %s <<\nMale Mean: >> %.4f <<" +
-                        "Female Best >> %s <<\nFemale Worst >> %s <<\nFemale Median >> %s <<\nFemale Mean: >> %.4f <<" +
-                        "Best >> %s <<\nWorst >> %s <<\nMedian >> %s <<\nMean: >> %.4f <<",
+                        "Best >> %s <<\nWorst >> %s <<\nMedian >> %s <<\nMean: >> %.4f <<\n" +
+                        "Male Best >> %s <<\nMale Worst >> %s <<\nMale Median >> %s <<\nMale Mean: >> %.4f <<\n" +
+                        "Female Best >> %s <<\nFemale Worst >> %s <<\nFemale Median >> %s <<\nFemale Mean: >> %.4f <<\n",
                 generation,
                 deltas.get(generation),
+                elites.get(generation).toString(), worsts.get(generation).toString(), medians.get(generation).toString(), means.get(generation),
                 maleElites.get(generation).toString(), maleWorsts.get(generation).toString(), maleMedians.get(generation).toString(), maleMeans.get(generation),
-                femaleElites.get(generation).toString(), femaleWorsts.get(generation).toString(), femaleMedians.get(generation).toString(), femaleMeans.get(generation),
-                elites.get(generation).toString(), worsts.get(generation).toString(), medians.get(generation).toString(), means.get(generation));
+                femaleElites.get(generation).toString(), femaleWorsts.get(generation).toString(), femaleMedians.get(generation).toString(), femaleMeans.get(generation)
+                );
     }
 
     @Override

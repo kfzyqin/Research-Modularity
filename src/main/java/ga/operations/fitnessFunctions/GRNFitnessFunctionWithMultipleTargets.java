@@ -231,7 +231,7 @@ public class GRNFitnessFunctionWithMultipleTargets  implements FitnessFunctionWi
         }
         double arithmeticMean = fitnessValue / this.perturbations;
         double networkFitness = 1 - Math.pow(Math.E, (-3 * arithmeticMean));
-        return fitnessValue;
+        return networkFitness;
 
 //        int ones = 0;
 //        for (int i=0; i<phenotype.getSize(); i++) {
