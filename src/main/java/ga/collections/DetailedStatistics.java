@@ -202,11 +202,12 @@ public class DetailedStatistics <C extends Chromosome> implements Statistics<C> 
         return dataSet;
     }
 
-    private static void copyMainFile(String sourcePath, String destinationPath) {
+    public void copyMainFile(String fileName, String sourcePath) {
+        String currentFilePath = System.getProperty("user.dir") + "/" + directoryPath + fileName;
         File source = new File(sourcePath);
-        File destination = new File(destinationPath);
+        File destination = new File(currentFilePath);
         try {
-            FileUtils.copyDirectory(source, destination);
+            FileUtils.copyFile(source, destination);
         } catch (IOException e) {
             e.printStackTrace();
         }

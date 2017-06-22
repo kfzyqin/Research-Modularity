@@ -4,7 +4,7 @@ import ga.collections.DetailedGenderStatistics;
 import ga.collections.Population;
 import ga.components.chromosomes.GenderHotspotDiploid;
 import ga.frame.frames.Frame;
-import ga.frame.frames.SimpleDiploidHotspotMultipleTargetFrame;
+import ga.frame.frames.SimpleGenderHotspotMultipleTargetFrame;
 import ga.frame.states.SimpleGenderHotspotMultipleTargetState;
 import ga.frame.states.State;
 import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
@@ -102,7 +102,7 @@ public class GenderHotspotDiploidGRN2TargetMain {
 
         state.record(statistics);
 
-        Frame<GenderHotspotDiploid> frame = new SimpleDiploidHotspotMultipleTargetFrame<>(state, fillingOperator, statistics, priorOperator);
+        Frame<GenderHotspotDiploid> frame = new SimpleGenderHotspotMultipleTargetFrame<>(state, fillingOperator, statistics, priorOperator);
 
         statistics.print(0);
         statistics.setDirectory(outputDirectory + "/" + dateFormat.format(date));

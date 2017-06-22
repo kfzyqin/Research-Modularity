@@ -4,7 +4,6 @@ import com.sun.istack.internal.NotNull;
 import ga.collections.Statistics;
 import ga.components.chromosomes.Chromosome;
 import ga.frame.states.DiploidMultipleTargetState;
-import ga.frame.states.GenderHotspotMultipleTargetState;
 import ga.frame.states.MultipleTargetState;
 import ga.frame.states.State;
 import ga.operations.dynamicHandlers.DynamicHandler;

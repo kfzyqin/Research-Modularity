@@ -2,31 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="de5f1476-9551-404c-abb5-385bc0c5573f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/experiments/experiment2/HotspotDiploidGRNMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/experiments/experiment4/DiploidGRN2TargetMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ga/components/chromosomes/SimpleHotspotDiploid.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ga/components/chromosomes/WithHotspot.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleHotspotDiploidFrame.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ga/frame/states/HotspotDiploidMultipleTargetState.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ga/frame/states/SimpleHotspotDiploidMultipleTargetState.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ga/operations/initializers/HotspotDiploidGRNInitializer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ga/operations/reproducers/DiploidReproducer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ga/operations/reproducers/HotspotDiploidReproducer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ga/operations/reproducers/SimpleHotspotDiploidReproducer.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/experiments/experiment4/GenderDiploidGRN2TargetMain.java" afterPath="$PROJECT_DIR$/src/main/java/experiments/experiment5/GenderDiploidGRN2TargetMain.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/experiments/experiment4/GenderHotspotDiploidGRN2TargetMain.java" afterPath="$PROJECT_DIR$/src/main/java/experiments/experiment5/GenderHotspotDiploidGRN2TargetMain.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/experiments/experiment4/TestField.java" afterPath="$PROJECT_DIR$/src/main/java/experiments/experiment5/TestField.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleDiploidHotspotFrame.java" afterPath="$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleGenderHotspotDiploidFrame.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/experiments/experiment4/HotspotDiploidGRN2TargetMain.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleHotspotDiploidMultipleTargetFrame.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleDiploidHotspotMultipleTargetFrame.java" afterPath="$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleGenderHotspotMultipleTargetFrame.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/experiments/experiment2/DiploidGRNMain.java" afterPath="$PROJECT_DIR$/src/main/java/experiments/experiment2/DiploidGRNMain.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/experiments/experiment3/GenderHotspotDiploidGRNMain.java" afterPath="$PROJECT_DIR$/src/main/java/experiments/experiment3/GenderHotspotDiploidGRNMain.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ga/components/chromosomes/GenderHotspotDiploid.java" afterPath="$PROJECT_DIR$/src/main/java/ga/components/chromosomes/GenderHotspotDiploid.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleDiploidHotspotMultipleTargetFrame.java" afterPath="$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleDiploidHotspotMultipleTargetFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ga/frame/states/GenderHotspotMultipleTargetState.java" afterPath="$PROJECT_DIR$/src/main/java/ga/frame/states/GenderHotspotMultipleTargetState.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ga/operations/reproducers/GenderHotspotReproducer.java" afterPath="$PROJECT_DIR$/src/main/java/ga/operations/reproducers/GenderHotspotReproducer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ga/operations/reproducers/GenderReproducer.java" afterPath="$PROJECT_DIR$/src/main/java/ga/operations/reproducers/GenderReproducer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ga/operations/reproducers/SimpleDiploidNPReproducer.java" afterPath="$PROJECT_DIR$/src/main/java/ga/operations/reproducers/SimpleDiploidNPReproducer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ga/operations/reproducers/SimpleDiploidReproducer.java" afterPath="$PROJECT_DIR$/src/main/java/ga/operations/reproducers/SimpleDiploidReproducer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/experiments/experiment4/DiploidGRN2TargetMain.java" afterPath="$PROJECT_DIR$/src/main/java/experiments/experiment4/DiploidGRN2TargetMain.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/experiments/experiment5/GenderHotspotDiploidGRN2TargetMain.java" afterPath="$PROJECT_DIR$/src/main/java/experiments/experiment5/GenderHotspotDiploidGRN2TargetMain.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ga/collections/DetailedStatistics.java" afterPath="$PROJECT_DIR$/src/main/java/ga/collections/DetailedStatistics.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ga/components/chromosomes/SimpleHotspotDiploid.java" afterPath="$PROJECT_DIR$/src/main/java/ga/components/chromosomes/SimpleHotspotDiploid.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleDiploidMultipleTargetFrame.java" afterPath="$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleDiploidMultipleTargetFrame.java" />
     </list>
     <ignored path="ga-project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -143,21 +127,66 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SimpleGenderHotspotDiploidFrame.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleGenderHotspotDiploidFrame.java">
+      <file leaf-file-name="GRNFitnessFunctionWithMultipleTargets.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ga/operations/fitnessFunctions/GRNFitnessFunctionWithMultipleTargets.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="48" column="55" lean-forward="true" selection-start-line="48" selection-start-column="55" selection-end-line="48" selection-end-column="55" />
+            <state relative-caret-position="329">
+              <caret line="256" column="0" lean-forward="false" selection-start-line="256" selection-start-column="0" selection-end-line="256" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DetailedGenderStatistics.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ga/collections/DetailedGenderStatistics.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="211">
+              <caret line="263" column="43" lean-forward="false" selection-start-line="263" selection-start-column="43" selection-end-line="263" selection-end-column="43" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SimpleHotspotDiploidFrame.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleHotspotDiploidFrame.java">
+      <file leaf-file-name="SimpleHotspotDiploid.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ga/components/chromosomes/SimpleHotspotDiploid.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="17" column="67" lean-forward="true" selection-start-line="17" selection-start-column="67" selection-end-line="17" selection-end-column="67" />
+            <state relative-caret-position="239">
+              <caret line="40" column="55" lean-forward="false" selection-start-line="40" selection-start-column="55" selection-end-line="40" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Hotspot.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ga/components/hotspots/Hotspot.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="59" column="47" lean-forward="false" selection-start-line="59" selection-start-column="47" selection-end-line="59" selection-end-column="47" />
+              <folding>
+                <element signature="e#1786#1787#0" expanded="true" />
+                <element signature="e#1857#1858#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GenderHotspotDiploid.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ga/components/chromosomes/GenderHotspotDiploid.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="284">
+              <caret line="51" column="83" lean-forward="false" selection-start-line="51" selection-start-column="8" selection-end-line="51" selection-end-column="83" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SimpleHotspotDiploidMultipleTargetFrame.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleHotspotDiploidMultipleTargetFrame.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="265">
+              <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -165,26 +194,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HotspotDiploidGRNMain.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/experiments/experiment2/HotspotDiploidGRNMain.java">
+      <file leaf-file-name="SimpleHotspotDiploidMultipleTargetState.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ga/frame/states/SimpleHotspotDiploidMultipleTargetState.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="43">
-              <caret line="94" column="0" lean-forward="true" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GenderHotspotDiploidGRNMain.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/experiments/experiment3/GenderHotspotDiploidGRNMain.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="101" column="70" lean-forward="false" selection-start-line="101" selection-start-column="70" selection-end-line="101" selection-end-column="70" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="153">
+              <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -202,23 +217,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>couplea</find>
-      <find>coupleab</find>
-      <find>hotspo</find>
-      <find>femalemedian</find>
-      <find>femaleElites</find>
-      <find>failed</find>
-      <find>hotspot</find>
-      <find>reproduce</find>
-      <find>coupleable</find>
-      <find>s</find>
-      <find>set</find>
-      <find>se</find>
-      <find>grnFactor</find>
-      <find>filter</find>
-      <find>source</find>
-      <find>setRandomValue</find>
-      <find>generation</find>
       <find>ge</find>
       <find>get</find>
       <find>getG</find>
@@ -232,6 +230,23 @@
       <find>targets</find>
       <find>generat</find>
       <find>best</find>
+      <find>hotspot</find>
+      <find>getsum</find>
+      <find>recombin</find>
+      <find>recombination p</find>
+      <find>recombination prb</find>
+      <find>recombination pr</find>
+      <find>recombination proba</find>
+      <find>recombination probabil</find>
+      <find>getsummar</find>
+      <find>recom</find>
+      <find>recombination</find>
+      <find>re</find>
+      <find>recombi</find>
+      <find>recombination</find>
+      <find>recombination pro</find>
+      <find>recombination probabi</find>
+      <find>recombination probability</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -248,10 +263,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/ga/frame/states/SimpleState.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ga/frame/states/StateWithMultipleTargets.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleDiploidFrame.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ga/frame/states/SimpleMultipleTargetState.java" />
         <option value="$PROJECT_DIR$/src/main/java/ga/frame/states/MultipleTargetState.java" />
         <option value="$PROJECT_DIR$/src/main/java/ga/frame/states/DiploidState.java" />
         <option value="$PROJECT_DIR$/src/main/java/ga/frame/states/SimpleDiploidState.java" />
@@ -259,12 +270,9 @@
         <option value="$PROJECT_DIR$/src/main/java/ga/collections/Statistics.java" />
         <option value="$PROJECT_DIR$/src/main/java/ga/collections/SimpleElitesStatistics.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/ga/collections/DetailedStatistics.java" />
         <option value="$PROJECT_DIR$/src/main/java/experiments/experiment4/TestField.java" />
         <option value="$PROJECT_DIR$/src/main/java/experiments/experiment3/GenderDiploidGRNMain.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleDiploidMultipleTargetFrame.java" />
         <option value="$PROJECT_DIR$/src/main/java/ga/collections/DetailedGenderStatistics.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ga/operations/fitnessFunctions/GRNFitnessFunctionWithMultipleTargets.java" />
         <option value="$PROJECT_DIR$/src/main/java/ga/operations/fitnessFunctions/GRNFitnessFunctionWithSingleTarget.java" />
         <option value="$PROJECT_DIR$/src/main/java/experiments/experiment4/GenderHotspotDiploidGRN2TargetMain.java" />
         <option value="$PROJECT_DIR$/src/main/java/experiments/experiment4/GenderDiploidGRN2TargetMain.java" />
@@ -275,7 +283,6 @@
         <option value="$PROJECT_DIR$/src/main/java/ga/operations/reproducers/GenderReproducer.java" />
         <option value="$PROJECT_DIR$/src/main/java/ga/components/chromosomes/WithHotspot.java" />
         <option value="$PROJECT_DIR$/src/main/java/ga/components/chromosomes/GenderHotspotDiploid.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ga/components/chromosomes/SimpleHotspotDiploid.java" />
         <option value="$PROJECT_DIR$/src/main/java/ga/operations/reproducers/SimpleDiploidHotspotReproducer.java" />
         <option value="$PROJECT_DIR$/src/main/java/ga/operations/reproducers/DiploidHotspotReproducer.java" />
         <option value="$PROJECT_DIR$/src/main/java/experiments/experiment2/DiploidHotspotGRNMain.java" />
@@ -286,10 +293,8 @@
         <option value="$PROJECT_DIR$/src/main/java/ga/frame/states/SimpleDominanceMapHotspotState.java" />
         <option value="$PROJECT_DIR$/src/main/java/ga/operations/reproducers/DiploidReproducer.java" />
         <option value="$PROJECT_DIR$/src/main/java/ga/operations/reproducers/HotspotDiploidReproducer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ga/operations/reproducers/SimpleDiploidReproducer.java" />
         <option value="$PROJECT_DIR$/src/main/java/ga/operations/reproducers/SimpleHotspotDiploidReproducer.java" />
         <option value="$PROJECT_DIR$/src/main/java/ga/frame/states/SimpleDiploidHotspotMultipleTargetState.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleDiploidHotspotMultipleTargetFrame.java" />
         <option value="$PROJECT_DIR$/src/main/java/experiments/experiment5/GenderHotspotDiploidGRN2TargetMain.java" />
         <option value="$PROJECT_DIR$/src/main/java/experiments/experiment2/DiploidGRNMain.java" />
         <option value="$PROJECT_DIR$/src/main/java/ga/frame/states/HotspotDiploidMultipleTargetState.java" />
@@ -298,7 +303,17 @@
         <option value="$PROJECT_DIR$/src/main/java/ga/frame/states/GenderHotspotMultipleTargetState.java" />
         <option value="$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleGenderHotspotDiploidFrame.java" />
         <option value="$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleHotspotDiploidFrame.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ga/operations/reproducers/SimpleDiploidReproducer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ga/collections/DetailedStatistics.java" />
+        <option value="$PROJECT_DIR$/src/main/java/experiments/experiment4/DiploidGRN2TargetMain.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleDiploidMultipleTargetFrame.java" />
         <option value="$PROJECT_DIR$/src/main/java/experiments/experiment2/HotspotDiploidGRNMain.java" />
+        <option value="$PROJECT_DIR$/src/main/java/experiments/experiment4/HotspotDiploidGRN2TargetMain.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleGenderHotspotMultipleTargetFrame.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleDiploidHotspotMultipleTargetFrame.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleHotspotDiploidMultipleTargetFrame.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ga/operations/fitnessFunctions/GRNFitnessFunctionWithMultipleTargets.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ga/components/chromosomes/SimpleHotspotDiploid.java" />
       </list>
     </option>
   </component>
@@ -420,9 +435,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -445,416 +458,14 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Genetic-Hotspots" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Genetic-Hotspots" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ga" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Genetic-Hotspots" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Genetic-Hotspots" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ga" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="operations" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Genetic-Hotspots" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Genetic-Hotspots" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ga" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="operations" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="reproducers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Genetic-Hotspots" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Genetic-Hotspots" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ga" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="operations" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="initializers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Genetic-Hotspots" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Genetic-Hotspots" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ga" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="operations" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fitnessFunctions" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Genetic-Hotspots" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Genetic-Hotspots" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ga" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frame" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="states" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Genetic-Hotspots" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Genetic-Hotspots" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ga" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frame" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frames" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Genetic-Hotspots" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Genetic-Hotspots" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ga" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Genetic-Hotspots" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Genetic-Hotspots" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="experiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Genetic-Hotspots" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Genetic-Hotspots" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="experiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="experiment4" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Genetic-Hotspots" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Genetic-Hotspots" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="experiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="experiment3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Genetic-Hotspots" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Genetic-Hotspots" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="experiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="experiment2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Genetic-Hotspots" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Genetic-Hotspots" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="generated-outputs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Genetic-Hotspots" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Genetic-Hotspots" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="generated-outputs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="diploid-grn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="diploidhot&#9;PSI&#9;JAVA://ga.frame.frames.SimpleDiploidHotspotFrame&#10;simplediploid&#9;PSI&#9;JAVA://ga.components.chromosomes.SimpleDiploid&#10;mutator&#9;PSI&#9;JAVA://ga.operations.mutators.GRNEdgeMutator&#10;fitness&#9;PSI&#9;JAVA://ga.operations.fitnessFunctions.FitnessFunction&#10;det&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/collections/DetailedGenderStatistics.java&#10;simplediploidmulti&#9;PSI&#9;JAVA://ga.frame.frames.SimpleDiploidHotspotMultipleTargetFrame&#10;hotspotframe&#9;PSI&#9;JAVA://ga.frame.frames.SimpleDiploidHotspotMultipleTargetFrame&#10;simplediploidmul&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/frame/states/SimpleDiploidMultipleTargetState.java&#10;detailedgender&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/collections/DetailedGenderStatistics.java&#10;detailed&#9;PSI&#9;JAVA://ga.collections.DetailedStatistics&#10;statistics&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/collections/DetailedGenderStatistics.java&#10;pom.xml&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/pom.xml&#10;main&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/experiments/experiment4/GenderDiploidGRN2TargetMain.java&#10;testfie&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/experiments/experiment4/TestField.java&#10;edgegen&#9;PSI&#9;JAVA://ga.components.genes.EdgeGene&#10;grnfitnessfunctionwith&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/operations/fitnessFunctions/GRNFitnessFunctionWithSingleTarget.java&#10;frame&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/frame/frames/Frame.java&#10;grnfitnessfunctionwi&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/operations/fitnessFunctions/GRNFitnessFunctionWithSingleTarget.java&#10;genderdiploidgrn&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/experiments/experiment3/GenderDiploidGRNMain.java&#10;grnfi&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/operations/fitnessFunctions/GRNFitnessFunctionWithMultipleTargets.java&#10;simplediploidframe&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/frame/frames/SimpleDiploidFrame.java&#10;grnmutator&#9;PSI&#9;JAVA://ga.operations.mutators.GRNEdgeMutator&#10;grn&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/operations/fitnessFunctions/GRNFitnessFunctionWithMultipleTargets.java&#10;grnfitne&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/operations/fitnessFunctions/GRNFitnessFunctionWithSingleTarget.java&#10;fitne&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/operations/fitnessFunctions/FitnessFunction.java&#10;selector&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/operations/selectionOperators/selectors/SimpleTournamentSelector.java&#10;diploidgrn&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/examples/experiment2/DiploidGRNMain.java&#10;genderdiploid&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/examples/experiment3/GenderDiploidGRNMain.java&#10;hotspot&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/components/hotspots/Hotspot.java&#10;genderdiploidini&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/operations/initializers/GenderDiploidGRNInitializer.java&#10;simplehot&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/frame/SimpleGenderHotspotState.java&#10;individual&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/collections/Individual.java&#10;genderhot&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/components/chromosomes/GenderHotspotDiploid.java&#10;evo&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/operations/expressionMaps/DiploidEvolvedMap.java&#10;expre&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/operations/dominanceMapMutators/ExpressionMapMutator.java&#10;diploid&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/operations/expressionMaps/DiploidEvolvedMap.java&#10;statis&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/collections/DetailedStatistics.java&#10;initia&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/operations/initializers/GenderHotspotDiploidGRNInitializer.java&#10;producer&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/operations/reproducers/SimpleHaploidReproducer.java&#10;grnmut&#9;PSI&#9;JAVA://ga.operations.mutators.GRNEdgeMutator&#10;hot&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/components/hotspots/Hotspot.java&#10;hotspo&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/components/hotspots/Hotspot.java&#10;coupleable&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/components/chromosomes/CoupleableWithHotspot.java&#10;maven&#9;ACTION&#9;ActivateMavenProjectsToolWindow&#10;elites&#9;PSI&#9;JAVA://ga.collections.SimpleElitesStatistics&#10;init&#9;PSI&#9;JAVA://ga.operations.initializers.DiploidGRNInitializer&#10;detail&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/main/java/ga/collections/DetailedStatistics.java&#10;grninit&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/main/java/ga/operations/initializers/DiploidGRNInitializer.java&#10;simplemap&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/main/java/ga/operations/expressionMaps/SimpleDiploidRandomMap.java&#10;fixed&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/main/java/ga/operations/expressionMaps/DiploidFixedMap.java" />
+    <property name="SearchEverywhereHistoryKey" value="chromo&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/components/chromosomes/Chromosome.java&#10;detail&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/collections/DetailedGenderStatistics.java&#10;genderstati&#9;PSI&#9;JAVA://ga.collections.DetailedGenderStatistics&#10;diploidhot&#9;PSI&#9;JAVA://ga.frame.frames.SimpleDiploidHotspotFrame&#10;simplediploid&#9;PSI&#9;JAVA://ga.components.chromosomes.SimpleDiploid&#10;mutator&#9;PSI&#9;JAVA://ga.operations.mutators.GRNEdgeMutator&#10;fitness&#9;PSI&#9;JAVA://ga.operations.fitnessFunctions.FitnessFunction&#10;det&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/collections/DetailedGenderStatistics.java&#10;simplediploidmulti&#9;PSI&#9;JAVA://ga.frame.frames.SimpleDiploidHotspotMultipleTargetFrame&#10;hotspotframe&#9;PSI&#9;JAVA://ga.frame.frames.SimpleDiploidHotspotMultipleTargetFrame&#10;simplediploidmul&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/frame/states/SimpleDiploidMultipleTargetState.java&#10;detailedgender&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/collections/DetailedGenderStatistics.java&#10;detailed&#9;PSI&#9;JAVA://ga.collections.DetailedStatistics&#10;statistics&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/collections/DetailedGenderStatistics.java&#10;pom.xml&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/pom.xml&#10;main&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/experiments/experiment4/GenderDiploidGRN2TargetMain.java&#10;testfie&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/experiments/experiment4/TestField.java&#10;edgegen&#9;PSI&#9;JAVA://ga.components.genes.EdgeGene&#10;grnfitnessfunctionwith&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/operations/fitnessFunctions/GRNFitnessFunctionWithSingleTarget.java&#10;frame&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/frame/frames/Frame.java&#10;grnfitnessfunctionwi&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/operations/fitnessFunctions/GRNFitnessFunctionWithSingleTarget.java&#10;genderdiploidgrn&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/experiments/experiment3/GenderDiploidGRNMain.java&#10;grnfi&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/operations/fitnessFunctions/GRNFitnessFunctionWithMultipleTargets.java&#10;simplediploidframe&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/frame/frames/SimpleDiploidFrame.java&#10;grnmutator&#9;PSI&#9;JAVA://ga.operations.mutators.GRNEdgeMutator&#10;grn&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/operations/fitnessFunctions/GRNFitnessFunctionWithMultipleTargets.java&#10;grnfitne&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/operations/fitnessFunctions/GRNFitnessFunctionWithSingleTarget.java&#10;fitne&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/operations/fitnessFunctions/FitnessFunction.java&#10;selector&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/operations/selectionOperators/selectors/SimpleTournamentSelector.java&#10;diploidgrn&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/examples/experiment2/DiploidGRNMain.java&#10;genderdiploid&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/examples/experiment3/GenderDiploidGRNMain.java&#10;hotspot&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/components/hotspots/Hotspot.java&#10;genderdiploidini&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/operations/initializers/GenderDiploidGRNInitializer.java&#10;simplehot&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/frame/SimpleGenderHotspotState.java&#10;individual&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/collections/Individual.java&#10;genderhot&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/components/chromosomes/GenderHotspotDiploid.java&#10;evo&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/operations/expressionMaps/DiploidEvolvedMap.java&#10;expre&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/operations/dominanceMapMutators/ExpressionMapMutator.java&#10;diploid&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/operations/expressionMaps/DiploidEvolvedMap.java&#10;statis&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/collections/DetailedStatistics.java&#10;initia&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/operations/initializers/GenderHotspotDiploidGRNInitializer.java&#10;producer&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/operations/reproducers/SimpleHaploidReproducer.java&#10;grnmut&#9;PSI&#9;JAVA://ga.operations.mutators.GRNEdgeMutator&#10;hot&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/components/hotspots/Hotspot.java&#10;hotspo&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/components/hotspots/Hotspot.java&#10;coupleable&#9;FILE&#9;file:///Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/src/main/java/ga/components/chromosomes/CoupleableWithHotspot.java&#10;maven&#9;ACTION&#9;ActivateMavenProjectsToolWindow&#10;elites&#9;PSI&#9;JAVA://ga.collections.SimpleElitesStatistics&#10;init&#9;PSI&#9;JAVA://ga.operations.initializers.DiploidGRNInitializer&#10;grninit&#9;FILE&#9;file:///Users/ChinYuer/Software-Engineering/COMP4560/gasee-chin/gasee/src/main/java/ga/operations/initializers/DiploidGRNInitializer.java" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -863,7 +474,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="add_unversioned_files" value="$PROJECT_DIR$/generated-outputs/gender-diploid-grn/2017-06-17-17-42-14/Gender-GRN-Chart.png&#10;/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/generated-outputs/gender-hotpost-diploid-grn-2-target/2017-06-20-14-33-33/GenderHotspotDiploidGRN2TargetMain.java&#10;/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/generated-outputs/diploid-grn/2017-06-15-18-24-39/Diploid-GRN-Chart.png&#10;/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/generated-outputs/diploid-grn/2017-06-14-16-33-01/Diploid-GRN-Chart.png" />
+    <property name="add_unversioned_files" value="$PROJECT_DIR$/generated-outputs/gender-diploid-grn/2017-06-17-17-42-14/Gender-GRN-Chart.png&#10;/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/generated-outputs/diploid-grn-2-target/2017-06-21-23-25-32/GRN-2-Target-Chart.png&#10;/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/generated-outputs/gender-hotpost-diploid-grn-2-target/2017-06-20-14-33-33/GenderHotspotDiploidGRN2TargetMain.java&#10;/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/generated-outputs/diploid-grn/2017-06-15-18-24-39/Diploid-GRN-Chart.png&#10;/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/generated-outputs/diploid-grn/2017-06-14-16-33-01/Diploid-GRN-Chart.png" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -889,7 +500,27 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.HotspotDiploidGRNMain">
+  <component name="RunManager" selected="Application.HotspotDiploidGRN2TargetMain">
+    <configuration default="false" name="HotspotDiploidGRNMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="experiments.experiment2.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="experiments.experiment2.HotspotDiploidGRNMain" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="ga-project" />
+      <envs />
+      <method />
+    </configuration>
     <configuration default="false" name="GenderDiploidGRNMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -910,14 +541,14 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="false" name="GenderDiploidGRN2TargetMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="GenderHotspotDiploidGRNMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
-          <option name="PATTERN" value="experiments.experiment5.*" />
+          <option name="PATTERN" value="experiments.experiment3.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="MAIN_CLASS_NAME" value="experiments.experiment5.GenderDiploidGRN2TargetMain" />
+      <option name="MAIN_CLASS_NAME" value="experiments.experiment3.GenderHotspotDiploidGRNMain" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -930,14 +561,14 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="false" name="GenderHotspotDiploidGRN2TargetMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="DiploidGRN2TargetMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
-          <option name="PATTERN" value="experiments.experiment5.*" />
+          <option name="PATTERN" value="experiments.experiment4.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="MAIN_CLASS_NAME" value="experiments.experiment5.GenderHotspotDiploidGRN2TargetMain" />
+      <option name="MAIN_CLASS_NAME" value="experiments.experiment4.DiploidGRN2TargetMain" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -950,34 +581,14 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="false" name="DiploidGRNMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="HotspotDiploidGRN2TargetMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
-          <option name="PATTERN" value="experiments.experiment2.*" />
+          <option name="PATTERN" value="experiments.experiment4.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="MAIN_CLASS_NAME" value="experiments.experiment2.DiploidGRNMain" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="ga-project" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="false" name="HotspotDiploidGRNMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="experiments.experiment2.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="experiments.experiment2.HotspotDiploidGRNMain" />
+      <option name="MAIN_CLASS_NAME" value="experiments.experiment4.HotspotDiploidGRN2TargetMain" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -1400,19 +1011,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Application.GenderDiploidGRNMain" />
-      <item index="1" class="java.lang.String" itemvalue="Application.GenderDiploidGRN2TargetMain" />
-      <item index="2" class="java.lang.String" itemvalue="Application.GenderHotspotDiploidGRN2TargetMain" />
-      <item index="3" class="java.lang.String" itemvalue="Application.DiploidGRNMain" />
-      <item index="4" class="java.lang.String" itemvalue="Application.HotspotDiploidGRNMain" />
+      <item index="0" class="java.lang.String" itemvalue="Application.HotspotDiploidGRNMain" />
+      <item index="1" class="java.lang.String" itemvalue="Application.GenderDiploidGRNMain" />
+      <item index="2" class="java.lang.String" itemvalue="Application.GenderHotspotDiploidGRNMain" />
+      <item index="3" class="java.lang.String" itemvalue="Application.DiploidGRN2TargetMain" />
+      <item index="4" class="java.lang.String" itemvalue="Application.HotspotDiploidGRN2TargetMain" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.HotspotDiploidGRNMain" />
-        <item index="1" class="java.lang.String" itemvalue="Application.DiploidGRNMain" />
-        <item index="2" class="java.lang.String" itemvalue="Application.GenderHotspotDiploidGRN2TargetMain" />
-        <item index="3" class="java.lang.String" itemvalue="Application.GenderDiploidGRN2TargetMain" />
-        <item index="4" class="java.lang.String" itemvalue="Application.GenderDiploidGRNMain" />
+        <item index="0" class="java.lang.String" itemvalue="Application.HotspotDiploidGRN2TargetMain" />
+        <item index="1" class="java.lang.String" itemvalue="Application.DiploidGRN2TargetMain" />
+        <item index="2" class="java.lang.String" itemvalue="Application.GenderHotspotDiploidGRNMain" />
+        <item index="3" class="java.lang.String" itemvalue="Application.GenderDiploidGRNMain" />
+        <item index="4" class="java.lang.String" itemvalue="Application.HotspotDiploidGRNMain" />
       </list>
     </recent_temporary>
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
@@ -1474,7 +1085,8 @@
       <workItem from="1497569359398" duration="2728000" />
       <workItem from="1497662646890" duration="53267000" />
       <workItem from="1497870842418" duration="4369000" />
-      <workItem from="1497881077671" duration="38772000" />
+      <workItem from="1497881077671" duration="40967000" />
+      <workItem from="1498096631736" duration="2462000" />
     </task>
     <task id="LOCAL-00001" summary="mimic david's experiment 4 ready">
       <created>1492845246744</created>
@@ -1595,11 +1207,18 @@
       <option name="project" value="LOCAL" />
       <updated>1498017540136</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="implemented hotspots for diploids">
+      <created>1498050442678</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1498050442679</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="234858000" />
+    <option name="totallyTimeSpent" value="239515000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1623,12 +1242,12 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16666667" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956153" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2749658" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35567716" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3281471" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3269494" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21041666" sideWeight="0.49156117" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21041666" sideWeight="0.49156117" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3255814" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24938272" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1688,7 +1307,8 @@
     <MESSAGE value="refined the implementation of GRNs by getting rid of the concrete target" />
     <MESSAGE value="implemented copying main files and changing targets" />
     <MESSAGE value="implemented basic multiple targets framework" />
-    <option name="LAST_COMMIT_MESSAGE" value="implemented basic multiple targets framework" />
+    <MESSAGE value="implemented hotspots for diploids" />
+    <option name="LAST_COMMIT_MESSAGE" value="implemented hotspots for diploids" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1706,25 +1326,31 @@
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ga/collections/Population.java</url>
-          <line>116</line>
+          <url>file://$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleGenderHotspotMultipleTargetFrame.java</url>
+          <line>62</line>
           <properties />
-          <option name="timeStamp" value="30" />
+          <option name="timeStamp" value="46" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ga/collections/Individual.java</url>
-          <line>77</line>
+          <url>file://$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleGenderHotspotDiploidFrame.java</url>
+          <line>61</line>
           <properties />
-          <option name="timeStamp" value="39" />
+          <option name="timeStamp" value="47" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ga/operations/fitnessFunctions/GRNFitnessFunctionWithMultipleTargets.java</url>
-          <line>210</line>
+          <url>file://$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleHotspotDiploidMultipleTargetFrame.java</url>
+          <line>61</line>
           <properties />
-          <option name="timeStamp" value="44" />
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleHotspotDiploidFrame.java</url>
+          <line>61</line>
+          <properties />
+          <option name="timeStamp" value="49" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="46" />
+      <option name="time" value="50" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1733,161 +1359,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/ga/operations/reproducers/SimpleHaploidReproducer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ga/operations/reproducers/SimpleHaploidNPReproducer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="68" column="8" lean-forward="false" selection-start-line="68" selection-start-column="8" selection-end-line="68" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/src.zip!/java/util/concurrent/ThreadLocalRandom.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="376" column="15" lean-forward="false" selection-start-line="376" selection-start-column="15" selection-end-line="376" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/experiments/experiment5/GenderDiploidGRN2TargetMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="87" column="51" lean-forward="false" selection-start-line="87" selection-start-column="51" selection-end-line="87" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ga/others/Copyable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="17" lean-forward="false" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ga/components/materials/Material.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="31" column="19" lean-forward="true" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ga/components/chromosomes/Diploid.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="36" column="45" lean-forward="false" selection-start-line="36" selection-start-column="45" selection-end-line="36" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ga/components/chromosomes/WithHotspot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="25" lean-forward="false" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ga/operations/reproducers/SimpleDiploidNPReproducer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="41" column="74" lean-forward="false" selection-start-line="41" selection-start-column="74" selection-end-line="41" selection-end-column="74" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ga/components/chromosomes/GenderHotspotDiploid.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="43" column="53" lean-forward="true" selection-start-line="43" selection-start-column="53" selection-end-line="43" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/experiments/experiment4/DiploidGRN2TargetMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="34" lean-forward="false" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/generated-outputs/diploid-grn/2017-06-21-21-03-38/Diploid-GRN-Chart.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ga/operations/initializers/DiploidGRNInitializer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="36" column="25" lean-forward="true" selection-start-line="35" selection-start-column="8" selection-end-line="36" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ga/operations/initializers/GenderHotspotDiploidGRNInitializer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="54" column="26" lean-forward="true" selection-start-line="49" selection-start-column="8" selection-end-line="54" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ga/frame/states/SimpleState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-265">
-          <caret line="40" column="13" lean-forward="false" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ga/frame/states/MultipleTargetState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="31" column="29" lean-forward="true" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ga/operations/reproducers/CoupleReproducer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="14" column="17" lean-forward="false" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ga/operations/reproducers/Reproducer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="33" column="17" lean-forward="false" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ga/operations/reproducers/GenderReproducer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="411">
           <caret line="54" column="23" lean-forward="true" selection-start-line="52" selection-start-column="8" selection-end-line="54" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ga/components/chromosomes/SimpleDiploid.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="35" column="11" lean-forward="false" selection-start-line="35" selection-start-column="11" selection-end-line="35" selection-end-column="11" />
           <folding />
         </state>
       </provider>
@@ -1904,13 +1379,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="107">
           <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#769#770#0" expanded="true" />
-            <element signature="e#822#823#0" expanded="true" />
-            <element signature="e#1414#1415#0" expanded="true" />
-            <element signature="e#1464#1465#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1918,7 +1386,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
           <caret line="15" column="56" lean-forward="true" selection-start-line="15" selection-start-column="56" selection-end-line="15" selection-end-column="56" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1935,16 +1402,8 @@
         <state relative-caret-position="50">
           <caret line="28" column="45" lean-forward="false" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ga/operations/reproducers/SimpleDiploidReproducer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="79" column="19" lean-forward="false" selection-start-line="56" selection-start-column="8" selection-end-line="79" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1953,7 +1412,7 @@
         <state relative-caret-position="203">
           <caret line="20" column="32" lean-forward="false" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1962,61 +1421,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="411">
           <caret line="50" column="39" lean-forward="false" selection-start-line="50" selection-start-column="39" selection-end-line="50" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ga/frame/states/SimpleDiploidHotspotMultipleTargetState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="20" column="97" lean-forward="false" selection-start-line="20" selection-start-column="97" selection-end-line="20" selection-end-column="97" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/experiments/experiment5/GenderHotspotDiploidGRN2TargetMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1352">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/experiments/experiment2/DiploidGRNMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleDiploidHotspotMultipleTargetFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="58" column="10" lean-forward="false" selection-start-line="58" selection-start-column="10" selection-end-line="58" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ga/frame/states/State.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-756">
-          <caret line="40" column="22" lean-forward="false" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ga/frame/states/SimpleDiploidHotspotMultipleTargetState.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/ga/operations/hotspotMutators/HotspotMutator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2025,8 +1437,8 @@
         <state relative-caret-position="339">
           <caret line="53" column="81" lean-forward="true" selection-start-line="51" selection-start-column="8" selection-end-line="53" selection-end-column="81" />
           <folding>
-            <element signature="e#2731#2732#0" expanded="true" />
-            <element signature="e#2796#2797#0" expanded="true" />
+            <element signature="e#2731#2732#0" expanded="false" />
+            <element signature="e#2796#2797#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2043,7 +1455,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="367">
           <caret line="31" column="17" lean-forward="false" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2051,7 +1462,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="51" lean-forward="false" selection-start-line="7" selection-start-column="51" selection-end-line="7" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2063,98 +1473,143 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ga/components/chromosomes/SimpleHotspotDiploid.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleDiploidFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ga/components/chromosomes/Chromosome.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="39" column="22" lean-forward="false" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ga/frame/states/HotspotDiploidMultipleTargetState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="16" column="22" lean-forward="false" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ga/frame/states/GenderHotspotMultipleTargetState.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="18" column="22" lean-forward="false" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ga/frame/states/SimpleDiploidMultipleTargetState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="32" column="11" lean-forward="false" selection-start-line="32" selection-start-column="11" selection-end-line="32" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ga/frame/states/SimpleHotspotDiploidMultipleTargetState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="43" column="41" lean-forward="false" selection-start-line="43" selection-start-column="27" selection-end-line="43" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleGenderHotspotDiploidFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="48" column="55" lean-forward="true" selection-start-line="48" selection-start-column="55" selection-end-line="48" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleHotspotDiploidFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="17" column="67" lean-forward="true" selection-start-line="17" selection-start-column="67" selection-end-line="17" selection-end-column="67" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/experiments/experiment3/GenderDiploidGRNMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-704">
-          <caret line="34" column="13" lean-forward="false" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+        <state relative-caret-position="120">
+          <caret line="35" column="35" lean-forward="true" selection-start-line="35" selection-start-column="35" selection-end-line="35" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ga/operations/reproducers/SimpleDiploidReproducer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="30" column="3" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="30" selection-end-column="3" />
+          <folding>
+            <element signature="e#1722#1723#0" expanded="false" />
+            <element signature="e#1761#1762#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/experiments/experiment2/DiploidGRNMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="840">
+          <caret line="83" column="26" lean-forward="false" selection-start-line="83" selection-start-column="8" selection-end-line="83" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ga/collections/DetailedStatistics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2880">
+          <caret line="213" column="5" lean-forward="false" selection-start-line="213" selection-start-column="5" selection-end-line="213" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/experiments/experiment3/GenderHotspotDiploidGRNMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="101" column="70" lean-forward="false" selection-start-line="101" selection-start-column="70" selection-end-line="101" selection-end-column="70" />
+        <state relative-caret-position="885">
+          <caret line="88" column="22" lean-forward="false" selection-start-line="88" selection-start-column="22" selection-end-line="88" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ga/frame/states/State.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="88" column="16" lean-forward="false" selection-start-line="88" selection-start-column="16" selection-end-line="88" selection-end-column="16" />
+          <folding>
+            <element signature="e#3230#3231#0" expanded="false" />
+            <element signature="e#3302#3303#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleDiploidFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="750">
+          <caret line="57" column="18" lean-forward="false" selection-start-line="57" selection-start-column="18" selection-end-line="57" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/experiments/experiment5/GenderDiploidGRN2TargetMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="77" column="25" lean-forward="false" selection-start-line="77" selection-start-column="25" selection-end-line="77" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generated-outputs/diploid-grn-2-target/2017-06-21-23-25-32/GRN-2-Target-Chart.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/experiments/experiment4/DiploidGRN2TargetMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="619">
+          <caret line="125" column="5" lean-forward="false" selection-start-line="75" selection-start-column="4" selection-end-line="125" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1498051530000" expanded="true" signature="3538:5713" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleDiploidMultipleTargetFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-71">
+          <caret line="20" column="73" lean-forward="false" selection-start-line="20" selection-start-column="73" selection-end-line="20" selection-end-column="73" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ga/frame/states/MultipleTargetState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="14" column="22" lean-forward="false" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ga/frame/states/SimpleDiploidMultipleTargetState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="18" column="84" lean-forward="false" selection-start-line="18" selection-start-column="84" selection-end-line="18" selection-end-column="84" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ga/frame/states/HotspotDiploidMultipleTargetState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="16" column="22" lean-forward="false" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/experiments/experiment4/HotspotDiploidGRN2TargetMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -2163,11 +1618,175 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/experiments/experiment2/HotspotDiploidGRNMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="43">
-          <caret line="94" column="0" lean-forward="true" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
+        <state relative-caret-position="96">
+          <caret line="101" column="48" lean-forward="false" selection-start-line="101" selection-start-column="48" selection-end-line="101" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/experiments/experiment5/GenderHotspotDiploidGRN2TargetMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="104" column="48" lean-forward="false" selection-start-line="104" selection-start-column="48" selection-end-line="104" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleGenderHotspotMultipleTargetFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="62" column="60" lean-forward="false" selection-start-line="62" selection-start-column="60" selection-end-line="62" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleGenderHotspotDiploidFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="61" column="67" lean-forward="false" selection-start-line="61" selection-start-column="8" selection-end-line="61" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleHotspotDiploidFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="40" column="48" lean-forward="false" selection-start-line="40" selection-start-column="48" selection-end-line="40" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ga/collections/Population.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="116" column="0" lean-forward="false" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ga/frame/frames/SimpleHotspotDiploidMultipleTargetFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ga/frame/states/SimpleHotspotDiploidMultipleTargetState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ga/operations/fitnessFunctions/GRNFitnessFunctionWithMultipleTargets.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="256" column="0" lean-forward="false" selection-start-line="256" selection-start-column="0" selection-end-line="256" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generated-outputs/gender-hotpost-diploid-grn-2-target/2017-06-20-14-33-33/Gender-Hotspot-Diploid-GRN-2-Target.sum">
+      <provider selected="true" editor-type-id="LargeFileEditor">
+        <state relative-caret-position="-34">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generated-outputs/gender-hotspot-diploid-grn/2017-06-18-00-10-57/Gender-Hotspot-Diploid-GRN.sum">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="24" column="322" lean-forward="false" selection-start-line="24" selection-start-column="322" selection-end-line="24" selection-end-column="322" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ga/collections/Individual.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="49" column="40" lean-forward="false" selection-start-line="49" selection-start-column="40" selection-end-line="49" selection-end-column="40" />
+          <folding>
+            <element signature="e#2930#2931#0" expanded="true" />
+            <element signature="e#3013#3014#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ga/components/chromosomes/Chromosome.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="39" column="22" lean-forward="false" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ga/collections/DetailedGenderStatistics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="263" column="43" lean-forward="false" selection-start-line="263" selection-start-column="43" selection-end-line="263" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ga/components/chromosomes/GenderDiploid.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-121">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ga/components/chromosomes/GenderHotspotDiploid.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="51" column="83" lean-forward="false" selection-start-line="51" selection-start-column="8" selection-end-line="51" selection-end-column="83" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ga/components/chromosomes/SimpleDiploid.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="29">
+          <caret line="35" column="11" lean-forward="false" selection-start-line="35" selection-start-column="11" selection-end-line="35" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/src.zip!/java/lang/Object.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="234" column="18" lean-forward="false" selection-start-line="234" selection-start-column="18" selection-end-line="234" selection-end-column="18" />
+          <folding>
+            <element signature="e#10065#10066#0" expanded="true" />
+            <element signature="e#10148#10149#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ga/components/hotspots/Hotspot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="59" column="47" lean-forward="false" selection-start-line="59" selection-start-column="47" selection-end-line="59" selection-end-column="47" />
+          <folding>
+            <element signature="e#1786#1787#0" expanded="true" />
+            <element signature="e#1857#1858#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ga/components/chromosomes/SimpleHotspotDiploid.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="40" column="55" lean-forward="false" selection-start-line="40" selection-start-column="55" selection-end-line="40" selection-end-column="55" />
+          <folding />
         </state>
       </provider>
     </entry>

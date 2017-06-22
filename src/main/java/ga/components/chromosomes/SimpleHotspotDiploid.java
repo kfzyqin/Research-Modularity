@@ -5,6 +5,8 @@ import ga.components.hotspots.Hotspot;
 import ga.components.materials.SimpleMaterial;
 import ga.operations.expressionMaps.ExpressionMap;
 
+import java.util.List;
+
 /**
  * Created by zhenyueqin on 21/6/17.
  */
@@ -33,4 +35,12 @@ public class SimpleHotspotDiploid extends SimpleDiploid implements WithHotspot{
         Hotspot hotspotCopy = hotspot.copy();
         return new SimpleHotspotDiploid(dna1, dna2, mapping, hotspotCopy);
     }
+
+    @Override
+    public String toString() {
+        List<Double> hotspotRates = hotspot.getRecombinationRates();
+        return super.toString() + "\nRecombination probability: " + hotspotRates.toString();
+    }
+
+
 }
