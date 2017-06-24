@@ -1,8 +1,10 @@
 package ga.operations.fitnessFunctions;
 
+import com.sun.istack.internal.NotNull;
 import ga.components.genes.DataGene;
 import ga.components.materials.SimpleMaterial;
 
+import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,21 +63,59 @@ public class GRNFitnessFunctionWithMultipleTargetsFaster extends GRNFitnessFunct
         generatePerturbationPool();
     }
 
-
     private void generatePerturbationPool() {
+        perturbationPool = new ArrayList<>(targets.length);
         for (int[] target : targets) {
             perturbationPool.add(generateInitialAttractors(perturbationCycleSize, perturbationRate, target));
         }
     }
 
+    protected double evaluateOneTarget(@NotNull final SimpleMaterial phenotype,
+                                       @NotNull final int[] target,
+                                       @NotNull final DataGene[][] perturbationTargets) {
+        double fitnessValue = 0;
+        int perturbationIndex = 0;
+        while (perturbationIndex < perturbations) {
+            DataGene[] currentAttractor = perturbationTargets[perturbationIndex % perturbationCycleSize];
+            int currentRound = 0;
+            boolean isNotStable;
+            do {
+                DataGene[] updatedState = this.updateState(currentAttractor, phenotype, target);
+                isNotStable = this.hasNotAttainedAttractor(currentAttractor, updatedState);
+                currentAttractor = updatedState;
+                currentRound += 1;
+            } while (currentRound < this.maxCycle && isNotStable);
+
+            if (currentRound < maxCycle) {
+                int hammingDistance = this.getHammingDistance(currentAttractor, target);
+                double thisFitness = Math.pow((1 - (hammingDistance / ((double) target.length))), 5);
+                fitnessValue += thisFitness;
+            } else {
+                fitnessValue += 0;
+            }
+            perturbationIndex += 1;
+        }
+
+        double arithmeticMean = fitnessValue / this.perturbations;
+        double networkFitness = 1 - Math.pow(Math.E, (-3 * arithmeticMean));
+        return networkFitness;
+    }
+
     @Override
     public double evaluate(SimpleMaterial phenotype, int generation) {
-        return 0;
+        List<Integer> currentTargetIndices = this.getCurrentTargetIndices(generation);
+        double fitnessValue = 0;
+        for (Integer targetIndex : currentTargetIndices) {
+            int[] aTarget = this.targets[targetIndex];
+            DataGene[][] perturbationTargets = this.perturbationPool.get(targetIndex);
+            fitnessValue += this.evaluateOneTarget(phenotype, aTarget, perturbationTargets);
+        }
+        return fitnessValue / currentTargetIndices.size();
     }
 
     @Override
     public double evaluate(SimpleMaterial phenotype) {
-        return 0;
+        return evaluate(phenotype, 0);
     }
 
     @Override

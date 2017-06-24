@@ -129,7 +129,7 @@ public class GRNFitnessFunctionWithMultipleTargets extends GRNFitnessFunction<Si
         return currentTargetIndices;
     }
 
-    private double evaluateOneTarget(@NotNull final SimpleMaterial phenotype, @NotNull final int[] target) {
+    protected double evaluateOneTarget(@NotNull final SimpleMaterial phenotype, @NotNull final int[] target) {
         DataGene[][] startAttractors = this.generateInitialAttractors(perturbations, perturbationRate, target);
         double fitnessValue = 0;
         for (DataGene[] startAttractor : startAttractors) {

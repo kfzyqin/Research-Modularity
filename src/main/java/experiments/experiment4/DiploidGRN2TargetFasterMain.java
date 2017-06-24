@@ -1,12 +1,9 @@
 package experiments.experiment4;
 
-import ga.collections.DetailedGenderStatistics;
 import ga.collections.DetailedStatistics;
 import ga.collections.Population;
-import ga.components.chromosomes.GenderDiploid;
 import ga.components.chromosomes.SimpleDiploid;
 import ga.frame.frames.Frame;
-import ga.frame.frames.SimpleDiploidFrame;
 import ga.frame.frames.SimpleDiploidMultipleTargetFrame;
 import ga.frame.states.SimpleDiploidMultipleTargetState;
 import ga.frame.states.State;
@@ -14,22 +11,18 @@ import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
 import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionWithMultipleTargets;
-import ga.operations.fitnessFunctions.GRNFitnessFunctionWithSingleTarget;
+import ga.operations.fitnessFunctions.GRNFitnessFunctionWithMultipleTargetsFaster;
 import ga.operations.initializers.DiploidGRNInitializer;
-import ga.operations.initializers.GenderDiploidGRNInitializer;
 import ga.operations.mutators.GRNEdgeMutator;
 import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
 import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
 import ga.operations.priorOperators.PriorOperator;
 import ga.operations.priorOperators.SimpleElitismOperator;
-import ga.operations.priorOperators.SimpleGenderElitismOperator;
 import ga.operations.reproducers.Reproducer;
 import ga.operations.reproducers.SimpleDiploidReproducer;
-import ga.operations.reproducers.SimpleGenderReproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
-import ga.operations.selectionOperators.selectors.SimpleTournamentCoupleSelector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
 
 import java.io.IOException;
@@ -40,9 +33,9 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by zhenyueqin on 21/6/17.
+ * Created by zhenyueqin on 22/6/17.
  */
-public class DiploidGRN2TargetMain {
+public class DiploidGRN2TargetFasterMain {
     private static final int[] target1 = {1, -1, 1, -1, 1, -1, 1, -1, 1, -1};
     private static final int[] target2 = {1, -1, 1, -1, 1, 1, -1, 1, -1, 1};
     private static final int maxCycle = 100;
@@ -53,6 +46,8 @@ public class DiploidGRN2TargetMain {
     private static final double perturbationRate = 0.15;
     private static final int numElites = 20;
 
+    private static final int perturbationCycleSize = 100;
+
     private static final int size = 100;
     private static final int tournamentSize = 3;
     private static final double reproductionRate = 0.8;
@@ -61,22 +56,22 @@ public class DiploidGRN2TargetMain {
     private static final double maxFit = 300;
     private static final double epsilon = .5;
 
-    private static final String summaryFileName = "Diploid-GRN-2-Target.sum";
-    private static final String csvFileName = "Diploid-GRN-2-Target.csv";
-    private static final String outputDirectory = "diploid-grn-2-target";
-    private static final String mainFileName = "DiploidGRN2TargetMain.java";
+    private static final String summaryFileName = "Diploid-GRN-2-Target-Faster.sum";
+    private static final String csvFileName = "Diploid-GRN-2-Target-Faster.csv";
+    private static final String outputDirectory = "diploid-grn-2-target-faster";
+    private static final String mainFileName = "DiploidGRN2TargetFasterMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
 
-    private static final String plotTitle = "GRN 2 Targets Summary";
-    private static final String plotFileName = "GRN-2-Target-Chart.png";
+    private static final String plotTitle = "GRN 2 Targets Faster Summary";
+    private static final String plotFileName = "GRN-2-Target-Faster-Chart.png";
 
     private static final List<Integer> thresholds = Arrays.asList(0, 500);
 
     public static void main(String[] args) throws IOException {
         // Fitness Function
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionWithMultipleTargets(target1, target2, maxCycle,
-                perturbations, perturbationRate, thresholds);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionWithMultipleTargetsFaster(target1, target2, maxCycle,
+                perturbations, perturbationRate, thresholds, perturbationCycleSize);
 
         // Initializer
         DiploidGRNInitializer initializer =
