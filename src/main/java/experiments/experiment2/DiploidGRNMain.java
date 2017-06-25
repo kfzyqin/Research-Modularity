@@ -10,7 +10,7 @@ import ga.frame.states.State;
 import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
 import ga.operations.fitnessFunctions.FitnessFunction;
-import ga.operations.fitnessFunctions.GRNFitnessFunctionWithSingleTarget;
+import ga.operations.fitnessFunctions.GRNFitnessFunctionSingleTarget;
 import ga.operations.initializers.DiploidGRNInitializer;
 import ga.operations.mutators.GRNEdgeMutator;
 import ga.operations.mutators.Mutator;
@@ -34,7 +34,8 @@ import java.util.Date;
  * The Australian National University.
  */
 public class DiploidGRNMain {
-    private static final int[] target = {-1, 1, -1, 1, -1, 1, -1, 1, -1, 1};
+//    private static final int[] target = {-1, 1, -1, 1, -1, 1, -1, 1, -1, 1};
+    private static final int[] target = {-1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1};
     private static final int maxCycle = 100;
     private static final int edgeSize = 20;
     private static final int perturbations = 300;
@@ -43,7 +44,7 @@ public class DiploidGRNMain {
     private static final double perturbationRate = 0.15;
     private static final int numElites = 20;
 
-    private static final int size = 200;
+    private static final int size = 100;
     private static final int tournamentSize = 3;
     private static final double reproductionRate = 0.8;
     private static final int maxGen = 200;
@@ -54,6 +55,7 @@ public class DiploidGRNMain {
     private static final String summaryFileName = "Diploid-GRN.sum";
     private static final String csvFileName = "Diploid-GRN.csv";
     private static final String outputDirectory = "diploid-grn";
+    private static final String mainFileName = "DiploidGRNMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
     private static final String plotTitle = "Diploid GRN Summary";
@@ -61,7 +63,7 @@ public class DiploidGRNMain {
 
     public static void main(String[] args) throws IOException {
         // Fitness Function
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionWithSingleTarget(target, maxCycle, perturbations, perturbationRate);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionSingleTarget(target, maxCycle, perturbations, perturbationRate);
 
         // Initializer
         DiploidGRNInitializer initializer = new DiploidGRNInitializer(size, target.length, edgeSize);
@@ -93,6 +95,8 @@ public class DiploidGRNMain {
 
         statistics.print(0);
         statistics.setDirectory(outputDirectory + "/" + dateFormat.format(date));
+        statistics.copyMainFile(mainFileName, System.getProperty("user.dir") +
+                "/src/main/java/experiments/experiment2/" + mainFileName);
         for (int i = 0; i < maxGen; i++) {
             frame.evolve();
             statistics.print(i);

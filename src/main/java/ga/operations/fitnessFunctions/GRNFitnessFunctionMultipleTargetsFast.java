@@ -4,60 +4,59 @@ import com.sun.istack.internal.NotNull;
 import ga.components.genes.DataGene;
 import ga.components.materials.SimpleMaterial;
 
-import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by zhenyueqin on 22/6/17.
  */
-public class GRNFitnessFunctionWithMultipleTargetsFaster extends GRNFitnessFunctionWithMultipleTargets {
+public class GRNFitnessFunctionMultipleTargetsFast extends GRNFitnessFunctionMultipleTargets {
 
     private final int perturbationCycleSize;
     private List<DataGene[][]> perturbationPool;
 
-    public GRNFitnessFunctionWithMultipleTargetsFaster(int[][] targets, int maxCycle, int perturbations,
-                                                       double perturbationRate, final int perturbationCycleSize) {
+    public GRNFitnessFunctionMultipleTargetsFast(int[][] targets, int maxCycle, int perturbations,
+                                                 double perturbationRate, final int perturbationCycleSize) {
         super(targets, maxCycle, perturbations, perturbationRate);
         this.perturbationCycleSize = perturbationCycleSize;
         generatePerturbationPool();
     }
 
-    public GRNFitnessFunctionWithMultipleTargetsFaster(int[] target1, int[] target2, int maxCycle, int perturbations,
-                                                       double perturbationRate, final int perturbationCycleSize) {
+    public GRNFitnessFunctionMultipleTargetsFast(int[] target1, int[] target2, int maxCycle, int perturbations,
+                                                 double perturbationRate, final int perturbationCycleSize) {
         super(target1, target2, maxCycle, perturbations, perturbationRate);
         this.perturbationCycleSize = perturbationCycleSize;
         generatePerturbationPool();
     }
 
-    public GRNFitnessFunctionWithMultipleTargetsFaster(int[] target1, int[] target2, int[] target3, int maxCycle,
-                                                       int perturbations, double perturbationRate,
-                                                       final int perturbationCycleSize) {
+    public GRNFitnessFunctionMultipleTargetsFast(int[] target1, int[] target2, int[] target3, int maxCycle,
+                                                 int perturbations, double perturbationRate,
+                                                 final int perturbationCycleSize) {
         super(target1, target2, target3, maxCycle, perturbations, perturbationRate);
         this.perturbationCycleSize = perturbationCycleSize;
         generatePerturbationPool();
     }
 
-    public GRNFitnessFunctionWithMultipleTargetsFaster(int[][] targets, int maxCycle, int perturbations,
-                                                       double perturbationRate, List<Integer> thresholdOfAddingTarget,
-                                                       final int perturbationCycleSize) {
+    public GRNFitnessFunctionMultipleTargetsFast(int[][] targets, int maxCycle, int perturbations,
+                                                 double perturbationRate, List<Integer> thresholdOfAddingTarget,
+                                                 final int perturbationCycleSize) {
         super(targets, maxCycle, perturbations, perturbationRate, thresholdOfAddingTarget);
         this.perturbationCycleSize = perturbationCycleSize;
         generatePerturbationPool();
     }
 
-    public GRNFitnessFunctionWithMultipleTargetsFaster(int[] target1, int[] target2, int maxCycle, int perturbations,
-                                                       double perturbationRate, List<Integer> thresholdOfAddingTarget,
-                                                       final int perturbationCycleSize) {
+    public GRNFitnessFunctionMultipleTargetsFast(int[] target1, int[] target2, int maxCycle, int perturbations,
+                                                 double perturbationRate, List<Integer> thresholdOfAddingTarget,
+                                                 final int perturbationCycleSize) {
         super(target1, target2, maxCycle, perturbations, perturbationRate, thresholdOfAddingTarget);
         this.perturbationCycleSize = perturbationCycleSize;
         generatePerturbationPool();
     }
 
-    public GRNFitnessFunctionWithMultipleTargetsFaster(int[] target1, int[] target2, int[] target3, int maxCycle,
-                                                       int perturbations, double perturbationRate,
-                                                       List<Integer> thresholdOfAddingTarget,
-                                                       final int perturbationCycleSize) {
+    public GRNFitnessFunctionMultipleTargetsFast(int[] target1, int[] target2, int[] target3, int maxCycle,
+                                                 int perturbations, double perturbationRate,
+                                                 List<Integer> thresholdOfAddingTarget,
+                                                 final int perturbationCycleSize) {
         super(target1, target2, target3, maxCycle, perturbations, perturbationRate, thresholdOfAddingTarget);
         this.perturbationCycleSize = perturbationCycleSize;
         generatePerturbationPool();

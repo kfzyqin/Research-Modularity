@@ -8,7 +8,7 @@ import ga.frame.frames.SimpleHaploidFrame;
 import ga.frame.states.SimpleState;
 import ga.frame.states.State;
 import ga.operations.fitnessFunctions.FitnessFunction;
-import ga.operations.fitnessFunctions.GRNFitnessFunctionWithSingleTarget;
+import ga.operations.fitnessFunctions.GRNFitnessFunctionSingleTarget;
 import ga.operations.initializers.HaploidGRNInitializer;
 import ga.operations.initializers.Initializer;
 import ga.operations.mutators.GRNEdgeMutator;
@@ -54,7 +54,7 @@ public class HaploidGRNMain {
 
     public static void main(String[] args) throws IOException {
         // Fitness Function
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionWithSingleTarget(target, maxCycle, perturbations, perturbationRate);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionSingleTarget(target, maxCycle, perturbations, perturbationRate);
 
         // It is not necessary to write an initializer, but doing so is convenient to repeat the experiment
         // using different parameter.

@@ -6,7 +6,7 @@ import ga.components.materials.Material;
 /**
  * Created by zhenyueqin on 19/6/17.
  */
-public interface FitnessFunctionWithMultipleTargets <P extends Material> extends FitnessFunction<P> {
+public interface FitnessFunctionMultipleTargets<P extends Material> extends FitnessFunction<P> {
     /**
      *
      * @param phenotype phenotype of an individual

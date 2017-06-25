@@ -4,7 +4,7 @@ import ga.collections.Population;
 import ga.components.chromosomes.Chromosome;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
 import ga.operations.fitnessFunctions.FitnessFunction;
-import ga.operations.fitnessFunctions.FitnessFunctionWithMultipleTargets;
+import ga.operations.fitnessFunctions.FitnessFunctionMultipleTargets;
 import ga.operations.mutators.Mutator;
 import ga.operations.reproducers.Reproducer;
 import ga.operations.selectionOperators.selectors.Selector;
@@ -30,6 +30,6 @@ public abstract class MultipleTargetState<C extends Chromosome> extends DiploidM
     }
 
     public void evaluateWithMultipleTargets(final boolean recomputePhenotype) {
-        population.evaluate((FitnessFunctionWithMultipleTargets) fitnessFunction, recomputePhenotype, this.generation);
+        population.evaluate((FitnessFunctionMultipleTargets) fitnessFunction, recomputePhenotype, this.generation);
     }
 }

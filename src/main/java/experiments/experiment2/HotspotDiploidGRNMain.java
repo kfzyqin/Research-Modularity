@@ -2,18 +2,15 @@ package experiments.experiment2;
 
 import ga.collections.DetailedStatistics;
 import ga.collections.Population;
-import ga.components.chromosomes.SimpleDiploid;
 import ga.components.chromosomes.SimpleHotspotDiploid;
 import ga.frame.frames.Frame;
-import ga.frame.frames.SimpleGenderHotspotDiploidFrame;
 import ga.frame.frames.SimpleHotspotDiploidFrame;
-import ga.frame.states.SimpleDiploidMultipleTargetState;
 import ga.frame.states.SimpleHotspotDiploidMultipleTargetState;
 import ga.frame.states.State;
 import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
 import ga.operations.fitnessFunctions.FitnessFunction;
-import ga.operations.fitnessFunctions.GRNFitnessFunctionWithSingleTarget;
+import ga.operations.fitnessFunctions.GRNFitnessFunctionSingleTarget;
 import ga.operations.hotspotMutators.HotspotMutator;
 import ga.operations.hotspotMutators.RandomHotspotMutator;
 import ga.operations.initializers.HotspotDiploidGRNInitializer;
@@ -62,6 +59,8 @@ public class HotspotDiploidGRNMain {
     private static final String summaryFileName = "Hotspot-Diploid-GRN.sum";
     private static final String csvFileName = "Hotspot-Diploid-GRN.csv";
     private static final String outputDirectory = "hotspot-diploid-hotspot-grn";
+    private static final String mainFileName = "HotspotDiploidGRNMain.java";
+
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
     private static final String plotTitle = "Hotspot Diploid GRN Summary";
@@ -69,7 +68,7 @@ public class HotspotDiploidGRNMain {
 
     public static void main(String[] args) throws IOException {
         // Fitness Function
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionWithSingleTarget(target, maxCycle, perturbations, perturbationRate);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionSingleTarget(target, maxCycle, perturbations, perturbationRate);
 
         // Initializer
         HotspotDiploidGRNInitializer initializer = new HotspotDiploidGRNInitializer(size, target.length, edgeSize, hotspotSize);
@@ -103,6 +102,9 @@ public class HotspotDiploidGRNMain {
 
         statistics.print(0);
         statistics.setDirectory(outputDirectory + "/" + dateFormat.format(date));
+        statistics.copyMainFile(mainFileName, System.getProperty("user.dir") +
+                "/src/main/java/experiments/experiment2/" + mainFileName);
+
         for (int i = 0; i < maxGen; i++) {
             frame.evolve();
             statistics.print(i);

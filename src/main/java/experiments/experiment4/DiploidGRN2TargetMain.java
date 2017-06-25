@@ -1,35 +1,27 @@
 package experiments.experiment4;
 
-import ga.collections.DetailedGenderStatistics;
 import ga.collections.DetailedStatistics;
 import ga.collections.Population;
-import ga.components.chromosomes.GenderDiploid;
 import ga.components.chromosomes.SimpleDiploid;
 import ga.frame.frames.Frame;
-import ga.frame.frames.SimpleDiploidFrame;
 import ga.frame.frames.SimpleDiploidMultipleTargetFrame;
 import ga.frame.states.SimpleDiploidMultipleTargetState;
 import ga.frame.states.State;
 import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
 import ga.operations.fitnessFunctions.FitnessFunction;
-import ga.operations.fitnessFunctions.GRNFitnessFunctionWithMultipleTargets;
-import ga.operations.fitnessFunctions.GRNFitnessFunctionWithSingleTarget;
+import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargets;
 import ga.operations.initializers.DiploidGRNInitializer;
-import ga.operations.initializers.GenderDiploidGRNInitializer;
 import ga.operations.mutators.GRNEdgeMutator;
 import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
 import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
 import ga.operations.priorOperators.PriorOperator;
 import ga.operations.priorOperators.SimpleElitismOperator;
-import ga.operations.priorOperators.SimpleGenderElitismOperator;
 import ga.operations.reproducers.Reproducer;
 import ga.operations.reproducers.SimpleDiploidReproducer;
-import ga.operations.reproducers.SimpleGenderReproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
-import ga.operations.selectionOperators.selectors.SimpleTournamentCoupleSelector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
 
 import java.io.IOException;
@@ -75,7 +67,7 @@ public class DiploidGRN2TargetMain {
 
     public static void main(String[] args) throws IOException {
         // Fitness Function
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionWithMultipleTargets(target1, target2, maxCycle,
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(target1, target2, maxCycle,
                 perturbations, perturbationRate, thresholds);
 
         // Initializer

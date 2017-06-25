@@ -10,7 +10,7 @@ import ga.frame.states.State;
 import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
 import ga.operations.fitnessFunctions.FitnessFunction;
-import ga.operations.fitnessFunctions.GRNFitnessFunctionWithMultipleTargets;
+import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargets;
 import ga.operations.hotspotMutators.HotspotMutator;
 import ga.operations.hotspotMutators.RandomHotspotMutator;
 import ga.operations.initializers.GenderHotspotDiploidGRNInitializer;
@@ -73,7 +73,7 @@ public class GenderHotspotDiploidGRN2TargetMain {
 
     public static void main(String[] args) throws IOException {
 
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionWithMultipleTargets(target1, target2, maxCycle,
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(target1, target2, maxCycle,
                 perturbations, perturbationRate, thresholds);
 
         GenderHotspotDiploidGRNInitializer initializer =

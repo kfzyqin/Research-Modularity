@@ -10,8 +10,7 @@ import ga.frame.states.State;
 import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
 import ga.operations.fitnessFunctions.FitnessFunction;
-import ga.operations.fitnessFunctions.GRNFitnessFunctionWithMultipleTargets;
-import ga.operations.fitnessFunctions.GRNFitnessFunctionWithMultipleTargetsFaster;
+import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFast;
 import ga.operations.initializers.DiploidGRNInitializer;
 import ga.operations.mutators.GRNEdgeMutator;
 import ga.operations.mutators.Mutator;
@@ -70,7 +69,7 @@ public class DiploidGRN2TargetFasterMain {
 
     public static void main(String[] args) throws IOException {
         // Fitness Function
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionWithMultipleTargetsFaster(target1, target2, maxCycle,
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFast(target1, target2, maxCycle,
                 perturbations, perturbationRate, thresholds, perturbationCycleSize);
 
         // Initializer
