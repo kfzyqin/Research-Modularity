@@ -4,7 +4,7 @@ import ga.collections.Individual;
 import ga.collections.Population;
 import ga.components.chromosomes.SimpleDiploid;
 import ga.components.materials.GeneRegulatoryNetwork;
-import ga.components.materials.GeneRegulatoryNetworkFactory;
+import ga.components.materials.GRNFactoryNoHiddenTarget;
 import ga.components.materials.SimpleMaterial;
 import ga.operations.expressionMaps.DiploidEvolvedMap;
 import ga.operations.expressionMaps.ExpressionMap;
@@ -14,10 +14,10 @@ import ga.operations.expressionMaps.ExpressionMap;
  * The Australian National University.
  */
 public class DiploidGRNInitializer implements Initializer<SimpleDiploid> {
-    private int size;
-    private final int targetLength;
-    private final int grnSize;
-    private final int edgeSize;
+    protected int size;
+    protected final int targetLength;
+    protected final int grnSize;
+    protected final int edgeSize;
 
     public DiploidGRNInitializer(final int size, final int targetLength, final int edgeSize) {
         setSize(size);
@@ -53,8 +53,8 @@ public class DiploidGRNInitializer implements Initializer<SimpleDiploid> {
         return population;
     }
 
-    private Individual<SimpleDiploid> generateIndividual() {
-        GeneRegulatoryNetworkFactory grnFactory = new GeneRegulatoryNetworkFactory(targetLength, this.edgeSize);
+    protected Individual<SimpleDiploid> generateIndividual() {
+        GRNFactoryNoHiddenTarget grnFactory = new GRNFactoryNoHiddenTarget(targetLength, this.edgeSize);
         ExpressionMap<SimpleMaterial,SimpleMaterial> mapping = new DiploidEvolvedMap(grnSize);
         GeneRegulatoryNetwork dna1 = grnFactory.generateGeneRegulatoryNetwork();
         GeneRegulatoryNetwork dna2 = grnFactory.generateGeneRegulatoryNetwork();

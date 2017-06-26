@@ -3,11 +3,7 @@ package ga.operations.initializers;
 import ga.collections.Individual;
 import ga.collections.Population;
 import ga.components.chromosomes.SimpleHaploid;
-import ga.components.genes.DataGene;
-import ga.components.materials.GeneRegulatoryNetworkFactory;
-import ga.components.materials.SimpleMaterial;
-
-import java.util.ArrayList;
+import ga.components.materials.GRNFactoryNoHiddenTarget;
 
 /**
  * Created by Zhenyue Qin on 23/04/2017.
@@ -58,7 +54,7 @@ public class HaploidGRNInitializer implements Initializer<SimpleHaploid> {
     }
 
     private Individual<SimpleHaploid> generateIndividual() {
-        GeneRegulatoryNetworkFactory grnFactor = new GeneRegulatoryNetworkFactory(targetLength, this.edgeSize);
+        GRNFactoryNoHiddenTarget grnFactor = new GRNFactoryNoHiddenTarget(targetLength, this.edgeSize);
         return new Individual<>(new SimpleHaploid(grnFactor.generateGeneRegulatoryNetwork()));
     }
 }

@@ -5,7 +5,7 @@ import ga.collections.Population;
 import ga.components.chromosomes.GenderHotspotDiploid;
 import ga.components.hotspots.Hotspot;
 import ga.components.materials.GeneRegulatoryNetwork;
-import ga.components.materials.GeneRegulatoryNetworkFactory;
+import ga.components.materials.GRNFactoryNoHiddenTarget;
 import ga.components.materials.SimpleMaterial;
 import ga.operations.expressionMaps.DiploidEvolvedMap;
 import ga.operations.expressionMaps.ExpressionMap;
@@ -56,7 +56,7 @@ public class GenderHotspotDiploidGRNInitializer implements Initializer<GenderHot
     }
 
     private Individual<GenderHotspotDiploid> generateIndividual() {
-        GeneRegulatoryNetworkFactory grnFactory = new GeneRegulatoryNetworkFactory(targetLength, this.edgeSize);
+        GRNFactoryNoHiddenTarget grnFactory = new GRNFactoryNoHiddenTarget(targetLength, this.edgeSize);
         ExpressionMap<SimpleMaterial,SimpleMaterial> mapping = new DiploidEvolvedMap(grnSize);
         GeneRegulatoryNetwork dna1 = grnFactory.generateGeneRegulatoryNetwork();
         GeneRegulatoryNetwork dna2 = grnFactory.generateGeneRegulatoryNetwork();

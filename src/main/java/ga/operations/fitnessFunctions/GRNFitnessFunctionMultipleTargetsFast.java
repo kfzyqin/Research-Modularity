@@ -12,8 +12,8 @@ import java.util.List;
  */
 public class GRNFitnessFunctionMultipleTargetsFast extends GRNFitnessFunctionMultipleTargets {
 
-    private final int perturbationCycleSize;
-    private List<DataGene[][]> perturbationPool;
+    protected final int perturbationCycleSize;
+    protected List<DataGene[][]> perturbationPool;
 
     public GRNFitnessFunctionMultipleTargetsFast(int[][] targets, int maxCycle, int perturbations,
                                                  double perturbationRate, final int perturbationCycleSize) {
@@ -62,7 +62,7 @@ public class GRNFitnessFunctionMultipleTargetsFast extends GRNFitnessFunctionMul
         generatePerturbationPool();
     }
 
-    private void generatePerturbationPool() {
+    protected void generatePerturbationPool() {
         perturbationPool = new ArrayList<>(targets.length);
         for (int[] target : targets) {
             perturbationPool.add(generateInitialAttractors(perturbationCycleSize, perturbationRate, target));
