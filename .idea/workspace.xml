@@ -1,265 +1,249 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="de5f1476-9551-404c-abb5-385bc0c5573f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-35-56/GRN-2-Target-Faster-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-00/GRN-2-Target-Faster-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-02/GRN-2-Target-Faster-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-06/GRN-2-Target-Faster-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-09/GRN-2-Target-Faster-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-12/GRN-2-Target-Faster-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-15/GRN-2-Target-Faster-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-19/GRN-2-Target-Faster-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-24/GRN-2-Target-Faster-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-28/GRN-2-Target-Faster-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-33/GRN-2-Target-Faster-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-38/GRN-2-Target-Faster-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-43/GRN-2-Target-Faster-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-50/GRN-2-Target-Faster-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-57/GRN-2-Target-Faster-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-01/GRN-2-Target-Faster-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-06/GRN-2-Target-Faster-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-11/GRN-2-Target-Faster-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-17/GRN-2-Target-Faster-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-23/GRN-2-Target-Faster-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-04-59/GRN-2-Target-Faster-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-03/GRN-2-Target-Faster-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-08/GRN-2-Target-Faster-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-14/GRN-2-Target-Faster-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-20/GRN-2-Target-Faster-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-26/GRN-2-Target-Faster-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-32/GRN-2-Target-Faster-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-40/GRN-2-Target-Faster-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-47/GRN-2-Target-Faster-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-54/GRN-2-Target-Faster-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-05/GRN-2-Target-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-11/GRN-2-Target-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-13/GRN-2-Target-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-15/GRN-2-Target-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-18/GRN-2-Target-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-21/GRN-2-Target-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-25/GRN-2-Target-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-29/GRN-2-Target-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-34/GRN-2-Target-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-39/GRN-2-Target-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-24/GRN-2-Target-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-26/GRN-2-Target-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-28/GRN-2-Target-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-30/GRN-2-Target-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-33/GRN-2-Target-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-36/GRN-2-Target-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-39/GRN-2-Target-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-43/GRN-2-Target-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-47/GRN-2-Target-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-52/GRN-2-Target-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-07/GRN-2-Target-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-13/GRN-2-Target-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-17/GRN-2-Target-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-23/GRN-2-Target-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-29/GRN-2-Target-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-36/GRN-2-Target-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-43/GRN-2-Target-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-50/GRN-2-Target-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-57/GRN-2-Target-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-54-06/GRN-2-Target-Chart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/experiments/experiment6/TestField5.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/experiments/experiment6/TestField6.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/experiments/experiment6/TestField7.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/experiments/experiment7/DiploidGRN3TargetFastMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/experiments/experiment7/DiploidGRN5TargetFastMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/experiments/experiment7/HotspotDiploidGRN3TargetFasterMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/experiments/experiment7/HotspotDiploidGRN5TargetFasterMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-35-56/Diploid-GRN-2-Target-Faster.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-35-56/Diploid-GRN-2-Target-Faster.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-35-56/DiploidGRN2TargetFasterMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-00/Diploid-GRN-2-Target-Faster.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-00/Diploid-GRN-2-Target-Faster.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-00/DiploidGRN2TargetFasterMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-02/Diploid-GRN-2-Target-Faster.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-02/Diploid-GRN-2-Target-Faster.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-02/DiploidGRN2TargetFasterMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-06/Diploid-GRN-2-Target-Faster.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-06/Diploid-GRN-2-Target-Faster.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-06/DiploidGRN2TargetFasterMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-09/Diploid-GRN-2-Target-Faster.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-09/Diploid-GRN-2-Target-Faster.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-09/DiploidGRN2TargetFasterMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-12/Diploid-GRN-2-Target-Faster.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-12/Diploid-GRN-2-Target-Faster.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-12/DiploidGRN2TargetFasterMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-15/Diploid-GRN-2-Target-Faster.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-15/Diploid-GRN-2-Target-Faster.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-15/DiploidGRN2TargetFasterMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-19/Diploid-GRN-2-Target-Faster.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-19/Diploid-GRN-2-Target-Faster.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-19/DiploidGRN2TargetFasterMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-24/Diploid-GRN-2-Target-Faster.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-24/Diploid-GRN-2-Target-Faster.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-24/DiploidGRN2TargetFasterMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-28/Diploid-GRN-2-Target-Faster.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-28/Diploid-GRN-2-Target-Faster.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-28/DiploidGRN2TargetFasterMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-33/Diploid-GRN-2-Target-Faster.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-33/Diploid-GRN-2-Target-Faster.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-33/DiploidGRN2TargetFasterMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-38/Diploid-GRN-2-Target-Faster.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-38/Diploid-GRN-2-Target-Faster.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-38/DiploidGRN2TargetFasterMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-43/Diploid-GRN-2-Target-Faster.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-43/Diploid-GRN-2-Target-Faster.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-43/DiploidGRN2TargetFasterMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-50/Diploid-GRN-2-Target-Faster.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-50/Diploid-GRN-2-Target-Faster.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-50/DiploidGRN2TargetFasterMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-57/Diploid-GRN-2-Target-Faster.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-57/Diploid-GRN-2-Target-Faster.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-57/DiploidGRN2TargetFasterMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-01/Diploid-GRN-2-Target-Faster.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-01/Diploid-GRN-2-Target-Faster.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-01/DiploidGRN2TargetFasterMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-06/Diploid-GRN-2-Target-Faster.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-06/Diploid-GRN-2-Target-Faster.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-06/DiploidGRN2TargetFasterMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-11/Diploid-GRN-2-Target-Faster.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-11/Diploid-GRN-2-Target-Faster.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-11/DiploidGRN2TargetFasterMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-17/Diploid-GRN-2-Target-Faster.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-17/Diploid-GRN-2-Target-Faster.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-17/DiploidGRN2TargetFasterMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-23/Diploid-GRN-2-Target-Faster.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-23/Diploid-GRN-2-Target-Faster.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-23/DiploidGRN2TargetFasterMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-04-59/Diploid-GRN-2-Target-Faster.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-04-59/Diploid-GRN-2-Target-Faster.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-04-59/DiploidGRN2TargetFasterMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-03/Diploid-GRN-2-Target-Faster.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-03/Diploid-GRN-2-Target-Faster.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-03/DiploidGRN2TargetFasterMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-08/Diploid-GRN-2-Target-Faster.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-08/Diploid-GRN-2-Target-Faster.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-08/DiploidGRN2TargetFasterMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-14/Diploid-GRN-2-Target-Faster.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-14/Diploid-GRN-2-Target-Faster.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-14/DiploidGRN2TargetFasterMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-20/Diploid-GRN-2-Target-Faster.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-20/Diploid-GRN-2-Target-Faster.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-20/DiploidGRN2TargetFasterMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-26/Diploid-GRN-2-Target-Faster.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-26/Diploid-GRN-2-Target-Faster.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-26/DiploidGRN2TargetFasterMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-32/Diploid-GRN-2-Target-Faster.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-32/Diploid-GRN-2-Target-Faster.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-32/DiploidGRN2TargetFasterMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-40/Diploid-GRN-2-Target-Faster.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-40/Diploid-GRN-2-Target-Faster.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-40/DiploidGRN2TargetFasterMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-47/Diploid-GRN-2-Target-Faster.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-47/Diploid-GRN-2-Target-Faster.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-47/DiploidGRN2TargetFasterMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-54/Diploid-GRN-2-Target-Faster.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-54/Diploid-GRN-2-Target-Faster.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-54/DiploidGRN2TargetFasterMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-20-53/DiploidGRN2TargetMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-05/Diploid-GRN-2-Target.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-05/Diploid-GRN-2-Target.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-05/DiploidGRN2TargetMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-11/Diploid-GRN-2-Target.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-11/Diploid-GRN-2-Target.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-11/DiploidGRN2TargetMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-13/Diploid-GRN-2-Target.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-13/Diploid-GRN-2-Target.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-13/DiploidGRN2TargetMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-15/Diploid-GRN-2-Target.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-15/Diploid-GRN-2-Target.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-15/DiploidGRN2TargetMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-18/Diploid-GRN-2-Target.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-18/Diploid-GRN-2-Target.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-18/DiploidGRN2TargetMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-21/Diploid-GRN-2-Target.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-21/Diploid-GRN-2-Target.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-21/DiploidGRN2TargetMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-25/Diploid-GRN-2-Target.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-25/Diploid-GRN-2-Target.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-25/DiploidGRN2TargetMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-29/Diploid-GRN-2-Target.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-29/Diploid-GRN-2-Target.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-29/DiploidGRN2TargetMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-34/Diploid-GRN-2-Target.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-34/Diploid-GRN-2-Target.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-34/DiploidGRN2TargetMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-39/Diploid-GRN-2-Target.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-39/Diploid-GRN-2-Target.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-39/DiploidGRN2TargetMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-24/Diploid-GRN-2-Target.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-24/Diploid-GRN-2-Target.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-24/DiploidGRN2TargetMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-26/Diploid-GRN-2-Target.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-26/Diploid-GRN-2-Target.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-26/DiploidGRN2TargetMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-28/Diploid-GRN-2-Target.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-28/Diploid-GRN-2-Target.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-28/DiploidGRN2TargetMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-30/Diploid-GRN-2-Target.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-30/Diploid-GRN-2-Target.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-30/DiploidGRN2TargetMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-33/Diploid-GRN-2-Target.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-33/Diploid-GRN-2-Target.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-33/DiploidGRN2TargetMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-36/Diploid-GRN-2-Target.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-36/Diploid-GRN-2-Target.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-36/DiploidGRN2TargetMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-39/Diploid-GRN-2-Target.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-39/Diploid-GRN-2-Target.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-39/DiploidGRN2TargetMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-43/Diploid-GRN-2-Target.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-43/Diploid-GRN-2-Target.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-43/DiploidGRN2TargetMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-47/Diploid-GRN-2-Target.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-47/Diploid-GRN-2-Target.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-47/DiploidGRN2TargetMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-52/Diploid-GRN-2-Target.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-52/Diploid-GRN-2-Target.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-52/DiploidGRN2TargetMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-07/Diploid-GRN-2-Target.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-07/Diploid-GRN-2-Target.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-07/DiploidGRN2TargetMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-13/Diploid-GRN-2-Target.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-13/Diploid-GRN-2-Target.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-13/DiploidGRN2TargetMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-17/Diploid-GRN-2-Target.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-17/Diploid-GRN-2-Target.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-17/DiploidGRN2TargetMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-23/Diploid-GRN-2-Target.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-23/Diploid-GRN-2-Target.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-23/DiploidGRN2TargetMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-29/Diploid-GRN-2-Target.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-29/Diploid-GRN-2-Target.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-29/DiploidGRN2TargetMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-36/Diploid-GRN-2-Target.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-36/Diploid-GRN-2-Target.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-36/DiploidGRN2TargetMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-43/Diploid-GRN-2-Target.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-43/Diploid-GRN-2-Target.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-43/DiploidGRN2TargetMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-50/Diploid-GRN-2-Target.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-50/Diploid-GRN-2-Target.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-50/DiploidGRN2TargetMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-57/Diploid-GRN-2-Target.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-57/Diploid-GRN-2-Target.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-57/DiploidGRN2TargetMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-54-06/Diploid-GRN-2-Target.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-54-06/Diploid-GRN-2-Target.sum" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-54-06/DiploidGRN2TargetMain.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/experiments/experiment4/HotspotDiploidGRN2TargetFasterMain.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/experiments/experiment4/DiploidGRN2TargetHiddenMain.java" afterPath="$PROJECT_DIR$/src/main/java/experiments/experiment4/DiploidGRN2TargetFastHiddenMain.java" />
+    <list default="true" id="de5f1476-9551-404c-abb5-385bc0c5573f" name="Default" comment="5 targets">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-35-56/Diploid-GRN-2-Target-Faster.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-35-56/Diploid-GRN-2-Target-Faster.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-35-56/DiploidGRN2TargetFasterMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-35-56/GRN-2-Target-Faster-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-00/Diploid-GRN-2-Target-Faster.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-00/Diploid-GRN-2-Target-Faster.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-00/DiploidGRN2TargetFasterMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-00/GRN-2-Target-Faster-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-02/Diploid-GRN-2-Target-Faster.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-02/Diploid-GRN-2-Target-Faster.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-02/DiploidGRN2TargetFasterMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-02/GRN-2-Target-Faster-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-06/Diploid-GRN-2-Target-Faster.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-06/Diploid-GRN-2-Target-Faster.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-06/DiploidGRN2TargetFasterMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-06/GRN-2-Target-Faster-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-09/Diploid-GRN-2-Target-Faster.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-09/Diploid-GRN-2-Target-Faster.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-09/DiploidGRN2TargetFasterMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-09/GRN-2-Target-Faster-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-12/Diploid-GRN-2-Target-Faster.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-12/Diploid-GRN-2-Target-Faster.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-12/DiploidGRN2TargetFasterMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-12/GRN-2-Target-Faster-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-15/Diploid-GRN-2-Target-Faster.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-15/Diploid-GRN-2-Target-Faster.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-15/DiploidGRN2TargetFasterMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-15/GRN-2-Target-Faster-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-19/Diploid-GRN-2-Target-Faster.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-19/Diploid-GRN-2-Target-Faster.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-19/DiploidGRN2TargetFasterMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-19/GRN-2-Target-Faster-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-24/Diploid-GRN-2-Target-Faster.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-24/Diploid-GRN-2-Target-Faster.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-24/DiploidGRN2TargetFasterMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-24/GRN-2-Target-Faster-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-28/Diploid-GRN-2-Target-Faster.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-28/Diploid-GRN-2-Target-Faster.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-28/DiploidGRN2TargetFasterMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-28/GRN-2-Target-Faster-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-33/Diploid-GRN-2-Target-Faster.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-33/Diploid-GRN-2-Target-Faster.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-33/DiploidGRN2TargetFasterMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-33/GRN-2-Target-Faster-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-38/Diploid-GRN-2-Target-Faster.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-38/Diploid-GRN-2-Target-Faster.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-38/DiploidGRN2TargetFasterMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-38/GRN-2-Target-Faster-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-43/Diploid-GRN-2-Target-Faster.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-43/Diploid-GRN-2-Target-Faster.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-43/DiploidGRN2TargetFasterMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-43/GRN-2-Target-Faster-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-50/Diploid-GRN-2-Target-Faster.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-50/Diploid-GRN-2-Target-Faster.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-50/DiploidGRN2TargetFasterMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-50/GRN-2-Target-Faster-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-57/Diploid-GRN-2-Target-Faster.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-57/Diploid-GRN-2-Target-Faster.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-57/DiploidGRN2TargetFasterMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-09-36-57/GRN-2-Target-Faster-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-01/Diploid-GRN-2-Target-Faster.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-01/Diploid-GRN-2-Target-Faster.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-01/DiploidGRN2TargetFasterMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-01/GRN-2-Target-Faster-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-06/Diploid-GRN-2-Target-Faster.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-06/Diploid-GRN-2-Target-Faster.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-06/DiploidGRN2TargetFasterMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-06/GRN-2-Target-Faster-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-11/Diploid-GRN-2-Target-Faster.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-11/Diploid-GRN-2-Target-Faster.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-11/DiploidGRN2TargetFasterMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-11/GRN-2-Target-Faster-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-17/Diploid-GRN-2-Target-Faster.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-17/Diploid-GRN-2-Target-Faster.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-17/DiploidGRN2TargetFasterMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-17/GRN-2-Target-Faster-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-23/Diploid-GRN-2-Target-Faster.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-23/Diploid-GRN-2-Target-Faster.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-23/DiploidGRN2TargetFasterMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-12-58-23/GRN-2-Target-Faster-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-04-59/Diploid-GRN-2-Target-Faster.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-04-59/Diploid-GRN-2-Target-Faster.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-04-59/DiploidGRN2TargetFasterMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-04-59/GRN-2-Target-Faster-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-03/Diploid-GRN-2-Target-Faster.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-03/Diploid-GRN-2-Target-Faster.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-03/DiploidGRN2TargetFasterMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-03/GRN-2-Target-Faster-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-08/Diploid-GRN-2-Target-Faster.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-08/Diploid-GRN-2-Target-Faster.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-08/DiploidGRN2TargetFasterMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-08/GRN-2-Target-Faster-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-14/Diploid-GRN-2-Target-Faster.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-14/Diploid-GRN-2-Target-Faster.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-14/DiploidGRN2TargetFasterMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-14/GRN-2-Target-Faster-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-20/Diploid-GRN-2-Target-Faster.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-20/Diploid-GRN-2-Target-Faster.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-20/DiploidGRN2TargetFasterMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-20/GRN-2-Target-Faster-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-26/Diploid-GRN-2-Target-Faster.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-26/Diploid-GRN-2-Target-Faster.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-26/DiploidGRN2TargetFasterMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-26/GRN-2-Target-Faster-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-32/Diploid-GRN-2-Target-Faster.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-32/Diploid-GRN-2-Target-Faster.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-32/DiploidGRN2TargetFasterMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-32/GRN-2-Target-Faster-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-40/Diploid-GRN-2-Target-Faster.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-40/Diploid-GRN-2-Target-Faster.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-40/DiploidGRN2TargetFasterMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-40/GRN-2-Target-Faster-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-47/Diploid-GRN-2-Target-Faster.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-47/Diploid-GRN-2-Target-Faster.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-47/DiploidGRN2TargetFasterMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-47/GRN-2-Target-Faster-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-54/Diploid-GRN-2-Target-Faster.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-54/Diploid-GRN-2-Target-Faster.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-54/DiploidGRN2TargetFasterMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target-faster/2017-06-23-13-05-54/GRN-2-Target-Faster-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-20-53/DiploidGRN2TargetMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-05/Diploid-GRN-2-Target.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-05/Diploid-GRN-2-Target.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-05/DiploidGRN2TargetMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-05/GRN-2-Target-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-11/Diploid-GRN-2-Target.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-11/Diploid-GRN-2-Target.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-11/DiploidGRN2TargetMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-11/GRN-2-Target-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-13/Diploid-GRN-2-Target.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-13/Diploid-GRN-2-Target.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-13/DiploidGRN2TargetMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-13/GRN-2-Target-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-15/Diploid-GRN-2-Target.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-15/Diploid-GRN-2-Target.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-15/DiploidGRN2TargetMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-15/GRN-2-Target-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-18/Diploid-GRN-2-Target.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-18/Diploid-GRN-2-Target.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-18/DiploidGRN2TargetMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-18/GRN-2-Target-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-21/Diploid-GRN-2-Target.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-21/Diploid-GRN-2-Target.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-21/DiploidGRN2TargetMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-21/GRN-2-Target-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-25/Diploid-GRN-2-Target.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-25/Diploid-GRN-2-Target.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-25/DiploidGRN2TargetMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-25/GRN-2-Target-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-29/Diploid-GRN-2-Target.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-29/Diploid-GRN-2-Target.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-29/DiploidGRN2TargetMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-29/GRN-2-Target-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-34/Diploid-GRN-2-Target.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-34/Diploid-GRN-2-Target.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-34/DiploidGRN2TargetMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-34/GRN-2-Target-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-39/Diploid-GRN-2-Target.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-39/Diploid-GRN-2-Target.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-39/DiploidGRN2TargetMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-20-28-39/GRN-2-Target-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-24/Diploid-GRN-2-Target.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-24/Diploid-GRN-2-Target.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-24/DiploidGRN2TargetMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-24/GRN-2-Target-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-26/Diploid-GRN-2-Target.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-26/Diploid-GRN-2-Target.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-26/DiploidGRN2TargetMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-26/GRN-2-Target-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-28/Diploid-GRN-2-Target.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-28/Diploid-GRN-2-Target.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-28/DiploidGRN2TargetMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-28/GRN-2-Target-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-30/Diploid-GRN-2-Target.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-30/Diploid-GRN-2-Target.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-30/DiploidGRN2TargetMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-30/GRN-2-Target-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-33/Diploid-GRN-2-Target.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-33/Diploid-GRN-2-Target.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-33/DiploidGRN2TargetMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-33/GRN-2-Target-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-36/Diploid-GRN-2-Target.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-36/Diploid-GRN-2-Target.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-36/DiploidGRN2TargetMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-36/GRN-2-Target-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-39/Diploid-GRN-2-Target.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-39/Diploid-GRN-2-Target.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-39/DiploidGRN2TargetMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-39/GRN-2-Target-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-43/Diploid-GRN-2-Target.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-43/Diploid-GRN-2-Target.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-43/DiploidGRN2TargetMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-43/GRN-2-Target-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-47/Diploid-GRN-2-Target.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-47/Diploid-GRN-2-Target.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-47/DiploidGRN2TargetMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-47/GRN-2-Target-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-52/Diploid-GRN-2-Target.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-52/Diploid-GRN-2-Target.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-52/DiploidGRN2TargetMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-22-32-52/GRN-2-Target-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-07/Diploid-GRN-2-Target.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-07/Diploid-GRN-2-Target.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-07/DiploidGRN2TargetMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-07/GRN-2-Target-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-13/Diploid-GRN-2-Target.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-13/Diploid-GRN-2-Target.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-13/DiploidGRN2TargetMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-13/GRN-2-Target-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-17/Diploid-GRN-2-Target.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-17/Diploid-GRN-2-Target.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-17/DiploidGRN2TargetMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-17/GRN-2-Target-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-23/Diploid-GRN-2-Target.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-23/Diploid-GRN-2-Target.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-23/DiploidGRN2TargetMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-23/GRN-2-Target-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-29/Diploid-GRN-2-Target.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-29/Diploid-GRN-2-Target.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-29/DiploidGRN2TargetMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-29/GRN-2-Target-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-36/Diploid-GRN-2-Target.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-36/Diploid-GRN-2-Target.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-36/DiploidGRN2TargetMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-36/GRN-2-Target-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-43/Diploid-GRN-2-Target.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-43/Diploid-GRN-2-Target.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-43/DiploidGRN2TargetMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-43/GRN-2-Target-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-50/Diploid-GRN-2-Target.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-50/Diploid-GRN-2-Target.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-50/DiploidGRN2TargetMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-50/GRN-2-Target-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-57/Diploid-GRN-2-Target.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-57/Diploid-GRN-2-Target.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-57/DiploidGRN2TargetMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-53-57/GRN-2-Target-Chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-54-06/Diploid-GRN-2-Target.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-54-06/Diploid-GRN-2-Target.sum" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-54-06/DiploidGRN2TargetMain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/statistics/diploid-wilcoxon-tests-soto-larson-methods/raw-data/diploid-grn-2-target/2017-06-22-23-54-06/GRN-2-Target-Chart.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ga/collections/DetailedStatistics.java" afterPath="$PROJECT_DIR$/src/main/java/ga/collections/DetailedStatistics.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ga/components/chromosomes/SimpleHotspotDiploid.java" afterPath="$PROJECT_DIR$/src/main/java/ga/components/chromosomes/SimpleHotspotDiploid.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ga/components/genes/Gene.java" afterPath="$PROJECT_DIR$/src/main/java/ga/components/genes/Gene.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ga/components/hotspots/Hotspot.java" afterPath="$PROJECT_DIR$/src/main/java/ga/components/hotspots/Hotspot.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ga/components/materials/SimpleMaterial.java" afterPath="$PROJECT_DIR$/src/main/java/ga/components/materials/SimpleMaterial.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ga/operations/fitnessFunctions/GRNFitnessFunctionMultipleTargets.java" afterPath="$PROJECT_DIR$/src/main/java/ga/operations/fitnessFunctions/GRNFitnessFunctionMultipleTargets.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ga/operations/fitnessFunctions/GRNFitnessFunctionMultipleTargetsFastHidden.java" afterPath="$PROJECT_DIR$/src/main/java/ga/operations/fitnessFunctions/GRNFitnessFunctionMultipleTargetsFastHidden.java" />
     </list>
     <ignored path="ga-project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -401,10 +385,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="480">
               <caret line="36" column="39" lean-forward="false" selection-start-line="36" selection-start-column="39" selection-end-line="36" selection-end-column="39" />
-              <folding>
-                <element signature="e#2922#2923#0" expanded="true" />
-                <element signature="e#3005#3006#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -434,12 +415,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="930">
               <caret line="77" column="18" lean-forward="false" selection-start-line="77" selection-start-column="18" selection-end-line="77" selection-end-column="18" />
-              <folding>
-                <element signature="e#1786#1787#0" expanded="true" />
-                <element signature="e#1857#1858#0" expanded="true" />
-                <element signature="e#2321#2322#0" expanded="true" />
-                <element signature="e#2377#2378#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -675,7 +651,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -890,8 +866,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1520,7 +1496,8 @@
       <workItem from="1498262397608" duration="35146000" />
       <workItem from="1498441788332" duration="15331000" />
       <workItem from="1498486870822" duration="19576000" />
-      <workItem from="1498609727959" duration="31000" />
+      <workItem from="1498609727959" duration="301000" />
+      <workItem from="1498610423695" duration="395000" />
     </task>
     <task id="LOCAL-00001" summary="mimic david's experiment 4 ready">
       <created>1492845246744</created>
@@ -1683,11 +1660,18 @@
       <option name="project" value="LOCAL" />
       <updated>1498443106349</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="5 targets">
+      <created>1498610048890</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1498610048890</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="331931000" />
+    <option name="totallyTimeSpent" value="332596000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1782,7 +1766,8 @@
     <MESSAGE value="completed a set of wilcxon test" />
     <MESSAGE value="look into why Soto's method generates a flat line" />
     <MESSAGE value="some test data" />
-    <option name="LAST_COMMIT_MESSAGE" value="some test data" />
+    <MESSAGE value="5 targets" />
+    <option name="LAST_COMMIT_MESSAGE" value="5 targets" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2137,10 +2122,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
           <caret line="36" column="39" lean-forward="false" selection-start-line="36" selection-start-column="39" selection-end-line="36" selection-end-column="39" />
-          <folding>
-            <element signature="e#2922#2923#0" expanded="true" />
-            <element signature="e#3005#3006#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2163,12 +2145,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="930">
           <caret line="77" column="18" lean-forward="false" selection-start-line="77" selection-start-column="18" selection-end-line="77" selection-end-column="18" />
-          <folding>
-            <element signature="e#1786#1787#0" expanded="true" />
-            <element signature="e#1857#1858#0" expanded="true" />
-            <element signature="e#2321#2322#0" expanded="true" />
-            <element signature="e#2377#2378#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
