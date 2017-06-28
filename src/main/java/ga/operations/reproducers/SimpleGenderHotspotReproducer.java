@@ -9,6 +9,7 @@ import ga.operations.expressionMaps.DiploidEvolvedMap;
 import ga.operations.expressionMaps.ExpressionMap;
 
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -30,8 +31,18 @@ public class SimpleGenderHotspotReproducer extends GenderHotspotReproducer<Gende
         final int maleMatch = ThreadLocalRandom.current().nextInt(maleGametes.size());
         final int femaleMatch = ThreadLocalRandom.current().nextInt(femaleGametes.size());
         final boolean masculine = ThreadLocalRandom.current().nextBoolean();
-        final ExpressionMap<SimpleMaterial, SimpleMaterial> dominanceMap = new DiploidEvolvedMap(father.getLength());
-        final Hotspot hotspot = new Hotspot(father.getHotspot().getSize(), father.getLength());
+        final Hotspot hotspot;
+        final ExpressionMap<SimpleMaterial, SimpleMaterial> dominanceMap;
+        if (Math.random() < 0.5) {
+            hotspot = father.getHotspot().copy();
+        } else {
+            hotspot = mother.getHotspot().copy();
+        }
+        if (Math.random() < 0.5) {
+            dominanceMap = father.getMapping().copy();
+        } else {
+            dominanceMap = mother.getMapping().copy();
+        }
         return new GenderHotspotDiploid((SimpleMaterial) maleGametes.get(maleMatch),
                 (SimpleMaterial) femaleGametes.get(femaleMatch), dominanceMap, hotspot, masculine);
     }

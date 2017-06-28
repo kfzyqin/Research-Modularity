@@ -28,7 +28,12 @@ public class SimpleGenderReproducer extends GenderReproducer<GenderDiploid> {
         final int maleMatch = ThreadLocalRandom.current().nextInt(maleGametes.size());
         final int femaleMatch = ThreadLocalRandom.current().nextInt(femaleGametes.size());
         final boolean masculine = ThreadLocalRandom.current().nextBoolean();
-        final ExpressionMap<SimpleMaterial, SimpleMaterial> dominanceMap = new DiploidEvolvedMap(father.getLength());
+        final ExpressionMap<SimpleMaterial, SimpleMaterial> dominanceMap;
+        if (Math.random() < 0.5) {
+            dominanceMap = father.getMapping().copy();
+        } else {
+            dominanceMap = mother.getMapping().copy();
+        }
         return new GenderDiploid((SimpleMaterial) maleGametes.get(maleMatch),
                 (SimpleMaterial) femaleGametes.get(femaleMatch),
                 dominanceMap, masculine);
