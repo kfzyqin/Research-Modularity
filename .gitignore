@@ -23,4 +23,3 @@ hs_err_pid*
 
 # ignore all the generated files
 generated-outputs/
-.idea/
