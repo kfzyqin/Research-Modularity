@@ -40,4 +40,5 @@ public interface ExpressionMap<M extends Material, P extends Material> extends C
      * @return phenotype of an individual
      */
     P map(@NotNull final List<M> materials);
+    ExpressionMap<M, P> copy();
 }

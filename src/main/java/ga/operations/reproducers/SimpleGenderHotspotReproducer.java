@@ -22,6 +22,7 @@ public class SimpleGenderHotspotReproducer extends GenderHotspotReproducer<Gende
 
     @Override
     protected GenderHotspotDiploid recombine(List<GenderHotspotDiploid> mates) {
+        // Todo: Ask Bob about creating new hotspots or using existing hotspots
         GenderHotspotDiploid father = mates.get(0);
         GenderHotspotDiploid mother = mates.get(1);
         List<Material> maleGametes = crossover(father);

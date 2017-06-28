@@ -10,6 +10,10 @@ import java.util.*;
  * The Australian National University.
  */
 public class Hotspot implements Copyable<Hotspot> {
+    /*
+    Todo: something is wrong with hotspot, positions are the same
+     */
+
     protected final int size;
     protected final int dnaLength;
     protected Map<Integer, Double> recombinationRate;
@@ -66,11 +70,11 @@ public class Hotspot implements Copyable<Hotspot> {
 
     @Override
     public Hotspot copy() {
-          return new Hotspot(this.size, this.dnaLength, this.recombinationRate);
+        return new Hotspot(this.size, this.dnaLength, new HashMap<>(this.recombinationRate));
     }
 
     public SortedSet<Integer> getSortedHotspotPositions() {
-        SortedSet<Integer> positions = new TreeSet<Integer>(recombinationRate.keySet());
+        SortedSet<Integer> positions = new TreeSet<>(recombinationRate.keySet());
         return positions;
     }
 

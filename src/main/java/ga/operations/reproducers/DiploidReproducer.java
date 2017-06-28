@@ -54,12 +54,13 @@ public abstract class DiploidReproducer<C extends Chromosome> implements Reprodu
         return children;
     }
 
-    protected List<Material> crossover(@NotNull SimpleMaterial dna1, SimpleMaterial dna2) {
-        List<Material> newDNAs = new ArrayList<>(2);
-        Material dna1Copy = dna1.copy();
-        Material dna2Copy = dna2.copy();
+    protected List<SimpleMaterial> crossover(@NotNull final C parent) {
+        List<SimpleMaterial> newDNAs = new ArrayList<>(2);
+        List<SimpleMaterial> materialView = parent.getMaterialsView();
+        SimpleMaterial dna1Copy = materialView.get(0).copy();
+        SimpleMaterial dna2Copy = materialView.get(1).copy();
 
-        final int crossIndex = ThreadLocalRandom.current().nextInt(1, dna1.getSize());
+        final int crossIndex = ThreadLocalRandom.current().nextInt(1, dna1Copy.getSize());
         if (isToDoCrossover) {
             crossoverTwoDNAsAt(dna1Copy, dna2Copy, crossIndex);
         }

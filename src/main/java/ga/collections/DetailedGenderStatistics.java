@@ -145,15 +145,19 @@ public class DetailedGenderStatistics<G extends Chromosome & Coupleable> impleme
             this.means.add(means.get(i));
 
             this.maleDeltas.add(maleDeltas.get(i));
-            this.femaleDeltas.add(maleDeltas.get(i));
+            this.femaleDeltas.add(femaleDeltas.get(i));
             this.deltas.add(deltas.get(i));
+
         }
     }
 
     @Override
     public DetailedGenderStatistics copy() {
-        return new DetailedGenderStatistics<>(maleElites, femaleElites, maleWorsts, femaleWorsts,
-                maleMedians, femaleMedians, maleMeans, femaleMeans, maleDeltas, femaleDeltas);
+        return new DetailedGenderStatistics<>(new ArrayList<>(maleElites), new ArrayList<>(femaleElites),
+                new ArrayList<>(maleWorsts), new ArrayList<>(femaleWorsts),
+                new ArrayList<>(maleMedians), new ArrayList<>(femaleMedians),
+                new ArrayList<>(maleMeans), new ArrayList<>(femaleMeans),
+                new ArrayList<>(maleDeltas), new ArrayList<>(femaleDeltas));
     }
 
     private List<Individual<G>> getIndividualsWithGender(List<Individual<G>> data, boolean isMasculine) {

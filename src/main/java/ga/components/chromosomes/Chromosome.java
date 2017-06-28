@@ -104,4 +104,5 @@ public abstract class Chromosome<M extends Material, P extends Material> impleme
     public void setMapping(@NotNull final ExpressionMap<M, P> mapping) {
         this.mapping = mapping;
     }
+
 }

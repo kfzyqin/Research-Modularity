@@ -2,6 +2,7 @@ package ga.operations.reproducers;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.SimpleDiploid;
+import ga.components.chromosomes.SimpleHotspotDiploid;
 import ga.components.genes.Gene;
 import ga.components.materials.Material;
 import ga.components.materials.SimpleMaterial;
@@ -55,14 +56,20 @@ public class SimpleDiploidReproducer extends DiploidReproducer<SimpleDiploid> {
     @Override
     protected List<SimpleDiploid> recombine(List<SimpleDiploid> mates) {
         List<SimpleDiploid> rtn = new ArrayList<>();
+
         SimpleDiploid parent1 = mates.get(0);
         SimpleDiploid parent2 = mates.get(1);
-        SimpleMaterial dna1_1 = parent1.getMaterialsView().get(0).copy();
-        SimpleMaterial dna1_2 = parent2.getMaterialsView().get(0).copy();
-        SimpleMaterial dna2_1 = parent1.getMaterialsView().get(1).copy();
-        SimpleMaterial dna2_2 = parent2.getMaterialsView().get(1).copy();
-        ExpressionMap mapping1 = parent1.getMapping();
-        ExpressionMap mapping2 = parent2.getMapping();
+
+        List<SimpleMaterial> parent1Gametes = crossover(mates.get(0));
+        List<SimpleMaterial> parent2Gametes = crossover(mates.get(1));
+
+        SimpleMaterial dna1_1 = parent1Gametes.get(0).copy();
+        SimpleMaterial dna1_2 = parent1Gametes.get(0).copy();
+        SimpleMaterial dna2_1 = parent2Gametes.get(1).copy();
+        SimpleMaterial dna2_2 = parent2Gametes.get(1).copy();
+
+        ExpressionMap mapping1 = parent1.getMapping().copy();
+        ExpressionMap mapping2 = parent2.getMapping().copy();
 
         if (Math.random() > matchProbability) {
             SimpleMaterial tmp = dna1_2;
@@ -75,8 +82,8 @@ public class SimpleDiploidReproducer extends DiploidReproducer<SimpleDiploid> {
             mapping1 = mapping2;
             mapping2 = tmp;
         }
-        rtn.add(new SimpleDiploid(dna1_1, dna1_2, mapping1));
-        rtn.add(new SimpleDiploid(dna2_1, dna2_2, mapping2));
+        rtn.add(new SimpleDiploid(dna1_1, dna1_2, mapping1.copy()));
+        rtn.add(new SimpleDiploid(dna2_1, dna2_2, mapping2.copy()));
         return rtn;
     }
 
