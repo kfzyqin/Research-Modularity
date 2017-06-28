@@ -1,5 +1,17 @@
 package ga.others;
 
+import ga.collections.Individual;
+import ga.components.GRNs.DirectedEdge;
+import ga.components.chromosomes.Chromosome;
+import ga.components.chromosomes.SimpleDiploid;
+import ga.components.chromosomes.SimpleHotspotDiploid;
+import ga.components.genes.EdgeGene;
+import ga.components.hotspots.Hotspot;
+import ga.components.materials.GeneRegulatoryNetwork;
+import ga.components.materials.SimpleMaterial;
+import ga.operations.expressionMaps.DiploidEvolvedMap;
+import ga.operations.expressionMaps.ExpressionMap;
+
 import java.lang.reflect.Array;
 import java.util.*;
 
@@ -7,6 +19,7 @@ import java.util.*;
  * Created by zhenyueqin on 24/6/17.
  */
 public class GeneralMethods<T> {
+
     public static Set<String> permutation(String str) {
         return permutation("", str);
     }
@@ -58,5 +71,43 @@ public class GeneralMethods<T> {
         else {
             return getAllLists(elements, currentLengthOfList - 1, lengthOfList);
         }
+    }
+
+    public static <C extends Chromosome> Individual<C> individualCloneMachine(final boolean withHotspot,
+                                                                          final int networkSize,
+                                                                          final int edgeNumber,
+                                                                          final int hotspotSize) {
+        List<EdgeGene> edgeGenes = new ArrayList<>(networkSize);
+        for (int i=0; i<networkSize; i++) {
+            edgeGenes.add(new EdgeGene(0));
+        }
+
+        final int edgeNumberCycle = networkSize / edgeNumber;
+        boolean positive = true;
+
+        for (int i=0; i<edgeGenes.size(); i++) {
+            if (i % edgeNumberCycle == 0) {
+                if (positive) {
+                    edgeGenes.get(i).setValue(1);
+                } else {
+                    edgeGenes.get(i).setValue(-1);
+                }
+                positive = !positive;
+            }
+        }
+
+        SimpleMaterial grn = new GeneRegulatoryNetwork(new ArrayList<>(edgeGenes));
+        ExpressionMap<SimpleMaterial, SimpleMaterial> map = new DiploidEvolvedMap(grn);
+        Individual<C> cloneMan;
+
+        if (!withHotspot) {
+            cloneMan = new Individual<>((C) new SimpleDiploid(grn, grn, map));
+            return cloneMan.copy();
+        } else {
+            Hotspot hotspot = new Hotspot(hotspotSize, grn.getSize());
+            cloneMan = new Individual<>((C) new SimpleHotspotDiploid(grn, grn, map, hotspot));
+            return cloneMan.copy();
+        }
+
     }
 }

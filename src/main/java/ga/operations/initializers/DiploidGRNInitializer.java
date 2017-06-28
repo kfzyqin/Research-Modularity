@@ -3,11 +3,13 @@ package ga.operations.initializers;
 import ga.collections.Individual;
 import ga.collections.Population;
 import ga.components.chromosomes.SimpleDiploid;
+import ga.components.chromosomes.SimpleHotspotDiploid;
 import ga.components.materials.GeneRegulatoryNetwork;
 import ga.components.materials.GRNFactoryNoHiddenTarget;
 import ga.components.materials.SimpleMaterial;
 import ga.operations.expressionMaps.DiploidEvolvedMap;
 import ga.operations.expressionMaps.ExpressionMap;
+import ga.others.GeneralMethods;
 
 /**
  * Created by Zhenyue Qin on 6/06/2017.
@@ -48,6 +50,17 @@ public class DiploidGRNInitializer implements Initializer<SimpleDiploid> {
         Population<SimpleDiploid> population = new Population<>(size);
         for (int i = 0; i < size; i++) {
             population.addCandidate(generateIndividual());
+        }
+        population.nextGeneration();
+        return population;
+    }
+
+    public Population<SimpleDiploid> initializeSameIndividuals() {
+        Population<SimpleDiploid> population = new Population<>(size);
+        Individual<SimpleDiploid> originalIndividual = GeneralMethods.individualCloneMachine(false,
+                this.targetLength * targetLength, edgeSize, 0);
+        for (int i = 0; i < size; i++) {
+            population.addCandidate(originalIndividual.copy());
         }
         population.nextGeneration();
         return population;

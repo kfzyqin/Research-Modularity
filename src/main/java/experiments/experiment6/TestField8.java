@@ -1,5 +1,7 @@
 package experiments.experiment6;
 
+import ga.components.hotspots.Hotspot;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -29,6 +31,14 @@ public class TestField8 {
         Chin chin2 = chin1.copy();
         chin2.grades.add(100);
         System.out.println(chin1.grades);
+
+        Hotspot hotspot1 = new Hotspot(9, 11);
+        System.out.println(hotspot1);
+
+        Hotspot hotspot2 = hotspot1.copy();
+        hotspot2.setRecombinationRateAtPosition(100, 0.06);
+        System.out.println(hotspot1);
+        System.out.println(hotspot2);
     }
 
 

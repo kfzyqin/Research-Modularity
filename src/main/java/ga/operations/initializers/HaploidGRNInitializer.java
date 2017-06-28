@@ -53,6 +53,16 @@ public class HaploidGRNInitializer implements Initializer<SimpleHaploid> {
         return population;
     }
 
+    public Population<SimpleHaploid> initializeSameIndividuals() {
+        Population<SimpleHaploid> population = new Population<>(size);
+        Individual<SimpleHaploid> originalIndividual = generateIndividual();
+        for (int i = 0; i < size; i++) {
+            population.addCandidate(originalIndividual.copy());
+        }
+        population.nextGeneration();
+        return population;
+    }
+
     private Individual<SimpleHaploid> generateIndividual() {
         GRNFactoryNoHiddenTarget grnFactor = new GRNFactoryNoHiddenTarget(targetLength, this.edgeSize);
         return new Individual<>(new SimpleHaploid(grnFactor.generateGeneRegulatoryNetwork()));

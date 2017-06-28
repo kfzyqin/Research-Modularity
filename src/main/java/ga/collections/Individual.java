@@ -66,7 +66,7 @@ public class Individual<C extends Chromosome> implements Comparable<Individual<C
 
     @Override
     public Individual<C> copy() {
-        return new Individual<>(chromosome, fitness);
+        return new Individual<>((C)chromosome.copy(), fitness);
     }
 
     public double evaluate(final FitnessFunction objective, final boolean recompute) {

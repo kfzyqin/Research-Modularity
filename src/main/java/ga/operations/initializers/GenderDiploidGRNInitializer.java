@@ -3,6 +3,7 @@ package ga.operations.initializers;
 import ga.collections.Individual;
 import ga.collections.Population;
 import ga.components.chromosomes.GenderDiploid;
+import ga.components.chromosomes.SimpleDiploid;
 import ga.components.materials.GeneRegulatoryNetwork;
 import ga.components.materials.GRNFactoryNoHiddenTarget;
 import ga.components.materials.SimpleMaterial;
@@ -48,6 +49,16 @@ public class GenderDiploidGRNInitializer implements Initializer<GenderDiploid> {
         Population<GenderDiploid> population = new Population<>(size);
         for (int i = 0; i < size; i++) {
             population.addCandidate(generateIndividual());
+        }
+        population.nextGeneration();
+        return population;
+    }
+
+    public Population<GenderDiploid> initializeSameIndividuals() {
+        Population<GenderDiploid> population = new Population<>(size);
+        Individual<GenderDiploid> originalIndividual = generateIndividual();
+        for (int i = 0; i < size; i++) {
+            population.addCandidate(originalIndividual.copy());
         }
         population.nextGeneration();
         return population;

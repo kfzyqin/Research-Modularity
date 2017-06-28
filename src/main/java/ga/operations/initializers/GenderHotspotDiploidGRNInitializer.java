@@ -2,6 +2,7 @@ package ga.operations.initializers;
 
 import ga.collections.Individual;
 import ga.collections.Population;
+import ga.components.chromosomes.GenderDiploid;
 import ga.components.chromosomes.GenderHotspotDiploid;
 import ga.components.hotspots.Hotspot;
 import ga.components.materials.GeneRegulatoryNetwork;
@@ -50,6 +51,16 @@ public class GenderHotspotDiploidGRNInitializer implements Initializer<GenderHot
         Population<GenderHotspotDiploid> population = new Population<>(size);
         for (int i = 0; i < size; i++) {
             population.addCandidate(generateIndividual());
+        }
+        population.nextGeneration();
+        return population;
+    }
+
+    public Population<GenderHotspotDiploid> initializeSameIndividuals() {
+        Population<GenderHotspotDiploid> population = new Population<>(size);
+        Individual<GenderHotspotDiploid> originalIndividual = generateIndividual();
+        for (int i = 0; i < size; i++) {
+            population.addCandidate(originalIndividual.copy());
         }
         population.nextGeneration();
         return population;
