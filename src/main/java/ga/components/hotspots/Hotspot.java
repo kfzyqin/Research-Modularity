@@ -73,4 +73,9 @@ public class Hotspot implements Copyable<Hotspot> {
         SortedSet<Integer> positions = new TreeSet<Integer>(recombinationRate.keySet());
         return positions;
     }
+
+    @Override
+    public String toString() {
+        return this.recombinationRate.toString();
+    }
 }

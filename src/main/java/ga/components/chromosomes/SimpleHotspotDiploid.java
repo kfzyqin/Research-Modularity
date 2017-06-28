@@ -38,8 +38,7 @@ public class SimpleHotspotDiploid extends SimpleDiploid implements WithHotspot{
 
     @Override
     public String toString() {
-        List<Double> hotspotRates = hotspot.getRecombinationRates();
-        return super.toString() + "\nRecombination probability: " + hotspotRates.toString();
+        return super.toString() + "\nRecombination probability: " + hotspot.toString();
     }
 
 

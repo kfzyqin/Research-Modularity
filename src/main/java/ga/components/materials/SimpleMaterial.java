@@ -69,11 +69,33 @@ public class SimpleMaterial implements Material {
         return new SimpleMaterial(strand);
     }
 
+    public Gene[] getStrand() {
+        return this.strand;
+    }
+
     /**
      * @return String representation of the list of genes.
      */
     @Override
     public String toString() {
         return Arrays.toString(strand);
+    }
+
+    @Override
+    public int hashCode() {
+        int[] geneArray = new int[strand.length];
+        for (int i=0; i<strand.length; i++) {
+            geneArray[i] = strand[i].hashCode();
+        }
+        return Arrays.hashCode(geneArray);
+    }
+
+    @Override
+    public boolean equals(Object aSimpleMaterial) {
+        try {
+            return Arrays.equals(this.strand, ((SimpleMaterial) aSimpleMaterial).getStrand());
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

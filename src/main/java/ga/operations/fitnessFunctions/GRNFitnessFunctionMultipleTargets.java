@@ -12,6 +12,7 @@ import java.util.*;
 public class GRNFitnessFunctionMultipleTargets extends GRNFitnessFunction<SimpleMaterial>
         implements FitnessFunctionMultipleTargets<SimpleMaterial> {
     protected final int[][] targets;
+    protected Map<List<Integer>, Map<SimpleMaterial, Double>> targetPhenotypeFitnessMap = new HashMap<>();
 
     protected final List<Integer> thresholdOfAddingTarget;
 

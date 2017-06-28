@@ -185,8 +185,8 @@ public class DetailedStatistics <C extends Chromosome> implements Statistics<C> 
           PlotOrientation.VERTICAL,
           true,true,false);
 
-        int width = 720;    /* Width of the image */
-        int height = 540;   /* Height of the image */
+        int width = 1440;    /* Width of the image */
+        int height = 1080;   /* Height of the image */
         File lineChartFile = new File( this.directoryPath + fileName);
         ChartUtilities.saveChartAsJPEG(lineChartFile ,lineChartObject, width ,height);
     }

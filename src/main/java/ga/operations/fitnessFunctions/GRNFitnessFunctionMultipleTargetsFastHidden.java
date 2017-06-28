@@ -5,8 +5,7 @@ import ga.components.genes.DataGene;
 import ga.components.materials.GeneRegulatoryNetworkHiddenTargets;
 import ga.components.materials.SimpleMaterial;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  *
@@ -136,9 +135,24 @@ public class GRNFitnessFunctionMultipleTargetsFastHidden extends GRNFitnessFunct
 //        return returnables;
     }
 
+    private List<Integer> convertIntArrayToIntegerList(int[] intArray) {
+        List<Integer> rtn = new ArrayList<>(intArray.length);
+        for (int e : intArray) {
+            rtn.add(e);
+        }
+        return rtn;
+    }
+
     protected double evaluateOneTargetWithHidden(@NotNull final SimpleMaterial phenotype,
                                        @NotNull int[] target,
                                        @NotNull final DataGene[][] perturbationTargets) {
+        int maximizedFitness = 0;
+        List<Integer> targetList = convertIntArrayToIntegerList(target);
+        Map<SimpleMaterial, Double> phenotypeFitnessMap = (targetPhenotypeFitnessMap.containsKey(
+                targetList) ? targetPhenotypeFitnessMap.get(targetList) : new HashMap<>());
+        if (phenotypeFitnessMap.containsKey(phenotype)) {
+            return phenotypeFitnessMap.get(phenotype);
+        }
         double fitnessValue = 0;
         int perturbationIndex = 0;
         while (perturbationIndex < perturbations) {
@@ -154,6 +168,9 @@ public class GRNFitnessFunctionMultipleTargetsFastHidden extends GRNFitnessFunct
 
             if (currentRound < maxCycle) {
                 int hammingDistance = this.getHammingDistanceWithHiddenTargets(currentAttractor, target, hiddenTargetSize);
+                if (hammingDistance == 0) {
+                    maximizedFitness += 1;
+                }
                 double thisFitness = Math.pow((1 - (hammingDistance / ((double) target.length))), 5);
                 fitnessValue += thisFitness;
             } else {
@@ -161,9 +178,11 @@ public class GRNFitnessFunctionMultipleTargetsFastHidden extends GRNFitnessFunct
             }
             perturbationIndex += 1;
         }
-
+//        System.out.println("maximised fitness: " + maximizedFitness);
         double arithmeticMean = fitnessValue / this.perturbations;
         double networkFitness = 1 - Math.pow(Math.E, (-3 * arithmeticMean));
+        phenotypeFitnessMap.put(phenotype, networkFitness);
+        targetPhenotypeFitnessMap.put(targetList, phenotypeFitnessMap);
         return networkFitness;
     }
 

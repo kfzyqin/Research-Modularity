@@ -49,4 +49,18 @@ public abstract class Gene<V> implements Copyable<Gene<V>> {
      * @param value value to be assigned to the gene, may be subject to restrictions according to implementations.
      */
     public abstract void setValue(@NotNull final V value);
+
+    @Override
+    public boolean equals(Object aGene) {
+        try {
+            return this.value.equals(((Gene) aGene).getValue());
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        return value.hashCode();
+    }
 }
