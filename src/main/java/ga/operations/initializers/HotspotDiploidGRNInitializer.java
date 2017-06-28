@@ -59,9 +59,9 @@ public class HotspotDiploidGRNInitializer implements Initializer<SimpleHotspotDi
 
     public Population<SimpleHotspotDiploid> initializeSameIndividuals() {
         Population<SimpleHotspotDiploid> population = new Population<>(size);
-        Individual<SimpleHotspotDiploid> originalIndividual = GeneralMethods.individualCloneMachine(
-                        false, this.targetLength * targetLength, edgeSize, 9);
         for (int i = 0; i < size; i++) {
+            Individual<SimpleHotspotDiploid> originalIndividual = GeneralMethods.individualCloneMachine(
+                    true, this.targetLength * targetLength, edgeSize, hotspotSize);
             population.addCandidate(originalIndividual.copy());
         }
         population.nextGeneration();
