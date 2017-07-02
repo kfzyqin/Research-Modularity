@@ -58,7 +58,7 @@ public class HotspotDiploidGRN4TargetFasterSameInitialIndividualMain {
     private static final int size = 100;
     private static final int tournamentSize = 3;
     private static final double reproductionRate = 0.8;
-    private static final int maxGen = 11000;
+    private static final int maxGen = 6000;
 
     private static final double maxFit = 300;
     private static final double epsilon = .5;
