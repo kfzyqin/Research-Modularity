@@ -8,6 +8,7 @@ import ga.frame.frames.Frame;
 import ga.frame.frames.SimpleDiploidMultipleTargetFrame;
 import ga.frame.frames.SimpleHotspotDiploidMultipleTargetFrame;
 import ga.frame.states.SimpleDiploidMultipleTargetState;
+import ga.frame.states.SimpleHotspotDiploidMultipleTargetState;
 import ga.frame.states.State;
 import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
@@ -96,7 +97,8 @@ public class HotspotDiploidGRN2TargetFastHiddenMain {
 
         PriorOperator<SimpleHotspotDiploid> priorOperator = new SimpleElitismOperator<>(numElites);
 
-        PostOperator<SimpleHotspotDiploid> fillingOperator = new SimpleFillingOperatorForNormalizable<>(new SimpleTournamentScheme(tournamentSize));
+        PostOperator<SimpleHotspotDiploid> fillingOperator =
+                new SimpleFillingOperatorForNormalizable<>(new SimpleTournamentScheme(tournamentSize));
 
         Reproducer<SimpleHotspotDiploid> reproducer = new SimpleHotspotDiploidReproducer();
 
@@ -106,8 +108,9 @@ public class HotspotDiploidGRN2TargetFastHiddenMain {
 
         HotspotMutator hotspotMutator = new RandomHotspotMutator(hotspotMutationRate);
 
-        State<SimpleHotspotDiploid> state = new SimpleDiploidMultipleTargetState<>(population, fitnessFunction, mutator, reproducer,
-                selector, 2, reproductionRate, expressionMapMutator);
+        State<SimpleHotspotDiploid> state = new SimpleHotspotDiploidMultipleTargetState<>(
+                population, fitnessFunction, mutator, reproducer, selector, 2,
+                reproductionRate, expressionMapMutator, hotspotMutator);
 
         state.record(statistics);
 
