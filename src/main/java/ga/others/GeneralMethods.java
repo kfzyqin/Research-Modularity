@@ -1,18 +1,16 @@
 package ga.others;
 
 import ga.collections.Individual;
-import ga.components.GRNs.DirectedEdge;
 import ga.components.chromosomes.Chromosome;
 import ga.components.chromosomes.SimpleDiploid;
 import ga.components.chromosomes.SimpleHotspotDiploid;
 import ga.components.genes.EdgeGene;
 import ga.components.hotspots.Hotspot;
-import ga.components.materials.GeneRegulatoryNetwork;
+import ga.components.materials.GRN;
 import ga.components.materials.SimpleMaterial;
 import ga.operations.expressionMaps.DiploidEvolvedMap;
 import ga.operations.expressionMaps.ExpressionMap;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 /**
@@ -96,7 +94,7 @@ public class GeneralMethods<T> {
             }
         }
 
-        SimpleMaterial grn = new GeneRegulatoryNetwork(new ArrayList<>(edgeGenes));
+        SimpleMaterial grn = new GRN(new ArrayList<>(edgeGenes));
         ExpressionMap<SimpleMaterial, SimpleMaterial> map = new DiploidEvolvedMap(grn);
         Individual<C> cloneMan;
 

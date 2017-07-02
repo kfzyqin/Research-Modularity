@@ -10,7 +10,7 @@ public class GRNFactoryWithHiddenTargets extends GRNFactory {
     }
 
     @Override
-    public GeneRegulatoryNetworkWithHiddenTargets generateGeneRegulatoryNetwork() {
-        return new GeneRegulatoryNetworkWithHiddenTargets(this.initializeEdges(), this.manifestTargetSize);
+    public GRNWithHiddenTargets generateGeneRegulatoryNetwork() {
+        return new GRNWithHiddenTargets(this.initializeEdges(), this.manifestTargetSize);
     }
 }

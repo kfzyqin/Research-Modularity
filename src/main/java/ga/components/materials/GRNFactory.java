@@ -57,8 +57,8 @@ public abstract class GRNFactory {
         return 0.5 < Math.random();
     }
 
-    public GeneRegulatoryNetwork generateGeneRegulatoryNetwork() {
-        return new GeneRegulatoryNetwork(this.initializeEdges());
+    public GRN generateGeneRegulatoryNetwork() {
+        return new GRN(this.initializeEdges());
     }
 
     public int getManifestTargetSize() {

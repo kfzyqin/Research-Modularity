@@ -1,6 +1,6 @@
 package experiments.experiment6;
 
-import ga.components.materials.GeneRegulatoryNetwork;
+import ga.components.materials.GRN;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFastHidden;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class TestField7 {
         List<Integer> aGRNList = Arrays.asList(1, -1, -1, 1, -1, 1, 0, 1, -1);
 //        List<Integer> aGRNList = Arrays.asList(0, 0, -1, 0, 1, 1, 0, -1, -1);
 
-        GeneRegulatoryNetwork grn = new GeneRegulatoryNetwork(TestField6.convertIntegerListToEdgeGeneList(aGRNList));
+        GRN grn = new GRN(TestField6.convertIntegerListToEdgeGeneList(aGRNList));
 
         double aFitness = grnFit2.evaluate(grn, 400);
 

@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by zhenyueqin on 25/6/17.
  */
-public class GeneRegulatoryNetworkWithHiddenTargets extends GeneRegulatoryNetwork {
+public class GRNWithHiddenTargets extends GRN {
     private final int manifestTargetSize;
 
     /**
@@ -16,8 +16,8 @@ public class GeneRegulatoryNetworkWithHiddenTargets extends GeneRegulatoryNetwor
      *
      * @param edgeList a list of edge genes
      */
-    public GeneRegulatoryNetworkWithHiddenTargets(List<EdgeGene> edgeList,
-                                                  final int manifestTargetSize) {
+    public GRNWithHiddenTargets(List<EdgeGene> edgeList,
+                                final int manifestTargetSize) {
         super(edgeList);
         this.manifestTargetSize = manifestTargetSize;
     }
@@ -27,10 +27,10 @@ public class GeneRegulatoryNetworkWithHiddenTargets extends GeneRegulatoryNetwor
     }
 
     @Override
-    public GeneRegulatoryNetworkWithHiddenTargets copy() {
+    public GRNWithHiddenTargets copy() {
         List<EdgeGene> strand = new ArrayList<>(size);
         for (int i = 0; i < size; i++)
             strand.add((EdgeGene)this.strand[i].copy());
-        return new GeneRegulatoryNetworkWithHiddenTargets(strand, this.manifestTargetSize);
+        return new GRNWithHiddenTargets(strand, this.manifestTargetSize);
     }
 }

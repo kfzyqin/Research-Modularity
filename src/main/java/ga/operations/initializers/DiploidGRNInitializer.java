@@ -3,8 +3,7 @@ package ga.operations.initializers;
 import ga.collections.Individual;
 import ga.collections.Population;
 import ga.components.chromosomes.SimpleDiploid;
-import ga.components.chromosomes.SimpleHotspotDiploid;
-import ga.components.materials.GeneRegulatoryNetwork;
+import ga.components.materials.GRN;
 import ga.components.materials.GRNFactoryNoHiddenTarget;
 import ga.components.materials.SimpleMaterial;
 import ga.operations.expressionMaps.DiploidEvolvedMap;
@@ -69,8 +68,8 @@ public class DiploidGRNInitializer implements Initializer<SimpleDiploid> {
     protected Individual<SimpleDiploid> generateIndividual() {
         GRNFactoryNoHiddenTarget grnFactory = new GRNFactoryNoHiddenTarget(targetLength, this.edgeSize);
         ExpressionMap<SimpleMaterial,SimpleMaterial> mapping = new DiploidEvolvedMap(grnSize);
-        GeneRegulatoryNetwork dna1 = grnFactory.generateGeneRegulatoryNetwork();
-        GeneRegulatoryNetwork dna2 = grnFactory.generateGeneRegulatoryNetwork();
+        GRN dna1 = grnFactory.generateGeneRegulatoryNetwork();
+        GRN dna2 = grnFactory.generateGeneRegulatoryNetwork();
         return new Individual<>(new SimpleDiploid(dna1, dna2, mapping));
     }
 }

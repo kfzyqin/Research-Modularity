@@ -1,12 +1,9 @@
 package experiments.experiment6;
 
-import ga.components.genes.DataGene;
 import ga.components.genes.EdgeGene;
-import ga.components.genes.Gene;
-import ga.components.materials.GeneRegulatoryNetwork;
+import ga.components.materials.GRN;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFast;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFastHidden;
-import ga.operations.fitnessFunctions.GRNFitnessFunctionSingleTarget;
 import ga.others.GeneralMethods;
 
 import java.util.*;
@@ -24,7 +21,7 @@ public class TestField6 {
         List<Integer> tmpThresholds = new ArrayList<>(Arrays.asList(values));
 
         Set<Double> fitnessSet = new TreeSet<>();
-        Map<Double, GeneRegulatoryNetwork> fitnessMap = new TreeMap();
+        Map<Double, GRN> fitnessMap = new TreeMap();
 
         GRNFitnessFunctionMultipleTargetsFast grnFit1 = new GRNFitnessFunctionMultipleTargetsFast(
                 target1, target2, 100, 300, 0.15, tmpThresholds, 100);
@@ -39,7 +36,7 @@ public class TestField6 {
         Set<List<Integer>> perturbations = GeneralMethods.getAllLists(set, 9, 9);
         int counter = 0;
         for (List<Integer> aList : perturbations) {
-            GeneRegulatoryNetwork grn = new GeneRegulatoryNetwork(convertIntegerListToEdgeGeneList(aList));
+            GRN grn = new GRN(convertIntegerListToEdgeGeneList(aList));
             double aFitness = grnFit2.evaluate(grn, 400);
             if (counter % 1000 == 0) {
                 System.out.println("progress: " + counter + ", sum: " + perturbations.size());

@@ -1,14 +1,15 @@
 package ga.operations.initializers;
 
 import ga.collections.Individual;
-import ga.components.chromosomes.SimpleDiploid;
+import ga.collections.Population;
 import ga.components.chromosomes.SimpleHotspotDiploid;
 import ga.components.hotspots.Hotspot;
 import ga.components.materials.GRNFactoryWithHiddenTargets;
-import ga.components.materials.GeneRegulatoryNetworkWithHiddenTargets;
+import ga.components.materials.GRNWithHiddenTargets;
 import ga.components.materials.SimpleMaterial;
 import ga.operations.expressionMaps.DiploidEvolvedMap;
 import ga.operations.expressionMaps.ExpressionMap;
+import ga.others.GeneralMethods;
 
 /**
  * Created by Zhenyue Qin (秦震岳) on 2/7/17.
@@ -26,9 +27,22 @@ public class HotspotDiploidGRNHiddenTargetInitializer extends HotspotDiploidGRNI
     protected Individual<SimpleHotspotDiploid> generateIndividual() {
         GRNFactoryWithHiddenTargets grnFactory = new GRNFactoryWithHiddenTargets(targetLength, this.edgeSize);
         ExpressionMap<SimpleMaterial,SimpleMaterial> mapping = new DiploidEvolvedMap(grnSize);
-        GeneRegulatoryNetworkWithHiddenTargets dna1 = grnFactory.generateGeneRegulatoryNetwork();
-        GeneRegulatoryNetworkWithHiddenTargets dna2 = grnFactory.generateGeneRegulatoryNetwork();
+        GRNWithHiddenTargets dna1 = grnFactory.generateGeneRegulatoryNetwork();
+        GRNWithHiddenTargets dna2 = grnFactory.generateGeneRegulatoryNetwork();
         Hotspot hotspot = new Hotspot(grnSize);
         return new Individual<>(new SimpleHotspotDiploid(dna1, dna2, mapping, hotspot));
+    }
+
+    @Override
+    public Population<SimpleHotspotDiploid> initializeSameIndividuals() {
+        Population<SimpleHotspotDiploid> population = new Population<>(size);
+        for (int i = 0; i < size; i++) {
+            Individual<SimpleHotspotDiploid> originalIndividual = GeneralMethods.individualCloneMachine(
+                    true, this.targetLength * targetLength,
+                    edgeSize, this.targetLength * targetLength);
+            population.addCandidate(originalIndividual.copy());
+        }
+        population.nextGeneration();
+        return population;
     }
 }

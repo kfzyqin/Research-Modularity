@@ -2,10 +2,7 @@ package ga.operations.mutators;
 
 import ga.collections.Individual;
 import ga.components.chromosomes.Chromosome;
-import ga.components.genes.BinaryGene;
 import ga.components.genes.EdgeGene;
-import ga.components.materials.GeneRegulatoryNetwork;
-import ga.components.materials.Material;
 import ga.components.materials.SimpleMaterial;
 
 import java.util.ArrayList;

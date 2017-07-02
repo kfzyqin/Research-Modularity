@@ -20,8 +20,8 @@ public class DiploidGRNHiddenTargetInitializer extends DiploidGRNInitializer {
     protected Individual<SimpleDiploid> generateIndividual() {
         GRNFactoryWithHiddenTargets grnFactory = new GRNFactoryWithHiddenTargets(targetLength, this.edgeSize);
         ExpressionMap<SimpleMaterial,SimpleMaterial> mapping = new DiploidEvolvedMap(grnSize);
-        GeneRegulatoryNetworkWithHiddenTargets dna1 = grnFactory.generateGeneRegulatoryNetwork();
-        GeneRegulatoryNetworkWithHiddenTargets dna2 = grnFactory.generateGeneRegulatoryNetwork();
+        GRNWithHiddenTargets dna1 = grnFactory.generateGeneRegulatoryNetwork();
+        GRNWithHiddenTargets dna2 = grnFactory.generateGeneRegulatoryNetwork();
         return new Individual<>(new SimpleDiploid(dna1, dna2, mapping));
     }
 }
