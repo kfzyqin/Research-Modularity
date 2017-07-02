@@ -2,16 +2,18 @@ package experiments.experiment8;
 
 import ga.collections.DetailedStatistics;
 import ga.collections.Population;
-import ga.components.chromosomes.SimpleDiploid;
+import ga.components.chromosomes.SimpleHotspotDiploid;
 import ga.frame.frames.Frame;
-import ga.frame.frames.SimpleDiploidMultipleTargetFrame;
-import ga.frame.states.SimpleDiploidMultipleTargetState;
+import ga.frame.frames.SimpleHotspotDiploidMultipleTargetFrame;
+import ga.frame.states.SimpleHotspotDiploidMultipleTargetState;
 import ga.frame.states.State;
 import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
 import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFast;
-import ga.operations.initializers.DiploidGRNInitializer;
+import ga.operations.hotspotMutators.HotspotMutator;
+import ga.operations.hotspotMutators.RandomHotspotMutator;
+import ga.operations.initializers.HotspotDiploidGRNInitializer;
 import ga.operations.mutators.GRNEdgeMutator;
 import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
@@ -19,7 +21,7 @@ import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
 import ga.operations.priorOperators.PriorOperator;
 import ga.operations.priorOperators.SimpleElitismOperator;
 import ga.operations.reproducers.Reproducer;
-import ga.operations.reproducers.SimpleDiploidReproducer;
+import ga.operations.reproducers.SimpleHotspotDiploidReproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
@@ -34,18 +36,19 @@ import java.util.List;
 /**
  * Created by zhenyueqin on 25/6/17.
  */
-public class DiploidGRN5TargetFastSameInitialIndividualMain {
+public class HotspotDiploidGRN4TargetFasterSameInitialIndividualMain {
     private static final int[] target1 = {1, -1, 1, -1, 1, -1, 1, -1, 1, -1};
     private static final int[] target2 = {1, -1, -1, 1, 1, -1, 1, -1, 1, -1};
     private static final int[] target3 = {1, -1, 1, -1, -1, 1, 1, -1, 1, -1};
     private static final int[] target4 = {1, -1, 1, -1, 1, -1, -1, 1, 1, -1};
-    private static final int[] target5 = {1, -1, 1, -1, 1, -1, 1, -1, -1, 1};
 
     private static final int maxCycle = 100;
     private static final int edgeSize = 20;
     private static final int perturbations = 300;
+    private static final int hotspotSize = 9;
     private static final double geneMutationRate = 0.002;
     private static final double dominanceMutationRate = 0.001;
+    private static final double hotspotMutationRate = 0.0005;
     private static final double perturbationRate = 0.15;
     private static final int numElites = 20;
 
@@ -60,54 +63,56 @@ public class DiploidGRN5TargetFastSameInitialIndividualMain {
     private static final double maxFit = 300;
     private static final double epsilon = .5;
 
-    private static final String summaryFileName = "Diploid-GRN-5-Target-Same-Initial-Individual.sum";
-    private static final String csvFileName = "Diploid-GRN-5-Target-Same-Initial-Individual.csv";
-    private static final String outputDirectory = "diploid-grn-5-target-same-initial-individual";
-    private static final String mainFileName = "DiploidGRN5TargetFastSameInitialIndividualMain.java";
+    private static final String summaryFileName = "Hotspot-Diploid-GRN-4-Target-Same-Initial-Individual.sum";
+    private static final String csvFileName = "Hotspot-Diploid-GRN-4-Target-Same-Initial-Individual.csv";
+    private static final String outputDirectory = "hotspot-diploid-grn-4-target-same-initial-individual";
+    private static final String mainFileName = "HotspotDiploidGRN4TargetFasterSameInitialIndividualMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
 
-    private static final String plotTitle = "GRN 5 Targets Same Initial Individual Summary";
-    private static final String plotFileName = "GRN-5-Target-Same-Initial-Individual-Chart.png";
+    private static final String plotTitle = "Hotspot Diploid GRN 4 Targets Same Initial Individual Summary";
+    private static final String plotFileName = "Hotspot-Diploid-GRN-4-Target-Same-Initial-Individual-Chart.png";
 
-    private static final List<Integer> thresholds = Arrays.asList(0, 300, 1050, 3000, 6000);
+    private static final List<Integer> thresholds = Arrays.asList(0, 300, 1050, 3000);
 
     public static void main(String[] args) throws IOException {
-        int[][] targets = {target1, target2, target3, target4, target5};
+        int[][] targets = {target1, target2, target3, target4};
 
         // Fitness Function
         FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFast(targets,
                 maxCycle, perturbations, perturbationRate, thresholds, perturbationCycleSize);
 
         // Initializer
-        DiploidGRNInitializer initializer =
-                new DiploidGRNInitializer(size, target1.length, edgeSize);
+        HotspotDiploidGRNInitializer initializer =
+                new HotspotDiploidGRNInitializer(size, target1.length, edgeSize, hotspotSize);
 
         // Population
-        Population<SimpleDiploid> population = initializer.initializeSameIndividuals();
+        Population<SimpleHotspotDiploid> population = initializer.initializeSameIndividuals();
 
         // Mutator for chromosomes
         Mutator mutator = new GRNEdgeMutator(geneMutationRate);
 
         // Selector for reproduction
-        Selector<SimpleDiploid> selector = new SimpleTournamentSelector<>(tournamentSize);
+        Selector<SimpleHotspotDiploid> selector = new SimpleTournamentSelector<>(tournamentSize);
 
-        PriorOperator<SimpleDiploid> priorOperator = new SimpleElitismOperator<>(numElites);
+        PriorOperator<SimpleHotspotDiploid> priorOperator = new SimpleElitismOperator<>(numElites);
 
-        PostOperator<SimpleDiploid> fillingOperator = new SimpleFillingOperatorForNormalizable<>(new SimpleTournamentScheme(tournamentSize));
+        PostOperator<SimpleHotspotDiploid> fillingOperator = new SimpleFillingOperatorForNormalizable<>(new SimpleTournamentScheme(tournamentSize));
 
-        Reproducer<SimpleDiploid> reproducer = new SimpleDiploidReproducer();
+        Reproducer<SimpleHotspotDiploid> reproducer = new SimpleHotspotDiploidReproducer();
 
-        DetailedStatistics<SimpleDiploid> statistics = new DetailedStatistics<>();
+        DetailedStatistics<SimpleHotspotDiploid> statistics = new DetailedStatistics<>();
 
         ExpressionMapMutator expressionMapMutator = new DiploidDominanceMapMutator(dominanceMutationRate);
 
-        State<SimpleDiploid> state = new SimpleDiploidMultipleTargetState<>(population, fitnessFunction, mutator, reproducer,
-                selector, 2, reproductionRate, expressionMapMutator);
+        HotspotMutator hotspotMutator = new RandomHotspotMutator(hotspotMutationRate);
+
+        State<SimpleHotspotDiploid> state = new SimpleHotspotDiploidMultipleTargetState<>(population, fitnessFunction, mutator, reproducer,
+                selector, 2, reproductionRate, expressionMapMutator, hotspotMutator);
 
         state.record(statistics);
 
-        Frame<SimpleDiploid> frame = new SimpleDiploidMultipleTargetFrame<>(state, fillingOperator, statistics, priorOperator);
+        Frame<SimpleHotspotDiploid> frame = new SimpleHotspotDiploidMultipleTargetFrame<>(state, fillingOperator, statistics, priorOperator);
 
         statistics.print(0);
         statistics.setDirectory(outputDirectory + "/" + dateFormat.format(date));
