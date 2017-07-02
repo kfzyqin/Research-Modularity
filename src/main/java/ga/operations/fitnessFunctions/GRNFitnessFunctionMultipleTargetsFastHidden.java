@@ -2,7 +2,6 @@ package ga.operations.fitnessFunctions;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.genes.DataGene;
-import ga.components.materials.GeneRegulatoryNetworkHiddenTargets;
 import ga.components.materials.SimpleMaterial;
 
 import java.util.*;

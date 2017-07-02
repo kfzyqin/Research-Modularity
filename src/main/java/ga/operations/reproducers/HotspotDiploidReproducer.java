@@ -46,6 +46,27 @@ public abstract class HotspotDiploidReproducer<C extends Chromosome & WithHotspo
         return newDNAs;
     }
 
+    /*
+    this method will potentially swap every allele.
+     */
+    protected List<SimpleMaterial> throughCrossover(@NotNull final C parent) {
+        List<SimpleMaterial> newDNAs = new ArrayList<>(2);
+        List<SimpleMaterial> materialView = parent.getMaterialsView();
+        SimpleMaterial dna1Copy = materialView.get(0).copy();
+        SimpleMaterial dna2Copy = materialView.get(1).copy();
+
+        if (isToDoCrossover) {
+            for (int crossIndex : parent.getHotspot().getSortedHotspotPositions()) {
+                if (Math.random() < parent.getHotspot().getRecombinationRateAtPosition(crossIndex)) {
+                    crossoverTwoDNAsAt(dna1Copy, dna2Copy, crossIndex);
+                }
+            }
+        }
+        newDNAs.add(dna1Copy);
+        newDNAs.add(dna2Copy);
+        return newDNAs;
+    }
+
     protected int getCrossoverIndexByHotspot(@NotNull C parent) {
         final double tmpRandom = Math.random();
         SortedSet<Integer> sortedPositions = parent.getHotspot().getSortedHotspotPositions();

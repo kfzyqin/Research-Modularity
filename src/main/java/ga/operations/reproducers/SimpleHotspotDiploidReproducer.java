@@ -11,7 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by zhenyueqin on 21/6/17.
+ * Created by Zhenyue Qin (秦震岳) on 21/6/17.
+ * The Australian National University.
  */
 public class SimpleHotspotDiploidReproducer extends HotspotDiploidReproducer<SimpleHotspotDiploid> {
 
@@ -28,6 +29,9 @@ public class SimpleHotspotDiploidReproducer extends HotspotDiploidReproducer<Sim
     }
 
     @Override
+    /*
+    Todo: Rewrite this with David's approach
+     */
     protected List<SimpleHotspotDiploid> recombine(List<SimpleHotspotDiploid> mates) {
         // Todo: Ask Bob about whether here should be two children.
         List<SimpleHotspotDiploid> rtn = new ArrayList<>();
@@ -35,8 +39,11 @@ public class SimpleHotspotDiploidReproducer extends HotspotDiploidReproducer<Sim
         SimpleHotspotDiploid parent1 = mates.get(0);
         SimpleHotspotDiploid parent2 = mates.get(1);
 
-        List<SimpleMaterial> parent1Gametes = crossover(mates.get(0));
-        List<SimpleMaterial> parent2Gametes = crossover(mates.get(1));
+//        List<SimpleMaterial> parent1Gametes = crossover(mates.get(0));
+//        List<SimpleMaterial> parent2Gametes = crossover(mates.get(1));
+
+        List<SimpleMaterial> parent1Gametes = throughCrossover(mates.get(0));
+        List<SimpleMaterial> parent2Gametes = throughCrossover(mates.get(1));
 
         SimpleMaterial dna1_1 = parent1Gametes.get(0).copy();
         SimpleMaterial dna1_2 = parent1Gametes.get(0).copy();

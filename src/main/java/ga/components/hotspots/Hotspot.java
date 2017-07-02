@@ -10,28 +10,32 @@ import java.util.*;
  * The Australian National University.
  */
 public class Hotspot implements Copyable<Hotspot> {
-    /*
-    Todo: something is wrong with hotspot, positions are the same
-     */
 
     protected final int size;
-    protected final int dnaLength;
-    protected Map<Integer, Double> recombinationRate;
+    private final int dnaLength;
+    private Map<Integer, Double> recombinationRates;
+
+    public Hotspot(final int dnaLength) {
+        this.dnaLength = dnaLength;
+        this.size = dnaLength;
+        this.recombinationRates = new HashMap<>(this.size);
+        this.generateRandomRecombinationRates();
+    }
 
     public Hotspot(final int size, final int dnaLength) {
         this.size = size;
-        this.recombinationRate = new HashMap<>(this.size);
+        this.recombinationRates = new HashMap<>(this.size);
         this.dnaLength = dnaLength;
-        this.generateRandomRecombinationRate();
+        this.generateRandomRecombinationRates();
     }
 
-    public Hotspot(final int size, final int dnaLength, @NotNull Map<Integer, Double> recombinationRate) {
+    public Hotspot(final int size, final int dnaLength, @NotNull Map<Integer, Double> recombinationRates) {
         this.size = size;
         this.dnaLength = dnaLength;
-        this.recombinationRate = recombinationRate;
+        this.recombinationRates = recombinationRates;
     }
 
-    public void generateRandomRecombinationRate() {
+    private void generateRandomRecombinationRates() {
         int[] hotspotPositions = new Random().ints(0, dnaLength).distinct().limit(size).toArray();
         double[] unNormalizedRates = new double[size];
         double rateSum = 0;
@@ -53,33 +57,32 @@ public class Hotspot implements Copyable<Hotspot> {
     }
 
     public void setRecombinationRateAtPosition(int i, double rate) {
-        this.recombinationRate.put(i, rate);
+        this.recombinationRates.put(i, rate);
     }
 
     public double getRecombinationRateAtPosition(int i) {
-        return this.recombinationRate.get(i);
+        return this.recombinationRates.get(i);
     }
 
     public List<Double> getRecombinationRates() {
-        return new ArrayList<>(this.recombinationRate.values());
+        return new ArrayList<>(this.recombinationRates.values());
     }
 
     public Map<Integer, Double> getRecombinationRateMap() {
-        return this.recombinationRate;
+        return this.recombinationRates;
     }
 
     @Override
     public Hotspot copy() {
-        return new Hotspot(this.size, this.dnaLength, new HashMap<>(this.recombinationRate));
+        return new Hotspot(this.size, this.dnaLength, new HashMap<>(this.recombinationRates));
     }
 
     public SortedSet<Integer> getSortedHotspotPositions() {
-        SortedSet<Integer> positions = new TreeSet<>(recombinationRate.keySet());
-        return positions;
+        return new TreeSet<>(recombinationRates.keySet());
     }
 
     @Override
     public String toString() {
-        return this.recombinationRate.toString();
+        return this.recombinationRates.toString();
     }
 }

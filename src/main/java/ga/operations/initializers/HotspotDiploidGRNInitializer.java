@@ -17,10 +17,10 @@ import ga.others.GeneralMethods;
  */
 public class HotspotDiploidGRNInitializer implements Initializer<SimpleHotspotDiploid> {
     protected int size;
-    private final int targetLength;
-    private final int grnSize;
-    private final int edgeSize;
-    private final int hotspotSize;
+    final int targetLength;
+    final int grnSize;
+    protected final int edgeSize;
+    protected final int hotspotSize;
 
     public HotspotDiploidGRNInitializer(final int size, final int targetLength, final int edgeSize, final int hotspotSize) {
         setSize(size);
@@ -68,7 +68,7 @@ public class HotspotDiploidGRNInitializer implements Initializer<SimpleHotspotDi
         return population;
     }
 
-    private Individual<SimpleHotspotDiploid> generateIndividual() {
+    protected Individual<SimpleHotspotDiploid> generateIndividual() {
         GRNFactoryNoHiddenTarget grnFactory = new GRNFactoryNoHiddenTarget(targetLength, this.edgeSize);
         ExpressionMap<SimpleMaterial,SimpleMaterial> mapping = new DiploidEvolvedMap(grnSize);
         GeneRegulatoryNetwork dna1 = grnFactory.generateGeneRegulatoryNetwork();
