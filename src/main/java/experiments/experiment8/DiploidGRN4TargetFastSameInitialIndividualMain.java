@@ -36,9 +36,9 @@ import java.util.List;
  */
 public class DiploidGRN4TargetFastSameInitialIndividualMain {
     private static final int[] target1 = {1, -1, 1, -1, 1, -1, 1, -1, 1, -1};
-    private static final int[] target2 = {1, -1, -1, 1, 1, -1, 1, -1, 1, -1};
-    private static final int[] target3 = {1, -1, 1, -1, -1, 1, 1, -1, 1, -1};
-    private static final int[] target4 = {1, -1, 1, -1, 1, -1, -1, 1, 1, -1};
+    private static final int[] target2 = {1, -1, 1, -1, 1, -1, 1, -1, -1, 1};
+    private static final int[] target3 = {1, -1, 1, -1, 1, -1, -1, 1, 1, -1};
+    private static final int[] target4 = {1, -1, 1, -1, -1, 1, 1, -1, 1, -1};
 
     private static final int maxCycle = 100;
     private static final int edgeSize = 20;

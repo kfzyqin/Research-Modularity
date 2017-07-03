@@ -29,7 +29,7 @@ public class HotspotDiploidGRNHiddenTargetInitializer extends HotspotDiploidGRNI
         ExpressionMap<SimpleMaterial,SimpleMaterial> mapping = new DiploidEvolvedMap(grnSize);
         GRNWithHiddenTargets dna1 = grnFactory.generateGeneRegulatoryNetwork();
         GRNWithHiddenTargets dna2 = grnFactory.generateGeneRegulatoryNetwork();
-        Hotspot hotspot = new Hotspot(grnSize);
+        Hotspot hotspot = new Hotspot(grnSize, hotspotSize);
         return new Individual<>(new SimpleHotspotDiploid(dna1, dna2, mapping, hotspot));
     }
 
@@ -38,8 +38,7 @@ public class HotspotDiploidGRNHiddenTargetInitializer extends HotspotDiploidGRNI
         Population<SimpleHotspotDiploid> population = new Population<>(size);
         for (int i = 0; i < size; i++) {
             Individual<SimpleHotspotDiploid> originalIndividual = GeneralMethods.individualCloneMachine(
-                    true, this.targetLength * targetLength,
-                    edgeSize, this.targetLength * targetLength);
+                    true, this.targetLength * targetLength, edgeSize, hotspotSize);
             population.addCandidate(originalIndividual.copy());
         }
         population.nextGeneration();

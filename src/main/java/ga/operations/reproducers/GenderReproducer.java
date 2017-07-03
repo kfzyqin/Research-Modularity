@@ -14,7 +14,7 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * Created by zhenyueqin on 17/6/17.
  */
-public abstract class GenderReproducer <G extends Chromosome & Coupleable> implements CoupleReproducer<G> {
+public abstract class GenderReproducer <G extends Chromosome & Coupleable> extends BaseCoupleReproducer<G> {
     protected int numOfChildren;
 
     public GenderReproducer(final int numOfChildren) {
@@ -57,10 +57,7 @@ public abstract class GenderReproducer <G extends Chromosome & Coupleable> imple
 
     protected void crossoverTwoDNAsAt(Material dna1, Material dna2, int crossIndex) {
         for (int i = crossIndex; i < dna1.getSize(); i++) {
-            final int i1 = ((Gene<Integer>) dna1.getGene(i)).getValue();
-            final int i2 = ((Gene<Integer>) dna2.getGene(i)).getValue();
-            dna1.getGene(i).setValue(i2);
-            dna2.getGene(i).setValue(i1);
+            crossoverTwoDNAsAtPosition(dna1, dna2, i);
         }
     }
 

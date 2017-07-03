@@ -39,11 +39,11 @@ public class SimpleHotspotDiploidReproducer extends HotspotDiploidReproducer<Sim
         SimpleHotspotDiploid parent1 = mates.get(0);
         SimpleHotspotDiploid parent2 = mates.get(1);
 
-//        List<SimpleMaterial> parent1Gametes = crossover(mates.get(0));
-//        List<SimpleMaterial> parent2Gametes = crossover(mates.get(1));
+        List<SimpleMaterial> parent1Gametes = crossover(mates.get(0));
+        List<SimpleMaterial> parent2Gametes = crossover(mates.get(1));
 
-        List<SimpleMaterial> parent1Gametes = throughCrossover(mates.get(0));
-        List<SimpleMaterial> parent2Gametes = throughCrossover(mates.get(1));
+//        List<SimpleMaterial> parent1Gametes = throughCrossover(mates.get(0));
+//        List<SimpleMaterial> parent2Gametes = throughCrossover(mates.get(1));
 
         SimpleMaterial dna1_1 = parent1Gametes.get(0).copy();
         SimpleMaterial dna1_2 = parent1Gametes.get(0).copy();
