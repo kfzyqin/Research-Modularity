@@ -50,7 +50,7 @@ public class SimpleGenderHotspotMultipleTargetState<G extends Chromosome & Coupl
     @Override
     public void mutateExpressionMap() {
         if (expressionMapMutator == null) return;
-        for (Individual<G> individual : population.getIndividualsView())
+        for (Individual<G> individual : population.getOffspringPoolView())
             expressionMapMutator.mutate(individual.getChromosome().getMapping());
     }
 
@@ -76,7 +76,7 @@ public class SimpleGenderHotspotMultipleTargetState<G extends Chromosome & Coupl
     @Override
     public void mutateHotspot() {
         if (hotspotMutator == null) return;
-        for (Individual<G> individual : population.getIndividualsView())
+        for (Individual<G> individual : population.getOffspringPoolView())
             hotspotMutator.mutate(individual.getChromosome().getHotspot());
     }
 

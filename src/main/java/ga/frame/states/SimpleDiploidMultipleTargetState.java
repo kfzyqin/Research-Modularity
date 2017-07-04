@@ -46,7 +46,7 @@ public class SimpleDiploidMultipleTargetState<C extends Chromosome> extends Mult
     @Override
     public void mutateExpressionMap() {
         if (expressionMapMutator == null) return;
-        for (Individual<C> individual : population.getIndividualsView())
+        for (Individual<C> individual : population.getOffspringPoolView())
             expressionMapMutator.mutate(individual.getChromosome().getMapping());
     }
 

@@ -56,12 +56,12 @@ public class SimpleGenderHotspotMultipleTargetFrame<C extends Chromosome & Coupl
             state.preOperate(priorOperator);
         state.reproduce();
         state.mutate();
-        state.postOperate(postOperator);
-        state.nextGeneration();
-        ((DiploidMultipleTargetState<C>) state).evaluateWithMultipleTargets(true);
         ((DiploidMultipleTargetState<C>) state).mutateExpressionMap();
         ((GenderHotspotMultipleTargetState) state).mutateHotspot();
+        state.postOperate(postOperator);
+        state.nextGeneration();
         statistics.nextGeneration();
+        ((DiploidMultipleTargetState<C>) state).evaluateWithMultipleTargets(true);
         state.record(statistics);
     }
 }

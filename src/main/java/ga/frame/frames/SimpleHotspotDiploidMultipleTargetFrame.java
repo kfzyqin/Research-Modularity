@@ -55,11 +55,11 @@ public class SimpleHotspotDiploidMultipleTargetFrame<C extends Chromosome & With
             state.preOperate(priorOperator);
         state.reproduce();
         state.mutate();
+        ((HotspotDiploidMultipleTargetState<C>) state).mutateExpressionMap();
+        ((HotspotDiploidMultipleTargetState<C>) state).mutateHotspot();
         state.postOperate(postOperator);
         state.nextGeneration();
         ((HotspotDiploidMultipleTargetState<C>) state).evaluateWithMultipleTargets(true);
-        ((HotspotDiploidMultipleTargetState<C>) state).mutateExpressionMap();
-        ((HotspotDiploidMultipleTargetState<C>) state).mutateHotspot();
         statistics.nextGeneration();
         state.record(statistics);
     }

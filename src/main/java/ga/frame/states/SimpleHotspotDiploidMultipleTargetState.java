@@ -49,14 +49,14 @@ public class SimpleHotspotDiploidMultipleTargetState<C extends Chromosome & With
     @Override
     public void mutateHotspot() {
         if (hotspotMutator == null) return;
-        for (Individual<C> individual : population.getIndividualsView())
+        for (Individual<C> individual : population.getOffspringPoolView())
             hotspotMutator.mutate(individual.getChromosome().getHotspot());
     }
 
     @Override
     public void mutateExpressionMap() {
         if (expressionMapMutator == null) return;
-        for (Individual<C> individual : population.getIndividualsView())
+        for (Individual<C> individual : population.getOffspringPoolView())
             expressionMapMutator.mutate(individual.getChromosome().getMapping());
     }
 

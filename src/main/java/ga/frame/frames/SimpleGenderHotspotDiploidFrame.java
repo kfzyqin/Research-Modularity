@@ -55,11 +55,11 @@ public class SimpleGenderHotspotDiploidFrame<C extends Chromosome & CoupleableWi
             state.preOperate(priorOperator);
         state.reproduce();
         state.mutate();
+        ((DiploidMultipleTargetState) state).mutateExpressionMap();
+        ((GenderHotspotMultipleTargetState) state).mutateHotspot();
         state.postOperate(postOperator);
         state.nextGeneration();
         state.evaluate(true);
-        ((DiploidMultipleTargetState) state).mutateExpressionMap();
-        ((GenderHotspotMultipleTargetState) state).mutateHotspot();
         statistics.nextGeneration();
         state.record(statistics);
     }
