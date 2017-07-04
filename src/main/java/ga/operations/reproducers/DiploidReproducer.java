@@ -17,7 +17,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public abstract class DiploidReproducer<C extends Chromosome> extends BaseReproducer<C> {
 
-    protected double matchProbability = 0.5;
+    protected double matchProbability = 0.1;
     protected boolean isToDoCrossover = true;
 
     public DiploidReproducer() {

@@ -34,7 +34,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by zhenyueqin on 25/6/17.
+ * Created by Zhenyue Qin (秦震岳) on 25/6/17.
+ * The Australian National University.
  */
 public class DiploidGRN3TargetFastHiddenSameInitialIndividualMain {
     private static final int[] target1 = {1, -1, 1, -1, 1, -1, 1, -1, 1, -1};

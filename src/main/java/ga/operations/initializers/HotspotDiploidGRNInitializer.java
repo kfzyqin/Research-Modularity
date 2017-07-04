@@ -57,15 +57,6 @@ public class HotspotDiploidGRNInitializer implements Initializer<SimpleHotspotDi
         return population;
     }
 
-    public Population<SimpleHotspotDiploid> initializeWithMatrixHotspot() {
-        Population<SimpleHotspotDiploid> population = new Population<>(size);
-        for (int i = 0; i < size; i++) {
-            population.addCandidate(generateIndividualWithMatrixHotspot());
-        }
-        population.nextGeneration();
-        return population;
-    }
-
     public Population<SimpleHotspotDiploid> initializeSameIndividuals() {
         Population<SimpleHotspotDiploid> population = new Population<>(size);
         for (int i = 0; i < size; i++) {
@@ -93,5 +84,14 @@ public class HotspotDiploidGRNInitializer implements Initializer<SimpleHotspotDi
         GRN dna2 = grnFactory.generateGeneRegulatoryNetwork();
         MatrixHotspot hotspot = new MatrixHotspot(this.hotspotSize, grnSize);
         return new Individual<>(new SimpleHotspotDiploid(dna1, dna2, mapping, hotspot));
+    }
+
+    public Population<SimpleHotspotDiploid> initializeWithMatrixHotspot() {
+        Population<SimpleHotspotDiploid> population = new Population<>(size);
+        for (int i = 0; i < size; i++) {
+            population.addCandidate(generateIndividualWithMatrixHotspot());
+        }
+        population.nextGeneration();
+        return population;
     }
 }
