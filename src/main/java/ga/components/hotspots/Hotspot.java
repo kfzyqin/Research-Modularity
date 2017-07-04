@@ -40,7 +40,8 @@ public class Hotspot implements Copyable<Hotspot> {
     }
 
     protected void generateRandomRecombinationRatesWithSize(int randomSize) {
-        int[] hotspotPositions = new Random().ints(0, randomSize).distinct().limit(size).toArray();
+        int[] hotspotPositions = new Random().ints(
+                0, randomSize).distinct().limit(size).toArray();
         double[] unNormalizedRates = new double[size];
         double rateSum = 0;
         for (int i=0; i<size; i++) {
