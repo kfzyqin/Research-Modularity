@@ -2,6 +2,7 @@ package ga.collections;
 
 import au.com.bytecode.opencsv.CSVWriter;
 import com.sun.istack.internal.NotNull;
+import com.sun.xml.internal.rngom.parse.host.Base;
 import ga.components.chromosomes.Chromosome;
 import ga.components.chromosomes.Coupleable;
 import org.apache.commons.io.FileUtils;
@@ -21,10 +22,7 @@ import java.util.List;
 /**
  * Created by zhenyueqin on 15/6/17.
  */
-public class DetailedGenderStatistics<G extends Chromosome & Coupleable> implements Statistics<G> {
-
-    private int generation;
-    private String directoryPath = "generated-outputs";
+public class DetailedGenderStatistics<G extends Chromosome & Coupleable> extends BaseStatistics<G> {
 
     protected List<Individual<G>> maleElites;
     protected List<Individual<G>> femaleElites;
@@ -227,25 +225,6 @@ public class DetailedGenderStatistics<G extends Chromosome & Coupleable> impleme
         return fitnessValueSum / data.size();
     }
 
-    @Override
-    public void save(@NotNull final String filename) {
-        final File file = new File(this.directoryPath + filename);
-        PrintWriter pw = null;
-        try {
-            file.createNewFile();
-            pw = new PrintWriter(file);
-            for (int i = 0; i <= generation; i++){
-                pw.println(getSummary(i));
-                pw.println();
-            }
-
-        } catch (IOException e) {
-            System.err.println("Failed to save file.");
-        } finally {
-            if (pw != null)
-                pw.close();
-        }
-    }
 
     @Override
     public void nextGeneration() {
@@ -260,15 +239,12 @@ public class DetailedGenderStatistics<G extends Chromosome & Coupleable> impleme
     @Override
     public String getSummary(int generation) {
         return String.format("Generation: %d; Delta: %.4f, \n" +
-                        "Best >> %s <<\nWorst >> %s <<\nMedian >> %s <<\nMean: >> %.4f <<\n" +
-                        "Male Best >> %s <<\nMale Worst >> %s <<\nMale Median >> %s <<\nMale Mean: >> %.4f <<\n" +
-                        "Female Best >> %s <<\nFemale Worst >> %s <<\nFemale Median >> %s <<\nFemale Mean: >> %.4f <<\n",
+                        "Best >> %s <<\n" + "Male Best >> %s <<\n" + "Female Best >> %s <<\n",
                 generation,
-                deltas.get(generation),
-                elites.get(generation).toString(), worsts.get(generation).toString(), medians.get(generation).toString(), means.get(generation),
-                maleElites.get(generation).toString(), maleWorsts.get(generation).toString(), maleMedians.get(generation).toString(), maleMeans.get(generation),
-                femaleElites.get(generation).toString(), femaleWorsts.get(generation).toString(), femaleMedians.get(generation).toString(), femaleMeans.get(generation)
-                );
+                deltas.get(generation), elites.get(generation).toString(),
+                maleElites.get(generation).toString(),
+                femaleElites.get(generation).toString()
+        );
     }
 
     @Override
@@ -320,21 +296,7 @@ public class DetailedGenderStatistics<G extends Chromosome & Coupleable> impleme
         writer.close();
     }
 
-    public void generatePlot(String chartTitle, String fileName) throws IOException {
-        JFreeChart lineChartObject = ChartFactory.createLineChart(chartTitle,
-                "Generation",
-                "Fitness",
-                this.createDataSet(),
-                PlotOrientation.VERTICAL,
-                true,true,false);
-
-        int width = 1440;    /* Width of the image */
-        int height = 1080;   /* Height of the image */
-        File lineChartFile = new File( this.directoryPath + fileName);
-        ChartUtilities.saveChartAsJPEG(lineChartFile ,lineChartObject, width ,height);
-    }
-
-    private DefaultCategoryDataset createDataSet() {
+    protected DefaultCategoryDataset createDataSet() {
         DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
         for (int i=0; i<=generation; i++) {
             dataSet.addValue(elites.get(i).getFitness(), "Best", Integer.toString(i));

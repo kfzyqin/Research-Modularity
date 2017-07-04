@@ -12,8 +12,8 @@ import java.util.*;
 public class Hotspot implements Copyable<Hotspot> {
 
     protected final int size;
-    private final int dnaLength;
-    private Map<Integer, Double> recombinationRates;
+    protected final int dnaLength;
+    protected Map<Integer, Double> recombinationRates;
 
     public Hotspot(final int dnaLength) {
         this.dnaLength = dnaLength;
@@ -35,8 +35,12 @@ public class Hotspot implements Copyable<Hotspot> {
         this.recombinationRates = recombinationRates;
     }
 
-    private void generateRandomRecombinationRates() {
-        int[] hotspotPositions = new Random().ints(0, dnaLength).distinct().limit(size).toArray();
+    protected void generateRandomRecombinationRates() {
+        generateRandomRecombinationRatesWithSize(this.dnaLength);
+    }
+
+    protected void generateRandomRecombinationRatesWithSize(int randomSize) {
+        int[] hotspotPositions = new Random().ints(0, randomSize).distinct().limit(size).toArray();
         double[] unNormalizedRates = new double[size];
         double rateSum = 0;
         for (int i=0; i<size; i++) {
@@ -49,8 +53,8 @@ public class Hotspot implements Copyable<Hotspot> {
         }
     }
 
-    /*
-    Get the number of hotspot positions.
+    /**
+     * Get the number of hotspot positions.
      */
     public int getSize() {
         return this.size;

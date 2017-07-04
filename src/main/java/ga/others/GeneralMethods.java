@@ -6,6 +6,7 @@ import ga.components.chromosomes.SimpleDiploid;
 import ga.components.chromosomes.SimpleHotspotDiploid;
 import ga.components.genes.EdgeGene;
 import ga.components.hotspots.Hotspot;
+import ga.components.hotspots.MatrixHotspot;
 import ga.components.materials.GRN;
 import ga.components.materials.SimpleMaterial;
 import ga.operations.expressionMaps.DiploidEvolvedMap;
@@ -102,7 +103,7 @@ public class GeneralMethods<T> {
             cloneMan = new Individual<>((C) new SimpleDiploid(grn, grn, map));
             return cloneMan.copy();
         } else {
-            Hotspot hotspot = new Hotspot(hotspotSize, grn.getSize());
+            MatrixHotspot hotspot = new MatrixHotspot(hotspotSize, grn.getSize());
             cloneMan = new Individual<>((C) new SimpleHotspotDiploid(grn, grn, map, hotspot));
             return cloneMan.copy();
         }

@@ -3,6 +3,7 @@ package ga.collections;
 import au.com.bytecode.opencsv.CSVWriter;
 import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.Chromosome;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -38,9 +39,8 @@ import java.util.List;
  * @author Siu Kei Muk (David) and Zhenyue Qin
  * @since 11/09/16.
  */
-public class SimpleElitesStatistics<C extends Chromosome> implements Statistics<C> {
+public class SimpleElitesStatistics<C extends Chromosome> extends BaseStatistics<C> {
 
-    private int generation;
     List<Individual<C>> elites; // best individuals
     List<Double> deltas;
 
@@ -79,23 +79,8 @@ public class SimpleElitesStatistics<C extends Chromosome> implements Statistics<
     }
 
     @Override
-    public void save(@NotNull final String filename) {
-        final File file = new File(filename);
-        PrintWriter pw = null;
-        try {
-            file.createNewFile();
-            pw = new PrintWriter(file);
-            for (int i = 0; i <= generation; i++){
-                pw.println(getSummary(i));
-                pw.println();
-            }
-
-        } catch (IOException e) {
-            System.err.println("Failed to save file.");
-        } finally {
-            if (pw != null)
-                pw.close();
-        }
+    protected DefaultCategoryDataset createDataSet() {
+        return null;
     }
 
     @Override

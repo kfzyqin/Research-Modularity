@@ -28,21 +28,25 @@ public class RandomHotspotMutator implements HotspotMutator {
 
     @Override
     public void mutate(Hotspot hotspot) {
+        boolean mutated = false;
         Set<Integer> hotspotPositions = hotspot.getRecombinationRateMap().keySet();
         Map<Integer, Double> unnormalizedMap = new HashMap<>(hotspot.getSize());
         for (Integer e : hotspotPositions) {
             if (Math.random() < hotspotMutationProbability) {
                 unnormalizedMap.put(e, Math.random());
+                mutated = true;
             } else {
                 unnormalizedMap.put(e, hotspot.getRecombinationRateMap().get(e));
             }
         }
-        double unnormalizedRateSum = 0;
-        for (Double e : unnormalizedMap.values()) {
-            unnormalizedRateSum += e;
-        }
-        for (Integer e : unnormalizedMap.keySet()) {
-            hotspot.setRecombinationRateAtPosition(e, (unnormalizedMap.get(e) / unnormalizedRateSum));
+        if (mutated) {
+            double unnormalizedRateSum = 0;
+            for (Double e : unnormalizedMap.values()) {
+                unnormalizedRateSum += e;
+            }
+            for (Integer e : unnormalizedMap.keySet()) {
+                hotspot.setRecombinationRateAtPosition(e, (unnormalizedMap.get(e) / unnormalizedRateSum));
+            }
         }
     }
 }

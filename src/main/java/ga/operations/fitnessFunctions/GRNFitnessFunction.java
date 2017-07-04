@@ -4,6 +4,9 @@ import ga.components.genes.DataGene;
 import ga.components.materials.Material;
 import ga.components.materials.SimpleMaterial;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by zhenyueqin on 22/6/17.
  */
@@ -36,6 +39,14 @@ public abstract class GRNFitnessFunction<M extends Material> implements FitnessF
         }
     }
 
+    /**
+     * Update the state of the perturbed target by the GRN, details on Page 2, Soto's paper.
+     * Gene i is exerted by gene j.
+     * @param currentState the current state of the perturbed target
+     * @param phenotype the GRN
+     * @param target the current target
+     * @return the next state of the perturbed target after matrix multiplication with the GRN
+     */
     protected DataGene[] updateState(DataGene[] currentState, M phenotype, final int[] target) {
         DataGene[] updatedState = new DataGene[currentState.length];
         updatedState = this.initializeDataGeneArray(updatedState);
@@ -81,5 +92,13 @@ public abstract class GRNFitnessFunction<M extends Material> implements FitnessF
             }
         }
         return attractor.length - count;
+    }
+
+    protected List<Integer> convertIntArrayToIntegerList(int[] intArray) {
+        List<Integer> rtn = new ArrayList<>(intArray.length);
+        for (int e : intArray) {
+            rtn.add(e);
+        }
+        return rtn;
     }
 }
