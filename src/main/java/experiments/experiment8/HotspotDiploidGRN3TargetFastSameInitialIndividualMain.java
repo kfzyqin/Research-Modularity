@@ -35,9 +35,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by zhenyueqin on 25/6/17.
+ * Created by Zhenyue Qin (秦震岳) on 25/6/17.
+ * The Australian National University.
  */
-public class HotspotDiploidGRN3TargetFasterSameInitialIndividualMain {
+public class HotspotDiploidGRN3TargetFastSameInitialIndividualMain {
     private static final int[] target1 = {1, -1, 1, -1, 1, -1, 1, -1, 1, -1};
     private static final int[] target2 = {1, -1, 1, -1, 1, -1, 1, 1, -1, 1};
     private static final int[] target3 = {1, -1, 1, -1, -1, 1, -1, 1, -1, 1};
@@ -66,7 +67,7 @@ public class HotspotDiploidGRN3TargetFasterSameInitialIndividualMain {
     private static final String summaryFileName = "Hotspot-Diploid-GRN-3-Target-Same-Initial-Individual.sum";
     private static final String csvFileName = "Hotspot-Diploid-GRN-3-Target-Same-Initial-Individual.csv";
     private static final String outputDirectory = "hotspot-diploid-grn-3-target-same-initial-individual";
-    private static final String mainFileName = "HotspotDiploidGRN3TargetFasterSameInitialIndividualMain.java";
+    private static final String mainFileName = "HotspotDiploidGRN3TargetFastSameInitialIndividualMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
 
