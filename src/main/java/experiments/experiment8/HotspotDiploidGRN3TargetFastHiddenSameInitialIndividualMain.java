@@ -61,7 +61,7 @@ public class HotspotDiploidGRN3TargetFastHiddenSameInitialIndividualMain {
     private static final int size = 100;
     private static final int tournamentSize = 3;
     private static final double reproductionRate = 0.8;
-    private static final int maxGen = 5000;
+    private static final int maxGen = 4000;
 
     private static final String summaryFileName = "Hotspot-Diploid-GRN-3-Target-Hidden-Same-Initial-Individual.sum";
     private static final String csvFileName = "Hotspot-Diploid-GRN-3-Target-Hidden-Same-Initial-Individual.csv";

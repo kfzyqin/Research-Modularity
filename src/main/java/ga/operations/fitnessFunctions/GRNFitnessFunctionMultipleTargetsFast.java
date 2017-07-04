@@ -74,12 +74,6 @@ public class GRNFitnessFunctionMultipleTargetsFast extends GRNFitnessFunctionMul
     protected double evaluateOneTarget(@NotNull final SimpleMaterial phenotype,
                                        @NotNull final int[] target,
                                        @NotNull final DataGene[][] perturbationTargets) {
-        List<Integer> targetList = convertIntArrayToIntegerList(target);
-        Map<SimpleMaterial, Double> phenotypeFitnessMap = (targetPhenotypeFitnessMap.containsKey(
-                targetList) ? targetPhenotypeFitnessMap.get(targetList) : new HashMap<>());
-        if (phenotypeFitnessMap.containsKey(phenotype)) {
-            return phenotypeFitnessMap.get(phenotype);
-        }
         double fitnessValue = 0;
         int perturbationIndex = 0;
         while (perturbationIndex < perturbations) {
@@ -105,8 +99,6 @@ public class GRNFitnessFunctionMultipleTargetsFast extends GRNFitnessFunctionMul
 
         double arithmeticMean = fitnessValue / this.perturbations;
         double networkFitness = 1 - Math.pow(Math.E, (-3 * arithmeticMean));
-        phenotypeFitnessMap.put(phenotype, networkFitness);
-        targetPhenotypeFitnessMap.put(targetList, phenotypeFitnessMap);
         return networkFitness;
     }
 
