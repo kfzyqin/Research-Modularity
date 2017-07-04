@@ -4,9 +4,8 @@ import ga.collections.Individual;
 import ga.collections.Population;
 import ga.components.chromosomes.SimpleHotspotDiploid;
 import ga.components.hotspots.Hotspot;
-import ga.components.materials.GRNFactoryWithHiddenTargets;
-import ga.components.materials.GRNWithHiddenTargets;
-import ga.components.materials.SimpleMaterial;
+import ga.components.hotspots.MatrixHotspot;
+import ga.components.materials.*;
 import ga.operations.expressionMaps.DiploidEvolvedMap;
 import ga.operations.expressionMaps.ExpressionMap;
 import ga.others.GeneralMethods;
@@ -16,8 +15,14 @@ import ga.others.GeneralMethods;
  * The Australian National University.
  */
 public class HotspotDiploidGRNHiddenTargetInitializer extends HotspotDiploidGRNInitializer {
-    public HotspotDiploidGRNHiddenTargetInitializer(int size, int targetLength, int edgeSize, int hotspotSize) {
-        super(size, targetLength, edgeSize, hotspotSize);
+    private final int actualTargetSize;
+    private final int hiddenTargetSize;
+
+    public HotspotDiploidGRNHiddenTargetInitializer(
+            int size, int actualTargetSize, int hiddenTargetSize, int edgeSize, int hotspotSize) {
+        super(size, actualTargetSize + hiddenTargetSize, edgeSize, hotspotSize);
+        this.actualTargetSize = actualTargetSize;
+        this.hiddenTargetSize = hiddenTargetSize;
     }
 
     @Override
@@ -43,5 +48,23 @@ public class HotspotDiploidGRNHiddenTargetInitializer extends HotspotDiploidGRNI
         }
         population.nextGeneration();
         return population;
+    }
+
+    @Override
+    protected Individual<SimpleHotspotDiploid> generateIndividualWithMatrixHotspot() {
+        GRNFactoryWithHiddenTargets grnFactory = new GRNFactoryWithHiddenTargets(targetLength, this.edgeSize);
+        ExpressionMap<SimpleMaterial,SimpleMaterial> mapping = new DiploidEvolvedMap(grnSize);
+        GRN dna1 = grnFactory.generateGeneRegulatoryNetwork();
+        GRN dna2 = grnFactory.generateGeneRegulatoryNetwork();
+        MatrixHotspot hotspot = new MatrixHotspot(this.hotspotSize, actualTargetSize * actualTargetSize);
+        return new Individual<>(new SimpleHotspotDiploid(dna1, dna2, mapping, hotspot));
+    }
+
+    public int getActualTargetSize() {
+        return actualTargetSize;
+    }
+
+    public int getHiddenTargetSize() {
+        return hiddenTargetSize;
     }
 }

@@ -84,7 +84,7 @@ public class HotspotDiploidGRN2TargetFastHiddenMain {
 
         // Initializer, the hotspot size should not be used
         HotspotDiploidGRNHiddenTargetInitializer initializer = new HotspotDiploidGRNHiddenTargetInitializer(
-                size, target1.length + hiddenTargetSize, edgeSize, 9);
+                size, target1.length, hiddenTargetSize, edgeSize, 9);
 
         // Population
         Population<SimpleHotspotDiploid> population = initializer.initialize();

@@ -23,6 +23,7 @@ import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
 import ga.operations.priorOperators.PriorOperator;
 import ga.operations.priorOperators.SimpleElitismOperator;
 import ga.operations.reproducers.Reproducer;
+import ga.operations.reproducers.SimpleHotspotDiploidMatrixReproducer;
 import ga.operations.reproducers.SimpleHotspotDiploidReproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
@@ -39,16 +40,15 @@ import java.util.List;
  * Created by Zhenyue Qin (秦震岳) on 25/6/17.
  * The Australian National University.
  */
-public class HotspotDiploidGRN4TargetFasterHiddenSameInitialIndividualMain {
-    private static final int[] target1 = {1, -1, 1, -1, 1, -1, 1, -1};
-    private static final int[] target2 = {1, -1, -1, 1, 1, -1, 1, -1};
-    private static final int[] target3 = {1, -1, 1, -1, -1, 1, 1, -1};
-    private static final int[] target4 = {1, -1, 1, -1, 1, -1, -1, 1};
+public class HotspotDiploidGRN3TargetFastHiddenSameInitialIndividualMain {
+    private static final int[] target1 = {1, -1, 1, -1, 1, -1, 1, -1, 1, -1};
+    private static final int[] target2 = {1, -1, 1, -1, 1, -1, 1, 1, -1, 1};
+    private static final int[] target3 = {1, -1, 1, -1, -1, 1, -1, 1, -1, 1};
 
     private static final int maxCycle = 100;
-    private static final int edgeSize = 40;
+    private static final int edgeSize = 45;
     private static final int perturbations = 300;
-    private static final int hotspotSize = 5;
+    private static final int hotspotSize = 10;
     private static final double geneMutationRate = 0.002;
     private static final double dominanceMutationRate = 0.001;
     private static final double hotspotMutationRate = 0.0005;
@@ -56,42 +56,38 @@ public class HotspotDiploidGRN4TargetFasterHiddenSameInitialIndividualMain {
     private static final int numElites = 20;
 
     private static final int perturbationCycleSize = 100;
-    private static final int hiddenTargetSize = 7;
+    private static final int hiddenTargetSize = 5;
 
     private static final int size = 100;
     private static final int tournamentSize = 3;
     private static final double reproductionRate = 0.8;
-    private static final int maxGen = 6000;
+    private static final int maxGen = 5000;
 
-    private static final double maxFit = 300;
-    private static final double epsilon = .5;
-
-    private static final String summaryFileName = "Hotspot-Diploid-GRN-4-Target-Hidden-Same-Initial-Individual.sum";
-    private static final String csvFileName = "Hotspot-Diploid-GRN-4-Target-Hidden-Same-Initial-Individual.csv";
-    private static final String outputDirectory = "hotspot-diploid-grn-4-target-hidden-same-initial-individual";
-    private static final String mainFileName = "HotspotDiploidGRN4TargetFasterHiddenSameInitialIndividualMain.java";
+    private static final String summaryFileName = "Hotspot-Diploid-GRN-3-Target-Hidden-Same-Initial-Individual.sum";
+    private static final String csvFileName = "Hotspot-Diploid-GRN-3-Target-Hidden-Same-Initial-Individual.csv";
+    private static final String outputDirectory = "hotspot-diploid-grn-3-target-hidden-same-initial-individual";
+    private static final String mainFileName = "HotspotDiploidGRN3TargetFastHiddenSameInitialIndividualMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
 
-    private static final String plotTitle = "Hotspot Diploid GRN 4 Targets Hidden Same Initial Individual Summary";
-    private static final String plotFileName = "Hotspot-Diploid-GRN-4-Target-Hidden-Same-Initial-Individual-Chart.png";
+    private static final String plotTitle = "Hotspot Diploid GRN 3 Targets Hidden Same Initial Individual Summary";
+    private static final String plotFileName = "Hotspot-Diploid-GRN-3-Target-Hidden-Same-Initial-Individual-Chart.png";
 
-    private static final List<Integer> thresholds = Arrays.asList(0, 300, 1050, 3000);
+    private static final List<Integer> thresholds = Arrays.asList(0, 500, 2000);
 
     public static void main(String[] args) throws IOException {
-        int[][] targets = {target1, target2, target3, target4};
+        int[][] targets = {target1, target2, target3};
 
         // Fitness Function
         FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFastHidden(targets,
                 maxCycle, perturbations, perturbationRate, thresholds, perturbationCycleSize, hiddenTargetSize);
 
         // Initializer
-        HotspotDiploidGRNHiddenTargetInitializer initializer =
-                new HotspotDiploidGRNHiddenTargetInitializer(size,
-                        target1.length+hiddenTargetSize, edgeSize, hotspotSize);
+        HotspotDiploidGRNHiddenTargetInitializer initializer = new HotspotDiploidGRNHiddenTargetInitializer(
+                        size, target1.length, hiddenTargetSize, edgeSize, hotspotSize);
 
         // Population
-        Population<SimpleHotspotDiploid> population = initializer.initializeSameIndividuals();
+        Population<SimpleHotspotDiploid> population = initializer.initializeWithMatrixHotspot();
 
         // Mutator for chromosomes
         Mutator mutator = new GRNEdgeMutator(geneMutationRate);
@@ -104,7 +100,7 @@ public class HotspotDiploidGRN4TargetFasterHiddenSameInitialIndividualMain {
         PostOperator<SimpleHotspotDiploid> fillingOperator = new
                 SimpleFillingOperatorForNormalizable<>(new SimpleTournamentScheme(tournamentSize));
 
-        Reproducer<SimpleHotspotDiploid> reproducer = new SimpleHotspotDiploidReproducer();
+        Reproducer<SimpleHotspotDiploid> reproducer = new SimpleHotspotDiploidMatrixReproducer(target1.length);
 
         DetailedStatistics<SimpleHotspotDiploid> statistics = new DetailedStatistics<>();
 
@@ -126,9 +122,6 @@ public class HotspotDiploidGRN4TargetFasterHiddenSameInitialIndividualMain {
         for (int i = 0; i < maxGen; i++) {
             frame.evolve();
             statistics.print(i);
-            if (statistics.getOptimum(i) > maxFit - epsilon) {
-                break;
-            }
         }
         statistics.save(summaryFileName);
         statistics.generateCSVFile(csvFileName);

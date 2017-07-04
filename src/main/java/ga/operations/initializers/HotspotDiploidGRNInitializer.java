@@ -4,6 +4,7 @@ import ga.collections.Individual;
 import ga.collections.Population;
 import ga.components.chromosomes.SimpleHotspotDiploid;
 import ga.components.hotspots.Hotspot;
+import ga.components.hotspots.MatrixHotspot;
 import ga.components.materials.GRN;
 import ga.components.materials.GRNFactoryNoHiddenTarget;
 import ga.components.materials.SimpleMaterial;
@@ -56,6 +57,15 @@ public class HotspotDiploidGRNInitializer implements Initializer<SimpleHotspotDi
         return population;
     }
 
+    public Population<SimpleHotspotDiploid> initializeWithMatrixHotspot() {
+        Population<SimpleHotspotDiploid> population = new Population<>(size);
+        for (int i = 0; i < size; i++) {
+            population.addCandidate(generateIndividualWithMatrixHotspot());
+        }
+        population.nextGeneration();
+        return population;
+    }
+
     public Population<SimpleHotspotDiploid> initializeSameIndividuals() {
         Population<SimpleHotspotDiploid> population = new Population<>(size);
         for (int i = 0; i < size; i++) {
@@ -73,6 +83,15 @@ public class HotspotDiploidGRNInitializer implements Initializer<SimpleHotspotDi
         GRN dna1 = grnFactory.generateGeneRegulatoryNetwork();
         GRN dna2 = grnFactory.generateGeneRegulatoryNetwork();
         Hotspot hotspot = new Hotspot(this.hotspotSize, grnSize);
+        return new Individual<>(new SimpleHotspotDiploid(dna1, dna2, mapping, hotspot));
+    }
+
+    protected Individual<SimpleHotspotDiploid> generateIndividualWithMatrixHotspot() {
+        GRNFactoryNoHiddenTarget grnFactory = new GRNFactoryNoHiddenTarget(targetLength, this.edgeSize);
+        ExpressionMap<SimpleMaterial,SimpleMaterial> mapping = new DiploidEvolvedMap(grnSize);
+        GRN dna1 = grnFactory.generateGeneRegulatoryNetwork();
+        GRN dna2 = grnFactory.generateGeneRegulatoryNetwork();
+        MatrixHotspot hotspot = new MatrixHotspot(this.hotspotSize, grnSize);
         return new Individual<>(new SimpleHotspotDiploid(dna1, dna2, mapping, hotspot));
     }
 }
