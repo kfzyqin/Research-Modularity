@@ -37,12 +37,15 @@ public abstract class HotspotDiploidMatrixReproducer<C extends Chromosome & With
         SimpleMaterial dna1Copy = materialView.get(0).copy();
         SimpleMaterial dna2Copy = materialView.get(1).copy();
 
-        int crossIndex = getCrossoverIndexByHotspot(parent);
-
         if (isToDoCrossover) {
-            while (crossIndex < matrixSideSize * matrixSideSize) {
-                crossoverTwoDNAsAtPosition(dna1Copy, dna2Copy, crossIndex);
-                crossIndex += matrixSideSize;
+            for (int crossIndex = 0; crossIndex < matrixSideSize; crossIndex++) {
+                if (Math.random() < parent.getHotspot().getRecombinationRateAtPosition(crossIndex)) {
+                    int tmpCrossIndex = crossIndex;
+                    while (tmpCrossIndex < matrixSideSize * matrixSideSize) {
+                        crossoverTwoDNAsAtPosition(dna1Copy, dna2Copy, tmpCrossIndex);
+                        tmpCrossIndex += matrixSideSize;
+                    }
+                }
             }
         }
 
