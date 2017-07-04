@@ -2,7 +2,6 @@ package ga.collections;
 
 import au.com.bytecode.opencsv.CSVWriter;
 import com.sun.istack.internal.NotNull;
-import com.sun.xml.internal.rngom.parse.host.Base;
 import ga.components.chromosomes.Chromosome;
 import ga.components.chromosomes.Coupleable;
 import org.apache.commons.io.FileUtils;
