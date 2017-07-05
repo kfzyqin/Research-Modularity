@@ -34,10 +34,10 @@ public class MatrixHotspot extends Hotspot {
         }
     }
 
-//    @Override
-//    public MatrixHotspot copy() {
-//        return new MatrixHotspot(this.size, this.dnaLength, new HashMap<>(this.recombinationRates));
-//    }
+    @Override
+    public MatrixHotspot copy() {
+        return new MatrixHotspot(this.size, this.dnaLength, new HashMap<>(this.recombinationRates));
+    }
 
     @Override
     protected void generateRandomRecombinationRates() {

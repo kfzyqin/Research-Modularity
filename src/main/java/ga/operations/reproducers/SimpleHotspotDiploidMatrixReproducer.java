@@ -68,7 +68,7 @@ public class SimpleHotspotDiploidMatrixReproducer extends HotspotDiploidMatrixRe
         }
 
         rtn.add(new SimpleHotspotDiploid(dna1_1, dna1_2, mapping1, hotspot1));
-        rtn.add(new SimpleHotspotDiploid(dna2_1, dna2_2, mapping2, hotspot2));
+//        rtn.add(new SimpleHotspotDiploid(dna2_1, dna2_2, mapping2, hotspot2));
         return rtn;
     }
 }

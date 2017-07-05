@@ -56,7 +56,7 @@ public class SimpleDiploidMatrixReproducer extends DiploidMatrixReproducer<Simpl
         }
 
         rtn.add(new SimpleDiploid(dna1_1, dna1_2, mapping1.copy()));
-        rtn.add(new SimpleDiploid(dna2_1, dna2_2, mapping2.copy()));
+//        rtn.add(new SimpleDiploid(dna2_1, dna2_2, mapping2.copy()));
         return rtn;
     }
 }
