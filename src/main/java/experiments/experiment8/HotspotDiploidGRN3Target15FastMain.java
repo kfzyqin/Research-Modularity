@@ -10,10 +10,12 @@ import ga.frame.states.State;
 import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
 import ga.operations.fitnessFunctions.FitnessFunction;
+import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFast;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFastHidden;
 import ga.operations.hotspotMutators.HotspotMutator;
 import ga.operations.hotspotMutators.RandomHotspotMutator;
 import ga.operations.initializers.HotspotDiploidGRNHiddenTargetInitializer;
+import ga.operations.initializers.HotspotDiploidGRNInitializer;
 import ga.operations.mutators.GRNEdgeMutator;
 import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
@@ -37,7 +39,7 @@ import java.util.List;
  * Created by Zhenyue Qin (秦震岳) on 25/6/17.
  * The Australian National University.
  */
-public class HotspotDiploidGRN4Target15FastHidden0Main {
+public class HotspotDiploidGRN3Target15FastMain {
     private static final int[] target1 = {
             1, -1, 1, -1, 1,
             -1, 1, -1, 1, -1,
@@ -61,9 +63,9 @@ public class HotspotDiploidGRN4Target15FastHidden0Main {
     private static final int maxCycle = 100;
     private static final int edgeSize = 45;
     private static final int perturbations = 500;
-    private static final int hotspotSize = 15;
-    private static final double geneMutationRate = 0.004;
-    private static final double dominanceMutationRate = 0.002;
+    private static final int hotspotSize = 9;
+    private static final double geneMutationRate = 0.003;
+    private static final double dominanceMutationRate = 0.001;
     private static final double hotspotMutationRate = 0.001;
     private static final double perturbationRate = 0.15;
     private static final int numElites = 20;
@@ -76,28 +78,28 @@ public class HotspotDiploidGRN4Target15FastHidden0Main {
     private static final double reproductionRate = 0.8;
     private static final int maxGen = 10000;
 
-    private static final String summaryFileName = "Hotspot-Diploid-GRN-4-Target-15-Hidden-0.txt";
-    private static final String csvFileName = "Hotspot-Diploid-GRN-4-Target-15-Hidden-0.csv";
-    private static final String outputDirectory = "hotspot-diploid-grn-4-target-15-hidden-0";
-    private static final String mainFileName = "HotspotDiploidGRN4Target15FastHidden0Main.java";
+    private static final String summaryFileName = "Hotspot-Diploid-GRN-3-Target-15.txt";
+    private static final String csvFileName = "Hotspot-Diploid-GRN-3-Target-15.csv";
+    private static final String outputDirectory = "hotspot-diploid-grn-3-target-15";
+    private static final String mainFileName = "HotspotDiploidGRN3Target15FastMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
 
-    private static final String plotTitle = "Hotspot Diploid GRN 4 Targets 15 Hidden 0";
-    private static final String plotFileName = "Hotspot-Diploid-GRN-3-Target-15-Hidden-0.png";
+    private static final String plotTitle = "Hotspot Diploid GRN 3 Targets 15";
+    private static final String plotFileName = "Hotspot-Diploid-GRN-3-Target-15.png";
 
-    private static final List<Integer> thresholds = Arrays.asList(0, 500, 2000, 5000);
+    private static final List<Integer> thresholds = Arrays.asList(0, 2000, 5000);
 
     public static void main(String[] args) throws IOException {
-        int[][] targets = {target1, target2, target3, target4};
+        int[][] targets = {target1, target2, target3};
 
         // Fitness Function
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFastHidden(targets,
-                maxCycle, perturbations, perturbationRate, thresholds, perturbationCycleSize, hiddenTargetSize);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFast(targets,
+                maxCycle, perturbations, perturbationRate, thresholds, perturbationCycleSize);
 
         // Initializer
-        HotspotDiploidGRNHiddenTargetInitializer initializer = new HotspotDiploidGRNHiddenTargetInitializer(
-                        size, target1.length, hiddenTargetSize, edgeSize, hotspotSize);
+        HotspotDiploidGRNInitializer initializer = new HotspotDiploidGRNInitializer(
+                        size, target1.length, edgeSize, hotspotSize);
 
         // Population
         Population<SimpleHotspotDiploid> population = initializer.initializeWithMatrixHotspot();

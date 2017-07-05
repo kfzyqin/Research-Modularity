@@ -10,8 +10,10 @@ import ga.frame.states.State;
 import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
 import ga.operations.fitnessFunctions.FitnessFunction;
+import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFast;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFastHidden;
 import ga.operations.initializers.DiploidGRNHiddenTargetInitializer;
+import ga.operations.initializers.DiploidGRNInitializer;
 import ga.operations.mutators.GRNEdgeMutator;
 import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
@@ -20,6 +22,7 @@ import ga.operations.priorOperators.PriorOperator;
 import ga.operations.priorOperators.SimpleElitismOperator;
 import ga.operations.reproducers.Reproducer;
 import ga.operations.reproducers.SimpleDiploidMatrixReproducer;
+import ga.operations.reproducers.SimpleDiploidReproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
@@ -35,7 +38,7 @@ import java.util.List;
  * Created by Zhenyue Qin (秦震岳) on 25/6/17.
  * The Australian National University.
  */
-public class DiploidGRN4Target15FastHidden0Main {
+public class DiploidGRN3Target15FastMain {
     private static final int[] target1 = {
             1, -1, 1, -1, 1,
             -1, 1, -1, 1, -1,
@@ -59,7 +62,7 @@ public class DiploidGRN4Target15FastHidden0Main {
     private static final int maxCycle = 100;
     private static final int edgeSize = 45;
     private static final int perturbations = 500;
-    private static final double geneMutationRate = 0.004;
+    private static final double geneMutationRate = 0.003;
     private static final double dominanceMutationRate = 0.002;
     private static final double perturbationRate = 0.15;
     private static final int numElites = 20;
@@ -72,28 +75,28 @@ public class DiploidGRN4Target15FastHidden0Main {
     private static final double reproductionRate = 0.8;
     private static final int maxGen = 10000;
 
-    private static final String summaryFileName = "Diploid-GRN-4-Target-15-Hidden-0.txt";
-    private static final String csvFileName = "Diploid-GRN-4-Target-15-Hidden-0.csv";
-    private static final String outputDirectory = "diploid-grn-4-target-15-hidden-0";
-    private static final String mainFileName = "DiploidGRN4Target15FastHidden0Main.java";
+    private static final String summaryFileName = "Diploid-GRN-3-Target-15.txt";
+    private static final String csvFileName = "Diploid-GRN-3-Target-15.csv";
+    private static final String outputDirectory = "diploid-grn-3-target-15-0";
+    private static final String mainFileName = "DiploidGRN3Target15FastMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
 
-    private static final String plotTitle = "Diploid GRN 4 Targets 15 Hidden 0";
-    private static final String plotFileName = "Diploid-GRN-3-Target-15-Hidden-0.png";
+    private static final String plotTitle = "Diploid GRN 3 Targets 15";
+    private static final String plotFileName = "Diploid-GRN-3-Target-15.png";
 
-    private static final List<Integer> thresholds = Arrays.asList(0, 500, 2000, 5000);
+    private static final List<Integer> thresholds = Arrays.asList(0, 2000, 5000);
 
     public static void main(String[] args) throws IOException {
-        int[][] targets = {target1, target2, target3, target4};
+        int[][] targets = {target1, target2, target3};
 
         // Fitness Function
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFastHidden(targets,
-                maxCycle, perturbations, perturbationRate, thresholds, perturbationCycleSize, hiddenTargetSize);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFast(targets,
+                maxCycle, perturbations, perturbationRate, thresholds, perturbationCycleSize);
 
         // Initializer
-        DiploidGRNHiddenTargetInitializer initializer =
-                new DiploidGRNHiddenTargetInitializer(size, target1.length, hiddenTargetSize, edgeSize);
+        DiploidGRNInitializer initializer =
+                new DiploidGRNInitializer(size, target1.length, edgeSize);
 
         // Population
         Population<SimpleDiploid> population = initializer.initialize();

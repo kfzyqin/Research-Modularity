@@ -60,11 +60,10 @@ public abstract class DiploidReproducer<C extends Chromosome> extends BaseReprod
         SimpleMaterial dna1Copy = materialView.get(0).copy();
         SimpleMaterial dna2Copy = materialView.get(1).copy();
 
-        final int crossIndex1 = ThreadLocalRandom.current().nextInt(1, dna1Copy.getSize());
-        final int crossIndex2 = ThreadLocalRandom.current().nextInt(1, dna1Copy.getSize());
+        final int crossIndex = ThreadLocalRandom.current().nextInt(0, dna1Copy.getSize());
 
         if (isToDoCrossover) {
-            crossoverTwoDNAPieces(dna1Copy, dna2Copy, crossIndex1, crossIndex2);
+            crossoverTwoDNAsAt(dna1Copy, dna2Copy, crossIndex);
         }
 
         newDNAs.add(dna1Copy);
@@ -75,7 +74,7 @@ public abstract class DiploidReproducer<C extends Chromosome> extends BaseReprod
     protected abstract List<C> recombine(@NotNull final List<C> mates);
 
     protected void crossoverTwoDNAsAt(Material dna1, Material dna2, int crossIndex) {
-        crossoverTwoDNAPieces(dna1, dna2, crossIndex, dna1.getSize() + 1);
+        crossoverTwoDNAPieces(dna1, dna2, crossIndex, dna1.getSize());
     }
 
     /**
