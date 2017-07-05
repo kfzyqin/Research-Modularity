@@ -108,7 +108,7 @@ public class DiploidGRN4Target15FastHidden0Main {
 
         PostOperator<SimpleDiploid> fillingOperator = new SimpleFillingOperatorForNormalizable<>(new SimpleTournamentScheme(tournamentSize));
 
-        Reproducer<SimpleDiploid> reproducer = new SimpleDiploidMatrixReproducer(target1.length);
+        Reproducer<SimpleDiploid> reproducer = new SimpleDiploidMatrixReproducer(1.0 / target1.length, target1.length);
 
         DetailedStatistics<SimpleDiploid> statistics = new DetailedStatistics<>();
 
