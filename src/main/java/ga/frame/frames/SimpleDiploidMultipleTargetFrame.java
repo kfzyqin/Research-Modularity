@@ -4,7 +4,6 @@ import com.sun.istack.internal.NotNull;
 import ga.collections.Statistics;
 import ga.components.chromosomes.Chromosome;
 import ga.frame.states.DiploidMultipleTargetState;
-import ga.frame.states.MultipleTargetState;
 import ga.frame.states.State;
 import ga.operations.dynamicHandlers.DynamicHandler;
 import ga.operations.postOperators.PostOperator;
@@ -52,12 +51,16 @@ public class SimpleDiploidMultipleTargetFrame <C extends Chromosome> extends Fra
         }
         if (priorOperator != null)
             state.preOperate(priorOperator);
+
         state.reproduce();
+
         state.mutate();
         ((DiploidMultipleTargetState) state).mutateExpressionMap();
         state.postOperate(postOperator);
         state.nextGeneration();
-        ((MultipleTargetState) state).evaluateWithMultipleTargets(true);
+
+        ((DiploidMultipleTargetState) state).evaluateWithMultipleTargets(true);
+
         statistics.nextGeneration();
         state.record(statistics);
     }
