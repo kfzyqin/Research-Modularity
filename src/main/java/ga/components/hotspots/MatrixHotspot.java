@@ -1,5 +1,6 @@
 package ga.components.hotspots;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
@@ -32,6 +33,11 @@ public class MatrixHotspot extends Hotspot {
             throw new IllegalArgumentException("Hotspot dna length has to be a square number");
         }
     }
+
+//    @Override
+//    public MatrixHotspot copy() {
+//        return new MatrixHotspot(this.size, this.dnaLength, new HashMap<>(this.recombinationRates));
+//    }
 
     @Override
     protected void generateRandomRecombinationRates() {

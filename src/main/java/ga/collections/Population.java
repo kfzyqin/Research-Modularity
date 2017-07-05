@@ -112,9 +112,12 @@ public class Population<C extends Chromosome> implements Copyable<Population<C>>
     }
 
     public void evaluate(@NotNull final FitnessFunctionMultipleTargets fitnessFunction, final boolean recompute, int generation) {
+        //Todo: this takes much longer time for diploid than hotspot diploid, ask Bob why
+
         for (Individual<C> i : individuals)
             i.evaluate(fitnessFunction, recompute, generation);
         Collections.sort(individuals);
+
     }
 
     /**

@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Created by zhenyueqin on 17/6/17.
  */
-public class SimpleDiploidMultipleTargetState<C extends Chromosome> extends MultipleTargetState<C> {
+public class SimpleDiploidMultipleTargetState<C extends Chromosome> extends DiploidMultipleTargetState<C> {
 
     protected double reproductionRate;
 

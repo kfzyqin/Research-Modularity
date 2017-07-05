@@ -166,6 +166,7 @@ public class GRNFitnessFunctionMultipleTargetsFastHidden extends GRNFitnessFunct
 
     @Override
     public double evaluate(SimpleMaterial phenotype, int generation) {
+
         List<Integer> currentTargetIndices = this.getCurrentTargetIndices(generation);
         double fitnessValue = 0;
         for (Integer targetIndex : currentTargetIndices) {
@@ -173,6 +174,7 @@ public class GRNFitnessFunctionMultipleTargetsFastHidden extends GRNFitnessFunct
             DataGene[][] perturbationTargets = this.perturbationPool.get(targetIndex);
             fitnessValue += this.evaluateOneTargetWithHidden(phenotype, aTarget, perturbationTargets);
         }
+
         return fitnessValue / currentTargetIndices.size();
     }
 

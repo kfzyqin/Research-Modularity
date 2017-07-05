@@ -88,6 +88,7 @@ public class Hotspot implements Copyable<Hotspot> {
 
     @Override
     public String toString() {
+        if (this.recombinationRates == null) return "{}";
         return this.recombinationRates.toString();
     }
 }

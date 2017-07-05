@@ -48,7 +48,6 @@ public abstract class DiploidMatrixReproducer <C extends Chromosome> extends Dip
             }
         }
 
-
         newDNAs.add(dna1Copy);
         newDNAs.add(dna2Copy);
         return newDNAs;
