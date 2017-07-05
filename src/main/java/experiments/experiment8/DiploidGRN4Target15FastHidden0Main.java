@@ -72,7 +72,7 @@ public class DiploidGRN4Target15FastHidden0Main {
     private static final double reproductionRate = 0.8;
     private static final int maxGen = 10000;
 
-    private static final String summaryFileName = "Diploid-GRN-4-Target-15-Hidden-0.sum";
+    private static final String summaryFileName = "Diploid-GRN-4-Target-15-Hidden-0.txt";
     private static final String csvFileName = "Diploid-GRN-4-Target-15-Hidden-0.csv";
     private static final String outputDirectory = "diploid-grn-4-target-15-hidden-0";
     private static final String mainFileName = "DiploidGRN4Target15FastHidden0Main.java";
