@@ -40,7 +40,7 @@ import java.util.List;
  * Created by Zhenyue Qin (秦震岳) on 25/6/17.
  * The Australian National University.
  */
-public class HotspotDiploidGRN3TargetFastHiddenSameInitialIndividualMain {
+public class HotspotDiploidGRN3TargetFastHiddenMain {
     private static final int[] target1 = {1, -1, 1, -1, 1, -1, 1, -1, 1, -1};
     private static final int[] target2 = {1, -1, 1, -1, 1, -1, 1, 1, -1, 1};
     private static final int[] target3 = {1, -1, 1, -1, -1, 1, -1, 1, -1, 1};
@@ -63,15 +63,15 @@ public class HotspotDiploidGRN3TargetFastHiddenSameInitialIndividualMain {
     private static final double reproductionRate = 0.8;
     private static final int maxGen = 4000;
 
-    private static final String summaryFileName = "Hotspot-Diploid-GRN-3-Target-Hidden-Same-Initial-Individual.sum";
-    private static final String csvFileName = "Hotspot-Diploid-GRN-3-Target-Hidden-Same-Initial-Individual.csv";
-    private static final String outputDirectory = "hotspot-diploid-grn-3-target-hidden-same-initial-individual";
-    private static final String mainFileName = "HotspotDiploidGRN3TargetFastHiddenSameInitialIndividualMain.java";
+    private static final String summaryFileName = "Hotspot-Diploid-GRN-3-Target-Hidden.sum";
+    private static final String csvFileName = "Hotspot-Diploid-GRN-3-Target-Hidden.csv";
+    private static final String outputDirectory = "hotspot-diploid-grn-3-target-hidden";
+    private static final String mainFileName = "HotspotDiploidGRN3TargetFastHiddenMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
 
-    private static final String plotTitle = "Hotspot Diploid GRN 3 Targets Hidden Same Initial Individual Summary";
-    private static final String plotFileName = "Hotspot-Diploid-GRN-3-Target-Hidden-Same-Initial-Individual-Chart.png";
+    private static final String plotTitle = "Hotspot Diploid GRN 3 Targets Hidden";
+    private static final String plotFileName = "Hotspot-Diploid-GRN-3-Target-Hidden.png";
 
     private static final List<Integer> thresholds = Arrays.asList(0, 500, 2000);
 
