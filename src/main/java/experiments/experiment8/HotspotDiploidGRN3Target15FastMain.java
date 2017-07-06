@@ -24,6 +24,7 @@ import ga.operations.priorOperators.PriorOperator;
 import ga.operations.priorOperators.SimpleElitismOperator;
 import ga.operations.reproducers.Reproducer;
 import ga.operations.reproducers.SimpleHotspotDiploidMatrixReproducer;
+import ga.operations.reproducers.SimpleHotspotDiploidReproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
@@ -63,10 +64,12 @@ public class HotspotDiploidGRN3Target15FastMain {
     private static final int maxCycle = 100;
     private static final int edgeSize = 45;
     private static final int perturbations = 500;
-    private static final int hotspotSize = 15;
-    private static final double geneMutationRate = 0.003;
-    private static final double dominanceMutationRate = 0.001;
-    private static final double hotspotMutationRate = 0.001;
+
+    private static final int hotspotSize = 4;
+
+    private static final double geneMutationRate = 0.005;
+    private static final double dominanceMutationRate = 0.002;
+    private static final double hotspotMutationRate = 0.005;
     private static final double perturbationRate = 0.15;
     private static final int numElites = 20;
 
@@ -102,7 +105,7 @@ public class HotspotDiploidGRN3Target15FastMain {
                         size, target1.length, edgeSize, hotspotSize);
 
         // Population
-        Population<SimpleHotspotDiploid> population = initializer.initializeWithMatrixHotspot();
+        Population<SimpleHotspotDiploid> population = initializer.initialize();
 
         // Mutator for chromosomes
         Mutator mutator = new GRNEdgeMutator(geneMutationRate);
@@ -115,7 +118,7 @@ public class HotspotDiploidGRN3Target15FastMain {
         PostOperator<SimpleHotspotDiploid> fillingOperator = new
                 SimpleFillingOperatorForNormalizable<>(new SimpleTournamentScheme(tournamentSize));
 
-        Reproducer<SimpleHotspotDiploid> reproducer = new SimpleHotspotDiploidMatrixReproducer(1.0 / target1.length, target1.length);
+        Reproducer<SimpleHotspotDiploid> reproducer = new SimpleHotspotDiploidReproducer(1.0 / target1.length);
 
         DetailedStatistics<SimpleHotspotDiploid> statistics = new DetailedStatistics<>();
 

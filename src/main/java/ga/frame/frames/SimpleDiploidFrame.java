@@ -53,11 +53,11 @@ public class SimpleDiploidFrame<C extends Chromosome> extends Frame<C> {
             state.preOperate(priorOperator);
         state.reproduce();
         state.mutate();
+        ((DiploidMultipleTargetState) state).mutateExpressionMap();
         state.postOperate(postOperator);
         state.nextGeneration();
-        state.evaluate(true);
-        ((DiploidMultipleTargetState) state).mutateExpressionMap();
         statistics.nextGeneration();
+        state.evaluate(true);
         state.record(statistics);
     }
 }

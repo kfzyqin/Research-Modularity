@@ -59,8 +59,8 @@ public class SimpleGenderHotspotDiploidFrame<C extends Chromosome & CoupleableWi
         ((GenderHotspotMultipleTargetState) state).mutateHotspot();
         state.postOperate(postOperator);
         state.nextGeneration();
-        state.evaluate(true);
         statistics.nextGeneration();
+        state.evaluate(true);
         state.record(statistics);
     }
 }

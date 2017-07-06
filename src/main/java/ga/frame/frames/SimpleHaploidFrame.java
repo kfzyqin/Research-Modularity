@@ -78,8 +78,8 @@ public class SimpleHaploidFrame<C extends Chromosome> extends Frame<C> {
         state.mutate();
         state.postOperate(postOperator);
         state.nextGeneration();
-        state.evaluate(true);
         statistics.nextGeneration();
+        state.evaluate(true);
         state.record(statistics);
     }
 }

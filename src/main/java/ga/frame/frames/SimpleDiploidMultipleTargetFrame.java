@@ -58,10 +58,8 @@ public class SimpleDiploidMultipleTargetFrame <C extends Chromosome> extends Fra
         ((DiploidMultipleTargetState) state).mutateExpressionMap();
         state.postOperate(postOperator);
         state.nextGeneration();
-
-        ((DiploidMultipleTargetState) state).evaluateWithMultipleTargets(true);
-
         statistics.nextGeneration();
+        ((DiploidMultipleTargetState) state).evaluateWithMultipleTargets(true);
         state.record(statistics);
     }
 }

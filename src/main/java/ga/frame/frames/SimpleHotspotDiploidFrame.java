@@ -59,8 +59,8 @@ public class SimpleHotspotDiploidFrame<C extends Chromosome & WithHotspot> exten
         ((HotspotDiploidMultipleTargetState) state).mutateHotspot();
         state.postOperate(postOperator);
         state.nextGeneration();
-        state.evaluate(true);
         statistics.nextGeneration();
+        state.evaluate(true);
         state.record(statistics);
     }
 }
