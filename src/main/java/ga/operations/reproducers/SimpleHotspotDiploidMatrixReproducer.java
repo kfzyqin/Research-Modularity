@@ -49,19 +49,19 @@ public class SimpleHotspotDiploidMatrixReproducer extends HotspotDiploidMatrixRe
         Hotspot hotspot1 = parent1.getHotspot().copy();
         Hotspot hotspot2 = parent2.getHotspot().copy();
 
-        if (Math.random() > matchProbability) {
+        if (Math.random() < matchProbability) {
             SimpleMaterial tmp = dna1_2;
             dna1_2 = dna2_2;
             dna2_2 = tmp;
         }
 
-        if (Math.random() > matchProbability) {
+        if (Math.random() < matchProbability) {
             ExpressionMap tmp = mapping1;
             mapping1 = mapping2;
             mapping2 = tmp;
         }
 
-        if (Math.random() > matchProbability) {
+        if (Math.random() < matchProbability) {
             Hotspot tmp = hotspot1;
             hotspot1 = hotspot2;
             hotspot2 = tmp;

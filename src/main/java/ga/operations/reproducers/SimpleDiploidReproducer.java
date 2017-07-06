@@ -71,13 +71,13 @@ public class SimpleDiploidReproducer extends DiploidReproducer<SimpleDiploid> {
         ExpressionMap mapping1 = parent1.getMapping().copy();
         ExpressionMap mapping2 = parent2.getMapping().copy();
 
-        if (Math.random() > matchProbability) {
+        if (Math.random() < matchProbability) {
             SimpleMaterial tmp = dna1_2;
             dna1_2 = dna2_2;
             dna2_2 = tmp;
         }
 
-        if (Math.random() > matchProbability) {
+        if (Math.random() < matchProbability) {
             ExpressionMap tmp = mapping1;
             mapping1 = mapping2;
             mapping2 = tmp;
