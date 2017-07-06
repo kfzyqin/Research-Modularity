@@ -63,7 +63,7 @@ public class HotspotDiploidGRN3Target15FastMain {
     private static final int maxCycle = 100;
     private static final int edgeSize = 45;
     private static final int perturbations = 500;
-    private static final int hotspotSize = 9;
+    private static final int hotspotSize = 15;
     private static final double geneMutationRate = 0.003;
     private static final double dominanceMutationRate = 0.001;
     private static final double hotspotMutationRate = 0.001;

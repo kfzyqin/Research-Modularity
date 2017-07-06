@@ -37,13 +37,11 @@ public abstract class DiploidMatrixReproducer <C extends Chromosome> extends Dip
         SimpleMaterial dna2Copy = materialView.get(1).copy();
 
         if (isToDoCrossover) {
-            for (int crossIndex = 0; crossIndex < matrixSideSize; crossIndex++) {
-                if (Math.random() < matchProbability) {
-                    int tmpCrossIndex = crossIndex;
-                    while (tmpCrossIndex < matrixSideSize * matrixSideSize) {
-                        crossoverTwoDNAsAtPosition(dna1Copy, dna2Copy, tmpCrossIndex);
-                        tmpCrossIndex += matrixSideSize;
-                    }
+            int tmpCrossIndex = ThreadLocalRandom.current().nextInt(matrixSideSize);
+            if (Math.random() < matchProbability) {
+                while (tmpCrossIndex < matrixSideSize * matrixSideSize) {
+                    crossoverTwoDNAsAtPosition(dna1Copy, dna2Copy, tmpCrossIndex);
+                    tmpCrossIndex += matrixSideSize;
                 }
             }
         }
