@@ -46,19 +46,11 @@ import java.util.List;
 public class DiploidGRN2Target10FastMatrixMain {
     private static final int[] target1 = {
             1, -1, 1, -1, 1,
-            -1, 1, -1, 1, -1,
-            1, -1, 1
+            -1, 1, -1, 1, -1
     };
     private static final int[] target2 = {
             1, -1, 1, -1, 1,
-            1, -1, 1, -1, 1,
-            1, -1, 1
-    };
-
-    private static final int[] target3 = {
-            1, -1, 1, -1, 1,
-            1, -1, 1, -1, 1,
-            -1, 1, -1
+            1, -1, 1, -1, 1
     };
 
     private static final int maxCycle = 100;
