@@ -46,8 +46,8 @@ public class SimpleHotspotDiploidReproducer extends HotspotDiploidReproducer<Sim
 //        List<SimpleMaterial> parent2Gametes = throughCrossover(mates.get(1));
 
         SimpleMaterial dna1_1 = parent1Gametes.get(0).copy();
-        SimpleMaterial dna1_2 = parent1Gametes.get(0).copy();
-        SimpleMaterial dna2_1 = parent2Gametes.get(1).copy();
+        SimpleMaterial dna1_2 = parent1Gametes.get(1).copy();
+        SimpleMaterial dna2_1 = parent2Gametes.get(0).copy();
         SimpleMaterial dna2_2 = parent2Gametes.get(1).copy();
 
         ExpressionMap mapping1 = parent1.getMapping().copy();
