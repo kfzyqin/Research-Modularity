@@ -59,7 +59,7 @@ public class DiploidGRN2Target10FastMatrixMain {
     private static final double perturbationRate = 0.15;
     private static final int numElites = 1;
 
-    private static final int perturbationCycleSize = 100;
+    private static final int perturbationCycleSize = 20;
 
     private static final int size = 100;
     private static final int tournamentSize = 3;
@@ -102,7 +102,7 @@ public class DiploidGRN2Target10FastMatrixMain {
 
         PostOperator<SimpleDiploid> fillingOperator = new SimpleFillingOperatorForNormalizable<>(new SimpleTournamentScheme(tournamentSize));
 
-        Reproducer<SimpleDiploid> reproducer = new SimpleDiploidReproducer(0.5);
+        Reproducer<SimpleDiploid> reproducer = new SimpleDiploidMatrixReproducer(0.5, target1.length);
 
         DetailedStatistics<SimpleDiploid> statistics = new DetailedStatistics<>();
 

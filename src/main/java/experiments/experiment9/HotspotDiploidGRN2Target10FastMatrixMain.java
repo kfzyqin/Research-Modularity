@@ -63,11 +63,11 @@ public class HotspotDiploidGRN2Target10FastMatrixMain {
     private static final double perturbationRate = 0.15;
     private static final int numElites = 1;
 
-    private static final int perturbationCycleSize = 100;
+    private static final int perturbationCycleSize = 20;
 
     private static final int size = 100;
     private static final int tournamentSize = 3;
-    private static final double reproductionRate = 0.99;
+    private static final double reproductionRate = 0.7;
     private static final int maxGen = 1050;
 
     private static final String summaryFileName = "Hotspot-Diploid-GRN-2-Target-10-Matrix.txt";
@@ -106,7 +106,7 @@ public class HotspotDiploidGRN2Target10FastMatrixMain {
 
         PostOperator<SimpleHotspotDiploid> fillingOperator = new SimpleFillingOperatorForNormalizable<>(new SimpleTournamentScheme(tournamentSize));
 
-        Reproducer<SimpleHotspotDiploid> reproducer = new SimpleHotspotDiploidReproducer(0.5);
+        Reproducer<SimpleHotspotDiploid> reproducer = new SimpleHotspotDiploidMatrixReproducer(0.5, target1.length);
 
         DetailedStatistics<SimpleHotspotDiploid> statistics = new DetailedStatistics<>();
 
