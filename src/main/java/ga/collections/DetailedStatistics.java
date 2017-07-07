@@ -151,6 +151,25 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
             writer.writeNext(entries);
         }
         writer.close();
+
+    }
+
+    public void generatePhenotypeFile(String fileName) throws IOException {
+        final File file = new File(this.directoryPath + fileName);
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            System.err.println("Failed to save phenotype file.");
+        }
+
+        CSVWriter writer = new CSVWriter(new FileWriter(this.directoryPath + fileName), '\t');
+        String[] entries = "Phenotype".split("#");
+        writer.writeNext(entries);
+        for (int i=0; i<=generation; i++) {
+            entries = this.getChromosomePhenotype(i).split("#");
+            writer.writeNext(entries);
+        }
+        writer.close();
     }
 
     @Override
@@ -174,5 +193,9 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private String getChromosomePhenotype(int generation) {
+        return this.elites.get(generation).getChromosome().getPhenotype(false).toString();
     }
 }
