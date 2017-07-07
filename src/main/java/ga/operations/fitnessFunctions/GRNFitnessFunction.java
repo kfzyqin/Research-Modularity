@@ -48,7 +48,6 @@ public abstract class GRNFitnessFunction<M extends Material> implements FitnessF
      * @return the next state of the perturbed target after matrix multiplication with the GRN
      */
     protected DataGene[] updateState(DataGene[] currentState, M phenotype, final int[] target) {
-        //todo: this might be a bug
         DataGene[] updatedState = new DataGene[currentState.length];
         updatedState = this.initializeDataGeneArray(updatedState);
         for (int i=0; i<currentState.length; i++) {

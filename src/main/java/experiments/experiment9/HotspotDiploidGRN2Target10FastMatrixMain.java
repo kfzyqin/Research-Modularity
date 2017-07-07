@@ -1,4 +1,4 @@
-package experiments.experiment8;
+package experiments.experiment9;
 
 import ga.collections.DetailedStatistics;
 import ga.collections.Population;
@@ -14,10 +14,8 @@ import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
 import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFast;
-import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFastHidden;
 import ga.operations.hotspotMutators.HotspotMutator;
 import ga.operations.hotspotMutators.RandomHotspotMutator;
-import ga.operations.initializers.DiploidGRNHiddenTargetInitializer;
 import ga.operations.initializers.DiploidGRNInitializer;
 import ga.operations.initializers.HotspotDiploidGRNInitializer;
 import ga.operations.mutators.GRNEdgeMutator;
@@ -28,8 +26,7 @@ import ga.operations.priorOperators.PriorOperator;
 import ga.operations.priorOperators.SimpleElitismOperator;
 import ga.operations.reproducers.Reproducer;
 import ga.operations.reproducers.SimpleDiploidMatrixReproducer;
-import ga.operations.reproducers.SimpleDiploidReproducer;
-import ga.operations.reproducers.SimpleDummyHotspotDiploidReproducer;
+import ga.operations.reproducers.SimpleHotspotDiploidMatrixReproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
@@ -45,32 +42,19 @@ import java.util.List;
  * Created by Zhenyue Qin (秦震岳) on 25/6/17.
  * The Australian National University.
  */
-public class DiploidGRN3Target15FastMain {
+public class HotspotDiploidGRN2Target10FastMatrixMain {
     private static final int[] target1 = {
             1, -1, 1, -1, 1,
-            -1, 1, -1, 1, -1,
-            1, -1, 1, -1, 1
+            -1, 1, -1, 1, -1
     };
     private static final int[] target2 = {
             1, -1, 1, -1, 1,
-            -1, 1, -1, 1, -1,
-            -1, 1, -1, 1, -1
-    };
-    private static final int[] target3 = {
-            1, -1, 1, -1, 1,
-            1, -1, 1, -1, 1,
             1, -1, 1, -1, 1
     };
-    private static final int[] target4 = {
-            1, -1, 1, -1, 1,
-            1, -1, 1, -1, 1,
-            -1, 1, -1, 1, -1};
 
     private static final int maxCycle = 100;
-    private static final int edgeSize = 45;
-    private static final int perturbations = 500;
-
-    private static final int hotspotSize = 4;
+    private static final int edgeSize = 20;
+    private static final int perturbations = 300;
 
     private static final double geneMutationRate = 0.005;
     private static final double dominanceMutationRate = 0.002;
@@ -79,27 +63,26 @@ public class DiploidGRN3Target15FastMain {
     private static final int numElites = 20;
 
     private static final int perturbationCycleSize = 100;
-    private static final int hiddenTargetSize = 0;
 
     private static final int size = 100;
     private static final int tournamentSize = 3;
     private static final double reproductionRate = 0.8;
-    private static final int maxGen = 10000;
+    private static final int maxGen = 1350;
 
-    private static final String summaryFileName = "Diploid-GRN-3-Target-15.txt";
-    private static final String csvFileName = "Diploid-GRN-3-Target-15.csv";
-    private static final String outputDirectory = "diploid-grn-3-target-15-0";
-    private static final String mainFileName = "DiploidGRN2Target10FastMatrixMain.java";
+    private static final String summaryFileName = "Hotspot-Diploid-GRN-2-Target-10-Matrix.txt";
+    private static final String csvFileName = "Hotspot-Diploid-GRN-2-Target-10-Matrix.csv";
+    private static final String outputDirectory = "hotspot-diploid-grn-2-target-10-matrix";
+    private static final String mainFileName = "HotspotDiploidGRN2Target10FastMatrixMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
 
-    private static final String plotTitle = "Diploid GRN 3 Targets 15";
-    private static final String plotFileName = "Diploid-GRN-3-Target-15.png";
+    private static final String plotTitle = "Hotspot Diploid GRN 2 Targets 10 Matrix";
+    private static final String plotFileName = "Hotspot Diploid-GRN-2-Target-10-Matrix.png";
 
-    private static final List<Integer> thresholds = Arrays.asList(0, 2000, 5000);
+    private static final List<Integer> thresholds = Arrays.asList(0, 300, 1050);
 
     public static void main(String[] args) throws IOException {
-        int[][] targets = {target1, target2, target3};
+        int[][] targets = {target1, target2};
 
         // Fitness Function
         FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFast(targets,
@@ -107,7 +90,7 @@ public class DiploidGRN3Target15FastMain {
 
         // Initializer
         HotspotDiploidGRNInitializer initializer =
-                new HotspotDiploidGRNInitializer(size, target1.length, edgeSize, hotspotSize);
+                new HotspotDiploidGRNInitializer(size, target1.length, edgeSize, target1.length);
 
         // Population
         Population<SimpleHotspotDiploid> population = initializer.initialize();
@@ -122,7 +105,7 @@ public class DiploidGRN3Target15FastMain {
 
         PostOperator<SimpleHotspotDiploid> fillingOperator = new SimpleFillingOperatorForNormalizable<>(new SimpleTournamentScheme(tournamentSize));
 
-        Reproducer<SimpleHotspotDiploid> reproducer = new SimpleDummyHotspotDiploidReproducer<>(1.0 / target1.length);
+        Reproducer<SimpleHotspotDiploid> reproducer = new SimpleHotspotDiploidMatrixReproducer(1.0 / target1.length, target1.length);
 
         DetailedStatistics<SimpleHotspotDiploid> statistics = new DetailedStatistics<>();
 
@@ -140,7 +123,7 @@ public class DiploidGRN3Target15FastMain {
         statistics.print(0);
         statistics.setDirectory(outputDirectory + "/" + dateFormat.format(date));
         statistics.copyMainFile(mainFileName, System.getProperty("user.dir") +
-                "/src/main/java/experiments/experiment8/" + mainFileName);
+                "/src/main/java/experiments/experiment9/" + mainFileName);
         for (int i = 0; i < maxGen; i++) {
             frame.evolve();
             statistics.print(i);
