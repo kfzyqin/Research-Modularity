@@ -38,13 +38,11 @@ public abstract class DiploidMatrixReproducer <C extends Chromosome> extends Dip
 
         if (isToDoCrossover) {
             for (int crossIndex=ThreadLocalRandom.current().nextInt(matrixSideSize); crossIndex<matrixSideSize; crossIndex++) {
-                if (Math.random() < matchProbability) {
-                    for (int currentCrossIndex=crossIndex; currentCrossIndex<matrixSideSize; currentCrossIndex++) {
-                        int tmpCrossIndex = currentCrossIndex;
-                        while (tmpCrossIndex < matrixSideSize * matrixSideSize) {
-                            crossoverTwoDNAsAtPosition(dna1Copy, dna2Copy, tmpCrossIndex);
-                            tmpCrossIndex += matrixSideSize;
-                        }
+                for (int currentCrossIndex=crossIndex; currentCrossIndex<matrixSideSize; currentCrossIndex++) {
+                    int tmpCrossIndex = currentCrossIndex;
+                    while (tmpCrossIndex < matrixSideSize * matrixSideSize) {
+                        crossoverTwoDNAsAtPosition(dna1Copy, dna2Copy, tmpCrossIndex);
+                        tmpCrossIndex += matrixSideSize;
                     }
                 }
                 break;
