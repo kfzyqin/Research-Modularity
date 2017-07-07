@@ -74,8 +74,8 @@ public class HotspotDiploidGRN2Target10FastMatrixMain {
 
     private static final int size = 100;
     private static final int tournamentSize = 3;
-    private static final double reproductionRate = 0.8;
-    private static final int maxGen = 3000;
+    private static final double reproductionRate = 0.99;
+    private static final int maxGen = 1050;
 
     private static final String summaryFileName = "Hotspot-Diploid-GRN-2-Target-10-Matrix.txt";
     private static final String csvFileName = "Hotspot-Diploid-GRN-2-Target-10-Matrix.csv";
@@ -87,10 +87,10 @@ public class HotspotDiploidGRN2Target10FastMatrixMain {
     private static final String plotTitle = "Hotspot Diploid GRN 2 Targets 10 Matrix";
     private static final String plotFileName = "Hotspot Diploid-GRN-2-Target-10-Matrix.png";
 
-    private static final List<Integer> thresholds = Arrays.asList(0, 300, 1500);
+    private static final List<Integer> thresholds = Arrays.asList(0, 300);
 
     public static void main(String[] args) throws IOException {
-        int[][] targets = {target1, target2, target3};
+        int[][] targets = {target1, target2};
 
         // Fitness Function
         FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFast(targets,
