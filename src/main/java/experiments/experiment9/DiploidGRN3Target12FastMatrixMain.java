@@ -37,20 +37,20 @@ import java.util.List;
  */
 public class DiploidGRN3Target12FastMatrixMain {
     private static final int[] target1 = {
-            1, -1, 1, -1, 1,
-            -1, 1, -1, 1, -1,
-            1, -1, 1
+            1, -1, 1, -1,
+            1, -1, 1, -1,
+            1, -1, 1, -1
     };
     private static final int[] target2 = {
-            1, -1, 1, -1, 1,
-            1, -1, 1, -1, 1,
-            1, -1, 1
+            1, -1, 1, -1,
+            -1, 1, -1, 1,
+            1, -1, 1, -1
     };
 
     private static final int[] target3 = {
-            1, -1, 1, -1, 1,
-            1, -1, 1, -1, 1,
-            -1, 1, -1
+            1, -1, 1, -1,
+            1, -1, 1, -1,
+            -1, 1, -1, 1
     };
 
     private static final int maxCycle = 100;
@@ -58,7 +58,7 @@ public class DiploidGRN3Target12FastMatrixMain {
     private static final int perturbations = 300;
 
     private static final double geneMutationRate = 0.005;
-    private static final double dominanceMutationRate = 0.002;
+    private static final double dominanceMutationRate = 0;
     private static final double perturbationRate = 0.15;
     private static final int numElites = 1;
 
@@ -66,8 +66,8 @@ public class DiploidGRN3Target12FastMatrixMain {
 
     private static final int size = 100;
     private static final int tournamentSize = 3;
-    private static final double reproductionRate = 0.8;
-    private static final int maxGen = 3000;
+    private static final double reproductionRate = 0.95;
+    private static final int maxGen = 2500;
 
     private static final String summaryFileName = "Diploid-GRN-3-Target-12-Matrix.txt";
     private static final String csvFileName = "Diploid-GRN-3-Target-12-Matrix.csv";
@@ -79,7 +79,7 @@ public class DiploidGRN3Target12FastMatrixMain {
     private static final String plotTitle = "Diploid GRN 3 Targets 12 Matrix";
     private static final String plotFileName = "Diploid-GRN-3-Target-12-Matrix.png";
 
-    private static final List<Integer> thresholds = Arrays.asList(0, 500, 1750);
+    private static final List<Integer> thresholds = Arrays.asList(0, 500, 1300);
 
     public static void main(String[] args) throws IOException {
         int[][] targets = {target1, target2, target3};
