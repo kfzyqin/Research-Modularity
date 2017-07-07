@@ -37,6 +37,7 @@ public class GRNEdgeMutator<T extends Chromosome> implements Mutator<T> {
 
     @Override
     public void mutate(List<Individual<T>> individuals) {
+        //todo: double check this.
 //        for (int i = 0; i < individuals.size(); i++) {
 //            Individual<T> individual = individuals.get(i);
 //            for (Object object :  individual.getChromosome().getMaterialsView()) {
@@ -48,7 +49,7 @@ public class GRNEdgeMutator<T extends Chromosome> implements Mutator<T> {
 //        }
 
         /*
-        Mutates the specified gene at index i according to the rule specified in page 9 of the original paper.
+        Mutates the specified gene at index i according to the rule specified in page 8 of the original paper.
          */
         for (Individual<T> individual : individuals) {
             for (Object object : individual.getChromosome().getMaterialsView()) {
