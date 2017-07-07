@@ -2,12 +2,9 @@ package experiments.experiment9;
 
 import ga.collections.DetailedStatistics;
 import ga.collections.Population;
-import ga.components.chromosomes.SimpleDiploid;
 import ga.components.chromosomes.SimpleHotspotDiploid;
 import ga.frame.frames.Frame;
-import ga.frame.frames.SimpleDiploidMultipleTargetFrame;
 import ga.frame.frames.SimpleHotspotDiploidMultipleTargetFrame;
-import ga.frame.states.SimpleDiploidMultipleTargetState;
 import ga.frame.states.SimpleHotspotDiploidMultipleTargetState;
 import ga.frame.states.State;
 import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
@@ -16,7 +13,6 @@ import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFast;
 import ga.operations.hotspotMutators.HotspotMutator;
 import ga.operations.hotspotMutators.RandomHotspotMutator;
-import ga.operations.initializers.DiploidGRNInitializer;
 import ga.operations.initializers.HotspotDiploidGRNInitializer;
 import ga.operations.mutators.GRNEdgeMutator;
 import ga.operations.mutators.Mutator;
@@ -25,7 +21,6 @@ import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
 import ga.operations.priorOperators.PriorOperator;
 import ga.operations.priorOperators.SimpleElitismOperator;
 import ga.operations.reproducers.Reproducer;
-import ga.operations.reproducers.SimpleDiploidMatrixReproducer;
 import ga.operations.reproducers.SimpleHotspotDiploidMatrixReproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
@@ -42,7 +37,7 @@ import java.util.List;
  * Created by Zhenyue Qin (秦震岳) on 25/6/17.
  * The Australian National University.
  */
-public class HotspotDiploidGRN2Target10FastMatrixMain {
+public class HotspotDiploidGRN3Target12FastMatrixMain {
     private static final int[] target1 = {
             1, -1, 1, -1, 1,
             -1, 1, -1, 1, -1,
@@ -77,15 +72,15 @@ public class HotspotDiploidGRN2Target10FastMatrixMain {
     private static final double reproductionRate = 0.8;
     private static final int maxGen = 3000;
 
-    private static final String summaryFileName = "Hotspot-Diploid-GRN-2-Target-10-Matrix.txt";
-    private static final String csvFileName = "Hotspot-Diploid-GRN-2-Target-10-Matrix.csv";
-    private static final String outputDirectory = "hotspot-diploid-grn-2-target-10-matrix";
-    private static final String mainFileName = "HotspotDiploidGRN2Target10FastMatrixMain.java";
+    private static final String summaryFileName = "Hotspot-Diploid-GRN-3-Target-12-Matrix.txt";
+    private static final String csvFileName = "Hotspot-Diploid-GRN-3-Target-12-Matrix.csv";
+    private static final String outputDirectory = "hotspot-diploid-grn-3-target-12-matrix";
+    private static final String mainFileName = "HotspotDiploidGRN3Target12FastMatrixMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
 
-    private static final String plotTitle = "Hotspot Diploid GRN 2 Targets 10 Matrix";
-    private static final String plotFileName = "Hotspot Diploid-GRN-2-Target-10-Matrix.png";
+    private static final String plotTitle = "Hotspot Diploid GRN 3 Targets 12 Matrix";
+    private static final String plotFileName = "Hotspot Diploid-GRN-3-Target-12-Matrix.png";
 
     private static final List<Integer> thresholds = Arrays.asList(0, 300, 1500);
 
