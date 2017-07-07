@@ -27,6 +27,7 @@ import ga.operations.priorOperators.SimpleElitismOperator;
 import ga.operations.reproducers.Reproducer;
 import ga.operations.reproducers.SimpleDiploidMatrixReproducer;
 import ga.operations.reproducers.SimpleHotspotDiploidMatrixReproducer;
+import ga.operations.reproducers.SimpleHotspotDiploidReproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
@@ -105,7 +106,7 @@ public class HotspotDiploidGRN2Target10FastMatrixMain {
 
         PostOperator<SimpleHotspotDiploid> fillingOperator = new SimpleFillingOperatorForNormalizable<>(new SimpleTournamentScheme(tournamentSize));
 
-        Reproducer<SimpleHotspotDiploid> reproducer = new SimpleHotspotDiploidMatrixReproducer(0.5, target1.length);
+        Reproducer<SimpleHotspotDiploid> reproducer = new SimpleHotspotDiploidReproducer(0.5);
 
         DetailedStatistics<SimpleHotspotDiploid> statistics = new DetailedStatistics<>();
 
