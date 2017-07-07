@@ -83,4 +83,17 @@ public abstract class HotspotDiploidReproducer<C extends Chromosome & WithHotspo
         }
         return crossIndex;
     }
+
+    protected int deterministicGetCrossoverIndexByHotspot(@NotNull C parent) {
+        double maxRate = 0;
+        int maxRateIndex = -1;
+        SortedSet<Integer> sortedPositions = parent.getHotspot().getSortedHotspotPositions();
+        for (Integer e : sortedPositions) {
+            if (parent.getHotspot().getRecombinationRateAtPosition(e) > maxRate) {
+                maxRate = parent.getHotspot().getRecombinationRateAtPosition(e);
+                maxRateIndex = e;
+            }
+        }
+        return maxRateIndex;
+    }
 }
