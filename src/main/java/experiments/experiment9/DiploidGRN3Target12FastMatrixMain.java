@@ -79,7 +79,7 @@ public class DiploidGRN3Target12FastMatrixMain {
     private static final String plotTitle = "Diploid GRN 3 Targets 12 Matrix";
     private static final String plotFileName = "Diploid-GRN-3-Target-12-Matrix.png";
 
-    private static final List<Integer> thresholds = Arrays.asList(0, 300, 1500);
+    private static final List<Integer> thresholds = Arrays.asList(0, 500, 1750);
 
     public static void main(String[] args) throws IOException {
         int[][] targets = {target1, target2, target3};
