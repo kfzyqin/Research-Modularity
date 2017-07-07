@@ -67,7 +67,7 @@ public class DiploidGRN2Target10FastMatrixMain {
     private static final int size = 100;
     private static final int tournamentSize = 3;
     private static final double reproductionRate = 0.8;
-    private static final int maxGen = 1350;
+    private static final int maxGen = 1050;
 
     private static final String summaryFileName = "Diploid-GRN-2-Target-10-Matrix.txt";
     private static final String csvFileName = "Diploid-GRN-2-Target-10-Matrix.csv";
