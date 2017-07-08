@@ -109,7 +109,7 @@ public class DiploidGRN3Target10FastMatrixMain {
 
         PostOperator<SimpleDiploid> fillingOperator = new SimpleFillingOperatorForNormalizable<>(new SimpleTournamentScheme(tournamentSize));
 
-        Reproducer<SimpleDiploid> reproducer = new SimpleDiploidMatrixReproducer(1/target1.length, target1.length);
+        Reproducer<SimpleDiploid> reproducer = new SimpleDiploidMatrixReproducer(0.5, target1.length);
 
         DetailedStatistics<SimpleDiploid> statistics = new DetailedStatistics<>();
 
