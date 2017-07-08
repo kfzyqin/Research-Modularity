@@ -1,13 +1,28 @@
-import pandas as pd
-import os
-import re
+import numpy as np
 
+a_1 = np.matrix('1 2 3 4 5; 6 7 8 9 10; 11 12 13 14 15; 16 17 18 19 20; 21 22 23 24 25')
+a_2 = np.matrix('-1 -2 -3 -4 -5; -6 -7 -8 -9 -10; -11 -12 -13 -14 -15; -16 -17 -18 -19 -20; -21 -22 -23 -24 -25')
 
+# C 1[0:4 ,:] = A 1[0:4 ,:] C 1[5:9 ,:] = A 2[5:9 ,:]
+# C 2[0:4 ,:] = A 2[0:4 ,:] C 2[5:9 ,:] = A 1[5:9 ,:]
 
-path_1 = "/Users/zhenyueqin/Downloads/diploid-grn-2-target-10-matrix/"
+print 'a_1: '
+print a_1
 
-def get_immediate_subdirectories(a_dir):
-    return [name for name in os.listdir(a_dir)
-        if os.path.isdir(os.path.join(a_dir, name))]
+print 'a_2: '
+print a_2
 
-print get_immediate_subdirectories(path_1)
+c_1 = np.zeros((10, 10))
+c_2 = np.zeros((10, 10))
+
+c_1[0:4,:] = a_1[0:4 ,:]
+c_1[5:9,:] = a_2[5:9 ,:]
+
+c_2[0:4,:] = a_2[0:4,:]
+c_2[5:9,:] = a_1[5:9,:]
+
+print 'c_1: '
+print c_1
+
+print 'c_2: '
+print c_2

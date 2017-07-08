@@ -133,11 +133,11 @@ def save_a_list_graph(a_list, path, file_name):
     # plt.plot()
     plt.close()
 
-# path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
-#                           "-Hotspots/generated-outputs/diploid-grn-3-target-10-matrix/"
-
 path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
-                          "-Hotspots/generated-outputs/hotspot-diploid-grn-3-target-10-matrix/"
+                          "-Hotspots/generated-outputs/haploid-grn-2-target-10-matrix-larson/"
+
+# path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
+#                           "-Hotspots/generated-outputs/haploid-grn-2-target-10-matrix-larson-no-crossover/"
 
 sub_directories = get_immediate_subdirectories(path_1)
 

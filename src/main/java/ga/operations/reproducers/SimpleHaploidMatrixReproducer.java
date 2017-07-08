@@ -32,13 +32,12 @@ public class SimpleHaploidMatrixReproducer extends HaploidReproducer<SimpleHaplo
         int crossoverIndex1 = ThreadLocalRandom.current().nextInt(matrixSideSize);
 //        int crossoverIndex2 = ThreadLocalRandom.current().nextInt(matrixSideSize);
 
-        for (int crossIndex = crossoverIndex1; crossIndex < matrixSideSize; crossIndex++) {
-            for (int currentCrossIndex = crossIndex; currentCrossIndex < matrixSideSize; currentCrossIndex++) {
-                int tmpCrossIndex = currentCrossIndex;
-                while (tmpCrossIndex < matrixSideSize * matrixSideSize) {
-                    crossoverTwoDNAsAtPosition(dna1, dna2, tmpCrossIndex);
-                    tmpCrossIndex += matrixSideSize;
-                }
+        final int crossIndex = ThreadLocalRandom.current().nextInt(matrixSideSize);
+        for (int currentCrossIndex=crossIndex; currentCrossIndex<matrixSideSize; currentCrossIndex++) {
+            int tmpCrossIndex = currentCrossIndex;
+            while (tmpCrossIndex < matrixSideSize * matrixSideSize) {
+                crossoverTwoDNAsAtPosition(dna1, dna2, tmpCrossIndex);
+                tmpCrossIndex += matrixSideSize;
             }
         }
 

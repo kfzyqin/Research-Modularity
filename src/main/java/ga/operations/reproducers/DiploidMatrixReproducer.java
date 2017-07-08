@@ -45,13 +45,12 @@ public abstract class DiploidMatrixReproducer <C extends Chromosome> extends Dip
                 crossoverIndex2 = tmp;
             }
 
-            for (int crossIndex=crossoverIndex1; crossIndex<crossoverIndex2; crossIndex++) {
-                for (int currentCrossIndex=crossIndex; currentCrossIndex<matrixSideSize; currentCrossIndex++) {
-                    int tmpCrossIndex = currentCrossIndex;
-                    while (tmpCrossIndex < matrixSideSize * matrixSideSize) {
-                        crossoverTwoDNAsAtPosition(dna1Copy, dna2Copy, tmpCrossIndex);
-                        tmpCrossIndex += matrixSideSize;
-                    }
+            final int crossIndex = ThreadLocalRandom.current().nextInt(matrixSideSize);
+            for (int currentCrossIndex=crossIndex; currentCrossIndex<matrixSideSize; currentCrossIndex++) {
+                int tmpCrossIndex = currentCrossIndex;
+                while (tmpCrossIndex < matrixSideSize * matrixSideSize) {
+                    crossoverTwoDNAsAtPosition(dna1Copy, dna2Copy, tmpCrossIndex);
+                    tmpCrossIndex += matrixSideSize;
                 }
             }
         }
