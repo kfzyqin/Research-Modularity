@@ -53,7 +53,6 @@ public abstract class DiploidMatrixReproducer <C extends Chromosome> extends Dip
                         tmpCrossIndex += matrixSideSize;
                     }
                 }
-                break;
             }
         }
 

@@ -49,7 +49,6 @@ public abstract class HotspotDiploidMatrixReproducer<C extends Chromosome & With
                         }
                     }
 //                }
-                break;
             }
 
         }
