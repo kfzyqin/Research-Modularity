@@ -29,9 +29,6 @@ public class SimpleHaploidMatrixHorizontalSplitReproducer extends HaploidReprodu
         SimpleMaterial dna1 = child1.getMaterialsView().get(0);
         SimpleMaterial dna2 = child2.getMaterialsView().get(0);
 
-        int crossoverIndex1 = ThreadLocalRandom.current().nextInt(matrixSideSize);
-//        int crossoverIndex2 = ThreadLocalRandom.current().nextInt(matrixSideSize);
-
         final int crossIndex = ThreadLocalRandom.current().nextInt(matrixSideSize);
         for (int currentCrossIndex=crossIndex*matrixSideSize; currentCrossIndex<matrixSideSize*matrixSideSize; currentCrossIndex+=matrixSideSize) {
             int tmpCrossIndex = currentCrossIndex;
