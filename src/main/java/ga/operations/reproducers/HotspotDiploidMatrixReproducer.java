@@ -39,7 +39,7 @@ public abstract class HotspotDiploidMatrixReproducer<C extends Chromosome & With
 
         if (isToDoCrossover) {
 //            for (int crossIndex=deterministicGetCrossoverIndexByHotspot(parent); crossIndex<matrixSideSize; crossIndex++) {
-            for (int crossIndex=5; crossIndex<matrixSideSize; crossIndex++) {
+            for (int crossIndex=4; crossIndex<8; crossIndex++) {
 //                if (Math.random() < parent.getHotspot().getRecombinationRateAtPosition(crossIndex)) {
                     for (int currentCrossIndex=crossIndex; currentCrossIndex<matrixSideSize; currentCrossIndex++) {
                         int tmpCrossIndex = currentCrossIndex;

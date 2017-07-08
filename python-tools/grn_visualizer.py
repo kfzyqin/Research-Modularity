@@ -133,7 +133,10 @@ def save_a_list_graph(a_list, path, file_name):
     plt.close()
 
 path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
-                          "-Hotspots/generated-outputs/hotspot-diploid-grn-2-target-10-matrix/"
+                          "-Hotspots/generated-outputs/diploid-grn-2-target-10-matrix/"
+
+# path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
+#                           "-Hotspots/generated-outputs/hotspot-diploid-grn-2-target-10-matrix/"
 
 sub_directories = get_immediate_subdirectories(path_1)
 
