@@ -40,7 +40,7 @@ import java.util.List;
  * Created by Zhenyue Qin (秦震岳) on 25/6/17.
  * The Australian National University.
  */
-public class DiploidGRN2Target10FastMatrixMain {
+public class DiploidGRN3Target10FastMatrixMain {
     private static final int[] target1 = {
             1, -1, 1, -1, 1,
             -1, 1, -1, 1, -1
