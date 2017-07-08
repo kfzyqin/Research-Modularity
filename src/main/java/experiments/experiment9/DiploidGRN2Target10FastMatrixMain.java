@@ -57,14 +57,17 @@ public class DiploidGRN2Target10FastMatrixMain {
     private static final double geneMutationRate = 0.005;
     private static final double dominanceMutationRate = 0.002;
     private static final double perturbationRate = 0.15;
-    private static final int numElites = 1;
+    private static final int numElites = 0;
 
     private static final int perturbationCycleSize = 20;
 
     private static final int size = 100;
     private static final int tournamentSize = 3;
-    private static final double reproductionRate = 0.99;
+    private static final double reproductionRate = 1;
     private static final int maxGen = 1050;
+
+    private static final double maxFit = 0.951;
+    private static final double epsilon = 0.151;
 
     private static final String summaryFileName = "Diploid-GRN-2-Target-10-Matrix.txt";
     private static final String csvFileName = "Diploid-GRN-2-Target-10-Matrix.csv";
@@ -98,7 +101,7 @@ public class DiploidGRN2Target10FastMatrixMain {
         // Selector for reproduction
         Selector<SimpleDiploid> selector = new SimpleTournamentSelector<>(tournamentSize);
 
-        PriorOperator<SimpleDiploid> priorOperator = new SimpleElitismOperator<>(numElites);
+//        PriorOperator<SimpleDiploid> priorOperator = new SimpleElitismOperator<>(numElites);
 
         PostOperator<SimpleDiploid> fillingOperator = new SimpleFillingOperatorForNormalizable<>(new SimpleTournamentScheme(tournamentSize));
 
@@ -113,8 +116,8 @@ public class DiploidGRN2Target10FastMatrixMain {
 
         state.record(statistics);
 
-        Frame<SimpleDiploid> frame = new SimpleDiploidMultipleTargetFrame<>(state, fillingOperator, statistics, priorOperator);
-//        Frame<SimpleDiploid> frame = new SimpleDiploidMultipleTargetFrame<>(state, fillingOperator, statistics);
+//        Frame<SimpleDiploid> frame = new SimpleDiploidMultipleTargetFrame<>(state, fillingOperator, statistics, priorOperator);
+        Frame<SimpleDiploid> frame = new SimpleDiploidMultipleTargetFrame<>(state, fillingOperator, statistics);
 
         statistics.print(0);
         statistics.setDirectory(outputDirectory + "/" + dateFormat.format(date));
@@ -123,6 +126,10 @@ public class DiploidGRN2Target10FastMatrixMain {
         for (int i = 0; i < maxGen; i++) {
             frame.evolve();
             statistics.print(i);
+            if ((statistics.getOptimum(i) > maxFit - epsilon) &&
+                    (statistics.getGeneration() > thresholds.get(thresholds.size()-1))) {
+                break;
+            }
         }
         statistics.save(summaryFileName);
         statistics.generateCSVFile(csvFileName);

@@ -9,7 +9,7 @@ import quality
 import pandas as pd
 import re
 
-pattern = re.compile("(?<=Phenotype: \[)(.*)(?=\] <<)")
+pattern = re.compile("(?<=Phenotype: \[)(.*)(?=\])")
 
 
 def get_immediate_subdirectories(a_dir):
@@ -96,7 +96,7 @@ def get_grn_modularity_values(root_directory_path):
     return modularity_values
 
 
-def draw_a_grn(grn, partition, grn_phenotype):
+def draw_a_grn(grn, partition, grn_phenotype, is_to_save, save_path="", file_name=""):
     # drawing
     size = float(len(set(partition.values())))
     pos = nx.spring_layout(grn)
@@ -111,8 +111,13 @@ def draw_a_grn(grn, partition, grn_phenotype):
 
     generate_edge_colors(grn, grn_phenotype)
     nx.draw_networkx_edges(grn, pos, alpha=0.5, edge_color=nx.get_edge_attributes(grn, 'color').values())
-    plt.show()
-
+    if not is_to_save:
+        plt.show()
+    if is_to_save:
+        if save_path== "" or file_name == "":
+            raise Exception('Save path is not specified.')
+        plt.savefig(save_path + os.sep + file_name)
+        plt.close()
 
 def plot_a_list(a_list):
     plt.plot(a_list)
@@ -127,16 +132,18 @@ def save_a_list_graph(a_list, path, file_name):
     # plt.plot()
     plt.close()
 
-path_1 = "/Users/zhenyueqin/Downloads/diploid-grn-2-target-10-matrix/"
+path_1 = "/Users/zhenyueqin/Downloads/hotspot-diploid-grn-2-target-10-matrix/"
 
 sub_directories = get_immediate_subdirectories(path_1)
 
 for a_directory in sub_directories:
-    # phenotypes = get_grn_phenotypes(a_directory)
-    # a_grn = generate_directed_grn(phenotypes[-1])
-    modularity_values = get_grn_modularity_values(a_directory)
-    save_a_list_graph(modularity_values, a_directory, 'modularity.png')
-    # draw_a_grn(a_grn, get_best_partition(a_grn), phenotypes[-1])
+    phenotypes = get_grn_phenotypes(a_directory)
+    a_grn = generate_directed_grn(phenotypes[-1])
+
+    # modularity_values = get_grn_modularity_values(a_directory)
+    # save_a_list_graph(modularity_values, a_directory, 'modularity.png')
+
+    draw_a_grn(a_grn, get_best_partition(a_grn), phenotypes[-1], True, a_directory, 'graph.png')
 
 
 # write_dot(a_grn,'graph.dot')

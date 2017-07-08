@@ -67,8 +67,11 @@ public class HotspotDiploidGRN2Target10FastMatrixMain {
 
     private static final int size = 100;
     private static final int tournamentSize = 3;
-    private static final double reproductionRate = 0.7;
+    private static final double reproductionRate = 1;
     private static final int maxGen = 1050;
+
+    private static final double maxFit = 0.951;
+    private static final double epsilon = 0.151;
 
     private static final String summaryFileName = "Hotspot-Diploid-GRN-2-Target-10-Matrix.txt";
     private static final String csvFileName = "Hotspot-Diploid-GRN-2-Target-10-Matrix.csv";
@@ -102,7 +105,7 @@ public class HotspotDiploidGRN2Target10FastMatrixMain {
         // Selector for reproduction
         Selector<SimpleHotspotDiploid> selector = new SimpleTournamentSelector<>(tournamentSize);
 
-        PriorOperator<SimpleHotspotDiploid> priorOperator = new SimpleElitismOperator<>(numElites);
+//        PriorOperator<SimpleHotspotDiploid> priorOperator = new SimpleElitismOperator<>(numElites);
 
         PostOperator<SimpleHotspotDiploid> fillingOperator = new SimpleFillingOperatorForNormalizable<>(new SimpleTournamentScheme(tournamentSize));
 
@@ -119,8 +122,8 @@ public class HotspotDiploidGRN2Target10FastMatrixMain {
 
         state.record(statistics);
 
-        Frame<SimpleHotspotDiploid> frame = new SimpleHotspotDiploidMultipleTargetFrame<>(state, fillingOperator, statistics, priorOperator);
-//        Frame<SimpleHotspotDiploid> frame = new SimpleHotspotDiploidMultipleTargetFrame<>(state, fillingOperator, statistics);
+//        Frame<SimpleHotspotDiploid> frame = new SimpleHotspotDiploidMultipleTargetFrame<>(state, fillingOperator, statistics, priorOperator);
+        Frame<SimpleHotspotDiploid> frame = new SimpleHotspotDiploidMultipleTargetFrame<>(state, fillingOperator, statistics);
 
         statistics.print(0);
         statistics.setDirectory(outputDirectory + "/" + dateFormat.format(date));
@@ -129,6 +132,10 @@ public class HotspotDiploidGRN2Target10FastMatrixMain {
         for (int i = 0; i < maxGen; i++) {
             frame.evolve();
             statistics.print(i);
+            if ((statistics.getOptimum(i) > maxFit - epsilon) &&
+                    (statistics.getGeneration() > thresholds.get(thresholds.size()-1))) {
+                break;
+            }
         }
         statistics.save(summaryFileName);
         statistics.generateCSVFile(csvFileName);
