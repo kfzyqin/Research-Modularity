@@ -41,8 +41,4 @@ public abstract class DiploidMultipleTargetState<C extends Chromosome> extends S
     }
 
     public abstract void mutateExpressionMap();
-
-    public void evaluateWithMultipleTargets(final boolean recomputePhenotype) {
-        population.evaluate((FitnessFunctionMultipleTargets) fitnessFunction, recomputePhenotype, this.generation);
-    }
 }

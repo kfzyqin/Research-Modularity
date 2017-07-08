@@ -30,9 +30,9 @@ public class SimpleHaploidMatrixReproducer extends HaploidReproducer<SimpleHaplo
         SimpleMaterial dna2 = child2.getMaterialsView().get(0);
 
         int crossoverIndex1 = ThreadLocalRandom.current().nextInt(matrixSideSize);
-        int crossoverIndex2 = ThreadLocalRandom.current().nextInt(matrixSideSize);
+//        int crossoverIndex2 = ThreadLocalRandom.current().nextInt(matrixSideSize);
 
-        for (int crossIndex = crossoverIndex1; crossIndex < crossoverIndex2; crossIndex++) {
+        for (int crossIndex = crossoverIndex1; crossIndex < matrixSideSize; crossIndex++) {
             for (int currentCrossIndex = crossIndex; currentCrossIndex < matrixSideSize; currentCrossIndex++) {
                 int tmpCrossIndex = currentCrossIndex;
                 while (tmpCrossIndex < matrixSideSize * matrixSideSize) {

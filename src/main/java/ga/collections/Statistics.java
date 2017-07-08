@@ -40,7 +40,6 @@ public interface Statistics<C extends Chromosome> extends Copyable<Statistics<C>
      */
     default void print(final int generation) {
         System.out.println(getSummary(generation));
-        System.out.println();
     }
 
     /**

@@ -6,6 +6,7 @@ import ga.collections.PopulationMode;
 import ga.collections.Statistics;
 import ga.components.chromosomes.Chromosome;
 import ga.operations.fitnessFunctions.FitnessFunction;
+import ga.operations.fitnessFunctions.FitnessFunctionMultipleTargets;
 import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
 import ga.operations.priorOperators.PriorOperator;
@@ -88,6 +89,10 @@ public abstract class State<C extends Chromosome> {
      */
     public void evaluate(final boolean recomputePhenotype){
         population.evaluate(fitnessFunction, recomputePhenotype);
+    }
+
+    public void evaluateWithMultipleTargets(final boolean recomputePhenotype) {
+        population.evaluate((FitnessFunctionMultipleTargets) fitnessFunction, recomputePhenotype, this.generation);
     }
 
     /**
