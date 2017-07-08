@@ -11,11 +11,11 @@ public class TestField11 {
 //        final int crossIndex = 5;
         final int matrixSideSize = 10;
         final int crossIndex = 5;
-        for (int currentCrossIndex=crossIndex; currentCrossIndex<matrixSideSize; currentCrossIndex++) {
+        for (int currentCrossIndex=crossIndex*matrixSideSize; currentCrossIndex<matrixSideSize*matrixSideSize; currentCrossIndex+=matrixSideSize) {
             int tmpCrossIndex = currentCrossIndex;
-            while (tmpCrossIndex < matrixSideSize * matrixSideSize) {
+            while (tmpCrossIndex < currentCrossIndex + matrixSideSize) {
                 System.out.println(tmpCrossIndex);
-                tmpCrossIndex += matrixSideSize;
+                tmpCrossIndex += 1;
             }
         }
     }
