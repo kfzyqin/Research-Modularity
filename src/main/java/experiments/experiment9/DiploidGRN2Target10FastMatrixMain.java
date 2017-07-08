@@ -76,8 +76,6 @@ public class DiploidGRN2Target10FastMatrixMain {
     private static final String plotTitle = "Diploid GRN 2 Targets 10 Matrix";
     private static final String plotFileName = "Diploid-GRN-2-Target-10-Matrix.png";
 
-    private static final String phenotypeFileName = "Diploid-GRN-2-Target-10-Matrix.pheno";
-
     private static final List<Integer> thresholds = Arrays.asList(0, 300);
 
     public static void main(String[] args) throws IOException {
@@ -128,7 +126,6 @@ public class DiploidGRN2Target10FastMatrixMain {
         }
         statistics.save(summaryFileName);
         statistics.generateCSVFile(csvFileName);
-        statistics.generatePhenotypeFile(phenotypeFileName);
         statistics.generatePlot(plotTitle, plotFileName);
     }
 }

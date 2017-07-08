@@ -7,6 +7,14 @@ import community
 from networkx.algorithms.community import *
 import quality
 import pandas as pd
+import re
+
+pattern = re.compile("(?<=Phenotype: \[)(.*)(?=\] <<)")
+
+
+def get_immediate_subdirectories(a_dir):
+    return [(a_dir + os.sep + name) for name in os.listdir(a_dir)
+        if os.path.isdir(os.path.join(a_dir, name))]
 
 
 def get_best_partition(a_grn):
@@ -19,16 +27,16 @@ def get_modularity_value(a_grn):
 
 def get_grn_phenotypes(root_directory_path):
     phenotypes = []
-    csv_files = []
+    txt_files = []
     for root, dirs, files in os.walk(root_directory_path):
         for a_file in files:
-            if a_file.endswith(".pheno"):
-                csv_files.append(root + os.sep + a_file)
+            if a_file.endswith(".txt"):
+                txt_files.append(root + os.sep + a_file)
 
-    for a_file in csv_files:
-        a_df = pd.read_csv(a_file, '\t')
-        for a_phenotype in a_df['Phenotype'][1:]:
-            phenotypes.append(map(int, a_phenotype[1:-1].split(',')))
+    for a_file in txt_files:
+        for i, line in enumerate(open(a_file)):
+            for match in re.finditer(pattern, line):
+                phenotypes.append(map(int, match.groups()[0].split(',')))
     # return sorted(phenotypes)
     return phenotypes
 
@@ -112,16 +120,26 @@ def plot_a_list(a_list):
     plt.show()
 
 
+def save_a_list_graph(a_list, path, file_name):
+    plt.plot(a_list)
+    plt.ylabel('Modularity')
+    plt.savefig(path + os.sep + file_name)
+    # plt.plot()
+    plt.close()
+
 path_1 = "/Users/zhenyueqin/Downloads/diploid-grn-2-target-10-matrix/"
 
-phenotypes = get_grn_phenotypes(path_1)
-a_grn = generate_directed_grn(phenotypes[-1])
-modularity_values = get_grn_modularity_values(path_1)
-plot_a_list(modularity_values)
-draw_a_grn(a_grn, get_best_partition(a_grn), phenotypes[-1])
+sub_directories = get_immediate_subdirectories(path_1)
 
-write_dot(a_grn,'graph.dot')
+for a_directory in sub_directories:
+    # phenotypes = get_grn_phenotypes(a_directory)
+    # a_grn = generate_directed_grn(phenotypes[-1])
+    modularity_values = get_grn_modularity_values(a_directory)
+    save_a_list_graph(modularity_values, a_directory, 'modularity.png')
+    # draw_a_grn(a_grn, get_best_partition(a_grn), phenotypes[-1])
 
-os.system('dot -T png graph.dot > graph.png')
+
+# write_dot(a_grn,'graph.dot')
+# os.system('dot -T png graph.dot > graph.png')
 
 
