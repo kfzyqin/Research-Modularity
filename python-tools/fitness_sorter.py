@@ -27,7 +27,7 @@ print get_fitness_values(a_root_directory_path_1).__len__()
 print get_fitness_values(a_root_directory_path_2).__len__()
 
 a = get_fitness_values(a_root_directory_path_1)
-b = get_fitness_values(a_root_directory_path_2)
+b = get_fitness_values(a_root_directory_path_2)[:35]
 
 print scipy.stats.wilcoxon(a, b)
 
