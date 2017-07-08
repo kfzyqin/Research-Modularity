@@ -100,7 +100,7 @@ public class HaploidGRN2Target10MatrixLarsonMain {
         // Selector<SimpleHaploid> selector = new SimpleProportionalSelector<>();
         Selector<SimpleHaploid> selector = new SimpleTournamentSelector<>(tournamentSize);
 
-        PriorOperator<SimpleDiploid> priorOperator = new SimpleElitismOperator<>(numElites);
+        PriorOperator<SimpleHaploid> priorOperator = new SimpleElitismOperator<>(numElites);
 
         // PostOperator is required to fill up the vacancy.
         PostOperator<SimpleHaploid> postOperator = new SimpleFillingOperatorForNormalizable<>(new SimpleTournamentScheme(tournamentSize));
@@ -113,12 +113,12 @@ public class HaploidGRN2Target10MatrixLarsonMain {
         State<SimpleHaploid> state = new SimpleState<>(
                 population, fitnessFunction, mutator, reproducer, selector, 2, reproductionRate);
         state.record(statistics);
-        Frame<SimpleHaploid> frame = new SimpleHaploidFrame<>(state,postOperator,statistics);
+        Frame<SimpleHaploid> frame = new SimpleHaploidFrame<>(state,postOperator,statistics, priorOperator);
 
         statistics.print(0);
         statistics.setDirectory(outputDirectory + "/" + dateFormat.format(date));
         statistics.copyMainFile(mainFileName, System.getProperty("user.dir") +
-                "/src/main/java/experiments/experiment9/" + mainFileName);
+                "/src/main/java/experiments/experiment1/" + mainFileName);
 
         for (int i = 1; i <= maxGen; i++) {
             frame.evolve();
