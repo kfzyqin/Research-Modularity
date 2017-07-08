@@ -8,8 +8,9 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class TestField11 {
     public static void main(String[] args) {
-        final int crossIndex = 5;
+//        final int crossIndex = 5;
         final int matrixSideSize = 10;
+        final int crossIndex = 4;
         for (int currentCrossIndex=crossIndex; currentCrossIndex<matrixSideSize; currentCrossIndex++) {
             int tmpCrossIndex = currentCrossIndex;
             while (tmpCrossIndex < matrixSideSize * matrixSideSize) {
