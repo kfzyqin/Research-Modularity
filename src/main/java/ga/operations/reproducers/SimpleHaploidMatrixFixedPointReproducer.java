@@ -29,10 +29,7 @@ public class SimpleHaploidMatrixFixedPointReproducer extends HaploidReproducer<S
         SimpleMaterial dna1 = child1.getMaterialsView().get(0);
         SimpleMaterial dna2 = child2.getMaterialsView().get(0);
 
-        int crossoverIndex1 = 5;
-//        int crossoverIndex2 = ThreadLocalRandom.current().nextInt(matrixSideSize);
-
-        final int crossIndex = ThreadLocalRandom.current().nextInt(matrixSideSize);
+        final int crossIndex = 5;
         for (int currentCrossIndex=crossIndex; currentCrossIndex<matrixSideSize; currentCrossIndex++) {
             int tmpCrossIndex = currentCrossIndex;
             while (tmpCrossIndex < matrixSideSize * matrixSideSize) {
