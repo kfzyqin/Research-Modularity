@@ -61,7 +61,7 @@ public class HotspotDiploidGRN2Target10FastMatrixMain {
     private static final double dominanceMutationRate = 0.002;
     private static final double hotspotMutationRate = 0.005;
     private static final double perturbationRate = 0.15;
-    private static final int numElites = 1;
+    private static final int numElites = 10;
 
     private static final int perturbationCycleSize = 20;
 
@@ -105,7 +105,7 @@ public class HotspotDiploidGRN2Target10FastMatrixMain {
         // Selector for reproduction
         Selector<SimpleHotspotDiploid> selector = new SimpleTournamentSelector<>(tournamentSize);
 
-//        PriorOperator<SimpleHotspotDiploid> priorOperator = new SimpleElitismOperator<>(numElites);
+        PriorOperator<SimpleHotspotDiploid> priorOperator = new SimpleElitismOperator<>(numElites);
 
         PostOperator<SimpleHotspotDiploid> fillingOperator = new SimpleFillingOperatorForNormalizable<>(new SimpleTournamentScheme(tournamentSize));
 
@@ -122,8 +122,8 @@ public class HotspotDiploidGRN2Target10FastMatrixMain {
 
         state.record(statistics);
 
-//        Frame<SimpleHotspotDiploid> frame = new SimpleHotspotDiploidMultipleTargetFrame<>(state, fillingOperator, statistics, priorOperator);
-        Frame<SimpleHotspotDiploid> frame = new SimpleHotspotDiploidMultipleTargetFrame<>(state, fillingOperator, statistics);
+        Frame<SimpleHotspotDiploid> frame = new SimpleHotspotDiploidMultipleTargetFrame<>(state, fillingOperator, statistics, priorOperator);
+//        Frame<SimpleHotspotDiploid> frame = new SimpleHotspotDiploidMultipleTargetFrame<>(state, fillingOperator, statistics);
 
         statistics.print(0);
         statistics.setDirectory(outputDirectory + "/" + dateFormat.format(date));

@@ -57,7 +57,7 @@ public class DiploidGRN2Target10FastMatrixMain {
     private static final double geneMutationRate = 0.005;
     private static final double dominanceMutationRate = 0.002;
     private static final double perturbationRate = 0.15;
-    private static final int numElites = 0;
+    private static final int numElites = 10;
 
     private static final int perturbationCycleSize = 20;
 
@@ -101,7 +101,7 @@ public class DiploidGRN2Target10FastMatrixMain {
         // Selector for reproduction
         Selector<SimpleDiploid> selector = new SimpleTournamentSelector<>(tournamentSize);
 
-//        PriorOperator<SimpleDiploid> priorOperator = new SimpleElitismOperator<>(numElites);
+        PriorOperator<SimpleDiploid> priorOperator = new SimpleElitismOperator<>(numElites);
 
         PostOperator<SimpleDiploid> fillingOperator = new SimpleFillingOperatorForNormalizable<>(new SimpleTournamentScheme(tournamentSize));
 
@@ -116,8 +116,8 @@ public class DiploidGRN2Target10FastMatrixMain {
 
         state.record(statistics);
 
-//        Frame<SimpleDiploid> frame = new SimpleDiploidMultipleTargetFrame<>(state, fillingOperator, statistics, priorOperator);
-        Frame<SimpleDiploid> frame = new SimpleDiploidMultipleTargetFrame<>(state, fillingOperator, statistics);
+        Frame<SimpleDiploid> frame = new SimpleDiploidMultipleTargetFrame<>(state, fillingOperator, statistics, priorOperator);
+//        Frame<SimpleDiploid> frame = new SimpleDiploidMultipleTargetFrame<>(state, fillingOperator, statistics);
 
         statistics.print(0);
         statistics.setDirectory(outputDirectory + "/" + dateFormat.format(date));

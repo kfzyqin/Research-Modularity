@@ -132,7 +132,8 @@ def save_a_list_graph(a_list, path, file_name):
     # plt.plot()
     plt.close()
 
-path_1 = "/Users/zhenyueqin/Downloads/hotspot-diploid-grn-2-target-10-matrix/"
+path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
+                          "-Hotspots/generated-outputs/hotspot-diploid-grn-2-target-10-matrix/"
 
 sub_directories = get_immediate_subdirectories(path_1)
 
@@ -140,8 +141,8 @@ for a_directory in sub_directories:
     phenotypes = get_grn_phenotypes(a_directory)
     a_grn = generate_directed_grn(phenotypes[-1])
 
-    # modularity_values = get_grn_modularity_values(a_directory)
-    # save_a_list_graph(modularity_values, a_directory, 'modularity.png')
+    modularity_values = get_grn_modularity_values(a_directory)
+    save_a_list_graph(modularity_values, a_directory, 'modularity.png')
 
     draw_a_grn(a_grn, get_best_partition(a_grn), phenotypes[-1], True, a_directory, 'graph.png')
 
