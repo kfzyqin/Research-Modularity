@@ -43,19 +43,19 @@ public class SimpleDiploidMatrixReproducer extends DiploidMatrixReproducer<Simpl
         ExpressionMap mapping1 = parent1.getMapping().copy();
         ExpressionMap mapping2 = parent2.getMapping().copy();
 
-        if (Math.random() < matchProbability) {
-            SimpleMaterial tmp = dna1_2;
-            dna1_2 = dna2_2;
-            dna2_2 = tmp;
-        }
+//        if (Math.random() < matchProbability) {
+//            SimpleMaterial tmp = dna1_2;
+//            dna1_2 = dna2_2;
+//            dna2_2 = tmp;
+//        }
+//
+//        if (Math.random() < matchProbability) {
+//            ExpressionMap tmp = mapping1;
+//            mapping1 = mapping2;
+//            mapping2 = tmp;
+//        }
 
-        if (Math.random() < matchProbability) {
-            ExpressionMap tmp = mapping1;
-            mapping1 = mapping2;
-            mapping2 = tmp;
-        }
-
-        rtn.add(new SimpleDiploid(dna1_1, dna1_2, mapping1.copy()));
+        rtn.add(new SimpleDiploid(dna1_1, dna2_2, mapping1.copy()));
 //        rtn.add(new SimpleDiploid(dna2_1, dna2_2, mapping2.copy()));
         return rtn;
     }

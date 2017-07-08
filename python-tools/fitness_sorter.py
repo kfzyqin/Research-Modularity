@@ -21,13 +21,13 @@ a_root_directory_path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advan
                           "-Hotspots/generated-outputs/haploid-grn-2-target-10-matrix-larson/"
 
 a_root_directory_path_2 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
-                          "-Hotspots/generated-outputs/haploid-grn-2-target-10-matrix-larson-no-crossover/"
+                          "-Hotspots/generated-outputs/haploid-grn-2-target-10-matrix-larson-fixed-point/"
 
 print get_fitness_values(a_root_directory_path_1).__len__()
 print get_fitness_values(a_root_directory_path_2).__len__()
 
-a = get_fitness_values(a_root_directory_path_1)
-b = get_fitness_values(a_root_directory_path_2)[:35]
+a = get_fitness_values(a_root_directory_path_1)[10:40]
+b = get_fitness_values(a_root_directory_path_2)[10:40]
 
 print scipy.stats.wilcoxon(a, b)
 
