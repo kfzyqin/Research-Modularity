@@ -1,6 +1,7 @@
 import pandas as pd
 import os
-
+import scipy
+import scipy.stats
 
 def get_fitness_values(root_directory_path):
     fitness_values = []
@@ -16,11 +17,19 @@ def get_fitness_values(root_directory_path):
     # return sorted(fitness_values)
     return fitness_values
 
-a_root_directory_path_1 = "/Users/zhenyueqin/Downloads/diploid-grn-2-target-10-matrix/"
-a_root_directory_path_2 = "/Users/zhenyueqin/Downloads/hotspot-diploid-grn-2-target-10-matrix/"
+a_root_directory_path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
+                          "-Hotspots/generated-outputs/diploid-grn-3-target-10-matrix/"
+
+a_root_directory_path_2 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
+                          "-Hotspots/generated-outputs/hotspot-diploid-grn-3-target-10-matrix/"
 
 print get_fitness_values(a_root_directory_path_1)
 print get_fitness_values(a_root_directory_path_2)
+
+a = get_fitness_values(a_root_directory_path_1)
+b = get_fitness_values(a_root_directory_path_2)
+
+print scipy.stats.wilcoxon(a, b)
 
 
 

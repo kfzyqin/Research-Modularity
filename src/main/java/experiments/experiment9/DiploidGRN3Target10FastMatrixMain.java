@@ -67,7 +67,7 @@ public class DiploidGRN3Target10FastMatrixMain {
 
     private static final int size = 100;
     private static final int tournamentSize = 3;
-    private static final double reproductionRate = 1;
+    private static final double reproductionRate = 0.9;
     private static final int maxGen = 2000;
 
     private static final double maxFit = 2;
@@ -89,8 +89,8 @@ public class DiploidGRN3Target10FastMatrixMain {
         int[][] targets = {target1, target2, target3};
 
         // Fitness Function
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFast(targets,
-                maxCycle, perturbations, perturbationRate, thresholds, perturbationCycleSize);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFast(
+                targets, maxCycle, perturbations, perturbationRate, thresholds, perturbationCycleSize);
 
         // Initializer
         DiploidGRNInitializer initializer =

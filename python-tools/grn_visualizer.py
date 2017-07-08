@@ -105,9 +105,10 @@ def draw_a_grn(grn, partition, grn_phenotype, is_to_save, save_path="", file_nam
         count = count + 1.
         list_nodes = [nodes for nodes in partition.keys()
                       if partition[nodes] == com]
-        generate_node_colors(grn, grn_phenotype)
+        # generate_node_colors(grn, grn_phenotype)
         nx.draw_networkx_nodes(grn, pos, list_nodes, node_size=100,
-                               node_color=nx.get_node_attributes(grn, 'color').values())
+                               # node_color=nx.get_node_attributes(grn, 'color').values())
+                               node_color=str(count / size))
 
     generate_edge_colors(grn, grn_phenotype)
     nx.draw_networkx_edges(grn, pos, alpha=0.5, edge_color=nx.get_edge_attributes(grn, 'color').values())
@@ -132,17 +133,17 @@ def save_a_list_graph(a_list, path, file_name):
     # plt.plot()
     plt.close()
 
-path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
-                          "-Hotspots/generated-outputs/diploid-grn-2-target-10-matrix/"
-
 # path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
-#                           "-Hotspots/generated-outputs/hotspot-diploid-grn-2-target-10-matrix/"
+#                           "-Hotspots/generated-outputs/diploid-grn-3-target-10-matrix/"
+
+path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
+                          "-Hotspots/generated-outputs/hotspot-diploid-grn-3-target-10-matrix/"
 
 sub_directories = get_immediate_subdirectories(path_1)
 
 for a_directory in sub_directories:
     phenotypes = get_grn_phenotypes(a_directory)
-    a_grn = generate_directed_grn(phenotypes[-1])
+    a_grn = generate_directed_grn(phenotypes[0])
 
     modularity_values = get_grn_modularity_values(a_directory)
     save_a_list_graph(modularity_values, a_directory, 'modularity.png')
