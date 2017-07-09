@@ -71,15 +71,15 @@ public class HotspotDiploidGRN3Target10FastMatrixFixedSPXMain {
     private static final double maxFit = 2;
     private static final double epsilon = 0.151;
 
-    private static final String summaryFileName = "Hotspot-Diploid-GRN-3-Target-10-Matrix.txt";
-    private static final String csvFileName = "Hotspot-Diploid-GRN-3-Target-10-Matrix.csv";
-    private static final String outputDirectory = "hotspot-diploid-grn-3-target-10-matrix";
+    private static final String summaryFileName = "Hotspot-Diploid-GRN-3-Target-10-Matrix-Fixed-SPX.txt";
+    private static final String csvFileName = "Hotspot-Diploid-GRN-3-Target-10-Matrix-Fixed-SPX.csv";
+    private static final String outputDirectory = "hotspot-diploid-grn-3-target-10-matrix-fixed-spx";
     private static final String mainFileName = "HotspotDiploidGRN3Target10FastMatrixFixedSPXMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
 
-    private static final String plotTitle = "Hotspot Diploid GRN 3 Targets 10 Matrix";
-    private static final String plotFileName = "Hotspot Diploid-GRN-3-Target-10-Matrix.png";
+    private static final String plotTitle = "Hotspot Diploid GRN 3 Targets 10 Matrix Fixed SPX";
+    private static final String plotFileName = "Hotspot Diploid-GRN-3-Target-10-Matrix-Fixed-SPX.png";
 
     private static final List<Integer> thresholds = Arrays.asList(0, 300, 1050);
 

@@ -73,15 +73,15 @@ public class DiploidGRN3Target10FastMatrixMain {
     private static final double maxFit = 2;
     private static final double epsilon = 0.151;
 
-    private static final String summaryFileName = "Diploid-GRN-3-Target-10-Matrix.txt";
-    private static final String csvFileName = "Diploid-GRN-3-Target-10-Matrix.csv";
-    private static final String outputDirectory = "diploid-grn-3-target-10-matrix";
+    private static final String summaryFileName = "Diploid-GRN-3-Target-10-Matrix-Random-SPX.txt";
+    private static final String csvFileName = "Diploid-GRN-3-Target-10-Matrix-Random-SPX.csv";
+    private static final String outputDirectory = "diploid-grn-3-target-10-matrix-random-spx";
     private static final String mainFileName = "DiploidGRN3Target10FastMatrixMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
 
-    private static final String plotTitle = "Diploid GRN 3 Targets 10 Matrix";
-    private static final String plotFileName = "Diploid-GRN-3-Target-10-Matrix.png";
+    private static final String plotTitle = "Diploid GRN 3 Targets 10 Matrix Random SPX";
+    private static final String plotFileName = "Diploid-GRN-3-Target-10-Matrix-Random-SPX.png";
 
     private static final List<Integer> thresholds = Arrays.asList(0, 300, 1050);
 
