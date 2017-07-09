@@ -52,7 +52,7 @@ public class HotspotDiploidGRN3Target10FastMatrixEvolvedSPXMain {
             -1, 1, -1, 1, -1
     };
 
-    private static final int maxCycle = 100;
+    private static final int maxCycle = 20;
     private static final int edgeSize = 20;
     private static final int perturbations = 300;
 
@@ -62,7 +62,7 @@ public class HotspotDiploidGRN3Target10FastMatrixEvolvedSPXMain {
     private static final double perturbationRate = 0.15;
     private static final int numElites = 10;
 
-    private static final int perturbationCycleSize = 20;
+    private static final int perturbationCycleSize = 100;
 
     private static final int size = 100;
     private static final int tournamentSize = 3;

@@ -1,4 +1,4 @@
-package experiments.experiment9;
+package experiments.experiment6;
 
 import ga.collections.DetailedStatistics;
 import ga.collections.Population;
@@ -19,7 +19,6 @@ import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
 import ga.operations.priorOperators.PriorOperator;
 import ga.operations.priorOperators.SimpleElitismOperator;
 import ga.operations.reproducers.Reproducer;
-import ga.operations.reproducers.SimpleDiploidMatrixNoCrossoverReproducer;
 import ga.operations.reproducers.SimpleDiploidMatrixReproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
@@ -36,21 +35,18 @@ import java.util.List;
  * Created by Zhenyue Qin (秦震岳) on 25/6/17.
  * The Australian National University.
  */
-public class DiploidGRN3Target10FastMatrixNoXMain {
+public class DiploidGRN3Target10FastMatrixMain {
     private static final int[] target1 = {
-            1, -1, 1, -1, 1,
-            -1, 1, -1, 1, -1
+            1, -1, 1, -1, 1
     };
     private static final int[] target2 = {
-            1, -1, 1, -1, 1,
             1, -1, 1, -1, 1
     };
     private static final int[] target3 = {
-            -1, 1, -1, 1, -1,
             -1, 1, -1, 1, -1
     };
 
-    private static final int maxCycle = 20;
+    private static final int maxCycle = 100;
     private static final int edgeSize = 20;
     private static final int perturbations = 300;
 
@@ -59,7 +55,7 @@ public class DiploidGRN3Target10FastMatrixNoXMain {
     private static final double perturbationRate = 0.15;
     private static final int numElites = 10;
 
-    private static final int perturbationCycleSize = 100;
+    private static final int perturbationCycleSize = 20;
 
     private static final int size = 100;
     private static final int tournamentSize = 3;
@@ -69,15 +65,15 @@ public class DiploidGRN3Target10FastMatrixNoXMain {
     private static final double maxFit = 2;
     private static final double epsilon = 0.151;
 
-    private static final String summaryFileName = "Diploid-GRN-3-Target-10-Matrix-No-X.txt";
-    private static final String csvFileName = "Diploid-GRN-3-Target-10-Matrix-No-X.csv";
-    private static final String outputDirectory = "diploid-grn-3-target-10-matrix-no-x";
-    private static final String mainFileName = "DiploidGRN3Target10FastMatrixNoXMain.java";
+    private static final String summaryFileName = "Diploid-GRN-3-Target-10-Matrix.txt";
+    private static final String csvFileName = "Diploid-GRN-3-Target-10-Matrix.csv";
+    private static final String outputDirectory = "diploid-grn-3-target-10-matrix";
+    private static final String mainFileName = "DiploidGRN3Target10FastMatrixMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
 
-    private static final String plotTitle = "Diploid GRN 3 Targets 10 Matrix No X";
-    private static final String plotFileName = "Diploid-GRN-3-Target-10-Matrix-No-X.png";
+    private static final String plotTitle = "Diploid GRN 3 Targets 10 Matrix";
+    private static final String plotFileName = "Diploid-GRN-3-Target-10-Matrix.png";
 
     private static final List<Integer> thresholds = Arrays.asList(0, 300, 1050);
 
@@ -105,7 +101,7 @@ public class DiploidGRN3Target10FastMatrixNoXMain {
 
         PostOperator<SimpleDiploid> fillingOperator = new SimpleFillingOperatorForNormalizable<>(new SimpleTournamentScheme(tournamentSize));
 
-        Reproducer<SimpleDiploid> reproducer = new SimpleDiploidMatrixNoCrossoverReproducer(0.5, target1.length);
+        Reproducer<SimpleDiploid> reproducer = new SimpleDiploidMatrixReproducer(0.5, target1.length);
 
         DetailedStatistics<SimpleDiploid> statistics = new DetailedStatistics<>();
 
@@ -120,9 +116,9 @@ public class DiploidGRN3Target10FastMatrixNoXMain {
 //        Frame<SimpleDiploid> frame = new SimpleDiploidMultipleTargetFrame<>(state, fillingOperator, statistics);
 
         statistics.print(0);
-        statistics.setDirectory(outputDirectory + "/" + dateFormat.format(date));
-        statistics.copyMainFile(mainFileName, System.getProperty("user.dir") +
-                "/src/main/java/experiments/experiment9/" + mainFileName);
+//        statistics.setDirectory(outputDirectory + "/" + dateFormat.format(date));
+//        statistics.copyMainFile(mainFileName, System.getProperty("user.dir") +
+//                "/src/main/java/experiments/experiment9/" + mainFileName);
         for (int i = 0; i < maxGen; i++) {
             frame.evolve();
             statistics.print(i);
@@ -131,8 +127,8 @@ public class DiploidGRN3Target10FastMatrixNoXMain {
                 break;
             }
         }
-        statistics.save(summaryFileName);
-        statistics.generateCSVFile(csvFileName);
-        statistics.generatePlot(plotTitle, plotFileName);
+//        statistics.save(summaryFileName);
+//        statistics.generateCSVFile(csvFileName);
+//        statistics.generatePlot(plotTitle, plotFileName);
     }
 }

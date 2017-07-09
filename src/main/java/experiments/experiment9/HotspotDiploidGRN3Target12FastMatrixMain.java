@@ -55,7 +55,7 @@ public class HotspotDiploidGRN3Target12FastMatrixMain {
             -1, 1, -1, 1
     };
 
-    private static final int maxCycle = 100;
+    private static final int maxCycle = 20;
     private static final int edgeSize = 20;
     private static final int perturbations = 300;
 

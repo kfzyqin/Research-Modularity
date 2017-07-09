@@ -45,7 +45,7 @@ public class HaploidGRN2Target10MatrixLarsonHorizontalMain {
             1, -1, 1, -1, 1
     };
 
-    private static final int maxCycle = 100;
+    private static final int maxCycle = 20;
     private static final int edgeSize = 20;
     private static final int perturbations = 300;
 
@@ -53,7 +53,7 @@ public class HaploidGRN2Target10MatrixLarsonHorizontalMain {
     private static final double geneMutationRate = 0.005;
     private static final int numElites = 10;
 
-    private static final int perturbationCycleSize = 20;
+    private static final int perturbationCycleSize = 100;
 
     private static final int size = 100;
     private static final int tournamentSize = 3;
