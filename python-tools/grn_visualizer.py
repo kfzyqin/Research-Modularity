@@ -99,16 +99,16 @@ def get_grn_modularity_values(root_directory_path):
 def draw_a_grn(grn, partition, grn_phenotype, is_to_save, save_path="", file_name=""):
     # drawing
     size = float(len(set(partition.values())))
-    pos = nx.spring_layout(grn)
+    pos = nx.circular_layout(grn)
     count = 0.
     for com in set(partition.values()):
         count = count + 1.
         list_nodes = [nodes for nodes in partition.keys()
                       if partition[nodes] == com]
-        # generate_node_colors(grn, grn_phenotype)
+        generate_node_colors(grn, grn_phenotype)
         nx.draw_networkx_nodes(grn, pos, list_nodes, node_size=100,
-                               # node_color=nx.get_node_attributes(grn, 'color').values())
-                               node_color=str(count / size))
+                               node_color=nx.get_node_attributes(grn, 'color').values())
+                               # node_color=str(count / size))
 
     generate_edge_colors(grn, grn_phenotype)
     nx.draw_networkx_edges(grn, pos, alpha=0.5, edge_color=nx.get_edge_attributes(grn, 'color').values())

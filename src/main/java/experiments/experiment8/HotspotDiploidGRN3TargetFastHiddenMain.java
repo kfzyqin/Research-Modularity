@@ -10,12 +10,10 @@ import ga.frame.states.State;
 import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
 import ga.operations.fitnessFunctions.FitnessFunction;
-import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFast;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFastHidden;
 import ga.operations.hotspotMutators.HotspotMutator;
 import ga.operations.hotspotMutators.RandomHotspotMutator;
 import ga.operations.initializers.HotspotDiploidGRNHiddenTargetInitializer;
-import ga.operations.initializers.HotspotDiploidGRNInitializer;
 import ga.operations.mutators.GRNEdgeMutator;
 import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
@@ -23,8 +21,7 @@ import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
 import ga.operations.priorOperators.PriorOperator;
 import ga.operations.priorOperators.SimpleElitismOperator;
 import ga.operations.reproducers.Reproducer;
-import ga.operations.reproducers.SimpleHotspotDiploidMatrixReproducer;
-import ga.operations.reproducers.SimpleHotspotDiploidReproducer;
+import ga.operations.reproducers.SimpleHotspotDiploidFixedSPXMatrixReproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
@@ -100,7 +97,7 @@ public class HotspotDiploidGRN3TargetFastHiddenMain {
         PostOperator<SimpleHotspotDiploid> fillingOperator = new
                 SimpleFillingOperatorForNormalizable<>(new SimpleTournamentScheme(tournamentSize));
 
-        Reproducer<SimpleHotspotDiploid> reproducer = new SimpleHotspotDiploidMatrixReproducer(target1.length);
+        Reproducer<SimpleHotspotDiploid> reproducer = new SimpleHotspotDiploidFixedSPXMatrixReproducer(target1.length);
 
         DetailedStatistics<SimpleHotspotDiploid> statistics = new DetailedStatistics<>();
 

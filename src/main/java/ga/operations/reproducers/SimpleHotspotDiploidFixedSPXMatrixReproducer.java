@@ -1,5 +1,6 @@
 package ga.operations.reproducers;
 
+import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.SimpleHotspotDiploid;
 import ga.components.hotspots.Hotspot;
 import ga.components.materials.SimpleMaterial;
@@ -12,16 +13,16 @@ import java.util.List;
  * Created by Zhenyue Qin (秦震岳) on 4/7/17.
  * The Australian National University.
  */
-public class SimpleHotspotDiploidMatrixReproducer extends HotspotDiploidMatrixReproducer<SimpleHotspotDiploid> {
-    public SimpleHotspotDiploidMatrixReproducer(int matrixSideSize) {
+public class SimpleHotspotDiploidFixedSPXMatrixReproducer extends HotspotDiploidMatrixReproducer<SimpleHotspotDiploid> {
+    public SimpleHotspotDiploidFixedSPXMatrixReproducer(int matrixSideSize) {
         super(matrixSideSize);
     }
 
-    public SimpleHotspotDiploidMatrixReproducer(double matchProbability, int matrixSideSize) {
+    public SimpleHotspotDiploidFixedSPXMatrixReproducer(double matchProbability, int matrixSideSize) {
         super(matchProbability, matrixSideSize);
     }
 
-    public SimpleHotspotDiploidMatrixReproducer(double matchProbability, boolean toDoCrossover, int matrixSideSize) {
+    public SimpleHotspotDiploidFixedSPXMatrixReproducer(double matchProbability, boolean toDoCrossover, int matrixSideSize) {
         super(matchProbability, toDoCrossover, matrixSideSize);
     }
 
@@ -70,5 +71,27 @@ public class SimpleHotspotDiploidMatrixReproducer extends HotspotDiploidMatrixRe
         rtn.add(new SimpleHotspotDiploid(dna1_1, dna2_2, mapping1, hotspot1));
 //        rtn.add(new SimpleHotspotDiploid(dna2_1, dna2_2, mapping2, hotspot2));
         return rtn;
+    }
+
+    protected List<SimpleMaterial> crossoverMatrix(@NotNull final SimpleHotspotDiploid parent) {
+        List<SimpleMaterial> newDNAs = new ArrayList<>(2);
+        List<SimpleMaterial> materialView = parent.getMaterialsView();
+        SimpleMaterial dna1Copy = materialView.get(0).copy();
+        SimpleMaterial dna2Copy = materialView.get(1).copy();
+
+        if (isToDoCrossover) {
+            final int crossIndex = 5;
+            for (int currentCrossIndex=crossIndex; currentCrossIndex<matrixSideSize; currentCrossIndex++) {
+                int tmpCrossIndex = currentCrossIndex;
+                while (tmpCrossIndex < matrixSideSize * matrixSideSize) {
+                    crossoverTwoDNAsAtPosition(dna1Copy, dna2Copy, tmpCrossIndex);
+                    tmpCrossIndex += matrixSideSize;
+                }
+            }
+        }
+
+        newDNAs.add(dna1Copy);
+        newDNAs.add(dna2Copy);
+        return newDNAs;
     }
 }
