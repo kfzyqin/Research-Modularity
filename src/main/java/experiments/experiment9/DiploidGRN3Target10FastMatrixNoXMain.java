@@ -36,7 +36,7 @@ import java.util.List;
  * Created by Zhenyue Qin (秦震岳) on 25/6/17.
  * The Australian National University.
  */
-public class DiploidGRN2Target10FastMatrixNoXMain {
+public class DiploidGRN3Target10FastMatrixNoXMain {
     private static final int[] target1 = {
             1, -1, 1, -1, 1,
             -1, 1, -1, 1, -1
@@ -64,7 +64,7 @@ public class DiploidGRN2Target10FastMatrixNoXMain {
     private static final int size = 100;
     private static final int tournamentSize = 3;
     private static final double reproductionRate = 0.9;
-    private static final int maxGen = 1050;
+    private static final int maxGen = 1550;
 
     private static final double maxFit = 2;
     private static final double epsilon = 0.151;
@@ -72,17 +72,17 @@ public class DiploidGRN2Target10FastMatrixNoXMain {
     private static final String summaryFileName = "Diploid-GRN-3-Target-10-Matrix-No-X.txt";
     private static final String csvFileName = "Diploid-GRN-3-Target-10-Matrix-No-X.csv";
     private static final String outputDirectory = "diploid-grn-3-target-10-matrix-no-x";
-    private static final String mainFileName = "DiploidGRN2Target10FastMatrixNoXMain.java";
+    private static final String mainFileName = "DiploidGRN3Target10FastMatrixNoXMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
 
     private static final String plotTitle = "Diploid GRN 3 Targets 10 Matrix No X";
     private static final String plotFileName = "Diploid-GRN-3-Target-10-Matrix-No-X.png";
 
-    private static final List<Integer> thresholds = Arrays.asList(0, 300);
+    private static final List<Integer> thresholds = Arrays.asList(0, 300, 1050);
 
     public static void main(String[] args) throws IOException {
-        int[][] targets = {target1, target2};
+        int[][] targets = {target1, target2, target3};
 
         // Fitness Function
         FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFast(
