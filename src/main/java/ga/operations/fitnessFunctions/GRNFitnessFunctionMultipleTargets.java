@@ -151,7 +151,6 @@ public class GRNFitnessFunctionMultipleTargets extends GRNFitnessFunction<Simple
             }
         }
         double arithmeticMean = fitnessValue / this.perturbations;
-        System.out.println("fitness value: " + fitnessValue);
         double networkFitness = 1 - Math.pow(Math.E, (-3 * arithmeticMean));
         return networkFitness;
 
