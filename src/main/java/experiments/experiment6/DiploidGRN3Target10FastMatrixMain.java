@@ -69,7 +69,7 @@ public class DiploidGRN3Target10FastMatrixMain {
     private static final String summaryFileName = "Diploid-GRN-3-Target-10-Matrix.txt";
     private static final String csvFileName = "Diploid-GRN-3-Target-10-Matrix.csv";
     private static final String outputDirectory = "diploid-grn-3-target-10-matrix";
-    private static final String mainFileName = "DiploidGRN3Target10FastMatrixMain.java";
+    private static final String mainFileName = "DiploidGRN3Target10FastMatrixSPXMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
 

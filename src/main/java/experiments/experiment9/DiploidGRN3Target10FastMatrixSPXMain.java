@@ -40,7 +40,7 @@ import java.util.List;
  * Created by Zhenyue Qin (秦震岳) on 25/6/17.
  * The Australian National University.
  */
-public class DiploidGRN3Target10FastMatrixMain {
+public class DiploidGRN3Target10FastMatrixSPXMain {
     private static final int[] target1 = {
             1, -1, 1, -1, 1,
             -1, 1, -1, 1, -1
@@ -76,7 +76,7 @@ public class DiploidGRN3Target10FastMatrixMain {
     private static final String summaryFileName = "Diploid-GRN-3-Target-10-Matrix-Random-SPX.txt";
     private static final String csvFileName = "Diploid-GRN-3-Target-10-Matrix-Random-SPX.csv";
     private static final String outputDirectory = "diploid-grn-3-target-10-matrix-random-spx";
-    private static final String mainFileName = "DiploidGRN3Target10FastMatrixMain.java";
+    private static final String mainFileName = "DiploidGRN3Target10FastMatrixSPXMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
 
