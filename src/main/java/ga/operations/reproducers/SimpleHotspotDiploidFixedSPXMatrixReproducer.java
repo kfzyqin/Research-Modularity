@@ -81,8 +81,16 @@ public class SimpleHotspotDiploidFixedSPXMatrixReproducer extends HotspotDiploid
 
         if (isToDoCrossover) {
             final int crossIndex = 5;
-            for (int currentCrossIndex=crossIndex; currentCrossIndex<matrixSideSize; currentCrossIndex++) {
+            for (int currentCrossIndex=0; currentCrossIndex<crossIndex; currentCrossIndex++) {
                 int tmpCrossIndex = currentCrossIndex;
+                while (tmpCrossIndex < crossIndex * matrixSideSize) {
+                    crossoverTwoDNAsAtPosition(dna1Copy, dna2Copy, tmpCrossIndex);
+                    tmpCrossIndex += matrixSideSize;
+                }
+            }
+
+            for (int currentCrossIndex=crossIndex; currentCrossIndex<matrixSideSize; currentCrossIndex++) {
+                int tmpCrossIndex = currentCrossIndex + crossIndex * matrixSideSize;
                 while (tmpCrossIndex < matrixSideSize * matrixSideSize) {
                     crossoverTwoDNAsAtPosition(dna1Copy, dna2Copy, tmpCrossIndex);
                     tmpCrossIndex += matrixSideSize;

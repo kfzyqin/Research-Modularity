@@ -72,26 +72,4 @@ public class SimpleHotspotDiploidEvolvedSPXMatrixReproducer extends HotspotDiplo
 //        rtn.add(new SimpleHotspotDiploid(dna2_1, dna2_2, mapping2, hotspot2));
         return rtn;
     }
-
-    protected List<SimpleMaterial> crossoverMatrix(@NotNull final SimpleHotspotDiploid parent) {
-        List<SimpleMaterial> newDNAs = new ArrayList<>(2);
-        List<SimpleMaterial> materialView = parent.getMaterialsView();
-        SimpleMaterial dna1Copy = materialView.get(0).copy();
-        SimpleMaterial dna2Copy = materialView.get(1).copy();
-
-        if (isToDoCrossover) {
-            final int crossIndex = getCrossoverIndexByHotspot(parent);
-            for (int currentCrossIndex=crossIndex; currentCrossIndex<matrixSideSize; currentCrossIndex++) {
-                int tmpCrossIndex = currentCrossIndex;
-                while (tmpCrossIndex < matrixSideSize * matrixSideSize) {
-                    crossoverTwoDNAsAtPosition(dna1Copy, dna2Copy, tmpCrossIndex);
-                    tmpCrossIndex += matrixSideSize;
-                }
-            }
-        }
-
-        newDNAs.add(dna1Copy);
-        newDNAs.add(dna2Copy);
-        return newDNAs;
-    }
 }

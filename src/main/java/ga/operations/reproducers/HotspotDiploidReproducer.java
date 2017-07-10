@@ -36,7 +36,6 @@ public abstract class HotspotDiploidReproducer<C extends Chromosome & WithHotspo
         SimpleMaterial dna1Copy = materialView.get(0).copy();
         SimpleMaterial dna2Copy = materialView.get(1).copy();
 
-//        final int crossIndex = getCrossoverIndexByHotspot(parent);
         final int crossIndex = getCrossoverIndexByHotspot(parent);
 
         if (isToDoCrossover) {
