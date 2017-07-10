@@ -8,6 +8,7 @@ import ga.components.materials.SimpleMaterial;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by Zhenyue Qin on 22/04/2017.
@@ -54,46 +55,48 @@ public class GRNEdgeMutator<T extends Chromosome> implements Mutator<T> {
         for (Individual<T> individual : individuals) {
             for (Object object : individual.getChromosome().getMaterialsView()) {
                 SimpleMaterial material = (SimpleMaterial) object;
-                int nodeNumber = (int) Math.sqrt(material.getSize()); // number of nodes in the network.
-                int regulatorNumber = 0; // number of regulators for this gene.
+                int targetNumber = (int) Math.sqrt(material.getSize()); // number of nodes in the network.
 
-                for (int i = 0; i < nodeNumber; i++) {
-                    if (Math.random() < this.prob) {
+                for (int i = 0; i < targetNumber; i++) {
+                    int regulatorNumber = 0; // number of regulators for this gene.
+
+                    if (Math.random() > this.prob) {
                         continue;
                     }
-                    for (int j = 0; j < nodeNumber; j++) {
+                    for (int j=0; j<targetNumber; j++) {
                         // if the mutated node is regulated by j.
-                        if ((int) material.getGene(j * nodeNumber + i).getValue() != 0) {
+                        if ((int) material.getGene(j * targetNumber + i).getValue() != 0) {
                             regulatorNumber += 1;
                         }
+                    }
 
-                        double probabilityToLoseInteraction = (4.0 * regulatorNumber) / (4.0 * regulatorNumber + (nodeNumber - regulatorNumber));
+                    double probabilityToLoseInteraction = (4.0 * regulatorNumber) / (4.0 * regulatorNumber + (targetNumber - regulatorNumber));
 
-                        if (Math.random() <= probabilityToLoseInteraction) { // lose an interaction
-                            List<Integer> interactions = new ArrayList<>();
-                            for (int edgeIdx = 0; edgeIdx < nodeNumber; edgeIdx++) {
-                                if ((int) material.getGene(j * nodeNumber + i).getValue() != 0) {
-                                    interactions.add(edgeIdx);
-                                }
+                    if (Math.random() <= probabilityToLoseInteraction) { // lose an interaction
+                        List<Integer> interactions = new ArrayList<>();
+                        for (int edgeIdx = 0; edgeIdx < targetNumber; edgeIdx++) {
+                            if ((int) material.getGene(edgeIdx * targetNumber + i).getValue() != 0) {
+                                interactions.add(edgeIdx);
                             }
-                            if (interactions.size() > 0) {
-                                int toRemove = this.generateAnInteger(interactions.size());
-                                material.getGene(toRemove * nodeNumber + i).setValue(0);
+                        }
+                        if (interactions.size() > 0) {
+                            int toRemove = ThreadLocalRandom.current().nextInt(interactions.size());
+                            material.getGene(interactions.get(toRemove) * targetNumber + i).setValue(0);
+                        }
+                    } else {
+                        List<Integer> nonInteractions = new ArrayList<>();
+                        for (int edgeIdx = 0; edgeIdx < targetNumber; edgeIdx++) {
+                            if ((int) material.getGene(edgeIdx * targetNumber + i).getValue() == 0) {
+                                nonInteractions.add(edgeIdx);
                             }
-                        } else {
-                            List<Integer> nonInteractions = new ArrayList<>();
-                            for (int edgeIdx = 0; edgeIdx < nodeNumber; edgeIdx++) {
-                                if ((int) material.getGene(edgeIdx * nodeNumber + i).getValue() == 0) {
-                                    nonInteractions.add(edgeIdx);
-                                }
-                            }
-                            if (nonInteractions.size() > 0) {
-                                int toAdd = this.generateAnInteger(nonInteractions.size());
-                                if (this.flipACoin()) {
-                                    material.getGene(toAdd * nodeNumber + i).setValue(1);
-                                } else {
-                                    material.getGene(toAdd * nodeNumber + i).setValue(-1);
-                                }
+                        }
+                        //todo: there might be a bug here
+                        if (nonInteractions.size() > 0) {
+                            int toAdd = this.generateAnRandomInteger(nonInteractions.size());
+                            if (this.flipACoin()) {
+                                material.getGene(nonInteractions.get(toAdd) * targetNumber + i).setValue(1);
+                            } else {
+                                material.getGene(nonInteractions.get(toAdd) * targetNumber + i).setValue(-1);
                             }
                         }
                     }
@@ -107,7 +110,7 @@ public class GRNEdgeMutator<T extends Chromosome> implements Mutator<T> {
         return 0.5 < Math.random();
     }
 
-    private int generateAnInteger(int upBound) {
+    private int generateAnRandomInteger(int upBound) {
         Random randomGenerator = new Random();
         return randomGenerator.nextInt(upBound);
     }

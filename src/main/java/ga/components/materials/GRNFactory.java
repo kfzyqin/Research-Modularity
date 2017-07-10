@@ -25,9 +25,10 @@ public abstract class GRNFactory {
     }
 
     protected List<EdgeGene> initializeEdges() {
+        //todo: potential bug that directed edge's size is too big
         List<DirectedEdge> candidates = new ArrayList<>();
-        for (int i=0; i<networkSize; i++) {
-            for (int j=0; j<networkSize; j++) {
+        for (int i=0; i<manifestTargetSize; i++) {
+            for (int j=0; j<manifestTargetSize; j++) {
                 candidates.add(new DirectedEdge(i, j));
             }
         }

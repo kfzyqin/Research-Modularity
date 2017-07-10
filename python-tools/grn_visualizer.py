@@ -134,7 +134,7 @@ def save_a_list_graph(a_list, path, file_name):
     plt.close()
 
 path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
-                          "-Hotspots/generated-outputs/haploid-grn-2-target-10-matrix-larson/"
+                          "-Hotspots/generated-outputs/data-2017-07-09/haploid-grn-2-target-10-matrix-larson/"
 
 # path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
 #                           "-Hotspots/generated-outputs/haploid-grn-2-target-10-matrix-larson-no-crossover/"
