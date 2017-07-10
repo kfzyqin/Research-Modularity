@@ -96,7 +96,7 @@ public class HotspotDiploidGRN3Target10FastMatrixEvolvedSPXMain {
                 new HotspotDiploidGRNInitializer(size, target1.length, edgeSize, target1.length);
 
         // Population
-        Population<SimpleHotspotDiploid> population = initializer.initialize();
+        Population<SimpleHotspotDiploid> population = initializer.initializeWithMatrixHotspot();
 
         // Mutator for chromosomes
         Mutator mutator = new GRNEdgeMutator(geneMutationRate);
