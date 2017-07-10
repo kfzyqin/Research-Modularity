@@ -56,25 +56,25 @@ public class SimpleHotspotDiploidReproducer extends HotspotDiploidReproducer<Sim
         Hotspot hotspot1 = parent1.getHotspot().copy();
         Hotspot hotspot2 = parent2.getHotspot().copy();
 
-        if (Math.random() < matchProbability) {
-            SimpleMaterial tmp = dna1_2;
-            dna1_2 = dna2_2;
-            dna2_2 = tmp;
-        }
+//        if (Math.random() < matchProbability) {
+//            SimpleMaterial tmp = dna1_2;
+//            dna1_2 = dna2_2;
+//            dna2_2 = tmp;
+//        }
+//
+//        if (Math.random() < matchProbability) {
+//            ExpressionMap tmp = mapping1;
+//            mapping1 = mapping2;
+//            mapping2 = tmp;
+//        }
+//
+//        if (Math.random() < matchProbability) {
+//            Hotspot tmp = hotspot1;
+//            hotspot1 = hotspot2;
+//            hotspot2 = tmp;
+//        }
 
-        if (Math.random() < matchProbability) {
-            ExpressionMap tmp = mapping1;
-            mapping1 = mapping2;
-            mapping2 = tmp;
-        }
-
-        if (Math.random() < matchProbability) {
-            Hotspot tmp = hotspot1;
-            hotspot1 = hotspot2;
-            hotspot2 = tmp;
-        }
-
-        rtn.add(new SimpleHotspotDiploid(dna1_1, dna1_2, mapping1, hotspot1));
+        rtn.add(new SimpleHotspotDiploid(dna1_1, dna2_2, mapping1, hotspot1));
 //        rtn.add(new SimpleHotspotDiploid(dna2_1, dna2_2, mapping2, hotspot2));
         return rtn;
     }
