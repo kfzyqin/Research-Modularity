@@ -11,8 +11,10 @@ import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
 import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFast;
+import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFastHidden;
 import ga.operations.hotspotMutators.HotspotMutator;
 import ga.operations.hotspotMutators.RandomHotspotMutator;
+import ga.operations.initializers.HotspotDiploidGRNHiddenTargetInitializer;
 import ga.operations.initializers.HotspotDiploidGRNInitializer;
 import ga.operations.mutators.GRNEdgeMutator;
 import ga.operations.mutators.Mutator;
@@ -46,20 +48,20 @@ public class HotspotDiploidGRN3Target15FastSPXEvolvedMain {
     };
     private static final int[] target2 = {
             1, -1, 1, -1, 1,
-            1, -1, 1, -1, 1,
+            -1, 1, -1, 1, -1,
             -1, 1, -1, 1, -1
     };
     private static final int[] target3 = {
-            -1, 1, -1, 1, -1,
             1, -1, 1, -1, 1,
-            -1, 1, -1, 1, -1
+            1, -1, 1, -1, 1,
+            1, -1, 1, -1, 1
     };
 
     private static final int maxCycle = 20;
-    private static final int edgeSize = 45;
+    private static final int edgeSize = 60;
     private static final int perturbations = 300;
 
-    private static final double geneMutationRate = 0.005;
+    private static final double geneMutationRate = 0.05;
     private static final double dominanceMutationRate = 0.002;
     private static final double hotspotMutationRate = 0.05;
     private static final double perturbationRate = 0.15;
@@ -70,7 +72,7 @@ public class HotspotDiploidGRN3Target15FastSPXEvolvedMain {
     private static final int size = 100;
     private static final int tournamentSize = 3;
     private static final double reproductionRate = 0.9;
-    private static final int maxGen = 5000;
+    private static final int maxGen = 3000;
 
     private static final double maxFit = 2;
     private static final double epsilon = 0.151;
@@ -85,18 +87,18 @@ public class HotspotDiploidGRN3Target15FastSPXEvolvedMain {
     private static final String plotTitle = "Hotspot Diploid GRN 3 Targets 15 Evolved SPX";
     private static final String plotFileName = "Hotspot Diploid-GRN-3-Target-15-Evolved-SPX.png";
 
-    private static final List<Integer> thresholds = Arrays.asList(0, 500, 2000);
+    private static final List<Integer> thresholds = Arrays.asList(0, 500, 1300);
 
     public static void main(String[] args) throws IOException {
         int[][] targets = {target1, target2, target3};
 
         // Fitness Function
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFast(targets,
-                maxCycle, perturbations, perturbationRate, thresholds, perturbationCycleSize);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFastHidden(targets,
+                maxCycle, perturbations, perturbationRate, thresholds, perturbationCycleSize, 3);
 
         // Initializer
-        HotspotDiploidGRNInitializer initializer =
-                new HotspotDiploidGRNInitializer(size, target1.length, edgeSize, target1.length);
+        HotspotDiploidGRNHiddenTargetInitializer initializer =
+                new HotspotDiploidGRNHiddenTargetInitializer(size, target1.length,3, edgeSize, target1.length);
 
         // Population
         Population<SimpleHotspotDiploid> population = initializer.initializeWithMatrixHotspot();

@@ -11,6 +11,8 @@ import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
 import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFast;
+import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFastHidden;
+import ga.operations.initializers.DiploidGRNHiddenTargetInitializer;
 import ga.operations.initializers.DiploidGRNInitializer;
 import ga.operations.mutators.GRNEdgeMutator;
 import ga.operations.mutators.Mutator;
@@ -43,20 +45,20 @@ public class DiploidGRN3Target15FastMatrixSPXMain {
     };
     private static final int[] target2 = {
             1, -1, 1, -1, 1,
-            1, -1, 1, -1, 1,
+            -1, 1, -1, 1, -1,
             -1, 1, -1, 1, -1
     };
     private static final int[] target3 = {
-            -1, 1, -1, 1, -1,
             1, -1, 1, -1, 1,
-            -1, 1, -1, 1, -1
+            1, -1, 1, -1, 1,
+            1, -1, 1, -1, 1
     };
 
     private static final int maxCycle = 20;
-    private static final int edgeSize = 45;
+    private static final int edgeSize = 60;
     private static final int perturbations = 300;
 
-    private static final double geneMutationRate = 0.005;
+    private static final double geneMutationRate = 0.05;
     private static final double dominanceMutationRate = 0.002;
     private static final double perturbationRate = 0.15;
     private static final int numElites = 10;
@@ -66,7 +68,7 @@ public class DiploidGRN3Target15FastMatrixSPXMain {
     private static final int size = 100;
     private static final int tournamentSize = 3;
     private static final double reproductionRate = 0.9;
-    private static final int maxGen = 5000;
+    private static final int maxGen = 3000;
 
     private static final double maxFit = 2;
     private static final double epsilon = 0.151;
@@ -81,18 +83,18 @@ public class DiploidGRN3Target15FastMatrixSPXMain {
     private static final String plotTitle = "Diploid GRN 3 Targets 15 Matrix Random SPX";
     private static final String plotFileName = "Diploid-GRN-3-Target-15-Matrix-Random-SPX.png";
 
-    private static final List<Integer> thresholds = Arrays.asList(0, 500, 2000);
+    private static final List<Integer> thresholds = Arrays.asList(0, 500, 1300);
 
     public static void main(String[] args) throws IOException {
         int[][] targets = {target1, target2, target3};
 
         // Fitness Function
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFast(
-                targets, maxCycle, perturbations, perturbationRate, thresholds, perturbationCycleSize);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFastHidden(
+                targets, maxCycle, perturbations, perturbationRate, thresholds, perturbationCycleSize, 3);
 
         // Initializer
-        DiploidGRNInitializer initializer =
-                new DiploidGRNInitializer(size, target1.length, edgeSize);
+        DiploidGRNHiddenTargetInitializer initializer =
+                new DiploidGRNHiddenTargetInitializer(size, target1.length, 3, edgeSize);
 
         // Population
         Population<SimpleDiploid> population = initializer.initialize();
