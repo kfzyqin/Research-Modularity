@@ -18,10 +18,10 @@ def get_fitness_values(root_directory_path):
     return fitness_values
 
 a_root_directory_path_1 = "/students/u5505995/Software-Engineering/Chin-GA-Project/generated-outputs/" \
-                          "haploid-grn-2-target-15-matrix-larson-horizontal/"
+                          "haploid-grn-2-target-10-matrix-larson-horizontal/"
 
 a_root_directory_path_2 = "/students/u5505995/Software-Engineering/Chin-GA-Project/generated-outputs/" \
-                          "haploid-grn-2-target-15-matrix-chin/"
+                          "haploid-grn-2-target-10-matrix-larson-fixed-point/"
 
 print get_fitness_values(a_root_directory_path_1).__len__()
 print get_fitness_values(a_root_directory_path_2).__len__()

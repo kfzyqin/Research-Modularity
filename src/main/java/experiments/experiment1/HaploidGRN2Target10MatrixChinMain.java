@@ -42,8 +42,8 @@ public class HaploidGRN2Target10MatrixChinMain {
             1, -1, 1, -1, 1
     };
     private static final int[] target2 = {
-            -1, 1, -1, 1, -1,
             1, -1, 1, -1, 1,
+            -1, 1, 1, -1, 1,
             -1, 1, -1, 1, -1
     };
 
