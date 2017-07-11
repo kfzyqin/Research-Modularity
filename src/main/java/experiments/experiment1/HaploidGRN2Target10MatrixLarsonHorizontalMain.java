@@ -38,11 +38,13 @@ import java.util.List;
 public class HaploidGRN2Target10MatrixLarsonHorizontalMain {
     private static final int[] target1 = {
             1, -1, 1, -1, 1,
-            -1, 1, -1, 1, -1
+            -1, 1, -1, 1, -1,
+            1, -1, 1, -1, 1
     };
     private static final int[] target2 = {
+            -1, 1, -1, 1, -1,
             1, -1, 1, -1, 1,
-            1, -1, 1, -1, 1
+            -1, 1, -1, 1, -1
     };
 
     private static final int maxCycle = 20;
@@ -64,14 +66,14 @@ public class HaploidGRN2Target10MatrixLarsonHorizontalMain {
     private static final double epsilon = .5;
     private static final double maxFit = 501;
 
-    private static final String summaryFileName = "Haploid-GRN-2-Target-10-Matrix-Larson-Horizontal.txt";
-    private static final String csvFileName = "Haploid-GRN-2-Target-10-Matrix-Larson-Horizontal.csv";
-    private static final String outputDirectory = "haploid-grn-2-target-10-matrix-larson-horizontal";
+    private static final String summaryFileName = "Haploid-GRN-2-Target-15-Matrix-Larson-Horizontal.txt";
+    private static final String csvFileName = "Haploid-GRN-2-Target-15-Matrix-Larson-Horizontal.csv";
+    private static final String outputDirectory = "haploid-grn-2-target-15-matrix-larson-horizontal";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
 
-    private static final String plotTitle = "Haploid GRN 2 Target 10 Matrix Larson Horizontal";
-    private static final String plotFileName = "Haploid-GRN-2-Target-10-Matrix-Larson-Horizontal.png";
+    private static final String plotTitle = "Haploid GRN 2 Target 15 Matrix Larson Horizontal";
+    private static final String plotFileName = "Haploid-GRN-2-Target-15-Matrix-Larson-Horizontal.png";
     private static final String mainFileName = "HaploidGRN2Target10MatrixLarsonHorizontalMain.java";
 
     private static final List<Integer> thresholds = Arrays.asList(0, 300);
