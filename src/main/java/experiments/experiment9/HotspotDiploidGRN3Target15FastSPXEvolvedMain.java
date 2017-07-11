@@ -58,7 +58,7 @@ public class HotspotDiploidGRN3Target15FastSPXEvolvedMain {
     };
 
     private static final int maxCycle = 20;
-    private static final int edgeSize = 45;
+    private static final int edgeSize = 60;
     private static final int perturbations = 300;
 
     private static final double geneMutationRate = 0.05;
