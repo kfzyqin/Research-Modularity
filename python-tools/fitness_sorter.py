@@ -18,10 +18,10 @@ def get_fitness_values(root_directory_path):
     return fitness_values
 
 a_root_directory_path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
-                          "-Hotspots/generated-outputs/data-2017-07-10/diploid-grn-3-target-10-matrix-no-x/"
+                          "-Hotspots/generated-outputs/data-2017-07-11/diploid-grn-3-target-10-matrix-random-spx/"
 
 a_root_directory_path_2 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
-                          "-Hotspots/generated-outputs/data-2017-07-10/diploid-grn-3-target-10-matrix-random-spx/"
+                          "-Hotspots/generated-outputs/data-2017-07-11/hotspot-diploid-grn-3-target-10-matrix-evolved-spx/"
 
 print get_fitness_values(a_root_directory_path_1).__len__()
 print get_fitness_values(a_root_directory_path_2).__len__()
@@ -33,4 +33,5 @@ print "mean a: ", sum(a) / a.__len__()
 print "mean b: ", sum(b) / b.__len__()
 
 print scipy.stats.wilcoxon(a, b)
+print scipy.stats.ttest_ind(a, b)
 

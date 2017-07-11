@@ -50,7 +50,7 @@ public class HaploidGRN2Target10MatrixLarsonHorizontalMain {
     private static final int perturbations = 300;
 
     private static final double perturbationRate = 0.15;
-    private static final double geneMutationRate = 0.005;
+    private static final double geneMutationRate = 0.05;
     private static final int numElites = 10;
 
     private static final int perturbationCycleSize = 100;

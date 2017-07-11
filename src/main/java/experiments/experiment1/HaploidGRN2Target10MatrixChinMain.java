@@ -2,7 +2,6 @@ package experiments.experiment1;
 
 import ga.collections.DetailedStatistics;
 import ga.collections.Population;
-import ga.components.chromosomes.SimpleDiploid;
 import ga.components.chromosomes.SimpleHaploid;
 import ga.frame.frames.Frame;
 import ga.frame.frames.SimpleHaploidFrame;
@@ -10,7 +9,6 @@ import ga.frame.states.SimpleState;
 import ga.frame.states.State;
 import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFast;
-import ga.operations.fitnessFunctions.GRNFitnessFunctionSingleTarget;
 import ga.operations.initializers.HaploidGRNInitializer;
 import ga.operations.initializers.Initializer;
 import ga.operations.mutators.GRNEdgeMutator;
@@ -20,9 +18,8 @@ import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
 import ga.operations.priorOperators.PriorOperator;
 import ga.operations.priorOperators.SimpleElitismOperator;
 import ga.operations.reproducers.Reproducer;
+import ga.operations.reproducers.SimpleHaploidMatrixHorizontalSplitReproducer;
 import ga.operations.reproducers.SimpleHaploidMatrixReproducer;
-import ga.operations.reproducers.SimpleHaploidReproducer;
-import ga.operations.selectionOperators.selectionSchemes.ProportionalScheme;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
@@ -38,7 +35,7 @@ import java.util.List;
  * Created by Zhenyue Qin on 23/04/2017.
  * The Australian National University.
  */
-public class HaploidGRN2Target10MatrixLarsonMain {
+public class HaploidGRN2Target10MatrixChinMain {
     private static final int[] target1 = {
             1, -1, 1, -1, 1,
             -1, 1, -1, 1, -1
@@ -53,7 +50,7 @@ public class HaploidGRN2Target10MatrixLarsonMain {
     private static final int perturbations = 300;
 
     private static final double perturbationRate = 0.15;
-    private static final double geneMutationRate = 0.005;
+    private static final double geneMutationRate = 0.05;
     private static final int numElites = 10;
 
     private static final int perturbationCycleSize = 100;
@@ -67,15 +64,15 @@ public class HaploidGRN2Target10MatrixLarsonMain {
     private static final double epsilon = .5;
     private static final double maxFit = 501;
 
-    private static final String summaryFileName = "Haploid-GRN-2-Target-10-Matrix-Larson.txt";
-    private static final String csvFileName = "Haploid-GRN-2-Target-10-Matrix-Larson.csv";
-    private static final String outputDirectory = "haploid-grn-2-target-10-matrix-larson";
+    private static final String summaryFileName = "Haploid-GRN-2-Target-10-Matrix-Chin.txt";
+    private static final String csvFileName = "Haploid-GRN-2-Target-10-Matrix-Chin.csv";
+    private static final String outputDirectory = "haploid-grn-2-target-10-matrix-chin";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
 
-    private static final String plotTitle = "Haploid GRN 2 Target 10 Matrix Larson";
-    private static final String plotFileName = "Haploid-GRN-2-Target-10-Matrix-Larson.png";
-    private static final String mainFileName = "HaploidGRN2Target10MatrixLarsonMain.java";
+    private static final String plotTitle = "Haploid GRN 2 Target 10 Matrix Chin";
+    private static final String plotFileName = "Haploid-GRN-2-Target-10-Matrix-Chin.png";
+    private static final String mainFileName = "HaploidGRN2Target10MatrixChinMain.java";
 
     private static final List<Integer> thresholds = Arrays.asList(0, 300);
 

@@ -99,7 +99,7 @@ def get_grn_modularity_values(root_directory_path):
 def draw_a_grn(grn, partition, grn_phenotype, is_to_save, save_path="", file_name=""):
     # drawing
     size = float(len(set(partition.values())))
-    pos = nx.circular_layout(grn)
+    pos = nx.spring_layout(grn)
     count = 0.
     for com in set(partition.values()):
         count = count + 1.
@@ -134,7 +134,7 @@ def save_a_list_graph(a_list, path, file_name):
     plt.close()
 
 path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
-                          "-Hotspots/generated-outputs/data-2017-07-09/haploid-grn-2-target-10-matrix-larson/"
+                          "-Hotspots/generated-outputs/data-2017-07-10/hotspot-diploid-grn-3-target-10-matrix-evolved-spx/"
 
 # path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
 #                           "-Hotspots/generated-outputs/haploid-grn-2-target-10-matrix-larson-no-crossover/"
@@ -145,8 +145,8 @@ for a_directory in sub_directories:
     phenotypes = get_grn_phenotypes(a_directory)
     a_grn = generate_directed_grn(phenotypes[0])
 
-    modularity_values = get_grn_modularity_values(a_directory)
-    save_a_list_graph(modularity_values, a_directory, 'modularity.png')
+    # modularity_values = get_grn_modularity_values(a_directory)
+    # save_a_list_graph(modularity_values, a_directory, 'modularity.png')
 
     draw_a_grn(a_grn, get_best_partition(a_grn), phenotypes[-1], True, a_directory, 'graph.png')
 
