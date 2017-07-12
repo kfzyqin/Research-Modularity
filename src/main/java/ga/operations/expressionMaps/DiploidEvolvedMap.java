@@ -63,7 +63,6 @@ public class DiploidEvolvedMap implements ExpressionMap<SimpleMaterial, SimpleMa
             int dna1Value = (int) dna1.getGene(i).getValue();
             int dna2Value = (int) dna2.getGene(i).getValue();
 
-            genes.add(new EdgeGene(dna1Value));
 
             if (dna1Value == 0 && dna2Value == 0) {
                 genes.add(new EdgeGene(0));
