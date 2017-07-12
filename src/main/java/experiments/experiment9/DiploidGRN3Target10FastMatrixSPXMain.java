@@ -77,7 +77,7 @@ public class DiploidGRN3Target10FastMatrixSPXMain {
     private static Date date = new Date();
 
     private static final String plotTitle = "Diploid GRN 3 Targets 10 Matrix Random SPX";
-    private static final String plotFileName = "Diploid-GRN-3-Target-10-Matrix-Random-SPX.png";
+    private static final String plotFileName = "Diploid-GRN-3-Target-1015-Matrix-Random-SPX.png";
 
     private static final List<Integer> thresholds = Arrays.asList(0, 300);
 
