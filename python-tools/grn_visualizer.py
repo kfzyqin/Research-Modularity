@@ -8,6 +8,10 @@ from networkx.algorithms.community import *
 import quality
 import pandas as pd
 import re
+import numpy as np
+import draw_communities
+import scipy
+import scipy.stats
 
 pattern = re.compile("(?<=Phenotype: \[)(.*)(?=\])")
 
@@ -22,7 +26,7 @@ def get_best_partition(a_grn):
 
 
 def get_modularity_value(a_grn):
-    return community.modularity(get_best_partition(a_grn), a_grn.to_undirected())
+    return community.modularity(community.best_partition(a_grn.to_undirected()), a_grn.to_undirected())
 
 
 def get_grn_phenotypes(root_directory_path):
@@ -96,22 +100,13 @@ def get_grn_modularity_values(root_directory_path):
     return modularity_values
 
 
-def draw_a_grn(grn, partition, grn_phenotype, is_to_save, save_path="", file_name=""):
+def draw_a_grn(grn, is_to_save=True, save_path="", file_name=""):
     # drawing
-    size = float(len(set(partition.values())))
-    pos = nx.spring_layout(grn)
-    count = 0.
-    for com in set(partition.values()):
-        count = count + 1.
-        list_nodes = [nodes for nodes in partition.keys()
-                      if partition[nodes] == com]
-        generate_node_colors(grn, grn_phenotype)
-        nx.draw_networkx_nodes(grn, pos, list_nodes, node_size=100,
-                               node_color=nx.get_node_attributes(grn, 'color').values())
-                               # node_color=str(count / size))
+    # pos = nx.circular_layout(grn)
+    partition = community.community_louvain.best_partition(grn.to_undirected())
+    pos = draw_communities.community_layout(grn, partition)
+    nx.draw(grn, pos, node_color=partition.values())
 
-    generate_edge_colors(grn, grn_phenotype)
-    nx.draw_networkx_edges(grn, pos, alpha=0.5, edge_color=nx.get_edge_attributes(grn, 'color').values())
     if not is_to_save:
         plt.show()
     if is_to_save:
@@ -119,6 +114,12 @@ def draw_a_grn(grn, partition, grn_phenotype, is_to_save, save_path="", file_nam
             raise Exception('Save path is not specified.')
         plt.savefig(save_path + os.sep + file_name)
         plt.close()
+        for key, value in np.ndenumerate(grn):
+            grn.node[key[0]]['pos'] = value
+        write_dot(grn, str(grn.__hash__()) + 'directed_graph.dot')
+        os.system('dot -T png ' + str(grn.__hash__()) + 'directed_graph.dot' + '>' +
+                  save_path + os.sep + 'directed_graph.png')
+        os.remove(str(grn.__hash__()) + 'directed_graph.dot')
 
 def plot_a_list(a_list):
     plt.plot(a_list)
@@ -133,25 +134,48 @@ def save_a_list_graph(a_list, path, file_name):
     # plt.plot()
     plt.close()
 
+
+def get_modularity_value_maxes(path_1):
+    sub_directories = get_immediate_subdirectories(path_1)
+    modularity_value_maxes = []
+
+    for a_directory in sub_directories:
+
+        modularity_values = get_grn_modularity_values(a_directory)
+        modularity_value_maxes.append(max(modularity_values))
+
+    return modularity_value_maxes
+
+
 path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
-                          "-Hotspots/generated-outputs/data-2017-07-10/hotspot-diploid-grn-3-target-10-matrix-evolved-spx/"
+                          "-Hotspots/generated-outputs/data-2017-07-11/" \
+                          "haploid-grn-2-target-10-matrix-chin/"
+
+path_2 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
+                          "-Hotspots/generated-outputs/data-2017-07-11/" \
+                          "haploid-grn-2-target-10-matrix-larson-horizontal/"
 
 # path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
 #                           "-Hotspots/generated-outputs/haploid-grn-2-target-10-matrix-larson-no-crossover/"
 
-sub_directories = get_immediate_subdirectories(path_1)
+# sub_directories = get_immediate_subdirectories(path_1)
+#
+# for a_directory in sub_directories:
+#     # phenotypes = get_grn_phenotypes(a_directory)
+#     # a_grn = generate_directed_grn(phenotypes[-1])
+#
+#     modularity_values = get_grn_modularity_values(a_directory)
+#     # save_a_list_graph(modularity_values, a_directory, 'modularity.png')
+#
+#     # draw_a_grn(a_grn, is_to_save=True, save_path=a_directory, file_name='graph.png')
 
-for a_directory in sub_directories:
-    phenotypes = get_grn_phenotypes(a_directory)
-    a_grn = generate_directed_grn(phenotypes[0])
+a = get_modularity_value_maxes(path_1)
+b = get_modularity_value_maxes(path_2)
 
-    # modularity_values = get_grn_modularity_values(a_directory)
-    # save_a_list_graph(modularity_values, a_directory, 'modularity.png')
+print "mean a: ", sum(a) / a.__len__()
+print "mean b: ", sum(b) / b.__len__()
 
-    draw_a_grn(a_grn, get_best_partition(a_grn), phenotypes[-1], True, a_directory, 'graph.png')
-
-
-# write_dot(a_grn,'graph.dot')
-# os.system('dot -T png graph.dot > graph.png')
+print scipy.stats.wilcoxon(a, b)
+print scipy.stats.ttest_ind(a, b)
 
 

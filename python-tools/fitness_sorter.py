@@ -19,16 +19,16 @@ def get_fitness_values(root_directory_path):
 
 a_root_directory_path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
                           "-Hotspots/generated-outputs/data-2017-07-11/" \
-                          "haploid-grn-2-target-15-matrix-larson-horizontal/"
+                          "haploid-grn-2-target-10-matrix-larson-horizontal/"
 
 a_root_directory_path_2 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
                           "-Hotspots/generated-outputs/data-2017-07-11/" \
-                          "haploid-grn-2-target-15-matrix-chin/"
+                          "haploid-grn-2-target-10-matrix-larson-fixed-point/"
 
 print get_fitness_values(a_root_directory_path_1).__len__()
 print get_fitness_values(a_root_directory_path_2).__len__()
 
-a = get_fitness_values(a_root_directory_path_1)
+a = get_fitness_values(a_root_directory_path_1)[:50]
 b = get_fitness_values(a_root_directory_path_2)
 
 print "mean a: ", sum(a) / a.__len__()

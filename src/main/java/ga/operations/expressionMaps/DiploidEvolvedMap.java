@@ -50,20 +50,27 @@ public class DiploidEvolvedMap implements ExpressionMap<SimpleMaterial, SimpleMa
 
         List<Gene> genes = new ArrayList<>(dna1.getSize());
         for (int i = 0; i < dna1.getSize(); i++) {
-            int dominanceValue = (int) this.dominanceMap.getGene(i).getValue();
+//            int dominanceValue = (int) this.dominanceMap.getGene(i).getValue();
+//            int dna1Value = (int) dna1.getGene(i).getValue();
+//            int dna2Value = (int) dna2.getGene(i).getValue();
+
+//            if (dominanceValue == dna1Value || dominanceValue == dna2Value) {
+//                genes.add(new EdgeGene(dominanceValue));
+//            } else {
+//                genes.add(new EdgeGene(dna1Value));
+//            }
+
             int dna1Value = (int) dna1.getGene(i).getValue();
-            int dna2Value = (int) dna2.getGene(i).getValue();
-            if (dominanceValue == dna1Value || dominanceValue == dna2Value) {
-                genes.add(new EdgeGene(dominanceValue));
-            } else {
-                genes.add(new EdgeGene(dna1Value));
-            }
+            genes.add(new EdgeGene(dna1Value));
         }
         return new SimpleMaterial(genes);
     }
 
     @Override
+//    public String toString() {
+//        return "Evolved Diploid Dominance Map: " + this.dominanceMap;
+//    }
     public String toString() {
-        return "Evolved Diploid Dominance Map: " + this.dominanceMap;
+        return "Just use the first parent DNA type";
     }
 }
