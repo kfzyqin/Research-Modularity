@@ -43,17 +43,14 @@ import java.util.List;
 public class DiploidGRN3Target10FastMatrixSPXMain {
     private static final int[] target1 = {
             1, -1, 1, -1, 1,
-            -1, 1, -1, 1, -1,
-            1, -1, 1, -1, 1
+            -1, 1, -1, 1, -1
     };
     private static final int[] target2 = {
-            1, -1, 1, -1, 1,
             1, -1, 1, -1, 1,
             1, -1, 1, -1, 1
     };
     private static final int[] target3 = {
-            1, -1, 1, -1, 1,
-            1, -1, 1, -1, 1,
+            -1, 1, -1, 1, -1,
             -1, 1, -1, 1, -1
     };
 
@@ -61,30 +58,30 @@ public class DiploidGRN3Target10FastMatrixSPXMain {
     private static final int edgeSize = 20;
     private static final int perturbations = 300;
 
-    private static final double geneMutationRate = 0.03;
+    private static final double geneMutationRate = 0.005;
     private static final double dominanceMutationRate = 0.002;
     private static final double perturbationRate = 0.15;
-    private static final int numElites = 1;
+    private static final int numElites = 10;
 
     private static final int perturbationCycleSize = 100;
 
     private static final int size = 100;
     private static final int tournamentSize = 3;
-    private static final double reproductionRate = 0.6;
-    private static final int maxGen = 2000;
+    private static final double reproductionRate = 0.9;
+    private static final int maxGen = 1550;
 
     private static final double maxFit = 2;
     private static final double epsilon = 0.151;
 
-    private static final String summaryFileName = "Diploid-GRN-3-Target-15-Matrix-Random-SPX.txt";
-    private static final String csvFileName = "Diploid-GRN-3-Target-15-Matrix-Random-SPX.csv";
-    private static final String outputDirectory = "diploid-grn-3-target-15-matrix-random-spx";
+    private static final String summaryFileName = "Diploid-GRN-3-Target-10-Matrix-Random-SPX.txt";
+    private static final String csvFileName = "Diploid-GRN-3-Target-10-Matrix-Random-SPX.csv";
+    private static final String outputDirectory = "diploid-grn-3-target-10-matrix-random-spx";
     private static final String mainFileName = "DiploidGRN3Target10FastMatrixSPXMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
 
-    private static final String plotTitle = "Diploid GRN 3 Targets 15 Matrix Random SPX";
-    private static final String plotFileName = "Diploid-GRN-3-Target-15-Matrix-Random-SPX.png";
+    private static final String plotTitle = "Diploid GRN 3 Targets 10 Matrix Random SPX";
+    private static final String plotFileName = "Diploid-GRN-3-Target-10-Matrix-Random-SPX.png";
 
     private static final List<Integer> thresholds = Arrays.asList(0, 300, 1050);
 
