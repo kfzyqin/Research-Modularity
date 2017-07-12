@@ -18,15 +18,15 @@ def get_fitness_values(root_directory_path):
     return fitness_values
 
 a_root_directory_path_1 = "/students/u5505995/Software-Engineering/Chin-GA-Project/generated-outputs/" \
-                          "diploid-grn-3-target-10-matrix-random-spx/"
+                          "diploid-grn-3-target-15-matrix-random-spx-45-edges/"
 
 a_root_directory_path_2 = "/students/u5505995/Software-Engineering/Chin-GA-Project/generated-outputs/" \
-                          "hotspot-diploid-grn-3-target-10-matrix-evolved-spx/"
+                          "hotspot-diploid-grn-3-target-15-matrix-evolved-spx-45-edges/"
 
 print get_fitness_values(a_root_directory_path_1).__len__()
 print get_fitness_values(a_root_directory_path_2).__len__()
 
-a = get_fitness_values(a_root_directory_path_1)[0:40]
+a = get_fitness_values(a_root_directory_path_1)
 b = get_fitness_values(a_root_directory_path_2)
 
 print "mean a: ", sum(a) / a.__len__()
