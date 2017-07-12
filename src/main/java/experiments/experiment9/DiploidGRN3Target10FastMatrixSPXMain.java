@@ -42,33 +42,36 @@ import java.util.List;
  */
 public class DiploidGRN3Target10FastMatrixSPXMain {
     private static final int[] target1 = {
-            1, -1, 1, -1, 1,
-            -1, 1, -1, 1, -1
+            1, -1, 1, -1,
+            1, -1, 1,
+            -1, 1, -1
     };
     private static final int[] target2 = {
-            1, -1, 1, -1, 1,
-            1, -1, 1, -1, 1
+            1, -1, 1, -1,
+            1, -1, 1,
+            1, -1, 1
     };
     private static final int[] target3 = {
-            -1, 1, -1, 1, -1,
-            -1, 1, -1, 1, -1
+            1, -1, 1, -1,
+            -1, 1, -1,
+            1, -1, 1
     };
 
     private static final int maxCycle = 20;
     private static final int edgeSize = 20;
     private static final int perturbations = 300;
 
-    private static final double geneMutationRate = 0.005;
+    private static final double geneMutationRate = 0.03;
     private static final double dominanceMutationRate = 0.002;
     private static final double perturbationRate = 0.15;
-    private static final int numElites = 10;
+    private static final int numElites = 1;
 
     private static final int perturbationCycleSize = 100;
 
     private static final int size = 100;
     private static final int tournamentSize = 3;
     private static final double reproductionRate = 0.9;
-    private static final int maxGen = 1550;
+    private static final int maxGen = 2000;
 
     private static final double maxFit = 2;
     private static final double epsilon = 0.151;
