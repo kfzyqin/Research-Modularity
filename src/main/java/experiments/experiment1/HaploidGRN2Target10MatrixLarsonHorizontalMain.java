@@ -48,7 +48,7 @@ public class HaploidGRN2Target10MatrixLarsonHorizontalMain {
     };
 
     private static final int maxCycle = 20;
-    private static final int edgeSize = 20;
+    private static final int edgeSize = 45;
     private static final int perturbations = 300;
 
     private static final double perturbationRate = 0.15;
