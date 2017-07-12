@@ -59,11 +59,11 @@ public class HotspotDiploidGRN3Target10FastMatrixEvolvedSPXMain {
     private static final int edgeSize = 20;
     private static final int perturbations = 300;
 
-    private static final double geneMutationRate = 0.03;
+    private static final double geneMutationRate = 0.01;
     private static final double dominanceMutationRate = 0.002;
-    private static final double hotspotMutationRate = 0.03;
+    private static final double hotspotMutationRate = 0.01;
     private static final double perturbationRate = 0.15;
-    private static final int numElites = 1;
+    private static final int numElites = 10;
 
     private static final int perturbationCycleSize = 100;
 
