@@ -56,10 +56,10 @@ public class HotspotDiploidGRN3Target10FastMatrixEvolvedSPXMain {
     };
 
     private static final int maxCycle = 20;
-    private static final int edgeSize = 20;
+    private static final int edgeSize = 45;
     private static final int perturbations = 300;
 
-    private static final double geneMutationRate = 0.01;
+    private static final double geneMutationRate = 0.005;
     private static final double dominanceMutationRate = 0.002;
     private static final double hotspotMutationRate = 0.01;
     private static final double perturbationRate = 0.15;
@@ -77,7 +77,7 @@ public class HotspotDiploidGRN3Target10FastMatrixEvolvedSPXMain {
 
     private static final String summaryFileName = "Hotspot-Diploid-GRN-3-Target-15-Matrix-Evolved-SPX.txt";
     private static final String csvFileName = "Hotspot-Diploid-GRN-3-Target-15-Matrix-Evolved-SPX.csv";
-    private static final String outputDirectory = "hotspot-diploid-grn-3-target-15-matrix-evolved-spx";
+    private static final String outputDirectory = "hotspot-diploid-grn-3-target-15-matrix-evolved-spx-45-edges";
     private static final String mainFileName = "HotspotDiploidGRN3Target10FastMatrixEvolvedSPXMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();

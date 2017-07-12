@@ -26,7 +26,7 @@ a_root_directory_path_2 = "/students/u5505995/Software-Engineering/Chin-GA-Proje
 print get_fitness_values(a_root_directory_path_1).__len__()
 print get_fitness_values(a_root_directory_path_2).__len__()
 
-a = get_fitness_values(a_root_directory_path_1)[0:40]
+a = get_fitness_values(a_root_directory_path_1)
 b = get_fitness_values(a_root_directory_path_2)
 
 print "mean a: ", sum(a) / a.__len__()
