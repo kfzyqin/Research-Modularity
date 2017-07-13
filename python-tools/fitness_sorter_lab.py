@@ -13,15 +13,15 @@ def get_fitness_values(root_directory_path):
 
     for a_file in csv_files:
         a_df = pd.read_csv(a_file, '\t')
-        fitness_values.append(a_df['Best'].iloc[-1])
+        fitness_values.append(a_df['Best'].iloc[1049])
     # return sorted(fitness_values)
     return fitness_values
 
 a_root_directory_path_1 = "/students/u5505995/Software-Engineering/Chin-GA-Project/generated-outputs/" \
-                          "diploid-grn-3-target-15-matrix-random-spx-45-edges/"
+                          "diploid-grn-3-target-10-matrix-random-spx-1050/"
 
 a_root_directory_path_2 = "/students/u5505995/Software-Engineering/Chin-GA-Project/generated-outputs/" \
-                          "hotspot-diploid-grn-3-target-15-matrix-evolved-spx-45-edges/"
+                          "hotspot-diploid-grn-3-target-10-matrix-evolved-spx-1050/"
 
 print get_fitness_values(a_root_directory_path_1).__len__()
 print get_fitness_values(a_root_directory_path_2).__len__()
