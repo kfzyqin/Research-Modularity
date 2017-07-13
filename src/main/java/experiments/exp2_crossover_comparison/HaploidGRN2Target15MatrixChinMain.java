@@ -1,4 +1,4 @@
-package experiments.experiment1;
+package experiments.exp2_crossover_comparison;
 
 import ga.collections.DetailedStatistics;
 import ga.collections.Population;
@@ -84,7 +84,7 @@ public class HaploidGRN2Target15MatrixChinMain {
                 targets, maxCycle, perturbations, perturbationRate, thresholds, perturbationCycleSize);
 
         /* It is not necessary to write an initializer, but doing so is convenient to
-        repeat the experiment using different parameter. */
+        repeat the experiment using different parameter */
         Initializer<SimpleHaploid> initializer = new HaploidGRNInitializer(populationSize, target1.length, edgeSize);
 
         /* Population */
@@ -93,11 +93,11 @@ public class HaploidGRN2Target15MatrixChinMain {
         /* Mutator for chromosomes */
         Mutator mutator = new GRNEdgeMutator(geneMutationRate);
 
-        /* Selector for elites */
-        PriorOperator<SimpleHaploid> priorOperator = new SimpleElitismOperator<>(numElites);
-
         /* Selector for reproduction */
         Selector<SimpleHaploid> selector = new SimpleTournamentSelector<>(tournamentSize);
+
+        /* Selector for elites */
+        PriorOperator<SimpleHaploid> priorOperator = new SimpleElitismOperator<>(numElites);
 
         /* PostOperator is required to fill up the vacancy */
         PostOperator<SimpleHaploid> postOperator = new SimpleFillingOperatorForNormalizable<>(
@@ -117,9 +117,10 @@ public class HaploidGRN2Target15MatrixChinMain {
         /* The frame of an GA to change states */
         Frame<SimpleHaploid> frame = new SimpleHaploidFrame<>(state,postOperator,statistics, priorOperator);
 
+        /* Set output paths */
         statistics.setDirectory(outputDirectory + "/" + dateFormat.format(date));
         statistics.copyMainFile(mainFileName, System.getProperty("user.dir") +
-                "/src/main/java/experiments/experiment1/" + mainFileName);
+                "/src/main/java/experiments/exp2_crossover_comparison/" + mainFileName);
 
         statistics.print(0); // print the initial state of an population
         /* Actual GA evolutions */
