@@ -1,4 +1,4 @@
-package experiments.experiment9;
+package experiments.exp5_crossover_aid_validation;
 
 import ga.collections.DetailedStatistics;
 import ga.collections.Population;
@@ -35,7 +35,8 @@ import java.util.List;
  * Created by Zhenyue Qin (秦震岳) on 25/6/17.
  * The Australian National University.
  */
-public class DiploidGRN3Target10FastMatrixNoXMain {
+public class DiploidGRNFastMatrixNoXMain {
+    /* The three targets that the GA evolve towards */
     private static final int[] target1 = {
             1, -1, 1, -1,
             1, -1, 1,
@@ -52,87 +53,93 @@ public class DiploidGRN3Target10FastMatrixNoXMain {
             1, -1, 1
     };
 
+    /* Parameters of the GRN */
     private static final int maxCycle = 20;
     private static final int edgeSize = 20;
     private static final int perturbations = 300;
-
     private static final double geneMutationRate = 0.03;
+    private static final int perturbationCycleSize = 100;
     private static final double dominanceMutationRate = 0.002;
+
+    /* Parameters of the GA */
     private static final double perturbationRate = 0.15;
     private static final int numElites = 1;
-
-    private static final int perturbationCycleSize = 100;
-
-    private static final int size = 100;
+    private static final int populationSize = 100;
     private static final int tournamentSize = 3;
     private static final double reproductionRate = 0.9;
     private static final int maxGen = 1550;
+    private static final List<Integer> thresholds = Arrays.asList(0, 300, 1050);
 
-    private static final double maxFit = 2;
-    private static final double epsilon = 0.151;
-
+    /* Settings for text outputs */
     private static final String summaryFileName = "Diploid-GRN-3-Target-10-Matrix-No-X.txt";
     private static final String csvFileName = "Diploid-GRN-3-Target-10-Matrix-No-X.csv";
     private static final String outputDirectory = "diploid-grn-3-target-10-matrix-no-x";
-    private static final String mainFileName = "DiploidGRN3Target10FastMatrixNoXMain.java";
+    private static final String mainFileName = "DiploidGRNFastMatrixNoXMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
 
+    /* Settings for graph outputs */
     private static final String plotTitle = "Diploid GRN 3 Targets 10 Matrix No X";
     private static final String plotFileName = "Diploid-GRN-3-Target-10-Matrix-No-X.png";
-
-    private static final List<Integer> thresholds = Arrays.asList(0, 300, 1050);
 
     public static void main(String[] args) throws IOException {
         int[][] targets = {target1, target2, target3};
 
-        // Fitness Function
+        /* Fitness function */
         FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFast(
                 targets, maxCycle, perturbations, perturbationRate, thresholds, perturbationCycleSize);
 
-        // Initializer
+        /* It is not necessary to write an initializer, but doing so is convenient to
+        repeat the experiment using different parameter */
         DiploidGRNInitializer initializer =
-                new DiploidGRNInitializer(size, target1.length, edgeSize);
+                new DiploidGRNInitializer(populationSize, target1.length, edgeSize);
 
-        // Population
+        /* Population */
         Population<SimpleDiploid> population = initializer.initialize();
 
-        // Mutator for chromosomes
+        /* Mutator for chromosomes */
         Mutator mutator = new GRNEdgeMutator(geneMutationRate);
 
-        // Selector for reproduction
+        /* Selector for reproduction */
         Selector<SimpleDiploid> selector = new SimpleTournamentSelector<>(tournamentSize);
 
+        /* Selector for elites */
         PriorOperator<SimpleDiploid> priorOperator = new SimpleElitismOperator<>(numElites);
 
+        /* PostOperator is required to fill up the vacancy */
         PostOperator<SimpleDiploid> fillingOperator = new SimpleFillingOperatorForNormalizable<>(new SimpleTournamentScheme(tournamentSize));
 
+        /* Reproducer for reproduction */
         Reproducer<SimpleDiploid> reproducer = new SimpleDiploidNoXReproducer(0.5, target1.length);
 
+        /* Statistics for keeping track the performance in generations */
         DetailedStatistics<SimpleDiploid> statistics = new DetailedStatistics<>();
 
+        /* Dominance expression map mutator */
         ExpressionMapMutator expressionMapMutator = new DiploidDominanceMapMutator(dominanceMutationRate);
 
+        /* The state of an GA */
         State<SimpleDiploid> state = new SimpleDiploidMultipleTargetState<>(population, fitnessFunction, mutator, reproducer,
                 selector, 2, reproductionRate, expressionMapMutator);
-
         state.record(statistics);
 
-        Frame<SimpleDiploid> frame = new SimpleDiploidMultipleTargetFrame<>(state, fillingOperator, statistics, priorOperator);
-//        Frame<SimpleDiploid> frame = new SimpleDiploidMultipleTargetFrame<>(state, fillingOperator, statistics);
+        /* The frame of an GA to change states */
+        Frame<SimpleDiploid> frame = new SimpleDiploidMultipleTargetFrame<>(
+                state, fillingOperator, statistics, priorOperator);
 
-        statistics.print(0);
+        /* Set output paths */
         statistics.setDirectory(outputDirectory + "/" + dateFormat.format(date));
         statistics.copyMainFile(mainFileName, System.getProperty("user.dir") +
-                "/src/main/java/experiments/experiment9/" + mainFileName);
+                "/src/main/java/experiments/exp5_crossover_aid_validation/" + mainFileName);
+
+        statistics.print(0); // print the initial state of an population
+        /* Actual GA evolutions */
         for (int i = 0; i < maxGen; i++) {
             frame.evolve();
             statistics.print(i);
-            if ((statistics.getOptimum(i) > maxFit - epsilon) &&
-                    (statistics.getGeneration() > thresholds.get(thresholds.size()-1))) {
-                break;
-            }
         }
+
+        /* Generate output files */
         statistics.save(summaryFileName);
         statistics.generateCSVFile(csvFileName);
         statistics.generatePlot(plotTitle, plotFileName);

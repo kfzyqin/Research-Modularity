@@ -68,13 +68,13 @@ public class HaploidGRN2Target15MatrixLarsonHorizontalMain {
     private static final String summaryFileName = "Haploid-GRN-2-Target-15-Matrix-Larson-Horizontal.txt";
     private static final String csvFileName = "Haploid-GRN-2-Target-15-Matrix-Larson-Horizontal.csv";
     private static final String outputDirectory = "haploid-grn-2-target-15-matrix-larson-horizontal";
+    private static final String mainFileName = "HaploidGRN2Target15MatrixLarsonHorizontalMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
 
     /* Settings for graph outputs */
     private static final String plotTitle = "Haploid GRN 2 Target 15 Matrix Larson Horizontal";
     private static final String plotFileName = "Haploid-GRN-2-Target-15-Matrix-Larson-Horizontal.png";
-    private static final String mainFileName = "HaploidGRN2Target15MatrixLarsonHorizontalMain.java";
 
 
     public static void main(String[] args) throws IOException {

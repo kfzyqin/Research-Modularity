@@ -34,7 +34,7 @@ import java.util.List;
  * Created by Zhenyue Qin on 23/04/2017.
  * The Australian National University.
  */
-public class HaploidGRN2Target10MatrixLarsonFixedPointMain {
+public class HaploidGRN2Target10MatrixLarsonSPXMain {
     /* The two targets that the GA evolve towards */
     private static final int[] target1 = {
             1, -1, 1, -1, 1,
@@ -65,13 +65,13 @@ public class HaploidGRN2Target10MatrixLarsonFixedPointMain {
     private static final String summaryFileName = "Haploid-GRN-2-Target-10-Matrix-Larson-Fixed-Point.txt";
     private static final String csvFileName = "Haploid-GRN-2-Target-10-Matrix-Larson-Fixed-Point.csv";
     private static final String outputDirectory = "haploid-grn-2-target-10-matrix-larson-fixed-point";
+    private static final String mainFileName = "HaploidGRN2Target10MatrixLarsonSPXMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
 
     /* Settings for graph outputs */
     private static final String plotTitle = "Haploid GRN 2 Target 10 Matrix Larson Fixed Point";
     private static final String plotFileName = "Haploid-GRN-2-Target-10-Matrix-Larson-Fixed-Point.png";
-    private static final String mainFileName = "HaploidGRN2Target10MatrixLarsonFixedPointMain.java";
 
     public static void main(String[] args) throws IOException {
         int[][] targets = {target1, target2};

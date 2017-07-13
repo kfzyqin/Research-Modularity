@@ -67,13 +67,13 @@ public class HaploidGRN2Target10MatrixSotoMain {
     private static final String summaryFileName = "Haploid-GRN-2-Target-10-Matrix-Soto.txt";
     private static final String csvFileName = "Haploid-GRN-2-Target-10-Matrix-Soto.csv";
     private static final String outputDirectory = "haploid-grn-2-target-10-matrix-soto";
+    private static final String mainFileName = "HaploidGRN2Target10MatrixSotoMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
 
     /* Settings for graph outputs */
     private static final String plotTitle = "Haploid GRN 2 Target 10 Matrix Soto";
     private static final String plotFileName = "Haploid-GRN-2-Target-10-Matrix-Soto.png";
-    private static final String mainFileName = "HaploidGRN2Target10MatrixSotoMain.java";
 
     public static void main(String[] args) throws IOException {
         int[][] targets = {target1, target2};
