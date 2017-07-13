@@ -71,7 +71,7 @@ public class HaploidGRN2Target10MatrixChinMain {
 
     private static final String plotTitle = "Haploid GRN 2 Target 10 Matrix Chin";
     private static final String plotFileName = "Haploid-GRN-2-Target-10-Matrix-Chin.png";
-    private static final String mainFileName = "HaploidGRN2Target10MatrixChinMain.java";
+    private static final String mainFileName = "HaploidGRN2Target15MatrixChinMain.java";
 
     private static final List<Integer> thresholds = Arrays.asList(0, 5);
 
