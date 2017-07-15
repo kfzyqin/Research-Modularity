@@ -50,7 +50,7 @@ public class DiploidGRNFastMatrixSPXMain {
     private static final int maxCycle = 20;
     private static final int edgeSize = 10;
     private static final int perturbations = 300;
-    private static final double geneMutationRate = 0.01;
+    private static final double geneMutationRate = 0.025;
     private static final int perturbationCycleSize = 100;
     private static final double dominanceMutationRate = 0.005;
     private static final double perturbationRate = 0.15;
