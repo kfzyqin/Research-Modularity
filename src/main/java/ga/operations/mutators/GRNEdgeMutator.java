@@ -11,6 +11,8 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
+ * This class implements a mutator to mutate a GRN.
+ *
  * Created by Zhenyue Qin on 22/04/2017.
  * The Australian National University.
  */
@@ -36,41 +38,37 @@ public class GRNEdgeMutator<T extends Chromosome> implements Mutator<T> {
         this.prob = prob;
     }
 
+    /**
+     * Mutates the specified gene at index i according to the rule specified in page 8 of the original paper.
+     * @param individuals individuals to be mutated
+     */
     @Override
     public void mutate(List<Individual<T>> individuals) {
-        //todo: double check this.
-//        for (int i = 0; i < individuals.size(); i++) {
-//            Individual<T> individual = individuals.get(i);
-//            for (Object object :  individual.getChromosome().getMaterialsView()) {
-//                Material material = (Material) object;
-//                for (int j = 0; j < material.getSize(); j++) {
-//                    flipAllele((EdgeGene) material.getGene(j));
-//                }
-//            }
-//        }
-
-        /*
-        Mutates the specified gene at index i according to the rule specified in page 8 of the original paper.
-         */
         for (Individual<T> individual : individuals) {
             for (Object object : individual.getChromosome().getMaterialsView()) {
                 SimpleMaterial material = (SimpleMaterial) object;
-                int targetNumber = (int) Math.sqrt(material.getSize()); // number of nodes in the network.
+                /* Number of genes in the network */
+                int targetNumber = (int) Math.sqrt(material.getSize());
 
-                for (int i = 0; i < targetNumber; i++) {
-                    int regulatorNumber = 0; // number of regulators for this gene.
+                for (int i=0; i<targetNumber; i++) {
+                    /* Number of regulators for gene i */
+                    int regulatorNumber = 0;
 
+                    /* Does not meet the mutation rate */
                     if (Math.random() > this.prob) {
                         continue;
                     }
+
+                    /* Get how many genes that regulate gene i */
                     for (int j=0; j<targetNumber; j++) {
-                        // if the mutated node is regulated by j.
                         if ((int) material.getGene(j * targetNumber + i).getValue() != 0) {
                             regulatorNumber += 1;
                         }
                     }
 
-                    double probabilityToLoseInteraction = (4.0 * regulatorNumber) / (4.0 * regulatorNumber + (targetNumber - regulatorNumber));
+                    /* Use this formula to maintain the number of edges */
+                    double probabilityToLoseInteraction =
+                            (4.0 * regulatorNumber) / (4.0 * regulatorNumber + (targetNumber - regulatorNumber));
 
                     if (Math.random() <= probabilityToLoseInteraction) { // lose an interaction
                         List<Integer> interactions = new ArrayList<>();
@@ -83,14 +81,13 @@ public class GRNEdgeMutator<T extends Chromosome> implements Mutator<T> {
                             int toRemove = ThreadLocalRandom.current().nextInt(interactions.size());
                             material.getGene(interactions.get(toRemove) * targetNumber + i).setValue(0);
                         }
-                    } else {
+                    } else { // gain an interaction
                         List<Integer> nonInteractions = new ArrayList<>();
                         for (int edgeIdx = 0; edgeIdx < targetNumber; edgeIdx++) {
                             if ((int) material.getGene(edgeIdx * targetNumber + i).getValue() == 0) {
                                 nonInteractions.add(edgeIdx);
                             }
                         }
-                        //todo: there might be a bug here
                         if (nonInteractions.size() > 0) {
                             int toAdd = this.generateAnRandomInteger(nonInteractions.size());
                             if (this.flipACoin()) {
@@ -113,17 +110,5 @@ public class GRNEdgeMutator<T extends Chromosome> implements Mutator<T> {
     private int generateAnRandomInteger(int upBound) {
         Random randomGenerator = new Random();
         return randomGenerator.nextInt(upBound);
-    }
-
-    private void flipAllele(EdgeGene gene) {
-        if (Math.random() < prob) {
-            if (gene.getValue() == -1) {
-                gene.setValue(Math.random() < 0.5 ? 0 : 1);
-            } else if (gene.getValue() == 0) {
-                gene.setValue(Math.random() < 0.5 ? -1 : 1);
-            } else {
-                gene.setValue(Math.random() < 0.5 ? -1 : 0);
-            }
-        }
     }
 }
