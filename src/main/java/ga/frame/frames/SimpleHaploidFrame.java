@@ -81,7 +81,11 @@ public class SimpleHaploidFrame<C extends Chromosome> extends Frame<C> {
         state.nextGeneration();
         statistics.nextGeneration();
         state.evaluateWithMultipleTargets(true);
-        ((HotspotState) state).mutateHotspot();
+        try {
+            ((HotspotState) state).mutateHotspot();
+        } catch (Exception e) {
+
+        }
         state.record(statistics);
     }
 }
