@@ -56,7 +56,7 @@ public class DiploidGRNFastMatrixSPXMain {
     private static final double perturbationRate = 0.15;
 
     /* Parameters of the GA */
-    private static final int numElites = 20;
+    private static final int numElites = 5;
     private static final int populationSize = 50;
     private static final int tournamentSize = 5;
     private static final double reproductionRate = 0.8;
