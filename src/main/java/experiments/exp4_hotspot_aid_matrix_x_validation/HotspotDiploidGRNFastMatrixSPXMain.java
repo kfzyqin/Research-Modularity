@@ -55,11 +55,11 @@ public class HotspotDiploidGRNFastMatrixSPXMain {
     private static final double geneMutationRate = 0.01;
     private static final int perturbationCycleSize = 100;
     private static final double dominanceMutationRate = 0.005;
-    private static final double hotspotMutationRate = 0.005;
+    private static final double perturbationRate = 0.15;
 
     /* Parameters of the GA */
     private static final int hotspotSize = 14;
-    private static final double perturbationRate = 0.15;
+    private static final double hotspotMutationRate = 0.005;
     private static final int numElites = 20;
     private static final int populationSize = 100;
     private static final int tournamentSize = 5;
