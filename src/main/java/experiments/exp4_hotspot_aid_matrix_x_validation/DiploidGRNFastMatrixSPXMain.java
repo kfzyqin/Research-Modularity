@@ -38,34 +38,30 @@ import java.util.List;
 public class DiploidGRNFastMatrixSPXMain {
     /* The targets that the GA evolve towards */
     private static final int[] target1 = {
-            1, -1, 1, -1, 1,
-            -1, 1, -1, 1, -1
+            1, -1, 1, -1, 1, -1, 1,
+            -1, 1, -1, 1, -1, 1, -1, 1
     };
     private static final int[] target2 = {
-            1, -1, 1, -1, 1,
-            1, -1, 1, -1, 1
-    };
-    private static final int[] target3 = {
-            -1, 1, -1, 1, -1,
-            -1, 1, -1, 1, -1
+            1, -1, 1, -1, 1, -1, 1,
+            1, -1, 1, -1, 1, -1, 1, -1
     };
 
     /* Parameters of the GRN */
     private static final int maxCycle = 20;
     private static final int edgeSize = 20;
     private static final int perturbations = 300;
-    private static final double geneMutationRate = 0.005;
+    private static final double geneMutationRate = 0.002;
     private static final int perturbationCycleSize = 100;
-    private static final double dominanceMutationRate = 0.002;
+    private static final double dominanceMutationRate = 0.001;
     private static final double perturbationRate = 0.15;
 
     /* Parameters of the GA */
     private static final int numElites = 10;
     private static final int populationSize = 100;
-    private static final int tournamentSize = 3;
+    private static final int tournamentSize = 5;
     private static final double reproductionRate = 0.9;
-    private static final int maxGen = 1550;
-    private static final List<Integer> thresholds = Arrays.asList(0, 300, 1050);
+    private static final int maxGen = 1050;
+    private static final List<Integer> thresholds = Arrays.asList(0, 300);
 
     /* Settings for text outputs */
     private static final String summaryFileName = "Diploid-GRN-3-Target-10-Matrix-Random-SPX.txt";
@@ -80,7 +76,7 @@ public class DiploidGRNFastMatrixSPXMain {
     private static final String plotFileName = "Diploid-GRN-3-Target-10-Matrix-Random-SPX.png";
 
     public static void main(String[] args) throws IOException {
-        int[][] targets = {target1, target2, target3};
+        int[][] targets = {target1, target2};
 
         /* Fitness Function */
         FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFast(
