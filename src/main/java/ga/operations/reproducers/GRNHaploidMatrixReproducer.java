@@ -12,10 +12,10 @@ import java.util.concurrent.ThreadLocalRandom;
  * Created by Zhenyue Qin (秦震岳) on 8/7/17.
  * The Australian National University.
  */
-public class SimpleHaploidMatrixReproducer extends HaploidReproducer<SimpleHaploid> {
+public class GRNHaploidMatrixReproducer extends HaploidReproducer<SimpleHaploid> {
     private final int matrixSideSize;
 
-    public SimpleHaploidMatrixReproducer(int matrixSideSize) {
+    public GRNHaploidMatrixReproducer(int matrixSideSize) {
         this.matrixSideSize = matrixSideSize;
     }
 
@@ -28,9 +28,6 @@ public class SimpleHaploidMatrixReproducer extends HaploidReproducer<SimpleHaplo
 
         SimpleMaterial dna1 = child1.getMaterialsView().get(0);
         SimpleMaterial dna2 = child2.getMaterialsView().get(0);
-
-//        int crossoverIndex1 = ThreadLocalRandom.current().nextInt(matrixSideSize);
-//        int crossoverIndex2 = ThreadLocalRandom.current().nextInt(matrixSideSize);
 
         final int crossIndex = ThreadLocalRandom.current().nextInt(matrixSideSize);
         for (int currentCrossIndex=0; currentCrossIndex<crossIndex; currentCrossIndex++) {

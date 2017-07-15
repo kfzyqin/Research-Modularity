@@ -8,7 +8,6 @@ import ga.frame.frames.SimpleHaploidFrame;
 import ga.frame.states.SimpleState;
 import ga.frame.states.State;
 import ga.operations.fitnessFunctions.FitnessFunction;
-import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFast;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFastHidden;
 import ga.operations.initializers.HaploidGRNInitializer;
 import ga.operations.initializers.Initializer;
@@ -19,7 +18,7 @@ import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
 import ga.operations.priorOperators.PriorOperator;
 import ga.operations.priorOperators.SimpleElitismOperator;
 import ga.operations.reproducers.Reproducer;
-import ga.operations.reproducers.SimpleHaploidMatrixReproducer;
+import ga.operations.reproducers.GRNHaploidMatrixReproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
@@ -104,7 +103,7 @@ public class HaploidGRN2Target10MatrixChinMain {
         // Statistics for keeping track the performance in generations
         DetailedStatistics<SimpleHaploid> statistics = new DetailedStatistics<>();
         // Reproducer for reproduction
-        Reproducer<SimpleHaploid> reproducer = new SimpleHaploidMatrixReproducer(target1.length);
+        Reproducer<SimpleHaploid> reproducer = new GRNHaploidMatrixReproducer(target1.length);
 
         State<SimpleHaploid> state = new SimpleState<>(
                 population, fitnessFunction, mutator, reproducer, selector, 2, reproductionRate);

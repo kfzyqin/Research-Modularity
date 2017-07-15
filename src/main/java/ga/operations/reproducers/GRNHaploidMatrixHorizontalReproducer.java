@@ -12,10 +12,10 @@ import java.util.concurrent.ThreadLocalRandom;
  * Created by Zhenyue Qin (秦震岳) on 8/7/17.
  * The Australian National University.
  */
-public class SimpleHaploidMatrixHorizontalSplitReproducer extends HaploidReproducer<SimpleHaploid> {
+public class GRNHaploidMatrixHorizontalReproducer extends HaploidReproducer<SimpleHaploid> {
     private final int matrixSideSize;
 
-    public SimpleHaploidMatrixHorizontalSplitReproducer(int matrixSideSize) {
+    public GRNHaploidMatrixHorizontalReproducer(int matrixSideSize) {
         this.matrixSideSize = matrixSideSize;
     }
 

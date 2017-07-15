@@ -1,4 +1,4 @@
-package experiments.exp2_crossover_comparison;
+package experiments.exp6_haploid_hotspot_aid_matrix_x_validation;
 
 import ga.collections.DetailedStatistics;
 import ga.collections.Population;
@@ -37,15 +37,15 @@ import java.util.List;
  * Created by Zhenyue Qin on 23/06/2017.
  * The Australian National University.
  */
-public class HaploidGRN2Target15MatrixChinMain {
+public class HaploidGRNMatrixMain {
     /* The two targets that the GA evolve towards */
     private static final int[] target1 = {
-            1, -1, 1, -1, 1, -1, 1,
-            -1, 1, -1, 1, -1, 1, -1, 1
+            1, -1, 1, -1, 1,
+            -1, 1, -1, 1, -1
     };
     private static final int[] target2 = {
-            1, -1, 1, -1, 1, -1, 1,
-            1, -1, 1, -1, 1, -1, 1, -1
+            1, -1, 1, -1, 1,
+            1, -1, 1, -1, 1
     };
 
     /* Parameters of the GRN */
@@ -65,16 +65,16 @@ public class HaploidGRN2Target15MatrixChinMain {
     private static final List<Integer> thresholds = Arrays.asList(0, 300); // when to switch targets
 
     /* Settings for text outputs */
-    private static final String summaryFileName = "Haploid-GRN-2-Target-15-Matrix-Chin.txt";
-    private static final String csvFileName = "Haploid-GRN-2-Target-15-Matrix-Chin.csv";
-    private static final String outputDirectory = "haploid-grn-2-target-15-matrix-chin";
-    private static final String mainFileName = "HaploidGRN2Target15MatrixChinMain.java";
+    private static final String summaryFileName = "Haploid-GRN-Matrix.txt";
+    private static final String csvFileName = "Haploid-GRN-Matrix.csv";
+    private static final String outputDirectory = "haploid-grn-matrix-2-target-10";
+    private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
 
     /* Settings for graph outputs */
-    private static final String plotTitle = "Haploid GRN 2 Target 15 Matrix Chin";
-    private static final String plotFileName = "Haploid-GRN-2-Target-15-Matrix-Chin.png";
+    private static final String plotTitle = "Haploid GRN Matrix Chin";
+    private static final String plotFileName = "Haploid-GRN-Matrix.png";
 
     public static void main(String[] args) throws IOException {
         int[][] targets = {target1, target2};
@@ -120,7 +120,7 @@ public class HaploidGRN2Target15MatrixChinMain {
         /* Set output paths */
         statistics.setDirectory(outputDirectory + "/" + dateFormat.format(date));
         statistics.copyMainFile(mainFileName, System.getProperty("user.dir") +
-                "/src/main/java/experiments/exp2_crossover_comparison/" + mainFileName);
+                "/src/main/java/experiments/exp6_haploid_hotspot_aid_matrix_x_validation/" + mainFileName);
 
         statistics.print(0); // print the initial state of an population
         /* Actual GA evolutions */

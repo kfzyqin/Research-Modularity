@@ -1,8 +1,9 @@
-package experiments.exp2_crossover_comparison;
+package experiments.exp6_haploid_hotspot_aid_matrix_x_validation;
 
 import ga.collections.DetailedStatistics;
 import ga.collections.Population;
 import ga.components.chromosomes.SimpleHaploid;
+import ga.components.chromosomes.SimpleHotspotHaploid;
 import ga.frame.frames.Frame;
 import ga.frame.frames.SimpleHaploidFrame;
 import ga.frame.states.SimpleState;
@@ -10,6 +11,7 @@ import ga.frame.states.State;
 import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFast;
 import ga.operations.initializers.HaploidGRNInitializer;
+import ga.operations.initializers.HotspotHaploidGRNInitializer;
 import ga.operations.initializers.Initializer;
 import ga.operations.mutators.GRNEdgeMutator;
 import ga.operations.mutators.Mutator;
@@ -18,6 +20,7 @@ import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
 import ga.operations.priorOperators.PriorOperator;
 import ga.operations.priorOperators.SimpleElitismOperator;
 import ga.operations.reproducers.GRNHaploidMatrixReproducer;
+import ga.operations.reproducers.GRNHotspotHaploidMatrixReproducer;
 import ga.operations.reproducers.Reproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
@@ -37,15 +40,15 @@ import java.util.List;
  * Created by Zhenyue Qin on 23/06/2017.
  * The Australian National University.
  */
-public class HaploidGRN2Target15MatrixChinMain {
+public class HotspotHaploidGRNMatrixMain {
     /* The two targets that the GA evolve towards */
     private static final int[] target1 = {
-            1, -1, 1, -1, 1, -1, 1,
-            -1, 1, -1, 1, -1, 1, -1, 1
+            1, -1, 1, -1, 1,
+            -1, 1, -1, 1, -1
     };
     private static final int[] target2 = {
-            1, -1, 1, -1, 1, -1, 1,
-            1, -1, 1, -1, 1, -1, 1, -1
+            1, -1, 1, -1, 1,
+            1, -1, 1, -1, 1
     };
 
     /* Parameters of the GRN */
@@ -65,16 +68,16 @@ public class HaploidGRN2Target15MatrixChinMain {
     private static final List<Integer> thresholds = Arrays.asList(0, 300); // when to switch targets
 
     /* Settings for text outputs */
-    private static final String summaryFileName = "Haploid-GRN-2-Target-15-Matrix-Chin.txt";
-    private static final String csvFileName = "Haploid-GRN-2-Target-15-Matrix-Chin.csv";
-    private static final String outputDirectory = "haploid-grn-2-target-15-matrix-chin";
-    private static final String mainFileName = "HaploidGRN2Target15MatrixChinMain.java";
+    private static final String summaryFileName = "Hotspot-Haploid-GRN-Matrix.txt";
+    private static final String csvFileName = "Hotspot-Haploid-GRN-Matrix.csv";
+    private static final String outputDirectory = "hotspot-haploid-grn-matrix-2-target-10";
+    private static final String mainFileName = "HotspotHaploidGRNMatrixMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
 
     /* Settings for graph outputs */
-    private static final String plotTitle = "Haploid GRN 2 Target 15 Matrix Chin";
-    private static final String plotFileName = "Haploid-GRN-2-Target-15-Matrix-Chin.png";
+    private static final String plotTitle = "Hotspot Haploid GRN 2 Matrix";
+    private static final String plotFileName = "Hotspot-Haploid-GRN-Matrix.png";
 
     public static void main(String[] args) throws IOException {
         int[][] targets = {target1, target2};
@@ -85,42 +88,43 @@ public class HaploidGRN2Target15MatrixChinMain {
 
         /* It is not necessary to write an initializer, but doing so is convenient to
         repeat the experiment using different parameter */
-        Initializer<SimpleHaploid> initializer = new HaploidGRNInitializer(populationSize, target1.length, edgeSize);
+        Initializer<SimpleHotspotHaploid> initializer =
+                new HotspotHaploidGRNInitializer(populationSize, target1.length, edgeSize, 9);
 
         /* Population */
-        Population<SimpleHaploid> population = initializer.initialize();
+        Population<SimpleHotspotHaploid> population = initializer.initialize();
 
         /* Mutator for chromosomes */
         Mutator mutator = new GRNEdgeMutator(geneMutationRate);
 
         /* Selector for reproduction */
-        Selector<SimpleHaploid> selector = new SimpleTournamentSelector<>(tournamentSize);
+        Selector<SimpleHotspotHaploid> selector = new SimpleTournamentSelector<>(tournamentSize);
 
         /* Selector for elites */
-        PriorOperator<SimpleHaploid> priorOperator = new SimpleElitismOperator<>(numElites);
+        PriorOperator<SimpleHotspotHaploid> priorOperator = new SimpleElitismOperator<>(numElites);
 
         /* PostOperator is required to fill up the vacancy */
-        PostOperator<SimpleHaploid> postOperator = new SimpleFillingOperatorForNormalizable<>(
+        PostOperator<SimpleHotspotHaploid> postOperator = new SimpleFillingOperatorForNormalizable<>(
                 new SimpleTournamentScheme(tournamentSize));
 
         /* Reproducer for reproduction */
-        Reproducer<SimpleHaploid> reproducer = new GRNHaploidMatrixReproducer(target1.length);
+        Reproducer<SimpleHotspotHaploid> reproducer = new GRNHotspotHaploidMatrixReproducer(target1.length);
 
         /* Statistics for keeping track the performance in generations */
-        DetailedStatistics<SimpleHaploid> statistics = new DetailedStatistics<>();
+        DetailedStatistics<SimpleHotspotHaploid> statistics = new DetailedStatistics<>();
 
         /* The state of an GA */
-        State<SimpleHaploid> state = new SimpleState<>(
+        State<SimpleHotspotHaploid> state = new SimpleState<>(
                 population, fitnessFunction, mutator, reproducer, selector, 2, reproductionRate);
         state.record(statistics); // record the initial state of an population
 
         /* The frame of an GA to change states */
-        Frame<SimpleHaploid> frame = new SimpleHaploidFrame<>(state,postOperator,statistics, priorOperator);
+        Frame<SimpleHotspotHaploid> frame = new SimpleHaploidFrame<>(state,postOperator,statistics, priorOperator);
 
         /* Set output paths */
         statistics.setDirectory(outputDirectory + "/" + dateFormat.format(date));
         statistics.copyMainFile(mainFileName, System.getProperty("user.dir") +
-                "/src/main/java/experiments/exp2_crossover_comparison/" + mainFileName);
+                "/src/main/java/experiments/exp6_haploid_hotspot_aid_matrix_x_validation/" + mainFileName);
 
         statistics.print(0); // print the initial state of an population
         /* Actual GA evolutions */

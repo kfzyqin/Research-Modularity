@@ -22,7 +22,8 @@ public class HotspotDiploidGRNInitializer implements Initializer<SimpleHotspotDi
     protected final int edgeSize;
     protected final int hotspotSize;
 
-    public HotspotDiploidGRNInitializer(final int size, final int targetLength, final int edgeSize, final int hotspotSize) {
+    public HotspotDiploidGRNInitializer(
+            final int size, final int targetLength, final int edgeSize, final int hotspotSize) {
         setSize(size);
         this.targetLength = targetLength;
         grnSize = targetLength * targetLength;

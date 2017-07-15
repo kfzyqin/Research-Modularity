@@ -17,8 +17,8 @@ import ga.operations.postOperators.PostOperator;
 import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
 import ga.operations.priorOperators.PriorOperator;
 import ga.operations.priorOperators.SimpleElitismOperator;
+import ga.operations.reproducers.GRNHaploidMatrixReproducer;
 import ga.operations.reproducers.Reproducer;
-import ga.operations.reproducers.SimpleHaploidMatrixReproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
@@ -103,7 +103,7 @@ public class HaploidGRN2Target10MatrixSotoMain {
                 new SimpleTournamentScheme(tournamentSize));
 
         /* Reproducer for reproduction */
-        Reproducer<SimpleHaploid> reproducer = new SimpleHaploidMatrixReproducer(target1.length);
+        Reproducer<SimpleHaploid> reproducer = new GRNHaploidMatrixReproducer(target1.length);
 
         /* Statistics for keeping track the performance in generations */
         DetailedStatistics<SimpleHaploid> statistics = new DetailedStatistics<>();

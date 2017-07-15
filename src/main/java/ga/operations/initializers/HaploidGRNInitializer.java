@@ -64,7 +64,7 @@ public class HaploidGRNInitializer implements Initializer<SimpleHaploid> {
     }
 
     private Individual<SimpleHaploid> generateIndividual() {
-        GRNFactoryNoHiddenTarget grnFactor = new GRNFactoryNoHiddenTarget(targetLength, this.edgeSize);
-        return new Individual<>(new SimpleHaploid(grnFactor.generateGeneRegulatoryNetwork()));
+        GRNFactoryNoHiddenTarget grnFactory = new GRNFactoryNoHiddenTarget(targetLength, this.edgeSize);
+        return new Individual<>(new SimpleHaploid(grnFactory.generateGeneRegulatoryNetwork()));
     }
 }
