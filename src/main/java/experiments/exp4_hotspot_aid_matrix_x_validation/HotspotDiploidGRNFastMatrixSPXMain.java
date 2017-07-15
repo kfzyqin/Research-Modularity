@@ -40,17 +40,17 @@ import java.util.List;
 public class HotspotDiploidGRNFastMatrixSPXMain {
     /* The three targets that the GA evolve towards */
     private static final int[] target1 = {
-            1, -1, 1, -1, 1, -1, 1,
+            1, -1, 1, -1, 1, -1, 1, 1,
             -1, 1, -1, 1, -1, 1, -1, 1
     };
     private static final int[] target2 = {
-            1, -1, 1, -1, 1, -1, 1,
+            1, -1, 1, -1, 1, -1, 1, 1,
             1, -1, 1, -1, 1, -1, 1, -1
     };
 
     /* Parameters of the GRN */
     private static final int maxCycle = 20;
-    private static final int edgeSize = 10;
+    private static final int edgeSize = 20;
     private static final int perturbations = 300;
     private static final double geneMutationRate = 0.025;
     private static final int perturbationCycleSize = 100;
