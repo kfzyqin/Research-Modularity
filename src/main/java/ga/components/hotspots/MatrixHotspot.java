@@ -5,6 +5,8 @@ import java.util.Map;
 import java.util.Random;
 
 /**
+ * This class implements the hotspot for a matrix-like chromosome.
+ *
  * Created by Zhenyue Qin (秦震岳) on 4/7/17.
  * The Australian National University.
  */
@@ -41,6 +43,6 @@ public class MatrixHotspot extends Hotspot {
 
     @Override
     protected void generateRandomRecombinationRates() {
-        generateRandomRecombinationRatesWithSize((int) Math.sqrt(dnaLength));
+        generateRandomRecombinationRatesWithSize((int) Math.sqrt(dnaLength) - 1);
     }
 }

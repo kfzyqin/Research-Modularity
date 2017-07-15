@@ -36,12 +36,15 @@ public class Hotspot implements Copyable<Hotspot> {
     }
 
     protected void generateRandomRecombinationRates() {
-        generateRandomRecombinationRatesWithSize(this.dnaLength);
+        if (this.size > this.dnaLength-1) {
+            throw new IllegalArgumentException("Hotspot size is larger than the length of DNA");
+        }
+        generateRandomRecombinationRatesWithSize(this.dnaLength-1);
     }
 
     protected void generateRandomRecombinationRatesWithSize(int randomSize) {
         int[] hotspotPositions = new Random().ints(
-                0, randomSize).distinct().limit(size).toArray();
+                1, randomSize).distinct().limit(size).toArray();
         double[] unNormalizedRates = new double[size];
         double rateSum = 0;
         for (int i=0; i<size; i++) {

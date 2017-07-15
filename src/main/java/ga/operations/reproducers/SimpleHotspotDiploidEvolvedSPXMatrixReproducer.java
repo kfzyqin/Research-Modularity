@@ -10,6 +10,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * This class implements the diploid reproducer with matrix-like crossover.
+ * e.g. If the index is 2 and two chromosomes are:
+ * 1, 2, 3,
+ * 4, 5, 6,
+ * 7, 8, 8,
+ *
+ * -1, -2, -3,
+ * -4, -5, -6,
+ * -7, -8, -9,
+ *
+ * after crossover:
+ * -1, 2, 3,
+ * 4, -5, -6,
+ * 7, -8, -9,
+ *
+ * Crossover at the diagonal to maintain the modularity.
+ *
  * Created by Zhenyue Qin (秦震岳) on 9/7/17.
  * The Australian National University.
  */
