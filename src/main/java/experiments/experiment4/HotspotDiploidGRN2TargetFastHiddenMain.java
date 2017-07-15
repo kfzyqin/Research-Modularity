@@ -78,8 +78,10 @@ public class HotspotDiploidGRN2TargetFastHiddenMain {
     private static final List<Integer> thresholds = Arrays.asList(0, 500);
 
     public static void main(String[] args) throws IOException {
+        int[][] targets = {target1, target2};
+
         // Fitness Function
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFastHidden(target1, target2, maxCycle,
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFastHidden(targets, maxCycle,
                 perturbations, perturbationRate, thresholds, perturbationCycleSize, hiddenTargetSize);
 
         // Initializer, the hotspot size should not be used

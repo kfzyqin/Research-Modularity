@@ -23,61 +23,11 @@ public class GRNFitnessFunctionMultipleTargets extends GRNFitnessFunction<Simple
         this.thresholdOfAddingTarget.add(0);
     }
 
-    public GRNFitnessFunctionMultipleTargets(final int[] target1, final int[] target2,
-                                             final int maxCycle, int perturbations, double perturbationRate) {
-        super(maxCycle, perturbations, perturbationRate);
-        this.targets = new int[2][target1.length];
-        this.targets[0] = target1;
-        this.targets[1] = target2;
-        filterTargets();
-        thresholdOfAddingTarget = new ArrayList<>(1);
-        this.thresholdOfAddingTarget.add(0);
-    }
-
-    public GRNFitnessFunctionMultipleTargets(final int[] target1, final int[] target2, final int[] target3,
-                                             final int maxCycle, int perturbations, double perturbationRate) {
-        super(maxCycle, perturbations, perturbationRate);
-        this.targets = new int[3][target1.length];
-        this.targets[0] = target1;
-        this.targets[1] = target2;
-        this.targets[2] = target3;
-        filterTargets();
-        thresholdOfAddingTarget = new ArrayList<>(1);
-        this.thresholdOfAddingTarget.add(0);
-    }
-
     public GRNFitnessFunctionMultipleTargets(final int[][] targets, final int maxCycle, int perturbations,
                                              double perturbationRate,
                                              final List<Integer> thresholdOfAddingTarget) {
         super(maxCycle, perturbations, perturbationRate);
         this.targets = targets;
-        this.thresholdOfAddingTarget = thresholdOfAddingTarget;
-        Collections.sort(this.thresholdOfAddingTarget);
-        filterThresholds();
-    }
-
-    public GRNFitnessFunctionMultipleTargets(final int[] target1, final int[] target2,
-                                             final int maxCycle, int perturbations, double perturbationRate,
-                                             final List<Integer> thresholdOfAddingTarget) {
-        super(maxCycle, perturbations, perturbationRate);
-        this.targets = new int[2][target1.length];
-        this.targets[0] = target1;
-        this.targets[1] = target2;
-        filterTargets();
-        this.thresholdOfAddingTarget = thresholdOfAddingTarget;
-        Collections.sort(this.thresholdOfAddingTarget);
-        filterThresholds();
-    }
-
-    public GRNFitnessFunctionMultipleTargets(final int[] target1, final int[] target2, final int[] target3,
-                                             final int maxCycle, int perturbations, double perturbationRate,
-                                             final List<Integer> thresholdOfAddingTarget) {
-        super(maxCycle, perturbations, perturbationRate);
-        this.targets = new int[3][target1.length];
-        this.targets[0] = target1;
-        this.targets[1] = target2;
-        this.targets[2] = target3;
-        filterTargets();
         this.thresholdOfAddingTarget = thresholdOfAddingTarget;
         Collections.sort(this.thresholdOfAddingTarget);
         filterThresholds();
@@ -136,7 +86,7 @@ public class GRNFitnessFunctionMultipleTargets extends GRNFitnessFunction<Simple
             int currentRound = 0;
             boolean isNotStable;
             do {
-                DataGene[] updatedState = this.updateState(currentAttractor, phenotype, target);
+                DataGene[] updatedState = this.updateState(currentAttractor, phenotype);
                 isNotStable = this.hasNotAttainedAttractor(currentAttractor, updatedState);
                 currentAttractor = updatedState;
                 currentRound += 1;

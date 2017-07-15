@@ -6,7 +6,10 @@ import ga.operations.selectionOperators.selectionSchemes.SelectionScheme;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 
 /**
- * Created by zhenyueqin on 19/6/17.
+ * This class implements tournament selectors for gender reproduction.
+ *
+ * Created by Zhenyue Qin (秦震岳) on 19/6/17.
+ * The Australian National University.
  */
 public class SimpleTournamentCoupleSelector<G extends Chromosome & Coupleable> extends CoupleSelector<G> {
 

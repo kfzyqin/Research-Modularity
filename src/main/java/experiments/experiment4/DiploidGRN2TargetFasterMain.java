@@ -68,8 +68,10 @@ public class DiploidGRN2TargetFasterMain {
     private static final List<Integer> thresholds = Arrays.asList(0, 500);
 
     public static void main(String[] args) throws IOException {
+        int[][] targets = {target1, target2};
+
         // Fitness Function
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFast(target1, target2, maxCycle,
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFast(targets, maxCycle,
                 perturbations, perturbationRate, thresholds, perturbationCycleSize);
 
         // Initializer

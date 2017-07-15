@@ -44,16 +44,17 @@ public abstract class GRNFitnessFunction<M extends Material> implements FitnessF
      * Gene i is exerted by gene j.
      * @param currentState the current state of the perturbed target
      * @param phenotype the GRN
-     * @param target the current target
      * @return the next state of the perturbed target after matrix multiplication with the GRN
      */
-    protected DataGene[] updateState(DataGene[] currentState, M phenotype, final int[] target) {
+    public DataGene[] updateState(DataGene[] currentState, M phenotype) {
         DataGene[] updatedState = new DataGene[currentState.length];
         updatedState = this.initializeDataGeneArray(updatedState);
         for (int i=0; i<currentState.length; i++) {
             double influence = 0;
             for (int j=0; j<currentState.length; j++) {
-                influence += (int) (phenotype.getGene(i + j*target.length)).getValue() * currentState[j].getValue();
+                int aNewInfluence = (int)
+                        (phenotype.getGene(i + j*updatedState.length)).getValue() * currentState[j].getValue();
+                influence += aNewInfluence;
             }
             updatedState[i].setValue(this.checkActivationOrRepression(influence));
         }
@@ -61,7 +62,7 @@ public abstract class GRNFitnessFunction<M extends Material> implements FitnessF
     }
 
     protected DataGene[] initializeDataGeneArray(DataGene[] dataGenes) {
-        DataGene[] emptyDataGeneArray = dataGenes.clone();
+        DataGene[] emptyDataGeneArray = new DataGene[dataGenes.length];
         for (int i=0; i<emptyDataGeneArray.length; i++) {
             emptyDataGeneArray[i] = new DataGene();
         }

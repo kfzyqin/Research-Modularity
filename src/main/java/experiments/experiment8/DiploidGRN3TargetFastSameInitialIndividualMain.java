@@ -83,7 +83,7 @@ public class DiploidGRN3TargetFastSameInitialIndividualMain {
                 new DiploidGRNInitializer(size, target1.length, edgeSize);
 
         // Population
-        Population<SimpleDiploid> population = initializer.initializeSameIndividuals();
+        Population<SimpleDiploid> population = initializer.initialize();
 
         // Mutator for chromosomes
         Mutator mutator = new GRNEdgeMutator(geneMutationRate);

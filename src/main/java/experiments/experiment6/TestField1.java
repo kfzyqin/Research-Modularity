@@ -64,17 +64,18 @@ public class TestField1 {
         GRNFitnessFunctionSingleTarget grnFit1 = new GRNFitnessFunctionSingleTarget(
                 target1, 100, 300, 0.15);
 
+        int[][] target_1_2 = {target1, target2};
         GRNFitnessFunctionMultipleTargets grnFit2 = new GRNFitnessFunctionMultipleTargets(
-                target1, target2, 100, 300, 0.15, tmpThresholds);
+                target_1_2, 100, 300, 0.15, tmpThresholds);
 
         GRNFitnessFunctionSingleTarget grnFit3 = new GRNFitnessFunctionSingleTarget(
                 target2, 100, 300, 0.15);
 
         GRNFitnessFunctionMultipleTargetsFast grnFit4 = new GRNFitnessFunctionMultipleTargetsFast(
-                target1, target2, 100, 300, 0.15, 100);
+                target_1_2, 100, 300, 0.15, 100);
 
         GRNFitnessFunctionMultipleTargets grnFit5 = new GRNFitnessFunctionMultipleTargets(
-                target3, target3, 100, 300, 0.15, tmpThresholds);
+                new int[][]{target3, target3}, 100, 300, 0.15, tmpThresholds);
 
         System.out.println("===Soto's method, we expect the following two are different: ===");
         System.out.println(grnFit2.evaluate(simpleMaterial1, 500));

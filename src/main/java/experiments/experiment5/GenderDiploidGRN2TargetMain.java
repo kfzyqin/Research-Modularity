@@ -68,8 +68,9 @@ public class GenderDiploidGRN2TargetMain {
     private static final List<Integer> thresholds = Arrays.asList(0, 500);
 
     public static void main(String[] args) throws IOException {
+        int[][] targets = {target1, target2};
 
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(target1, target2, maxCycle,
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(targets, maxCycle,
                 perturbations, perturbationRate, thresholds);
 
         GenderDiploidGRNInitializer initializer =

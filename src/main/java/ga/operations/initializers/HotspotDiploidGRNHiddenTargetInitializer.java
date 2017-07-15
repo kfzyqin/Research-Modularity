@@ -39,18 +39,6 @@ public class HotspotDiploidGRNHiddenTargetInitializer extends HotspotDiploidGRNI
     }
 
     @Override
-    public Population<SimpleHotspotDiploid> initializeSameIndividuals() {
-        Population<SimpleHotspotDiploid> population = new Population<>(size);
-        for (int i = 0; i < size; i++) {
-            Individual<SimpleHotspotDiploid> originalIndividual = GeneralMethods.individualCloneMachine(
-                    true, this.targetLength * targetLength, edgeSize, hotspotSize);
-            population.addCandidate(originalIndividual.copy());
-        }
-        population.nextGeneration();
-        return population;
-    }
-
-    @Override
     protected Individual<SimpleHotspotDiploid> generateIndividualWithMatrixHotspot() {
         GRNFactoryWithHiddenTargets grnFactory = new GRNFactoryWithHiddenTargets(targetLength, this.edgeSize);
         ExpressionMap<SimpleMaterial,SimpleMaterial> mapping = new DiploidEvolvedMap(grnSize);

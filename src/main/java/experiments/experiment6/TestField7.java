@@ -19,7 +19,7 @@ public class TestField7 {
         List<Integer> tmpThresholds = new ArrayList<>(Arrays.asList(values));
 
         GRNFitnessFunctionMultipleTargetsFastHidden grnFit2 = new GRNFitnessFunctionMultipleTargetsFastHidden(
-                target1, target2, 100, 300, 0.15,
+                new int[][]{target1, target2}, 100, 300, 0.15,
                 tmpThresholds, 100, 1);
 
         List<Integer> aGRNList = Arrays.asList(1, -1, -1, 1, -1, 1, 0, 1, -1);

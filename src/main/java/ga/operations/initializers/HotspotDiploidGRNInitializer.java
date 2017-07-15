@@ -57,17 +57,6 @@ public class HotspotDiploidGRNInitializer implements Initializer<SimpleHotspotDi
         return population;
     }
 
-    public Population<SimpleHotspotDiploid> initializeSameIndividuals() {
-        Population<SimpleHotspotDiploid> population = new Population<>(size);
-        for (int i = 0; i < size; i++) {
-            Individual<SimpleHotspotDiploid> originalIndividual = GeneralMethods.individualCloneMachine(
-                    true, this.targetLength * targetLength, edgeSize, hotspotSize);
-            population.addCandidate(originalIndividual.copy());
-        }
-        population.nextGeneration();
-        return population;
-    }
-
     protected Individual<SimpleHotspotDiploid> generateIndividual() {
         GRNFactoryNoHiddenTarget grnFactory = new GRNFactoryNoHiddenTarget(targetLength, this.edgeSize);
         ExpressionMap<SimpleMaterial,SimpleMaterial> mapping = new DiploidEvolvedMap(grnSize);

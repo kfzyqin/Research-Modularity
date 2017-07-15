@@ -54,17 +54,6 @@ public class DiploidGRNInitializer implements Initializer<SimpleDiploid> {
         return population;
     }
 
-    public Population<SimpleDiploid> initializeSameIndividuals() {
-        Population<SimpleDiploid> population = new Population<>(size);
-        Individual<SimpleDiploid> originalIndividual = GeneralMethods.individualCloneMachine(false,
-                this.targetLength * targetLength, edgeSize, 0);
-        for (int i = 0; i < size; i++) {
-            population.addCandidate(originalIndividual.copy());
-        }
-        population.nextGeneration();
-        return population;
-    }
-
     protected Individual<SimpleDiploid> generateIndividual() {
         GRNFactoryNoHiddenTarget grnFactory = new GRNFactoryNoHiddenTarget(targetLength, this.edgeSize);
         ExpressionMap<SimpleMaterial,SimpleMaterial> mapping = new DiploidEvolvedMap(grnSize);

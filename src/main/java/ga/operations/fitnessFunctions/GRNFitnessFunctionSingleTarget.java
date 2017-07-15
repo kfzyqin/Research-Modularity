@@ -46,7 +46,7 @@ public class GRNFitnessFunctionSingleTarget extends GRNFitnessFunction<SimpleMat
             int currentRound = 0;
             boolean isNotStable;
             do {
-                DataGene[] updatedState = this.updateState(currentAttractor, phenotype, this.target);
+                DataGene[] updatedState = this.updateState(currentAttractor, phenotype);
                 isNotStable = this.hasNotAttainedAttractor(currentAttractor, updatedState);
                 currentAttractor = updatedState;
                 currentRound += 1;
@@ -92,7 +92,7 @@ public class GRNFitnessFunctionSingleTarget extends GRNFitnessFunction<SimpleMat
             int currentRound = 0;
             boolean isNotStable;
             do {
-                DataGene[] updatedState = this.updateState(currentAttractor, phenotype, this.target);
+                DataGene[] updatedState = this.updateState(currentAttractor, phenotype);
                 isNotStable = this.hasNotAttainedAttractor(currentAttractor, updatedState);
                 currentAttractor = updatedState;
                 currentRound += 1;

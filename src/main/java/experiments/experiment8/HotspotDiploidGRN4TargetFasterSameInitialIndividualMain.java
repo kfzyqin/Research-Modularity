@@ -87,7 +87,7 @@ public class HotspotDiploidGRN4TargetFasterSameInitialIndividualMain {
                 new HotspotDiploidGRNInitializer(size, target1.length, edgeSize, hotspotSize);
 
         // Population
-        Population<SimpleHotspotDiploid> population = initializer.initializeSameIndividuals();
+        Population<SimpleHotspotDiploid> population = initializer.initialize();
 
         // Mutator for chromosomes
         Mutator mutator = new GRNEdgeMutator(geneMutationRate);

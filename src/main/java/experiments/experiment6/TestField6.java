@@ -24,10 +24,10 @@ public class TestField6 {
         Map<Double, GRN> fitnessMap = new TreeMap();
 
         GRNFitnessFunctionMultipleTargetsFast grnFit1 = new GRNFitnessFunctionMultipleTargetsFast(
-                target1, target2, 100, 300, 0.15, tmpThresholds, 100);
+                new int[][]{target1, target2}, 100, 300, 0.15, tmpThresholds, 100);
 
         GRNFitnessFunctionMultipleTargetsFastHidden grnFit2 = new GRNFitnessFunctionMultipleTargetsFastHidden(
-                target1, target2, 100, 300, 0.15, tmpThresholds, 100, 0);
+                new int[][] {target1, target2}, 100, 300, 0.15, tmpThresholds, 100, 0);
 
         Set<Integer> set = new HashSet<>();
         set.add(1);

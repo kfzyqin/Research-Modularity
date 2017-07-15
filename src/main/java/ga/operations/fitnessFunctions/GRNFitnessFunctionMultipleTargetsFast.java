@@ -24,42 +24,10 @@ public class GRNFitnessFunctionMultipleTargetsFast extends GRNFitnessFunctionMul
         generatePerturbationPool();
     }
 
-    public GRNFitnessFunctionMultipleTargetsFast(int[] target1, int[] target2, int maxCycle, int perturbations,
-                                                 double perturbationRate, final int perturbationCycleSize) {
-        super(target1, target2, maxCycle, perturbations, perturbationRate);
-        this.perturbationCycleSize = perturbationCycleSize;
-        generatePerturbationPool();
-    }
-
-    public GRNFitnessFunctionMultipleTargetsFast(int[] target1, int[] target2, int[] target3, int maxCycle,
-                                                 int perturbations, double perturbationRate,
-                                                 final int perturbationCycleSize) {
-        super(target1, target2, target3, maxCycle, perturbations, perturbationRate);
-        this.perturbationCycleSize = perturbationCycleSize;
-        generatePerturbationPool();
-    }
-
     public GRNFitnessFunctionMultipleTargetsFast(int[][] targets, int maxCycle, int perturbations,
                                                  double perturbationRate, List<Integer> thresholdOfAddingTarget,
                                                  final int perturbationCycleSize) {
         super(targets, maxCycle, perturbations, perturbationRate, thresholdOfAddingTarget);
-        this.perturbationCycleSize = perturbationCycleSize;
-        generatePerturbationPool();
-    }
-
-    public GRNFitnessFunctionMultipleTargetsFast(int[] target1, int[] target2, int maxCycle, int perturbations,
-                                                 double perturbationRate, List<Integer> thresholdOfAddingTarget,
-                                                 final int perturbationCycleSize) {
-        super(target1, target2, maxCycle, perturbations, perturbationRate, thresholdOfAddingTarget);
-        this.perturbationCycleSize = perturbationCycleSize;
-        generatePerturbationPool();
-    }
-
-    public GRNFitnessFunctionMultipleTargetsFast(int[] target1, int[] target2, int[] target3, int maxCycle,
-                                                 int perturbations, double perturbationRate,
-                                                 List<Integer> thresholdOfAddingTarget,
-                                                 final int perturbationCycleSize) {
-        super(target1, target2, target3, maxCycle, perturbations, perturbationRate, thresholdOfAddingTarget);
         this.perturbationCycleSize = perturbationCycleSize;
         generatePerturbationPool();
     }
@@ -71,7 +39,7 @@ public class GRNFitnessFunctionMultipleTargetsFast extends GRNFitnessFunctionMul
         }
     }
 
-    protected double evaluateOneTarget(@NotNull final SimpleMaterial phenotype,
+    public double evaluateOneTarget(@NotNull final SimpleMaterial phenotype,
                                        @NotNull final int[] target,
                                        @NotNull final DataGene[][] perturbationTargets) {
         double fitnessValue = 0;
@@ -81,7 +49,7 @@ public class GRNFitnessFunctionMultipleTargetsFast extends GRNFitnessFunctionMul
             int currentRound = 0;
             boolean isNotStable;
             do {
-                DataGene[] updatedState = this.updateState(currentAttractor, phenotype, target);
+                DataGene[] updatedState = this.updateState(currentAttractor, phenotype);
                 isNotStable = this.hasNotAttainedAttractor(currentAttractor, updatedState);
                 currentAttractor = updatedState;
                 currentRound += 1;

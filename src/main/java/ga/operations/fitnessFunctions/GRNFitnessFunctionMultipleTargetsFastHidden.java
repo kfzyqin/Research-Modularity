@@ -27,33 +27,6 @@ public class GRNFitnessFunctionMultipleTargetsFastHidden extends GRNFitnessFunct
         generatePerturbationPool();
     }
 
-    public GRNFitnessFunctionMultipleTargetsFastHidden(int[] target1,
-                                                       int[] target2,
-                                                       int maxCycle,
-                                                       int perturbations,
-                                                       double perturbationRate,
-                                                       final int perturbationCycleSize,
-                                                       final int hiddenTargetSize) {
-        super(target1, target2, maxCycle, perturbations, perturbationRate);
-        this.perturbationCycleSize = perturbationCycleSize;
-        this.hiddenTargetSize = hiddenTargetSize;
-        generatePerturbationPool();
-    }
-
-    public GRNFitnessFunctionMultipleTargetsFastHidden(int[] target1,
-                                                       int[] target2,
-                                                       int[] target3,
-                                                       int maxCycle,
-                                                       int perturbations,
-                                                       double perturbationRate,
-                                                       final int perturbationCycleSize,
-                                                       final int hiddenTargetSize) {
-        super(target1, target2, target3, maxCycle, perturbations, perturbationRate);
-        this.perturbationCycleSize = perturbationCycleSize;
-        this.hiddenTargetSize = hiddenTargetSize;
-        generatePerturbationPool();
-    }
-
     public GRNFitnessFunctionMultipleTargetsFastHidden(int[][] targets,
                                                        int maxCycle,
                                                        int perturbations,
@@ -62,35 +35,6 @@ public class GRNFitnessFunctionMultipleTargetsFastHidden extends GRNFitnessFunct
                                                        final int perturbationCycleSize,
                                                        final int hiddenTargetSize) {
         super(targets, maxCycle, perturbations, perturbationRate, thresholdOfAddingTarget);
-        this.perturbationCycleSize = perturbationCycleSize;
-        this.hiddenTargetSize = hiddenTargetSize;
-        generatePerturbationPool();
-    }
-
-    public GRNFitnessFunctionMultipleTargetsFastHidden(int[] target1,
-                                                       int[] target2,
-                                                       int maxCycle,
-                                                       int perturbations,
-                                                       double perturbationRate,
-                                                       List<Integer> thresholdOfAddingTarget,
-                                                       final int perturbationCycleSize,
-                                                       final int hiddenTargetSize) {
-        super(target1, target2, maxCycle, perturbations, perturbationRate, thresholdOfAddingTarget);
-        this.perturbationCycleSize = perturbationCycleSize;
-        this.hiddenTargetSize = hiddenTargetSize;
-        generatePerturbationPool();
-    }
-
-    public GRNFitnessFunctionMultipleTargetsFastHidden(int[] target1,
-                                                       int[] target2,
-                                                       int[] target3,
-                                                       int maxCycle,
-                                                       int perturbations,
-                                                       double perturbationRate,
-                                                       List<Integer> thresholdOfAddingTarget,
-                                                       final int perturbationCycleSize,
-                                                       final int hiddenTargetSize) {
-        super(target1, target2, target3, maxCycle, perturbations, perturbationRate, thresholdOfAddingTarget);
         this.perturbationCycleSize = perturbationCycleSize;
         this.hiddenTargetSize = hiddenTargetSize;
         generatePerturbationPool();
@@ -144,7 +88,7 @@ public class GRNFitnessFunctionMultipleTargetsFastHidden extends GRNFitnessFunct
             int currentRound = 0;
             boolean isNotStable;
             do {
-                DataGene[] updatedState = this.updateState(currentAttractor, phenotype, target);
+                DataGene[] updatedState = this.updateState(currentAttractor, phenotype);
                 isNotStable = this.hasNotAttainedAttractor(currentAttractor, updatedState);
                 currentAttractor = updatedState;
                 currentRound += 1;
@@ -184,7 +128,7 @@ public class GRNFitnessFunctionMultipleTargetsFastHidden extends GRNFitnessFunct
         return evaluate(phenotype, 0);
     }
 
-    private int getHammingDistanceWithHiddenTargets(DataGene[] attractor, int[] target, int hiddenTargetSize) {
+    public int getHammingDistanceWithHiddenTargets(DataGene[] attractor, int[] target, int hiddenTargetSize) {
         int count = 0;
         for (int i=0; i<attractor.length - hiddenTargetSize; i++) {
             if (attractor[i].getValue() == target[i]) {
