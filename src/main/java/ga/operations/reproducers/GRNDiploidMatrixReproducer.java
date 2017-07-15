@@ -11,17 +11,17 @@ import java.util.List;
  * Created by Zhenyue Qin (秦震岳) on 4/7/17.
  * The Australian National University.
  */
-public class SimpleDiploidMatrixReproducer extends DiploidMatrixReproducer<SimpleDiploid> {
+public class GRNDiploidMatrixReproducer extends DiploidMatrixReproducer<SimpleDiploid> {
 
-    public SimpleDiploidMatrixReproducer(int matrixSideSize) {
+    public GRNDiploidMatrixReproducer(int matrixSideSize) {
         super(matrixSideSize);
     }
 
-    public SimpleDiploidMatrixReproducer(double matchProbability, int matrixSideSize) {
+    public GRNDiploidMatrixReproducer(double matchProbability, int matrixSideSize) {
         super(matchProbability, matrixSideSize);
     }
 
-    public SimpleDiploidMatrixReproducer(double matchProbability, boolean toDoCrossover, int matrixSideSize) {
+    public GRNDiploidMatrixReproducer(double matchProbability, boolean toDoCrossover, int matrixSideSize) {
         super(matchProbability, toDoCrossover, matrixSideSize);
     }
 

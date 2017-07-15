@@ -30,16 +30,16 @@ import java.util.List;
  * Created by Zhenyue Qin (秦震岳) on 9/7/17.
  * The Australian National University.
  */
-public class SimpleHotspotDiploidEvolvedSPXMatrixReproducer extends HotspotDiploidMatrixReproducer<SimpleHotspotDiploid> {
-    public SimpleHotspotDiploidEvolvedSPXMatrixReproducer(int matrixSideSize) {
+public class GRNHotspotDiploidEvolvedSPXMatrixReproducer extends HotspotDiploidMatrixReproducer<SimpleHotspotDiploid> {
+    public GRNHotspotDiploidEvolvedSPXMatrixReproducer(int matrixSideSize) {
         super(matrixSideSize);
     }
 
-    public SimpleHotspotDiploidEvolvedSPXMatrixReproducer(double matchProbability, int matrixSideSize) {
+    public GRNHotspotDiploidEvolvedSPXMatrixReproducer(double matchProbability, int matrixSideSize) {
         super(matchProbability, matrixSideSize);
     }
 
-    public SimpleHotspotDiploidEvolvedSPXMatrixReproducer(double matchProbability, boolean toDoCrossover, int matrixSideSize) {
+    public GRNHotspotDiploidEvolvedSPXMatrixReproducer(double matchProbability, boolean toDoCrossover, int matrixSideSize) {
         super(matchProbability, toDoCrossover, matrixSideSize);
     }
 

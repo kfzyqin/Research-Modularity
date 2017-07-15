@@ -21,7 +21,7 @@ import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
 import ga.operations.priorOperators.PriorOperator;
 import ga.operations.priorOperators.SimpleElitismOperator;
 import ga.operations.reproducers.Reproducer;
-import ga.operations.reproducers.SimpleHotspotDiploidEvolvedSPXMatrixReproducer;
+import ga.operations.reproducers.GRNHotspotDiploidEvolvedSPXMatrixReproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
@@ -62,6 +62,7 @@ public class HotspotDiploidGRNFastMatrixSPXMain {
     private static final double hotspotMutationRate = 0.005;
 
     /* Parameters of the GA */
+    private static final int hotspotSize = 9;
     private static final double perturbationRate = 0.15;
     private static final int numElites = 10;
     private static final int populationSize = 100;
@@ -93,7 +94,7 @@ public class HotspotDiploidGRNFastMatrixSPXMain {
         /* It is not necessary to write an initializer, but doing so is convenient to
         repeat the experiment using different parameter */
         HotspotDiploidGRNInitializer initializer =
-                new HotspotDiploidGRNInitializer(populationSize, target1.length, edgeSize, target1.length);
+                new HotspotDiploidGRNInitializer(populationSize, target1.length, edgeSize, hotspotSize);
 
         /* Population */
         Population<SimpleHotspotDiploid> population = initializer.initializeWithMatrixHotspot();
@@ -108,10 +109,12 @@ public class HotspotDiploidGRNFastMatrixSPXMain {
         PriorOperator<SimpleHotspotDiploid> priorOperator = new SimpleElitismOperator<>(numElites);
 
         /* PostOperator is required to fill up the vacancy */
-        PostOperator<SimpleHotspotDiploid> fillingOperator = new SimpleFillingOperatorForNormalizable<>(new SimpleTournamentScheme(tournamentSize));
+        PostOperator<SimpleHotspotDiploid> fillingOperator = new SimpleFillingOperatorForNormalizable<>(
+                new SimpleTournamentScheme(tournamentSize));
 
         /* Reproducer for reproduction */
-        Reproducer<SimpleHotspotDiploid> reproducer = new SimpleHotspotDiploidEvolvedSPXMatrixReproducer(0.5, target1.length);
+        Reproducer<SimpleHotspotDiploid> reproducer = new
+                GRNHotspotDiploidEvolvedSPXMatrixReproducer(0.5, target1.length);
 
         /* Statistics for keeping track the performance in generations */
         DetailedStatistics<SimpleHotspotDiploid> statistics = new DetailedStatistics<>();

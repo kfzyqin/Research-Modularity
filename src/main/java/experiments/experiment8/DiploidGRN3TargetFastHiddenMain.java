@@ -10,10 +10,8 @@ import ga.frame.states.State;
 import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
 import ga.operations.fitnessFunctions.FitnessFunction;
-import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFast;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFastHidden;
 import ga.operations.initializers.DiploidGRNHiddenTargetInitializer;
-import ga.operations.initializers.DiploidGRNInitializer;
 import ga.operations.mutators.GRNEdgeMutator;
 import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
@@ -21,7 +19,7 @@ import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
 import ga.operations.priorOperators.PriorOperator;
 import ga.operations.priorOperators.SimpleElitismOperator;
 import ga.operations.reproducers.Reproducer;
-import ga.operations.reproducers.SimpleDiploidMatrixReproducer;
+import ga.operations.reproducers.GRNDiploidMatrixReproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
@@ -94,7 +92,7 @@ public class DiploidGRN3TargetFastHiddenMain {
 
         PostOperator<SimpleDiploid> fillingOperator = new SimpleFillingOperatorForNormalizable<>(new SimpleTournamentScheme(tournamentSize));
 
-        Reproducer<SimpleDiploid> reproducer = new SimpleDiploidMatrixReproducer(target1.length);
+        Reproducer<SimpleDiploid> reproducer = new GRNDiploidMatrixReproducer(target1.length);
 
         DetailedStatistics<SimpleDiploid> statistics = new DetailedStatistics<>();
 

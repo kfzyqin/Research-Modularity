@@ -3,21 +3,15 @@ package experiments.experiment9;
 import ga.collections.DetailedStatistics;
 import ga.collections.Population;
 import ga.components.chromosomes.SimpleDiploid;
-import ga.components.chromosomes.SimpleHotspotDiploid;
 import ga.frame.frames.Frame;
 import ga.frame.frames.SimpleDiploidMultipleTargetFrame;
-import ga.frame.frames.SimpleHotspotDiploidMultipleTargetFrame;
 import ga.frame.states.SimpleDiploidMultipleTargetState;
-import ga.frame.states.SimpleHotspotDiploidMultipleTargetState;
 import ga.frame.states.State;
 import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
 import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFast;
-import ga.operations.hotspotMutators.HotspotMutator;
-import ga.operations.hotspotMutators.RandomHotspotMutator;
 import ga.operations.initializers.DiploidGRNInitializer;
-import ga.operations.initializers.HotspotDiploidGRNInitializer;
 import ga.operations.mutators.GRNEdgeMutator;
 import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
@@ -109,7 +103,7 @@ public class DiploidGRN3Target10FastMatrixSPXMain {
 
         PostOperator<SimpleDiploid> fillingOperator = new SimpleFillingOperatorForNormalizable<>(new SimpleTournamentScheme(tournamentSize));
 
-        Reproducer<SimpleDiploid> reproducer = new SimpleDiploidMatrixReproducer(0.5, target1.length);
+        Reproducer<SimpleDiploid> reproducer = new GRNDiploidMatrixReproducer(0.5, target1.length);
 
         DetailedStatistics<SimpleDiploid> statistics = new DetailedStatistics<>();
 

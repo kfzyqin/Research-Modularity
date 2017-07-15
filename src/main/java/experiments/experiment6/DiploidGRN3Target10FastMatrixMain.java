@@ -18,8 +18,8 @@ import ga.operations.postOperators.PostOperator;
 import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
 import ga.operations.priorOperators.PriorOperator;
 import ga.operations.priorOperators.SimpleElitismOperator;
+import ga.operations.reproducers.GRNDiploidMatrixReproducer;
 import ga.operations.reproducers.Reproducer;
-import ga.operations.reproducers.SimpleDiploidMatrixReproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
@@ -102,7 +102,7 @@ public class DiploidGRN3Target10FastMatrixMain {
 
         PostOperator<SimpleDiploid> fillingOperator = new SimpleFillingOperatorForNormalizable<>(new SimpleTournamentScheme(tournamentSize));
 
-        Reproducer<SimpleDiploid> reproducer = new SimpleDiploidMatrixReproducer(0.5, target1.length);
+        Reproducer<SimpleDiploid> reproducer = new GRNDiploidMatrixReproducer(0.5, target1.length);
 
         DetailedStatistics<SimpleDiploid> statistics = new DetailedStatistics<>();
 

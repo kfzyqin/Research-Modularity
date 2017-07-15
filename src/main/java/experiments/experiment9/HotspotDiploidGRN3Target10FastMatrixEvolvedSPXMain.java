@@ -21,8 +21,7 @@ import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
 import ga.operations.priorOperators.PriorOperator;
 import ga.operations.priorOperators.SimpleElitismOperator;
 import ga.operations.reproducers.Reproducer;
-import ga.operations.reproducers.SimpleHotspotDiploidEvolvedSPXMatrixReproducer;
-import ga.operations.reproducers.SimpleHotspotDiploidFixedSPXMatrixReproducer;
+import ga.operations.reproducers.GRNHotspotDiploidEvolvedSPXMatrixReproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
@@ -108,7 +107,7 @@ public class HotspotDiploidGRN3Target10FastMatrixEvolvedSPXMain {
 
         PostOperator<SimpleHotspotDiploid> fillingOperator = new SimpleFillingOperatorForNormalizable<>(new SimpleTournamentScheme(tournamentSize));
 
-        Reproducer<SimpleHotspotDiploid> reproducer = new SimpleHotspotDiploidEvolvedSPXMatrixReproducer(0.5, target1.length);
+        Reproducer<SimpleHotspotDiploid> reproducer = new GRNHotspotDiploidEvolvedSPXMatrixReproducer(0.5, target1.length);
 
         DetailedStatistics<SimpleHotspotDiploid> statistics = new DetailedStatistics<>();
 
