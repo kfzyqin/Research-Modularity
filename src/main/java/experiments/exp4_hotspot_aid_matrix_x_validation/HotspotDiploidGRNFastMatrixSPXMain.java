@@ -50,20 +50,20 @@ public class HotspotDiploidGRNFastMatrixSPXMain {
 
     /* Parameters of the GRN */
     private static final int maxCycle = 20;
-    private static final int edgeSize = 20;
+    private static final int edgeSize = 10;
     private static final int perturbations = 300;
-    private static final double geneMutationRate = 0.002;
+    private static final double geneMutationRate = 0.0;
     private static final int perturbationCycleSize = 100;
     private static final double dominanceMutationRate = 0.001;
     private static final double hotspotMutationRate = 0.0005;
 
     /* Parameters of the GA */
-    private static final int hotspotSize = 9;
+    private static final int hotspotSize = 14;
     private static final double perturbationRate = 0.15;
-    private static final int numElites = 10;
+    private static final int numElites = 20;
     private static final int populationSize = 100;
     private static final int tournamentSize = 5;
-    private static final double reproductionRate = 0.9;
+    private static final double reproductionRate = 0.8;
     private static final int maxGen = 1050;
     private static final List<Integer> thresholds = Arrays.asList(0, 300);
 

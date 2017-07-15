@@ -82,6 +82,6 @@ public class DiploidEvolvedMap implements ExpressionMap<SimpleMaterial, SimpleMa
 //        return "Evolved Diploid Dominance Map: " + this.dominanceMap;
 //    }
     public String toString() {
-        return "Just use the first parent DNA type";
+        return "";
     }
 }

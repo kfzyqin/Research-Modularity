@@ -30,13 +30,13 @@ def get_generation_thresholds(root_directory_path, fitness_threshold, start_gene
     return od
 
 a_root_directory_path_1 = "/students/u5505995/Software-Engineering/Chin-GA-Project/generated-outputs/" \
-                          "diploid-grn-3-target-15-matrix-random-spx/"
+                          "diploid-grn-3-target-10-matrix-random-spx/"
 
 a_root_directory_path_2 = "/students/u5505995/Software-Engineering/Chin-GA-Project/generated-outputs/" \
-                          "hotspot-diploid-grn-3-target-15-matrix-evolved-spx/"
+                          "hotspot-diploid-grn-3-target-10-matrix-evolved-spx/"
 
-print "data one size: ", get_generation_thresholds(a_root_directory_path_1, 0.8, 2000).__len__()
-print "data two size: ", get_generation_thresholds(a_root_directory_path_2, 0.8, 2000).__len__()
+print "data one size: ", get_generation_thresholds(a_root_directory_path_1, 0.8, 300).__len__()
+print "data two size: ", get_generation_thresholds(a_root_directory_path_2, 0.8, 300).__len__()
 
 a = get_generation_thresholds(a_root_directory_path_1, 0.8, 300).values()
 b = get_generation_thresholds(a_root_directory_path_2, 0.8, 300).values()
