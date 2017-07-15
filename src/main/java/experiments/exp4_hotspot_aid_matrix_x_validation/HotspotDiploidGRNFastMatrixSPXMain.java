@@ -61,7 +61,7 @@ public class HotspotDiploidGRNFastMatrixSPXMain {
     private static final int hotspotSize = 3;
     private static final double hotspotMutationRate = 0.01;
     private static final int numElites = 20;
-    private static final int populationSize = 100;
+    private static final int populationSize = 50;
     private static final int tournamentSize = 5;
     private static final double reproductionRate = 0.8;
     private static final int maxGen = 1050;
