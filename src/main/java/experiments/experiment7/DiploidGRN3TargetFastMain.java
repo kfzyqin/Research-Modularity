@@ -5,13 +5,12 @@ import ga.collections.Population;
 import ga.components.chromosomes.SimpleDiploid;
 import ga.frame.frames.Frame;
 import ga.frame.frames.SimpleDiploidMultipleTargetFrame;
-import ga.frame.states.SimpleDiploidMultipleTargetState;
+import ga.frame.states.SimpleDiploidState;
 import ga.frame.states.State;
 import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
 import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFast;
-import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFastHidden;
 import ga.operations.initializers.DiploidGRNInitializer;
 import ga.operations.mutators.GRNEdgeMutator;
 import ga.operations.mutators.Mutator;
@@ -100,7 +99,7 @@ public class DiploidGRN3TargetFastMain {
 
         ExpressionMapMutator expressionMapMutator = new DiploidDominanceMapMutator(dominanceMutationRate);
 
-        State<SimpleDiploid> state = new SimpleDiploidMultipleTargetState<>(population, fitnessFunction, mutator, reproducer,
+        State<SimpleDiploid> state = new SimpleDiploidState<>(population, fitnessFunction, mutator, reproducer,
                 selector, 2, reproductionRate, expressionMapMutator);
 
         state.record(statistics);

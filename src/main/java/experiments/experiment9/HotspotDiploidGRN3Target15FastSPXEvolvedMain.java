@@ -5,7 +5,7 @@ import ga.collections.Population;
 import ga.components.chromosomes.SimpleHotspotDiploid;
 import ga.frame.frames.Frame;
 import ga.frame.frames.SimpleHotspotDiploidMultipleTargetFrame;
-import ga.frame.states.SimpleHotspotDiploidMultipleTargetState;
+import ga.frame.states.SimpleHotspotDiploidState;
 import ga.frame.states.State;
 import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
@@ -121,7 +121,7 @@ public class HotspotDiploidGRN3Target15FastSPXEvolvedMain {
 
         HotspotMutator hotspotMutator = new RandomHotspotMutator(hotspotMutationRate);
 
-        State<SimpleHotspotDiploid> state = new SimpleHotspotDiploidMultipleTargetState<>(population, fitnessFunction, mutator, reproducer,
+        State<SimpleHotspotDiploid> state = new SimpleHotspotDiploidState<>(population, fitnessFunction, mutator, reproducer,
                 selector, 2, reproductionRate, expressionMapMutator, hotspotMutator);
 
         state.record(statistics);

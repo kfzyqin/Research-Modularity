@@ -4,9 +4,8 @@ import com.sun.istack.internal.NotNull;
 import ga.collections.Statistics;
 import ga.components.chromosomes.Chromosome;
 import ga.components.chromosomes.CoupleableWithHotspot;
-import ga.frame.states.DiploidMultipleTargetState;
-import ga.frame.states.GenderHotspotMultipleTargetState;
-import ga.frame.states.SimpleDiploidMultipleTargetState;
+import ga.frame.states.DiploidState;
+import ga.frame.states.HotspotState;
 import ga.frame.states.State;
 import ga.operations.dynamicHandlers.DynamicHandler;
 import ga.operations.postOperators.PostOperator;
@@ -56,12 +55,12 @@ public class SimpleGenderHotspotMultipleTargetFrame<C extends Chromosome & Coupl
             state.preOperate(priorOperator);
         state.reproduce();
         state.mutate();
-        ((DiploidMultipleTargetState<C>) state).mutateExpressionMap();
-        ((GenderHotspotMultipleTargetState) state).mutateHotspot();
+        ((DiploidState<C>) state).mutateExpressionMap();
+        ((HotspotState) state).mutateHotspot();
         state.postOperate(postOperator);
         state.nextGeneration();
         statistics.nextGeneration();
-        ((DiploidMultipleTargetState<C>) state).evaluateWithMultipleTargets(true);
+        state.evaluateWithMultipleTargets(true);
         state.record(statistics);
     }
 }

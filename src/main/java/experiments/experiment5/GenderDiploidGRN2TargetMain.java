@@ -5,7 +5,7 @@ import ga.collections.Population;
 import ga.components.chromosomes.GenderDiploid;
 import ga.frame.frames.Frame;
 import ga.frame.frames.SimpleDiploidMultipleTargetFrame;
-import ga.frame.states.SimpleDiploidMultipleTargetState;
+import ga.frame.states.SimpleDiploidState;
 import ga.frame.states.State;
 import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
@@ -92,7 +92,7 @@ public class GenderDiploidGRN2TargetMain {
 
         ExpressionMapMutator expressionMapMutator = new DiploidDominanceMapMutator(dominanceMutationRate);
 
-        State<GenderDiploid> state = new SimpleDiploidMultipleTargetState<>(population, fitnessFunction, mutator, reproducer,
+        State<GenderDiploid> state = new SimpleDiploidState<>(population, fitnessFunction, mutator, reproducer,
                 selector, 2, reproductionRate, expressionMapMutator);
 
         state.record(statistics);

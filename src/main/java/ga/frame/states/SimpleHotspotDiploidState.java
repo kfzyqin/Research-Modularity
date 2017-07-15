@@ -1,8 +1,10 @@
 package ga.frame.states;
 
-import com.sun.istack.internal.NotNull;
+import ga.collections.Individual;
 import ga.collections.Population;
+import ga.collections.PopulationMode;
 import ga.components.chromosomes.Chromosome;
+import ga.components.chromosomes.SimpleDiploid;
 import ga.components.chromosomes.WithHotspot;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
 import ga.operations.fitnessFunctions.FitnessFunction;
@@ -11,11 +13,15 @@ import ga.operations.mutators.Mutator;
 import ga.operations.reproducers.Reproducer;
 import ga.operations.selectionOperators.selectors.Selector;
 
+import java.util.List;
+
 /**
  * Created by zhenyueqin on 21/6/17.
  */
-public abstract class HotspotDiploidMultipleTargetState<C extends Chromosome & WithHotspot> extends DiploidMultipleTargetState<C> {
-    protected HotspotMutator hotspotMutator;
+public class SimpleHotspotDiploidState<C extends Chromosome & WithHotspot> extends SimpleDiploidState<C>
+        implements DiploidState<C>, HotspotState<C> {
+    protected double reproductionRate;
+    private HotspotMutator hotspotMutator;
 
     /**
      * Constructs an initial state for the GA
@@ -29,18 +35,27 @@ public abstract class HotspotDiploidMultipleTargetState<C extends Chromosome & W
      * @param expressionMapMutator expression map mutator
      * @param hotspotMutator       hotspot mutator
      */
-    public HotspotDiploidMultipleTargetState(
-            @NotNull Population<C> population,
-            @NotNull FitnessFunction fitnessFunction,
-            @NotNull Mutator mutator,
-            @NotNull Reproducer<C> reproducer,
-            @NotNull Selector<C> selector,
+    public SimpleHotspotDiploidState(
+            Population<C> population,
+            FitnessFunction fitnessFunction,
+            Mutator mutator,
+            Reproducer<C> reproducer,
+            Selector<C> selector,
             int numOfMates,
+            final double reproductionRate,
             ExpressionMapMutator expressionMapMutator,
             HotspotMutator hotspotMutator) {
-        super(population, fitnessFunction, mutator, reproducer, selector, numOfMates, expressionMapMutator);
+        super(population, fitnessFunction, mutator, reproducer, selector, numOfMates, reproductionRate,
+                expressionMapMutator);
         this.hotspotMutator = hotspotMutator;
     }
 
-    public abstract void mutateHotspot();
+    @Override
+    public void mutateHotspot() {
+        if (hotspotMutator == null) return;
+        for (Individual<C> individual : population.getOffspringPoolView())
+            hotspotMutator.mutate(individual.getChromosome().getHotspot());
+    }
+
+
 }

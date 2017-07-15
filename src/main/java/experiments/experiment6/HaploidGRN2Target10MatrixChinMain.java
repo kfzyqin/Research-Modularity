@@ -5,7 +5,7 @@ import ga.collections.Population;
 import ga.components.chromosomes.SimpleHaploid;
 import ga.frame.frames.Frame;
 import ga.frame.frames.SimpleHaploidFrame;
-import ga.frame.states.SimpleState;
+import ga.frame.states.SimpleHaploidState;
 import ga.frame.states.State;
 import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFastHidden;
@@ -105,7 +105,7 @@ public class HaploidGRN2Target10MatrixChinMain {
         // Reproducer for reproduction
         Reproducer<SimpleHaploid> reproducer = new GRNHaploidMatrixReproducer(target1.length);
 
-        State<SimpleHaploid> state = new SimpleState<>(
+        State<SimpleHaploid> state = new SimpleHaploidState<>(
                 population, fitnessFunction, mutator, reproducer, selector, 2, reproductionRate);
         state.record(statistics);
         Frame<SimpleHaploid> frame = new SimpleHaploidFrame<>(state,postOperator,statistics, priorOperator);

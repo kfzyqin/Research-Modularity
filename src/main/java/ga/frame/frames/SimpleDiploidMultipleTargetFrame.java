@@ -3,7 +3,7 @@ package ga.frame.frames;
 import com.sun.istack.internal.NotNull;
 import ga.collections.Statistics;
 import ga.components.chromosomes.Chromosome;
-import ga.frame.states.DiploidMultipleTargetState;
+import ga.frame.states.DiploidState;
 import ga.frame.states.State;
 import ga.operations.dynamicHandlers.DynamicHandler;
 import ga.operations.postOperators.PostOperator;
@@ -55,11 +55,11 @@ public class SimpleDiploidMultipleTargetFrame <C extends Chromosome> extends Fra
         state.reproduce();
 
         state.mutate();
-        ((DiploidMultipleTargetState) state).mutateExpressionMap();
+        ((DiploidState) state).mutateExpressionMap();
         state.postOperate(postOperator);
         state.nextGeneration();
         statistics.nextGeneration();
-        ((DiploidMultipleTargetState) state).evaluateWithMultipleTargets(true);
+        state.evaluateWithMultipleTargets(true);
         state.record(statistics);
     }
 }

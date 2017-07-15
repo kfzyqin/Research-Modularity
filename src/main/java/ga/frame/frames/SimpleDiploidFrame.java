@@ -4,7 +4,7 @@ import com.sun.istack.internal.NotNull;
 import ga.collections.Statistics;
 import ga.components.chromosomes.Chromosome;
 import ga.frame.states.State;
-import ga.frame.states.DiploidMultipleTargetState;
+import ga.frame.states.DiploidState;
 import ga.operations.dynamicHandlers.DynamicHandler;
 import ga.operations.postOperators.PostOperator;
 import ga.operations.priorOperators.PriorOperator;
@@ -53,7 +53,7 @@ public class SimpleDiploidFrame<C extends Chromosome> extends Frame<C> {
             state.preOperate(priorOperator);
         state.reproduce();
         state.mutate();
-        ((DiploidMultipleTargetState) state).mutateExpressionMap();
+        ((DiploidState) state).mutateExpressionMap();
         state.postOperate(postOperator);
         state.nextGeneration();
         statistics.nextGeneration();

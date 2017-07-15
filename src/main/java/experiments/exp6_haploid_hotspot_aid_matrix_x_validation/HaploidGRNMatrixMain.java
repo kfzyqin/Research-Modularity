@@ -5,7 +5,7 @@ import ga.collections.Population;
 import ga.components.chromosomes.SimpleHaploid;
 import ga.frame.frames.Frame;
 import ga.frame.frames.SimpleHaploidFrame;
-import ga.frame.states.SimpleState;
+import ga.frame.states.SimpleHaploidState;
 import ga.frame.states.State;
 import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFast;
@@ -110,7 +110,7 @@ public class HaploidGRNMatrixMain {
         DetailedStatistics<SimpleHaploid> statistics = new DetailedStatistics<>();
 
         /* The state of an GA */
-        State<SimpleHaploid> state = new SimpleState<>(
+        State<SimpleHaploid> state = new SimpleHaploidState<>(
                 population, fitnessFunction, mutator, reproducer, selector, 2, reproductionRate);
         state.record(statistics); // record the initial state of an population
 

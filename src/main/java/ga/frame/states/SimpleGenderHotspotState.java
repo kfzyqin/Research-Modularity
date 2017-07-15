@@ -1,7 +1,8 @@
 package ga.frame.states;
 
-import com.sun.istack.internal.NotNull;
+import ga.collections.Individual;
 import ga.collections.Population;
+import ga.collections.PopulationMode;
 import ga.components.chromosomes.Chromosome;
 import ga.components.chromosomes.CoupleableWithHotspot;
 import ga.components.chromosomes.WithHotspot;
@@ -12,13 +13,15 @@ import ga.operations.mutators.Mutator;
 import ga.operations.reproducers.Reproducer;
 import ga.operations.selectionOperators.selectors.Selector;
 
+import java.util.List;
+
 /**
  * Created by zhenyueqin on 17/6/17.
- * Todo: not finished yet.
  */
-public abstract class GenderHotspotMultipleTargetState<G extends Chromosome & CoupleableWithHotspot> extends DiploidMultipleTargetState<G> {
+public class SimpleGenderHotspotState<G extends Chromosome & CoupleableWithHotspot> extends State<G>
+        implements DiploidState<G> {
 
-    protected HotspotMutator hotspotMutator;
+    protected double reproductionRate;
 
     /**
      * Constructs an initial state for the GA
@@ -29,20 +32,34 @@ public abstract class GenderHotspotMultipleTargetState<G extends Chromosome & Co
      * @param reproducer           reproducers operator
      * @param selector             parents selector
      * @param numOfMates           number of parents per reproduction
-     * @param expressionMapMutator expression map mutator
+     * @param expressionMapMutator
+     * @param hotspotMutator
      */
-    public GenderHotspotMultipleTargetState(
-            @NotNull Population<G> population,
-            @NotNull FitnessFunction fitnessFunction,
-            @NotNull Mutator mutator,
-            @NotNull Reproducer<G> reproducer,
-            @NotNull Selector<G> selector,
+    public SimpleGenderHotspotState(
+            Population<G> population,
+            FitnessFunction fitnessFunction,
+            Mutator mutator,
+            Reproducer<G> reproducer,
+            Selector<G> selector,
             final int numOfMates,
+            final double reproductionRate,
             ExpressionMapMutator expressionMapMutator,
             HotspotMutator hotspotMutator) {
-        super(population, fitnessFunction, mutator, reproducer, selector, numOfMates, expressionMapMutator);
-        this.hotspotMutator = hotspotMutator;
+        super(population, fitnessFunction, mutator, reproducer, selector, numOfMates);
     }
 
-    public abstract void mutateHotspot();
+    @Override
+    public void mutateExpressionMap() {
+
+    }
+
+    @Override
+    public void reproduce() {
+
+    }
+
+    @Override
+    public void mutate() {
+
+    }
 }

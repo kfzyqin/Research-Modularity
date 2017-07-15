@@ -2,15 +2,16 @@ package experiments.exp6_haploid_hotspot_aid_matrix_x_validation;
 
 import ga.collections.DetailedStatistics;
 import ga.collections.Population;
-import ga.components.chromosomes.SimpleHaploid;
 import ga.components.chromosomes.SimpleHotspotHaploid;
 import ga.frame.frames.Frame;
 import ga.frame.frames.SimpleHaploidFrame;
-import ga.frame.states.SimpleState;
+import ga.frame.states.SimpleHaploidState;
+import ga.frame.states.SimpleHotspotHaploidState;
 import ga.frame.states.State;
 import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFast;
-import ga.operations.initializers.HaploidGRNInitializer;
+import ga.operations.hotspotMutators.HotspotMutator;
+import ga.operations.hotspotMutators.RandomHotspotMutator;
 import ga.operations.initializers.HotspotHaploidGRNInitializer;
 import ga.operations.initializers.Initializer;
 import ga.operations.mutators.GRNEdgeMutator;
@@ -19,7 +20,6 @@ import ga.operations.postOperators.PostOperator;
 import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
 import ga.operations.priorOperators.PriorOperator;
 import ga.operations.priorOperators.SimpleElitismOperator;
-import ga.operations.reproducers.GRNHaploidMatrixReproducer;
 import ga.operations.reproducers.GRNHotspotHaploidMatrixReproducer;
 import ga.operations.reproducers.Reproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
@@ -60,6 +60,7 @@ public class HotspotHaploidGRNMatrixMain {
 
     /* Parameters of the GA */
     private static final double geneMutationRate = 0.005;
+    private static final double hotspotMutationRate = 0.01;
     private static final int numElites = 10;
     private static final int populationSize = 100;
     private static final int tournamentSize = 3;
@@ -113,9 +114,13 @@ public class HotspotHaploidGRNMatrixMain {
         /* Statistics for keeping track the performance in generations */
         DetailedStatistics<SimpleHotspotHaploid> statistics = new DetailedStatistics<>();
 
+        /* Hotspot mutator */
+        HotspotMutator hotspotMutator = new RandomHotspotMutator(hotspotMutationRate);
+
         /* The state of an GA */
-        State<SimpleHotspotHaploid> state = new SimpleState<>(
-                population, fitnessFunction, mutator, reproducer, selector, 2, reproductionRate);
+        State<SimpleHotspotHaploid> state = new SimpleHotspotHaploidState<>(
+                population, fitnessFunction, mutator, reproducer, selector, 2,
+                reproductionRate, hotspotMutator);
         state.record(statistics); // record the initial state of an population
 
         /* The frame of an GA to change states */

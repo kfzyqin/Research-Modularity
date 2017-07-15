@@ -5,7 +5,7 @@ import ga.collections.Population;
 import ga.components.chromosomes.GenderHotspotDiploid;
 import ga.frame.frames.SimpleGenderHotspotDiploidFrame;
 import ga.frame.frames.Frame;
-import ga.frame.states.SimpleGenderHotspotMultipleTargetState;
+import ga.frame.states.SimpleGenderHotspotState;
 import ga.frame.states.State;
 import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
@@ -94,7 +94,7 @@ public class GenderHotspotDiploidGRNMain {
 
         Reproducer<GenderHotspotDiploid> reproducer = new SimpleGenderHotspotReproducer(numberOfChildren);
 
-        State<GenderHotspotDiploid> state = new SimpleGenderHotspotMultipleTargetState<>(population, fitnessFunction, mutator,
+        State<GenderHotspotDiploid> state = new SimpleGenderHotspotState<>(population, fitnessFunction, mutator,
                 reproducer, selector, 2, reproductionRate, expressionMapMutator, hotspotMutator);
 
         state.record(statistics);

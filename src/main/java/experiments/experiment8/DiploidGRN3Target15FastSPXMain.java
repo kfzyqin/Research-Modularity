@@ -3,21 +3,15 @@ package experiments.experiment8;
 import ga.collections.DetailedStatistics;
 import ga.collections.Population;
 import ga.components.chromosomes.SimpleDiploid;
-import ga.components.chromosomes.SimpleHotspotDiploid;
 import ga.frame.frames.Frame;
 import ga.frame.frames.SimpleDiploidMultipleTargetFrame;
-import ga.frame.frames.SimpleHotspotDiploidMultipleTargetFrame;
-import ga.frame.states.SimpleDiploidMultipleTargetState;
-import ga.frame.states.SimpleHotspotDiploidMultipleTargetState;
+import ga.frame.states.SimpleDiploidState;
 import ga.frame.states.State;
 import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
 import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFast;
-import ga.operations.hotspotMutators.HotspotMutator;
-import ga.operations.hotspotMutators.RandomHotspotMutator;
 import ga.operations.initializers.DiploidGRNInitializer;
-import ga.operations.initializers.HotspotDiploidGRNInitializer;
 import ga.operations.mutators.GRNEdgeMutator;
 import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
@@ -26,7 +20,6 @@ import ga.operations.priorOperators.PriorOperator;
 import ga.operations.priorOperators.SimpleElitismOperator;
 import ga.operations.reproducers.Reproducer;
 import ga.operations.reproducers.SimpleDiploidReproducer;
-import ga.operations.reproducers.SimpleDummyHotspotDiploidReproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
@@ -125,7 +118,7 @@ public class DiploidGRN3Target15FastSPXMain {
 
         ExpressionMapMutator expressionMapMutator = new DiploidDominanceMapMutator(dominanceMutationRate);
 
-        State<SimpleDiploid> state = new SimpleDiploidMultipleTargetState<>(population, fitnessFunction, mutator, reproducer,
+        State<SimpleDiploid> state = new SimpleDiploidState<>(population, fitnessFunction, mutator, reproducer,
                 selector, 2, reproductionRate, expressionMapMutator);
 
         state.record(statistics);

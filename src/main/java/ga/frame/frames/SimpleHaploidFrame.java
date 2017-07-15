@@ -3,6 +3,7 @@ package ga.frame.frames;
 import com.sun.istack.internal.NotNull;
 import ga.collections.Statistics;
 import ga.components.chromosomes.Chromosome;
+import ga.frame.states.HotspotState;
 import ga.frame.states.State;
 import ga.operations.dynamicHandlers.DynamicHandler;
 import ga.operations.postOperators.PostOperator;
@@ -80,6 +81,7 @@ public class SimpleHaploidFrame<C extends Chromosome> extends Frame<C> {
         state.nextGeneration();
         statistics.nextGeneration();
         state.evaluateWithMultipleTargets(true);
+        ((HotspotState) state).mutateHotspot();
         state.record(statistics);
     }
 }
