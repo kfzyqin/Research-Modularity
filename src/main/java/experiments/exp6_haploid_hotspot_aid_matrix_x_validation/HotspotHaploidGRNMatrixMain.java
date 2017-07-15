@@ -89,7 +89,7 @@ public class HotspotHaploidGRNMatrixMain {
         /* It is not necessary to write an initializer, but doing so is convenient to
         repeat the experiment using different parameter */
         Initializer<SimpleHotspotHaploid> initializer =
-                new HotspotHaploidGRNInitializer(populationSize, target1.length, edgeSize, 9);
+                new HotspotHaploidGRNInitializer(populationSize, target1.length, edgeSize, 8);
 
         /* Population */
         Population<SimpleHotspotHaploid> population = initializer.initialize();

@@ -38,12 +38,12 @@ import java.util.List;
 public class DiploidGRNFastMatrixSPXMain {
     /* The targets that the GA evolve towards */
     private static final int[] target1 = {
-            1, -1, 1, -1, 1, -1, 1, 1,
-            -1, 1, -1, 1, -1, 1, -1, 1
+            1, -1, 1, -1, 1,
+            -1, 1, -1, 1, -1
     };
     private static final int[] target2 = {
-            1, -1, 1, -1, 1, -1, 1, 1,
-            1, -1, 1, -1, 1, -1, 1, -1
+            1, -1, 1, -1, 1,
+            1, -1, 1, -1, 1
     };
 
     /* Parameters of the GRN */
