@@ -30,11 +30,19 @@ public class SimpleHaploidMatrixFixedPointReproducer extends HaploidReproducer<S
         SimpleMaterial dna2 = child2.getMaterialsView().get(0);
 
         final int crossIndex = 5;
-        for (int currentCrossIndex=crossIndex*matrixSideSize; currentCrossIndex<matrixSideSize*matrixSideSize; currentCrossIndex+=matrixSideSize) {
+        for (int currentCrossIndex=0; currentCrossIndex<crossIndex; currentCrossIndex++) {
             int tmpCrossIndex = currentCrossIndex;
-            while (tmpCrossIndex < currentCrossIndex + matrixSideSize) {
+            while (tmpCrossIndex < crossIndex * matrixSideSize) {
                 crossoverTwoDNAsAtPosition(dna1, dna2, tmpCrossIndex);
-                tmpCrossIndex += 1;
+                tmpCrossIndex += matrixSideSize;
+            }
+        }
+
+        for (int currentCrossIndex=crossIndex; currentCrossIndex<matrixSideSize; currentCrossIndex++) {
+            int tmpCrossIndex = currentCrossIndex + crossIndex * matrixSideSize;
+            while (tmpCrossIndex < matrixSideSize * matrixSideSize) {
+                crossoverTwoDNAsAtPosition(dna1, dna2, tmpCrossIndex);
+                tmpCrossIndex += matrixSideSize;
             }
         }
 

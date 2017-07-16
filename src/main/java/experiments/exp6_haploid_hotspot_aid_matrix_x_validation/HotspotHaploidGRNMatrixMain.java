@@ -43,12 +43,12 @@ import java.util.List;
 public class HotspotHaploidGRNMatrixMain {
     /* The two targets that the GA evolve towards */
     private static final int[] target1 = {
-            1, -1, 1, -1, 1, -1, 1,
-            -1, 1, -1, 1, -1, 1, -1
+            1, -1, 1, -1, 1,
+            -1, 1, -1, 1, -1
     };
     private static final int[] target2 = {
-            1, -1, 1, -1, 1, -1, 1,
-            1, -1, 1, -1, 1, -1, 1
+            1, -1, 1, -1, 1,
+            1, -1, 1, -1, 1
     };
 
     /* Parameters of the GRN */
@@ -65,13 +65,13 @@ public class HotspotHaploidGRNMatrixMain {
     private static final int populationSize = 100;
     private static final int tournamentSize = 3;
     private static final double reproductionRate = 0.9;
-    private static final int maxGen = 1050;
-    private static final List<Integer> thresholds = Arrays.asList(0, 300); // when to switch targets
+    private static final int maxGen = 2000;
+    private static final List<Integer> thresholds = Arrays.asList(0, 500); // when to switch targets
 
     /* Settings for text outputs */
     private static final String summaryFileName = "Hotspot-Haploid-GRN-Matrix.txt";
     private static final String csvFileName = "Hotspot-Haploid-GRN-Matrix.csv";
-    private static final String outputDirectory = "hotspot-haploid-grn-matrix-2-target-10";
+    private static final String outputDirectory = "fixed-haploid-grn-matrix-2-target-10";
     private static final String mainFileName = "HotspotHaploidGRNMatrixMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();

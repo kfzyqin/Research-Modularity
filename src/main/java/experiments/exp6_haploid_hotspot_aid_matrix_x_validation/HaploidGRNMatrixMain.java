@@ -40,12 +40,12 @@ import java.util.List;
 public class HaploidGRNMatrixMain {
     /* The two targets that the GA evolve towards */
     private static final int[] target1 = {
-            1, -1, 1, -1, 1, -1, 1,
-            -1, 1, -1, 1, -1, 1, -1
+            1, -1, 1, -1, 1,
+            -1, 1, -1, 1, -1
     };
     private static final int[] target2 = {
-            1, -1, 1, -1, 1, -1, 1,
-            1, -1, 1, -1, 1, -1, 1
+            1, -1, 1, -1, 1,
+            1, -1, 1, -1, 1
     };
 
     /* Parameters of the GRN */
@@ -61,8 +61,8 @@ public class HaploidGRNMatrixMain {
     private static final int populationSize = 100;
     private static final int tournamentSize = 3;
     private static final double reproductionRate = 0.9;
-    private static final int maxGen = 1050;
-    private static final List<Integer> thresholds = Arrays.asList(0, 300); // when to switch targets
+    private static final int maxGen = 2000;
+    private static final List<Integer> thresholds = Arrays.asList(0, 500); // when to switch targets
 
     /* Settings for text outputs */
     private static final String summaryFileName = "Haploid-GRN-Matrix.txt";
