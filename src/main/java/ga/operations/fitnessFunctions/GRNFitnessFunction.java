@@ -6,6 +6,7 @@ import ga.components.materials.SimpleMaterial;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by zhenyueqin on 22/6/17.
@@ -77,9 +78,14 @@ public abstract class GRNFitnessFunction<M extends Material> implements FitnessF
         for (int i=0; i<setSize; i++) {
             for (int j = 0; j<target.length; j++) {
                 returnables[i][j] = new DataGene(target[j]);
-                if (Math.random() < probability) {
-                    returnables[i][j].flip();
-                }
+//                if (Math.random() < probability) {
+//                    returnables[i][j].flip();
+//                }
+            }
+            int[] perturbingPositions =
+                    ThreadLocalRandom.current().ints(0, target.length).distinct().limit(2).toArray();
+            for (int perturbingPosition : perturbingPositions) {
+                returnables[i][perturbingPosition].flip();
             }
         }
         return returnables;

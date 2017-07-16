@@ -6,6 +6,7 @@ import ga.components.genes.EdgeGene;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by zhenyueqin on 25/6/17.
@@ -32,7 +33,8 @@ public abstract class GRNFactory {
                 candidates.add(new DirectedEdge(i, j));
             }
         }
-        final int[] edgeIndices = new Random().ints(0, this.networkSize).distinct().limit(edgeSize).toArray();
+        final int[] edgeIndices =
+                ThreadLocalRandom.current().ints(0, this.networkSize).distinct().limit(edgeSize).toArray();
         List<DirectedEdge> edges = new ArrayList<>();
 
         for (int edgeIndex : edgeIndices) {
