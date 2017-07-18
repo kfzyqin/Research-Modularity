@@ -50,19 +50,19 @@ public class HaploidGRNMatrixMain {
 
     /* Parameters of the GRN */
     private static final int maxCycle = 20;
-    private static final int edgeSize = 20;
+    private static final int edgeSize = 15;
     private static final int perturbations = 300;
     private static final double perturbationRate = 0.15;
     private static final int perturbationCycleSize = 100;
 
     /* Parameters of the GA */
-    private static final double geneMutationRate = 0.05;
-    private static final int numElites = 10;
+    private static final double geneMutationRate = 0.005;
+    private static final int numElites = 1;
     private static final int populationSize = 100;
     private static final int tournamentSize = 3;
-    private static final double reproductionRate = 0.9;
-    private static final int maxGen = 2000;
-    private static final List<Integer> thresholds = Arrays.asList(0, 500); // when to switch targets
+    private static final double reproductionRate = 0.6;
+    private static final int maxGen = 1050;
+    private static final List<Integer> thresholds = Arrays.asList(0, 300); // when to switch targets
 
     /* Settings for text outputs */
     private static final String summaryFileName = "Haploid-GRN-Matrix.txt";
@@ -85,10 +85,10 @@ public class HaploidGRNMatrixMain {
 
         /* It is not necessary to write an initializer, but doing so is convenient to
         repeat the experiment using different parameter */
-        Initializer<SimpleHaploid> initializer = new HaploidGRNInitializer(populationSize, target1.length, edgeSize);
+        HaploidGRNInitializer initializer = new HaploidGRNInitializer(populationSize, target1.length, edgeSize);
 
         /* Population */
-        Population<SimpleHaploid> population = initializer.initialize();
+        Population<SimpleHaploid> population = initializer.initializeModularizedPopulation(5);
 
         /* Mutator for chromosomes */
         Mutator mutator = new GRNEdgeMutator(geneMutationRate);

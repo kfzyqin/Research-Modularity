@@ -154,30 +154,12 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
 
     }
 
-    public void generatePhenotypeFile(String fileName) throws IOException {
-        final File file = new File(this.directoryPath + fileName);
-        try {
-            file.createNewFile();
-        } catch (IOException e) {
-            System.err.println("Failed to save phenotype file.");
-        }
-
-        CSVWriter writer = new CSVWriter(new FileWriter(this.directoryPath + fileName), '\t');
-        String[] entries = "Phenotype".split("#");
-        writer.writeNext(entries);
-        for (int i=0; i<=generation; i++) {
-            entries = this.getChromosomePhenotype(i).split("#");
-            writer.writeNext(entries);
-        }
-        writer.close();
-    }
-
     @Override
     protected DefaultCategoryDataset createDataSet() {
         DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
         for (int i=0; i<=generation; i++) {
             dataSet.addValue(elites.get(i).getFitness(), "Best", Integer.toString(i));
-            dataSet.addValue(worsts.get(i).getFitness(), "Worst", Integer.toString(i));
+//            dataSet.addValue(worsts.get(i).getFitness(), "Worst", Integer.toString(i));
             dataSet.addValue(medians.get(i).getFitness(), "Median", Integer.toString(i));
             dataSet.addValue(means.get(i), "Mean", Integer.toString(i));
         }

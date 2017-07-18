@@ -102,9 +102,9 @@ def get_grn_modularity_values(root_directory_path):
 
 def draw_a_grn(grn, is_to_save=True, save_path="", file_name=""):
     # drawing
-    # pos = nx.circular_layout(grn)
+    pos = nx.spring_layout(grn)
     partition = community.community_louvain.best_partition(grn.to_undirected())
-    pos = draw_communities.community_layout(grn, partition)
+    # pos = draw_communities.community_layout(grn, partition)
     nx.draw(grn, pos, node_color=partition.values())
 
     if not is_to_save:
@@ -114,12 +114,13 @@ def draw_a_grn(grn, is_to_save=True, save_path="", file_name=""):
             raise Exception('Save path is not specified.')
         plt.savefig(save_path + os.sep + file_name)
         plt.close()
-        for key, value in np.ndenumerate(grn):
-            grn.node[key[0]]['pos'] = value
-        write_dot(grn, str(grn.__hash__()) + 'directed_graph.dot')
-        os.system('dot -T png ' + str(grn.__hash__()) + 'directed_graph.dot' + '>' +
-                  save_path + os.sep + 'directed_graph.png')
-        os.remove(str(grn.__hash__()) + 'directed_graph.dot')
+
+        # for key, value in np.ndenumerate(grn):
+        #     grn.node[key[0]]['pos'] = value
+        # write_dot(grn, str(grn.__hash__()) + 'directed_graph.dot')
+        # os.system('dot -T png ' + str(grn.__hash__()) + 'directed_graph.dot' + '>' +
+        #           save_path + os.sep + 'directed_graph.png')
+        # os.remove(str(grn.__hash__()) + 'directed_graph.dot')
 
 def plot_a_list(a_list):
     plt.plot(a_list)
@@ -148,34 +149,34 @@ def get_modularity_value_maxes(path_1):
 
 
 path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
-                          "-Hotspots/generated-outputs/data-2017-07-11/" \
-                          "haploid-grn-2-target-10-matrix-chin/"
+                          "-Hotspots/generated-outputs/data-2017-07-15/" \
+                          "larson-want-to-see-20-edges-in-324-nodes/haploid-grn-matrix-2-target-10"
 
 path_2 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
-                          "-Hotspots/generated-outputs/data-2017-07-11/" \
-                          "haploid-grn-2-target-10-matrix-larson-horizontal/"
+                          "-Hotspots/generated-outputs/data-2017-07-15/" \
+                          "larson-want-to-see-20-edges-in-324-nodes/hotspot-haploid-grn-matrix-2-target-10"
 
 # path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
 #                           "-Hotspots/generated-outputs/haploid-grn-2-target-10-matrix-larson-no-crossover/"
 
-# sub_directories = get_immediate_subdirectories(path_1)
+
+sub_directories = get_immediate_subdirectories(path_2)
+
+for a_directory in sub_directories:
+    phenotypes = get_grn_phenotypes(a_directory)
+    a_grn = generate_directed_grn(phenotypes[-1])
+
+    modularity_values = get_grn_modularity_values(a_directory)
+    save_a_list_graph(modularity_values, a_directory, 'modularity.png')
+
+    draw_a_grn(a_grn, is_to_save=True, save_path=a_directory, file_name='graph.png')
+
+# a = get_modularity_value_maxes(path_1)
+# b = get_modularity_value_maxes(path_2)
 #
-# for a_directory in sub_directories:
-#     # phenotypes = get_grn_phenotypes(a_directory)
-#     # a_grn = generate_directed_grn(phenotypes[-1])
+# print "mean a: ", sum(a) / a.__len__()
+# print "mean b: ", sum(b) / b.__len__()
 #
-#     modularity_values = get_grn_modularity_values(a_directory)
-#     # save_a_list_graph(modularity_values, a_directory, 'modularity.png')
-#
-#     # draw_a_grn(a_grn, is_to_save=True, save_path=a_directory, file_name='graph.png')
-
-a = get_modularity_value_maxes(path_1)
-b = get_modularity_value_maxes(path_2)
-
-print "mean a: ", sum(a) / a.__len__()
-print "mean b: ", sum(b) / b.__len__()
-
-print scipy.stats.wilcoxon(a, b)
-print scipy.stats.ttest_ind(a, b)
-
+# print scipy.stats.wilcoxon(a, b)
+# print scipy.stats.ttest_ind(a, b)
 
