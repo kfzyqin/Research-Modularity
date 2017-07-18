@@ -17,19 +17,19 @@ def get_fitness_values(root_directory_path):
     # return sorted(fitness_values)
     return fitness_values
 
-a_root_directory_path_1 = "/students/u5505995/Software-Engineering/Histories/" \
-                          "Chin-GA-Project-b62368e29cfda749ad747e2a1ebd4ef50dffaa4d/generated-outputs/" \
-                          "diploid-grn-3-target-10-matrix-random-spx/"
+a_root_directory_path_1 = "/students/u5505995/Software-Engineering/" \
+                          "Chin-GA-Project/generated-outputs/" \
+                          "haploid-grn-matrix-2-target-10/"
 
-a_root_directory_path_2 = "/students/u5505995/Software-Engineering/Histories/" \
-                          "Chin-GA-Project-b62368e29cfda749ad747e2a1ebd4ef50dffaa4d/generated-outputs/" \
-                          "hotspot-diploid-grn-3-target-10-matrix-evolved-spx/"
+a_root_directory_path_2 = "/students/u5505995/Software-Engineering/" \
+                          "Chin-GA-Project/generated-outputs/" \
+                          "fixed-haploid-grn-matrix-2-target-10/"
 
 print get_fitness_values(a_root_directory_path_1).__len__()
 print get_fitness_values(a_root_directory_path_2).__len__()
 
-a = get_fitness_values(a_root_directory_path_1)[:40]
-b = get_fitness_values(a_root_directory_path_2)[:40]
+a = get_fitness_values(a_root_directory_path_1)[:30]
+b = get_fitness_values(a_root_directory_path_2)[:30]
 
 print "mean a: ", sum(a) / a.__len__()
 print "mean b: ", sum(b) / b.__len__()
