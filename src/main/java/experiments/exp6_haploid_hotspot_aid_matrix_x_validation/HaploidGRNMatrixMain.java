@@ -56,13 +56,13 @@ public class HaploidGRNMatrixMain {
     private static final int perturbationCycleSize = 100;
 
     /* Parameters of the GA */
-    private static final double geneMutationRate = 0.001;
+    private static final double geneMutationRate = 0.005;
     private static final int numElites = 10;
     private static final int populationSize = 100;
     private static final int tournamentSize = 3;
     private static final double reproductionRate = 0.5;
-    private static final int maxGen = 1050;
-    private static final List<Integer> thresholds = Arrays.asList(0, 300); // when to switch targets
+    private static final int maxGen = 2000;
+    private static final List<Integer> thresholds = Arrays.asList(0, 500); // when to switch targets
 
     /* Settings for text outputs */
     private static final String summaryFileName = "Haploid-GRN-Matrix.txt";
