@@ -82,10 +82,18 @@ public abstract class GRNFitnessFunction<M extends Material> implements FitnessF
 //                    returnables[i][j].flip();
 //                }
             }
-            int[] perturbingPositions =
-                    ThreadLocalRandom.current().ints(0, target.length).distinct().limit(2).toArray();
-            for (int perturbingPosition : perturbingPositions) {
-                returnables[i][perturbingPosition].flip();
+            if (i % 2 == 0) {
+                int[] perturbingPositions =
+                        ThreadLocalRandom.current().ints(0, target.length).distinct().limit(2).toArray();
+                for (int perturbingPosition : perturbingPositions) {
+                    returnables[i][perturbingPosition].flip();
+                }
+            } else {
+                int[] perturbingPositions =
+                        ThreadLocalRandom.current().ints(0, target.length).distinct().limit(1).toArray();
+                for (int perturbingPosition : perturbingPositions) {
+                    returnables[i][perturbingPosition].flip();
+                }
             }
         }
         return returnables;

@@ -53,25 +53,25 @@ public class HotspotHaploidGRNMatrixMain {
 
     /* Parameters of the GRN */
     private static final int maxCycle = 20;
-    private static final int edgeSize = 15;
+    private static final int edgeSize = 16;
     private static final int perturbations = 300;
     private static final double perturbationRate = 0.15;
     private static final int perturbationCycleSize = 100;
 
     /* Parameters of the GA */
-    private static final double geneMutationRate = 0.005;
+    private static final double geneMutationRate = 0.0025;
     private static final double hotspotMutationRate = 0.05;
     private static final int numElites = 10;
     private static final int populationSize = 100;
     private static final int tournamentSize = 3;
-    private static final double reproductionRate = 0.5;
+    private static final double reproductionRate = 0.6;
     private static final int maxGen = 2000;
     private static final List<Integer> thresholds = Arrays.asList(0, 500); // when to switch targets
 
     /* Settings for text outputs */
     private static final String summaryFileName = "Hotspot-Haploid-GRN-Matrix.txt";
     private static final String csvFileName = "Hotspot-Haploid-GRN-Matrix.csv";
-    private static final String outputDirectory = "fixed-haploid-grn-matrix-2-target-10-2";
+    private static final String outputDirectory = "fixed-haploid-grn-matrix-2-target-10-4";
     private static final String mainFileName = "HotspotHaploidGRNMatrixMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
