@@ -18,12 +18,12 @@ def get_fitness_values(root_directory_path):
     return fitness_values
 
 a_root_directory_path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
-                          "-Hotspots/generated-outputs/data-2017-07-10/" \
-                          "diploid-grn-3-target-10-matrix-random-spx/"
+                          "-Hotspots/generated-outputs/data-2017-07-18/" \
+                          "modularized-larson-work-seem-work-now/fixed-haploid-grn-matrix-2-target-10-4/"
 
 a_root_directory_path_2 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
-                          "-Hotspots/generated-outputs/data-2017-07-10/" \
-                          "hotspot-diploid-grn-3-target-10-matrix-evolved-spx/"
+                          "-Hotspots/generated-outputs/data-2017-07-18/" \
+                          "modularized-larson-work-seem-work-now/haploid-grn-matrix-2-target-10-4/"
 
 print get_fitness_values(a_root_directory_path_1).__len__()
 print get_fitness_values(a_root_directory_path_2).__len__()

@@ -3,6 +3,8 @@ package ga.operations.initializers;
 import ga.collections.Individual;
 import ga.collections.Population;
 import ga.components.chromosomes.SimpleDiploid;
+import ga.components.chromosomes.SimpleHaploid;
+import ga.components.hotspots.MatrixHotspot;
 import ga.components.materials.GRN;
 import ga.components.materials.GRNFactoryNoHiddenTarget;
 import ga.components.materials.SimpleMaterial;
@@ -60,5 +62,22 @@ public class DiploidGRNInitializer implements Initializer<SimpleDiploid> {
         GRN dna1 = grnFactory.generateGeneRegulatoryNetwork();
         GRN dna2 = grnFactory.generateGeneRegulatoryNetwork();
         return new Individual<>(new SimpleDiploid(dna1, dna2, mapping));
+    }
+
+    public Population<SimpleDiploid> initializeModularizedPopulation(final int moduleIndex) {
+        Population<SimpleDiploid> population = new Population<>(size);
+        for (int i = 0; i < size; i++) {
+            population.addCandidate(generateModularizedIndividual(moduleIndex));
+        }
+        population.nextGeneration();
+        return population;
+    }
+
+    private Individual<SimpleDiploid> generateModularizedIndividual(final int moduleIndex) {
+        GRNFactoryNoHiddenTarget grnFactory = new GRNFactoryNoHiddenTarget(targetLength, this.edgeSize);
+        ExpressionMap<SimpleMaterial,SimpleMaterial> mapping = new DiploidEvolvedMap(grnSize);
+        GRN grn1 = grnFactory.generateModularizedGeneRegulatoryNetwork(moduleIndex);
+        GRN grn2 = grnFactory.generateModularizedGeneRegulatoryNetwork(moduleIndex);
+        return new Individual<>(new SimpleDiploid(grn1, grn2, mapping));
     }
 }

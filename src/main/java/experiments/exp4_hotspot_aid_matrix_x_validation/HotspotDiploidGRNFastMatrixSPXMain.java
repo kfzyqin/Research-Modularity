@@ -40,32 +40,33 @@ import java.util.List;
 public class HotspotDiploidGRNFastMatrixSPXMain {
     /* The three targets that the GA evolve towards */
     private static final int[] target1 = {
-            1, -1, 1, -1, 1, -1, 1, 1,
-            -1, 1, -1, 1, -1, 1, -1, 1
+            1, -1, 1, -1, 1,
+            -1, 1, -1, 1, -1
     };
     private static final int[] target2 = {
-            1, -1, 1, -1, 1, -1, 1, 1,
-            1, -1, 1, -1, 1, -1, 1, -1
+            1, -1, 1, -1, 1,
+            1, -1, 1, -1, 1
     };
 
     /* Parameters of the GRN */
     private static final int maxCycle = 20;
-    private static final int edgeSize = 20;
+    private static final int edgeSize = 10;
     private static final int perturbations = 300;
-    private static final double geneMutationRate = 0.025;
     private static final int perturbationCycleSize = 100;
     private static final double dominanceMutationRate = 0.005;
     private static final double perturbationRate = 0.15;
 
     /* Parameters of the GA */
-    private static final int hotspotSize = 13;
+    private static final double geneMutationRate = 0.00125;
+    private static final int hotspotSize = 8;
     private static final double hotspotMutationRate = 0.01;
     private static final int numElites = 5;
-    private static final int populationSize = 50;
+    private static final int populationSize = 100;
     private static final int tournamentSize = 5;
-    private static final double reproductionRate = 0.8;
-    private static final int maxGen = 1050;
-    private static final List<Integer> thresholds = Arrays.asList(0, 300);
+    private static final double reproductionRate = 0.6;
+    private static final int maxGen = 2000;
+    private static final List<Integer> thresholds = Arrays.asList(0, 500);
+    private static final int moduleIndex = 5;
 
     /* Settings for text outputs */
     private static final String summaryFileName = "Hotspot-Diploid-GRN-3-Target-10-Matrix-Evolved-SPX.txt";
@@ -93,7 +94,8 @@ public class HotspotDiploidGRNFastMatrixSPXMain {
                 new HotspotDiploidGRNInitializer(populationSize, target1.length, edgeSize, hotspotSize);
 
         /* Population */
-        Population<SimpleHotspotDiploid> population = initializer.initializeWithMatrixHotspot();
+        Population<SimpleHotspotDiploid> population =
+                initializer.initializeModularizedPopulationWithMatrixHotspot(moduleIndex);
 
         /* Mutator for chromosomes */
         Mutator mutator = new GRNEdgeMutator(geneMutationRate);

@@ -2,6 +2,7 @@ package ga.operations.initializers;
 
 import ga.collections.Individual;
 import ga.collections.Population;
+import ga.components.chromosomes.SimpleDiploid;
 import ga.components.chromosomes.SimpleHotspotDiploid;
 import ga.components.hotspots.Hotspot;
 import ga.components.hotspots.MatrixHotspot;
@@ -83,5 +84,23 @@ public class HotspotDiploidGRNInitializer implements Initializer<SimpleHotspotDi
         }
         population.nextGeneration();
         return population;
+    }
+
+    public Population<SimpleHotspotDiploid> initializeModularizedPopulationWithMatrixHotspot(final int moduleIndex) {
+        Population<SimpleHotspotDiploid> population = new Population<>(size);
+        for (int i = 0; i < size; i++) {
+            population.addCandidate(generateModularizedIndividualWithMatrixHotspot(moduleIndex));
+        }
+        population.nextGeneration();
+        return population;
+    }
+
+    protected Individual<SimpleHotspotDiploid> generateModularizedIndividualWithMatrixHotspot(final int moduleIndex) {
+        GRNFactoryNoHiddenTarget grnFactory = new GRNFactoryNoHiddenTarget(targetLength, this.edgeSize);
+        ExpressionMap<SimpleMaterial,SimpleMaterial> mapping = new DiploidEvolvedMap(grnSize);
+        GRN grn1 = grnFactory.generateModularizedGeneRegulatoryNetwork(moduleIndex);
+        GRN grn2 = grnFactory.generateModularizedGeneRegulatoryNetwork(moduleIndex);
+        MatrixHotspot matrixHotspot = new MatrixHotspot(this.hotspotSize, grnSize);
+        return new Individual<>(new SimpleHotspotDiploid(grn1, grn2, mapping, matrixHotspot));
     }
 }

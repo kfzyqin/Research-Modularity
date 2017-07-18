@@ -88,7 +88,7 @@ public class HaploidGRNMatrixMain {
         HaploidGRNInitializer initializer = new HaploidGRNInitializer(populationSize, target1.length, edgeSize);
 
         /* Population */
-        Population<SimpleHaploid> population = initializer.initializeModularizedPopulation(7);
+        Population<SimpleHaploid> population = initializer.initializeModularizedPopulation(5);
 
         /* Mutator for chromosomes */
         Mutator mutator = new GRNEdgeMutator(geneMutationRate);

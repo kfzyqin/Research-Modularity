@@ -31,8 +31,8 @@ public class GRNHotspotHaploidMatrixReproducer extends HaploidReproducer<SimpleH
         SimpleMaterial dna1 = child1.getMaterialsView().get(0);
         SimpleMaterial dna2 = child2.getMaterialsView().get(0);
 
-        final int crossIndex = getCrossoverIndexByHotspot(Math.random() < 0.5 ? child1 : child2);
-//        final int crossIndex = 5;
+//        final int crossIndex = getCrossoverIndexByHotspot(Math.random() < 0.5 ? child1 : child2);
+        final int crossIndex = 5;
         for (int currentCrossIndex=0; currentCrossIndex<crossIndex; currentCrossIndex++) {
             int tmpCrossIndex = currentCrossIndex;
             while (tmpCrossIndex < crossIndex * matrixSideSize) {
