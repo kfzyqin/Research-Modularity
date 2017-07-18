@@ -62,7 +62,7 @@ public class DiploidGRNFastMatrixSPXMain {
     private static final double reproductionRate = 0.6;
     private static final int maxGen = 2000;
     private static final List<Integer> thresholds = Arrays.asList(0, 500);
-    private static final int moduleIndex = 5;
+    private static final int moduleIndex = 3;
 
     /* Settings for text outputs */
     private static final String summaryFileName = "Diploid-GRN-3-Target-10-Matrix-Random-SPX.txt";
