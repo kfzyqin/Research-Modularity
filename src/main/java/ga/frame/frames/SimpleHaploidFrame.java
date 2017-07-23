@@ -77,15 +77,14 @@ public class SimpleHaploidFrame<C extends Chromosome> extends Frame<C> {
             state.preOperate(priorOperator);
         state.reproduce();
         state.mutate();
+        try {
+            ((HotspotState) state).mutateHotspot();
+        } catch (Exception e) {
+        }
         state.postOperate(postOperator);
         state.nextGeneration();
         statistics.nextGeneration();
         state.evaluateWithMultipleTargets(true);
-        try {
-            ((HotspotState) state).mutateHotspot();
-        } catch (Exception e) {
-
-        }
         state.record(statistics);
     }
 }

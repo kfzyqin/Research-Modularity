@@ -149,18 +149,15 @@ def get_modularity_value_maxes(path_1):
 
 
 path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
-                          "-Hotspots/generated-outputs/data-2017-07-15/" \
-                          "larson-want-to-see-20-edges-in-324-nodes/haploid-grn-matrix-2-target-10"
+                          "-Hotspots/generated-outputs/data-2017-07-18/" \
+                          "modularized-diploid-seem-work/diploid-grn-3-target-10-matrix-random-spx/"
 
 path_2 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
-                          "-Hotspots/generated-outputs/data-2017-07-15/" \
-                          "larson-want-to-see-20-edges-in-324-nodes/hotspot-haploid-grn-matrix-2-target-10"
-
-# path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
-#                           "-Hotspots/generated-outputs/haploid-grn-2-target-10-matrix-larson-no-crossover/"
+                          "-Hotspots/generated-outputs/data-2017-07-18/" \
+                          "modularized-diploid-seem-work/hotspot-diploid-grn-3-target-10-matrix-evolved-spx/"
 
 
-sub_directories = get_immediate_subdirectories(path_2)
+sub_directories = get_immediate_subdirectories(path_1)
 
 for a_directory in sub_directories:
     phenotypes = get_grn_phenotypes(a_directory)
