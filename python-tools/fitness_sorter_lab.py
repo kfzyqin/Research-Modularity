@@ -19,17 +19,17 @@ def get_fitness_values(root_directory_path):
 
 a_root_directory_path_1 = "/students/u5505995/Software-Engineering/" \
                           "Chin-GA-Project/generated-outputs/" \
-                          "haploid-grn-matrix-2-target-10/"
+                          "haploid-grn-2-target-10-matrix-chin/"
 
 a_root_directory_path_2 = "/students/u5505995/Software-Engineering/" \
                           "Chin-GA-Project/generated-outputs/" \
-                          "fixed-haploid-grn-matrix-2-target-10/"
+                          "haploid-grn-2-target-10-matrix-soto/"
 
 print get_fitness_values(a_root_directory_path_1).__len__()
 print get_fitness_values(a_root_directory_path_2).__len__()
 
-a = get_fitness_values(a_root_directory_path_1)[:30]
-b = get_fitness_values(a_root_directory_path_2)[:30]
+a = get_fitness_values(a_root_directory_path_1)
+b = get_fitness_values(a_root_directory_path_2)
 
 print "mean a: ", sum(a) / a.__len__()
 print "mean b: ", sum(b) / b.__len__()

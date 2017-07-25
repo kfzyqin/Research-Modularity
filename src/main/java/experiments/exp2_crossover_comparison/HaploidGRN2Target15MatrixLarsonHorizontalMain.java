@@ -8,6 +8,7 @@ import ga.frame.frames.SimpleHaploidFrame;
 import ga.frame.states.SimpleHaploidState;
 import ga.frame.states.State;
 import ga.operations.fitnessFunctions.FitnessFunction;
+import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargets;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFast;
 import ga.operations.initializers.HaploidGRNInitializer;
 import ga.operations.initializers.Initializer;
@@ -81,8 +82,8 @@ public class HaploidGRN2Target15MatrixLarsonHorizontalMain {
         int[][] targets = {target1, target2};
 
         /* Fitness function */
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFast(
-                targets, maxCycle, perturbations, perturbationRate, thresholds, perturbationCycleSize);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(
+                targets, maxCycle, perturbations, perturbationRate, thresholds);
 
         /* It is not necessary to write an initializer, but doing so is convenient to
         repeat the experiment using different parameter. */
