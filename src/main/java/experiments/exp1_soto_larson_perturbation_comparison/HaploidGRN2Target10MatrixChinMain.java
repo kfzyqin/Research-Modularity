@@ -9,6 +9,7 @@ import ga.frame.states.SimpleHaploidState;
 import ga.frame.states.State;
 import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargets;
+import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFast;
 import ga.operations.initializers.HaploidGRNInitializer;
 import ga.operations.initializers.Initializer;
 import ga.operations.mutators.GRNEdgeMutator;
@@ -37,7 +38,7 @@ import java.util.List;
  * Created by Zhenyue Qin on 23/06/2017.
  * The Australian National University.
  */
-public class HaploidGRN2Target10MatrixSotoMain {
+public class HaploidGRN2Target10MatrixChinMain {
     /* The two targets that the GA evolve towards */
     private static final int[] target1 = {
             1, -1, 1, -1, 1,
@@ -53,6 +54,7 @@ public class HaploidGRN2Target10MatrixSotoMain {
     private static final int edgeSize = 20;
     private static final int perturbations = 300;
     private static final double perturbationRate = 0.15;
+    private static final int perturbationCycleSize = 100;
 
     /* Parameters of the GA */
     private static final double geneMutationRate = 0.05;
@@ -64,23 +66,23 @@ public class HaploidGRN2Target10MatrixSotoMain {
     private static final List<Integer> thresholds = Arrays.asList(0, 300);
 
     /* Settings for text outputs */
-    private static final String summaryFileName = "Haploid-GRN-2-Target-10-Matrix-Soto.txt";
-    private static final String csvFileName = "Haploid-GRN-2-Target-10-Matrix-Soto.csv";
-    private static final String outputDirectory = "haploid-grn-2-target-10-matrix-soto";
-    private static final String mainFileName = "HaploidGRN2Target10MatrixSotoMain.java";
+    private static final String summaryFileName = "Haploid-GRN-2-Target-10-Matrix-Chin.txt";
+    private static final String csvFileName = "Haploid-GRN-2-Target-10-Matrix-Chin.csv";
+    private static final String outputDirectory = "haploid-grn-2-target-10-matrix-chin";
+    private static final String mainFileName = "HaploidGRN2Target10MatrixChinMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
 
     /* Settings for graph outputs */
-    private static final String plotTitle = "Haploid GRN 2 Target 10 Matrix Soto";
-    private static final String plotFileName = "Haploid-GRN-2-Target-10-Matrix-Soto.png";
+    private static final String plotTitle = "Haploid GRN 2 Target 10 Matrix Chin";
+    private static final String plotFileName = "Haploid-GRN-2-Target-10-Matrix-Chin.png";
 
     public static void main(String[] args) throws IOException {
         int[][] targets = {target1, target2};
 
        /* Fitness function */
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(
-                targets, maxCycle, perturbations, perturbationRate, thresholds);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFast(
+                targets, maxCycle, perturbations, perturbationRate, thresholds, perturbationCycleSize);
 
         /* It is not necessary to write an initializer, but doing so is convenient to
         repeat the experiment using different parameter */
