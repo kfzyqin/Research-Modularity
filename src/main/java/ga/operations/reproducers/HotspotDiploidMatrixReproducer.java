@@ -46,14 +46,6 @@ public abstract class HotspotDiploidMatrixReproducer<C extends Chromosome & With
                     tmpCrossIndex += matrixSideSize;
                 }
             }
-
-            for (int currentCrossIndex=crossIndex; currentCrossIndex<matrixSideSize; currentCrossIndex++) {
-                int tmpCrossIndex = currentCrossIndex + crossIndex * matrixSideSize;
-                while (tmpCrossIndex < matrixSideSize * matrixSideSize) {
-                    crossoverTwoDNAsAtPosition(dna1Copy, dna2Copy, tmpCrossIndex);
-                    tmpCrossIndex += matrixSideSize;
-                }
-            }
         }
 
         newDNAs.add(dna1Copy);
