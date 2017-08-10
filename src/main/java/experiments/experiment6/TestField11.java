@@ -20,6 +20,15 @@ public class TestField11 {
 
         System.out.println("=====");
 
+        for (int currentCrossIndex=0; currentCrossIndex<crossIndex; currentCrossIndex++) {
+            int tmpCrossIndex = currentCrossIndex;
+            while (tmpCrossIndex < crossIndex * matrixSideSize) {
+                System.out.println(tmpCrossIndex);
+                tmpCrossIndex += matrixSideSize;
+            }
+        }
+
+        System.out.println("=====");
         for (int currentCrossIndex=crossIndex*matrixSideSize; currentCrossIndex<matrixSideSize*matrixSideSize; currentCrossIndex+=matrixSideSize) {
             int tmpCrossIndex = currentCrossIndex;
             while (tmpCrossIndex < currentCrossIndex + matrixSideSize) {

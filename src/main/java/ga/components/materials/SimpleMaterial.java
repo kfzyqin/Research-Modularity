@@ -2,6 +2,7 @@ package ga.components.materials;
 
 import ga.components.genes.Gene;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -32,7 +33,7 @@ import java.util.List;
  * @author Siu Kei Muk (David)
  * @since 26/08/16.
  */
-public class SimpleMaterial implements Material {
+public class SimpleMaterial implements Material, Serializable {
 
     protected final Gene[] strand;
     protected final int size;

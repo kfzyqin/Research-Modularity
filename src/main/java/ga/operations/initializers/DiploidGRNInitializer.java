@@ -11,6 +11,9 @@ import ga.components.materials.SimpleMaterial;
 import ga.operations.expressionMaps.DiploidEvolvedMap;
 import ga.operations.expressionMaps.ExpressionMap;
 import ga.others.GeneralMethods;
+import org.json.simple.parser.ParseException;
+
+import java.io.IOException;
 
 /**
  * Created by Zhenyue Qin on 6/06/2017.
@@ -68,6 +71,19 @@ public class DiploidGRNInitializer implements Initializer<SimpleDiploid> {
         Population<SimpleDiploid> population = new Population<>(size);
         for (int i = 0; i < size; i++) {
             population.addCandidate(generateModularizedIndividual(moduleIndex));
+        }
+        population.nextGeneration();
+        return population;
+    }
+
+    public Population<SimpleDiploid> initializeExistingModularizedPopulation(final int moduleIndex) throws IOException, ParseException {
+        Population<SimpleDiploid> population = new Population<>(size);
+        for (int i = 0; i < size*2; i=i+2) {
+            ExpressionMap<SimpleMaterial,SimpleMaterial> mapping = new DiploidEvolvedMap(grnSize);
+            GRN grn1 = GeneralMethods.getGRNFromJSON(i, "jsons/grn_100_edge_30.json");
+            GRN grn2 = GeneralMethods.getGRNFromJSON(i+1, "jsons/grn_100_edge_30.json");
+            Individual<SimpleDiploid> anIndividual = new Individual<>(new SimpleDiploid(grn1, grn2, mapping));
+            population.addCandidate(anIndividual);
         }
         population.nextGeneration();
         return population;

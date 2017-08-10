@@ -6,6 +6,7 @@ import ga.components.chromosomes.GenderHotspotDiploid;
 import ga.frame.frames.Frame;
 import ga.frame.frames.SimpleGenderHotspotMultipleTargetFrame;
 import ga.frame.states.SimpleGenderHotspotState;
+import ga.frame.states.SimpleHotspotDiploidState;
 import ga.frame.states.State;
 import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
@@ -69,7 +70,7 @@ public class GenderHotspotDiploidGRN2TargetMain {
     private static final String plotTitle = "Gender Hotspot GRN 2 Targets Summary";
     private static final String plotFileName = "Gender-Hotspot-GRN-2-Target-Chart.png";
 
-    private static final List<Integer> thresholds = Arrays.asList(0, 500);
+    private static final List<Integer> thresholds = Arrays.asList(0, 300);
 
     public static void main(String[] args) throws IOException {
         int[][] targets = {target1, target2};
@@ -98,7 +99,7 @@ public class GenderHotspotDiploidGRN2TargetMain {
 
         HotspotMutator hotspotMutator = new RandomHotspotMutator(hotspotMutationRate);
 
-        State<GenderHotspotDiploid> state = new SimpleGenderHotspotState<>(population, fitnessFunction, mutator, reproducer,
+        State<GenderHotspotDiploid> state = new SimpleHotspotDiploidState<>(population, fitnessFunction, mutator, reproducer,
                 selector, 2, reproductionRate, expressionMapMutator, hotspotMutator);
 
         state.record(statistics);

@@ -18,7 +18,7 @@ import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
 import ga.operations.priorOperators.PriorOperator;
 import ga.operations.priorOperators.SimpleElitismOperator;
 import ga.operations.reproducers.Reproducer;
-import ga.operations.reproducers.SimpleHaploidNoCrossoverReproducer;
+import ga.operations.reproducers.SimpleHaploidNoXReproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
@@ -50,7 +50,7 @@ public class HaploidGRN2Target10MatrixNoXMain {
     private static final int edgeSize = 20;
     private static final int perturbations = 300;
     private static final double perturbationRate = 0.15;
-    private static final int perturbationCycleSize = 100;
+    private static final int perturbationCycleSize = 300;
 
     /* Parameters of the GA */
     private static final double geneMutationRate = 0.05;
@@ -101,7 +101,7 @@ public class HaploidGRN2Target10MatrixNoXMain {
                 new SimpleTournamentScheme(tournamentSize));
 
         /* Reproducer for reproduction */
-        Reproducer<SimpleHaploid> reproducer = new SimpleHaploidNoCrossoverReproducer();
+        Reproducer<SimpleHaploid> reproducer = new SimpleHaploidNoXReproducer();
 
         /* Statistics for keeping track the performance in generations */
         DetailedStatistics<SimpleHaploid> statistics = new DetailedStatistics<>();

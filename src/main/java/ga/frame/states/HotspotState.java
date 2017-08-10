@@ -14,6 +14,6 @@ import ga.operations.selectionOperators.selectors.Selector;
  * Created by Zhenyue Qin (秦震岳) on 15/7/17.
  * The Australian National University.
  */
-public interface HotspotState<C extends Chromosome & WithHotspot> {
-    public void mutateHotspot();
+public interface HotspotState<C extends Chromosome> {
+    void mutateHotspot();
 }

@@ -10,11 +10,13 @@ import ga.frame.states.State;
 import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
 import ga.operations.fitnessFunctions.FitnessFunction;
+import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargets;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFast;
 import ga.operations.hotspotMutators.HotspotMutator;
 import ga.operations.hotspotMutators.RandomHotspotMutator;
 import ga.operations.initializers.HotspotDiploidGRNInitializer;
 import ga.operations.mutators.GRNEdgeMutator;
+import ga.operations.mutators.GRNModularisedEdgeMutator;
 import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
 import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
@@ -25,6 +27,7 @@ import ga.operations.reproducers.GRNHotspotDiploidEvolvedSPXMatrixReproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
+import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -44,34 +47,38 @@ public class HotspotDiploidGRNFastMatrixSPXMain {
             -1, 1, -1, 1, -1
     };
     private static final int[] target2 = {
+            -1, 1, -1, 1, -1,
+            1, -1, 1, -1, 1
+    };
+    private static final int[] target3 = {
             1, -1, 1, -1, 1,
             1, -1, 1, -1, 1
     };
 
     /* Parameters of the GRN */
     private static final int maxCycle = 20;
-    private static final int edgeSize = 10;
-    private static final int perturbations = 300;
-    private static final int perturbationCycleSize = 100;
+    private static final int edgeSize = 12;
+    private static final int perturbations = 500;
+    private static final int perturbationCycleSize = 300;
     private static final double dominanceMutationRate = 0.005;
-    private static final double perturbationRate = 0.15;
+    private static final double perturbationRate = 0.4;
 
     /* Parameters of the GA */
-    private static final double geneMutationRate = 0.00125;
-    private static final int hotspotSize = 8;
-    private static final double hotspotMutationRate = 0.01;
-    private static final int numElites = 5;
-    private static final int populationSize = 100;
+    private static final double geneMutationRate = 0.01;
+    private static final int hotspotSize = 12;
+    private static final double hotspotMutationRate = 0.005;
+    private static final int numElites = 10;
+    private static final int populationSize = 25;
     private static final int tournamentSize = 5;
-    private static final double reproductionRate = 0.6;
-    private static final int maxGen = 2000;
-    private static final List<Integer> thresholds = Arrays.asList(0, 500);
-    private static final int moduleIndex = 3;
+    private static final double reproductionRate = 0.95;
+    private static final int maxGen = 1800;
+    private static final List<Integer> thresholds = Arrays.asList(0, 300, 1000);
+    private static final int moduleIndex = 5;
 
     /* Settings for text outputs */
     private static final String summaryFileName = "Hotspot-Diploid-GRN-3-Target-10-Matrix-Evolved-SPX.txt";
     private static final String csvFileName = "Hotspot-Diploid-GRN-3-Target-10-Matrix-Evolved-SPX.csv";
-    private static final String outputDirectory = "hotspot-diploid-grn-3-target-10-matrix-evolved-spx";
+    private static final String outputDirectory = "hotspot-diploid-grn-3-target-10-matrix-evolved-spx-7";
     private static final String mainFileName = "HotspotDiploidGRNFastMatrixSPXMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
@@ -81,12 +88,12 @@ public class HotspotDiploidGRNFastMatrixSPXMain {
     private static final String plotFileName = "Hotspot Diploid-GRN-3-Target-10-Matrix-Evolved-SPX.png";
 
 
-    public static void main(String[] args) throws IOException {
-        int[][] targets = {target1, target2};
+    public static void main(String[] args) throws IOException, ParseException {
+        int[][] targets = {target1, target2, target3};
 
         /* Fitness Function */
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFast(targets,
-                maxCycle, perturbations, perturbationRate, thresholds, perturbationCycleSize);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(targets,
+                maxCycle, perturbations, perturbationRate, thresholds);
 
         /* It is not necessary to write an initializer, but doing so is convenient to
         repeat the experiment using different parameter */
@@ -95,10 +102,10 @@ public class HotspotDiploidGRNFastMatrixSPXMain {
 
         /* Population */
         Population<SimpleHotspotDiploid> population =
-                initializer.initializeModularizedPopulationWithMatrixHotspot(moduleIndex);
+                initializer.initializeExistingModularizedPopulationWithMatrixHotspot(moduleIndex);
 
         /* Mutator for chromosomes */
-        Mutator mutator = new GRNEdgeMutator(geneMutationRate);
+        Mutator mutator = new GRNModularisedEdgeMutator(geneMutationRate, moduleIndex);
 
         /* Selector for reproduction */
         Selector<SimpleHotspotDiploid> selector = new SimpleTournamentSelector<>(tournamentSize);

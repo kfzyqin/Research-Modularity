@@ -26,7 +26,9 @@ def get_best_partition(a_grn):
 
 
 def get_modularity_value(a_grn):
-    return community.modularity(community.best_partition(a_grn.to_undirected()), a_grn.to_undirected())
+    # dendrogram = community.generate_dendrogram(a_grn.to_undirected())
+    # print dendrogram
+    return community.modularity(get_best_partition(a_grn.to_undirected()), a_grn.to_undirected())
 
 
 def get_grn_phenotypes(root_directory_path):
@@ -97,6 +99,10 @@ def get_grn_modularity_values(root_directory_path):
         a_grn = generate_directed_grn(a_phenotype)
         a_partition = get_best_partition(a_grn)
         modularity_values.append(get_modularity_value(a_grn))
+        # partition_set = set()
+        # for ele in a_partition.values():
+        #     partition_set.add(ele)
+        # modularity_values.append((len(partition_set), get_modularity_value(a_grn)))
     return modularity_values
 
 
@@ -149,12 +155,11 @@ def get_modularity_value_maxes(path_1):
 
 
 path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
-                          "-Hotspots/generated-outputs/data-2017-07-18/" \
-                          "modularized-diploid-seem-work/diploid-grn-3-target-10-matrix-random-spx/"
+                          "-Hotspots/generated-outputs/diploid-grn-3-target-10-matrix-random-spx-7"
 
 path_2 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
-                          "-Hotspots/generated-outputs/data-2017-07-18/" \
-                          "modularized-diploid-seem-work/hotspot-diploid-grn-3-target-10-matrix-evolved-spx/"
+                          "-Hotspots/generated-outputs/data-2017-07-29/" \
+                          "haploid-grn-2-target-10-matrix-larson-horizontal/"
 
 
 sub_directories = get_immediate_subdirectories(path_1)
@@ -164,6 +169,9 @@ for a_directory in sub_directories:
     a_grn = generate_directed_grn(phenotypes[-1])
 
     modularity_values = get_grn_modularity_values(a_directory)
+
+    print a_directory.replace(path_1, ""), modularity_values
+    # break
     save_a_list_graph(modularity_values, a_directory, 'modularity.png')
 
     draw_a_grn(a_grn, is_to_save=True, save_path=a_directory, file_name='graph.png')

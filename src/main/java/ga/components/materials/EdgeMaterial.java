@@ -3,6 +3,7 @@ package ga.components.materials;
 import ga.components.genes.EdgeGene;
 import ga.components.genes.Gene;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  * Created by Zhenyue Qin on 22/04/2017.
  * The Australian National University.
  */
-public class EdgeMaterial extends SimpleMaterial {
+public class EdgeMaterial extends SimpleMaterial implements Serializable {
     protected final int networkSideSize;
 
     /**

@@ -2,6 +2,7 @@ package ga.components.materials;
 
 import ga.components.genes.EdgeGene;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  * Created by Zhenyue Qin on 22/04/2017.
  * The Australian National University.
  */
-public class GRN extends EdgeMaterial {
+public class GRN extends EdgeMaterial implements Serializable {
 
     /**
      * Constructs a SimpleMaterial by a list of genes.

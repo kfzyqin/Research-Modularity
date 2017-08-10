@@ -53,7 +53,7 @@ public class HaploidGRNMatrixMain {
     private static final int edgeSize = 20;
     private static final int perturbations = 300;
     private static final double perturbationRate = 0.15;
-    private static final int perturbationCycleSize = 100;
+    private static final int perturbationCycleSize = 300;
 
     /* Parameters of the GA */
     private static final double geneMutationRate = 0.05;

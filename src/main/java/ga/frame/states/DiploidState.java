@@ -13,6 +13,6 @@ import ga.operations.selectionOperators.selectors.Selector;
 /**
  * Created by zhenyueqin on 17/6/17.
  */
-public interface DiploidState<C extends Chromosome> {
-    public abstract void mutateExpressionMap();
+public interface DiploidState<C extends Chromosome>  {
+    void mutateExpressionMap();
 }

@@ -1,5 +1,6 @@
 package ga.components.hotspots;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -10,7 +11,7 @@ import java.util.Random;
  * Created by Zhenyue Qin (秦震岳) on 4/7/17.
  * The Australian National University.
  */
-public class MatrixHotspot extends Hotspot {
+public class MatrixHotspot extends Hotspot implements Serializable{
     private final int matrixSideSize;
     public MatrixHotspot(final int dnaLength) {
         super(dnaLength);

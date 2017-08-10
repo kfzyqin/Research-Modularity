@@ -71,4 +71,5 @@ public class HaploidGRNInitializer implements Initializer<SimpleHaploid> {
         GRNFactoryNoHiddenTarget grnFactory = new GRNFactoryNoHiddenTarget(targetLength, this.edgeSize);
         return new Individual<>(new SimpleHaploid(grnFactory.generateModularizedGeneRegulatoryNetwork(moduleIndex)));
     }
+    
 }

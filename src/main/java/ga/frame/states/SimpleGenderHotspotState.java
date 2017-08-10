@@ -18,11 +18,10 @@ import java.util.List;
 /**
  * Created by zhenyueqin on 17/6/17.
  */
-public class SimpleGenderHotspotState<G extends Chromosome & CoupleableWithHotspot> extends State<G>
-        implements DiploidState<G> {
+public class SimpleGenderHotspotState<G extends Chromosome & CoupleableWithHotspot> extends SimpleDiploidState<G>
+        implements HotspotState<G> {
 
-    protected double reproductionRate;
-
+    HotspotMutator hotspotMutator;
     /**
      * Constructs an initial state for the GA
      *
@@ -32,34 +31,26 @@ public class SimpleGenderHotspotState<G extends Chromosome & CoupleableWithHotsp
      * @param reproducer           reproducers operator
      * @param selector             parents selector
      * @param numOfMates           number of parents per reproduction
+     * @param reproductionRate
      * @param expressionMapMutator
-     * @param hotspotMutator
      */
-    public SimpleGenderHotspotState(
-            Population<G> population,
-            FitnessFunction fitnessFunction,
-            Mutator mutator,
-            Reproducer<G> reproducer,
-            Selector<G> selector,
-            final int numOfMates,
-            final double reproductionRate,
-            ExpressionMapMutator expressionMapMutator,
-            HotspotMutator hotspotMutator) {
-        super(population, fitnessFunction, mutator, reproducer, selector, numOfMates);
+    public SimpleGenderHotspotState(Population<G> population,
+                                    FitnessFunction fitnessFunction,
+                                    Mutator mutator,
+                                    Reproducer<G> reproducer,
+                                    Selector<G> selector,
+                                    int numOfMates,
+                                    double reproductionRate,
+                                    ExpressionMapMutator expressionMapMutator,
+                                    HotspotMutator hotspotMutator) {
+        super(population, fitnessFunction, mutator, reproducer, selector, numOfMates, reproductionRate, expressionMapMutator);
+        this.hotspotMutator = hotspotMutator;
     }
 
     @Override
-    public void mutateExpressionMap() {
-
-    }
-
-    @Override
-    public void reproduce() {
-
-    }
-
-    @Override
-    public void mutate() {
-
+    public void mutateHotspot() {
+        if (hotspotMutator == null) return;
+        for (Individual<G> individual : population.getOffspringPoolView())
+            hotspotMutator.mutate(individual.getChromosome().getHotspot());
     }
 }

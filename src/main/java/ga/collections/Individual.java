@@ -6,6 +6,9 @@ import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.FitnessFunctionMultipleTargets;
 import ga.others.Copyable;
 
+
+import java.io.Serializable;
+
 /**
  * This class represents an individual in the population. An individual consists of a chromosomes and fitnessFunctions function value.
  * This class implements Comparable for sorting purpose (in descending order).
@@ -13,7 +16,7 @@ import ga.others.Copyable;
  * @author Siu Kei Muk (David)
  * @since 27/08/16.
  */
-public class Individual<C extends Chromosome> implements Comparable<Individual<C>>, Copyable<Individual<C>> {
+public class Individual<C extends Chromosome> implements Comparable<Individual<C>>, Copyable<Individual<C>>, Serializable {
 
     private C chromosome;
     private double fitness = 0;

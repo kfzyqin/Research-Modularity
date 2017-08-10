@@ -13,6 +13,7 @@ import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFast;
 import ga.operations.initializers.HaploidGRNInitializer;
 import ga.operations.initializers.Initializer;
 import ga.operations.mutators.GRNEdgeMutator;
+import ga.operations.mutators.GRNModularisedEdgeMutator;
 import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
 import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
@@ -38,38 +39,46 @@ import java.util.List;
  * Created by Zhenyue Qin on 23/06/2017.
  * The Australian National University.
  */
-public class HaploidGRN2Target15MatrixLarsonHorizontalMain {
+public class HaploidGRN2Target15MatrixLarsonMain {
     /* The two targets that the GA evolve towards */
     private static final int[] target1 = {
-            1, -1, 1, -1, 1, -1, 1,
-            -1, 1, -1, 1, -1, 1, -1, 1
+            1, -1, 1, -1,
+            -1, 1, -1, 1,
+            1, -1, 1, -1
     };
     private static final int[] target2 = {
-            1, -1, 1, -1, 1, -1, 1,
-            1, -1, 1, -1, 1, -1, 1, -1
+            -1, 1, -1, 1,
+            1, -1, 1, -1,
+            -1, 1, -1, 1
+    };
+    private static final int[] target3 = {
+            1, -1, 1, -1,
+            1, -1, 1, -1,
+            1, -1, 1, -1
     };
 
     /* Parameters of the GRN */
     private static final int maxCycle = 20;
-    private static final int edgeSize = 45;
+    private static final int edgeSize = 18;
     private static final int perturbations = 300;
     private static final double perturbationRate = 0.15;
     private static final int perturbationCycleSize = 100;
 
     /* Parameters of the GA */
-    private static final double geneMutationRate = 0.005;
+    private static final double geneMutationRate = 0.05;
     private static final int numElites = 10;
     private static final int populationSize = 100;
     private static final int tournamentSize = 3;
     private static final double reproductionRate = 0.9;
     private static final int maxGen = 1050;
-    private static final List<Integer> thresholds = Arrays.asList(0, 300);
+    private static final List<Integer> thresholds = Arrays.asList(0, 300); // when to switch targets
+    private static final int moduleIndex = 3;
 
     /* Settings for text outputs */
     private static final String summaryFileName = "Haploid-GRN-2-Target-15-Matrix-Larson-Horizontal.txt";
     private static final String csvFileName = "Haploid-GRN-2-Target-15-Matrix-Larson-Horizontal.csv";
-    private static final String outputDirectory = "haploid-grn-2-target-15-matrix-larson-horizontal";
-    private static final String mainFileName = "HaploidGRN2Target15MatrixLarsonHorizontalMain.java";
+    private static final String outputDirectory = "haploid-grn-2-target-11-matrix-larson-horizontal";
+    private static final String mainFileName = "HaploidGRN2Target15MatrixLarsonMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
 
@@ -87,13 +96,13 @@ public class HaploidGRN2Target15MatrixLarsonHorizontalMain {
 
         /* It is not necessary to write an initializer, but doing so is convenient to
         repeat the experiment using different parameter. */
-        Initializer<SimpleHaploid> initializer = new HaploidGRNInitializer(populationSize, target1.length, edgeSize);
+        HaploidGRNInitializer initializer = new HaploidGRNInitializer(populationSize, target1.length, edgeSize);
 
         /* Population */
-        Population<SimpleHaploid> population = initializer.initialize();
+        Population<SimpleHaploid> population = initializer.initializeModularizedPopulation(moduleIndex);
 
         /* Mutator for chromosomes */
-        Mutator mutator = new GRNEdgeMutator(geneMutationRate);
+        Mutator mutator = new GRNModularisedEdgeMutator(geneMutationRate, moduleIndex);
 
         /* Selector for reproduction */
         Selector<SimpleHaploid> selector = new SimpleTournamentSelector<>(tournamentSize);

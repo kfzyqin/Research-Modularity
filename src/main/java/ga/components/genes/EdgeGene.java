@@ -2,13 +2,14 @@ package ga.components.genes;
 
 import com.sun.istack.internal.NotNull;
 
+import java.io.Serializable;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by Zhenyue Qin on 22/04/2017.
  * The Australian National University.
  */
-public class EdgeGene extends Gene<Integer> {
+public class EdgeGene extends Gene<Integer> implements Serializable {
     public static EdgeGene generateRandomEdgeGene() {
         return new EdgeGene(ThreadLocalRandom.current().nextInt(3) - 1);
     }

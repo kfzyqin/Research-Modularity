@@ -9,6 +9,6 @@ import ga.components.hotspots.Hotspot;
  * Created by Zhenyue Qin (秦震岳) on 17/6/17.
  * The Australian National University.
  */
-public interface CoupleableWithHotspot extends Coupleable {
-    Hotspot getHotspot();
+public interface CoupleableWithHotspot extends Coupleable, WithHotspot {
+
 }

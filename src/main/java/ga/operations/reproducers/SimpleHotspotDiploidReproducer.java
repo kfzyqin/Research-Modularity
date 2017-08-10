@@ -29,9 +29,6 @@ public class SimpleHotspotDiploidReproducer extends HotspotDiploidReproducer<Sim
     }
 
     @Override
-    /*
-    Todo: Rewrite this with David's approach
-     */
     protected List<SimpleHotspotDiploid> recombine(List<SimpleHotspotDiploid> mates) {
         // Todo: Ask Bob about whether here should be two children.
         List<SimpleHotspotDiploid> rtn = new ArrayList<>();

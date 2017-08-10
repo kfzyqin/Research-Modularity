@@ -30,6 +30,7 @@ public class GRNHaploidMatrixReproducer extends HaploidReproducer<SimpleHaploid>
         SimpleMaterial dna2 = child2.getMaterialsView().get(0);
 
         final int crossIndex = ThreadLocalRandom.current().nextInt(matrixSideSize);
+//        final int crossIndex = 3;
         for (int currentCrossIndex=0; currentCrossIndex<crossIndex; currentCrossIndex++) {
             int tmpCrossIndex = currentCrossIndex;
             while (tmpCrossIndex < crossIndex * matrixSideSize) {

@@ -6,6 +6,7 @@ import ga.components.chromosomes.GenderDiploid;
 import ga.frame.frames.Frame;
 import ga.frame.frames.SimpleDiploidMultipleTargetFrame;
 import ga.frame.states.SimpleDiploidState;
+import ga.frame.states.SimpleGenderDiploidState;
 import ga.frame.states.State;
 import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
@@ -65,7 +66,7 @@ public class GenderDiploidGRN2TargetMain {
     private static final String plotTitle = "Gender GRN 2 Targets Summary";
     private static final String plotFileName = "Gender-GRN-2-Target-Chart.png";
 
-    private static final List<Integer> thresholds = Arrays.asList(0, 500);
+    private static final List<Integer> thresholds = Arrays.asList(0, 300);
 
     public static void main(String[] args) throws IOException {
         int[][] targets = {target1, target2};
@@ -92,7 +93,7 @@ public class GenderDiploidGRN2TargetMain {
 
         ExpressionMapMutator expressionMapMutator = new DiploidDominanceMapMutator(dominanceMutationRate);
 
-        State<GenderDiploid> state = new SimpleDiploidState<>(population, fitnessFunction, mutator, reproducer,
+        State<GenderDiploid> state = new SimpleGenderDiploidState<>(population, fitnessFunction, mutator, reproducer,
                 selector, 2, reproductionRate, expressionMapMutator);
 
         state.record(statistics);

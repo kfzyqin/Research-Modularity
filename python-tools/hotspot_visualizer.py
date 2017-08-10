@@ -5,9 +5,12 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import math
 
-hotspot_pattern = re.compile("(?<=Recombination probability: {)(.*)(?=\})")
-rate_pattern = re.compile("(?<=\=)(.*?)(?=, )|(?<=\=)(.*?)(?=})")
+hotspot_pattern = re.compile("(?<=Recombination probability: {)(.*)(?=})")
+rate_pattern = re.compile("((?<=\=)(.*?)(?=, ))")
 
+# |((?<=\=)(.*?)(?=}))
+
+# ((?<=\=)(.*?)(?=, ))
 
 def get_immediate_subdirectories(a_dir):
     return [(a_dir + os.sep + name) for name in os.listdir(a_dir)
@@ -49,9 +52,12 @@ def plot_hotspot_heat_map(rates):
     plt.show()
 
 
+# path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
+#          "-Hotspots/generated-outputs/data-2017-07-18/" \
+#          "modularized-diploid-seem-work/hotspot-diploid-grn-3-target-10-matrix-evolved-spx/"
+
 path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
-         "-Hotspots/generated-outputs/data-2017-07-18/" \
-         "modularized-diploid-seem-work/hotspot-diploid-grn-3-target-10-matrix-evolved-spx/"
+                          "-Hotspots/generated-outputs/hotspot-diploid-grn-3-target-10-matrix-evolved-spx"
 
 sub_directories = get_immediate_subdirectories(path_1)
 
@@ -66,5 +72,9 @@ for a_directory in sub_directories:
     for key in sorted(grn_hotspot_rates_dict):
         rates_of_rates.append(grn_hotspot_rates_dict[key])
     rates_of_rates_in_different_experiments.append(rates_of_rates[-1])
-    rates_sum = [sum(x) for x in zip(*rates_of_rates)]
-    plot_hotspot_heat_map(rates_sum)
+    # rates_sum = [sum(x) for x in zip(*rates_of_rates)]
+    # plot_hotspot_heat_map(rates_sum)
+
+rates_sum = [sum(x) for x in zip(*rates_of_rates_in_different_experiments)]
+plot_hotspot_heat_map(rates_sum)
+

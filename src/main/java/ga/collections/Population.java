@@ -6,6 +6,7 @@ import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.FitnessFunctionMultipleTargets;
 import ga.others.Copyable;
 
+import java.io.Serializable;
 import java.util.*;
 
 /*
@@ -36,7 +37,7 @@ import java.util.*;
  * @author Siu Kei Muk (David)
  * @since 27/08/16.
  */
-public class Population<C extends Chromosome> implements Copyable<Population<C>> {
+public class Population<C extends Chromosome> implements Copyable<Population<C>>, Serializable {
 
     protected List<Individual<C>> individuals;
     protected List<Individual<C>> priorPool;
