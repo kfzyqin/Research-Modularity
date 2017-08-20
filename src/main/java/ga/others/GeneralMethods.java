@@ -189,9 +189,9 @@ public class GeneralMethods<T> {
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException, ParseException {
-        GRNFactoryNoHiddenTarget grnFactory = new GRNFactoryNoHiddenTarget(10, 30);
+        GRNFactoryNoHiddenTarget grnFactory = new GRNFactoryNoHiddenTarget(10, 20);
         JSONObject json = new JSONObject();
-        for (int i=0; i<50; i++) {
+        for (int i=0; i<100; i++) {
             GRN grn1 = grnFactory.generateModularizedGeneRegulatoryNetwork(5);
 //            MatrixHotspot matrixHotspot = new MatrixHotspot(12, 196);
 //            json.put(Integer.toString(i), matrixHotspot.getRecombinationRates().toString());

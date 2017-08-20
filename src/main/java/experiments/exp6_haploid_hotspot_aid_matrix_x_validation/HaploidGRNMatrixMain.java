@@ -8,19 +8,17 @@ import ga.frame.frames.SimpleHaploidFrame;
 import ga.frame.states.SimpleHaploidState;
 import ga.frame.states.State;
 import ga.operations.fitnessFunctions.FitnessFunction;
-import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFast;
+import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargets;
 import ga.operations.initializers.HaploidGRNInitializer;
-import ga.operations.initializers.Initializer;
 import ga.operations.mutators.GRNEdgeMutator;
 import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
 import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
-import ga.operations.priorOperators.PriorOperator;
-import ga.operations.priorOperators.SimpleElitismOperator;
-import ga.operations.reproducers.GRNHaploidMatrixReproducer;
+import ga.operations.reproducers.GRNHaploidMatrixDiagonalReproducer;
 import ga.operations.reproducers.Reproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
+import ga.operations.selectionOperators.selectors.SimpleProportionalSelector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
 
 import java.io.IOException;
@@ -41,33 +39,61 @@ public class HaploidGRNMatrixMain {
     /* The two targets that the GA evolve towards */
     private static final int[] target1 = {
             1, -1, 1, -1, 1,
-            -1, 1, -1, 1, -1
+            1, -1, 1, -1, 1,
+            1, -1, 1, -1, 1
     };
     private static final int[] target2 = {
             1, -1, 1, -1, 1,
+            1, -1, 1, -1, 1,
+            -1, 1, -1, 1, -1,
+    };
+    private static final int[] target3 = {
+            1, -1, 1, -1, 1,
+            -1, 1, -1, 1, -1,
+            1, -1, 1, -1, 1
+    };
+    private static final int[] target4 = {
+            1, -1, 1, -1, 1,
+            -1, 1, -1, 1, -1,
+            -1, 1, -1, 1, -1
+    };
+    private static final int[] target5 = {
+            -1, 1, -1, 1, -1,
+            1, -1, 1, -1, 1,
+            1, -1, 1, -1, 1
+    };
+    private static final int[] target6 = {
+            -1, 1, -1, 1, -1,
+            1, -1, 1, -1, 1,
+            -1, 1, -1, 1, -1
+    };
+    private static final int[] target7 = {
+            -1, 1, -1, 1, -1,
+            -1, 1, -1, 1, -1,
             1, -1, 1, -1, 1
     };
 
     /* Parameters of the GRN */
     private static final int maxCycle = 20;
-    private static final int edgeSize = 16;
-    private static final int perturbations = 300;
+    private static final int edgeSize = 30;
+    private static final int perturbations = 75;
     private static final double perturbationRate = 0.15;
     private static final int perturbationCycleSize = 100;
 
     /* Parameters of the GA */
-    private static final double geneMutationRate = 0.0025;
-    private static final int numElites = 10;
+    private static final double geneMutationRate = 0.05;
+    private static final int numElites = 1;
     private static final int populationSize = 100;
     private static final int tournamentSize = 3;
-    private static final double reproductionRate = 0.6;
-    private static final int maxGen = 2000;
-    private static final List<Integer> thresholds = Arrays.asList(0, 500); // when to switch targets
+    private static final double reproductionRate = 0.99;
+    private static final int maxGen = 40000;
+    private static final List<Integer> thresholds = Arrays.asList(0, 500, 3000, 7000, 12000, 20000, 30000); // when to switch targets
+    private static final int moduleIndex = 3;
 
     /* Settings for text outputs */
     private static final String summaryFileName = "Haploid-GRN-Matrix.txt";
     private static final String csvFileName = "Haploid-GRN-Matrix.csv";
-    private static final String outputDirectory = "haploid-grn-matrix-2-target-10-4";
+    private static final String outputDirectory = "haploid-grn-matrix-2-target-35000-generation";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
@@ -77,34 +103,34 @@ public class HaploidGRNMatrixMain {
     private static final String plotFileName = "Haploid-GRN-Matrix.png";
 
     public static void main(String[] args) throws IOException {
-        int[][] targets = {target1, target2};
+        int[][] targets = {target1, target2, target3, target4, target5, target6, target7};
 
         /* Fitness function */
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFast(
-                targets, maxCycle, perturbations, perturbationRate, thresholds, perturbationCycleSize);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(
+                targets, maxCycle, perturbations, perturbationRate, thresholds);
 
         /* It is not necessary to write an initializer, but doing so is convenient to
         repeat the experiment using different parameter */
         HaploidGRNInitializer initializer = new HaploidGRNInitializer(populationSize, target1.length, edgeSize);
 
         /* Population */
-        Population<SimpleHaploid> population = initializer.initializeModularizedPopulation(5);
+        Population<SimpleHaploid> population = initializer.initialize();
 
         /* Mutator for chromosomes */
         Mutator mutator = new GRNEdgeMutator(geneMutationRate);
 
         /* Selector for reproduction */
-        Selector<SimpleHaploid> selector = new SimpleTournamentSelector<>(tournamentSize);
+        Selector<SimpleHaploid> selector = new SimpleProportionalSelector<>();
 
         /* Selector for elites */
-        PriorOperator<SimpleHaploid> priorOperator = new SimpleElitismOperator<>(numElites);
+//        PriorOperator<SimpleHaploid> priorOperator = new SimpleElitismOperator<>(numElites);
 
         /* PostOperator is required to fill up the vacancy */
         PostOperator<SimpleHaploid> postOperator = new SimpleFillingOperatorForNormalizable<>(
                 new SimpleTournamentScheme(tournamentSize));
 
         /* Reproducer for reproduction */
-        Reproducer<SimpleHaploid> reproducer = new GRNHaploidMatrixReproducer(target1.length);
+        Reproducer<SimpleHaploid> reproducer = new GRNHaploidMatrixDiagonalReproducer(target1.length);
 
         /* Statistics for keeping track the performance in generations */
         DetailedStatistics<SimpleHaploid> statistics = new DetailedStatistics<>();
@@ -115,7 +141,7 @@ public class HaploidGRNMatrixMain {
         state.record(statistics); // record the initial state of an population
 
         /* The frame of an GA to change states */
-        Frame<SimpleHaploid> frame = new SimpleHaploidFrame<>(state,postOperator,statistics, priorOperator);
+        Frame<SimpleHaploid> frame = new SimpleHaploidFrame<>(state,postOperator,statistics);
 
         /* Set output paths */
         statistics.setDirectory(outputDirectory + "/" + dateFormat.format(date));

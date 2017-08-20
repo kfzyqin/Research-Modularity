@@ -10,9 +10,9 @@ import ga.frame.states.State;
 import ga.operations.dominanceMapMutators.DiploidDominanceMapMutator;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;
 import ga.operations.fitnessFunctions.FitnessFunction;
-import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFast;
+import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargets;
 import ga.operations.initializers.DiploidGRNInitializer;
-import ga.operations.mutators.GRNEdgeMutator;
+import ga.operations.mutators.GRNModularisedEdgeMutator;
 import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
 import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
@@ -38,22 +38,22 @@ import java.util.List;
  */
 public class DiploidGRN3Target10FastMatrixMain {
     private static final int[] target1 = {
-            1, -1, 1
+            -1, 1, -1, 1
     };
     private static final int[] target2 = {
-            -1, 1, -1
+            -1, 1, -1, 1
     };
     private static final int[] target3 = {
-            -1, 1, 1
+            -1, 1, -1, 1
     };
 
     private static final int maxCycle = 5;
-    private static final int edgeSize = 3;
+    private static final int edgeSize = 4;
     private static final int perturbations = 5;
 
     private static final double geneMutationRate = 0.005;
     private static final double dominanceMutationRate = 0.002;
-    private static final double perturbationRate = 0.15;
+    private static final double perturbationRate = 0;
     private static final int numElites = 1;
 
     private static final int perturbationCycleSize = 5;
@@ -61,7 +61,7 @@ public class DiploidGRN3Target10FastMatrixMain {
     private static final int size = 10;
     private static final int tournamentSize = 3;
     private static final double reproductionRate = 0.9;
-    private static final int maxGen = 1550;
+    private static final int maxGen = 100;
 
     private static final double maxFit = 2;
     private static final double epsilon = 0.151;
@@ -76,24 +76,24 @@ public class DiploidGRN3Target10FastMatrixMain {
     private static final String plotTitle = "Diploid GRN 3 Targets 10 Matrix";
     private static final String plotFileName = "Diploid-GRN-3-Target-10-Matrix.png";
 
-    private static final List<Integer> thresholds = Arrays.asList(0, 300, 1050);
+    private static final List<Integer> thresholds = Arrays.asList(0, 50);
 
     public static void main(String[] args) throws IOException {
         int[][] targets = {target1, target2, target3};
 
         // Fitness Function
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFast(
-                targets, maxCycle, perturbations, perturbationRate, thresholds, perturbationCycleSize);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(
+                targets, maxCycle, perturbations, perturbationRate, thresholds);
 
         // Initializer
         DiploidGRNInitializer initializer =
                 new DiploidGRNInitializer(size, target1.length, edgeSize);
 
         // Population
-        Population<SimpleDiploid> population = initializer.initialize();
+        Population<SimpleDiploid> population = initializer.initializeModularizedPopulation(2);
 
         // Mutator for chromosomes
-        Mutator mutator = new GRNEdgeMutator(geneMutationRate);
+        Mutator mutator = new GRNModularisedEdgeMutator(geneMutationRate,2);
 
         // Selector for reproduction
         Selector<SimpleDiploid> selector = new SimpleTournamentSelector<>(tournamentSize);

@@ -39,6 +39,14 @@ public class GRNHaploidMatrixReproducer extends HaploidReproducer<SimpleHaploid>
             }
         }
 
+//        for (int currentCrossIndex=crossIndex; currentCrossIndex<matrixSideSize; currentCrossIndex++) {
+//            int tmpCrossIndex = currentCrossIndex + crossIndex * matrixSideSize;
+//            while (tmpCrossIndex < matrixSideSize * matrixSideSize) {
+//                crossoverTwoDNAsAtPosition(dna1, dna2, tmpCrossIndex);
+//                tmpCrossIndex += matrixSideSize;
+//            }
+//        }
+
         children.add(child1);
         children.add(child2);
 

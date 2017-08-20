@@ -101,7 +101,7 @@ public class HaploidGRN2Target10MatrixLarsonSPXMain {
                 new SimpleTournamentScheme(tournamentSize));
 
         /* Reproducer for reproduction */
-        Reproducer<SimpleHaploid> reproducer = new SimpleHaploidMatrixFixedPointXReproducer(target1.length);
+        Reproducer<SimpleHaploid> reproducer = new SimpleHaploidMatrixFixedPointXReproducer(target1.length, 8);
 
         /* Statistics for keeping track the performance in generations */
         DetailedStatistics<SimpleHaploid> statistics = new DetailedStatistics<>();

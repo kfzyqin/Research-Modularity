@@ -1,4 +1,4 @@
-package experiments.exp2_crossover_comparison;
+package experiments.exp6_haploid_hotspot_aid_matrix_x_validation;
 
 import ga.collections.DetailedStatistics;
 import ga.collections.Population;
@@ -14,8 +14,10 @@ import ga.operations.mutators.GRNEdgeMutator;
 import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
 import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
-import ga.operations.reproducers.GRNHaploidMatrixHorizontalReproducer;
+import ga.operations.priorOperators.PriorOperator;
+import ga.operations.priorOperators.SimpleElitismOperator;
 import ga.operations.reproducers.Reproducer;
+import ga.operations.reproducers.SimpleHaploidMatrixFixedPointXReproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
 import ga.operations.selectionOperators.selectors.SimpleProportionalSelector;
@@ -34,30 +36,30 @@ import java.util.List;
  * Created by Zhenyue Qin on 23/06/2017.
  * The Australian National University.
  */
-public class HaploidGRN2Target15MatrixLarsonMain {
+public class HaploidGRNFixedPointXMatrixMain {
     /* The two targets that the GA evolve towards */
     private static final int[] target1 = {
-            1, -1, 1, -1, 1,
-            -1, 1, -1, 1, -1
+            1, -1, 1, -1, 1, -1, 1,
+            -1, 1, -1, 1, -1, 1, -1
     };
     private static final int[] target2 = {
-            1, -1, 1, -1, 1,
-            1, -1, 1, -1, 1
+            1, -1, 1, -1, 1, -1, 1,
+            1, -1, 1, -1, 1, -1, 1
     };
 
     /* Parameters of the GRN */
     private static final int maxCycle = 20;
-    private static final int edgeSize = 20;
+    private static final int edgeSize = 40;
     private static final int perturbations = 75;
     private static final double perturbationRate = 0.15;
     private static final int perturbationCycleSize = 100;
 
     /* Parameters of the GA */
     private static final double geneMutationRate = 0.05;
-    private static final int numElites = 10;
+    private static final int numElites = 1;
     private static final int populationSize = 100;
     private static final int tournamentSize = 3;
-    private static final double reproductionRate = 0.9;
+    private static final double reproductionRate = 0.99;
     private static final int maxGen = 2000;
     private static final List<Integer> thresholds = Arrays.asList(0, 500); // when to switch targets
     private static final int moduleIndex = 3;
@@ -65,8 +67,8 @@ public class HaploidGRN2Target15MatrixLarsonMain {
     /* Settings for text outputs */
     private static final String summaryFileName = "Haploid-GRN-Matrix.txt";
     private static final String csvFileName = "Haploid-GRN-Matrix.csv";
-    private static final String outputDirectory = "larson-crossover";
-    private static final String mainFileName = "HaploidGRN2Target15MatrixLarsonMain.java";
+    private static final String outputDirectory = "haploid-grn-matrix-2-fixed-15";
+    private static final String mainFileName = "HaploidGRNFixedPointXMatrixMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
 
@@ -95,14 +97,14 @@ public class HaploidGRN2Target15MatrixLarsonMain {
         Selector<SimpleHaploid> selector = new SimpleProportionalSelector<>();
 
         /* Selector for elites */
-//        PriorOperator<SimpleHaploid> priorOperator = new SimpleElitismOperator<>(numElites);
+        PriorOperator<SimpleHaploid> priorOperator = new SimpleElitismOperator<>(numElites);
 
         /* PostOperator is required to fill up the vacancy */
         PostOperator<SimpleHaploid> postOperator = new SimpleFillingOperatorForNormalizable<>(
                 new SimpleTournamentScheme(tournamentSize));
 
         /* Reproducer for reproduction */
-        Reproducer<SimpleHaploid> reproducer = new GRNHaploidMatrixHorizontalReproducer(target1.length);
+        Reproducer<SimpleHaploid> reproducer = new SimpleHaploidMatrixFixedPointXReproducer(target1.length, 7);
 
         /* Statistics for keeping track the performance in generations */
         DetailedStatistics<SimpleHaploid> statistics = new DetailedStatistics<>();
@@ -113,12 +115,12 @@ public class HaploidGRN2Target15MatrixLarsonMain {
         state.record(statistics); // record the initial state of an population
 
         /* The frame of an GA to change states */
-        Frame<SimpleHaploid> frame = new SimpleHaploidFrame<>(state,postOperator,statistics);
+        Frame<SimpleHaploid> frame = new SimpleHaploidFrame<>(state,postOperator,statistics, priorOperator);
 
         /* Set output paths */
         statistics.setDirectory(outputDirectory + "/" + dateFormat.format(date));
         statistics.copyMainFile(mainFileName, System.getProperty("user.dir") +
-                "/src/main/java/experiments/exp2_crossover_comparison/" + mainFileName);
+                "/src/main/java/experiments/exp6_haploid_hotspot_aid_matrix_x_validation/" + mainFileName);
 
         statistics.print(0); // print the initial state of an population
         /* Actual GA evolutions */

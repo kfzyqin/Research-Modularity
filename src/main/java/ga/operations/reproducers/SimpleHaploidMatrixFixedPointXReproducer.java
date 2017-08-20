@@ -14,9 +14,11 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class SimpleHaploidMatrixFixedPointXReproducer extends HaploidReproducer<SimpleHaploid> {
     private final int matrixSideSize;
+    private final int crossoverIndex;
 
-    public SimpleHaploidMatrixFixedPointXReproducer(int matrixSideSize) {
+    public SimpleHaploidMatrixFixedPointXReproducer(int matrixSideSize, final int crossoverIndex) {
         this.matrixSideSize = matrixSideSize;
+        this.crossoverIndex = crossoverIndex;
     }
 
     @Override
@@ -29,7 +31,7 @@ public class SimpleHaploidMatrixFixedPointXReproducer extends HaploidReproducer<
         SimpleMaterial dna1 = child1.getMaterialsView().get(0);
         SimpleMaterial dna2 = child2.getMaterialsView().get(0);
 
-        final int crossIndex = 5;
+        final int crossIndex = crossoverIndex;
         for (int currentCrossIndex=0; currentCrossIndex<crossIndex; currentCrossIndex++) {
             int tmpCrossIndex = currentCrossIndex;
             while (tmpCrossIndex < crossIndex * matrixSideSize) {
