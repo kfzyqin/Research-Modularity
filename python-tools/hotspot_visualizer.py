@@ -45,26 +45,22 @@ def plot_hotspot_heat_map(rates, file_name=''):
     x_res = x.reshape(1, len(x))
 
     fig, ax = plt.subplots()
-    sns.heatmap(x_res, square=True, ax=ax, cmap=sns.dark_palette("grey", reverse=True))
-    plt.yticks(rotation=0, fontsize=16)
+    plt.xlabel('')
+    plt.ylabel('Network Node')
+    # sns.heatmap(x_res, square=True, ax=ax, cmap=sns.dark_palette("grey", reverse=True), yticklabels=False)
+    sns.heatmap(x_res, square=True, ax=ax, cmap=sns.dark_palette("grey", reverse=True), yticklabels=False)
     plt.xticks(fontsize=12)
+    plt.legend(loc='lower center')
     plt.tight_layout()
     # plt.show()
     if file_name != '':
         plt.savefig(file_name)
+        plt.close()
     else:
         plt.show()
 
-# path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic" \
-#          "-Hotspots/generated-outputs/data-2017-08-09/" \
-#          "larson-not-work/hotspot-haploid-grn-matrix-2-target-10/"
-
-# path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/" \
-#                             "generated-outputs/2017-08-15/" \
-#                           "hotspot-diploid-grn-3-target-10-matrix-evolved-spx-21"
-
 path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/" \
-                            "generated-outputs/hotspot-haploid-grn-matrix-2-35000-generation"
+                            "thesis-data/hotspot-haploid-3-target-15/hotspots"
 
 sub_directories = get_immediate_subdirectories(path_1)
 
@@ -91,5 +87,7 @@ for ele in rates_of_rates_in_different_experiments:
 print len(rates_of_rates_in_different_experiments)
 
 rates_sum = [sum(x) for x in zip(*rates_of_rates_in_different_experiments)]
-plot_hotspot_heat_map(rates_of_rates_in_different_experiments[0])
+rates_sum.insert(0, 0)
+rates_sum.append(0)
+plot_hotspot_heat_map(rates_sum, file_name=path_1 + os.sep + 'overall_hotspot.png')
 

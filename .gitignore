@@ -51,3 +51,5 @@ fabric.properties
 /generated-outputs
 
 /python-tools/.idea
+
+/thesis-data

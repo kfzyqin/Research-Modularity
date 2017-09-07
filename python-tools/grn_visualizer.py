@@ -79,6 +79,7 @@ def generate_node_colors(a_grn, a_grn_phenotype):
     for i in a_grn.nodes_with_selfloops():
         a_grn.node[i]['color'] = 'yellow'
 
+
 def generate_directed_grn(a_grn_phenotype):
     grn = nx.DiGraph()
     grn_side_size = int(math.sqrt(len(a_grn_phenotype)))
@@ -88,7 +89,13 @@ def generate_directed_grn(a_grn_phenotype):
     for i in range(grn_side_size):
         for j in range(grn_side_size):
             if a_grn_phenotype[j * grn_side_size + i] != 0:
-                grn.add_edge(i, j)
+                grn.add_edge(j, i, {'influence': a_grn_phenotype[j * grn_side_size + i]})
+
+                if a_grn_phenotype[j * grn_side_size + i] == 1:
+                    grn[j][i]['color'] = 'green'
+                elif a_grn_phenotype[j * grn_side_size + i] == -1:
+                    grn[j][i]['color'] = 'red'
+
     return grn
 
 
@@ -97,7 +104,6 @@ def get_grn_modularity_values(root_directory_path):
     phenotypes = get_grn_phenotypes(root_directory_path)
     for a_phenotype in phenotypes:
         a_grn = generate_directed_grn(a_phenotype)
-        a_partition = get_best_partition(a_grn)
         modularity_values.append(get_modularity_value(a_grn))
         # partition_set = set()
         # for ele in a_partition.values():
@@ -112,22 +118,24 @@ def draw_a_grn(grn, is_to_save=True, save_path="", file_name="", with_labels=Fal
     pos = nx.circular_layout(grn)
     partition = community.community_louvain.best_partition(grn.to_undirected())
     # pos = draw_communities.community_layout(grn, partition)
-    nx.draw(grn, pos, node_color=partition.values(), with_labels=with_labels)
+    nx.draw(grn, pos, node_color=partition.values(), with_labels=with_labels,
+            edge_color=nx.get_edge_attributes(grn, 'color').values())
 
     if not is_to_save:
         plt.show()
     if is_to_save:
-        if save_path== "" or file_name == "":
+        if save_path == "" or file_name == "":
             raise Exception('Save path is not specified.')
         plt.savefig(save_path + os.sep + file_name)
         plt.close()
 
-        # for key, value in np.ndenumerate(grn):
-        #     grn.node[key[0]]['pos'] = value
-        # write_dot(grn, str(grn.__hash__()) + 'directed_graph.dot')
+        for key, value in np.ndenumerate(grn):
+            grn.node[key[0]]['pos'] = value
+        write_dot(grn, save_path + os.sep + 'directed_graph.dot')
         # os.system('dot -T png ' + str(grn.__hash__()) + 'directed_graph.dot' + '>' +
         #           save_path + os.sep + 'directed_graph.png')
-        # os.remove(str(grn.__hash__()) + 'directed_graph.dot')
+        # os.remove(save_path + os.sep + 'directed_graph.dot')
+
 
 def plot_a_list(a_list):
     plt.plot(a_list)
@@ -143,48 +151,63 @@ def save_a_list_graph(a_list, path, file_name):
     plt.close()
 
 
-def get_modularity_value_maxes(path_1):
-    sub_directories = get_immediate_subdirectories(path_1)
+def get_modularity_value_maxes(a_path, starting_generation):
+    sub_directories = get_immediate_subdirectories(a_path)
     modularity_value_maxes = []
 
     for a_directory in sub_directories:
 
-        modularity_values = get_grn_modularity_values(a_directory)
+        modularity_values = get_grn_modularity_values(a_directory)[starting_generation:]
         modularity_value_maxes.append(max(modularity_values))
 
     return modularity_value_maxes
 
 
 path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/" \
-                            "generated-outputs/hotspot-haploid-grn-matrix-2-35000-generation"
-#
+                            "thesis-data/improved-crossover-for-modularity/chin-crossover"
+
 path_2 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/" \
-                            "generated-outputs/data-2017-08-12/" \
-                          "finally-my-crossover-work/haploid-grn-matrix-2-target-10-11"
+                            "thesis-data/improved-crossover-for-modularity/larson-crossover"
 
 
-# path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/" \
-#          "generated-outputs/data-2017-08-09/hotspot-diploid-worse/hotspot-diploid-grn-3-target-10-matrix-evolved-spx-10"
-
-
-def get_module_values(a_path, generation):
+def get_module_values(a_path, generation, draw_modularity = True, draw_grn = True):
     sub_directories = get_immediate_subdirectories(a_path)
     final_module_value_list = []
     for a_directory in sub_directories:
         phenotypes = get_grn_phenotypes(a_directory)
         if (len(phenotypes) > 0):
             a_grn = generate_directed_grn(phenotypes[generation])
-            # modularity_values = get_grn_modularity_values(a_directory)
-            # final_module_value_list.append(get_modularity_value(a_grn.to_undirected()))
-            # break
-            # save_a_list_graph(modularity_values, a_directory, 'modularity.png')
-            draw_a_grn(a_grn, is_to_save=True, save_path=a_directory, file_name='graph.png', with_labels=True)
+            modularity_values = get_grn_modularity_values(a_directory)
+            final_module_value_list.append(modularity_values[generation])
+
+            if draw_modularity:
+                save_a_list_graph(modularity_values, a_directory, 'modularity.png')
+            if draw_grn:
+                draw_a_grn(a_grn, is_to_save=True, save_path=a_directory, file_name='graph.png', with_labels=True)
     return final_module_value_list
 
-a_generation = 1000
-# while a_generation < 1050:
-a = get_module_values(path_1, -1)
-# b = get_module_values(path_2, 2000)
+
+def get_module_values_of_a_trial(a_directory, generation):
+    phenotypes = get_grn_phenotypes(a_directory)
+    if (len(phenotypes) > 0):
+        a_grn = generate_directed_grn(phenotypes[generation])
+        modularity_values = get_grn_modularity_values(a_directory)
+        # break
+        save_a_list_graph(modularity_values, a_directory, 'modularity.png')
+        draw_a_grn(a_grn, is_to_save=True, save_path=a_directory, file_name='graph.png', with_labels=True)
+        return modularity_values
+
+c_1 = get_module_values(path_1, -1, draw_grn=True, draw_modularity=False)
+c_2 = get_module_values(path_2, -1, draw_grn=True, draw_modularity=False)
+
+print "mean c_1: ", sum(c_1) / c_1.__len__()
+print "mean c_2: ", sum(c_2) / c_2.__len__()
+
+print scipy.stats.wilcoxon(c_1, c_2)
+print scipy.stats.ttest_ind(c_1, c_2)
+
+# a = get_module_values(path_1, -1, draw_modularity=False, draw_grn=False)
+# b = get_module_values(path_2, -1, draw_modularity=False, draw_grn=False)
 #
 # print "mean a: ", sum(a) / a.__len__()
 # print "mean b: ", sum(b) / b.__len__()
@@ -193,12 +216,11 @@ a = get_module_values(path_1, -1)
 # print scipy.stats.ttest_ind(a, b)
 
 
-# a = get_modularity_value_maxes(path_1)
-# b = get_modularity_value_maxes(path_2)
+# a = get_modularity_value_maxes(path_1, starting_generation=301)
+# b = get_modularity_value_maxes(path_2, starting_generation=301)
 #
 # print "mean a: ", sum(a) / a.__len__()
 # print "mean b: ", sum(b) / b.__len__()
 #
 # print scipy.stats.wilcoxon(a, b)
 # print scipy.stats.ttest_ind(a, b)
-

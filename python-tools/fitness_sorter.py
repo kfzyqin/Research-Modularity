@@ -17,14 +17,11 @@ def get_fitness_values(root_directory_path, index):
     # return sorted(fitness_values)
     return fitness_values
 
-a_root_directory_path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/" \
-                            "generated-outputs/2017-08-15/" \
-                          "diploid-grn-3-target-10-matrix-random-spx-21"
+path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/" \
+                            "thesis-data/hotspot-diploid-3-target-15-not-work/hotspots"
 
-
-a_root_directory_path_2 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/" \
-                            "generated-outputs/2017-08-15/" \
-                          "hotspot-diploid-grn-3-target-10-matrix-evolved-spx-21"
+path_2 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/" \
+                            "thesis-data/hotspot-diploid-3-target-15-not-work/no-hotspots"
 
 # a_root_directory_path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/" \
 #                             "generated-outputs/data-2017-08-12/" \
@@ -35,16 +32,25 @@ a_root_directory_path_2 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advan
 #                             "generated-outputs/data-2017-08-12/" \
 #                           "15-target-3-module-work/hotspot-haploid-grn-matrix-2-target-10-12"
 
-print get_fitness_values(a_root_directory_path_1, -1).__len__()
-print get_fitness_values(a_root_directory_path_2, -1).__len__()
+# a = get_fitness_values(path_1, 1999)
+# b = get_fitness_values(path_1, 1999)
+#
+# if scipy.stats.wilcoxon(a, b)[1] <= 0.05:
+#     print "mean a: ", sum(a) / a.__len__()
+#     print "mean b: ", sum(b) / b.__len__()
+#     print "p-value by wilcoxon: ", scipy.stats.wilcoxon(a, b)
+#     print "p-value by t test: ", scipy.stats.ttest_ind(a, b)
 
-a_generation = 3500
+print get_fitness_values(path_1, -1).__len__()
+print get_fitness_values(path_2, -1).__len__()
+
+a_generation = 3999
 while a_generation <= 4000:
     print "generation: ", a_generation
-    a = get_fitness_values(a_root_directory_path_1, a_generation)[:30]
-    b = get_fitness_values(a_root_directory_path_2, a_generation)[:30]
+    a = get_fitness_values(path_1, a_generation)
+    b = get_fitness_values(path_2, a_generation)
 
-    if scipy.stats.wilcoxon(a, b)[1] <= 0.05:
+    if scipy.stats.wilcoxon(a, b)[1] <= 1:
         print "mean a: ", sum(a) / a.__len__()
         print "mean b: ", sum(b) / b.__len__()
 

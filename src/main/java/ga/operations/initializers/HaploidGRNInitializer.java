@@ -10,9 +10,9 @@ import ga.components.materials.GRNFactoryNoHiddenTarget;
  * The Australian National University.
  */
 public class HaploidGRNInitializer implements Initializer<SimpleHaploid> {
-    private int size;
-    private final int targetLength;
-    private final int edgeSize;
+    protected int size;
+    protected final int targetLength;
+    protected final int edgeSize;
 
     public HaploidGRNInitializer(final int size, final int targetLength, final int edgeSize) {
         this.size = size;
@@ -53,7 +53,7 @@ public class HaploidGRNInitializer implements Initializer<SimpleHaploid> {
         return population;
     }
 
-    private Individual<SimpleHaploid> generateIndividual() {
+    protected Individual<SimpleHaploid> generateIndividual() {
         GRNFactoryNoHiddenTarget grnFactory = new GRNFactoryNoHiddenTarget(targetLength, this.edgeSize);
         return new Individual<>(new SimpleHaploid(grnFactory.generateGeneRegulatoryNetwork()));
     }
