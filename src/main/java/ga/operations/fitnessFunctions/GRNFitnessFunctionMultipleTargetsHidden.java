@@ -42,11 +42,11 @@ public class GRNFitnessFunctionMultipleTargetsHidden extends GRNFitnessFunctionM
             for (int j = 0; j<target.length + hiddenTargetSize; j++) {
                 if (j < target.length) {
                     returnables[i][j] = new DataGene(target[j]);
+                    if (Math.random() < probability) {
+                        returnables[i][j].flip();
+                    }
                 } else {
                     returnables[i][j] = new DataGene(1);
-                }
-                if (Math.random() < probability) {
-                    returnables[i][j].flip();
                 }
             }
         }

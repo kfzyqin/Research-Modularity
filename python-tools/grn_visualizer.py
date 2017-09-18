@@ -28,7 +28,8 @@ def get_best_partition(a_grn):
 def get_modularity_value(a_grn):
     # dendrogram = community.generate_dendrogram(a_grn.to_undirected())
     # print dendrogram
-    return community.modularity(get_best_partition(a_grn.to_undirected()), a_grn.to_undirected())
+    modularity_partition = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 1, 6: 1, 7: 1, 8: 1, 9: 1, 10: 2, 11: 2, 12: 2, 13: 2, 14: 2}
+    return community.modularity(modularity_partition, a_grn.to_undirected())
 
 
 def get_grn_phenotypes(root_directory_path):
@@ -116,7 +117,7 @@ def draw_a_grn(grn, is_to_save=True, save_path="", file_name="", with_labels=Fal
     # drawing
     # pos = nx.spring_layout(grn)
     pos = nx.circular_layout(grn)
-    partition = community.community_louvain.best_partition(grn.to_undirected())
+    partition = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 1, 6: 1, 7: 1, 8: 1, 9: 1, 10: 2, 11: 2, 12: 2, 13: 2, 14: 2}
     # pos = draw_communities.community_layout(grn, partition)
     nx.draw(grn, pos, node_color=partition.values(), with_labels=with_labels,
             edge_color=nx.get_edge_attributes(grn, 'color').values())
@@ -163,11 +164,14 @@ def get_modularity_value_maxes(a_path, starting_generation):
     return modularity_value_maxes
 
 
+# path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/" \
+#                             "thesis-data/improved-crossover-for-modularity/larson-crossover"
+
 path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/" \
-                            "thesis-data/improved-crossover-for-modularity/chin-crossover"
+                            "thesis-data/elite-reduce-modularity-previous/"
 
 path_2 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/" \
-                            "thesis-data/improved-crossover-for-modularity/larson-crossover"
+                            "thesis-data/elite-reduce-modularity-previous/"
 
 
 def get_module_values(a_path, generation, draw_modularity = True, draw_grn = True):
@@ -197,8 +201,8 @@ def get_module_values_of_a_trial(a_directory, generation):
         draw_a_grn(a_grn, is_to_save=True, save_path=a_directory, file_name='graph.png', with_labels=True)
         return modularity_values
 
-c_1 = get_module_values(path_1, -1, draw_grn=True, draw_modularity=False)
-c_2 = get_module_values(path_2, -1, draw_grn=True, draw_modularity=False)
+c_1 = get_module_values(path_1, 299, draw_grn=True, draw_modularity=True)
+c_2 = get_module_values(path_2, -1, draw_grn=True, draw_modularity=True)
 
 print "mean c_1: ", sum(c_1) / c_1.__len__()
 print "mean c_2: ", sum(c_2) / c_2.__len__()
@@ -206,8 +210,6 @@ print "mean c_2: ", sum(c_2) / c_2.__len__()
 print scipy.stats.wilcoxon(c_1, c_2)
 print scipy.stats.ttest_ind(c_1, c_2)
 
-# a = get_module_values(path_1, -1, draw_modularity=False, draw_grn=False)
-# b = get_module_values(path_2, -1, draw_modularity=False, draw_grn=False)
 #
 # print "mean a: ", sum(a) / a.__len__()
 # print "mean b: ", sum(b) / b.__len__()
@@ -224,3 +226,5 @@ print scipy.stats.ttest_ind(c_1, c_2)
 #
 # print scipy.stats.wilcoxon(a, b)
 # print scipy.stats.ttest_ind(a, b)
+
+print c_1

@@ -5,6 +5,7 @@ import ga.components.materials.Material;
 import ga.components.materials.SimpleMaterial;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 

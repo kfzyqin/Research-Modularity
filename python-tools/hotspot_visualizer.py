@@ -60,7 +60,7 @@ def plot_hotspot_heat_map(rates, file_name=''):
         plt.show()
 
 path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/" \
-                            "thesis-data/hotspot-haploid-3-target-15/hotspots"
+                            "thesis-data/larson-experiments-not-work/hotspots"
 
 sub_directories = get_immediate_subdirectories(path_1)
 

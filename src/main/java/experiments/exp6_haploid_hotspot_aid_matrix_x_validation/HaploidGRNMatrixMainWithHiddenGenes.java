@@ -8,16 +8,13 @@ import ga.frame.frames.SimpleHaploidFrame;
 import ga.frame.states.SimpleHaploidState;
 import ga.frame.states.State;
 import ga.operations.fitnessFunctions.FitnessFunction;
-import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargets;
-import ga.operations.initializers.HaploidGRNInitializer;
+import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsSeparateHidden;
+import ga.operations.initializers.HaploidGRNHiddenTargetInitializer;
 import ga.operations.mutators.GRNEdgeMutator;
 import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
 import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
-import ga.operations.priorOperators.PriorOperator;
-import ga.operations.priorOperators.SimpleElitismOperator;
 import ga.operations.reproducers.GRNHaploidMatrixDiagonalReproducer;
-import ga.operations.reproducers.GRNHaploidMatrixReproducer;
 import ga.operations.reproducers.Reproducer;
 import ga.operations.reproducers.SimpleHaploidNoXReproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
@@ -39,7 +36,7 @@ import java.util.List;
  * Created by Zhenyue Qin on 23/06/2017.
  * The Australian National University.
  */
-public class HaploidGRNMatrixMain {
+public class HaploidGRNMatrixMainWithHiddenGenes {
     /* The two targets that the GA evolve towards */
 //    private static final int[] target1 = {
 //            1, -1, 1, -1, 1,
@@ -91,23 +88,24 @@ public class HaploidGRNMatrixMain {
     private static final int edgeSize = 20;
     private static final int perturbations = 75;
     private static final double perturbationRate = 0.15;
+    private static final int unitHiddenTargetSize = 3;
 
     /* Parameters of the GA */
     private static final double geneMutationRate = 0.05;
     private static final int numElites = 10;
     private static final int populationSize = 100;
-    private static final int tournamentSize = 10;
+    private static final int tournamentSize = 3;
     private static final double reproductionRate = 0.9;
-    //    private static final int maxGen = 40000;
+//    private static final int maxGen = 40000;
 //    private static final List<Integer> thresholds = Arrays.asList(0, 500, 3000, 7000, 12000, 20000, 30000); // when to switch targets
+    private static final List<Integer> thresholds = Arrays.asList(0, 500);
     private static final int maxGen = 2000;
-    private static final List<Integer> thresholds = Arrays.asList(0, 500); // when to switch targets
 
     /* Settings for text outputs */
     private static final String summaryFileName = "Haploid-GRN-Matrix.txt";
     private static final String csvFileName = "Haploid-GRN-Matrix.csv";
-    private static final String outputDirectory = "elitism-test";
-    private static final String mainFileName = "HaploidGRNMatrixMain.java";
+    private static final String outputDirectory = "hidden-genes-03";
+    private static final String mainFileName = "HaploidGRNMatrixMainWithHiddenGenes.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
 
@@ -120,12 +118,13 @@ public class HaploidGRNMatrixMain {
         int[][] targets = {target1, target2};
 
         /* Fitness function */
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(
-                targets, maxCycle, perturbations, perturbationRate, thresholds);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsSeparateHidden(
+                targets, maxCycle, perturbations, perturbationRate, thresholds, unitHiddenTargetSize, 5);
 
         /* It is not necessary to write an initializer, but doing so is convenient to
         repeat the experiment using different parameter */
-        HaploidGRNInitializer initializer = new HaploidGRNInitializer(populationSize, target1.length, edgeSize);
+        HaploidGRNHiddenTargetInitializer initializer = new HaploidGRNHiddenTargetInitializer(
+                        populationSize, target1.length, (target1.length / 5) * unitHiddenTargetSize, edgeSize);
 
         /* Population */
         Population<SimpleHaploid> population = initializer.initialize();
@@ -134,18 +133,18 @@ public class HaploidGRNMatrixMain {
         Mutator mutator = new GRNEdgeMutator(geneMutationRate);
 
         /* Selector for reproduction */
-//        Selector<SimpleHaploid> selector = new SimpleTournamentSelector<>(tournamentSize);
         Selector<SimpleHaploid> selector = new SimpleProportionalSelector<>();
 
-//        /* Selector for elites */
-        PriorOperator<SimpleHaploid> priorOperator = new SimpleElitismOperator<>(numElites);
+        /* Selector for elites */
+//        PriorOperator<SimpleHaploid> priorOperator = new SimpleElitismOperator<>(numElites);
 
         /* PostOperator is required to fill up the vacancy */
         PostOperator<SimpleHaploid> postOperator = new SimpleFillingOperatorForNormalizable<>(
                 new SimpleTournamentScheme(tournamentSize));
 
         /* Reproducer for reproduction */
-        Reproducer<SimpleHaploid> reproducer = new GRNHaploidMatrixDiagonalReproducer(target1.length);
+        Reproducer<SimpleHaploid> reproducer = new GRNHaploidMatrixDiagonalReproducer(
+                target1.length + (target1.length / 5) * unitHiddenTargetSize);
 
         /* Statistics for keeping track the performance in generations */
         DetailedStatistics<SimpleHaploid> statistics = new DetailedStatistics<>();
@@ -156,7 +155,7 @@ public class HaploidGRNMatrixMain {
         state.record(statistics); // record the initial state of an population
 
         /* The frame of an GA to change states */
-        Frame<SimpleHaploid> frame = new SimpleHaploidFrame<>(state,postOperator,statistics, priorOperator);
+        Frame<SimpleHaploid> frame = new SimpleHaploidFrame<>(state,postOperator,statistics);
 
         /* Set output paths */
         statistics.setDirectory(outputDirectory + "/" + dateFormat.format(date));
