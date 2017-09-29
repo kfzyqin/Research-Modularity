@@ -4,6 +4,7 @@ import pandas as pd
 import community
 import networkx as nx
 import math
+import sys
 
 pattern = re.compile("(?<=Phenotype: \[)(.*)(?=\])")
 
@@ -39,7 +40,6 @@ def get_grn_phenotypes(root_directory_path):
             for i, line in enumerate(open(a_file)):
                 for match in re.finditer(pattern, line):
                     phenotypes.append(map(int, match.groups()[0].split(',')))
-
     else:
         raise Exception("The path is not correct. ")
     return phenotypes
@@ -108,8 +108,64 @@ def get_the_least_modular_individual_in_the_fittest_networks(a_path, starting_ge
     return target_generation, tuples[target_generation][0], tuples[target_generation][1]
 
 
-file_path = "/Users/Chinyuer/Software-Engineering/COMP4560/Chin-GA-Project/thesis-data/" \
-            "improved-crossover-for-modularity/chin-crossover/2017-08-12-11-24-22/"
+def grn_matrix_printing_helper(a_grn_phenotype):
+    grn_side_size = int(math.sqrt(len(a_grn_phenotype)))
+    for idx in range(len(a_grn_phenotype)):
+        if idx % grn_side_size == 0 and idx != 0:
+            print ''
+        sys.stdout.write(str(a_grn_phenotype[idx]))
+        sys.stdout.write(',\t')
+    print ""
 
-print get_the_fittest_individual_in_the_most_modular_networks(file_path, 501)
-print get_the_least_modular_individual_in_the_fittest_networks(file_path, 501)
+
+def force_modular_grn_matrix_printing_helper(a_grn_phenotype):
+    grn_side_size = int(math.sqrt(len(a_grn_phenotype)))
+    for i in range(grn_side_size):
+        for j in range(grn_side_size):
+            if (i < grn_side_size/2 and j < grn_side_size/2) or (i >= grn_side_size/2 and j >= grn_side_size/2):
+                sys.stdout.write(str(a_grn_phenotype[i * grn_side_size + j]))
+                sys.stdout.write(',\t')
+            else:
+                sys.stdout.write('0')
+                sys.stdout.write(',\t')
+        print ''
+
+
+def get_immediate_subdirectories(a_dir):
+    return [(a_dir + os.sep + name) for name in os.listdir(a_dir)
+            if os.path.isdir(os.path.join(a_dir, name))]
+
+
+file_path = "/Users/Chinyuer/Software-Engineering/COMP4560/Chin-GA-Project/thesis-data/" \
+            "improved-crossover-for-modularity/chin-crossover"
+
+sub_directories = get_immediate_subdirectories(file_path)
+
+current_idx = 1
+for a_directory in sub_directories[1:]:
+    fittest_in_most_modular = get_the_fittest_individual_in_the_most_modular_networks(a_directory, 501)
+    least_modular_in_fittest = get_the_least_modular_individual_in_the_fittest_networks(a_directory, 501)
+
+    phenotypes = get_grn_phenotypes(a_directory)
+
+    fittest_in_most_modular_phenotype = phenotypes[fittest_in_most_modular[0]]
+    least_modular_in_fittest_phenotype = phenotypes[least_modular_in_fittest[0]]
+
+    # print "FITTEST IN MODULAR PHENOTYPE: ", fittest_in_most_modular
+    # print "ITS PHENOTYPE: "
+    # grn_matrix_printing_helper(fittest_in_most_modular_phenotype)
+
+    print "Integer[] grnBefore%d = {" % current_idx
+    grn_matrix_printing_helper(least_modular_in_fittest_phenotype)
+    print "};"
+
+    print ""
+
+    print "Integer[] grnAfter%d = {" % current_idx
+    force_modular_grn_matrix_printing_helper(least_modular_in_fittest_phenotype)
+    print "};"
+
+    print "\n"
+
+    current_idx += 1
+
