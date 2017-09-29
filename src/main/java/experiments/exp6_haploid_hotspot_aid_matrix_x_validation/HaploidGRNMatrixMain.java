@@ -89,14 +89,14 @@ public class HaploidGRNMatrixMain {
     /* Parameters of the GRN */
     private static final int maxCycle = 20;
     private static final int edgeSize = 20;
-    private static final int perturbations = 75;
+    private static final int perturbations = 1000;
     private static final double perturbationRate = 0.15;
 
     /* Parameters of the GA */
     private static final double geneMutationRate = 0.05;
     private static final int numElites = 10;
     private static final int populationSize = 100;
-    private static final int tournamentSize = 10;
+    private static final int tournamentSize = 3;
     private static final double reproductionRate = 0.9;
     //    private static final int maxGen = 40000;
 //    private static final List<Integer> thresholds = Arrays.asList(0, 500, 3000, 7000, 12000, 20000, 30000); // when to switch targets
@@ -106,7 +106,7 @@ public class HaploidGRNMatrixMain {
     /* Settings for text outputs */
     private static final String summaryFileName = "Haploid-GRN-Matrix.txt";
     private static final String csvFileName = "Haploid-GRN-Matrix.csv";
-    private static final String outputDirectory = "elitism-test";
+    private static final String outputDirectory = "1000-perturbations";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
@@ -135,10 +135,10 @@ public class HaploidGRNMatrixMain {
 
         /* Selector for reproduction */
 //        Selector<SimpleHaploid> selector = new SimpleTournamentSelector<>(tournamentSize);
-        Selector<SimpleHaploid> selector = new SimpleProportionalSelector<>();
+        Selector<SimpleHaploid> selector = new SimpleTournamentSelector<>(tournamentSize);
 
 //        /* Selector for elites */
-        PriorOperator<SimpleHaploid> priorOperator = new SimpleElitismOperator<>(numElites);
+//        PriorOperator<SimpleHaploid> priorOperator = new SimpleElitismOperator<>(numElites);
 
         /* PostOperator is required to fill up the vacancy */
         PostOperator<SimpleHaploid> postOperator = new SimpleFillingOperatorForNormalizable<>(
@@ -156,7 +156,7 @@ public class HaploidGRNMatrixMain {
         state.record(statistics); // record the initial state of an population
 
         /* The frame of an GA to change states */
-        Frame<SimpleHaploid> frame = new SimpleHaploidFrame<>(state,postOperator,statistics, priorOperator);
+        Frame<SimpleHaploid> frame = new SimpleHaploidFrame<>(state,postOperator,statistics);
 
         /* Set output paths */
         statistics.setDirectory(outputDirectory + "/" + dateFormat.format(date));

@@ -1064,6 +1064,25 @@ public class ModularityAnalyzer {
     grnListBefore.add(grnBefore18);
     grnListBefore.add(grnBefore19);
     grnListBefore.add(grnBefore20);
+    grnListBefore.add(grnBefore21);
+    grnListBefore.add(grnBefore22);
+    grnListBefore.add(grnBefore23);
+    grnListBefore.add(grnBefore24);
+    grnListBefore.add(grnBefore25);
+    grnListBefore.add(grnBefore26);
+    grnListBefore.add(grnBefore27);
+    grnListBefore.add(grnBefore28);
+    grnListBefore.add(grnBefore29);
+    grnListBefore.add(grnBefore30);
+    grnListBefore.add(grnBefore31);
+    grnListBefore.add(grnBefore32);
+    grnListBefore.add(grnBefore33);
+    grnListBefore.add(grnBefore34);
+    grnListBefore.add(grnBefore35);
+    grnListBefore.add(grnBefore36);
+    grnListBefore.add(grnBefore37);
+    grnListBefore.add(grnBefore38);
+    grnListBefore.add(grnBefore39);
 
     List<Integer[]> grnListAfter = new ArrayList<>();
     grnListAfter.add(grnAfter1);
@@ -1086,18 +1105,42 @@ public class ModularityAnalyzer {
     grnListAfter.add(grnAfter18);
     grnListAfter.add(grnAfter19);
     grnListAfter.add(grnAfter20);
+    grnListAfter.add(grnAfter21);
+    grnListAfter.add(grnAfter22);
+    grnListAfter.add(grnAfter23);
+    grnListAfter.add(grnAfter24);
+    grnListAfter.add(grnAfter25);
+    grnListAfter.add(grnAfter26);
+    grnListAfter.add(grnAfter27);
+    grnListAfter.add(grnAfter28);
+    grnListAfter.add(grnAfter29);
+    grnListAfter.add(grnAfter30);
+    grnListAfter.add(grnAfter31);
+    grnListAfter.add(grnAfter32);
+    grnListAfter.add(grnAfter33);
+    grnListAfter.add(grnAfter34);
+    grnListAfter.add(grnAfter35);
+    grnListAfter.add(grnAfter36);
+    grnListAfter.add(grnAfter37);
+    grnListAfter.add(grnAfter38);
+    grnListAfter.add(grnAfter39);
 
-    System.out.println("BEFORE MODIFYING: ");
-    for (Integer[] aGRNList : grnListBefore) {
-      SimpleMaterial simpleMaterial1 = new SimpleMaterial(convertArrayToList(aGRNList));
-      System.out.println(grnFit.evaluate(simpleMaterial1, 1999) + ",");
+    List<Double> valueBeforeList = new ArrayList<>();
+    List<Double> valueAfterList = new ArrayList<>();
+    for (int i=0; i<grnListBefore.size(); i++) {
+      SimpleMaterial simpleMaterial1 = new SimpleMaterial(convertArrayToList(grnListBefore.get(i)));
+      double valueBefore = grnFit.evaluate(simpleMaterial1);
+      SimpleMaterial simpleMaterial2 = new SimpleMaterial(convertArrayToList(grnListAfter.get(i)));
+      double valueAfter = grnFit.evaluate(simpleMaterial2);
+      if (valueBefore > 0.945) {
+        valueBeforeList.add(valueBefore);
+        valueAfterList.add(valueAfter);
+      }
     }
 
-    System.out.println("AFTER MODIFYING: ");
-    for (Integer[] aGRNList : grnListAfter) {
-      SimpleMaterial simpleMaterial1 = new SimpleMaterial(convertArrayToList(aGRNList));
-      System.out.println(grnFit.evaluate(simpleMaterial1, 1999) + ",");
-    }
+    System.out.println(valueBeforeList);
+    System.out.println(valueAfterList);
+
   }
 
   public static List<EdgeGene> convertArrayToList(Integer[] tmpArray1) {
