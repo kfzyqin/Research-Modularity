@@ -44,7 +44,6 @@ def get_grn_phenotypes(root_directory_path):
         for i, line in enumerate(open(a_file)):
             for match in re.finditer(pattern, line):
                 phenotypes.append(map(int, match.groups()[0].split(',')))
-    # return sorted(phenotypes)
     return phenotypes
 
 
@@ -105,7 +104,7 @@ def get_grn_modularity_values(root_directory_path):
     phenotypes = get_grn_phenotypes(root_directory_path)
     for a_phenotype in phenotypes:
         a_grn = generate_directed_grn(a_phenotype)
-        modularity_values.append(get_modularity_value(a_grn))
+        modularity_values.append(get_modularity_value(a_xgrn))
         # partition_set = set()
         # for ele in a_partition.values():
         #     partition_set.add(ele)
