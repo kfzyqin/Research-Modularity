@@ -2,6 +2,7 @@ package experiments.experiment6;
 
 import ga.components.materials.GRN;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFastHidden;
+import tests.IntegrationTest;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,7 +26,7 @@ public class TestField7 {
         List<Integer> aGRNList = Arrays.asList(1, -1, -1, 1, -1, 1, 0, 1, -1);
 //        List<Integer> aGRNList = Arrays.asList(0, 0, -1, 0, 1, 1, 0, -1, -1);
 
-        GRN grn = new GRN(TestField6.convertIntegerListToEdgeGeneList(aGRNList));
+        GRN grn = new GRN(IntegrationTest.convertIntegerListToEdgeGeneList(aGRNList));
 
         double aFitness = grnFit2.evaluate(grn, 400);
 

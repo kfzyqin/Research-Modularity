@@ -1,12 +1,10 @@
-package experiments.experiment6;
-
-import java.util.concurrent.ThreadLocalRandom;
+package tests;
 
 /**
  * Created by Zhenyue Qin (秦震岳) on 8/7/17.
  * The Australian National University.
  */
-public class TestField11 {
+public class CrossoverTest {
     public static void main(String[] args) {
         final int crossIndex = 5;
         final int matrixSideSize = 10;

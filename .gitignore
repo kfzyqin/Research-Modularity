@@ -53,3 +53,5 @@ fabric.properties
 /python-tools/.idea
 
 /thesis-data
+
+*.pyc

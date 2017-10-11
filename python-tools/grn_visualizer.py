@@ -104,7 +104,7 @@ def get_grn_modularity_values(root_directory_path):
     phenotypes = get_grn_phenotypes(root_directory_path)
     for a_phenotype in phenotypes:
         a_grn = generate_directed_grn(a_phenotype)
-        modularity_values.append(get_modularity_value(a_xgrn))
+        modularity_values.append(get_modularity_value(a_grn))
         # partition_set = set()
         # for ele in a_partition.values():
         #     partition_set.add(ele)
@@ -166,11 +166,11 @@ def get_modularity_value_maxes(a_path, starting_generation):
 # path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/" \
 #                             "thesis-data/improved-crossover-for-modularity/larson-crossover"
 
-path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/" \
-                            "thesis-data/elite-reduce-modularity-previous/"
+path_1 = "/Users/qin/Software-Engineering/Chin-GA-Project/" \
+                            "thesis-data/improved-crossover-for-modularity/chin-crossover"
 
-path_2 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/" \
-                            "thesis-data/elite-reduce-modularity-previous/"
+path_2 = "/Users/qin/Software-Engineering/Chin-GA-Project/" \
+                            "thesis-data/improved-crossover-for-modularity/no-crossover"
 
 
 def get_module_values(a_path, generation, draw_modularity = True, draw_grn = True):
@@ -200,21 +200,24 @@ def get_module_values_of_a_trial(a_directory, generation):
         draw_a_grn(a_grn, is_to_save=True, save_path=a_directory, file_name='graph.png', with_labels=True)
         return modularity_values
 
-c_1 = get_module_values(path_1, 299, draw_grn=True, draw_modularity=True)
-c_2 = get_module_values(path_2, -1, draw_grn=True, draw_modularity=True)
-
-print "mean c_1: ", sum(c_1) / c_1.__len__()
-print "mean c_2: ", sum(c_2) / c_2.__len__()
-
-print scipy.stats.wilcoxon(c_1, c_2)
-print scipy.stats.ttest_ind(c_1, c_2)
-
+# c_1 = get_module_values(path_1, 299, draw_grn=True, draw_modularity=True)
+# c_2 = get_module_values(path_2, -1, draw_grn=True, draw_modularity=True)
 #
-# print "mean a: ", sum(a) / a.__len__()
-# print "mean b: ", sum(b) / b.__len__()
+# print "mean c_1: ", sum(c_1) / c_1.__len__()
+# print "mean c_2: ", sum(c_2) / c_2.__len__()
 #
-# print scipy.stats.wilcoxon(a, b)
-# print scipy.stats.ttest_ind(a, b)
+# print scipy.stats.wilcoxon(c_1, c_2)
+# print scipy.stats.ttest_ind(c_1, c_2)
+
+
+a = get_module_values(path_1, -1, draw_grn=False, draw_modularity=False)
+b = get_module_values(path_2, -1, draw_grn=False, draw_modularity=False)
+
+print "mean a: ", sum(a) / a.__len__()
+print "mean b: ", sum(b) / b.__len__()
+
+print scipy.stats.wilcoxon(a, b)
+print scipy.stats.ttest_ind(a, b)
 
 
 # a = get_modularity_value_maxes(path_1, starting_generation=301)
@@ -226,4 +229,3 @@ print scipy.stats.ttest_ind(c_1, c_2)
 # print scipy.stats.wilcoxon(a, b)
 # print scipy.stats.ttest_ind(a, b)
 
-print c_1

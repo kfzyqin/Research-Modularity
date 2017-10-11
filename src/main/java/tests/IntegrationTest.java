@@ -1,4 +1,4 @@
-package experiments.experiment6;
+package tests;
 
 import ga.components.genes.EdgeGene;
 import ga.components.materials.GRN;
@@ -12,7 +12,7 @@ import java.util.*;
  * Test the maximum potential of GRNs for multiple targets
  * Created by zhenyueqin on 27/6/17.
  */
-public class TestField6 {
+public class IntegrationTest {
     public static final int[] target1 = {1, -1, 1};
     public static final int[] target2 = {1, -1, -1};
 
