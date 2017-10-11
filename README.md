@@ -5,7 +5,7 @@
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
 [![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
 
-> Zhenyue Qin, u5505995@anu.edu.au, 
+> Zhenyue Qin, u5505995@anu.edu.au, <br>
 > Supervisors: Prof Tom Gedeon and Prof Bob Mckay. Much appreciate to them. 
 
 This readme file serves as a basic guidance on the usage of evolutionary simulations.
