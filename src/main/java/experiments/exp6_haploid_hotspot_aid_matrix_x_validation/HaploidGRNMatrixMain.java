@@ -89,7 +89,7 @@ public class HaploidGRNMatrixMain {
     /* Parameters of the GRN */
     private static final int maxCycle = 20;
     private static final int edgeSize = 20;
-    private static final int perturbations = 1000;
+    private static final int perturbations = 75;
     private static final double perturbationRate = 0.15;
 
     /* Parameters of the GA */

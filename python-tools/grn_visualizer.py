@@ -167,10 +167,10 @@ def get_modularity_value_maxes(a_path, starting_generation):
 #                             "thesis-data/improved-crossover-for-modularity/larson-crossover"
 
 path_1 = "/Users/qin/Software-Engineering/Chin-GA-Project/" \
-                            "thesis-data/improved-crossover-for-modularity/chin-crossover"
+                            "thesis-data/larson-experiments-repeats/hotspots"
 
 path_2 = "/Users/qin/Software-Engineering/Chin-GA-Project/" \
-                            "thesis-data/improved-crossover-for-modularity/no-crossover"
+                            "thesis-data/larson-experiments-repeats/no-hotspots"
 
 
 def get_module_values(a_path, generation, draw_modularity = True, draw_grn = True):

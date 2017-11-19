@@ -36,7 +36,7 @@ This readme file serves as a basic guidance on the usage of evolutionary simulat
     1. Deploy the Maven project
     2. Install networkx, numpy, pandas and community API for pythons. 
     3. Run evolutionary simulations in the evolution folder. 
-    P.S. Intellij is highly recommended. 
+    P.S. The Intellij IDE is highly recommended. 
 
 ## License
 

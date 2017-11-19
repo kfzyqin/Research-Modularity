@@ -19,10 +19,10 @@ def get_fitness_values(root_directory_path, index):
 
 
 path_1 = "/Users/qin/Software-Engineering/Chin-GA-Project/" \
-                            "thesis-data/improved-crossover-for-modularity/chin-crossover"
+                            "thesis-data/larson-experiments-repeats/hotspots"
 
 path_2 = "/Users/qin/Software-Engineering/Chin-GA-Project/" \
-                            "thesis-data/improved-crossover-for-modularity/no-crossover"
+                            "thesis-data/larson-experiments-repeats/no-hotspots"
 
 # a_root_directory_path_1 = "/Users/zhenyueqin/Software-Engineering/COMP4560-Advanced-Computing-Project/Genetic-Hotspots/" \
 #                             "generated-outputs/data-2017-08-12/" \
@@ -42,8 +42,8 @@ path_2 = "/Users/qin/Software-Engineering/Chin-GA-Project/" \
 #     print "p-value by wilcoxon: ", scipy.stats.wilcoxon(a, b)
 #     print "p-value by t test: ", scipy.stats.ttest_ind(a, b)
 
-print get_fitness_values(path_1, -1).__len__()
-print get_fitness_values(path_2, -1).__len__()
+print get_fitness_values(path_1, 1999).__len__()
+print get_fitness_values(path_2, 1999).__len__()
 
 a_generation = -1
 while a_generation <= -1:
