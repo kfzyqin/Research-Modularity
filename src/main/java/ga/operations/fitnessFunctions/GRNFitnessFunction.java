@@ -117,4 +117,14 @@ public abstract class GRNFitnessFunction<M extends Material> implements FitnessF
         }
         return rtn;
     }
+
+    protected double evaluateEdgeCost(final SimpleMaterial phenotype) {
+        int edgeNumber = 0;
+        for (int i=0; i<phenotype.getSize(); i++) {
+            if ((int) phenotype.getGene(i).getValue() != 0) {
+                edgeNumber += 1;
+            }
+        }
+        return edgeNumber / (float) phenotype.getSize();
+    }
 }

@@ -14,15 +14,12 @@ import ga.operations.mutators.GRNEdgeMutator;
 import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
 import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
-import ga.operations.priorOperators.PriorOperator;
-import ga.operations.priorOperators.SimpleElitismOperator;
 import ga.operations.reproducers.GRNHaploidMatrixDiagonalReproducer;
 import ga.operations.reproducers.GRNHaploidMatrixReproducer;
+import ga.operations.reproducers.GRNHaploidNoXReproducer;
 import ga.operations.reproducers.Reproducer;
-import ga.operations.reproducers.SimpleHaploidNoXReproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
-import ga.operations.selectionOperators.selectors.SimpleProportionalSelector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
 
 import java.io.IOException;
@@ -89,14 +86,14 @@ public class HaploidGRNMatrixMain {
     /* Parameters of the GRN */
     private static final int maxCycle = 20;
     private static final int edgeSize = 20;
-    private static final int perturbations = 75;
+    private static final int perturbations = 200;
     private static final double perturbationRate = 0.15;
 
     /* Parameters of the GA */
     private static final double geneMutationRate = 0.05;
     private static final int numElites = 10;
     private static final int populationSize = 100;
-    private static final int tournamentSize = 3;
+    private static final int tournamentSize = 5;
     private static final double reproductionRate = 0.9;
     //    private static final int maxGen = 40000;
 //    private static final List<Integer> thresholds = Arrays.asList(0, 500, 3000, 7000, 12000, 20000, 30000); // when to switch targets
@@ -106,7 +103,7 @@ public class HaploidGRNMatrixMain {
     /* Settings for text outputs */
     private static final String summaryFileName = "Haploid-GRN-Matrix.txt";
     private static final String csvFileName = "Haploid-GRN-Matrix.csv";
-    private static final String outputDirectory = "1000-perturbations";
+    private static final String outputDirectory = "40-40-experiments-to-verify-manufacturing";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();

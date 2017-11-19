@@ -11,7 +11,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * Created by Zhenyue Qin (秦震岳) on 8/7/17.
  * The Australian National University.
  */
-public class SimpleHaploidNoXReproducer extends HaploidReproducer<SimpleHaploid>  {
+public class GRNHaploidNoXReproducer extends HaploidReproducer<SimpleHaploid>  {
     @Override
     public List<SimpleHaploid> reproduce(List<SimpleHaploid> mates) {
         List<SimpleHaploid> children = new ArrayList<>(2);

@@ -5,6 +5,9 @@ import community
 import networkx as nx
 import math
 import sys
+import matplotlib.pyplot as plt
+import numpy as np
+import scipy.stats
 
 pattern = re.compile("(?<=Phenotype: \[)(.*)(?=\])")
 
@@ -96,7 +99,7 @@ def get_the_fittest_individual_in_the_most_modular_networks(a_path, starting_gen
 def get_the_least_modular_individual_in_the_fittest_networks(a_path, starting_generation):
     tuples = get_fitness_modularity_pair_of_a_trial(a_path)
 
-    max_fitness = max(tuples)[0]
+    max_fitness = max(tuples[starting_generation:])[0]
 
     tmp_modularity = 1
     target_generation = 0
@@ -136,20 +139,61 @@ def get_immediate_subdirectories(a_dir):
             if os.path.isdir(os.path.join(a_dir, name))]
 
 
-file_path = "/Users/Chinyuer/Software-Engineering/COMP4560/Chin-GA-Project/thesis-data/" \
-            "improved-crossover-for-modularity/chin-crossover"
+def count_number_of_edges(a_grn):
+    return sum(x != 0 for x in a_grn)
+
+
+def draw_a_grn(grn, is_to_save=False, save_path="", file_name="", with_labels=False):
+    # drawing
+    # pos = nx.spring_layout(grn)
+    grn = generate_directed_grn(grn)
+    pos = nx.circular_layout(grn)
+    partition = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 1, 6: 1, 7: 1, 8: 1, 9: 1}
+    # pos = draw_communities.community_layout(grn, partition)
+    nx.draw(grn, pos, node_color=partition.values(), with_labels=with_labels,
+            edge_color=nx.get_edge_attributes(grn, 'color').values())
+
+    if not is_to_save:
+        plt.show()
+    if is_to_save:
+        if save_path == "" or file_name == "":
+            raise Exception('Save path is not specified.')
+        plt.savefig(save_path + os.sep + file_name)
+        plt.close()
+
+        for key, value in np.ndenumerate(grn):
+            grn.node[key[0]]['pos'] = value
+
+
+# file_path = "/Users/qin/Software-Engineering/Chin-GA-Project/thesis-data/" \
+#             "different-crossover-mechanism-comparisons/chin-crossover"
+
+file_path = "/Users/qin/Software-Engineering/Chin-GA-Project/generated-outputs/" \
+            "edge-cost-online"
 
 sub_directories = get_immediate_subdirectories(file_path)
 
+least_modular_edge_numbers = []
+fittest_modular_edge_numbers = []
+
 current_idx = 1
-for a_directory in sub_directories[1:]:
+for a_directory in sub_directories:
     fittest_in_most_modular = get_the_fittest_individual_in_the_most_modular_networks(a_directory, 501)
     least_modular_in_fittest = get_the_least_modular_individual_in_the_fittest_networks(a_directory, 501)
+
+    print fittest_in_most_modular
+    print least_modular_in_fittest
 
     phenotypes = get_grn_phenotypes(a_directory)
 
     fittest_in_most_modular_phenotype = phenotypes[fittest_in_most_modular[0]]
     least_modular_in_fittest_phenotype = phenotypes[least_modular_in_fittest[0]]
+
+    # least_modular_edge_numbers.append(count_number_of_edges(least_modular_in_fittest_phenotype))
+    # fittest_modular_edge_numbers.append(count_number_of_edges(fittest_in_most_modular_phenotype))
+
+    print (least_modular_in_fittest_phenotype)
+    print (count_number_of_edges(least_modular_in_fittest_phenotype))
 
     # print "FITTEST IN MODULAR PHENOTYPE: ", fittest_in_most_modular
     # print "ITS PHENOTYPE: "
@@ -169,3 +213,12 @@ for a_directory in sub_directories[1:]:
 
     current_idx += 1
 
+# print least_modular_edge_numbers[:39]
+# print fittest_modular_edge_numbers[:39]
+#
+# if scipy.stats.wilcoxon(least_modular_edge_numbers, fittest_modular_edge_numbers)[1] <= 1:
+#     print "mean a: ", sum(least_modular_edge_numbers) / least_modular_edge_numbers.__len__()
+#     print "mean b: ", sum(fittest_modular_edge_numbers) / fittest_modular_edge_numbers.__len__()
+#
+#     print "p-value by wilcoxon: ", scipy.stats.wilcoxon(least_modular_edge_numbers, fittest_modular_edge_numbers)
+#     print "p-value by t test: ", scipy.stats.ttest_ind(least_modular_edge_numbers, fittest_modular_edge_numbers)

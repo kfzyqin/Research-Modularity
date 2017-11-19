@@ -16,11 +16,9 @@ import ga.operations.postOperators.PostOperator;
 import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
 import ga.operations.reproducers.GRNHaploidMatrixDiagonalReproducer;
 import ga.operations.reproducers.Reproducer;
-import ga.operations.reproducers.SimpleHaploidNoXReproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
 import ga.operations.selectionOperators.selectors.SimpleProportionalSelector;
-import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
 
 import java.io.IOException;
 import java.text.DateFormat;

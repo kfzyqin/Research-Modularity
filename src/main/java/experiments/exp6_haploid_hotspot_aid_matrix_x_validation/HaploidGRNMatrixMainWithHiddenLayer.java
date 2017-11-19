@@ -8,23 +8,17 @@ import ga.frame.frames.SimpleHaploidFrame;
 import ga.frame.states.SimpleHaploidState;
 import ga.frame.states.State;
 import ga.operations.fitnessFunctions.FitnessFunction;
-import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargets;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsHidden;
 import ga.operations.initializers.HaploidGRNHiddenTargetInitializer;
-import ga.operations.initializers.HaploidGRNInitializer;
 import ga.operations.mutators.GRNEdgeMutator;
 import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
 import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
-import ga.operations.priorOperators.PriorOperator;
-import ga.operations.priorOperators.SimpleElitismOperator;
-import ga.operations.reproducers.GRNHaploidMatrixDiagonalReproducer;
 import ga.operations.reproducers.Reproducer;
-import ga.operations.reproducers.SimpleHaploidNoXReproducer;
+import ga.operations.reproducers.GRNHaploidNoXReproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
 import ga.operations.selectionOperators.selectors.SimpleProportionalSelector;
-import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -146,7 +140,7 @@ public class HaploidGRNMatrixMainWithHiddenLayer {
                 new SimpleTournamentScheme(tournamentSize));
 
         /* Reproducer for reproduction */
-        Reproducer<SimpleHaploid> reproducer = new SimpleHaploidNoXReproducer();
+        Reproducer<SimpleHaploid> reproducer = new GRNHaploidNoXReproducer();
 
         /* Statistics for keeping track the performance in generations */
         DetailedStatistics<SimpleHaploid> statistics = new DetailedStatistics<>();
