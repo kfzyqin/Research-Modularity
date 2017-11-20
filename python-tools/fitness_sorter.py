@@ -18,8 +18,8 @@ def get_fitness_values(root_directory_path, index):
     return fitness_values
 
 
-path_1 = "/Users/qin/Software-Engineering/Chin-GA-Project/" \
-                            "thesis-data/larson-experiments-repeats/hotspots"
+path_1 = "/Users/qin/Software-Engineering/Chin-GA-Project/generated-outputs/" \
+            "half-probability-mutation"
 
 path_2 = "/Users/qin/Software-Engineering/Chin-GA-Project/" \
                             "thesis-data/larson-experiments-repeats/no-hotspots"
@@ -43,19 +43,19 @@ path_2 = "/Users/qin/Software-Engineering/Chin-GA-Project/" \
 #     print "p-value by t test: ", scipy.stats.ttest_ind(a, b)
 
 print get_fitness_values(path_1, 1999).__len__()
-print get_fitness_values(path_2, 1999).__len__()
+# print get_fitness_values(path_2, 1999).__len__()
 
-a_generation = -1
-while a_generation <= -1:
-    print "generation: ", a_generation
-    a = get_fitness_values(path_1, -2)
-    b = get_fitness_values(path_2, -2)
-
-    if scipy.stats.wilcoxon(a, b)[1] <= 1:
-        print "mean a: ", sum(a) / a.__len__()
-        print "mean b: ", sum(b) / b.__len__()
-
-        print "p-value by wilcoxon: ", scipy.stats.wilcoxon(a, b)
-        print "p-value by t test: ", scipy.stats.ttest_ind(a, b)
-    a_generation += 1
+# a_generation = -1
+# while a_generation <= -1:
+#     print "generation: ", a_generation
+#     a = get_fitness_values(path_1, -2)
+#     b = get_fitness_values(path_2, -2)
+#
+#     if scipy.stats.wilcoxon(a, b)[1] <= 1:
+#         print "mean a: ", sum(a) / a.__len__()
+#         print "mean b: ", sum(b) / b.__len__()
+#
+#         print "p-value by wilcoxon: ", scipy.stats.wilcoxon(a, b)
+#         print "p-value by t test: ", scipy.stats.ttest_ind(a, b)
+#     a_generation += 1
 

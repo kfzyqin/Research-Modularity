@@ -11,6 +11,7 @@ import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargets;
 import ga.operations.initializers.HaploidGRNInitializer;
 import ga.operations.mutators.GRNEdgeMutator;
+import ga.operations.mutators.GRNRandomEdgeMutator;
 import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
 import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
@@ -20,9 +21,12 @@ import ga.operations.reproducers.GRNHaploidNoXReproducer;
 import ga.operations.reproducers.Reproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
+import ga.operations.selectionOperators.selectors.SimpleProportionalSelector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -93,17 +97,17 @@ public class HaploidGRNMatrixMain {
     private static final double geneMutationRate = 0.05;
     private static final int numElites = 10;
     private static final int populationSize = 100;
-    private static final int tournamentSize = 5;
+    private static final int tournamentSize = 3;
     private static final double reproductionRate = 0.9;
     //    private static final int maxGen = 40000;
 //    private static final List<Integer> thresholds = Arrays.asList(0, 500, 3000, 7000, 12000, 20000, 30000); // when to switch targets
-    private static final int maxGen = 2000;
+    private static final int maxGen = 50;
     private static final List<Integer> thresholds = Arrays.asList(0, 500); // when to switch targets
 
     /* Settings for text outputs */
     private static final String summaryFileName = "Haploid-GRN-Matrix.txt";
     private static final String csvFileName = "Haploid-GRN-Matrix.csv";
-    private static final String outputDirectory = "40-40-experiments-to-verify-manufacturing";
+    private static final String outputDirectory = "python-autonomous-test";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
@@ -128,11 +132,10 @@ public class HaploidGRNMatrixMain {
         Population<SimpleHaploid> population = initializer.initialize();
 
         /* Mutator for chromosomes */
-        Mutator mutator = new GRNEdgeMutator(geneMutationRate);
+        Mutator mutator = new GRNRandomEdgeMutator(geneMutationRate);
 
         /* Selector for reproduction */
-//        Selector<SimpleHaploid> selector = new SimpleTournamentSelector<>(tournamentSize);
-        Selector<SimpleHaploid> selector = new SimpleTournamentSelector<>(tournamentSize);
+        Selector<SimpleHaploid> selector = new SimpleProportionalSelector<>();
 
 //        /* Selector for elites */
 //        PriorOperator<SimpleHaploid> priorOperator = new SimpleElitismOperator<>(numElites);
@@ -156,7 +159,8 @@ public class HaploidGRNMatrixMain {
         Frame<SimpleHaploid> frame = new SimpleHaploidFrame<>(state,postOperator,statistics);
 
         /* Set output paths */
-        statistics.setDirectory(outputDirectory + "/" + dateFormat.format(date));
+        String outputDirectoryPath = outputDirectory + "/" + dateFormat.format(date);
+        statistics.setDirectory(outputDirectoryPath);
         statistics.copyMainFile(mainFileName, System.getProperty("user.dir") +
                 "/src/main/java/experiments/exp6_haploid_hotspot_aid_matrix_x_validation/" + mainFileName);
 
@@ -171,5 +175,10 @@ public class HaploidGRNMatrixMain {
         statistics.save(summaryFileName);
         statistics.generateCSVFile(csvFileName);
         statistics.generatePlot(plotTitle, plotFileName);
+
+        ProcessBuilder pb = new ProcessBuilder("python", "./python-tools/java_main_mate.py",
+                System.getProperty("user.dir") + "/generated-outputs/" + outputDirectoryPath);
+        Process p = pb.start();
+
     }
 }

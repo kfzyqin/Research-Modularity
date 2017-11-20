@@ -83,7 +83,7 @@ def get_modularity_value(a_grn):
 def get_the_fittest_individual_in_the_most_modular_networks(a_path, starting_generation):
     tuples = get_fitness_modularity_pair_of_a_trial(a_path)
 
-    max_modularity = max(x[1] for x in tuples)
+    max_modularity = max(x[1] for x in tuples[starting_generation:])
 
     tmp_fitness = 0
     target_generation = 0
@@ -169,7 +169,7 @@ def draw_a_grn(grn, is_to_save=False, save_path="", file_name="", with_labels=Fa
 #             "different-crossover-mechanism-comparisons/chin-crossover"
 
 file_path = "/Users/qin/Software-Engineering/Chin-GA-Project/generated-outputs/" \
-            "edge-cost-online"
+            "half-probability-mutation"
 
 sub_directories = get_immediate_subdirectories(file_path)
 
@@ -193,7 +193,12 @@ for a_directory in sub_directories:
     # fittest_modular_edge_numbers.append(count_number_of_edges(fittest_in_most_modular_phenotype))
 
     print (least_modular_in_fittest_phenotype)
-    print (count_number_of_edges(least_modular_in_fittest_phenotype))
+
+    print ("number of edges in a network for the most modular: ",
+           count_number_of_edges(fittest_in_most_modular_phenotype))
+
+    print ("number of edges in a network for the least modular: ",
+           count_number_of_edges(least_modular_in_fittest_phenotype))
 
     # print "FITTEST IN MODULAR PHENOTYPE: ", fittest_in_most_modular
     # print "ITS PHENOTYPE: "
