@@ -15,6 +15,8 @@ import ga.operations.mutators.GRNRandomEdgeMutator;
 import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
 import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
+import ga.operations.priorOperators.PriorOperator;
+import ga.operations.priorOperators.SimpleElitismOperator;
 import ga.operations.reproducers.GRNHaploidMatrixDiagonalReproducer;
 import ga.operations.reproducers.GRNHaploidMatrixReproducer;
 import ga.operations.reproducers.GRNHaploidNoXReproducer;
@@ -90,7 +92,7 @@ public class HaploidGRNMatrixMain {
     /* Parameters of the GRN */
     private static final int maxCycle = 20;
     private static final int edgeSize = 20;
-    private static final int perturbations = 200;
+    private static final int perturbations = 75;
     private static final double perturbationRate = 0.15;
 
     /* Parameters of the GA */
@@ -101,13 +103,13 @@ public class HaploidGRNMatrixMain {
     private static final double reproductionRate = 0.9;
     //    private static final int maxGen = 40000;
 //    private static final List<Integer> thresholds = Arrays.asList(0, 500, 3000, 7000, 12000, 20000, 30000); // when to switch targets
-    private static final int maxGen = 50;
-    private static final List<Integer> thresholds = Arrays.asList(0, 500); // when to switch targets
+    private static final int maxGen = 1300;
+    private static final List<Integer> thresholds = Arrays.asList(0, 300); // when to switch targets
 
     /* Settings for text outputs */
     private static final String summaryFileName = "Haploid-GRN-Matrix.txt";
     private static final String csvFileName = "Haploid-GRN-Matrix.csv";
-    private static final String outputDirectory = "python-autonomous-test";
+    private static final String outputDirectory = "introduce-cost";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
@@ -132,7 +134,7 @@ public class HaploidGRNMatrixMain {
         Population<SimpleHaploid> population = initializer.initialize();
 
         /* Mutator for chromosomes */
-        Mutator mutator = new GRNRandomEdgeMutator(geneMutationRate);
+        Mutator mutator = new GRNEdgeMutator(geneMutationRate);
 
         /* Selector for reproduction */
         Selector<SimpleHaploid> selector = new SimpleProportionalSelector<>();
@@ -177,8 +179,12 @@ public class HaploidGRNMatrixMain {
         statistics.generatePlot(plotTitle, plotFileName);
 
         ProcessBuilder pb = new ProcessBuilder("python", "./python-tools/java_main_mate.py",
-                System.getProperty("user.dir") + "/generated-outputs/" + outputDirectoryPath);
+                System.getProperty("user.dir") + "/generated-outputs/" + outputDirectoryPath, "" + thresholds.get(1));
         Process p = pb.start();
 
+        /* For Debug */
+//        BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+//        String ret = in.readLine();
+//        System.out.println("value is : "+ret);
     }
 }

@@ -79,7 +79,6 @@ class GRNPlotter:
                         grn[j][i]['color'] = 'green'
                     elif a_grn_phenotype[j * grn_side_size + i] == -1:
                         grn[j][i]['color'] = 'red'
-
         return grn
 
     def get_grn_modularity_values(self, root_directory_path):
@@ -97,6 +96,8 @@ class GRNPlotter:
     def draw_a_grn(self, grn, is_to_save=True, save_path="", file_name="", with_labels=False):
         # drawing
         # pos = nx.spring_layout(grn)
+        if isinstance(grn, list):
+            grn = self.generate_directed_grn(grn)
         pos = nx.circular_layout(grn)
         partition = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 1, 6: 1, 7: 1, 8: 1, 9: 1}
         # pos = draw_communities.community_layout(grn, partition)
@@ -132,14 +133,11 @@ class GRNPlotter:
                                     with_labels=True)
         return final_module_value_list
 
-    def get_module_values_of_a_trial(self, a_directory, generation=-1, draw_modularity=True, draw_grn=True):
+    def get_module_values_of_a_trial(self, a_directory, draw_modularity=True):
         phenotypes = self.get_grn_phenotypes(a_directory)
-        if (len(phenotypes) > 0):
-            a_grn = self.generate_directed_grn(phenotypes[generation])
+        if len(phenotypes) > 0:
             modularity_values = self.get_grn_modularity_values(a_directory)
             if draw_modularity:
                 save_a_list_graph(modularity_values, 'Modularity', a_directory, 'modularity.png')
-            if draw_grn:
-                self.draw_a_grn(a_grn, is_to_save=True, save_path=a_directory, file_name='graph.png', with_labels=True)
             return modularity_values
 

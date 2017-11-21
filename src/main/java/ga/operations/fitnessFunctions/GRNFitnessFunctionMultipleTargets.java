@@ -122,6 +122,16 @@ public class GRNFitnessFunctionMultipleTargets extends GRNFitnessFunction<Simple
             int[] aTarget = this.targets[targetIndex];
             fitnessValue += this.evaluateOneTarget(phenotype, aTarget);
         }
-        return fitnessValue / currentTargetIndices.size();
+        double robustness = (fitnessValue / currentTargetIndices.size());
+//        double modifiedRobustness;
+//        if (robustness >= 0.8) {
+//            modifiedRobustness = (robustness-0.8) / 0.15;
+//        } else {
+//            modifiedRobustness = robustness;
+//        }
+
+        double edgeCost = evaluateEdgeCost(phenotype);
+        double alpha = 0.75;
+        return 1.0 / (alpha*(1.0/robustness) + (1-alpha)*(1.0/edgeCost));
     }
 }
