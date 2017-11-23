@@ -79,59 +79,51 @@ public class GRNFitnessFunctionMultipleTargets extends GRNFitnessFunction<Simple
     }
 
     protected double evaluateOneTarget(@NotNull final SimpleMaterial phenotype, @NotNull final int[] target) {
-        DataGene[][] startAttractors = this.generateInitialAttractors(perturbations, perturbationRate, target);
-        double fitnessValue = 0;
-        for (DataGene[] startAttractor : startAttractors) {
-            DataGene[] currentAttractor = startAttractor;
-            int currentRound = 0;
-            boolean isNotStable;
-            do {
-                DataGene[] updatedState = this.updateState(currentAttractor, phenotype);
-                isNotStable = this.hasNotAttainedAttractor(currentAttractor, updatedState);
-                currentAttractor = updatedState;
-                currentRound += 1;
-            } while (currentRound < this.maxCycle && isNotStable);
-
-            if (currentRound < maxCycle) {
-                int hammingDistance = this.getHammingDistance(currentAttractor, target);
-                double thisFitness = Math.pow((1 - (hammingDistance / ((double) target.length))), 5);
-                fitnessValue += thisFitness;
-            } else {
-                fitnessValue += 0;
-            }
-        }
-        double arithmeticMean = fitnessValue / this.perturbations;
-        double networkFitness = 1 - Math.pow(Math.E, (-3 * arithmeticMean));
-        return networkFitness;
-
-//        int ones = 0;
-//        for (int i=0; i<phenotype.getSize(); i++) {
-//            int aPosition = (Integer) phenotype.getGene(i).getValue();
-//            if (aPosition == 1) {
-//                ones += 1;
+        return 1;
+//        DataGene[][] startAttractors = this.generateInitialAttractors(perturbations, perturbationRate, target);
+//        double fitnessValue = 0;
+//        for (DataGene[] startAttractor : startAttractors) {
+//            DataGene[] currentAttractor = startAttractor;
+//            int currentRound = 0;
+//            boolean isNotStable;
+//            do {
+//                DataGene[] updatedState = this.updateState(currentAttractor, phenotype);
+//                isNotStable = this.hasNotAttainedAttractor(currentAttractor, updatedState);
+//                currentAttractor = updatedState;
+//                currentRound += 1;
+//            } while (currentRound < this.maxCycle && isNotStable);
+//
+//            if (currentRound < maxCycle) {
+//                int hammingDistance = this.getHammingDistance(currentAttractor, target);
+//                double thisFitness = Math.pow((1 - (hammingDistance / ((double) target.length))), 5);
+//                fitnessValue += thisFitness;
+//            } else {
+//                fitnessValue += 0;
 //            }
 //        }
-//        return ones;
+//        double arithmeticMean = fitnessValue / this.perturbations;
+//        double networkFitness = 1 - Math.pow(Math.E, (-3 * arithmeticMean));
+//        return networkFitness;
+//
+////        int ones = 0;
+////        for (int i=0; i<phenotype.getSize(); i++) {
+////            int aPosition = (Integer) phenotype.getGene(i).getValue();
+////            if (aPosition == 1) {
+////                ones += 1;
+////            }
+////        }
+////        return ones;
     }
 
     @Override
     public double evaluate(final SimpleMaterial phenotype, final int generation) {
-        List<Integer> currentTargetIndices = this.getCurrentTargetIndices(generation);
-        double fitnessValue = 0;
-        for (Integer targetIndex : currentTargetIndices) {
-            int[] aTarget = this.targets[targetIndex];
-            fitnessValue += this.evaluateOneTarget(phenotype, aTarget);
-        }
-        double robustness = (fitnessValue / currentTargetIndices.size());
-//        double modifiedRobustness;
-//        if (robustness >= 0.8) {
-//            modifiedRobustness = (robustness-0.8) / 0.15;
-//        } else {
-//            modifiedRobustness = robustness;
+        return 1;
+//        List<Integer> currentTargetIndices = this.getCurrentTargetIndices(generation);
+//        double fitnessValue = 0;
+//        for (Integer targetIndex : currentTargetIndices) {
+//            int[] aTarget = this.targets[targetIndex];
+//            fitnessValue += this.evaluateOneTarget(phenotype, aTarget);
 //        }
-
-        double edgeCost = evaluateEdgeCost(phenotype);
-        double alpha = 0.75;
-        return 1.0 / (alpha*(1.0/robustness) + (1-alpha)*(1.0/edgeCost));
+//        return fitnessValue / currentTargetIndices.size();
     }
 }

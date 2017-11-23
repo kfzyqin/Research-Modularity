@@ -3,6 +3,8 @@ package ga.collections;
 import au.com.bytecode.opencsv.CSVWriter;
 import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.Chromosome;
+import ga.components.materials.SimpleMaterial;
+import ga.others.GeneralMethods;
 import org.apache.commons.io.FileUtils;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
@@ -29,6 +31,8 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
     List<Individual<C>> medians;  // median individuals
     List<Double> means; // mean fitness values
     List<Double> deltas;
+    List<Double> averageEdgeNumbers;
+    List<Double> edgeNumberStdDevs;
 
     public DetailedStatistics() {
         generation = 0;
@@ -37,6 +41,12 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
         medians = new ArrayList<>();
         means = new ArrayList<>();
         deltas = new ArrayList<>();
+
+        /*
+        Record edge density information
+         */
+        averageEdgeNumbers = new ArrayList<>();
+        edgeNumberStdDevs = new ArrayList<>();
     }
 
     /**
@@ -49,13 +59,21 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
         medians = new ArrayList<>(maxGen);
         means = new ArrayList<>(maxGen);
         deltas = new ArrayList<>(maxGen);
+
+        /*
+        Record edge density information
+         */
+        averageEdgeNumbers = new ArrayList<>(maxGen);
+        edgeNumberStdDevs = new ArrayList<>(maxGen);
     }
 
     private DetailedStatistics(@NotNull final List<Individual<C>> elites,
                                @NotNull final List<Individual<C>> worsts,
                                @NotNull final List<Individual<C>> medians,
                                @NotNull final List<Double> means,
-                               @NotNull final List<Double> deltas) {
+                               @NotNull final List<Double> deltas,
+                               @NotNull final List<Double> averageEdgeNumber,
+                               @NotNull final List<Double> edgeNumberStdDev) {
         generation = elites.size();
         this.elites = new ArrayList<>(generation);
         this.means = new ArrayList<>(means);
@@ -65,12 +83,14 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
             this.worsts.add(worsts.get(i).copy());
             this.medians.add(medians.get(i).copy());
             this.means.add(means.get(i));
+            this.averageEdgeNumbers.add(averageEdgeNumber.get(i));
+            this.edgeNumberStdDevs.add(edgeNumberStdDev.get(i));
         }
     }
 
     @Override
     public DetailedStatistics<C> copy() {
-        return new DetailedStatistics<>(elites, worsts, medians, means, deltas);
+        return new DetailedStatistics<>(elites, worsts, medians, means, deltas, averageEdgeNumbers, edgeNumberStdDevs);
     }
 
     private double getAverageFitnessValueOfAPopulation(@NotNull final List<Individual<C>> data) {
@@ -87,10 +107,23 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
         Individual<C> worst = data.get(data.size() - 1).copy();
         Individual<C> median = data.get(data.size() / 2).copy();
         double averageFitnessValue = this.getAverageFitnessValueOfAPopulation(data);
+
+        int[] currentGenerationEdgeNumbers = new int[data.size()];
+        for (int i=0; i<data.size(); i++) {
+            currentGenerationEdgeNumbers[i] = GeneralMethods.getEdgeNumber(
+                    (SimpleMaterial) data.get(i).copy().getChromosome().getPhenotype(false));
+        }
+        double averageEdgeNumber = GeneralMethods.getAverageNumber(currentGenerationEdgeNumbers);
+        double stdDevEdgeNumber = GeneralMethods.getStandardDeviation(currentGenerationEdgeNumbers);
+
         elites.add(elite);
         worsts.add(worst);
         medians.add(median);
         means.add(averageFitnessValue);
+
+        averageEdgeNumbers.add(averageEdgeNumber);
+        edgeNumberStdDevs.add(stdDevEdgeNumber);
+
         if (generation == 0)
             deltas.add(elite.getFitness());
         else
@@ -106,9 +139,9 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
     }
 
     private boolean createDirectory(String directoryPath) {
-      File dir = new File(directoryPath);
-      boolean isDirCreated = dir.mkdir();
-      return isDirCreated || dir.mkdirs();
+        File dir = new File(directoryPath);
+        boolean isDirCreated = dir.mkdir();
+        return isDirCreated || dir.mkdirs();
     }
 
     @Override
@@ -124,7 +157,7 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
     @Override
     public String getSummary(int generation) {
         return String.format("Generation: %d; Delta: %.4f, \n" + "Best >> %s <<\n",
-            generation, deltas.get(generation), elites.get(generation).toString());
+                generation, deltas.get(generation), elites.get(generation).toString());
     }
 
     @Override
@@ -141,13 +174,17 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
         }
 
         CSVWriter writer = new CSVWriter(new FileWriter(this.directoryPath + fileName), '\t');
-        String[] entries = "Best#Worst#Median#Mean".split("#");
+        String[] entries = "Best#Worst#Median#Mean#AvgEdgeNumber#StdDevEdgeNumber".split("#");
         writer.writeNext(entries);
         for (int i=0; i<=generation; i++) {
-            entries = (Double.toString(elites.get(i).getFitness()) + "#" +
-                Double.toString(worsts.get(i).getFitness()) + "#" +
-                Double.toString(medians.get(i).getFitness()) + "#" +
-                Double.toString(means.get(i))).split("#");
+            entries = (
+                    Double.toString(elites.get(i).getFitness()) + "#" +
+                            Double.toString(worsts.get(i).getFitness()) + "#" +
+                            Double.toString(medians.get(i).getFitness()) + "#" +
+                            Double.toString(means.get(i)) + "#" +
+                            Double.toString(averageEdgeNumbers.get(i)) + "#" +
+                            Double.toString(edgeNumberStdDevs.get(i))
+            ).split("#");
             writer.writeNext(entries);
         }
         writer.close();

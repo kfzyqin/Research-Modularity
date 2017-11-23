@@ -9,6 +9,7 @@ import ga.frame.states.SimpleHaploidState;
 import ga.frame.states.State;
 import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargets;
+import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsWithEdgeCost;
 import ga.operations.initializers.HaploidGRNInitializer;
 import ga.operations.mutators.GRNEdgeMutator;
 import ga.operations.mutators.GRNRandomEdgeMutator;
@@ -98,18 +99,19 @@ public class HaploidGRNMatrixMain {
     /* Parameters of the GA */
     private static final double geneMutationRate = 0.05;
     private static final int numElites = 10;
-    private static final int populationSize = 100;
+    private static final int populationSize = 10000;
     private static final int tournamentSize = 3;
     private static final double reproductionRate = 0.9;
     //    private static final int maxGen = 40000;
 //    private static final List<Integer> thresholds = Arrays.asList(0, 500, 3000, 7000, 12000, 20000, 30000); // when to switch targets
-    private static final int maxGen = 1300;
-    private static final List<Integer> thresholds = Arrays.asList(0, 300); // when to switch targets
+    private static final int maxGen = 1000;
+    private static final List<Integer> thresholds = Arrays.asList(0, 500); // when to switch targets
+    private static final double alpha = 0.75;
 
     /* Settings for text outputs */
     private static final String summaryFileName = "Haploid-GRN-Matrix.txt";
     private static final String csvFileName = "Haploid-GRN-Matrix.csv";
-    private static final String outputDirectory = "introduce-cost";
+    private static final String outputDirectory = "bob-experiment";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();

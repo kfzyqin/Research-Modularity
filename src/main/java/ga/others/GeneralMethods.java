@@ -188,24 +188,36 @@ public class GeneralMethods<T> {
         return matrixHotspot;
     }
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException, ParseException {
-        GRNFactoryNoHiddenTarget grnFactory = new GRNFactoryNoHiddenTarget(10, 20);
-        JSONObject json = new JSONObject();
-        for (int i=0; i<100; i++) {
-            GRN grn1 = grnFactory.generateModularizedGeneRegulatoryNetwork(5);
-//            MatrixHotspot matrixHotspot = new MatrixHotspot(12, 196);
-//            json.put(Integer.toString(i), matrixHotspot.getRecombinationRates().toString());
-            json.put(Integer.toString(i), grn1.toString());
+    public static int getEdgeNumber(final SimpleMaterial phenotype) {
+        int edgeNumber = 0;
+        for (int i=0; i<phenotype.getSize(); i++) {
+            if ((int) phenotype.getGene(i).getValue() != 0) {
+                edgeNumber += 1;
+            }
         }
-        saveJSON(json, "jsons/grn_100_edge_30.json");
-//        saveJSON(json, "jsons/hotspot_12.json");
-
-//        for (int i=0; i<100; i++) {
-//            getGRNFromJSON(i, "jsons/grn_100.json");
-//        }
-
-//        getMatrixHotspotFromJSON(0, "jsons/hotspot_50.json");
+        return edgeNumber;
     }
 
+    public static double getAverageNumber(int[] aList) {
+        double sum = 0;
+        for (double aNumber : aList) {
+            sum += aNumber;
+        }
+        return sum / aList.length;
+    }
 
+    public static double getStandardDeviation(int[] aList) {
+        double anAverage = getAverageNumber(aList);
+        double tmpSum = 0;
+        for (double aNumber : aList) {
+            tmpSum += Math.pow((aNumber - anAverage), 2);
+        }
+        return Math.sqrt(tmpSum / (aList.length));
+    }
+
+    public static void main(String[] args) throws IOException, ClassNotFoundException, ParseException {
+        int[] aList = {10,2,38,23,38,23,21};
+        System.out.println(getAverageNumber(aList));
+        System.out.println(getStandardDeviation(aList));
+    }
 }

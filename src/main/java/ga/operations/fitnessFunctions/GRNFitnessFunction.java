@@ -125,8 +125,10 @@ public abstract class GRNFitnessFunction<M extends Material> implements FitnessF
                 edgeNumber += 1;
             }
         }
-        if (edgeNumber >= 15 && edgeNumber <= 35) {
-            return 1 - (edgeNumber-15) / 35.0;
+        double lowerBound = phenotype.getSize() * 0.15;
+        double upperBound = phenotype.getSize() * 0.35;
+        if (edgeNumber >= lowerBound && edgeNumber <= upperBound) {
+            return 1 - (edgeNumber-lowerBound) / upperBound;
         } else {
             return 0.5;
         }

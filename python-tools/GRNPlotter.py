@@ -116,7 +116,7 @@ class GRNPlotter:
                 grn.node[key[0]]['pos'] = value
             write_dot(grn, save_path + os.sep + 'directed_graph.dot')
 
-    def get_module_values_of_an_experiment(self, a_path, generation, draw_modularity=True, draw_grn=True):
+    def get_module_values_of_an_experiment(self, a_path, generation, draw_modularity=False, draw_grn=False):
         sub_directories = get_immediate_subdirectories(a_path)
         final_module_value_list = []
         for a_directory in sub_directories:
