@@ -2,6 +2,8 @@ import GRNPlotter
 import FitnessPlotter
 from file_processor import save_a_list_graph
 from file_processor import count_number_of_edges
+import math
+import sys
 
 
 class ModularityDominanceAnalyzer:
@@ -50,3 +52,40 @@ class ModularityDominanceAnalyzer:
         for a_phenotype in phenotypes:
             edge_numbers.append(count_number_of_edges(a_phenotype))
         save_a_list_graph(edge_numbers, 'Edge Number', a_path, 'edge_number.png')
+
+    def grn_matrix_printing_helper(self, a_grn_phenotype):
+        grn_side_size = int(math.sqrt(len(a_grn_phenotype)))
+        for idx in range(len(a_grn_phenotype)):
+            if idx % grn_side_size == 0 and idx != 0:
+                print ''
+            sys.stdout.write(str(a_grn_phenotype[idx]))
+            sys.stdout.write(',\t')
+        print ""
+
+    def force_modular_grn_matrix_printing_helper(self, a_grn_phenotype):
+        grn_side_size = int(math.sqrt(len(a_grn_phenotype)))
+        remained_edges = []
+        for i in range(grn_side_size):
+            for j in range(grn_side_size):
+                if (i < grn_side_size / 2 and j < grn_side_size / 2) or (
+                        i >= grn_side_size / 2 and j >= grn_side_size / 2):
+                    sys.stdout.write(str(a_grn_phenotype[i * grn_side_size + j]))
+                    sys.stdout.write(',\t')
+                    if a_grn_phenotype[i * grn_side_size + j] != 0:
+                        remained_edges.append(i * grn_side_size + j)
+                else:
+                    sys.stdout.write('0')
+                    sys.stdout.write(',\t')
+            print ''
+        return remained_edges
+
+target = \
+    [0, 0, 1, 0, 1, 0, 0, 0, 1, 0, -1, 1, 0, 1, -1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0, 0, 1, -1, 0, 0, 0, 0, -1, 0,
+     0, -1, 0, 0, -1, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, -1, 0, -1, 0, 0, 0, 0, 0, 0, -1, 0, 0, 1, -1, 0, 0, 0,
+     0, 0, 1, -1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, -1, 0, 0, 0, 0, 0, 0, 0, 1, -1, 1, -1, 1]
+
+omega = ModularityDominanceAnalyzer()
+omega.grn_matrix_printing_helper(target)
+print ""
+print len(omega.force_modular_grn_matrix_printing_helper(target))
+print count_number_of_edges(target)

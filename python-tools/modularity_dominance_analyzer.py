@@ -168,21 +168,45 @@ def draw_a_grn(grn, is_to_save=False, save_path="", file_name="", with_labels=Fa
 # file_path = "/Users/qin/Software-Engineering/Chin-GA-Project/thesis-data/" \
 #             "different-crossover-mechanism-comparisons/chin-crossover"
 
-file_path = "/Users/qin/Software-Engineering/Chin-GA-Project/generated-outputs/" \
-            "half-probability-mutation"
+file_path = "/Users/qin/Software-Engineering/Chin-GA-Project/thesis-data/" \
+            "combined-chin-crossover"
 
 sub_directories = get_immediate_subdirectories(file_path)
 
 least_modular_edge_numbers = []
 fittest_modular_edge_numbers = []
 
+# current_idx = 1
+# for a_directory in sub_directories:
+#     fittest_in_most_modular = get_the_fittest_individual_in_the_most_modular_networks(a_directory, 501)
+#     least_modular_in_fittest = get_the_least_modular_individual_in_the_fittest_networks(a_directory, 501)
+#
+#     phenotypes = get_grn_phenotypes(a_directory)
+#
+#     fittest_in_most_modular_phenotype = phenotypes[fittest_in_most_modular[0]]
+#     least_modular_in_fittest_phenotype = phenotypes[least_modular_in_fittest[0]]
+#
+#     # least_modular_edge_numbers.append(count_number_of_edges(least_modular_in_fittest_phenotype))
+#     # fittest_modular_edge_numbers.append(count_number_of_edges(fittest_in_most_modular_phenotype))
+#
+#     # print "FITTEST IN MODULAR PHENOTYPE: ", fittest_in_most_modular
+#     # print "ITS PHENOTYPE: "
+#     # grn_matrix_printing_helper(fittest_in_most_modular_phenotype)
+#
+#     print "Integer[] grnBefore%d = {" % current_idx
+#     grn_matrix_printing_helper(least_modular_in_fittest_phenotype)
+#     print "};"
+#
+#     print ""
+#
+#     print "\n"
+#
+#     current_idx += 1
+
 current_idx = 1
 for a_directory in sub_directories:
     fittest_in_most_modular = get_the_fittest_individual_in_the_most_modular_networks(a_directory, 501)
     least_modular_in_fittest = get_the_least_modular_individual_in_the_fittest_networks(a_directory, 501)
-
-    print fittest_in_most_modular
-    print least_modular_in_fittest
 
     phenotypes = get_grn_phenotypes(a_directory)
 
@@ -192,21 +216,9 @@ for a_directory in sub_directories:
     # least_modular_edge_numbers.append(count_number_of_edges(least_modular_in_fittest_phenotype))
     # fittest_modular_edge_numbers.append(count_number_of_edges(fittest_in_most_modular_phenotype))
 
-    print (least_modular_in_fittest_phenotype)
-
-    print ("number of edges in a network for the most modular: ",
-           count_number_of_edges(fittest_in_most_modular_phenotype))
-
-    print ("number of edges in a network for the least modular: ",
-           count_number_of_edges(least_modular_in_fittest_phenotype))
-
     # print "FITTEST IN MODULAR PHENOTYPE: ", fittest_in_most_modular
     # print "ITS PHENOTYPE: "
     # grn_matrix_printing_helper(fittest_in_most_modular_phenotype)
-
-    print "Integer[] grnBefore%d = {" % current_idx
-    grn_matrix_printing_helper(least_modular_in_fittest_phenotype)
-    print "};"
 
     print ""
 

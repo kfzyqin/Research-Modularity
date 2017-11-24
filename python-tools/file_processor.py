@@ -26,7 +26,7 @@ def save_multiple_lists_graph(lists, labels, path, file_name, vertical_lines=Non
         plt.axvline(x=vertical_lines[0], color='green', linestyle='--')
         plt.axvline(x=vertical_lines[1], color='red', linestyle='--')
 
-    plt.legend()
+    plt.legend(fontsize=8, loc=8)
     plt.savefig(path + os.sep + file_name, dpi=200)
     plt.close()
 

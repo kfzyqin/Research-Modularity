@@ -1,25 +1,15 @@
 package ga.others;
 
-import ga.collections.Individual;
-import ga.collections.Population;
-import ga.components.chromosomes.Chromosome;
-import ga.components.chromosomes.SimpleDiploid;
-import ga.components.chromosomes.SimpleHotspotDiploid;
 import ga.components.genes.EdgeGene;
-import ga.components.hotspots.Hotspot;
 import ga.components.hotspots.MatrixHotspot;
 import ga.components.materials.GRN;
-import ga.components.materials.GRNFactoryNoHiddenTarget;
 import ga.components.materials.SimpleMaterial;
-import ga.operations.expressionMaps.DiploidEvolvedMap;
-import ga.operations.expressionMaps.ExpressionMap;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
 import java.util.*;
-import java.util.logging.Level;
 
 /**
  * Created by Zhenyue Qin (秦震岳) on 24/6/17.
@@ -215,9 +205,46 @@ public class GeneralMethods<T> {
         return Math.sqrt(tmpSum / (aList.length));
     }
 
+    static <T> void combinationUtil(T arr[], T data[], int start,
+                                int end, int index, int r, List<List<T>> storage)
+    {
+        // Current combination is ready to be printed, print it
+        if (index == r) {
+            List<T> aNewStorage = new ArrayList<>();
+            for (int j=0; j<r; j++) {
+                aNewStorage.add(data[j]);
+            }
+            storage.add(aNewStorage);
+            return;
+        }
+
+        // replace index with all possible elements. The condition
+        // "end-i+1 >= r-index" makes sure that including one element
+        // at index will make a combination with remaining elements
+        // at remaining positions
+        for (int i=start; i<=end && end-i+1 >= r-index; i++)
+        {
+            data[index] = arr[i];
+            combinationUtil(arr, data, i+1, end, index+1, r, storage);
+        }
+    }
+
+    public static <T> List<List<T>> getCombination(T[] arr, int r) {
+        // A temporary array to store all combination one by one
+        T data[]=(T[]) new Object[r];
+        List<List<T>> storage = new ArrayList<>();
+
+        // Print all combination using temprary array 'data[]'
+        combinationUtil(arr, data, 0, arr.length-1, 0, r, storage);
+        return storage;
+    }
+
     public static void main(String[] args) throws IOException, ClassNotFoundException, ParseException {
-        int[] aList = {10,2,38,23,38,23,21};
-        System.out.println(getAverageNumber(aList));
-        System.out.println(getStandardDeviation(aList));
+        Integer[] tmp = {1, 2, 3, 4, 5};
+        List<List<Integer>> a_tmp = getCombination(tmp, 2);
+        for (List<Integer> e : a_tmp) {
+            System.out.println(e);
+        }
+
     }
 }
