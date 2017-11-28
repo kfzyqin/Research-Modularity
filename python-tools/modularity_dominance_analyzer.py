@@ -8,6 +8,7 @@ import sys
 import matplotlib.pyplot as plt
 import numpy as np
 import scipy.stats
+from StatisticsToolkit import StatisticsToolkit
 
 pattern = re.compile("(?<=Phenotype: \[)(.*)(?=\])")
 
@@ -168,13 +169,46 @@ def draw_a_grn(grn, is_to_save=False, save_path="", file_name="", with_labels=Fa
 # file_path = "/Users/qin/Software-Engineering/Chin-GA-Project/thesis-data/" \
 #             "different-crossover-mechanism-comparisons/chin-crossover"
 
-file_path = "/Users/qin/Software-Engineering/Chin-GA-Project/thesis-data/" \
-            "combined-chin-crossover"
+file_path = '/Users/qin/Software-Engineering/Chin-GA-Project/generated-outputs/change-to-tournament-selection'
 
 sub_directories = get_immediate_subdirectories(file_path)
 
 least_modular_edge_numbers = []
 fittest_modular_edge_numbers = []
+
+fittest_tuples = []
+least_modular_tuples = []
+
+current_idx = 1
+for a_directory in sub_directories:
+    fittest_in_most_modular = get_the_fittest_individual_in_the_most_modular_networks(a_directory, 501)
+    least_modular_in_fittest = get_the_least_modular_individual_in_the_fittest_networks(a_directory, 501)
+
+    fittest_tuples.append(fittest_in_most_modular)
+    least_modular_tuples.append(least_modular_in_fittest)
+
+    phenotypes = get_grn_phenotypes(a_directory)
+
+    if least_modular_in_fittest[1] <= fittest_in_most_modular[1]:
+        fittest_in_most_modular_phenotype = phenotypes[fittest_in_most_modular[0]]
+        least_modular_in_fittest_phenotype = phenotypes[least_modular_in_fittest[0]]
+
+        least_modular_edge_numbers.append(count_number_of_edges(least_modular_in_fittest_phenotype))
+        fittest_modular_edge_numbers.append(count_number_of_edges(fittest_in_most_modular_phenotype))
+
+        # print "FITTEST IN MODULAR PHENOTYPE: ", fittest_in_most_modular
+        # print "ITS PHENOTYPE: "
+        # grn_matrix_printing_helper(fittest_in_most_modular_phenotype)
+
+        print "Integer[] grnBefore%d = {" % current_idx
+        grn_matrix_printing_helper(least_modular_in_fittest_phenotype)
+        print "};"
+
+        print ""
+
+        print "\n"
+
+        current_idx += 1
 
 # current_idx = 1
 # for a_directory in sub_directories:
@@ -193,49 +227,29 @@ fittest_modular_edge_numbers = []
 #     # print "ITS PHENOTYPE: "
 #     # grn_matrix_printing_helper(fittest_in_most_modular_phenotype)
 #
-#     print "Integer[] grnBefore%d = {" % current_idx
-#     grn_matrix_printing_helper(least_modular_in_fittest_phenotype)
-#     print "};"
-#
 #     print ""
+#
+#     print "Integer[] grnAfter%d = {" % current_idx
+#     force_modular_grn_matrix_printing_helper(least_modular_in_fittest_phenotype)
+#     print "};"
 #
 #     print "\n"
 #
 #     current_idx += 1
 
-current_idx = 1
-for a_directory in sub_directories:
-    fittest_in_most_modular = get_the_fittest_individual_in_the_most_modular_networks(a_directory, 501)
-    least_modular_in_fittest = get_the_least_modular_individual_in_the_fittest_networks(a_directory, 501)
+statistics_toolkit = StatisticsToolkit()
 
-    phenotypes = get_grn_phenotypes(a_directory)
+print fittest_tuples
+print least_modular_tuples
 
-    fittest_in_most_modular_phenotype = phenotypes[fittest_in_most_modular[0]]
-    least_modular_in_fittest_phenotype = phenotypes[least_modular_in_fittest[0]]
+fitness_values_fittest = list(x[1] for x in fittest_tuples)
+fitness_values_least_modular = list(x[1] for x in least_modular_tuples)
 
-    # least_modular_edge_numbers.append(count_number_of_edges(least_modular_in_fittest_phenotype))
-    # fittest_modular_edge_numbers.append(count_number_of_edges(fittest_in_most_modular_phenotype))
+statistics_toolkit.calculate_statistical_significances(fitness_values_fittest, fitness_values_least_modular)
 
-    # print "FITTEST IN MODULAR PHENOTYPE: ", fittest_in_most_modular
-    # print "ITS PHENOTYPE: "
-    # grn_matrix_printing_helper(fittest_in_most_modular_phenotype)
+if scipy.stats.wilcoxon(least_modular_edge_numbers, fittest_modular_edge_numbers)[1] <= 1:
+    print "mean a: ", sum(least_modular_edge_numbers) / least_modular_edge_numbers.__len__()
+    print "mean b: ", sum(fittest_modular_edge_numbers) / fittest_modular_edge_numbers.__len__()
 
-    print ""
-
-    print "Integer[] grnAfter%d = {" % current_idx
-    force_modular_grn_matrix_printing_helper(least_modular_in_fittest_phenotype)
-    print "};"
-
-    print "\n"
-
-    current_idx += 1
-
-# print least_modular_edge_numbers[:39]
-# print fittest_modular_edge_numbers[:39]
-#
-# if scipy.stats.wilcoxon(least_modular_edge_numbers, fittest_modular_edge_numbers)[1] <= 1:
-#     print "mean a: ", sum(least_modular_edge_numbers) / least_modular_edge_numbers.__len__()
-#     print "mean b: ", sum(fittest_modular_edge_numbers) / fittest_modular_edge_numbers.__len__()
-#
-#     print "p-value by wilcoxon: ", scipy.stats.wilcoxon(least_modular_edge_numbers, fittest_modular_edge_numbers)
-#     print "p-value by t test: ", scipy.stats.ttest_ind(least_modular_edge_numbers, fittest_modular_edge_numbers)
+    print "p-value by wilcoxon: ", scipy.stats.wilcoxon(least_modular_edge_numbers, fittest_modular_edge_numbers)
+    print "p-value by t test: ", scipy.stats.ttest_ind(least_modular_edge_numbers, fittest_modular_edge_numbers)

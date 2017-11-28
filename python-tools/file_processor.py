@@ -14,6 +14,12 @@ def save_a_list_graph(a_list, y_label, path, file_name):
     plt.close()
 
 
+def plot_a_list_graph(a_list, y_label):
+    plt.plot(a_list)
+    plt.ylabel(y_label)
+    plt.show()
+
+
 def save_multiple_lists_graph(lists, labels, path, file_name, vertical_lines=None):
     if vertical_lines is None:
         vertical_lines = []

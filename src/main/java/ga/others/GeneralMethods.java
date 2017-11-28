@@ -239,6 +239,43 @@ public class GeneralMethods<T> {
         return storage;
     }
 
+    static <T> void combinationUtil(T arr[], T data[], int start,
+                                    int end, int index, int r, List<List<T>> storage, int limitation)
+    {
+        if (storage.size() > limitation) {
+            return;
+        }
+        // Current combination is ready to be printed, print it
+        if (index == r) {
+            List<T> aNewStorage = new ArrayList<>();
+            for (int j=0; j<r; j++) {
+                aNewStorage.add(data[j]);
+            }
+            storage.add(aNewStorage);
+            return;
+        }
+
+        // replace index with all possible elements. The condition
+        // "end-i+1 >= r-index" makes sure that including one element
+        // at index will make a combination with remaining elements
+        // at remaining positions
+        for (int i=start; i<=end && end-i+1 >= r-index; i++)
+        {
+            data[index] = arr[i];
+            combinationUtil(arr, data, i+1, end, index+1, r, storage, limitation);
+        }
+    }
+
+    public static <T> List<List<T>> getCombination(T[] arr, int r, int limination) {
+        // A temporary array to store all combination one by one
+        T data[]=(T[]) new Object[r];
+        List<List<T>> storage = new ArrayList<>();
+
+        // Print all combination using temprary array 'data[]'
+        combinationUtil(arr, data, 0, arr.length-1, 0, r, storage, limination);
+        return storage;
+    }
+
     public static void main(String[] args) throws IOException, ClassNotFoundException, ParseException {
         Integer[] tmp = {1, 2, 3, 4, 5};
         List<List<Integer>> a_tmp = getCombination(tmp, 2);
@@ -246,5 +283,20 @@ public class GeneralMethods<T> {
             System.out.println(e);
         }
 
+    }
+
+    public static <T> List<T> getRandomElementsFromAnArray(T[] anArray, int n) {
+        List<T> rtn = new ArrayList<>();
+
+        if (anArray.length < n) {
+            n = anArray.length;
+        }
+
+        final int[] ints = new Random().ints(0, anArray.length).distinct().limit(n).toArray();
+
+        for (int anInt : ints) {
+            rtn.add(anArray[anInt]);
+        }
+        return rtn;
     }
 }

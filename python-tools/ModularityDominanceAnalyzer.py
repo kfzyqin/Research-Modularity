@@ -79,13 +79,3 @@ class ModularityDominanceAnalyzer:
             print ''
         return remained_edges
 
-target = \
-    [0, 0, 1, 0, 1, 0, 0, 0, 1, 0, -1, 1, 0, 1, -1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0, 0, 1, -1, 0, 0, 0, 0, -1, 0,
-     0, -1, 0, 0, -1, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, -1, 0, -1, 0, 0, 0, 0, 0, 0, -1, 0, 0, 1, -1, 0, 0, 0,
-     0, 0, 1, -1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, -1, 0, 0, 0, 0, 0, 0, 0, 1, -1, 1, -1, 1]
-
-omega = ModularityDominanceAnalyzer()
-omega.grn_matrix_printing_helper(target)
-print ""
-print len(omega.force_modular_grn_matrix_printing_helper(target))
-print count_number_of_edges(target)

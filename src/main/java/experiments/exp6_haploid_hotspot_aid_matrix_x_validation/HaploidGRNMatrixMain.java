@@ -111,7 +111,7 @@ public class HaploidGRNMatrixMain {
     /* Settings for text outputs */
     private static final String summaryFileName = "Haploid-GRN-Matrix.txt";
     private static final String csvFileName = "Haploid-GRN-Matrix.csv";
-    private static final String outputDirectory = "chin-exploration-why-not-finding-the-better";
+    private static final String outputDirectory = "change-to-tournament-selection";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
@@ -139,7 +139,7 @@ public class HaploidGRNMatrixMain {
         Mutator mutator = new GRNEdgeMutator(geneMutationRate);
 
         /* Selector for reproduction */
-        Selector<SimpleHaploid> selector = new SimpleProportionalSelector<>();
+        Selector<SimpleHaploid> selector = new SimpleTournamentSelector<>(tournamentSize);
 
 //        /* Selector for elites */
 //        PriorOperator<SimpleHaploid> priorOperator = new SimpleElitismOperator<>(numElites);

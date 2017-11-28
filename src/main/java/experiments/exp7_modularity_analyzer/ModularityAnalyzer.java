@@ -2444,7 +2444,7 @@ public class ModularityAnalyzer {
 
         int[][] target_1_2 = {target1, target2};
         GRNFitnessFunctionMultipleTargets grnFit = new GRNFitnessFunctionMultipleTargets(
-                target_1_2, 20, 75, 0.15, listThresholds);
+                target_1_2, 20, perturbations, 0.15, listThresholds);
 
         Set<Integer> interModuleEdges = new HashSet<>();
 
@@ -2456,23 +2456,32 @@ public class ModularityAnalyzer {
                         interModuleEdges.add(i * nodeSize + j);
                     }
                 }
+//                if ((int) (material.getGene(i*nodeSize + j).getValue()) != 0) {
+//                    interModuleEdges.add(i * nodeSize + j);
+//                }
             }
         }
 
         Integer[] interModuleEdgeArray = interModuleEdges.toArray(new Integer[interModuleEdges.size()]);
+
         List<List<Integer>> combinations = GeneralMethods.getCombination(interModuleEdgeArray, removalNumber);
+
+//        System.out.println("combination size: " + combinations.size());
 
         for (List<Integer> aCombination : combinations) {
             SimpleMaterial tmpMaterial = material.copy();
             for (Integer anEntry : aCombination) {
                 tmpMaterial.getGene(anEntry).setValue(0);
             }
-            fitnessValues.add(grnFit.evaluate(tmpMaterial, 501));
+            fitnessValues.add(grnFit.evaluate(tmpMaterial, startGeneration));
         }
         Collections.sort(fitnessValues);
         List<Double> tail = fitnessValues.subList(Math.max((int) (fitnessValues.size() * 0.9), 0), fitnessValues.size());
         return tail;
     }
+
+    public static int perturbations = 1000;
+    public static int startGeneration = 501;
 
     public static void main(String[] args) {
 
@@ -2481,7 +2490,7 @@ public class ModularityAnalyzer {
 
         int[][] target_1_2 = {target1, target2};
         GRNFitnessFunctionMultipleTargets grnFit = new GRNFitnessFunctionMultipleTargets(
-                target_1_2, 20, 75, 0.15, listThresholds);
+                target_1_2, 20, perturbations, 0.15, listThresholds);
 
         List<Integer[]> grnListBefore = getGRNListBefore();
 
@@ -2495,9 +2504,9 @@ public class ModularityAnalyzer {
 
         for (int i=0; i<grnListBefore.size(); i++) {
             SimpleMaterial simpleMaterial1 = new SimpleMaterial(convertArrayToList(grnListBefore.get(i)));
-            double valueBefore = grnFit.evaluate(simpleMaterial1, 1000);
+            double valueBefore = grnFit.evaluate(simpleMaterial1, startGeneration);
             SimpleMaterial simpleMaterial2 = new SimpleMaterial(convertArrayToList(grnListAfter.get(i)));
-            double valueAfter = grnFit.evaluate(simpleMaterial2, 1000);
+            double valueAfter = grnFit.evaluate(simpleMaterial2, startGeneration);
 
             if (valueBefore > 0.93) {
                 valueBeforeList.add(valueBefore);
@@ -2547,7 +2556,8 @@ public class ModularityAnalyzer {
         System.out.println(valueAfterList);
 
         System.out.println("increased index: " + increasedIndex);
-        Integer toUse = 31;
+//        Integer toUse = increasedIndex.get(1);
+        Integer toUse = 2;
         System.out.println("Which one to use: " + toUse);
 
         SimpleMaterial aMaterial = new SimpleMaterial(convertArrayToList(grnListBefore.get(toUse)));
@@ -2556,8 +2566,7 @@ public class ModularityAnalyzer {
         int reducedEdgeNumber = (edgeNumbersBefore.get(toUse) - edgeNumbersAfter.get(toUse));
         System.out.println("Reduced edge number: " + reducedEdgeNumber);
 
-
-        for (Integer anIncreasedIndex : IntStream.range(0, reducedEdgeNumber).boxed().collect(Collectors.toList())) {
+        for (Integer anIncreasedIndex : IntStream.range(0, reducedEdgeNumber+1).boxed().collect(Collectors.toList())) {
             System.out.println(removeEdgeAnalyzer(anIncreasedIndex, aMaterial) + ", ");
         }
 
