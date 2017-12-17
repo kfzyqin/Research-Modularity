@@ -14,12 +14,17 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public abstract class GRNFitnessFunction<M extends Material> implements FitnessFunction<M> {
     protected final int maxCycle;
-    protected final int perturbations;
+    protected int perturbations;
     protected final double perturbationRate;
 
     public GRNFitnessFunction(final int maxCycle, int perturbations, final double perturbationRate) {
         this.maxCycle = maxCycle;
         this.perturbations = perturbations;
+        this.perturbationRate = perturbationRate;
+    }
+
+    public GRNFitnessFunction(final int maxCycle, final double perturbationRate) {
+        this.maxCycle = maxCycle;
         this.perturbationRate = perturbationRate;
     }
 
@@ -132,5 +137,9 @@ public abstract class GRNFitnessFunction<M extends Material> implements FitnessF
         } else {
             return 0.5;
         }
+    }
+
+    public int getPerturbations() {
+        return perturbations;
     }
 }

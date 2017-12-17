@@ -9,6 +9,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static ga.others.GeneralMethods.convertArrayToList;
+
 /**
  * Created by Zhenyue Qin on 29/09/2017.
  * The Australian National University.
@@ -2571,14 +2573,6 @@ public class ModularityAnalyzer {
         }
 
 
-    }
-
-    public static List<EdgeGene> convertArrayToList(Integer[] tmpArray1) {
-        List<EdgeGene> tmpList = new ArrayList<>();
-        for (Integer e : tmpArray1) {
-            tmpList.add(new EdgeGene(e));
-        }
-        return tmpList;
     }
 
 }

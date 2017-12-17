@@ -9,6 +9,7 @@ import ga.frame.states.SimpleHaploidState;
 import ga.frame.states.State;
 import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargets;
+import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsAllCombinations;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsWithEdgeCost;
 import ga.operations.initializers.HaploidGRNInitializer;
 import ga.operations.mutators.GRNEdgeMutator;
@@ -18,14 +19,12 @@ import ga.operations.postOperators.PostOperator;
 import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
 import ga.operations.priorOperators.PriorOperator;
 import ga.operations.priorOperators.SimpleElitismOperator;
-import ga.operations.reproducers.GRNHaploidMatrixDiagonalReproducer;
-import ga.operations.reproducers.GRNHaploidMatrixReproducer;
-import ga.operations.reproducers.GRNHaploidNoXReproducer;
-import ga.operations.reproducers.Reproducer;
+import ga.operations.reproducers.*;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
 import ga.operations.selectionOperators.selectors.SimpleProportionalSelector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
+import ga.others.ModularityPathAnalyzer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -93,7 +92,7 @@ public class HaploidGRNMatrixMain {
     /* Parameters of the GRN */
     private static final int maxCycle = 20;
     private static final int edgeSize = 20;
-    private static final int perturbations = 75;
+//    private static final int perturbations = 75;
     private static final double perturbationRate = 0.15;
 
     /* Parameters of the GA */
@@ -107,11 +106,12 @@ public class HaploidGRNMatrixMain {
     private static final int maxGen = 2000;
     private static final List<Integer> thresholds = Arrays.asList(0, 500); // when to switch targets
     private static final double alpha = 0.75;
+    private static final int[] perturbationSizes = {1, 2};
 
     /* Settings for text outputs */
     private static final String summaryFileName = "Haploid-GRN-Matrix.txt";
     private static final String csvFileName = "Haploid-GRN-Matrix.csv";
-    private static final String outputDirectory = "change-to-tournament-selection";
+    private static final String outputDirectory = "all-combination-perturbations";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
@@ -125,8 +125,8 @@ public class HaploidGRNMatrixMain {
         int[][] targets = {target1, target2};
 
         /* Fitness function */
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(
-                targets, maxCycle, perturbations, perturbationRate, thresholds);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsAllCombinations(
+                targets, maxCycle, perturbationRate, thresholds, perturbationSizes);
 
         /* It is not necessary to write an initializer, but doing so is convenient to
         repeat the experiment using different parameter */
@@ -149,7 +149,7 @@ public class HaploidGRNMatrixMain {
                 new SimpleTournamentScheme(tournamentSize));
 
         /* Reproducer for reproduction */
-        Reproducer<SimpleHaploid> reproducer = new GRNHaploidMatrixDiagonalReproducer(target1.length);
+        Reproducer<SimpleHaploid> reproducer = new GRNHaploidMatrixFixedXReproducer(target1.length, target1.length/2);
 
         /* Statistics for keeping track the performance in generations */
         DetailedStatistics<SimpleHaploid> statistics = new DetailedStatistics<>();
@@ -180,13 +180,27 @@ public class HaploidGRNMatrixMain {
         statistics.generateCSVFile(csvFileName);
         statistics.generatePlot(plotTitle, plotFileName);
 
-        ProcessBuilder pb = new ProcessBuilder("python", "./python-tools/java_main_mate.py",
+        ProcessBuilder PB = new ProcessBuilder("python", "./python-tools/java_main_mate.py",
                 System.getProperty("user.dir") + "/generated-outputs/" + outputDirectoryPath, "" + thresholds.get(1));
-        Process p = pb.start();
+        Process p1 = PB.start();
+
+        try {
+            Thread.sleep(15000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        String fullOutputPath = System.getProperty("user.dir") + "/generated-outputs/" + outputDirectoryPath;
+        List<List<Double>> paths = ModularityPathAnalyzer.getAllPotentialPaths(fullOutputPath, fitnessFunction, true, thresholds.get(1));
+
+        System.out.println(paths);
+        ProcessBuilder postPB = new ProcessBuilder("python", "./python-tools/java_post_mate.py",
+                System.getProperty("user.dir") + "/generated-outputs/" + outputDirectoryPath, paths.toString());
+        Process p2 = postPB.start();
 
         /* For Debug */
-//        BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
-//        String ret = in.readLine();
-//        System.out.println("value is : "+ret);
+        BufferedReader in = new BufferedReader(new InputStreamReader(p2.getInputStream()));
+        String ret = in.readLine();
+        System.out.println("value is : "+ret);
     }
 }

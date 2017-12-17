@@ -1,7 +1,7 @@
 import GRNPlotter
 import sys
 import FitnessPlotter
-from file_processor import save_multiple_lists_graph
+from file_processor import save_multiple_lists_graph, write_a_list_into_a_file
 import ModularityDominanceAnalyzer
 from file_processor import count_number_of_edges
 import CSVFileOpener
@@ -44,11 +44,14 @@ grn_plotter.draw_a_grn(phenotypes[least_modular[0]], save_path=working_path,
 save_multiple_lists_graph([fitness_values, modular_values], ['Fitness', 'Modularity'], working_path,
                           'fitness_modularity.png', vertical_lines=[most_modular[0], least_modular[0]])
 
-modularity_dominance_analyzer.get_edge_number_trend(working_path)
-
 csv_file_opener = CSVFileOpener.CSVFileOpener()
 average_edge_numbers = csv_file_opener.get_fitness_values_of_an_trial(working_path, 'AvgEdgeNumber')
 std_dev_numbers = csv_file_opener.get_fitness_values_of_an_trial(working_path, 'StdDevEdgeNumber')
 
 save_multiple_lists_graph([average_edge_numbers, std_dev_numbers], ['Average Edge Number', 'Std Dev Number'], working_path,
                           'avg_edge_num_and_std_dev.png', vertical_lines=[most_modular[0], least_modular[0]])
+
+write_a_list_into_a_file(phenotypes[least_modular[0]], working_path, 'least_modular_phenotype.phe')
+
+converted_phenotype = modularity_dominance_analyzer.get_modular_grn_matrix(phenotypes[least_modular[0]])
+write_a_list_into_a_file(converted_phenotype, working_path, 'converted_least_modular_phenotype.phe')

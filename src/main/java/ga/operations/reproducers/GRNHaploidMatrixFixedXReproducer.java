@@ -12,11 +12,11 @@ import java.util.concurrent.ThreadLocalRandom;
  * Created by Zhenyue Qin (秦震岳) on 8/7/17.
  * The Australian National University.
  */
-public class SimpleHaploidMatrixFixedPointXReproducer extends HaploidReproducer<SimpleHaploid> {
+public class GRNHaploidMatrixFixedXReproducer extends HaploidReproducer<SimpleHaploid> {
     private final int matrixSideSize;
     private final int crossoverIndex;
 
-    public SimpleHaploidMatrixFixedPointXReproducer(int matrixSideSize, final int crossoverIndex) {
+    public GRNHaploidMatrixFixedXReproducer(int matrixSideSize, final int crossoverIndex) {
         this.matrixSideSize = matrixSideSize;
         this.crossoverIndex = crossoverIndex;
     }

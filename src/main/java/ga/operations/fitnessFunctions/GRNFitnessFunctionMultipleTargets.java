@@ -23,10 +23,27 @@ public class GRNFitnessFunctionMultipleTargets extends GRNFitnessFunction<Simple
         this.thresholdOfAddingTarget.add(0);
     }
 
+    public GRNFitnessFunctionMultipleTargets(final int[][] targets, final int maxCycle, double perturbationRate) {
+        super(maxCycle, perturbationRate);
+        this.targets = targets;
+        thresholdOfAddingTarget = new ArrayList<>(1);
+        this.thresholdOfAddingTarget.add(0);
+    }
+
     public GRNFitnessFunctionMultipleTargets(final int[][] targets, final int maxCycle, int perturbations,
                                              double perturbationRate,
                                              final List<Integer> thresholdOfAddingTarget) {
         super(maxCycle, perturbations, perturbationRate);
+        this.targets = targets;
+        this.thresholdOfAddingTarget = thresholdOfAddingTarget;
+        Collections.sort(this.thresholdOfAddingTarget);
+        filterThresholds();
+    }
+
+    public GRNFitnessFunctionMultipleTargets(final int[][] targets, final int maxCycle,
+                                             double perturbationRate,
+                                             final List<Integer> thresholdOfAddingTarget) {
+        super(maxCycle, perturbationRate);
         this.targets = targets;
         this.thresholdOfAddingTarget = thresholdOfAddingTarget;
         Collections.sort(this.thresholdOfAddingTarget);

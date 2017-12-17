@@ -46,7 +46,7 @@ class ModularityDominanceAnalyzer:
                     target_generation = a_tuple_idx
         return target_generation, tuples[target_generation][0], tuples[target_generation][1]
 
-    def get_edge_number_trend(self, a_path):
+    def plot_edge_number_trend(self, a_path):
         phenotypes = self.grn_plotter.get_grn_phenotypes(a_path)
         edge_numbers = []
         for a_phenotype in phenotypes:
@@ -61,6 +61,18 @@ class ModularityDominanceAnalyzer:
             sys.stdout.write(str(a_grn_phenotype[idx]))
             sys.stdout.write(',\t')
         print ""
+
+    def get_modular_grn_matrix(self, a_grn_phenotype):
+        a_new_grn_phenotype = list(a_grn_phenotype)
+        grn_side_size = int(math.sqrt(len(a_grn_phenotype)))
+        for i in range(grn_side_size):
+            for j in range(grn_side_size):
+                if (i < grn_side_size / 2 and j < grn_side_size / 2) or (
+                        i >= grn_side_size / 2 and j >= grn_side_size / 2):
+                    a_new_grn_phenotype[i * grn_side_size + j] = a_grn_phenotype[i * grn_side_size + j]
+                else:
+                    a_new_grn_phenotype[i * grn_side_size + j] = 0
+        return a_new_grn_phenotype
 
     def force_modular_grn_matrix_printing_helper(self, a_grn_phenotype):
         grn_side_size = int(math.sqrt(len(a_grn_phenotype)))
@@ -78,4 +90,3 @@ class ModularityDominanceAnalyzer:
                     sys.stdout.write(',\t')
             print ''
         return remained_edges
-

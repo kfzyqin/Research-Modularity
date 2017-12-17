@@ -18,7 +18,7 @@ import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
 import ga.operations.priorOperators.PriorOperator;
 import ga.operations.priorOperators.SimpleElitismOperator;
 import ga.operations.reproducers.Reproducer;
-import ga.operations.reproducers.SimpleHaploidMatrixFixedPointXReproducer;
+import ga.operations.reproducers.GRNHaploidMatrixFixedXReproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
@@ -101,7 +101,7 @@ public class HaploidGRN2Target10MatrixLarsonSPXMain {
                 new SimpleTournamentScheme(tournamentSize));
 
         /* Reproducer for reproduction */
-        Reproducer<SimpleHaploid> reproducer = new SimpleHaploidMatrixFixedPointXReproducer(target1.length, 8);
+        Reproducer<SimpleHaploid> reproducer = new GRNHaploidMatrixFixedXReproducer(target1.length, 8);
 
         /* Statistics for keeping track the performance in generations */
         DetailedStatistics<SimpleHaploid> statistics = new DetailedStatistics<>();

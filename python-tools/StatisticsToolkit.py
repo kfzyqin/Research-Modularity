@@ -29,4 +29,5 @@ class StatisticsToolkit:
         fitness_plotter = FitnessPlotter()
         fitness_values_1 = fitness_plotter.get_fitness_values_of_an_experiment(self.path_1, -1)[:40]
         fitness_values_2 = fitness_plotter.get_fitness_values_of_an_experiment(self.path_2, -1)[:40]
+        print "length 1: ", len(fitness_values_1), " length 2: ", len(fitness_values_2)
         return self.calculate_statistical_significances(fitness_values_1, fitness_values_2)

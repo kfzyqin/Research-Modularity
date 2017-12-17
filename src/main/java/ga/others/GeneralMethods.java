@@ -299,4 +299,71 @@ public class GeneralMethods<T> {
         }
         return rtn;
     }
+
+    public static int getCombinationNumber(int n, int r) {
+        return factorial(n) / (factorial(n-r) * factorial(r));
+    }
+
+    public static int factorial(int number) {
+        int result = 1;
+
+        for (int factor = 2; factor <= number; factor++) {
+            result *= factor;
+        }
+
+        return result;
+    }
+
+    public static List<String[]> readFileLineByLine(String filePath) {
+        List<String[]> lines = new ArrayList<>();
+        String line;
+        try {
+            FileReader fileReader =
+                    new FileReader(filePath);
+
+            BufferedReader bufferedReader =
+                    new BufferedReader(fileReader);
+
+            while((line = bufferedReader.readLine()) != null) {
+                String[] splitLine = line.split(" ");
+                lines.add(splitLine);
+            }
+
+            // Always close files.
+            bufferedReader.close();
+        }
+        catch(FileNotFoundException ex) {
+            System.out.println(
+                    "Unable to open file '" +
+                            filePath + "'");
+        }
+        catch(IOException ex) {
+            System.out.println(
+                    "Error reading file '"
+                            + filePath + "'");
+        }
+        return lines;
+    }
+
+    public static Integer[] convertStringArrayToIntArray(String[] stringArray) {
+        Integer[] rtn = new Integer[stringArray.length];
+        for (int i=0; i<stringArray.length; i++) {
+            rtn[i] = Integer.parseInt(stringArray[i]);
+        }
+        return rtn;
+    }
+
+    public static List<EdgeGene> convertArrayToList(Integer[] tmpArray1) {
+        List<EdgeGene> tmpList = new ArrayList<>();
+        for (Integer e : tmpArray1) {
+            tmpList.add(new EdgeGene(e));
+        }
+        return tmpList;
+    }
+
+    public static SimpleMaterial convertStringArrayToSimpleMaterial(String[] tmpArray) {
+        return new SimpleMaterial(convertArrayToList(convertStringArrayToIntArray(tmpArray)));
+    }
+
+
 }
