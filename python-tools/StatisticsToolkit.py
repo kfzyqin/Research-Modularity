@@ -9,10 +9,10 @@ class StatisticsToolkit:
         self.path_1 = path_1
         self.path_2 = path_2
 
-    def calculate_modularity_significance(self):
+    def calculate_modularity_significance(self, sample_size=40):
         grn_plotter = GRNPlotter.GRNPlotter()
-        modularity_values_1 = grn_plotter.get_module_values_of_an_experiment(self.path_1, -1)[:40]
-        modularity_values_2 = grn_plotter.get_module_values_of_an_experiment(self.path_2, -1)[:40]
+        modularity_values_1 = grn_plotter.get_module_values_of_an_experiment(self.path_1, -1)[:sample_size]
+        modularity_values_2 = grn_plotter.get_module_values_of_an_experiment(self.path_2, -1)[:sample_size]
         return self.calculate_statistical_significances(modularity_values_1, modularity_values_2)
 
     @staticmethod
@@ -25,9 +25,9 @@ class StatisticsToolkit:
         return {"size_1": len(values_1), "size_2": len(values_2), "average_1": average_1, "average_2": average_2,
                 "wilcoxon": wilcoxon, "t_test": t_test}
 
-    def calculate_fitness_significance(self):
+    def calculate_fitness_significance(self, sample_size=40):
         fitness_plotter = FitnessPlotter()
-        fitness_values_1 = fitness_plotter.get_fitness_values_of_an_experiment(self.path_1, -1)[:40]
-        fitness_values_2 = fitness_plotter.get_fitness_values_of_an_experiment(self.path_2, -1)[:40]
+        fitness_values_1 = fitness_plotter.get_fitness_values_of_an_experiment(self.path_1, -1)[:sample_size]
+        fitness_values_2 = fitness_plotter.get_fitness_values_of_an_experiment(self.path_2, -1)[:sample_size]
         print "length 1: ", len(fitness_values_1), " length 2: ", len(fitness_values_2)
         return self.calculate_statistical_significances(fitness_values_1, fitness_values_2)

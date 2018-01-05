@@ -56,7 +56,7 @@ public class GRNFitnessFunctionMultipleTargetsFast extends GRNFitnessFunctionMul
             } while (currentRound < this.maxCycle && isNotStable);
 
             if (currentRound < maxCycle) {
-                int hammingDistance = this.getHammingDistance(currentAttractor, target);
+                double hammingDistance = this.getHammingDistance(currentAttractor, target);
                 double thisFitness = Math.pow((1 - (hammingDistance / ((double) target.length))), 5);
                 fitnessValue += thisFitness;
             } else {

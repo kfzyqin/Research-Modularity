@@ -7,10 +7,7 @@ import ga.frame.frames.Frame;
 import ga.frame.frames.SimpleHaploidFrame;
 import ga.frame.states.SimpleHaploidState;
 import ga.frame.states.State;
-import ga.operations.fitnessFunctions.FitnessFunction;
-import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargets;
-import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsAllCombinations;
-import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsWithEdgeCost;
+import ga.operations.fitnessFunctions.*;
 import ga.operations.initializers.HaploidGRNInitializer;
 import ga.operations.mutators.GRNEdgeMutator;
 import ga.operations.mutators.GRNRandomEdgeMutator;
@@ -185,7 +182,7 @@ public class HaploidGRNMatrixMain {
         Process p1 = PB.start();
 
         try {
-            Thread.sleep(15000);
+            Thread.sleep(30000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -193,7 +190,7 @@ public class HaploidGRNMatrixMain {
         String fullOutputPath = System.getProperty("user.dir") + "/generated-outputs/" + outputDirectoryPath;
         List<List<Double>> paths = ModularityPathAnalyzer.getAllPotentialPaths(fullOutputPath, fitnessFunction, true, thresholds.get(1));
 
-        System.out.println(paths);
+//        System.out.println(paths);
         ProcessBuilder postPB = new ProcessBuilder("python", "./python-tools/java_post_mate.py",
                 System.getProperty("user.dir") + "/generated-outputs/" + outputDirectoryPath, paths.toString());
         Process p2 = postPB.start();
@@ -201,6 +198,6 @@ public class HaploidGRNMatrixMain {
         /* For Debug */
         BufferedReader in = new BufferedReader(new InputStreamReader(p2.getInputStream()));
         String ret = in.readLine();
-        System.out.println("value is : "+ret);
+//        System.out.println("value is : "+ret);
     }
 }

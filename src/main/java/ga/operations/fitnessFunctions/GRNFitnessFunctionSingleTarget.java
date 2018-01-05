@@ -53,7 +53,7 @@ public class GRNFitnessFunctionSingleTarget extends GRNFitnessFunction<SimpleMat
             } while (currentRound < this.maxCycle && isNotStable);
 
             if (currentRound < maxCycle) {
-                int hammingDistance = this.getHammingDistance(currentAttractor, this.target);
+                double hammingDistance = this.getHammingDistance(currentAttractor, this.target);
                 if (hammingDistance != 0) {
                     notMaxedFitness += 1;
                 }
@@ -99,7 +99,7 @@ public class GRNFitnessFunctionSingleTarget extends GRNFitnessFunction<SimpleMat
             } while (currentRound < this.maxCycle && isNotStable);
 
             if (currentRound < maxCycle) {
-                int hammingDistance = this.getHammingDistance(currentAttractor, this.target);
+                double hammingDistance = this.getHammingDistance(currentAttractor, this.target);
                 double thisFitness = Math.pow((1 - (hammingDistance / ((double) this.target.length))), 5);
                 fitnessValue += thisFitness;
             } else {
