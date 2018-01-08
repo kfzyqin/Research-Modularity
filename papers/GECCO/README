@@ -1,0 +1,13 @@
+Here is the main body of the paper. 
+
+You probably only need to make modifications in the secs directory (the 
+individual sections of the paper) and the bib directory (where your personal 
+bibliography goes). 
+
+In particular, please leave the acmart.cls file here (so that it overrides any
+other acmart.cls - in particular, if one comes with your linux/windows latex
+distribution, it is almost certainly too out-of-date).
+
+Ideally, please use the texlive distribution. Other versions of latex may work,
+but only texlive is fully cross-platform, and there may be incompatibilities 
+between other versions.
