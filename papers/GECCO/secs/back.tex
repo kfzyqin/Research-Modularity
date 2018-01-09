@@ -2,3 +2,11 @@
 This is where we give more detail of the background in modularity.
 
 We might also put in a brief description of our initial experiments with tournament selection, explaining that we were puzzled why we didn't see any modular solutions this way.
+
+In the inception phase of this project, we utilised the Louvain heuristics to compute the partition of the network vertices in order to maximize the modularity of the given graph \cite{blondel2008louvain}. We applied the tournament selection scheme with the tournament size being three and the elitism mechanism with ten elites in every generation. As a result of this setting, the partition of the gene regulatory networks by the Louvain heuristics demonstrated a very low modularity score. As Figure X indicates, by simulating the work in \cite{espinosa2010specialization}, we had expected there would be a spike after 500 generations on modularity. In contrast, we observed a modularity decrease as a result. 
+
+Figure X. An example of evolutions that did not evolve out high modularity
+
+
+In order to understand this puzzling phenomenon, we removed the elitism mechanism and changed the tournament to proportional selection scheme. In consequence, we eliminated the deviant phenomenon as Figure X indicates. Therefore, we hypothesized that the elitism mechanism or the tournament selection scheme hamper the evolutionary process on evolving out modular structures. 
+

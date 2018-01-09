@@ -24,6 +24,7 @@ import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
 import ga.others.ModularityPathAnalyzer;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.DateFormat;
@@ -89,14 +90,14 @@ public class HaploidGRNMatrixMain {
     /* Parameters of the GRN */
     private static final int maxCycle = 20;
     private static final int edgeSize = 20;
-//    private static final int perturbations = 75;
+    private static final int perturbations = 75;
     private static final double perturbationRate = 0.15;
 
     /* Parameters of the GA */
     private static final double geneMutationRate = 0.05;
     private static final int numElites = 10;
     private static final int populationSize = 100;
-    private static final int tournamentSize = 3;
+    private static final int tournamentSize = 10;
     private static final double reproductionRate = 0.9;
     //    private static final int maxGen = 40000;
 //    private static final List<Integer> thresholds = Arrays.asList(0, 500, 3000, 7000, 12000, 20000, 30000); // when to switch targets
@@ -108,7 +109,7 @@ public class HaploidGRNMatrixMain {
     /* Settings for text outputs */
     private static final String summaryFileName = "Haploid-GRN-Matrix.txt";
     private static final String csvFileName = "Haploid-GRN-Matrix.csv";
-    private static final String outputDirectory = "all-combination-perturbations";
+    private static final String outputDirectory = "tournament-selection-size-10";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
@@ -122,8 +123,8 @@ public class HaploidGRNMatrixMain {
         int[][] targets = {target1, target2};
 
         /* Fitness function */
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsAllCombinations(
-                targets, maxCycle, perturbationRate, thresholds, perturbationSizes);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(
+                targets, maxCycle, perturbations, perturbationRate, thresholds);
 
         /* It is not necessary to write an initializer, but doing so is convenient to
         repeat the experiment using different parameter */
@@ -181,11 +182,16 @@ public class HaploidGRNMatrixMain {
                 System.getProperty("user.dir") + "/generated-outputs/" + outputDirectoryPath, "" + thresholds.get(1));
         Process p1 = PB.start();
 
-        try {
-            Thread.sleep(30000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        File f = new File(System.getProperty("user.dir") + "/generated-outputs/" + outputDirectoryPath + "/" + "least_modular_phenotype.phe");
+        while (!(f.exists() && !f.isDirectory())) {
+
         }
+
+//        try {
+//            Thread.sleep(30000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
         String fullOutputPath = System.getProperty("user.dir") + "/generated-outputs/" + outputDirectoryPath;
         List<List<Double>> paths = ModularityPathAnalyzer.getAllPotentialPaths(fullOutputPath, fitnessFunction, true, thresholds.get(1));

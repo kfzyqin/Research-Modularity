@@ -44,7 +44,7 @@ public class ModularityPathAnalyzer {
             for (Integer anEntry : aCombination) {
                 tmpMaterial.getGene(anEntry).setValue(0);
             }
-            fitnessValues.add(((GRNFitnessFunctionMultipleTargetsAllCombinations) grnFit).evaluate(tmpMaterial, startGeneration));
+            fitnessValues.add(((GRNFitnessFunctionMultipleTargets) grnFit).evaluate(tmpMaterial, startGeneration));
         }
         Collections.sort(fitnessValues);
         List<Double> topValues = fitnessValues.subList(Math.max((int) (fitnessValues.size() * 0.9), 0), fitnessValues.size());

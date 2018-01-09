@@ -16,8 +16,11 @@ class GRNPlotter:
     def get_best_partition(self, a_grn):
         return community.best_partition(a_grn.to_undirected())
 
-    def get_modularity_value(self, a_grn):
-        modularity_partition = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 1, 6: 1, 7: 1, 8: 1, 9: 1}
+    def get_modularity_value(self, a_grn, louvain=False):
+        if louvain:
+            modularity_partition = community.best_partition(a_grn.to_undirected())
+        else:
+            modularity_partition = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 1, 6: 1, 7: 1, 8: 1, 9: 1}
         return community.modularity(modularity_partition, a_grn.to_undirected())
 
     def get_grn_phenotypes(self, root_directory_path):
@@ -81,12 +84,12 @@ class GRNPlotter:
                         grn[j][i]['color'] = 'red'
         return grn
 
-    def get_grn_modularity_values(self, root_directory_path):
+    def get_grn_modularity_values(self, root_directory_path, louvain=False):
         modularity_values = []
         phenotypes = self.get_grn_phenotypes(root_directory_path)
         for a_phenotype in phenotypes:
             a_grn = self.generate_directed_grn(a_phenotype)
-            modularity_values.append(self.get_modularity_value(a_grn))
+            modularity_values.append(self.get_modularity_value(a_grn, louvain))
             # partition_set = set()
             # for ele in a_partition.values():
             #     partition_set.add(ele)
@@ -116,27 +119,37 @@ class GRNPlotter:
                 grn.node[key[0]]['pos'] = value
             write_dot(grn, save_path + os.sep + 'directed_graph.dot')
 
-    def get_module_values_of_an_experiment(self, a_path, generation, draw_modularity=False, draw_grn=False):
+    def get_module_values_of_an_experiment(self, a_path, generation=-1, draw_modularity=False, draw_grn=False,
+                                           draw_gen_avg_modularity=False, louvain=False):
         sub_directories = get_immediate_subdirectories(a_path)
+        all_modularities = []
         final_module_value_list = []
         for a_directory in sub_directories:
             phenotypes = self.get_grn_phenotypes(a_directory)
             if len(phenotypes) > 0:
                 a_grn = self.generate_directed_grn(phenotypes[generation])
-                modularity_values = self.get_grn_modularity_values(a_directory)
+                modularity_values = self.get_grn_modularity_values(a_directory, louvain)
                 final_module_value_list.append(modularity_values[generation])
+
+                all_modularities.append(modularity_values)
 
                 if draw_modularity:
                     save_a_list_graph(modularity_values, 'Modularity', a_directory, 'modularity.png')
                 if draw_grn:
                     self.draw_a_grn(a_grn, is_to_save=True, save_path=a_directory, file_name='graph.png',
                                     with_labels=True)
+
+        sum_of_modularity = map(sum, zip(*all_modularities))
+        avg_of_modularity = [x / len(all_modularities) for x in sum_of_modularity]
+        if draw_gen_avg_modularity:
+            save_a_list_graph(avg_of_modularity, 'Average Modularity', a_path, 'average_modularity.png')
+
         return final_module_value_list
 
-    def get_module_values_of_a_trial(self, a_directory, draw_modularity=True):
+    def get_module_values_of_a_trial(self, a_directory, draw_modularity=True, louvain=False):
         phenotypes = self.get_grn_phenotypes(a_directory)
         if len(phenotypes) > 0:
-            modularity_values = self.get_grn_modularity_values(a_directory)
+            modularity_values = self.get_grn_modularity_values(a_directory, louvain)
             if draw_modularity:
                 save_a_list_graph(modularity_values, 'Modularity', a_directory, 'modularity.png')
             return modularity_values

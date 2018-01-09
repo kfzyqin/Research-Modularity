@@ -18,6 +18,8 @@ def get_immediate_subdirectories(a_dir):
 
 
 def save_a_list_graph(a_list, y_label, path, file_name):
+    if path[-1] != os.sep:
+        path += os.sep
     plt.plot(a_list)
     plt.ylabel(y_label)
     plt.savefig(path + os.sep + file_name, dpi=200)
