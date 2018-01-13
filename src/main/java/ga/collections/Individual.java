@@ -2,12 +2,15 @@ package ga.collections;
 
 import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.Chromosome;
+import ga.components.genes.DataGene;
 import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.FitnessFunctionMultipleTargets;
+import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargets;
 import ga.others.Copyable;
 
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * This class represents an individual in the population. An individual consists of a chromosomes and fitnessFunctions function value.
@@ -20,6 +23,8 @@ public class Individual<C extends Chromosome> implements Comparable<Individual<C
 
     private C chromosome;
     private double fitness = 0;
+
+    public List<DataGene[][]> individualSPerturbations;
 
     /**
      * Constructs an individual.
@@ -34,6 +39,12 @@ public class Individual<C extends Chromosome> implements Comparable<Individual<C
         this.fitness = fitness;
     }
 
+    private Individual(@NotNull final C chromosome, final double fitness, List<DataGene[][]> perturbations) {
+        this.chromosome = (C)chromosome.copy();
+        this.fitness = fitness;
+        this.individualSPerturbations = perturbations;
+    }
+
     @Override
     public int compareTo(final Individual<C> tIndividual) {
         final double tFitness = tIndividual.getFitness();
@@ -46,18 +57,24 @@ public class Individual<C extends Chromosome> implements Comparable<Individual<C
             return 0;
     }
 
+    public List<DataGene[][]> getIndividualSPerturbations() {
+        return this.individualSPerturbations;
+    }
+
     @Override
     public Individual<C> copy() {
-        return new Individual<>((C)chromosome.copy(), fitness);
+        return new Individual<>((C)chromosome.copy(), fitness, this.individualSPerturbations);
     }
 
     public double evaluate(final FitnessFunction objective, final boolean recompute) {
         fitness = objective.evaluate(chromosome.getPhenotype(recompute));
+        this.individualSPerturbations = GRNFitnessFunctionMultipleTargets.currentPerturbations;
         return fitness;
     }
 
     public double evaluate(final FitnessFunctionMultipleTargets objective, final boolean recompute, int generation) {
         fitness = objective.evaluate(chromosome.getPhenotype(recompute), generation);
+        this.individualSPerturbations = GRNFitnessFunctionMultipleTargets.currentPerturbations;
         return fitness;
     }
 

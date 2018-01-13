@@ -3,6 +3,8 @@ package ga.components.genes;
 import com.sun.istack.internal.NotNull;
 import ga.others.Copyable;
 
+import java.io.Serializable;
+
 /*
     GASEE is a Java-based genetic algorithm library for scientific exploration and experiment.
     Copyright 2016 Siu-Kei Muk
@@ -30,7 +32,7 @@ import ga.others.Copyable;
  * @since 26/08/2016
  * @param <V> Class/Type of value.
  */
-public abstract class Gene<V> implements Copyable<Gene<V>> {
+public abstract class Gene<V> implements Copyable<Gene<V>>, Serializable {
 
     protected V value;
 

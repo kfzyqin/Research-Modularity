@@ -1,9 +1,13 @@
 package ga.operations.fitnessFunctions;
 
+import au.com.bytecode.opencsv.CSVWriter;
 import com.sun.istack.internal.NotNull;
 import ga.components.genes.DataGene;
 import ga.components.materials.SimpleMaterial;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -13,8 +17,11 @@ public class GRNFitnessFunctionMultipleTargets extends GRNFitnessFunction<Simple
         implements FitnessFunctionMultipleTargets<SimpleMaterial> {
     protected final int[][] targets;
     protected Map<List<Integer>, Map<SimpleMaterial, Double>> targetPhenotypeFitnessMap = new HashMap<>();
+    protected String outputPath;
 
     protected final List<Integer> thresholdOfAddingTarget;
+
+    private static int overallCount = 1;
 
     public GRNFitnessFunctionMultipleTargets(final int[][] targets, final int maxCycle, int perturbations, double perturbationRate) {
         super(maxCycle, perturbations, perturbationRate);
@@ -38,6 +45,29 @@ public class GRNFitnessFunctionMultipleTargets extends GRNFitnessFunction<Simple
         this.thresholdOfAddingTarget = thresholdOfAddingTarget;
         Collections.sort(this.thresholdOfAddingTarget);
         filterThresholds();
+    }
+
+    public GRNFitnessFunctionMultipleTargets(final int[][] targets, final int maxCycle, int perturbations,
+                                             double perturbationRate,
+                                             final List<Integer> thresholdOfAddingTarget,
+                                             final String outputPath) {
+        super(maxCycle, perturbations, perturbationRate);
+        this.targets = targets;
+        this.thresholdOfAddingTarget = thresholdOfAddingTarget;
+        Collections.sort(this.thresholdOfAddingTarget);
+        filterThresholds();
+
+//        this.outputPath = outputPath;
+//        if (outputPath.charAt(outputPath.length()-1) != '/') {
+//            this.outputPath += '/';
+//        }
+//        this.outputPath = "generated-outputs/" + this.outputPath + "perturbations/";
+//        File dir = new File(this.outputPath);
+//        boolean isDirCreated = dir.mkdir();
+//        boolean isDirsCreated;
+//        if (!isDirCreated) {
+//            isDirsCreated = dir.mkdirs();
+//        }
     }
 
     public GRNFitnessFunctionMultipleTargets(final int[][] targets, final int maxCycle,
@@ -95,8 +125,8 @@ public class GRNFitnessFunctionMultipleTargets extends GRNFitnessFunction<Simple
         return currentTargetIndices;
     }
 
-    protected double evaluateOneTarget(@NotNull final SimpleMaterial phenotype, @NotNull final int[] target) {
-        DataGene[][] startAttractors = this.generateInitialAttractors(perturbations, perturbationRate, target);
+    protected double evaluateOneTarget(@NotNull final SimpleMaterial phenotype, @NotNull final int[] target,
+                                       DataGene[][] startAttractors) {
         double fitnessValue = 0;
         for (DataGene[] startAttractor : startAttractors) {
             DataGene[] currentAttractor = startAttractor;
@@ -131,13 +161,58 @@ public class GRNFitnessFunctionMultipleTargets extends GRNFitnessFunction<Simple
 //        return ones;
     }
 
+    private void generatePerturbationCSVFile(final int generation, final SimpleMaterial phenotype,
+                                             DataGene[][] startAttractors, int targetIndex) throws IOException {
+        final File file = new File(this.outputPath + "perturbations.csv");
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            System.err.println("Failed to save csv file.");
+        }
+
+        String phenotypeString = phenotype.toString();
+
+        CSVWriter writer = new CSVWriter(new FileWriter(this.outputPath + "_" + overallCount + "_perturbations_" + generation +
+                "_" + targetIndex + ".csv"), '\t');
+
+        String[] entries = "Phenotype#Perturbation".split("#");
+        writer.close();
+        overallCount += 1;
+    }
+
+    public static List<DataGene[][]> currentPerturbations = new ArrayList<>();
+
     @Override
     public double evaluate(final SimpleMaterial phenotype, final int generation) {
+        currentPerturbations.clear();
         List<Integer> currentTargetIndices = this.getCurrentTargetIndices(generation);
         double fitnessValue = 0;
         for (Integer targetIndex : currentTargetIndices) {
             int[] aTarget = this.targets[targetIndex];
-            fitnessValue += this.evaluateOneTarget(phenotype, aTarget);
+            DataGene[][] startAttractors = this.generateInitialAttractors(perturbations, perturbationRate, aTarget);
+            currentPerturbations.add(startAttractors);
+            fitnessValue += this.evaluateOneTarget(phenotype, aTarget, startAttractors);
+//            try {
+//                generatePerturbationCSVFile(generation, phenotype, startAttractors, targetIndex);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+        }
+        return fitnessValue / currentTargetIndices.size();
+    }
+
+    public double evaluate(final SimpleMaterial phenotype, final int generation, List<DataGene[][]> targetPerturbations) {
+        List<Integer> currentTargetIndices = this.getCurrentTargetIndices(generation);
+        double fitnessValue = 0;
+        for (Integer targetIndex : currentTargetIndices) {
+            int[] aTarget = this.targets[targetIndex];
+            DataGene[][] startAttractors = targetPerturbations.get(targetIndex);
+            fitnessValue += this.evaluateOneTarget(phenotype, aTarget, startAttractors);
+//            try {
+//                generatePerturbationCSVFile(generation, phenotype, startAttractors, targetIndex);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
         }
         return fitnessValue / currentTargetIndices.size();
     }

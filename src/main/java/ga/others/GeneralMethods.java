@@ -365,5 +365,16 @@ public class GeneralMethods<T> {
         return new SimpleMaterial(convertArrayToList(convertStringArrayToIntArray(tmpArray)));
     }
 
+    public static void showFiles(File[] files) {
+        for (File file : files) {
+            if (file.isDirectory()) {
+                System.out.println("Directory: " + file.getName());
+                showFiles(file.listFiles()); // Calls same method again.
+            } else {
+                System.out.println("File: " + file.getName());
+            }
+        }
+    }
+
 
 }

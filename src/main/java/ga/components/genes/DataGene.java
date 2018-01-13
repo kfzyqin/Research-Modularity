@@ -2,11 +2,13 @@ package ga.components.genes;
 
 import com.sun.istack.internal.NotNull;
 
+import java.io.Serializable;
+
 /**
  * Created by Zhenyue Qin on 6/04/2017.
  * The Australian National University.
  */
-public class DataGene extends Gene<Integer> {
+public class DataGene extends Gene<Integer> implements Serializable {
     public static DataGene generateRandomDataGene() {
     return new DataGene((Math.random() < 0.5) ? -1 : 1);
   }

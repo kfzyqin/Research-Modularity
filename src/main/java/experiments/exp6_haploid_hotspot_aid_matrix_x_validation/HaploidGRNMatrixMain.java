@@ -105,12 +105,14 @@ public class HaploidGRNMatrixMain {
     private static final List<Integer> thresholds = Arrays.asList(0, 500); // when to switch targets
     private static final double alpha = 0.75;
     private static final int[] perturbationSizes = {1, 2};
+    private static final int perturbationCycleSize = 75;
 
     /* Settings for text outputs */
     private static final String summaryFileName = "Haploid-GRN-Matrix.txt";
     private static final String csvFileName = "Haploid-GRN-Matrix.csv";
-    private static final String outputDirectory = "tournament-selection-size-10";
+    private static final String outputDirectory = "larson-with-perturbation-recording";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
+    private static final String allPerturbationsName = "Haploid-GRN-Matrix.per";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
 
@@ -121,10 +123,6 @@ public class HaploidGRNMatrixMain {
     public static void main(String[] args) throws IOException {
 //        int[][] targets = {target1, target2, target3, target4, target5, target6, target7};
         int[][] targets = {target1, target2};
-
-        /* Fitness function */
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(
-                targets, maxCycle, perturbations, perturbationRate, thresholds);
 
         /* It is not necessary to write an initializer, but doing so is convenient to
         repeat the experiment using different parameter */
@@ -137,7 +135,7 @@ public class HaploidGRNMatrixMain {
         Mutator mutator = new GRNEdgeMutator(geneMutationRate);
 
         /* Selector for reproduction */
-        Selector<SimpleHaploid> selector = new SimpleTournamentSelector<>(tournamentSize);
+        Selector<SimpleHaploid> selector = new SimpleProportionalSelector<>();
 
 //        /* Selector for elites */
 //        PriorOperator<SimpleHaploid> priorOperator = new SimpleElitismOperator<>(numElites);
@@ -152,6 +150,16 @@ public class HaploidGRNMatrixMain {
         /* Statistics for keeping track the performance in generations */
         DetailedStatistics<SimpleHaploid> statistics = new DetailedStatistics<>();
 
+        /* Set output paths */
+        String outputDirectoryPath = outputDirectory + "/" + dateFormat.format(date);
+        statistics.setDirectory(outputDirectoryPath);
+        statistics.copyMainFile(mainFileName, System.getProperty("user.dir") +
+                "/src/main/java/experiments/exp6_haploid_hotspot_aid_matrix_x_validation/" + mainFileName);
+
+        /* Fitness function */
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFast(
+                targets, maxCycle, perturbations, perturbationRate, thresholds, perturbationCycleSize);
+
         /* The state of an GA */
         State<SimpleHaploid> state = new SimpleHaploidState<>(
                 population, fitnessFunction, mutator, reproducer, selector, 2, reproductionRate);
@@ -159,12 +167,6 @@ public class HaploidGRNMatrixMain {
 
         /* The frame of an GA to change states */
         Frame<SimpleHaploid> frame = new SimpleHaploidFrame<>(state,postOperator,statistics);
-
-        /* Set output paths */
-        String outputDirectoryPath = outputDirectory + "/" + dateFormat.format(date);
-        statistics.setDirectory(outputDirectoryPath);
-        statistics.copyMainFile(mainFileName, System.getProperty("user.dir") +
-                "/src/main/java/experiments/exp6_haploid_hotspot_aid_matrix_x_validation/" + mainFileName);
 
         statistics.print(0); // print the initial state of an population
         /* Actual GA evolutions */
@@ -182,9 +184,16 @@ public class HaploidGRNMatrixMain {
                 System.getProperty("user.dir") + "/generated-outputs/" + outputDirectoryPath, "" + thresholds.get(1));
         Process p1 = PB.start();
 
-        File f = new File(System.getProperty("user.dir") + "/generated-outputs/" + outputDirectoryPath + "/" + "least_modular_phenotype.phe");
-        while (!(f.exists() && !f.isDirectory())) {
+        statistics.storePerturbations(allPerturbationsName);
 
+        File f_1 = new File(System.getProperty("user.dir") + "/generated-outputs/" + outputDirectoryPath + "/" + "least_modular_phenotype.phe");
+        File f_2 = new File(System.getProperty("user.dir") + "/generated-outputs/" + outputDirectoryPath + "/" + "converted_least_modular_phenotype.phe");
+
+
+        long startTime = System.currentTimeMillis();
+        long currentTime = System.currentTimeMillis();
+        while (!(f_1.exists() && f_2.exists() && (currentTime - startTime) <= 150000)) {
+            currentTime = System.currentTimeMillis();
         }
 
 //        try {
@@ -194,11 +203,16 @@ public class HaploidGRNMatrixMain {
 //        }
 
         String fullOutputPath = System.getProperty("user.dir") + "/generated-outputs/" + outputDirectoryPath;
-        List<List<Double>> paths = ModularityPathAnalyzer.getAllPotentialPaths(fullOutputPath, fitnessFunction, true, thresholds.get(1));
+        List<List<Double>> originalFitnessPaths = ModularityPathAnalyzer.getAllPotentialPaths(fullOutputPath, fitnessFunction,
+                true, thresholds.get(1), statistics.getAllGenerationPerturbations(), true);
+
+        List<List<Double>> anotherFitnessPaths = ModularityPathAnalyzer.getAllPotentialPaths(fullOutputPath, fitnessFunction,
+                true, thresholds.get(1), statistics.getAllGenerationPerturbations(), false);
 
 //        System.out.println(paths);
         ProcessBuilder postPB = new ProcessBuilder("python", "./python-tools/java_post_mate.py",
-                System.getProperty("user.dir") + "/generated-outputs/" + outputDirectoryPath, paths.toString());
+                System.getProperty("user.dir") + "/generated-outputs/" + outputDirectoryPath,
+                originalFitnessPaths.toString(), anotherFitnessPaths.toString());
         Process p2 = postPB.start();
 
         /* For Debug */

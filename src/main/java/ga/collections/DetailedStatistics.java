@@ -3,6 +3,7 @@ package ga.collections;
 import au.com.bytecode.opencsv.CSVWriter;
 import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.Chromosome;
+import ga.components.genes.DataGene;
 import ga.components.materials.SimpleMaterial;
 import ga.others.GeneralMethods;
 import org.apache.commons.io.FileUtils;
@@ -15,6 +16,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import java.io.*;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -34,6 +36,8 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
     List<Double> averageEdgeNumbers;
     List<Double> edgeNumberStdDevs;
 
+    List<List<DataGene[][]>> allGenerationPerturbations;
+
     public DetailedStatistics() {
         generation = 0;
         elites = new ArrayList<>();
@@ -47,6 +51,7 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
          */
         averageEdgeNumbers = new ArrayList<>();
         edgeNumberStdDevs = new ArrayList<>();
+        allGenerationPerturbations = new ArrayList<>();
     }
 
     /**
@@ -65,6 +70,7 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
          */
         averageEdgeNumbers = new ArrayList<>(maxGen);
         edgeNumberStdDevs = new ArrayList<>(maxGen);
+        allGenerationPerturbations = new ArrayList<>(maxGen);
     }
 
     private DetailedStatistics(@NotNull final List<Individual<C>> elites,
@@ -128,6 +134,11 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
             deltas.add(elite.getFitness());
         else
             deltas.add(elite.getFitness() - elites.get(generation-1).getFitness());
+
+        this.allGenerationPerturbations.add(elite.getIndividualSPerturbations());
+//        for (DataGene[][] aDataGene : this.allGenerationPerturbations.get(allGenerationPerturbations.size()-1)) {
+//            System.out.println(Arrays.toString(aDataGene[0]));
+//        }
     }
 
     public void setDirectory(@NotNull String directoryName) {
@@ -216,5 +227,17 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
 
     private String getChromosomePhenotype(int generation) {
         return this.elites.get(generation).getChromosome().getPhenotype(false).toString();
+    }
+
+    public void storePerturbations(@NotNull final String fileName) throws IOException {
+        FileOutputStream fos = new FileOutputStream(this.directoryPath + fileName);
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+//        System.out.println(Arrays.toString(this.allGenerationPerturbations.get(0).get(0)[0]));
+        oos.writeObject(this.allGenerationPerturbations);
+        oos.close();
+    }
+
+    public List<List<DataGene[][]>> getAllGenerationPerturbations() {
+        return this.allGenerationPerturbations;
     }
 }

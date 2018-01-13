@@ -1,13 +1,12 @@
 package experiments.experiment6;
 
+import ga.components.genes.DataGene;
 import ga.components.materials.GRNFactoryNoHiddenTarget;
 import ga.others.GeneralMethods;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -15,10 +14,8 @@ import java.util.Scanner;
  * The Australian National University.
  */
 public class TestField12 {
-    public static void main(String[] args) {
-        String aPath = "/Users/qin/Software-Engineering/Chin-GA-Project/generated-outputs/all-combination-perturbations/2017-12-05-09-14-05/least_modular_phenotype.phe";
-        String[] beforeLeastModularPhenotypeString = GeneralMethods.readFileLineByLine(aPath).get(0);
-
-
+    public static void main(String[] args) throws InterruptedException, IOException, ClassNotFoundException {
+        File[] files = new File("C:/").listFiles();
+        showFiles(files);
     }
 }

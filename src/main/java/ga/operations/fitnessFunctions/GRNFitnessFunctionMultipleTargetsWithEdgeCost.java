@@ -31,7 +31,8 @@ public class GRNFitnessFunctionMultipleTargetsWithEdgeCost extends GRNFitnessFun
         double fitnessValue = 0;
         for (Integer targetIndex : currentTargetIndices) {
             int[] aTarget = this.targets[targetIndex];
-            fitnessValue += this.evaluateOneTarget(phenotype, aTarget);
+            DataGene[][] startAttractors = this.generateInitialAttractors(perturbations, perturbationRate, aTarget);
+            fitnessValue += this.evaluateOneTarget(phenotype, aTarget, startAttractors);
         }
         double robustness = (fitnessValue / currentTargetIndices.size());
 //        double modifiedRobustness;

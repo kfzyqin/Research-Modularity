@@ -9,7 +9,7 @@ from file_processor import get_immediate_subdirectories
 
 working_path = sys.argv[1]
 # working_path = '/Users/qin/Software-Engineering/Chin-GA-Project/generated-outputs/' \
-#                'python-autonomous-test/2017-11-21-09-52-33'
+#                'test-complete-record/2018-01-13-11-00-19'
 
 # directories = get_immediate_subdirectories('/Users/qin/Software-Engineering/Chin-GA-Project/generated-outputs/change-to-tournament-selection')
 
@@ -25,6 +25,7 @@ fitness_plotter = FitnessPlotter.FitnessPlotter()
 fitness_values = fitness_plotter.get_fitness_values_of_an_trial(working_path)
 
 multiple_pattern_generation = int(sys.argv[2])
+# multiple_pattern_generation = 50
 
 modularity_dominance_analyzer = ModularityDominanceAnalyzer.ModularityDominanceAnalyzer()
 most_modular = modularity_dominance_analyzer.get_the_fittest_individual_in_the_most_modular_networks(
@@ -50,6 +51,11 @@ std_dev_numbers = csv_file_opener.get_fitness_values_of_an_trial(working_path, '
 
 save_multiple_lists_graph([average_edge_numbers, std_dev_numbers], ['Average Edge Number', 'Std Dev Number'], working_path,
                           'avg_edge_num_and_std_dev.png', vertical_lines=[most_modular[0], least_modular[0]])
+
+least_modular_gen = []
+least_modular_gen.append(str(least_modular[0]))
+
+write_a_list_into_a_file(least_modular_gen, working_path, 'least_modular_generation.gen')
 
 write_a_list_into_a_file(phenotypes[least_modular[0]], working_path, 'least_modular_phenotype.phe')
 
