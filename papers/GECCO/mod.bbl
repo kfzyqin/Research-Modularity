@@ -38,25 +38,12 @@
 \providecommand\showeprint[2][]{arXiv:#2}
 
 \bibitem[\protect\citeauthoryear{Aderem}{Aderem}{2005}]%
-        {aderems2005sys}
+        {aderems2005systems}
 \bibfield{author}{\bibinfo{person}{Alan Aderem}.}
   \bibinfo{year}{2005}\natexlab{}.
 \newblock \showarticletitle{Systems biology: its practice and challenges}.
 \newblock \bibinfo{journal}{\emph{Cell}} \bibinfo{volume}{121},
   \bibinfo{number}{4} (\bibinfo{year}{2005}), \bibinfo{pages}{511--513}.
-\newblock
-
-
-\bibitem[\protect\citeauthoryear{Blondel, Guillaume, Lambiotte, and
-  Lefebvre}{Blondel et~al\mbox{.}}{2008}]%
-        {blondel2008louvain}
-\bibfield{author}{\bibinfo{person}{Vincent Blondel}, \bibinfo{person}{Jean-Loup
-  Guillaume}, \bibinfo{person}{Renaud Lambiotte}, {and}
-  \bibinfo{person}{Etienne Lefebvre}.} \bibinfo{year}{2008}\natexlab{}.
-\newblock \showarticletitle{Fast unfolding of communities in large networks}.
-\newblock \bibinfo{journal}{\emph{Journal of Statistical Mechanics: Theory and
-  Experiment}}  \bibinfo{volume}{10} (\bibinfo{year}{2008}),
-  \bibinfo{pages}{P10008}.
 \newblock
 
 
@@ -73,34 +60,47 @@
 \newblock
 
 
+\bibitem[\protect\citeauthoryear{Hagberg, Swart, and S~Chult}{Hagberg
+  et~al\mbox{.}}{2008}]%
+        {hagberg2008exploring}
+\bibfield{author}{\bibinfo{person}{Aric Hagberg}, \bibinfo{person}{Pieter
+  Swart}, {and} \bibinfo{person}{Daniel S~Chult}.}
+  \bibinfo{year}{2008}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{Exploring network structure, dynamics, and
+  function using NetworkX}}.
+\newblock \bibinfo{type}{{T}echnical {R}eport}. \bibinfo{institution}{Los
+  Alamos National Laboratory (LANL)}.
+\newblock
+
+
 \bibitem[\protect\citeauthoryear{Larson, Bernatskiy, Cappelle, Livingston,
-  Livingston, Long, Schwarz, Smith, and Bongard}{Larson et~al\mbox{.}}{[n.
-  d.]}]%
-        {larson2016hotspot}
-\bibfield{author}{\bibinfo{person}{Ari. Larson}, \bibinfo{person}{Anton
+  Livingston, Long, Schwarz, Smith, and Bongard}{Larson et~al\mbox{.}}{2016}]%
+        {larson2016recombination}
+\bibfield{author}{\bibinfo{person}{Ari Larson}, \bibinfo{person}{Anton
   Bernatskiy}, \bibinfo{person}{Collin Cappelle}, \bibinfo{person}{Ken
   Livingston}, \bibinfo{person}{Nicholas Livingston}, \bibinfo{person}{John
   Long}, \bibinfo{person}{Jodi Schwarz}, \bibinfo{person}{Marc Smith}, {and}
-  \bibinfo{person}{Josh Bongard}.} \bibinfo{year}{[n. d.]}\natexlab{}.
-\newblock \showarticletitle{Does Evolutionary Plasticity Evolve?}
-\newblock  (\bibinfo{year}{[n. d.]}).
+  \bibinfo{person}{Josh Bongard}.} \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{Recombination Hotspots Promote the Evolvability of
+  Modular Systems}. In \bibinfo{booktitle}{\emph{Proceedings of the 2016 on
+  Genetic and Evolutionary Computation Conference Companion}}. ACM,
+  \bibinfo{pages}{115--116}.
 \newblock
 
 
-\bibitem[\protect\citeauthoryear{NetworkX}{NetworkX}{2017}]%
-        {communityAPI}
-\bibfield{author}{\bibinfo{person}{NetworkX}.} \bibinfo{year}{2017}\natexlab{}.
-\newblock \bibinfo{title}{NetworkX}.
-\newblock   (\bibinfo{year}{2017}).
+\bibitem[\protect\citeauthoryear{Newman and Girvan}{Newman and Girvan}{2004}]%
+        {newman2004finding}
+\bibfield{author}{\bibinfo{person}{Mark~EJ Newman} {and}
+  \bibinfo{person}{Michelle Girvan}.} \bibinfo{year}{2004}\natexlab{}.
+\newblock \showarticletitle{Finding and evaluating community structure in
+  networks}.
+\newblock \bibinfo{journal}{\emph{Physical review E}} \bibinfo{volume}{69},
+  \bibinfo{number}{2} (\bibinfo{year}{2004}), \bibinfo{pages}{026113}.
 \newblock
-\urldef\tempurl%
-\url{https://networkx.github.io/}
-\showURL{%
-\tempurl}
 
 
 \bibitem[\protect\citeauthoryear{Totten}{Totten}{2015}]%
-        {totten2015perturbation}
+        {totten2015exploring}
 \bibfield{author}{\bibinfo{person}{Mariko Totten}.}
   \bibinfo{year}{2015}\natexlab{}.
 \newblock \bibinfo{title}{Exploring the Evolution of Modularity in Gene
@@ -114,10 +114,10 @@
 
 
 \bibitem[\protect\citeauthoryear{Wagner}{Wagner}{1996}]%
-        {wagner1996model}
+        {wagner1996does}
 \bibfield{author}{\bibinfo{person}{Andreas Wagner}.}
   \bibinfo{year}{1996}\natexlab{}.
-\newblock \showarticletitle{Does Evolutionary Plasticity Evolve?}
+\newblock \showarticletitle{Does evolutionary plasticity evolve?}
 \newblock \bibinfo{journal}{\emph{Evolution}} \bibinfo{volume}{50},
   \bibinfo{number}{3} (\bibinfo{year}{1996}), \bibinfo{pages}{1008--1023}.
 \newblock

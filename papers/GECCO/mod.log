@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.8)  14 JAN 2018 19:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.8)  15 JAN 2018 10:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1065,7 +1065,12 @@ Package hyperref Warning: Option `pdflang' has already been used,
 Package hyperref Warning: Option `pdfdisplaydoctitle' has already been used,
 (hyperref)                setting the option has no effect on input line 110.
 
-(./secs/intro.tex) (./secs/back.tex) (./secs/meth.tex
+(./secs/intro.tex) (./secs/back.tex
+
+Package natbib Warning: Citation `blondel2008louvain' on page 1 undefined on in
+put line 6.
+
+) (./secs/meth.tex
 Overfull \hbox (11.35292pt too wide) in paragraph at lines 16--17
 \T1/LinuxLibertineT-TLF/m/n/9 (-20) 2.7.10. They are all pub-licly avail-able a
 t https://github.com/xxxxxxxxxx.
@@ -1087,34 +1092,42 @@ LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
 (Font)              scaled to size 6.0pt on input line 22.
  [1.1{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
-])
-(./secs/exp.tex) (./secs/res.tex) (./secs/analysis.tex) (./secs/disc.tex)
-(./secs/conc.tex) (./secs/ack.tex) (./mod.bbl
-LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 9.0pt on input line 79.
-LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 6.0pt on input line 79.
- [2.2]
-LaTeX Info: Redefining \tempurl on input line 111.
-) [3.3
-
 ]
+Underfull \hbox (badness 10000) in paragraph at lines 50--55
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 50--55
+
+ []
+
+LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
+(Font)              scaled to size 9.0pt on input line 57.
+LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
+(Font)              scaled to size 6.0pt on input line 57.
+[2.2]) (./secs/exp.tex) (./secs/res.tex) (./secs/analysis.tex) (./secs/disc.tex
+) (./secs/conc.tex) (./secs/ack.tex) (./mod.bbl)
+
+Package natbib Warning: There were undefined citations.
+
+[3.3]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 127.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 127.
  (./mod.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 127.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 127.
 Package rerunfilecheck Info: File `mod.out' has not changed.
-(rerunfilecheck)             Checksum: 446B8C58E93A8FF4ED3B889FF297753B;1244.
+(rerunfilecheck)             Checksum: 9E9AA9F993AD5B73458DC8C8C307E8DE;1617.
  ) 
 Here is how much of TeX's memory you used:
- 18234 strings out of 492995
- 277185 string characters out of 6132705
- 394022 words of memory out of 5000000
- 20975 multiletter control sequences out of 15000+600000
- 204315 words of font info for 348 fonts, out of 8000000 for 9000
+ 18277 strings out of 492995
+ 278217 string characters out of 6132705
+ 395021 words of memory out of 5000000
+ 20981 multiletter control sequences out of 15000+600000
+ 207661 words of font info for 370 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 60i,16n,94p,1017b,613s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,16n,94p,1149b,503s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/newtx/libertinealt.enc}{/
 usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_oexx6f.enc}{/u
 sr/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texliv
@@ -1135,10 +1148,10 @@ cal/texlive/2017/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb></usr/local/tex
 live/2017/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/201
 7/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/local/texlive/2017/texmf-
 dist/fonts/type1/public/newtx/zxlri.pfb>
-Output written on mod.pdf (3 pages, 475705 bytes).
+Output written on mod.pdf (3 pages, 480689 bytes).
 PDF statistics:
- 190 PDF objects out of 1000 (max. 8388607)
- 153 compressed objects within 2 object streams
- 25 named destinations out of 1000 (max. 500000)
- 54381 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 205 PDF objects out of 1000 (max. 8388607)
+ 168 compressed objects within 2 object streams
+ 29 named destinations out of 1000 (max. 500000)
+ 54397 words of extra memory for PDF output out of 61914 (max. 10000000)
 

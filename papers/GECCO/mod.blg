@@ -7,54 +7,53 @@ Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Database file #1: bib/zhenyue.bib
 Database file #2: bib/tom.bib
 Database file #3: bib/bob.bib
+Warning--I didn't find a database entry for "blondel2008louvain"
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
 Reallocated global_strs (elt_size=20001) to 20 items from 10.
 Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-Warning--empty year in larson2016hotspot
-Warning--no journal in larson2016hotspot
-Warning--no number and no volume in larson2016hotspot
-Warning--page numbers missing in both pages and numpages fields in larson2016hotspot
+Warning--empty publisher in larson2016recombination
+Warning--empty address in larson2016recombination
 You've used 7 entries,
             5733 wiz_defined-function locations,
-            1334 strings with 15532 characters,
-and the built_in function-call counts, 7868 in all, are:
-= -- 1050
-> -- 277
+            1343 strings with 15787 characters,
+and the built_in function-call counts, 8395 in all, are:
+= -- 1148
+> -- 284
 < -- 0
-+ -- 87
-- -- 100
-* -- 524
-:= -- 812
-add.period$ -- 35
++ -- 91
+- -- 104
+* -- 548
+:= -- 845
+add.period$ -- 36
 call.type$ -- 7
-change.case$ -- 47
+change.case$ -- 48
 chr.to.int$ -- 7
-cite$ -- 11
-duplicate$ -- 659
-empty$ -- 465
-format.name$ -- 112
-if$ -- 1932
+cite$ -- 9
+duplicate$ -- 714
+empty$ -- 493
+format.name$ -- 120
+if$ -- 2061
 int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 20
-newline$ -- 104
+missing$ -- 21
+newline$ -- 99
 num.names$ -- 56
-pop$ -- 252
+pop$ -- 244
 preamble$ -- 1
-purify$ -- 104
+purify$ -- 110
 quote$ -- 0
-skip$ -- 236
+skip$ -- 273
 stack$ -- 0
-substring$ -- 524
-swap$ -- 80
+substring$ -- 604
+swap$ -- 92
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 140
-warning$ -- 4
-while$ -- 54
+type$ -- 154
+warning$ -- 2
+while$ -- 59
 width$ -- 0
-write$ -- 165
-(There were 4 warnings)
+write$ -- 162
+(There were 3 warnings)
