@@ -1,8 +1,8 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=latex 2018.1.8)  9 JAN 2018 17:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.8)  14 JAN 2018 19:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**mod
+**mod.tex
 (./mod.tex
 LaTeX2e <2017-04-15>
 Babel <3.10> and hyphenation patterns for 84 language(s) loaded.
@@ -226,7 +226,7 @@ Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode is ignored in DVI mode.
+Package pdftexcmds Info: \pdfdraftmode found.
 Package: pdfescape 2016/05/16 v1.14 Implements pdfTeX's escape features (HO)
 Package: bigintcalc 2016/05/16 v1.4 Expandable calculations on big integers (HO
 )
@@ -302,20 +302,12 @@ LaTeX Info: Redefining \pageref on input line 6432.
 \c@Hfootnote=\count113
 )
 
-Package hyperref Message: Driver (default): hdvips.
+Package hyperref Message: Driver (autodetected): hpdftex.
 
-(/usr/local/texlive/2017/texmf-dist/tex/latex/hyperref/hdvips.def
-File: hdvips.def 2017/03/14 v6.85a Hyperref driver for dvips
-
-(/usr/local/texlive/2017/texmf-dist/tex/latex/hyperref/pdfmark.def
-File: pdfmark.def 2017/03/14 v6.85a Hyperref definitions for pdfmark specials
-\pdf@docset=\toks28
-\pdf@box=\box29
-\pdf@toks=\toks29
-\pdf@defaulttoks=\toks30
-\HyField@AnnotCount=\count114
-\Fld@listcount=\count115
-\c@bookmark@seq@number=\count116
+(/usr/local/texlive/2017/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2017/03/14 v6.85a Hyperref driver for pdfTeX
+\Fld@listcount=\count114
+\c@bookmark@seq@number=\count115
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
 Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
@@ -323,7 +315,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
 )
 \Hy@SectionHShift=\skip54
-))
+)
 (/usr/local/texlive/2017/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
 
@@ -336,10 +328,11 @@ Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 (/usr/local/texlive/2017/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: dvips.def on input line 99.
+Package graphics Info: Driver file: pdftex.def on input line 99.
 
-(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics-def/dvips.def
-File: dvips.def 2016/07/10 v3.1a Driver-dependent file (DPC,SPQR)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2017/01/12 v0.06k Graphics/color for pdfTeX
+\Gread@gobject=\count116
 ))
 \Gin@req@height=\dimen119
 \Gin@req@width=\dimen120
@@ -350,11 +343,9 @@ Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
 (/usr/local/texlive/2017/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
-Package xcolor Info: Driver file: dvips.def on input line 225.
-\XC@@xcp=\write4
-\openout4 = `mod.xcp'.
-
+Package xcolor Info: Driver file: pdftex.def on input line 225.
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
 Package xcolor Info: Model `RGB' extended on input line 1364.
 Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
 Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
@@ -386,7 +377,7 @@ Package: geometry 2010/09/12 v5.6 Page Geometry
 \Gm@layoutheight=\dimen126
 \Gm@layouthoffset=\dimen127
 \Gm@layoutvoffset=\dimen128
-\Gm@dimlist=\toks31
+\Gm@dimlist=\toks28
 )
 (/usr/local/texlive/2017/texmf-dist/tex/latex/ncctools/manyfoot.sty
 Package: manyfoot 2005/09/11 v1.10 Many Footnote Levels Package (NCC)
@@ -408,11 +399,8 @@ and LuaTeX
 (/usr/local/texlive/2017/texmf-dist/tex/generic/pdftex/glyphtounicode.tex)
 (/usr/local/texlive/2017/texmf-dist/tex/latex/cmap/cmap.sty
 Package: cmap 2008/03/06 v1.0h CMap support: searchable PDF
-
-
-Package cmap Warning: pdftex in DVI mode - exiting.
-
-) (/usr/local/texlive/2017/texmf-dist/tex/latex/libertine/libertine.sty
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/libertine/libertine.sty
 Package: libertine 2017/03/22 (Bob Tennent) Supports Libertine and Biolinum fon
 ts for all LaTeX engines.
 
@@ -655,7 +643,7 @@ Package: fontenc 2017/04/05 v2.0i Standard LaTeX package
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/t1enc.def
 File: t1enc.def 2017/04/05 v2.0i Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
-))
+)<<t1.cmap>>)
 (/usr/local/texlive/2017/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
 
@@ -677,12 +665,12 @@ Package caption Info: hyperref package is loaded.
 (/usr/local/texlive/2017/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count125
-\float@exts=\toks32
-\float@box=\box30
-\@float@everytoks=\toks33
-\@floatcapt=\box31
+\float@exts=\toks29
+\float@box=\box29
+\@float@everytoks=\toks30
+\@floatcapt=\box30
 )
-\@float@every@sidebar=\toks34
+\@float@every@sidebar=\toks31
 \c@sidebar=\count126
 \fulltextwidth=\dimen137
 \@ACM@labelwidth=\dimen138
@@ -698,12 +686,12 @@ Class acmart Info: Suppressing folios on input line 1260.
 Class acmart Info: Setting authorsperrow to 0 on input line 1263.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/comment/comment.sty
-\CommentStream=\write5
+\CommentStream=\write4
 
 Excluding comment 'comment') Excluding comment 'CCSXML'
-\mktitle@bx=\box32
-\@ACM@commabox=\box33
-\author@bx=\box34
+\mktitle@bx=\box31
+\@ACM@commabox=\box32
+\author@bx=\box33
 \author@bx@wd=\dimen139
 \author@bx@sep=\skip62
 
@@ -719,7 +707,7 @@ Package: fancyhdr 2016/09/06 3.8 Extensive control of page headers and footers
 \f@ncyO@olf=\skip70
 \f@ncyO@orf=\skip71
 )
-\ACM@linecount@bx=\box35
+\ACM@linecount@bx=\box34
 \ACM@linecount@bxht=\skip72
 \ACM@linecount=\count129
 \c@ACM@time@hours=\count130
@@ -828,10 +816,13 @@ LinuxLibertineT-TLF.
 )
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
 (Font)              scaled to size 7.3pt on input line 28.
+<<ot1.cmap>>
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
 (Font)              scaled to size 5.5pt on input line 28.
+<<oml.cmap>>
 LaTeX Font Info:    Try loading font information for U+msa on input line 28.
- (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Try loading font information for U+msb on input line 28.
@@ -858,10 +849,12 @@ LaTeX Font Info:    Try loading font information for U+ntxsyc on input line 28.
 File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
 )
 LaTeX Info: Redefining \microtypecontext on input line 28.
-Package microtype Info: Generating DVI output.
+Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
-Package microtype Info: No font expansion.
+Package microtype Info: Automatic font expansion enabled (level 2),
+(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
+Package microtype Info: Using default expansion set `basictext'.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -871,7 +864,7 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             See the microtype manual for details.
 
 ABD: EveryShipout initializing macros
-\AtBeginShipoutBox=\box36
+\AtBeginShipoutBox=\box35
 Package hyperref Info: Link coloring OFF on input line 28.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/hyperref/nameref.sty
@@ -887,14 +880,44 @@ LaTeX Info: Redefining \pageref on input line 28.
 LaTeX Info: Redefining \nameref on input line 28.
 
 (./mod.out) (./mod.out)
-\@outlinefile=\write6
-\openout6 = `mod.out'.
+\@outlinefile=\write5
+\openout5 = `mod.out'.
 
 
+(/usr/local/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count138
+\scratchdimen=\dimen156
+\scratchbox=\box36
+\nofMPsegments=\count139
+\nofMParguments=\count140
+\everyMPshowfont=\toks32
+\MPscratchCnt=\count141
+\MPscratchDim=\dimen157
+\MPnumerator=\count142
+\makeMPintoPDFobject=\count143
+\everyMPtoPDFconversion=\toks33
+) (/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
 *geometry* driver: auto-detecting
-*geometry* detected driver: dvips
+*geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
-* driver: dvips
+* driver: pdftex
 * paper: custom
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
@@ -925,8 +948,8 @@ LaTeX Info: Redefining \nameref on input line 28.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@mv@tabular=\count138
-\c@mv@boldtabular=\count139
+\c@mv@tabular=\count144
+\c@mv@boldtabular=\count145
 (/usr/local/texlive/2017/texmf-dist/tex/latex/upquote/upquote.sty
 Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
 tim
@@ -1043,49 +1066,79 @@ Package hyperref Warning: Option `pdfdisplaydoctitle' has already been used,
 (hyperref)                setting the option has no effect on input line 110.
 
 (./secs/intro.tex) (./secs/back.tex) (./secs/meth.tex
-Overfull \hbox (1.0988pt too wide) in paragraph at lines 9--11
-\T1/LinuxLibertineT-TLF/m/n/9 (roulette) se-lec-tion vs tour-na-ment (maybe a c
-ou-ple of dif-fer-ent tour-
+Overfull \hbox (11.35292pt too wide) in paragraph at lines 16--17
+\T1/LinuxLibertineT-TLF/m/n/9 (-20) 2.7.10. They are all pub-licly avail-able a
+t https://github.com/xxxxxxxxxx.
  []
 
-) (./secs/exp.tex) (./secs/res.tex) (./secs/disc.tex) (./secs/conc.tex
+
+Underfull \vbox (badness 3449) has occurred while \output is active []
+
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 36.135pt on input line 1.
-LaTeX Font Info:    Calculating math sizes for size <36.135> on input line 1.
+(Font)              scaled to size 36.135pt on input line 22.
+LaTeX Font Info:    Calculating math sizes for size <36.135> on input line 22.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 36.135pt on input line 1.
+(Font)              scaled to size 36.135pt on input line 22.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 26.37839pt on input line 1.
+(Font)              scaled to size 26.37839pt on input line 22.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 19.87434pt on input line 1.
+(Font)              scaled to size 19.87434pt on input line 22.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 6.0pt on input line 1.
- [1.1
+(Font)              scaled to size 6.0pt on input line 22.
+ [1.1{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 ])
-(./secs/ack.tex) (./mod.bbl)
+(./secs/exp.tex) (./secs/res.tex) (./secs/analysis.tex) (./secs/disc.tex)
+(./secs/conc.tex) (./secs/ack.tex) (./mod.bbl
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 9.0pt on input line 126.
+(Font)              scaled to size 9.0pt on input line 79.
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 6.0pt on input line 126.
- [2.2
+(Font)              scaled to size 6.0pt on input line 79.
+ [2.2]
+LaTeX Info: Redefining \tempurl on input line 111.
+) [3.3
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 126.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 126.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 127.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 127.
  (./mod.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 126.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 126.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 127.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 127.
 Package rerunfilecheck Info: File `mod.out' has not changed.
-(rerunfilecheck)             Checksum: 56A2C86E6B6AFDF255631E86AB23CBD2;910.
+(rerunfilecheck)             Checksum: 446B8C58E93A8FF4ED3B889FF297753B;1244.
  ) 
 Here is how much of TeX's memory you used:
- 17380 strings out of 492996
- 262609 string characters out of 6132731
- 389810 words of memory out of 5000000
- 20475 multiletter control sequences out of 15000+600000
- 162622 words of font info for 161 fonts, out of 8000000 for 9000
+ 18234 strings out of 492995
+ 277185 string characters out of 6132705
+ 394022 words of memory out of 5000000
+ 20975 multiletter control sequences out of 15000+600000
+ 204315 words of font info for 348 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 60i,16n,94p,790b,491s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,16n,94p,1017b,613s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/newtx/libertinealt.enc}{/
+usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_oexx6f.enc}{/u
+sr/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texliv
+e/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc}{/usr/local/texlive
+/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc}{/usr/local/texlive/
+2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_naooyc.enc}{/usr/local/texlive/2
+017/texmf-dist/fonts/enc/dvips/libertine/lbtn_nh77jq.enc}{/usr/local/texlive/20
+17/texmf-dist/fonts/enc/dvips/libertine/lbtn_mmutss.enc}{/usr/local/texlive/201
+7/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc}</usr/local/texlive/2017
+/texmf-dist/fonts/type1/public/libertine/LinBiolinumT.pfb></usr/local/texlive/2
+017/texmf-dist/fonts/type1/public/libertine/LinBiolinumTB.pfb></usr/local/texli
+ve/2017/texmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb></usr/local/t
+exlive/2017/texmf-dist/fonts/type1/public/libertine/LinLibertineTB.pfb></usr/lo
+cal/texlive/2017/texmf-dist/fonts/type1/public/libertine/LinLibertineTI.pfb></u
+sr/local/texlive/2017/texmf-dist/fonts/type1/public/newtx/fxlri-7letters.pfb></
+usr/local/texlive/2017/texmf-dist/fonts/type1/public/txfonts/rtxmi.pfb></usr/lo
+cal/texlive/2017/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb></usr/local/tex
+live/2017/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/201
+7/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/local/texlive/2017/texmf-
+dist/fonts/type1/public/newtx/zxlri.pfb>
+Output written on mod.pdf (3 pages, 475705 bytes).
+PDF statistics:
+ 190 PDF objects out of 1000 (max. 8388607)
+ 153 compressed objects within 2 object streams
+ 25 named destinations out of 1000 (max. 500000)
+ 54381 words of extra memory for PDF output out of 61914 (max. 10000000)
 
-Output written on mod.dvi (2 pages, 29740 bytes).

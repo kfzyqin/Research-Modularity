@@ -110,14 +110,14 @@ public class HaploidGRNMatrixMain {
     /* Settings for text outputs */
     private static final String summaryFileName = "Haploid-GRN-Matrix.txt";
     private static final String csvFileName = "Haploid-GRN-Matrix.csv";
-    private static final String outputDirectory = "larson-with-perturbation-recording";
+    private static final String outputDirectory = "soto-with-perturbation-recording";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static final String allPerturbationsName = "Haploid-GRN-Matrix.per";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
 
     /* Settings for graph outputs */
-    private static final String plotTitle = "Haploid GRN Matrix Chin";
+    private static final String plotTitle = "Haploid GRN Matrix";
     private static final String plotFileName = "Haploid-GRN-Matrix.png";
 
     public static void main(String[] args) throws IOException {
@@ -157,8 +157,8 @@ public class HaploidGRNMatrixMain {
                 "/src/main/java/experiments/exp6_haploid_hotspot_aid_matrix_x_validation/" + mainFileName);
 
         /* Fitness function */
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFast(
-                targets, maxCycle, perturbations, perturbationRate, thresholds, perturbationCycleSize);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(
+                targets, maxCycle, perturbations, perturbationRate, thresholds);
 
         /* The state of an GA */
         State<SimpleHaploid> state = new SimpleHaploidState<>(

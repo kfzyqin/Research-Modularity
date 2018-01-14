@@ -5,6 +5,7 @@ import ga.components.materials.GRNFactoryNoHiddenTarget;
 import ga.others.GeneralMethods;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -15,7 +16,9 @@ import java.util.Scanner;
  */
 public class TestField12 {
     public static void main(String[] args) throws InterruptedException, IOException, ClassNotFoundException {
-        File[] files = new File("C:/").listFiles();
-        showFiles(files);
+        File[] files = new File("/Users/qin/Software-Engineering/Chin-GA-Project/generated-outputs/larson-with-perturbation-recording/").listFiles();
+        List<String> directories = new ArrayList<>();
+        GeneralMethods.showFiles(files, directories);
+        System.out.println(directories);
     }
 }

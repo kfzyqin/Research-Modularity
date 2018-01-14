@@ -12,44 +12,49 @@ Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
 Reallocated global_strs (elt_size=20001) to 20 items from 10.
 Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-You've used 2 entries,
+Warning--empty year in larson2016hotspot
+Warning--no journal in larson2016hotspot
+Warning--no number and no volume in larson2016hotspot
+Warning--page numbers missing in both pages and numpages fields in larson2016hotspot
+You've used 7 entries,
             5733 wiz_defined-function locations,
-            1308 strings with 14874 characters,
-and the built_in function-call counts, 2705 in all, are:
-= -- 405
-> -- 90
+            1334 strings with 15532 characters,
+and the built_in function-call counts, 7868 in all, are:
+= -- 1050
+> -- 277
 < -- 0
-+ -- 30
-- -- 32
-* -- 168
-:= -- 256
-add.period$ -- 10
-call.type$ -- 2
-change.case$ -- 14
-chr.to.int$ -- 2
-cite$ -- 2
-duplicate$ -- 217
-empty$ -- 143
-format.name$ -- 40
-if$ -- 692
++ -- 87
+- -- 100
+* -- 524
+:= -- 812
+add.period$ -- 35
+call.type$ -- 7
+change.case$ -- 47
+chr.to.int$ -- 7
+cite$ -- 11
+duplicate$ -- 659
+empty$ -- 465
+format.name$ -- 112
+if$ -- 1932
 int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 8
-newline$ -- 56
-num.names$ -- 16
-pop$ -- 74
+missing$ -- 20
+newline$ -- 104
+num.names$ -- 56
+pop$ -- 252
 preamble$ -- 1
-purify$ -- 32
+purify$ -- 104
 quote$ -- 0
-skip$ -- 90
+skip$ -- 236
 stack$ -- 0
-substring$ -- 165
-swap$ -- 38
+substring$ -- 524
+swap$ -- 80
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 32
-warning$ -- 0
-while$ -- 14
+type$ -- 140
+warning$ -- 4
+while$ -- 54
 width$ -- 0
-write$ -- 73
+write$ -- 165
+(There were 4 warnings)
