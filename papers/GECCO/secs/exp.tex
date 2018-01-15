@@ -1,13 +1,14 @@
 \section{Experiments}
-Gene activity patterns and the essential parameters of our evolutionary simulations are provided in the form of Tables 3.1 and 3.2 in order to facilitate repeatability of these experiments. The detailed explanations of these parameters are given after Table 3.2. Overall, only the elite number will be specified in each experiment, since only that may vary in different experiments. All the other parameters are specified in Table 3.1 and Table 3.2 and are consistent in the experiments. 
-\begin{table}[h!]
+Gene activity patterns and the essential parameters of our evolutionary simulations are provided in the form of Tables 4.1 and 4.2 in order to facilitate repeatability of these experiments. The detailed explanations of these parameters are given after Table 4.2. Overall, only the elite number and the tournament size will be specified in each experiment, since only those may vary in different experiments. All the other parameters are specified in Table 4.1 and 4.2 are consistent in the experiments. 
+\vspace*{-12 pt}
+\begin{table}[h]
 	\centering
 	\caption{Table to test captions and labels}
-	\label{table:X}
-	\begin{tabular}{||c | c||} 
+	\label{table:4.1}
+	\begin{tabular}{|c | c|} 
 		\hline
 		Gene Activity Pattern & Generation to Add a New Pattern \\ [0.5ex] 
-		\hline\hline
+		\hline
 		1, -1, 1, -1, 1, -1, 1, -1, 1, -1 & 0 \\ 
 		\hline
 		1, -1, 1, -1, 1, 1, -1, 1, -1, 1 & 500 \\
@@ -15,18 +16,56 @@ Gene activity patterns and the essential parameters of our evolutionary simulati
 	\end{tabular}
 \end{table}
 
-%\begin{table}[h!]
-%	\centering
-%	\caption{Parameters of the evolutionary simulation}
-%	\label{table:X}
-%	\begin{tabular}{||c | c | c | c | c | c | c | c | c||} 
-%		\hline
-%		Edge Size & Perturbation Number & Perturbation Rate & Mutation Rate & Population Size & Tournament Size & Reproduction Rate & Maximum Generation & Elite Number \\
-%		\hline\hline
-%		20 & 75 & 0.15 & 0.05 & 100 & Proportional & 0.9 & 2000 & 0 or 10 \\ 
-%		\hline
-%	\end{tabular}
-%\end{table}
+\vspace*{-19.5 pt}
+\begin{table}[h]
+	\centering
+	\caption{Parameters of the evolutionary simulation}
+	\label{table:4.2}
+	\begin{tabular}{|c | c | c |} 
+		\hline
+		Edge Size & Perturbation Number & Perturbation Rate \\
+		\hline
+		20 & 75 & 0.15 \\
+		\hline
+		Mutation Rate & Population Size & Tournament Size \\
+		\hline
+		0.05 & 100 & Proportional \\
+		\hline
+		Reproduction Rate & Maximum Generation & Elite Number \\
+		\hline
+		0.9 & 2000 & 0 or 10 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[!htbp]
+	\centering
+	\caption{Explanations of simulation parameters}
+	\label{table:4.3}
+	\begin{tabular}{|p{0.3\linewidth} | p{0.7\linewidth}|}
+		\hline
+		Gene Activity Patterns & the patterns that are perturbed, and towards which gene regulatory networks evolve. \\
+		\hline
+		Generations to add a new pattern & the generations to add new gene activity patterns towards which networks evolve. \\
+		\hline
+		Edge Size & the initial number of edges in the original gene regulatory networks. \\
+		\hline
+		Perturbation Number & the number of corrupted versions of each gene activity pattern. \\
+		\hline
+		Perturbation Rate & the expectation of the number of corrupted genes in a pattern. \\
+		\hline
+		Mutation Rate & the probability of a gene node to gain or lose an interaction in a network. \\
+		\hline
+		Population Size & the number of individuals in the population in every generation. \\
+		\hline
+		Tournament Size & the size of the tournament selection; where tournament selection is used, the size of the tournament; where proportional sections is used, it is annotated as "proportional". \\
+		\hline
+		Reproduction Rate & the proportion of children reproduced over the entire population. Any vacancy will be filled by the tournament scheme selecting individuals from the previous generation. \\
+		\hline
+		Maximum generation & the generation when the simulation will terminate after reaching it. \\
+		\hline
+	\end{tabular}
+\end{table}
 
 \subsection{Diagonal Crossover Mechanism Promotes Modularity}
 I simulated 40 independent evolutions for the development with no crossover and with each of the two crossover mechanisms, namely horizontal crossover and diagonal crossover, respectively. None of these simulations applied elitism. Overall, the diagonal crossover mechanism performed better than no crossover and the horizontal crossover, regarding both regulatory performance and modularity emergence, as Tables 3.1 and 3.2 indicate.
