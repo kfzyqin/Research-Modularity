@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.8)  15 JAN 2018 19:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.8)  15 JAN 2018 23:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1111,36 +1111,33 @@ Overfull \hbox (1.12022pt too wide) in paragraph at lines 7--16
  [][] 
  []
 
-) (./secs/res.tex
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/it' will be
-(Font)              scaled to size 9.0pt on input line 1.
-) (./secs/analysis.tex) (./secs/disc.tex) (./secs/conc.tex)
-(./secs/ack.tex) (./mod.bbl
-Underfull \vbox (badness 2951) has occurred while \output is active []
+(Font)              scaled to size 9.0pt on input line 39.
+) (./secs/res.tex) (./secs/analysis.tex) (./secs/disc.tex [3.3]
+Underfull \vbox (badness 1270) has occurred while \output is active []
 
- [3.3])
+)
+(./secs/conc.tex) (./secs/ack.tex) (./mod.bbl)
 
 Package natbib Warning: There were undefined citations.
 
-[4.4
-
-]
+[4.4]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 127.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 127.
  (./mod.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 127.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 127.
 Package rerunfilecheck Info: File `mod.out' has not changed.
-(rerunfilecheck)             Checksum: EA995B6FB53D5CED4EB93BB250E8644A;2157.
+(rerunfilecheck)             Checksum: 76AB2C0534DC26E7B3D487B04DC2E09D;3600.
  ) 
 Here is how much of TeX's memory you used:
- 18331 strings out of 492995
- 279418 string characters out of 6132705
- 395143 words of memory out of 5000000
- 20995 multiletter control sequences out of 15000+600000
- 216108 words of font info for 391 fonts, out of 8000000 for 9000
+ 18343 strings out of 492995
+ 279629 string characters out of 6132705
+ 395146 words of memory out of 5000000
+ 20999 multiletter control sequences out of 15000+600000
+ 216381 words of font info for 393 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 60i,16n,94p,1149b,503s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,17n,94p,1149b,503s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc
 }{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/newtx/libertinealt.enc}{/u
 sr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_oexx6f.enc}{/us
@@ -1162,10 +1159,10 @@ r/local/texlive/2017/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb></usr/local
 /texlive/2017/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive
 /2017/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/local/texlive/2017/te
 xmf-dist/fonts/type1/public/newtx/zxlri.pfb>
-Output written on mod.pdf (4 pages, 522136 bytes).
+Output written on mod.pdf (4 pages, 530394 bytes).
 PDF statistics:
- 231 PDF objects out of 1000 (max. 8388607)
- 191 compressed objects within 2 object streams
- 36 named destinations out of 1000 (max. 500000)
- 58509 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 253 PDF objects out of 1000 (max. 8388607)
+ 212 compressed objects within 3 object streams
+ 41 named destinations out of 1000 (max. 500000)
+ 58541 words of extra memory for PDF output out of 61914 (max. 10000000)
 
