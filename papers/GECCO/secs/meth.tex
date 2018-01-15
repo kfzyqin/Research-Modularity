@@ -56,8 +56,13 @@ C_{2}[i: 9, :] = A_{1}[i: 9, :]\\$
 However, this horizotal crossover may not only make the parental networks exchange modular clusters, but also exchange some interactions between the two modules. This may corrupt modularity. In contrast, we use a crossover mechanism that swaps interactions between modules in a gene regulatory network with connections between modules in another network. Compared with the crossover mechanism of Larson et al., this approach, as Figure X illustrates, will better preserve the community structure (Wilcoxon signed-rank test; $p<0.0372$). 
 
 \subsection{Modularity Metric}
-We adopted the Q scoring system to quantify modularity in a network based on the algorithm proposed by Newman \cite{newman2004finding}. 
+We adopted the Q scoring system to quantify modularity in a network based on the algorithm proposed by Newman \cite{newman2004finding}. Briefly, this approach is defined as the difference between the ratio of the number of edges in the network connecting nodes within a module over the number of all the edges, and the same quantity when assigning the nodes into the same modules yet edges are assumed to be randomly connected in the network \cite{kashtan2005spontaneous}. Formally, $Q$ is calculated as 
+\begin{equation}
+Q = \sum_{i}^{K}[\frac{l_i}{L} - (\frac{d_i}{2L})^2]
+\end{equation}
+where $i$ represents one of the $K$ potential modules within a network, $L$ is the total number of connections in a network, $l_i$ stands for the number of interactions in the module $i$, and $d_i$ is the sum of degrees of all the nodes in module $i$ \cite{espinosa2010specialization}. In other words, $Q$ considers the two ratios of both intra-module connection density and inter-module connection density \cite{newman2004finding}. A network that is considered to be good on modularity must consist of as many within-module edges and as few inter-module edges as possible. However, it will result in $Q=0$ if all the nodes are partitioned into the same module. 
 
+The value $Q$ will sit in the range of $\left.[-\frac{1}{2}, 1\right.)$. Nodes in the gene regulatory network are partitioned into different groups according to their regulating gene activity patterns. 
 
 
 
