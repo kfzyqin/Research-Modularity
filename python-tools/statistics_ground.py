@@ -4,7 +4,7 @@ path_1 = '/Users/qin/Software-Engineering/Chin-GA-Project/generated-outputs/' \
                'larson-with-perturbation-recording/'
 
 path_2 = '/Users/qin/Software-Engineering/Chin-GA-Project/generated-outputs/' \
-               'soto-with-perturbation-recording'
+               'soto-with-perturbation-recording/'
 
 omega = StatisticsToolkit(path_1, path_2)
 

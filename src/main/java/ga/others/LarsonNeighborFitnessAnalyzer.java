@@ -18,7 +18,7 @@ public class LarsonNeighborFitnessAnalyzer {
     private static final double geneMutationRate = 0.05;
     private static final int neighborSize = 5;
 //    private static final String pathToTheExperiment = "/Users/qin/Software-Engineering/Chin-GA-Project/thesis-data/different-crossover-mechanism-comparisons/chin-crossover";
-    private static final String pathToTheExperiment = "/Users/qin/Software-Engineering/Chin-GA-Project/generated-outputs/larson-with-perturbation-recording";
+    private static final String pathToTheExperiment = "/Users/qin/Software-Engineering/Chin-GA-Project/generated-outputs/soto-with-perturbation-recording";
 
     private static final int[] target1 = {
             1, -1, 1, -1, 1,
@@ -95,6 +95,7 @@ public class LarsonNeighborFitnessAnalyzer {
             }
             maxFitnessValues.add(Collections.max(fitnessValues));
             System.out.println("Original: " + fitnessValues.get(0) + " max: " + Collections.max(fitnessValues));
+            System.out.println(fitnessValues.get(0) == Collections.max(fitnessValues));
         }
         System.out.println(maxFitnessValues);
     }

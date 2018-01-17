@@ -47,13 +47,35 @@ p(u)=\frac{4r_{u}}{4r_{u} + N - r_{u}}
 
 where $N$ is the number of gene nodes in a gene regulatory network, and $r_{u}$ equals to the number of regulators of gene $u$ \cite{espinosa2010specialization}. That is, the number of genes that exert effects on gene $u$. In contrast, the probability for a gene $u$ to obtain an interaction is defined to be $1-p(u)$. That is, it can keep the sparseness of the network, which computational biology research suggests is necessary for the emergence of modularity. 
 
-Espinosa-Soto and Wagner did not apply a crossover mechanism in their simulation \cite{espinosa2010specialization}. In the reconstructed model by Larson et al., they limited crossover to nine possible partition locations of a 10-node network, corresponding to nine possible rows for splitting the adjacency matrix of a network horizontally \cite{larson2016recombination}. When two matrices $A_{1}$ and $A_{2}$ are selected for crossover at index $i$, matrices of their children will be produced as \\ \\
+Espinosa-Soto and Wagner did not apply a crossover mechanism in their simulation \cite{espinosa2010specialization}. In the reconstructed model by Larson et al., they limited crossover to nine possible partition locations of a 10-node network, corresponding to nine possible rows for splitting the adjacency matrix of a network horizontally \cite{larson2016recombination}. We call this horizontal crossover. When two matrices $A_{1}$ and $A_{2}$ are selected for crossover at index $i$, matrices of their children will be produced as \\ \\
 $C_{1}[0: i-1, :] = A_{1}[0: i-1, :]\\
 C_{1}[i: 9, :] = A_{2}[i: 9, :]\\
 C_{2}[0: i-1, :] = A_{2}[0: i-1, :]\\
 C_{2}[i: 9, :] = A_{1}[i: 9, :]\\$
 
-However, this horizotal crossover may not only make the parental networks exchange modular clusters, but also exchange some interactions between the two modules. This may corrupt modularity. In contrast, we use a crossover mechanism that swaps interactions between modules in a gene regulatory network with connections between modules in another network. Compared with the crossover mechanism of Larson et al., this approach, as Figure X illustrates, will better preserve the community structure (Wilcoxon signed-rank test; $p<0.0372$). 
+However, this horizotal crossover may not only make the parental networks exchange modular clusters, but also exchange some interactions between the two modules. This may corrupt modularity. In contrast, we use a crossover mechanism that swaps interactions between modules in a gene regulatory network with connections between modules in another network. We refer this as diagonal crossover. Compared with the crossover mechanism of Larson et al., this approach, as Figure \ref{fig:diagnonal-crossover} illustrates, will better preserve the community structure (Wilcoxon signed-rank test; $p<0.0372$).
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[b]{0.4\linewidth}
+		\includegraphics[width=\linewidth]{crossover-1.png}
+		\caption{Parental network 1.}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.4\linewidth}
+		\includegraphics[width=\linewidth]{crossover-2.png}
+		\caption{Parental network 2.}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.4\linewidth}
+		\includegraphics[width=\linewidth]{chin-crossover-1.png}
+		\caption{Child network 1.}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.4\linewidth}
+		\includegraphics[width=\linewidth]{chin-crossover-2.png}
+		\caption{Child network 2.}
+	\end{subfigure}
+	\caption{The same cup of coffee. Two times.}
+	\label{fig:diagnonal-crossover}
+\end{figure}
 
 \subsection{Modularity Metric}
 We adopted the Q scoring system to quantify modularity in a network based on the algorithm proposed by Newman \cite{newman2004finding}. Briefly, this approach is defined as the difference between the ratio of the number of edges in the network connecting nodes within a module over the number of all the edges, and the same quantity when assigning the nodes into the same modules yet edges are assumed to be randomly connected in the network \cite{kashtan2005spontaneous}. Formally, $Q$ is calculated as 

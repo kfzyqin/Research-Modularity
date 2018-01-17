@@ -1,11 +1,11 @@
 \section{Experiments}
-Gene activity patterns and the essential parameters of our evolutionary simulations are provided in the form of Tables 4.1 and 4.2 in order to facilitate repeatability of these experiments. The detailed explanations of these parameters are given after Table 4.2. Overall, only the elite number and the tournament size will be specified in each experiment, since only those may vary in different experiments. All the other parameters are specified in Table 4.1 and 4.2 are consistent in the experiments. 
-\vspace*{-12 pt}
+Gene activity patterns and the essential parameters of our evolutionary simulations are provided in the form of Tables \ref{table:4.1} and \ref{table:4.2} in order to facilitate repeatability of these experiments. Unless specified, all the experiments are conducted using the original stochastic fitness evaluation proposed by Espinosa-Soto and Wagner in \cite{espinosa2010specialization}. The detailed explanations of these parameters are given in Table \ref{table:4.3}. Overall, only the elite number and the tournament size will be specified in each experiment, since only those may vary in different experiments. All the other parameters are specified in Tables \ref{table:4.1} and \ref{table:4.2} are consistent in the experiments. 
+
 \begin{table}[h]
 	\centering
 	\caption{Table to test captions and labels}
 	\label{table:4.1}
-	\begin{tabular}{|c | c|} 
+	\begin{tabular}{|p{0.45\linewidth} | p{0.45\linewidth}|} 
 		\hline
 		Gene Activity Pattern & Generation to Add a New Pattern \\ [0.5ex] 
 		\hline
@@ -16,12 +16,11 @@ Gene activity patterns and the essential parameters of our evolutionary simulati
 	\end{tabular}
 \end{table}
 
-\vspace*{-19.5 pt}
 \begin{table}[h]
 	\centering
 	\caption{Parameters of the evolutionary simulation}
 	\label{table:4.2}
-	\begin{tabular}{|c | c | c |} 
+	\begin{tabular}{|p{0.3\linewidth} | p{0.3\linewidth} | p{0.3\linewidth} |} 
 		\hline
 		Edge Size & Perturbation Number & Perturbation Rate \\
 		\hline
@@ -38,7 +37,7 @@ Gene activity patterns and the essential parameters of our evolutionary simulati
 	\end{tabular}
 \end{table}
 
-\begin{table}[!htbp]
+\begin{table}[h]
 	\centering
 	\caption{Explanations of simulation parameters}
 	\label{table:4.3}
@@ -67,15 +66,144 @@ Gene activity patterns and the essential parameters of our evolutionary simulati
 	\end{tabular}
 \end{table}
 
+The Wilcoxon Signed-Rank Test was used to statistically determine the validity of the experimental conclusions. Each experiment contains 40 independent trials. The evaluation metrics include both the eventual fitness values and final modularity Q scores in the last generation.
+
 \subsection{Diagonal Crossover Mechanism Promotes Modularity}
-I simulated 40 independent evolutions for the development with no crossover and with each of the two crossover mechanisms, namely horizontal crossover and diagonal crossover, respectively. None of these simulations applied elitism. Overall, the diagonal crossover mechanism performed better than no crossover and the horizontal crossover, regarding both regulatory performance and modularity emergence, as Tables 3.1 and 3.2 indicate.
+We simulated 40 independent evolutions for the development with no crossover and with each of the two crossover mechanisms, namely horizontal crossover and diagonal crossover, respectively. None of these simulations applied elitism. Overall, the diagonal crossover mechanism performed better than no crossover and the horizontal crossover, regarding both regulatory performance and modularity emergence, as Tables \ref{table:4.4} and \ref{table:4.5} indicate.
 
-The Boolean model that I have utilised to simulate biological networks was originally proposed by Wagner in his study on "epigenetic stability" \cite{wagner1996does}. His work indicated that random recombination made no difference for the evolution of stability, which may be due to the freeness of random recombination on choosing locations to undertake crossover. This can corrupt the modular structures in biological networks.
+\begin{table}[h]
+	\centering
+	\caption{Results for diagonal crossover driving modularity}
+	\label{table:4.4}
+	\begin{tabular}{| p{0.225\linewidth}  | p{0.225\linewidth}  | p{0.225\linewidth}  | p{0.225\linewidth}  |} 
+		\hline
+		  & Diagonal & Horizontal & No Crossover \\
+		\hline
+		Fitness & 0.9492 & 0.9444 & 0.9476 \\ 
+		\hline
+		Q Score & 0.3278 & 0.2901 & 0.1919 \\
+		\hline
+	\end{tabular}
+\end{table}
 
-Conversely, my experimental results suggested that proper recombination methods can contribute to the evolvability of organisms. The diagonal crossover proposed in this report is able to preserve underlying network modules. Although the crossover mechanism utilised by Larson et al. did not preserve community structures as well as diagonal crossover, its partitioning is still based on a network-like structure. This can be the reason why both of these two crossover mechanisms could help in obtaining modularity, with diagonal crossover better than horizontal crossover. Meanwhile, different combinations of parental traits can increase the diversity of the population so that the evolution can be more exploratory.
+\begin{table}[h]
+	\centering
+	\caption{Statistical significant results for diagonal crossover driving modularity}
+	\label{table:4.5}
+	\begin{tabular}{| p{0.4\linewidth}  | p{0.25\linewidth}  | p{0.25\linewidth}  |} 
+		\hline
+		& Fitness P & Q Score P \\
+		\hline
+		No < Horizontal & 0.2415 & 9.2918e-7 \\ 
+		\hline
+		Horizontal < Diagonal & 0.0002 & 0.0372 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+The Boolean model that we have utilised to simulate biological networks was originally proposed by Wagner in his study on "epigenetic stability" \cite{wagner1996does}. His work indicated that random recombination made no difference for the evolution of stability, which may be due to the freeness of random recombination on choosing locations to undertake crossover. This can corrupt the modular structures in biological networks.
+
+Conversely, our experimental results suggested that proper recombination methods can contribute to the evolvability of organisms. The diagonal crossover proposed in this report is able to preserve underlying network modules. Although the crossover mechanism utilised by Larson et al. did not preserve community structures as well as diagonal crossover, its partitioning is still based on a network-like structure. This can be the reason why both of these two crossover mechanisms could help in obtaining modularity, with diagonal crossover better than horizontal crossover. Meanwhile, different combinations of parental traits can increase the diversity of the population so that the evolution can be more exploratory.
 
 \subsection{Greed Hampers Modularity}
-\subsubsection{Proportional Exceeds Tournament Selection on Generating Modularity}~\\
-We simulated 
+
 \subsubsection{Elitism Hampers Modularity}~\\
-We simulated 40 evolutionary trials with 10 elites and without any elites. That was 80 trials in total. The experimental results indicate that elitism will hamper both the networks' regulatory capabilities and modularity emergence, as shown in Table 3.3 and Table 3.4.
+We simulated 40 evolutionary trials with 10 elites and without any elites. That was 80 trials in total. The experimental results indicate that elitism will hamper both the networks' regulatory capabilities and modularity emergence, as shown in Table \ref{table:4.8} and \ref{table:4.9}.
+
+\begin{table}[h]
+	\centering
+	\caption{Results for elitism hampering the modularity}
+	\label{table:4.8}
+	\begin{tabular}{| p{0.3\linewidth}  | p{0.3\linewidth}  | p{0.3\linewidth} |} 
+		\hline
+		& Without Elites & With 10 Elites \\
+		\hline
+		Fitness & 0.9492 & 0.9472 \\ 
+		\hline
+		Q Score & 0.3278 & 0.2745 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[h]
+	\centering
+	\caption{Statistical significant results for elitism hampering the modularity}
+	\label{table:4.9}
+	\begin{tabular}{| p{0.5\linewidth}  | p{0.2\linewidth}  | p{0.2\linewidth}  |} 
+		\hline
+		& Fitness P & Q Score P \\
+		\hline
+		With 10 Elites < Without Elites & 0.0019 & 0.0044 \\ 
+		\hline
+	\end{tabular}
+\end{table}
+
+\subsubsection{Proportional Exceeds Tournament Selection on Generating Modularity}~\\
+Similar to the elitism scheme in the evolutionnary simulation, tournament selection impose stronger selecting pressure than proportional towards invididuals for generating offspring. This is because the former only considers the relative order of individual fitness values. 
+
+We simulated evolutions with tournament size being 3 and 10, also proportional selection. The detailed results are demonstrated in Tables \ref{table:4.6} and \ref{table:4.7}. In summary, when the tournamennt size increases, i.e., the simulation gets more greedy, both the fitness values and modularity Q scores will decrease. 
+
+\begin{table}[h]
+	\centering
+	\caption{Results for diagonal crossover driving modularity}
+	\label{table:4.6}
+	\begin{tabular}{| p{0.225\linewidth}  | p{0.225\linewidth}  | p{0.225\linewidth}  | p{0.225\linewidth}  |} 
+		\hline
+		& Tournament Size 3 & Tournament Size 10 & Proportional \\
+		\hline
+		Fitness & 0.9432 & 0.9215 & 0.9461 \\ 
+		\hline
+		Q Score & 0.3511 & 0.2675 & 0.3223 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[h]
+	\centering
+	\caption{Results for diagonal crossover driving modularity}
+	\label{table:4.7}
+	\begin{tabular}{| p{0.5\linewidth}  | p{0.2\linewidth}  | p{0.2\linewidth}  |} 
+		\hline
+		& Fitness P & Q Score P \\
+		\hline
+		Tournament Size 10 < Size 3 & 0.0052 & 0.0017 \\ 
+		\hline
+		Tournament Size 10 < Proportional & 0.0002 & 0.0091 \\
+		\hline
+		Tournament Size 3 < Proportional & 0.9031 & 0.2589 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\subsection{Stochastic Fitness Evaluation Excels Deterministic Fitness Evaluation}
+We simulated 40 independent evolutions each for both stochastic fitness evaluation and deterministic fitness evaluation. That is a total number of 80 experiments. The results showed that stochastic fitness evaluation outcompleted deterministic fitness evaluation on both survivability and modularity, as Table \ref{table:4.10} and \ref{table:4.11} indicate. 
+
+\begin{table}[h]
+	\centering
+	\caption{Results for elitism hampering the modularity}
+	\label{table:4.10}
+	\begin{tabular}{| p{0.3\linewidth}  | p{0.3\linewidth}  | p{0.3\linewidth} |} 
+		\hline
+		& Stochastic & Deterministic \\
+		\hline
+		Fitness & 0.9461 & 0.9322 \\ 
+		\hline
+		Q Score & 0.3223 & 0.1644 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[h]
+	\centering
+	\caption{Statistical significant results for elitism hampering the modularity}
+	\label{table:4.11}
+	\begin{tabular}{| p{0.5\linewidth}  | p{0.2\linewidth}  | p{0.2\linewidth}  |} 
+		\hline
+		& Fitness P & Q Score P \\
+		\hline
+		Deterministic < Stochastic & 0.0026 & 2.4369e-5 \\ 
+		\hline
+	\end{tabular}
+\end{table}
+
+

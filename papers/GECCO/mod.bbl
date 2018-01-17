@@ -2,7 +2,7 @@
 %%% Do NOT edit. File created by BibTeX with style
 %%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\begin{thebibliography}{8}
+\begin{thebibliography}{14}
 
 %%% ====================================================================
 %%% NOTE TO THE USER: you can override these defaults by providing
@@ -47,6 +47,18 @@
 \newblock
 
 
+\bibitem[\protect\citeauthoryear{Clune, Mouret, and Lipson}{Clune
+  et~al\mbox{.}}{2013}]%
+        {clune2013evolutionary}
+\bibfield{author}{\bibinfo{person}{Jeff Clune}, \bibinfo{person}{Jean-Baptiste
+  Mouret}, {and} \bibinfo{person}{Hod Lipson}.}
+  \bibinfo{year}{2013}\natexlab{}.
+\newblock \showarticletitle{The evolutionary origins of modularity}. In
+  \bibinfo{booktitle}{\emph{Proc. R. Soc. B}}, Vol.~\bibinfo{volume}{280}. The
+  Royal Society, \bibinfo{pages}{20122863}.
+\newblock
+
+
 \bibitem[\protect\citeauthoryear{Espinosa-Soto and Wagner}{Espinosa-Soto and
   Wagner}{2010}]%
         {espinosa2010specialization}
@@ -70,6 +82,17 @@
   function using NetworkX}}.
 \newblock \bibinfo{type}{{T}echnical {R}eport}. \bibinfo{institution}{Los
   Alamos National Laboratory (LANL)}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Hitz and Montazeri}{Hitz and
+  Montazeri}{1995}]%
+        {hitz1995measuring}
+\bibfield{author}{\bibinfo{person}{Martin Hitz} {and} \bibinfo{person}{Behzad
+  Montazeri}.} \bibinfo{year}{1995}\natexlab{}.
+\newblock \showarticletitle{Measuring coupling and cohesion in object-oriented
+  systems}.
+\newblock  (\bibinfo{year}{1995}).
 \newblock
 
 
@@ -111,6 +134,27 @@
 \newblock
 
 
+\bibitem[\protect\citeauthoryear{Pigliucci}{Pigliucci}{2008}]%
+        {pigliucci2008evolvability}
+\bibfield{author}{\bibinfo{person}{Massimo Pigliucci}.}
+  \bibinfo{year}{2008}\natexlab{}.
+\newblock \showarticletitle{Is evolvability evolvable?}
+\newblock \bibinfo{journal}{\emph{Nature Reviews Genetics}}
+  \bibinfo{volume}{9}, \bibinfo{number}{1} (\bibinfo{year}{2008}),
+  \bibinfo{pages}{75--82}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Schlosser and Wagner}{Schlosser and
+  Wagner}{2004}]%
+        {schlosser2004modularity}
+\bibfield{author}{\bibinfo{person}{Gerhard Schlosser} {and}
+  \bibinfo{person}{G{\"u}nter~P Wagner}.} \bibinfo{year}{2004}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{Modularity in development and evolution}}.
+\newblock \bibinfo{publisher}{University of Chicago Press}.
+\newblock
+
+
 \bibitem[\protect\citeauthoryear{Totten}{Totten}{2015}]%
         {totten2015exploring}
 \bibfield{author}{\bibinfo{person}{Mariko Totten}.}
@@ -132,6 +176,30 @@
 \newblock \showarticletitle{Does evolutionary plasticity evolve?}
 \newblock \bibinfo{journal}{\emph{Evolution}} \bibinfo{volume}{50},
   \bibinfo{number}{3} (\bibinfo{year}{1996}), \bibinfo{pages}{1008--1023}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Wagner and Mezey}{Wagner and Mezey}{2004}]%
+        {wagner2004role}
+\bibfield{author}{\bibinfo{person}{G{\"u}nter~P Wagner} {and}
+  \bibinfo{person}{JG Mezey}.} \bibinfo{year}{2004}\natexlab{}.
+\newblock \showarticletitle{The role of genetic architecture constraints in the
+  origin of variational modularity}.
+\newblock \bibinfo{journal}{\emph{Modularity in development and evolution}}
+  (\bibinfo{year}{2004}), \bibinfo{pages}{338--358}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Wagner, Pavlicev, and Cheverud}{Wagner
+  et~al\mbox{.}}{2007}]%
+        {wagner2007road}
+\bibfield{author}{\bibinfo{person}{G{\"u}nter~P Wagner},
+  \bibinfo{person}{Mihaela Pavlicev}, {and} \bibinfo{person}{James~M
+  Cheverud}.} \bibinfo{year}{2007}\natexlab{}.
+\newblock \showarticletitle{The road to modularity}.
+\newblock \bibinfo{journal}{\emph{Nature Reviews Genetics}}
+  \bibinfo{volume}{8}, \bibinfo{number}{12} (\bibinfo{year}{2007}),
+  \bibinfo{pages}{921--931}.
 \newblock
 
 

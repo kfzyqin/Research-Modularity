@@ -46,6 +46,20 @@ class ModularityDominanceAnalyzer:
                     target_generation = a_tuple_idx
         return target_generation, tuples[target_generation][0], tuples[target_generation][1]
 
+    def get_the_most_modular_individual_in_the_fittest_networks(self, a_path, starting_generation):
+        tuples = self.get_fitness_modularity_pair_of_a_trial(a_path)
+
+        max_fitness = max(tuples[starting_generation:])[0]
+
+        tmp_modularity = -1
+        target_generation = 0
+        for a_tuple_idx in range(starting_generation, len(tuples)):
+            if tuples[a_tuple_idx][0] == max_fitness:
+                if tuples[a_tuple_idx][1] >= tmp_modularity:
+                    tmp_modularity = tuples[a_tuple_idx][1]
+                    target_generation = a_tuple_idx
+        return target_generation, tuples[target_generation][0], tuples[target_generation][1]
+
     def plot_edge_number_trend(self, a_path):
         phenotypes = self.grn_plotter.get_grn_phenotypes(a_path)
         edge_numbers = []

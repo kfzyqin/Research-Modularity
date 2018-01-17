@@ -28,6 +28,8 @@ class LarsonNeighborModularityAnalyzer:
 
         for a_grn_phenotype in mutated_neighbors:
             modularity_values.append(self.grn_plotter.get_modularity_value(self.grn_plotter.generate_directed_grn(a_grn_phenotype)))
+        print "original: ", modularity_values[0]
+        print "max: ", max(modularity_values)
         return modularity_values
 
     def get_max_mutated_modularity_values(self):
@@ -37,5 +39,5 @@ class LarsonNeighborModularityAnalyzer:
             max_mutated_modularity_values.append(max(self.get_mutated_neighbor_modularity_values(a_phenotype)))
         return max_mutated_modularity_values
 
-omega = LarsonNeighborModularityAnalyzer(path='/Users/qin/Software-Engineering/Chin-GA-Project/generated-outputs/soto-with-perturbation-recording')
+omega = LarsonNeighborModularityAnalyzer(path='/Users/qin/Software-Engineering/Chin-GA-Project/generated-outputs/larson-with-perturbation-recording')
 print omega.get_max_mutated_modularity_values()
