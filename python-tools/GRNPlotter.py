@@ -146,11 +146,12 @@ class GRNPlotter:
 
         return final_module_value_list
 
-    def get_module_values_of_a_trial(self, a_directory, draw_modularity=True, louvain=False):
+    def get_module_values_of_a_trial(self, a_directory, draw_modularity=True, louvain=False, specialization=None):
         phenotypes = self.get_grn_phenotypes(a_directory)
         if len(phenotypes) > 0:
             modularity_values = self.get_grn_modularity_values(a_directory, louvain)
             if draw_modularity:
-                save_a_list_graph(modularity_values, 'Modularity', a_directory, 'modularity.png')
+                save_a_list_graph(modularity_values, 'Modularity', a_directory, 'modularity.png', specialization)
+
             return modularity_values
 

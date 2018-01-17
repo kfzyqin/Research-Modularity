@@ -7,7 +7,6 @@ Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Database file #1: bib/zhenyue.bib
 Database file #2: bib/tom.bib
 Database file #3: bib/bob.bib
-Warning--I didn't find a database entry for "blondel2008louvain"
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
 Reallocated global_strs (elt_size=20001) to 20 items from 10.
@@ -23,45 +22,45 @@ Warning--empty publisher in larson2016recombination
 Warning--empty address in larson2016recombination
 Warning--empty address in schlosser2004modularity
 Warning--no number and no volume in wagner2004role
-You've used 14 entries,
+You've used 15 entries,
             5733 wiz_defined-function locations,
-            1386 strings with 16826 characters,
-and the built_in function-call counts, 16619 in all, are:
-= -- 2285
-> -- 538
+            1392 strings with 17034 characters,
+and the built_in function-call counts, 17923 in all, are:
+= -- 2483
+> -- 590
 < -- 0
-+ -- 180
-- -- 200
-* -- 1082
-:= -- 1650
-add.period$ -- 72
-call.type$ -- 14
-change.case$ -- 91
-chr.to.int$ -- 14
-cite$ -- 24
-duplicate$ -- 1440
-empty$ -- 1000
-format.name$ -- 240
-if$ -- 4112
++ -- 197
+- -- 216
+* -- 1175
+:= -- 1774
+add.period$ -- 77
+call.type$ -- 15
+change.case$ -- 99
+chr.to.int$ -- 15
+cite$ -- 25
+duplicate$ -- 1545
+empty$ -- 1070
+format.name$ -- 260
+if$ -- 4456
 int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 48
-newline$ -- 154
-num.names$ -- 112
-pop$ -- 499
+missing$ -- 52
+newline$ -- 162
+num.names$ -- 120
+pop$ -- 536
 preamble$ -- 1
-purify$ -- 216
+purify$ -- 233
 quote$ -- 0
-skip$ -- 535
+skip$ -- 575
 stack$ -- 0
-substring$ -- 1239
-swap$ -- 180
+substring$ -- 1319
+swap$ -- 197
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 279
+type$ -- 295
 warning$ -- 10
-while$ -- 120
+while$ -- 125
 width$ -- 0
-write$ -- 281
-(There were 11 warnings)
+write$ -- 298
+(There were 10 warnings)

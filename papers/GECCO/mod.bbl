@@ -2,7 +2,7 @@
 %%% Do NOT edit. File created by BibTeX with style
 %%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\begin{thebibliography}{14}
+\begin{thebibliography}{15}
 
 %%% ====================================================================
 %%% NOTE TO THE USER: you can override these defaults by providing
@@ -44,6 +44,19 @@
 \newblock \showarticletitle{Systems biology: its practice and challenges}.
 \newblock \bibinfo{journal}{\emph{Cell}} \bibinfo{volume}{121},
   \bibinfo{number}{4} (\bibinfo{year}{2005}), \bibinfo{pages}{511--513}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Blondel, Guillaume, Lambiotte, and
+  Lefebvre}{Blondel et~al\mbox{.}}{2008}]%
+        {blondel2008fast}
+\bibfield{author}{\bibinfo{person}{Vincent~D Blondel},
+  \bibinfo{person}{Jean-Loup Guillaume}, \bibinfo{person}{Renaud Lambiotte},
+  {and} \bibinfo{person}{Etienne Lefebvre}.} \bibinfo{year}{2008}\natexlab{}.
+\newblock \showarticletitle{Fast unfolding of communities in large networks}.
+\newblock \bibinfo{journal}{\emph{Journal of statistical mechanics: theory and
+  experiment}} \bibinfo{volume}{2008}, \bibinfo{number}{10}
+  (\bibinfo{year}{2008}), \bibinfo{pages}{P10008}.
 \newblock
 
 

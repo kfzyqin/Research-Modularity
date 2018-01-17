@@ -17,11 +17,14 @@ def get_immediate_subdirectories(a_dir):
             if os.path.isdir(os.path.join(a_dir, name))]
 
 
-def save_a_list_graph(a_list, y_label, path, file_name):
+def save_a_list_graph(a_list, y_label, path, file_name, vertical_lines=None):
     if path[-1] != os.sep:
         path += os.sep
-    plt.plot(a_list)
+    plt.plot(a_list, linewidth=1.0)
     plt.ylabel(y_label)
+    if vertical_lines:
+        for xc in vertical_lines:
+            plt.axvline(x=xc, color='green', linestyle='--')
     plt.savefig(path + os.sep + file_name, dpi=200)
     plt.close()
 

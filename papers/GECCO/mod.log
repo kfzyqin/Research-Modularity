@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.8)  17 JAN 2018 17:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.8)  18 JAN 2018 00:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1088,75 +1088,102 @@ LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
 
 ])
 (./secs/back.tex
+<images/non-modular-example.png, id=145, 462.528pt x 346.896pt>
+File: images/non-modular-example.png Graphic file (type png)
 
-Package natbib Warning: Citation `blondel2008louvain' on page 2 undefined on in
-put line 6.
+<use images/non-modular-example.png>
+Package pdftex.def Info: images/non-modular-example.png used on input line 6.
+(pdftex.def)             Requested size: 108.51563pt x 81.38293pt.
 
+<images/modular-example.png, id=147, 462.528pt x 346.896pt>
+File: images/modular-example.png Graphic file (type png)
 
-Underfull \vbox (badness 2698) has occurred while \output is active []
+<use images/modular-example.png>
+Package pdftex.def Info: images/modular-example.png used on input line 10.
+(pdftex.def)             Requested size: 108.51563pt x 81.38293pt.
 
-)
-(./secs/meth.tex
-Overfull \hbox (11.35292pt too wide) in paragraph at lines 16--17
+<images/early-elitism-not-work.png, id=151, 462.528pt x 346.896pt>
+File: images/early-elitism-not-work.png Graphic file (type png)
+
+<use images/early-elitism-not-work.png>
+Package pdftex.def Info: images/early-elitism-not-work.png used on input line 1
+9.
+(pdftex.def)             Requested size: 241.14749pt x 180.86334pt.
+
+<images/modularity-worked.png, id=152, 462.528pt x 346.896pt>
+File: images/modularity-worked.png Graphic file (type png)
+
+<use images/modularity-worked.png>
+Package pdftex.def Info: images/modularity-worked.png used on input line 25.
+(pdftex.def)             Requested size: 241.14749pt x 180.86334pt.
+) (./secs/meth.tex
+LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
+(Font)              scaled to size 9.0pt on input line 4.
+LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
+(Font)              scaled to size 6.0pt on input line 4.
+ [2.2 <./images/non-modular-example.png> <./images/modular-example.png> <./imag
+es/early-elitism-not-work.png> <./images/modularity-worked.png>]
+Overfull \hbox (11.35292pt too wide) in paragraph at lines 4--5
 \T1/LinuxLibertineT-TLF/m/n/9 (-20) 2.7.10. They are all pub-licly avail-able a
 t https://github.com/xxxxxxxxxx.
  []
 
-LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 9.0pt on input line 29.
-LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 6.0pt on input line 29.
-[2.2]
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
+Overfull \hbox (79.6706pt too wide) in paragraph at lines 4--5
+\T1/LinuxLibertineT-TLF/m/n/9 (-20) https://drive.google.com/file/d/0B9dNEi7lDX
+nldy1sNmZuTWNXMDg/view?usp=sharing. 
+ []
 
-Underfull \hbox (badness 10000) in paragraph at lines 50--55
+[3.3]
+Underfull \hbox (badness 10000) in paragraph at lines 34--39
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 50--55
+Underfull \hbox (badness 10000) in paragraph at lines 34--39
 
  []
 
-<images/crossover-1.png, id=182, 1027.84pt x 1027.84pt>
+<images/crossover-1.png, id=207, 1027.84pt x 1027.84pt>
 File: images/crossover-1.png Graphic file (type png)
 
 <use images/crossover-1.png>
-Package pdftex.def Info: images/crossover-1.png used on input line 61.
+Package pdftex.def Info: images/crossover-1.png used on input line 44.
 (pdftex.def)             Requested size: 96.45752pt x 96.45386pt.
 
-<images/crossover-2.png, id=184, 1027.84pt x 1027.84pt>
+<images/crossover-2.png, id=208, 1027.84pt x 1027.84pt>
 File: images/crossover-2.png Graphic file (type png)
 
 <use images/crossover-2.png>
-Package pdftex.def Info: images/crossover-2.png used on input line 65.
+Package pdftex.def Info: images/crossover-2.png used on input line 48.
 (pdftex.def)             Requested size: 96.45752pt x 96.45386pt.
 
-<images/chin-crossover-1.png, id=185, 1027.84pt x 1027.84pt>
+<images/chin-crossover-1.png, id=209, 1027.84pt x 1027.84pt>
 File: images/chin-crossover-1.png Graphic file (type png)
 
 <use images/chin-crossover-1.png>
-Package pdftex.def Info: images/chin-crossover-1.png used on input line 69.
+Package pdftex.def Info: images/chin-crossover-1.png used on input line 52.
 (pdftex.def)             Requested size: 96.45752pt x 96.45386pt.
 
-<images/chin-crossover-2.png, id=186, 1027.84pt x 1027.84pt>
+<images/chin-crossover-2.png, id=210, 1027.84pt x 1027.84pt>
 File: images/chin-crossover-2.png Graphic file (type png)
 
 <use images/chin-crossover-2.png>
-Package pdftex.def Info: images/chin-crossover-2.png used on input line 73.
+Package pdftex.def Info: images/chin-crossover-2.png used on input line 56.
 (pdftex.def)             Requested size: 96.45752pt x 96.45386pt.
+
+Overfull \hbox (5.34773pt too wide) in paragraph at lines 40--62
+[]\T1/LinuxLibertineT-TLF/m/n/9 (-20) However, this hor-i-zon-tal crossover may
+ not only make the parental
+ []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[3.3]) (./secs/exp.tex
+) (./secs/exp.tex
 Underfull \hbox (badness 2503) in paragraph at lines 10--10
 []\T1/LinuxLibertineT-TLF/m/n/9 (+20) Generation to Add a New
  []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 Underfull \hbox (badness 1205) in paragraph at lines 25--25
@@ -1194,24 +1221,17 @@ Overfull \hbox (19.99998pt too wide) in paragraph at lines 44--67
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-
+[4.4 <./images/crossover-1.png> <./images/crossover-2.png> <./images/chin-cross
+over-1.png> <./images/chin-crossover-2.png>]
 Overfull \hbox (15.89108pt too wide) in paragraph at lines 78--87
  [][] 
  []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 Overfull \hbox (5.88376pt too wide) in paragraph at lines 93--102
  [][] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[4.4 <./images/crossover-1.png> <./images/crossover-2.png> <./images/chin-cross
-over-1.png> <./images/chin-crossover-2.png>]
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/it' will be
 (Font)              scaled to size 9.0pt on input line 110.
 
@@ -1240,24 +1260,30 @@ Overfull \hbox (15.89108pt too wide) in paragraph at lines 150--159
  []
 
 
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
 Overfull \hbox (5.88377pt too wide) in paragraph at lines 165--176
  [][] 
  []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 Overfull \hbox (5.88742pt too wide) in paragraph at lines 185--194
  [][] 
  []
 
-
+[5.5]
 Overfull \hbox (5.88377pt too wide) in paragraph at lines 200--207
  [][] 
  []
 
-) (./secs/res.tex) (./secs/analysis.tex) (./secs/disc.tex [5.5]
-Underfull \vbox (badness 2269) has occurred while \output is active []
+) (./secs/res.tex) (./secs/analysis.tex) (./secs/disc.tex
+Underfull \vbox (badness 1270) has occurred while \output is active []
 
-
+ [6.6]
 Overfull \hbox (5.88742pt too wide) in paragraph at lines 30--39
  [][] 
  []
@@ -1268,9 +1294,6 @@ Overfull \hbox (5.88377pt too wide) in paragraph at lines 44--51
  []
 
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[6.6]
 Underfull \hbox (badness 2165) in paragraph at lines 66--67
 []\T1/LinuxLibertineT-TLF/m/n/9 (+20) Most < Least
  []
@@ -1280,27 +1303,25 @@ Overfull \hbox (15.89108pt too wide) in paragraph at lines 64--71
  [][] 
  []
 
-) (./secs/conc.tex) (./secs/ack.tex) (./mod.bbl)
+[7.7]) (./secs/conc.tex) (./secs/ack.tex) (./mod.bbl) [8.8
 
-Package natbib Warning: There were undefined citations.
-
-[7.7]
+]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 135.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 135.
  (./mod.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 135.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 135.
 Package rerunfilecheck Info: File `mod.out' has not changed.
-(rerunfilecheck)             Checksum: C780B23E75651ED3833D63110D7E146A;4045.
+(rerunfilecheck)             Checksum: CDF0CBEFFB93B52E6B1D12C197B3443E;4045.
  ) 
 Here is how much of TeX's memory you used:
- 18494 strings out of 492995
- 282550 string characters out of 6132705
- 405084 words of memory out of 5000000
- 21104 multiletter control sequences out of 15000+600000
- 217571 words of font info for 401 fonts, out of 8000000 for 9000
+ 18530 strings out of 492995
+ 283553 string characters out of 6132705
+ 410402 words of memory out of 5000000
+ 21125 multiletter control sequences out of 15000+600000
+ 218215 words of font info for 405 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 60i,17n,94p,1567b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,17n,94p,1567b,615s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc
 }{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/newtx/libertinealt.enc}{/u
 sr/local/texlive/2017/texmf-dist/fonts/enc/dvips/libertine/lbtn_oexx6f.enc}{/us
@@ -1322,10 +1343,10 @@ r/local/texlive/2017/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb></usr/local
 /texlive/2017/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive
 /2017/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/local/texlive/2017/te
 xmf-dist/fonts/type1/public/newtx/zxlri.pfb>
-Output written on mod.pdf (7 pages, 950236 bytes).
+Output written on mod.pdf (8 pages, 1169323 bytes).
 PDF statistics:
- 355 PDF objects out of 1000 (max. 8388607)
- 302 compressed objects within 4 object streams
- 67 named destinations out of 1000 (max. 500000)
- 58569 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 375 PDF objects out of 1000 (max. 8388607)
+ 313 compressed objects within 4 object streams
+ 72 named destinations out of 1000 (max. 500000)
+ 58589 words of extra memory for PDF output out of 61914 (max. 10000000)
 
