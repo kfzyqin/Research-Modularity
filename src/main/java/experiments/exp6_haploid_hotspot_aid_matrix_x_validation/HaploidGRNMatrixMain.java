@@ -97,7 +97,7 @@ public class HaploidGRNMatrixMain {
     private static final double geneMutationRate = 0.05;
     private static final int numElites = 10;
     private static final int populationSize = 100;
-    private static final int tournamentSize = 10;
+    private static final int tournamentSize = 2;
     private static final double reproductionRate = 0.9;
     //    private static final int maxGen = 40000;
 //    private static final List<Integer> thresholds = Arrays.asList(0, 500, 3000, 7000, 12000, 20000, 30000); // when to switch targets
@@ -110,7 +110,7 @@ public class HaploidGRNMatrixMain {
     /* Settings for text outputs */
     private static final String summaryFileName = "Haploid-GRN-Matrix.txt";
     private static final String csvFileName = "Haploid-GRN-Matrix.csv";
-    private static final String outputDirectory = "soto-with-perturbation-recording";
+    private static final String outputDirectory = "tournament-selection-size-2-larson";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static final String allPerturbationsName = "Haploid-GRN-Matrix.per";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
@@ -157,8 +157,8 @@ public class HaploidGRNMatrixMain {
                 "/src/main/java/experiments/exp6_haploid_hotspot_aid_matrix_x_validation/" + mainFileName);
 
         /* Fitness function */
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(
-                targets, maxCycle, perturbations, perturbationRate, thresholds);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFast(
+                targets, maxCycle, perturbations, perturbationRate, thresholds, perturbationCycleSize);
 
         /* The state of an GA */
         State<SimpleHaploid> state = new SimpleHaploidState<>(

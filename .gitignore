@@ -55,3 +55,5 @@ fabric.properties
 /thesis-data
 
 *.pyc
+
+/papers/GECCO/mod.*

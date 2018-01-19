@@ -16,9 +16,9 @@ import java.util.List;
 
 public class LarsonNeighborFitnessAnalyzer {
     private static final double geneMutationRate = 0.05;
-    private static final int neighborSize = 5;
+    private static final int neighborSize = 500;
 //    private static final String pathToTheExperiment = "/Users/qin/Software-Engineering/Chin-GA-Project/thesis-data/different-crossover-mechanism-comparisons/chin-crossover";
-    private static final String pathToTheExperiment = "/Users/qin/Software-Engineering/Chin-GA-Project/generated-outputs/soto-with-perturbation-recording";
+    private static final String pathToTheExperiment = "/Users/qin/Software-Engineering/Chin-GA-Project/generated-outputs/larson-with-perturbation-recording";
 
     private static final int[] target1 = {
             1, -1, 1, -1, 1,
