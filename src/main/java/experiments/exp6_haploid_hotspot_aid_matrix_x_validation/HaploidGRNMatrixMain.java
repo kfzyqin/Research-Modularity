@@ -97,7 +97,7 @@ public class HaploidGRNMatrixMain {
     private static final double geneMutationRate = 0.05;
     private static final int numElites = 10;
     private static final int populationSize = 100;
-    private static final int tournamentSize = 2;
+    private static final int tournamentSize = 10;
     private static final double reproductionRate = 0.9;
     //    private static final int maxGen = 40000;
 //    private static final List<Integer> thresholds = Arrays.asList(0, 500, 3000, 7000, 12000, 20000, 30000); // when to switch targets
@@ -110,7 +110,7 @@ public class HaploidGRNMatrixMain {
     /* Settings for text outputs */
     private static final String summaryFileName = "Haploid-GRN-Matrix.txt";
     private static final String csvFileName = "Haploid-GRN-Matrix.csv";
-    private static final String outputDirectory = "tournament-selection-size-2-larson";
+    private static final String outputDirectory = "symetric ";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static final String allPerturbationsName = "Haploid-GRN-Matrix.per";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
@@ -124,6 +124,10 @@ public class HaploidGRNMatrixMain {
 //        int[][] targets = {target1, target2, target3, target4, target5, target6, target7};
         int[][] targets = {target1, target2};
 
+        /* Fitness function */
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFast(
+                targets, maxCycle, perturbations, perturbationRate, thresholds, perturbationCycleSize);
+
         /* It is not necessary to write an initializer, but doing so is convenient to
         repeat the experiment using different parameter */
         HaploidGRNInitializer initializer = new HaploidGRNInitializer(populationSize, target1.length, edgeSize);
@@ -135,17 +139,17 @@ public class HaploidGRNMatrixMain {
         Mutator mutator = new GRNEdgeMutator(geneMutationRate);
 
         /* Selector for reproduction */
-        Selector<SimpleHaploid> selector = new SimpleProportionalSelector<>();
+        Selector<SimpleHaploid> selector = new SimpleTournamentSelector<>(tournamentSize);
 
 //        /* Selector for elites */
 //        PriorOperator<SimpleHaploid> priorOperator = new SimpleElitismOperator<>(numElites);
 
         /* PostOperator is required to fill up the vacancy */
         PostOperator<SimpleHaploid> postOperator = new SimpleFillingOperatorForNormalizable<>(
-                new SimpleTournamentScheme(tournamentSize));
+                new SimpleTournamentScheme(3));
 
         /* Reproducer for reproduction */
-        Reproducer<SimpleHaploid> reproducer = new GRNHaploidMatrixFixedXReproducer(target1.length, target1.length/2);
+        Reproducer<SimpleHaploid> reproducer = new GRNHaploidMatrixDiagonalReproducer(target1.length);
 
         /* Statistics for keeping track the performance in generations */
         DetailedStatistics<SimpleHaploid> statistics = new DetailedStatistics<>();
@@ -155,10 +159,6 @@ public class HaploidGRNMatrixMain {
         statistics.setDirectory(outputDirectoryPath);
         statistics.copyMainFile(mainFileName, System.getProperty("user.dir") +
                 "/src/main/java/experiments/exp6_haploid_hotspot_aid_matrix_x_validation/" + mainFileName);
-
-        /* Fitness function */
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFast(
-                targets, maxCycle, perturbations, perturbationRate, thresholds, perturbationCycleSize);
 
         /* The state of an GA */
         State<SimpleHaploid> state = new SimpleHaploidState<>(
@@ -192,11 +192,16 @@ public class HaploidGRNMatrixMain {
 
         long startTime = System.currentTimeMillis();
         long currentTime = System.currentTimeMillis();
-        while (!(f_1.exists() && f_2.exists() && (currentTime - startTime) <= 150000)) {
+        long timeThreshold = 120000;
+        while (!(f_1.exists() && f_2.exists())) {
             currentTime = System.currentTimeMillis();
+            if (currentTime - startTime > timeThreshold) {
+                break;
+            }
         }
 
-//        try {
+
+        //        try {
 //            Thread.sleep(30000);
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();

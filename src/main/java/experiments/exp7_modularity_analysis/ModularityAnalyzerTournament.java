@@ -1,4 +1,4 @@
-package experiments.exp7_modularity_analyzer;
+package experiments.exp7_modularity_analysis;
 
 import ga.components.genes.EdgeGene;
 import ga.components.materials.SimpleMaterial;

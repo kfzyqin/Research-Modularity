@@ -2,9 +2,7 @@ package ga.others;
 
 import ga.components.genes.DataGene;
 import ga.components.materials.SimpleMaterial;
-import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargets;
-import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFast;
 import ga.operations.mutators.GRNEdgeMutator;
 import ga.operations.mutators.Mutator;
 
@@ -39,17 +37,6 @@ public class LarsonNeighborFitnessAnalyzer {
     private static final int perturbations = 75;
     private static final double perturbationRate = 0.15;
 
-    public static SimpleMaterial getLastGenerationPhenotype(String path) throws IOException {
-        ProcessBuilder postPB =
-                new ProcessBuilder("python", "./python-tools/last_generation_phenotype_fetcher.py",
-                        path);
-        Process p2 = postPB.start();
-        BufferedReader in = new BufferedReader(new InputStreamReader(p2.getInputStream()));
-        String ret = in.readLine();
-        ret = ret.replace(" ", "");
-        return (GeneralMethods.convertStringArrayToSimpleMaterial(ret.split(",")));
-    }
-
     public static List<SimpleMaterial> getMutatedNeighbors(SimpleMaterial original) {
         GRNEdgeMutator mutator = new GRNEdgeMutator(geneMutationRate);
         List<SimpleMaterial> mutatedNeighbors = new ArrayList<>();
@@ -68,16 +55,8 @@ public class LarsonNeighborFitnessAnalyzer {
         int[][] targets = {target1, target2};
         GRNFitnessFunctionMultipleTargets fitnessFunction = new GRNFitnessFunctionMultipleTargets(
                 targets, maxCycle, perturbations, perturbationRate, thresholds);
-        String fileName= path + "/" + "Haploid-GRN-Matrix.per";
-        try {
-            FileInputStream fin = new FileInputStream(fileName);
-            ObjectInputStream ois = new ObjectInputStream(fin);
-            List<List<DataGene[][]>> perturbations = (List<List<DataGene[][]>>) ois.readObject();
-            ois.close();
-            return fitnessFunction.evaluate(aNeighbor, generation, perturbations.get(generation));
-        } catch (FileNotFoundException e) {
-            return fitnessFunction.evaluate(aNeighbor, generation);
-        }
+        List<List<DataGene[][]>> perturbations = GeneralMethods.getPerturbations(path);
+        return fitnessFunction.evaluate(aNeighbor, generation, perturbations.get(generation));
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
@@ -89,12 +68,13 @@ public class LarsonNeighborFitnessAnalyzer {
 
         for (String aPath : directories) {
             List<Double> fitnessValues = new ArrayList<>();
-            List<SimpleMaterial> mutationNeighbors = getMutatedNeighbors(getLastGenerationPhenotype(aPath));
+            List<SimpleMaterial> mutationNeighbors = getMutatedNeighbors(GeneralMethods.getGenerationPhenotype(aPath, -1));
             for (SimpleMaterial aNeighbor : mutationNeighbors) {
                 fitnessValues.add(getMutatedNeighbourFitness(aPath, aNeighbor, 2000));
             }
             maxFitnessValues.add(Collections.max(fitnessValues));
-            System.out.println("Original: " + fitnessValues.get(0) + " max: " + Collections.max(fitnessValues));
+            System.out.println(fitnessValues);
+            System.out.println("Original: " + fitnessValues.get(0) + " max: " + Collections.max(fitnessValues.subList(1, fitnessValues.size())));
             System.out.println(fitnessValues.get(0) == Collections.max(fitnessValues));
         }
         System.out.println(maxFitnessValues);

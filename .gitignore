@@ -57,3 +57,13 @@ fabric.properties
 *.pyc
 
 /papers/GECCO/mod.*
+.idea/inspectionProfiles/
+papers/GECCO/mod.aux
+papers/GECCO/mod.bbl
+papers/GECCO/mod.blg
+papers/GECCO/mod.dvi
+papers/GECCO/mod.log
+papers/GECCO/mod.out
+papers/GECCO/mod.pdf
+papers/GECCO/mod.xcp
+target/generated-sources/

@@ -135,7 +135,7 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
         else
             deltas.add(elite.getFitness() - elites.get(generation-1).getFitness());
 
-        this.allGenerationPerturbations.add(elite.getIndividualSPerturbations());
+        this.allGenerationPerturbations.add(new ArrayList(elite.getIndividualSPerturbations()));
 //        for (DataGene[][] aDataGene : this.allGenerationPerturbations.get(allGenerationPerturbations.size()-1)) {
 //            System.out.println(Arrays.toString(aDataGene[0]));
 //        }
@@ -232,6 +232,11 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
     public void storePerturbations(@NotNull final String fileName) throws IOException {
         FileOutputStream fos = new FileOutputStream(this.directoryPath + fileName);
         ObjectOutputStream oos = new ObjectOutputStream(fos);
+//        for (int i=0; i<this.allGenerationPerturbations.size(); i++) {
+//            for (DataGene[][] aDataGene : this.allGenerationPerturbations.get(i)) {
+//                System.out.println(Arrays.toString(aDataGene[0]));
+//            }
+//        }
 //        System.out.println(Arrays.toString(this.allGenerationPerturbations.get(0).get(0)[0]));
         oos.writeObject(this.allGenerationPerturbations);
         oos.close();

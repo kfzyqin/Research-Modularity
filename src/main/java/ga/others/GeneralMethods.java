@@ -1,9 +1,11 @@
 package ga.others;
 
+import ga.components.genes.DataGene;
 import ga.components.genes.EdgeGene;
 import ga.components.hotspots.MatrixHotspot;
 import ga.components.materials.GRN;
 import ga.components.materials.SimpleMaterial;
+import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargets;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -375,6 +377,30 @@ public class GeneralMethods<T> {
 //                System.out.println("File: " + file.getName());
             }
         }
+    }
+
+    public static List<List<DataGene[][]>> getPerturbations(String path) throws IOException, ClassNotFoundException {
+        String fileName= path + "/" + "Haploid-GRN-Matrix.per";
+        try {
+            FileInputStream fin = new FileInputStream(fileName);
+            ObjectInputStream ois = new ObjectInputStream(fin);
+            List<List<DataGene[][]>> perturbations = (List<List<DataGene[][]>>) ois.readObject();
+            ois.close();
+            return perturbations;
+        } catch (FileNotFoundException e) {
+            return null;
+        }
+    }
+
+    public static SimpleMaterial getGenerationPhenotype(String path, int generation) throws IOException {
+        ProcessBuilder postPB =
+                new ProcessBuilder("python", "./python-tools/last_generation_phenotype_fetcher.py",
+                        path, Integer.toString(generation));
+        Process p2 = postPB.start();
+        BufferedReader in = new BufferedReader(new InputStreamReader(p2.getInputStream()));
+        String ret = in.readLine();
+        ret = ret.replace(" ", "");
+        return (GeneralMethods.convertStringArrayToSimpleMaterial(ret.split(",")));
     }
 
 

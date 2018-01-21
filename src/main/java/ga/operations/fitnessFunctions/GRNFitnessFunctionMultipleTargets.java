@@ -190,7 +190,16 @@ public class GRNFitnessFunctionMultipleTargets extends GRNFitnessFunction<Simple
         for (Integer targetIndex : currentTargetIndices) {
             int[] aTarget = this.targets[targetIndex];
             DataGene[][] startAttractors = this.generateInitialAttractors(perturbations, perturbationRate, aTarget);
-            currentPerturbations.add(startAttractors);
+
+            DataGene[][] startAttractorsClone = new DataGene[startAttractors.length][];
+            for (int i=0; i<startAttractors.length; i++) {
+                startAttractorsClone[i] = new DataGene[startAttractors[i].length];
+                for (int j=0; j<startAttractors[i].length; j++) {
+                    startAttractorsClone[i][j] = (DataGene) startAttractors[i][j].copy();
+                }
+            }
+
+            currentPerturbations.add(startAttractorsClone.clone());
             fitnessValue += this.evaluateOneTarget(phenotype, aTarget, startAttractors);
 //            try {
 //                generatePerturbationCSVFile(generation, phenotype, startAttractors, targetIndex);
