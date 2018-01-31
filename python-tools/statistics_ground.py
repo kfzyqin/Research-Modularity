@@ -3,11 +3,14 @@ from StatisticsToolkit import StatisticsToolkit
 # path_1 = '/Users/qin/Software-Engineering/Chin-GA-Project/generated-outputs/' \
 #                'tournament-selection-size-3/'
 
-path_1 = '/Users/qin/Software-Engineering/Chin-GA-Project/generated-outputs/' \
+path_1 = '/Volumes/Chin-Soundwave/Chin-GA-Project/generated-outputs/' \
                'larson-with-perturbation-recording'
 
-path_2 = '/Users/qin/Software-Engineering/Chin-GA-Project/generated-outputs/' \
-               'tournament-selection-size-2-larson'
+# path_2 = '/Volumes/Chin-Soundwave/Chin-GA-Project/generated-outputs/' \
+#                'tournament-selection-size-2'
+
+path_2 = '/Volumes/Chin-Soundwave/Chin-GA-Project/thesis-data/' \
+               'different-crossover-mechanism-comparisons/chin-crossover'
 
 omega = StatisticsToolkit(path_1, path_2)
 

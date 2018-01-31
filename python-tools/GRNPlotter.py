@@ -128,21 +128,20 @@ class GRNPlotter:
             phenotypes = self.get_grn_phenotypes(a_directory)
             if len(phenotypes) > 0:
                 a_grn = self.generate_directed_grn(phenotypes[generation])
-                modularity_values = self.get_grn_modularity_values(a_directory, louvain)
-                final_module_value_list.append(modularity_values[generation])
-
-                all_modularities.append(modularity_values)
+                final_module_value_list.append(self.get_modularity_value(a_grn, louvain))
 
                 if draw_modularity:
+                    modularity_values = self.get_grn_modularity_values(a_directory, louvain)
+                    all_modularities.append(modularity_values)
                     save_a_list_graph(modularity_values, 'Modularity', a_directory, 'modularity.png')
+                    sum_of_modularity = map(sum, zip(*all_modularities))
+                    avg_of_modularity = [x / len(all_modularities) for x in sum_of_modularity]
+                    if draw_gen_avg_modularity:
+                        save_a_list_graph(avg_of_modularity, 'Average Modularity', a_path, 'average_modularity.png')
+
                 if draw_grn:
                     self.draw_a_grn(a_grn, is_to_save=True, save_path=a_directory, file_name='graph.png',
                                     with_labels=True)
-
-        sum_of_modularity = map(sum, zip(*all_modularities))
-        avg_of_modularity = [x / len(all_modularities) for x in sum_of_modularity]
-        if draw_gen_avg_modularity:
-            save_a_list_graph(avg_of_modularity, 'Average Modularity', a_path, 'average_modularity.png')
 
         return final_module_value_list
 
