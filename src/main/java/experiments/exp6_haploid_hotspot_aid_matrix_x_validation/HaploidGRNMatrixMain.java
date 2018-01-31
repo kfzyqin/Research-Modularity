@@ -79,8 +79,8 @@ public class HaploidGRNMatrixMain {
 //    };
 
     private static final int[] target1 = {
-            1, -1, 1, -1, 1,
-            -1, 1, -1, 1, -1
+            1, 1, 1, 1, 1,
+            -1, -1, -1, -1, -1
     };
     private static final int[] target2 = {
             1, -1, 1, -1, 1,
@@ -102,7 +102,7 @@ public class HaploidGRNMatrixMain {
     //    private static final int maxGen = 40000;
 //    private static final List<Integer> thresholds = Arrays.asList(0, 500, 3000, 7000, 12000, 20000, 30000); // when to switch targets
     private static final int maxGen = 2000;
-    private static final List<Integer> thresholds = Arrays.asList(0, 500); // when to switch targets
+    private static final List<Integer> thresholds = Arrays.asList(0, 2001); // when to switch targets
     private static final double alpha = 0.75;
     private static final int[] perturbationSizes = {1, 2};
     private static final int perturbationCycleSize = 75;
@@ -110,7 +110,7 @@ public class HaploidGRNMatrixMain {
     /* Settings for text outputs */
     private static final String summaryFileName = "Haploid-GRN-Matrix.txt";
     private static final String csvFileName = "Haploid-GRN-Matrix.csv";
-    private static final String outputDirectory = "symetric ";
+    private static final String outputDirectory = "symmetry-chin-experiment";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static final String allPerturbationsName = "Haploid-GRN-Matrix.per";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
@@ -125,8 +125,8 @@ public class HaploidGRNMatrixMain {
         int[][] targets = {target1, target2};
 
         /* Fitness function */
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFast(
-                targets, maxCycle, perturbations, perturbationRate, thresholds, perturbationCycleSize);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(
+                targets, maxCycle, perturbations, perturbationRate, thresholds);
 
         /* It is not necessary to write an initializer, but doing so is convenient to
         repeat the experiment using different parameter */
