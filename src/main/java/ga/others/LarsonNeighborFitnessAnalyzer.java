@@ -16,7 +16,7 @@ public class LarsonNeighborFitnessAnalyzer {
     private static final double geneMutationRate = 0.05;
     private static final int neighborSize = 500;
 //    private static final String pathToTheExperiment = "/Users/qin/Software-Engineering/Chin-GA-Project/thesis-data/different-crossover-mechanism-comparisons/chin-crossover";
-    private static final String pathToTheExperiment = "/Users/qin/Software-Engineering/Chin-GA-Project/generated-outputs/larson-with-perturbation-recording";
+    private static final String pathToTheExperiment = "/Users/Chinyuer/Software-Engineering/COMP4560/Chin-GA-Project/generated-outputs/larson-with-perturbation-recording/";
 
     private static final int[] target1 = {
             1, -1, 1, -1, 1,
@@ -67,6 +67,7 @@ public class LarsonNeighborFitnessAnalyzer {
         GeneralMethods.showFiles(files, directories);
 
         for (String aPath : directories) {
+            System.out.println(aPath);
             List<Double> fitnessValues = new ArrayList<>();
             List<SimpleMaterial> mutationNeighbors = getMutatedNeighbors(GeneralMethods.getGenerationPhenotype(aPath, -1));
             for (SimpleMaterial aNeighbor : mutationNeighbors) {
