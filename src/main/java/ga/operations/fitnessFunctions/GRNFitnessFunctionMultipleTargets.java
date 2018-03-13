@@ -208,6 +208,7 @@ public class GRNFitnessFunctionMultipleTargets extends GRNFitnessFunction<Simple
 //            }
         }
         return fitnessValue / currentTargetIndices.size();
+
     }
 
     public double evaluate(final SimpleMaterial phenotype, final int generation, List<DataGene[][]> targetPerturbations) {
@@ -224,5 +225,6 @@ public class GRNFitnessFunctionMultipleTargets extends GRNFitnessFunction<Simple
 //            }
         }
         return fitnessValue / currentTargetIndices.size();
+
     }
 }

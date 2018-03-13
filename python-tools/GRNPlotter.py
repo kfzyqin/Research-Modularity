@@ -20,7 +20,10 @@ class GRNPlotter:
         if louvain:
             modularity_partition = community.best_partition(a_grn.to_undirected())
         else:
-            modularity_partition = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 1, 6: 1, 7: 1, 8: 1, 9: 1}
+            node_no = len(a_grn.nodes())
+            modularity_partition = {}
+            for i in range(node_no):
+                modularity_partition[i] = int(i / 5)
         return community.modularity(modularity_partition, a_grn.to_undirected())
 
     def get_grn_phenotypes(self, root_directory_path):
@@ -102,7 +105,12 @@ class GRNPlotter:
         if isinstance(grn, list):
             grn = self.generate_directed_grn(grn)
         pos = nx.circular_layout(grn)
-        partition = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 1, 6: 1, 7: 1, 8: 1, 9: 1}
+
+        node_no = len(grn.nodes())
+        partition = {}
+        for i in range(node_no):
+            partition[i] = int(i / 5)
+
         # pos = draw_communities.community_layout(grn, partition)
         nx.draw(grn, pos, node_color=partition.values(), with_labels=with_labels,
                 edge_color=nx.get_edge_attributes(grn, 'color').values())

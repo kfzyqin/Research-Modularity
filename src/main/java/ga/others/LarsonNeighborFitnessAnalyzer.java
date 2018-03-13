@@ -16,7 +16,7 @@ public class LarsonNeighborFitnessAnalyzer {
     private static final double geneMutationRate = 0.05;
     private static final int neighborSize = 500;
 //    private static final String pathToTheExperiment = "/Users/qin/Software-Engineering/Chin-GA-Project/thesis-data/different-crossover-mechanism-comparisons/chin-crossover";
-    private static final String pathToTheExperiment = "/Users/Chinyuer/Software-Engineering/COMP4560/Chin-GA-Project/generated-outputs/larson-with-perturbation-recording/";
+    private static final String pathToTheExperiment = "/Users/qin/Software-Engineering/Chin-GA-Project/generated-outputs/old-data-by-20-01-18/soto-with-perturbation-recording";
 
     private static final int[] target1 = {
             1, -1, 1, -1, 1,
@@ -56,7 +56,16 @@ public class LarsonNeighborFitnessAnalyzer {
         GRNFitnessFunctionMultipleTargets fitnessFunction = new GRNFitnessFunctionMultipleTargets(
                 targets, maxCycle, perturbations, perturbationRate, thresholds);
         List<List<DataGene[][]>> perturbations = GeneralMethods.getPerturbations(path);
+
         return fitnessFunction.evaluate(aNeighbor, generation, perturbations.get(generation));
+    }
+
+    public static Double getMutatedNeighbourFitness(SimpleMaterial aNeighbor, int generation, List<List<DataGene[][]>> actualPerturbations) throws IOException, ClassNotFoundException {
+        int[][] targets = {target1, target2};
+        GRNFitnessFunctionMultipleTargets fitnessFunction = new GRNFitnessFunctionMultipleTargets(
+                targets, maxCycle, perturbations, perturbationRate, thresholds);
+
+        return fitnessFunction.evaluate(aNeighbor, generation, actualPerturbations.get(generation));
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
@@ -69,9 +78,10 @@ public class LarsonNeighborFitnessAnalyzer {
         for (String aPath : directories) {
             System.out.println(aPath);
             List<Double> fitnessValues = new ArrayList<>();
-            List<SimpleMaterial> mutationNeighbors = getMutatedNeighbors(GeneralMethods.getGenerationPhenotype(aPath, -1));
+            List<SimpleMaterial> mutationNeighbors = getMutatedNeighbors(GeneralMethods.getGenerationPhenotype(aPath, 2000));
+            List<List<DataGene[][]>> perturbations = GeneralMethods.getPerturbations(aPath);
             for (SimpleMaterial aNeighbor : mutationNeighbors) {
-                fitnessValues.add(getMutatedNeighbourFitness(aPath, aNeighbor, 2000));
+                fitnessValues.add(getMutatedNeighbourFitness(aNeighbor, 2000, perturbations));
             }
             maxFitnessValues.add(Collections.max(fitnessValues));
             System.out.println(fitnessValues);

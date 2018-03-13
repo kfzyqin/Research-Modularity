@@ -25,11 +25,14 @@ class ClimbingAnalyzer:
         print x_s
         print y_s
         plt.scatter(x_s, y_s, marker='.')
-        plt.axhline(y=y_s[0], color='green', linestyle='--')
+        plt.xlabel('Fitness')
+        plt.ylabel('No. of Edges Removed')
+        plt.axhline(y=y_s[0], color='green', linestyle='--', label='original fitness')
         if not to_save:
             plt.show()
         else:
             plt.savefig(save_path + os.sep + save_name, dpi=200)
+            plt.gcf().clear()
 
     def generate_random_path(self, blocks):
         rtn_path = []
@@ -176,8 +179,8 @@ class ClimbingAnalyzer:
 #
 #     ]
 # )
-# # omega.plot_blocks(blocks)
-#
+# omega.plot_blocks(blocks)
+
 # a_random_path = omega.generate_random_path(blocks)
 # plot_a_list_graph(
 #     a_random_path,

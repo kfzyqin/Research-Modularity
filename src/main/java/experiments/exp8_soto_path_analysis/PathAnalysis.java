@@ -13,9 +13,9 @@ import java.util.List;
 
 public class PathAnalysis {
     private static final double geneMutationRate = 0.05;
-    private static final int neighborSize = 500;
+    private static final int neighborSize = 10;
 
-    private static final String pathToTheExperiment = "/Users/qin/Software-Engineering/Chin-GA-Project/generated-outputs/soto-perturbation-recording";
+    private static final String pathToTheExperiment = "/Users/qin/Software-Engineering/Chin-GA-Project/generated-outputs/old-data-by-20-01-18/soto-with-perturbation-recording";
 
     private static final int[] target1 = {
             1, -1, 1, -1, 1,

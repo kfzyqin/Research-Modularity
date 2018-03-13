@@ -32,6 +32,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * This file belongs to the experiments to compare crossover at GRN diagonals crossover
@@ -79,8 +80,8 @@ public class HaploidGRNMatrixMain {
 //    };
 
     private static final int[] target1 = {
-            1, 1, 1, 1, 1,
-            -1, -1, -1, -1, -1
+            1, -1, 1, -1, 1,
+            -1, 1, -1, 1, -1
     };
     private static final int[] target2 = {
             1, -1, 1, -1, 1,
@@ -97,12 +98,12 @@ public class HaploidGRNMatrixMain {
     private static final double geneMutationRate = 0.05;
     private static final int numElites = 10;
     private static final int populationSize = 100;
-    private static final int tournamentSize = 10;
+    private static final int tournamentSize = 3;
     private static final double reproductionRate = 0.9;
     //    private static final int maxGen = 40000;
 //    private static final List<Integer> thresholds = Arrays.asList(0, 500, 3000, 7000, 12000, 20000, 30000); // when to switch targets
     private static final int maxGen = 2000;
-    private static final List<Integer> thresholds = Arrays.asList(0, 2001); // when to switch targets
+    private static final List<Integer> thresholds = Arrays.asList(0, 500); // when to switch targets
     private static final double alpha = 0.75;
     private static final int[] perturbationSizes = {1, 2};
     private static final int perturbationCycleSize = 75;
@@ -110,7 +111,7 @@ public class HaploidGRNMatrixMain {
     /* Settings for text outputs */
     private static final String summaryFileName = "Haploid-GRN-Matrix.txt";
     private static final String csvFileName = "Haploid-GRN-Matrix.csv";
-    private static final String outputDirectory = "symmetry-chin-experiment";
+    private static final String outputDirectory = "tournament-3-all-combination-perturbations";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static final String allPerturbationsName = "Haploid-GRN-Matrix.per";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
@@ -120,13 +121,15 @@ public class HaploidGRNMatrixMain {
     private static final String plotTitle = "Haploid GRN Matrix";
     private static final String plotFileName = "Haploid-GRN-Matrix.png";
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
 //        int[][] targets = {target1, target2, target3, target4, target5, target6, target7};
         int[][] targets = {target1, target2};
 
         /* Fitness function */
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(
-                targets, maxCycle, perturbations, perturbationRate, thresholds);
+//        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(
+//                targets, maxCycle, perturbations, perturbationRate, thresholds);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsAllCombinations(
+                targets, maxCycle, perturbationRate, thresholds, perturbationSizes);
 
         /* It is not necessary to write an initializer, but doing so is convenient to
         repeat the experiment using different parameter */
@@ -140,6 +143,7 @@ public class HaploidGRNMatrixMain {
 
         /* Selector for reproduction */
         Selector<SimpleHaploid> selector = new SimpleTournamentSelector<>(tournamentSize);
+//        Selector<SimpleHaploid> selector = new SimpleProportionalSelector<>();
 
 //        /* Selector for elites */
 //        PriorOperator<SimpleHaploid> priorOperator = new SimpleElitismOperator<>(numElites);
@@ -184,23 +188,29 @@ public class HaploidGRNMatrixMain {
                 System.getProperty("user.dir") + "/generated-outputs/" + outputDirectoryPath, "" + thresholds.get(1));
         Process p1 = PB.start();
 
+        System.out.println("storing perturbations");
         statistics.storePerturbations(allPerturbationsName);
+
+        System.out.println("perturbation stored");
 
         File f_1 = new File(System.getProperty("user.dir") + "/generated-outputs/" + outputDirectoryPath + "/" + "least_modular_phenotype.phe");
         File f_2 = new File(System.getProperty("user.dir") + "/generated-outputs/" + outputDirectoryPath + "/" + "converted_least_modular_phenotype.phe");
 
-
+        System.out.println("entering looping");
         long startTime = System.currentTimeMillis();
         long currentTime = System.currentTimeMillis();
         long timeThreshold = 120000;
         while (!(f_1.exists() && f_2.exists())) {
+            f_1 = new File(System.getProperty("user.dir") + "/generated-outputs/" + outputDirectoryPath + "/" + "least_modular_phenotype.phe");
+            f_2 = new File(System.getProperty("user.dir") + "/generated-outputs/" + outputDirectoryPath + "/" + "converted_least_modular_phenotype.phe");
             currentTime = System.currentTimeMillis();
             if (currentTime - startTime > timeThreshold) {
                 break;
             }
+            TimeUnit.SECONDS.sleep(5);
         }
 
-
+        System.out.println("existing looping");
         //        try {
 //            Thread.sleep(30000);
 //        } catch (InterruptedException e) {
@@ -214,6 +224,7 @@ public class HaploidGRNMatrixMain {
         List<List<Double>> anotherFitnessPaths = ModularityPathAnalyzer.getAllPotentialPaths(fullOutputPath, fitnessFunction,
                 true, thresholds.get(1), statistics.getAllGenerationPerturbations(), false);
 
+        System.out.println("post mate launching");
 //        System.out.println(paths);
         ProcessBuilder postPB = new ProcessBuilder("python", "./python-tools/java_post_mate.py",
                 System.getProperty("user.dir") + "/generated-outputs/" + outputDirectoryPath,

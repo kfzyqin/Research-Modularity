@@ -12,16 +12,19 @@ import java.util.Map;
  */
 public class GRNFitnessFunctionMultipleTargetsAllCombinationsAsymmetric extends GRNFitnessFunctionMultipleTargetsAllCombinations {
 
+    protected final double stride;
     public GRNFitnessFunctionMultipleTargetsAllCombinationsAsymmetric(
-            int[][] targets, int maxCycle, double perturbationRate, int[] perturbationSizes) {
+            int[][] targets, int maxCycle, double perturbationRate, int[] perturbationSizes, double stride) {
         super(targets, maxCycle, perturbationRate, perturbationSizes);
+        this.stride = stride;
     }
 
     public GRNFitnessFunctionMultipleTargetsAllCombinationsAsymmetric(
             int[][] targets, int maxCycle, double perturbationRate,
-            List<Integer> thresholdOfAddingTarget, int[] perturbationSizes) {
+            List<Integer> thresholdOfAddingTarget, int[] perturbationSizes, double stride) {
         super(targets, maxCycle, perturbationRate, thresholdOfAddingTarget, perturbationSizes);
         this.perturbationSizes = perturbationSizes;
+        this.stride = stride;
 
     }
 
@@ -31,15 +34,15 @@ public class GRNFitnessFunctionMultipleTargetsAllCombinationsAsymmetric extends 
 
         if (target.length % 2 == 0) {
             int middle = target.length / 2;
-            double startWeight = 0.9 - 0.2 * (middle - 1);
+            double startWeight = (this.stride * target.length / 2.0 - (this.stride/2)) - this.stride * (middle - 1);
             for (int i=0; i<target.length; i++) {
-                weights[i] = startWeight + i * 0.2;
+                weights[i] = startWeight + i * this.stride;
             }
         } else {
             int middle = (target.length - 1) / 2;
-            double startWeight = 1 - 0.2 * middle;
+            double startWeight = 1 - this.stride * middle;
             for (int i=0; i<target.length; i++) {
-                weights[i] = startWeight + i * 0.2;
+                weights[i] = startWeight + i * this.stride;
             }
         }
 

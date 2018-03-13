@@ -4,7 +4,7 @@ from GRNEdgeMutator import GRNEdgeMutator
 import copy
 
 class LarsonNeighborModularityAnalyzer:
-    def __init__(self, path=None, neighbor_size=10):
+    def __init__(self, path=None, neighbor_size=500):
         self.path = path
         self.grn_plotter = GRNPlotter()
         self.directories = get_immediate_subdirectories(self.path)
@@ -39,5 +39,8 @@ class LarsonNeighborModularityAnalyzer:
             max_mutated_modularity_values.append(max(self.get_mutated_neighbor_modularity_values(a_phenotype)))
         return max_mutated_modularity_values
 
-omega = LarsonNeighborModularityAnalyzer(path='/Users/qin/Software-Engineering/Chin-GA-Project/generated-outputs/larson-with-perturbation-recording')
+omega = LarsonNeighborModularityAnalyzer(path=
+                                         '/Users/qin/Software-Engineering/Chin-GA-Project/generated-outputs/'
+                                         'larson-with-perturbation-recording')
+print omega.path
 print omega.get_max_mutated_modularity_values()

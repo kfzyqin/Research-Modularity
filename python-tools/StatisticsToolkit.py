@@ -2,6 +2,7 @@ import scipy
 import scipy.stats
 import GRNPlotter
 from FitnessPlotter import FitnessPlotter
+from EdgeNumberTool import EdgeNumberTool
 
 
 class StatisticsToolkit:
@@ -31,3 +32,17 @@ class StatisticsToolkit:
         fitness_values_2 = fitness_plotter.get_fitness_values_of_an_experiment(self.path_2, -1)[:sample_size]
         print "length 1: ", len(fitness_values_1), " length 2: ", len(fitness_values_2)
         return self.calculate_statistical_significances(fitness_values_1, fitness_values_2)
+
+    def calculate_edge_number_significance(self, sample_size=40):
+        edge_number_tool = EdgeNumberTool()
+        edge_number_1 = edge_number_tool.get_average_edge_number_of_the_whole_experiment(self.path_1)[:sample_size]
+        edge_number_2 = edge_number_tool.get_average_edge_number_of_the_whole_experiment(self.path_2)[:sample_size]
+        print "length 1: ", len(edge_number_1), " length 2: ", len(edge_number_2)
+        return self.calculate_statistical_significances(edge_number_1, edge_number_2)
+
+    def calculate_edge_number_std_dev_significance(self, sample_size=40):
+        edge_number_tool = EdgeNumberTool()
+        std_dev_1 = edge_number_tool.get_average_std_dev_edge_number_of_the_whole_experiment(self.path_1)[:sample_size]
+        std_dev_2 = edge_number_tool.get_average_std_dev_edge_number_of_the_whole_experiment(self.path_2)[:sample_size]
+        print "length 1: ", len(std_dev_1), " length 2: ", len(std_dev_2)
+        return self.calculate_statistical_significances(std_dev_1, std_dev_2)

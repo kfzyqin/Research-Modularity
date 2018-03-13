@@ -17,4 +17,4 @@ class CSVFileOpener:
             a_df = pd.read_csv(csv_files[0], '\t')
             return a_df[column].tolist()
         else:
-            raise Exception("Error: No or multiple CSV files detected. ")
+            raise RuntimeError("Error at " + path + ": No or multiple CSV files detected. ")
