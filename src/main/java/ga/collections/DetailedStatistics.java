@@ -199,8 +199,9 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
             writer.writeNext(entries);
         }
         writer.close();
-
     }
+
+
 
     @Override
     protected DefaultCategoryDataset createDataSet() {

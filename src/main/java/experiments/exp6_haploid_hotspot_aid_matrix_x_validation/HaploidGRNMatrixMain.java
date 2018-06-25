@@ -64,8 +64,7 @@ public class HaploidGRNMatrixMain {
     private static final int populationSize = 100;
     private static final int tournamentSize = 3;
     private static final double reproductionRate = 0.9;
-    //    private static final int maxGen = 40000;
-//    private static final List<Integer> thresholds = Arrays.asList(0, 500, 3000, 7000, 12000, 20000, 30000); // when to switch targets
+
     private static final int maxGen = 2000;
     private static final List<Integer> thresholds = Arrays.asList(0, 500); // when to switch targets
     private static final double alpha = 0.75;
@@ -149,57 +148,5 @@ public class HaploidGRNMatrixMain {
         statistics.save(summaryFileName);
         statistics.generateCSVFile(csvFileName);
         statistics.generatePlot(plotTitle, plotFileName);
-
-        ProcessBuilder PB = new ProcessBuilder("python", "./python-tools/java_main_mate.py",
-                System.getProperty("user.dir") + "/generated-outputs/" + outputDirectoryPath, "" + thresholds.get(1));
-        Process p1 = PB.start();
-
-        System.out.println("storing perturbations");
-        statistics.storePerturbations(allPerturbationsName);
-
-        System.out.println("perturbation stored");
-
-        File f_1 = new File(System.getProperty("user.dir") + "/generated-outputs/" + outputDirectoryPath + "/" + "least_modular_phenotype.phe");
-        File f_2 = new File(System.getProperty("user.dir") + "/generated-outputs/" + outputDirectoryPath + "/" + "converted_least_modular_phenotype.phe");
-
-        System.out.println("entering looping");
-        long startTime = System.currentTimeMillis();
-        long currentTime = System.currentTimeMillis();
-        long timeThreshold = 120000;
-        while (!(f_1.exists() && f_2.exists())) {
-            f_1 = new File(System.getProperty("user.dir") + "/generated-outputs/" + outputDirectoryPath + "/" + "least_modular_phenotype.phe");
-            f_2 = new File(System.getProperty("user.dir") + "/generated-outputs/" + outputDirectoryPath + "/" + "converted_least_modular_phenotype.phe");
-            currentTime = System.currentTimeMillis();
-            if (currentTime - startTime > timeThreshold) {
-                break;
-            }
-            TimeUnit.SECONDS.sleep(5);
-        }
-
-        System.out.println("existing looping");
-        //        try {
-//            Thread.sleep(30000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-
-        String fullOutputPath = System.getProperty("user.dir") + "/generated-outputs/" + outputDirectoryPath;
-        List<List<Double>> originalFitnessPaths = ModularityPathAnalyzer.getAllPotentialPaths(fullOutputPath, fitnessFunction,
-                true, thresholds.get(1), statistics.getAllGenerationPerturbations(), true);
-
-        List<List<Double>> anotherFitnessPaths = ModularityPathAnalyzer.getAllPotentialPaths(fullOutputPath, fitnessFunction,
-                true, thresholds.get(1), statistics.getAllGenerationPerturbations(), false);
-
-        System.out.println("post mate launching");
-//        System.out.println(paths);
-        ProcessBuilder postPB = new ProcessBuilder("python", "./python-tools/java_post_mate.py",
-                System.getProperty("user.dir") + "/generated-outputs/" + outputDirectoryPath,
-                originalFitnessPaths.toString(), anotherFitnessPaths.toString());
-        Process p2 = postPB.start();
-
-        /* For Debug */
-        BufferedReader in = new BufferedReader(new InputStreamReader(p2.getInputStream()));
-        String ret = in.readLine();
-//        System.out.println("value is : "+ret);
     }
 }
