@@ -43,42 +43,6 @@ import java.util.concurrent.TimeUnit;
  */
 public class HaploidGRNMatrixMain {
     /* The two targets that the GA evolve towards */
-//    private static final int[] target1 = {
-//            1, -1, 1, -1, 1,
-//            1, -1, 1, -1, 1,
-//            1, -1, 1, -1, 1
-//    };
-//    private static final int[] target2 = {
-//            1, -1, 1, -1, 1,
-//            1, -1, 1, -1, 1,
-//            -1, 1, -1, 1, -1,
-//    };
-//    private static final int[] target3 = {
-//            1, -1, 1, -1, 1,
-//            -1, 1, -1, 1, -1,
-//            1, -1, 1, -1, 1
-//    };
-//    private static final int[] target4 = {
-//            1, -1, 1, -1, 1,
-//            -1, 1, -1, 1, -1,
-//            -1, 1, -1, 1, -1
-//    };
-//    private static final int[] target5 = {
-//            -1, 1, -1, 1, -1,
-//            1, -1, 1, -1, 1,
-//            1, -1, 1, -1, 1
-//    };
-//    private static final int[] target6 = {
-//            -1, 1, -1, 1, -1,
-//            1, -1, 1, -1, 1,
-//            -1, 1, -1, 1, -1
-//    };
-//    private static final int[] target7 = {
-//            -1, 1, -1, 1, -1,
-//            -1, 1, -1, 1, -1,
-//            1, -1, 1, -1, 1
-//    };
-
     private static final int[] target1 = {
             1, -1, 1, -1, 1,
             -1, 1, -1, 1, -1
@@ -89,9 +53,9 @@ public class HaploidGRNMatrixMain {
     };
 
     /* Parameters of the GRN */
-    private static final int maxCycle = 20;
+    private static final int maxCycle = 30;
     private static final int edgeSize = 20;
-    private static final int perturbations = 75;
+    private static final int perturbations = 500;
     private static final double perturbationRate = 0.15;
 
     /* Parameters of the GA */
@@ -111,7 +75,7 @@ public class HaploidGRNMatrixMain {
     /* Settings for text outputs */
     private static final String summaryFileName = "Haploid-GRN-Matrix.txt";
     private static final String csvFileName = "Haploid-GRN-Matrix.csv";
-    private static final String outputDirectory = "tournament-3-all-combination-perturbations";
+    private static final String outputDirectory = "test-only";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static final String allPerturbationsName = "Haploid-GRN-Matrix.per";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
@@ -121,15 +85,17 @@ public class HaploidGRNMatrixMain {
     private static final String plotTitle = "Haploid GRN Matrix";
     private static final String plotFileName = "Haploid-GRN-Matrix.png";
 
+    private static final double stride = 0.1;
+
     public static void main(String[] args) throws IOException, InterruptedException {
 //        int[][] targets = {target1, target2, target3, target4, target5, target6, target7};
         int[][] targets = {target1, target2};
 
         /* Fitness function */
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(
+                targets, maxCycle, perturbations, perturbationRate, thresholds);
 //        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(
-//                targets, maxCycle, perturbations, perturbationRate, thresholds);
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsAllCombinations(
-                targets, maxCycle, perturbationRate, thresholds, perturbationSizes);
+//                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
 
         /* It is not necessary to write an initializer, but doing so is convenient to
         repeat the experiment using different parameter */
@@ -153,7 +119,7 @@ public class HaploidGRNMatrixMain {
                 new SimpleTournamentScheme(3));
 
         /* Reproducer for reproduction */
-        Reproducer<SimpleHaploid> reproducer = new GRNHaploidMatrixDiagonalReproducer(target1.length);
+        Reproducer<SimpleHaploid> reproducer = new GRNHaploidNoXReproducer();
 
         /* Statistics for keeping track the performance in generations */
         DetailedStatistics<SimpleHaploid> statistics = new DetailedStatistics<>();

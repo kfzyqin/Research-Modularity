@@ -34,7 +34,7 @@ public class GRNFitnessFunctionMultipleTargetsAllCombinationsTest {
                 targets, maxCycle, perturbationRate, thresholds, perturbationSizes
         );
 
-        assertTrue(testClass.getPerturbations() == 175);
+        assertEquals(175, testClass.getPerturbations());
     }
 
     @Test
@@ -48,7 +48,7 @@ public class GRNFitnessFunctionMultipleTargetsAllCombinationsTest {
 
         DataGene[][] perturbations =  testClass.generateInitialAttractors(testClass.getPerturbations(), 0.15, target1);
 
-        assertTrue(perturbations.length == 120);
+        assertEquals(120, perturbations.length);
 
         for (DataGene[] aPerturbation : perturbations) {
             int differences = 0;
@@ -60,7 +60,7 @@ public class GRNFitnessFunctionMultipleTargetsAllCombinationsTest {
             System.out.println(Arrays.toString(aPerturbation));
 //                System.out.println(Arrays.toString(target1));
             try {
-                assertTrue(differences == perturbationSizes[0]);
+                assertEquals(differences, perturbationSizes[0]);
             } catch (AssertionError e) {
                 System.out.println("Expect differences to be " + perturbationSizes[0] + ", found " + differences);
                 throw e;
