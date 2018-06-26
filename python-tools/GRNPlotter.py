@@ -79,7 +79,7 @@ class GRNPlotter:
         for i in range(grn_side_size):
             for j in range(grn_side_size):
                 if a_grn_phenotype[j * grn_side_size + i] != 0:
-                    grn.add_edge(j, i, {'influence': a_grn_phenotype[j * grn_side_size + i]})
+                    grn.add_edge(j, i)
 
                     if a_grn_phenotype[j * grn_side_size + i] == 1:
                         grn[j][i]['color'] = 'green'

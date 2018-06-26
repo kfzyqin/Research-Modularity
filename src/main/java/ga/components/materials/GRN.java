@@ -20,6 +20,13 @@ public class GRN extends EdgeMaterial implements Serializable {
         super(edgeList);
     }
 
+    public List<Integer> getIntGRNList() {
+        List<Integer> rtn = new ArrayList<>(size);
+        for (int i = 0; i < size; i++) {
+            rtn.add(((EdgeGene) this.strand[i].copy()).getValue());
+        }
+        return rtn;
+    }
 
     @Override
     public GRN copy() {

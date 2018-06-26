@@ -4,19 +4,16 @@ import au.com.bytecode.opencsv.CSVWriter;
 import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.Chromosome;
 import ga.components.genes.DataGene;
+import ga.components.materials.GRN;
+import ga.components.materials.Material;
 import ga.components.materials.SimpleMaterial;
 import ga.others.GeneralMethods;
 import org.apache.commons.io.FileUtils;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartUtilities;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
+import tools.GRNModularity;
 
 import java.io.*;
-import java.nio.channels.FileChannel;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -107,11 +104,24 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
         return fitnessValueSum / data.size();
     }
 
+    public <Ch extends Chromosome> void getModularity(Individual<Ch> i) {
+        Chromosome c = i.getChromosome();
+        Material phenotype = c.getPhenotype(false);
+        List<Integer> intGRNList = ((GRN) phenotype).getIntGRNList();
+        System.out.println(intGRNList);
+        System.out.println("get grn modularity");
+        System.out.println(GRNModularity.getGRNModularity(intGRNList));
+    }
+
     @Override
     public void record(List<Individual<C>> data) {
         Individual<C> elite = data.get(0).copy();
         Individual<C> worst = data.get(data.size() - 1).copy();
         Individual<C> median = data.get(data.size() / 2).copy();
+
+        System.out.println("test get modularity");
+        this.getModularity(elite);
+
         double averageFitnessValue = this.getAverageFitnessValueOfAPopulation(data);
 
         int[] currentGenerationEdgeNumbers = new int[data.size()];
@@ -200,8 +210,6 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
         }
         writer.close();
     }
-
-
 
     @Override
     protected DefaultCategoryDataset createDataSet() {
