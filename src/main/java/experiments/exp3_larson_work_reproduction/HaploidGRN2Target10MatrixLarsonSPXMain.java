@@ -128,7 +128,7 @@ public class HaploidGRN2Target10MatrixLarsonSPXMain {
 
         /* Generate output files */
         statistics.save(summaryFileName);
-        statistics.generateCSVFile(csvFileName);
+        statistics.generateNormalCSVFile(csvFileName);
         statistics.generatePlot(plotTitle, plotFileName);
     }
 }

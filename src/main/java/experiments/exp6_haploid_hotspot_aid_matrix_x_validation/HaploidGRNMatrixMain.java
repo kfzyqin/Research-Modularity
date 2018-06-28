@@ -10,29 +10,20 @@ import ga.frame.states.State;
 import ga.operations.fitnessFunctions.*;
 import ga.operations.initializers.HaploidGRNInitializer;
 import ga.operations.mutators.GRNEdgeMutator;
-import ga.operations.mutators.GRNRandomEdgeMutator;
 import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
 import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
-import ga.operations.priorOperators.PriorOperator;
-import ga.operations.priorOperators.SimpleElitismOperator;
 import ga.operations.reproducers.*;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
-import ga.operations.selectionOperators.selectors.SimpleProportionalSelector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
-import ga.others.ModularityPathAnalyzer;
 
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * This file belongs to the experiments to compare crossover at GRN diagonals crossover
@@ -69,12 +60,12 @@ public class HaploidGRNMatrixMain {
     private static final List<Integer> thresholds = Arrays.asList(0, 500); // when to switch targets
     private static final double alpha = 0.75;
     private static final int[] perturbationSizes = {1, 2};
-    private static final int perturbationCycleSize = 75;
+    private static final int perturbationCycleSize = perturbations;
 
     /* Settings for text outputs */
     private static final String summaryFileName = "Haploid-GRN-Matrix.txt";
     private static final String csvFileName = "Haploid-GRN-Matrix.csv";
-    private static final String outputDirectory = "test-only";
+    private static final String outputDirectory = "larson-cycle-500";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static final String allPerturbationsName = "Haploid-GRN-Matrix.per";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
@@ -91,8 +82,12 @@ public class HaploidGRNMatrixMain {
         int[][] targets = {target1, target2};
 
         /* Fitness function */
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(
-                targets, maxCycle, perturbations, perturbationRate, thresholds);
+//        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(
+//                targets, maxCycle, perturbations, perturbationRate, thresholds);
+
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFast(
+                targets, maxCycle, perturbations, perturbationRate, thresholds, perturbationCycleSize);
+
 //        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(
 //                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
 
@@ -146,7 +141,7 @@ public class HaploidGRNMatrixMain {
 
         /* Generate output files */
         statistics.save(summaryFileName);
-        statistics.generateCSVFile(csvFileName);
+        statistics.generateNormalCSVFile(csvFileName);
         statistics.generatePlot(plotTitle, plotFileName);
     }
 }

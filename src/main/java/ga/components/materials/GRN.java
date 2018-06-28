@@ -1,6 +1,7 @@
 package ga.components.materials;
 
 import ga.components.genes.EdgeGene;
+import tools.GRNModularity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,6 +12,8 @@ import java.util.List;
  * The Australian National University.
  */
 public class GRN extends EdgeMaterial implements Serializable {
+    private double modularity = -10;
+
 
     /**
      * Constructs a SimpleMaterial by a list of genes.
@@ -26,6 +29,17 @@ public class GRN extends EdgeMaterial implements Serializable {
             rtn.add(((EdgeGene) this.strand[i].copy()).getValue());
         }
         return rtn;
+    }
+
+    public double getGRNModularity() {
+        if (this.modularity == -10) {
+            this.modularity = this.calculateGRNModularity();
+        }
+        return this.modularity;
+    }
+
+    private double calculateGRNModularity() {
+        return GRNModularity.getGRNModularity(this.getIntGRNList());
     }
 
     @Override

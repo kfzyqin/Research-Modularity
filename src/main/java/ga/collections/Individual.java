@@ -21,8 +21,8 @@ import java.util.List;
  */
 public class Individual<C extends Chromosome> implements Comparable<Individual<C>>, Copyable<Individual<C>>, Serializable {
 
-    private C chromosome;
-    private double fitness = 0;
+    protected C chromosome;
+    protected double fitness = 0;
 
     public List<DataGene[][]> individualSPerturbations;
 
@@ -34,12 +34,12 @@ public class Individual<C extends Chromosome> implements Comparable<Individual<C
         this.chromosome = chromosome;
     }
 
-    private Individual(@NotNull final C chromosome, final double fitness) {
+    protected Individual(@NotNull final C chromosome, final double fitness) {
         this.chromosome = (C)chromosome.copy();
         this.fitness = fitness;
     }
 
-    private Individual(@NotNull final C chromosome, final double fitness, List<DataGene[][]> perturbations) {
+    protected Individual(@NotNull final C chromosome, final double fitness, List<DataGene[][]> perturbations) {
         this.chromosome = (C)chromosome.copy();
         this.fitness = fitness;
         this.individualSPerturbations = perturbations;

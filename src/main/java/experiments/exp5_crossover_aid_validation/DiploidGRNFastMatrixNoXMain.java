@@ -141,7 +141,7 @@ public class DiploidGRNFastMatrixNoXMain {
 
         /* Generate output files */
         statistics.save(summaryFileName);
-        statistics.generateCSVFile(csvFileName);
+        statistics.generateNormalCSVFile(csvFileName);
         statistics.generatePlot(plotTitle, plotFileName);
     }
 }

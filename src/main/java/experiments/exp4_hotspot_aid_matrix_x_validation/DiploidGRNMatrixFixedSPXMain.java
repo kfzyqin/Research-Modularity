@@ -13,7 +13,6 @@ import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargets;
 import ga.operations.initializers.DiploidGRNInitializer;
 import ga.operations.mutators.GRNEdgeMutator;
-import ga.operations.mutators.GRNModularisedEdgeMutator;
 import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
 import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
@@ -142,7 +141,7 @@ public class DiploidGRNMatrixFixedSPXMain {
 
         /* Generate output files */
         statistics.save(summaryFileName);
-        statistics.generateCSVFile(csvFileName);
+        statistics.generateNormalCSVFile(csvFileName);
         statistics.generatePlot(plotTitle, plotFileName);
     }
 }

@@ -26,8 +26,8 @@ public abstract class BaseStatistics <C extends Chromosome> implements Statistic
                 PlotOrientation.VERTICAL,
                 true,true,false);
 
-        int width = 1440;    /* Width of the image */
-        int height = 1080;   /* Height of the image */
+        int width = 2880;    /* Width of the image */
+        int height = 2160;   /* Height of the image */
         File lineChartFile = new File( this.directoryPath + fileName);
         ChartUtilities.saveChartAsJPEG(lineChartFile ,lineChartObject, width ,height);
     }

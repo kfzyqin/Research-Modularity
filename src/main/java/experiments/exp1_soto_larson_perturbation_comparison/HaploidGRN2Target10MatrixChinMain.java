@@ -8,7 +8,6 @@ import ga.frame.frames.SimpleHaploidFrame;
 import ga.frame.states.SimpleHaploidState;
 import ga.frame.states.State;
 import ga.operations.fitnessFunctions.FitnessFunction;
-import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargets;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFast;
 import ga.operations.initializers.HaploidGRNInitializer;
 import ga.operations.initializers.Initializer;
@@ -132,7 +131,7 @@ public class HaploidGRN2Target10MatrixChinMain {
 
         /* Generate output files */
         statistics.save(summaryFileName);
-        statistics.generateCSVFile(csvFileName);
+        statistics.generateNormalCSVFile(csvFileName);
         statistics.generatePlot(plotTitle, plotFileName);
     }
 }

@@ -119,7 +119,7 @@ public class HaploidGRN2Target10MatrixChinMain {
                 break;
         }
 //        statistics.save(summaryFileName);
-//        statistics.generateCSVFile(csvFileName);
+//        statistics.generateNormalCSVFile(csvFileName);
 //        statistics.generatePlot(plotTitle, plotFileName);
     }
 }

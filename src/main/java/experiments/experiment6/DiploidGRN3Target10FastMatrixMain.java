@@ -129,7 +129,7 @@ public class DiploidGRN3Target10FastMatrixMain {
             }
         }
 //        statistics.save(summaryFileName);
-//        statistics.generateCSVFile(csvFileName);
+//        statistics.generateNormalCSVFile(csvFileName);
 //        statistics.generatePlot(plotTitle, plotFileName);
     }
 }

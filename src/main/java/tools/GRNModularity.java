@@ -14,7 +14,7 @@ import java.util.stream.IntStream;
 import static java.util.stream.Collectors.toList;
 
 public class GRNModularity {
-    public static double getGRNModularity(List<Integer> aGRN) {
+    public static Graph getGRNGraph(List<Integer> aGRN) {
         Graph graph = new MultiGraph("GRN");
         int targetNumber = (int) Math.sqrt(aGRN.size());
 
@@ -28,15 +28,25 @@ public class GRNModularity {
                 int grnValue = aGRN.get(j * targetNumber + i);
                 String potentialEdgeId = Integer.toString(j) + Integer.toString(i);
                 if (grnValue == 1) {
-                    graph.addEdge(potentialEdgeId + "+", Integer.toString(j), Integer.toString(i));
+                    graph.addEdge(potentialEdgeId + "+", Integer.toString(j), Integer.toString(i), true);
                 } else if (grnValue == -1) {
-                    graph.addEdge(potentialEdgeId + "-", Integer.toString(j), Integer.toString(i));
+                    graph.addEdge(potentialEdgeId + "-", Integer.toString(j), Integer.toString(i), true);
                 }
             }
         }
+        return graph;
+    }
+
+    public static double getGRNModularity(List<Integer> aGRN) {
+        Graph graph = getGRNGraph(aGRN);
 
         HashMap<Object, HashSet<Node>> aCommunity = getModularityPartition(graph, 5);
         return QinModularity.getQWithCommunities(graph, aCommunity);
+    }
+
+    public static double getGRNModularity(Graph aGRN) {
+        HashMap<Object, HashSet<Node>> aCommunity = getModularityPartition(aGRN, 5);
+        return QinModularity.getQWithCommunities(aGRN, aCommunity);
     }
 
     public static HashMap<Object, HashSet<Node>> getModularityPartition(Graph graph, int modSize) {
@@ -50,6 +60,7 @@ public class GRNModularity {
                 nodeCom.add(graph.getNode(Integer.toString(n)));
             }
             aMap.put(currentComId, nodeCom);
+            currentComId += 1;
         }
         return aMap;
     }

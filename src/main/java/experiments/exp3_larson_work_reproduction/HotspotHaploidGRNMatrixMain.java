@@ -5,7 +5,6 @@ import ga.collections.Population;
 import ga.components.chromosomes.SimpleHotspotHaploid;
 import ga.frame.frames.Frame;
 import ga.frame.frames.SimpleHaploidFrame;
-import ga.frame.states.SimpleHaploidState;
 import ga.frame.states.SimpleHotspotHaploidState;
 import ga.frame.states.State;
 import ga.operations.fitnessFunctions.FitnessFunction;
@@ -140,7 +139,7 @@ public class HotspotHaploidGRNMatrixMain {
 
         /* Generate output files */
         statistics.save(summaryFileName);
-        statistics.generateCSVFile(csvFileName);
+        statistics.generateNormalCSVFile(csvFileName);
         statistics.generatePlot(plotTitle, plotFileName);
     }
 }

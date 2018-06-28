@@ -9,8 +9,10 @@ import ga.components.materials.Material;
 import ga.components.materials.SimpleMaterial;
 import ga.others.GeneralMethods;
 import org.apache.commons.io.FileUtils;
+import org.graphstream.graph.Graph;
 import org.jfree.data.category.DefaultCategoryDataset;
 import tools.GRNModularity;
+import tools.ListTools;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -33,6 +35,10 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
     List<Double> averageEdgeNumbers;
     List<Double> edgeNumberStdDevs;
 
+    List<Individual<C>> fittestGRNs;
+    List<Individual<C>> mostModularGRNs;
+    List<Double> meanMods;
+
     List<List<DataGene[][]>> allGenerationPerturbations;
 
     public DetailedStatistics() {
@@ -49,6 +55,10 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
         averageEdgeNumbers = new ArrayList<>();
         edgeNumberStdDevs = new ArrayList<>();
         allGenerationPerturbations = new ArrayList<>();
+
+        fittestGRNs = new ArrayList<>();
+        mostModularGRNs = new ArrayList<>();
+        meanMods = new ArrayList<>();
     }
 
     /**
@@ -68,6 +78,10 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
         averageEdgeNumbers = new ArrayList<>(maxGen);
         edgeNumberStdDevs = new ArrayList<>(maxGen);
         allGenerationPerturbations = new ArrayList<>(maxGen);
+
+        fittestGRNs = new ArrayList<>(maxGen);
+        mostModularGRNs = new ArrayList<>(maxGen);
+        meanMods = new ArrayList<>(maxGen);
     }
 
     private DetailedStatistics(@NotNull final List<Individual<C>> elites,
@@ -104,13 +118,24 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
         return fitnessValueSum / data.size();
     }
 
-    public <Ch extends Chromosome> void getModularity(Individual<Ch> i) {
-        Chromosome c = i.getChromosome();
-        Material phenotype = c.getPhenotype(false);
-        List<Integer> intGRNList = ((GRN) phenotype).getIntGRNList();
-        System.out.println(intGRNList);
-        System.out.println("get grn modularity");
-        System.out.println(GRNModularity.getGRNModularity(intGRNList));
+    private List<Graph> getAllGRNs(@NotNull final List<Individual<C>> data) {
+        List<Graph> grns = new ArrayList<>();
+        for (Individual<C> individual : data) {
+            Chromosome c = individual.getChromosome();
+            Material phenotype = c.getPhenotype(false);
+            List<Integer> intGRNList = ((GRN) phenotype).getIntGRNList();
+            grns.add(GRNModularity.getGRNGraph(intGRNList));
+        }
+        return grns;
+    }
+
+    private List<Double> getAllModularities (@NotNull final List<Individual<C>> data) {
+        List<Double> modularities = new ArrayList<>();
+        List<Graph> grns = this.getAllGRNs(data);
+        for (Graph aGRN : grns) {
+            modularities.add(GRNModularity.getGRNModularity(aGRN));
+        }
+        return modularities;
     }
 
     @Override
@@ -118,9 +143,6 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
         Individual<C> elite = data.get(0).copy();
         Individual<C> worst = data.get(data.size() - 1).copy();
         Individual<C> median = data.get(data.size() / 2).copy();
-
-        System.out.println("test get modularity");
-        this.getModularity(elite);
 
         double averageFitnessValue = this.getAverageFitnessValueOfAPopulation(data);
 
@@ -144,6 +166,12 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
             deltas.add(elite.getFitness());
         else
             deltas.add(elite.getFitness() - elites.get(generation-1).getFitness());
+
+        List<Double> mods = this.getAllModularities(data);
+        int modArgMax = ListTools.getArgMax(mods);
+        mostModularGRNs.add(data.get(modArgMax));
+
+        meanMods.add(ListTools.getListAvg(mods));
 
         this.allGenerationPerturbations.add(new ArrayList(elite.getIndividualSPerturbations()));
 //        for (DataGene[][] aDataGene : this.allGenerationPerturbations.get(allGenerationPerturbations.size()-1)) {
@@ -186,7 +214,7 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
         return this.generation;
     }
 
-    public void generateCSVFile(String fileName) throws IOException {
+    public void generateNormalCSVFile(String fileName) throws IOException {
         final File file = new File(this.directoryPath + fileName);
         try {
             file.createNewFile();
@@ -195,7 +223,7 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
         }
 
         CSVWriter writer = new CSVWriter(new FileWriter(this.directoryPath + fileName), '\t');
-        String[] entries = "Best#Worst#Median#Mean#AvgEdgeNumber#StdDevEdgeNumber".split("#");
+        String[] entries = "Best#Worst#Median#Mean#AvgEdgeNumber#StdDevEdgeNumber#FittestModularity#MostModularity".split("#");
         writer.writeNext(entries);
         for (int i=0; i<=generation; i++) {
             entries = (
@@ -204,7 +232,9 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
                             Double.toString(medians.get(i).getFitness()) + "#" +
                             Double.toString(means.get(i)) + "#" +
                             Double.toString(averageEdgeNumbers.get(i)) + "#" +
-                            Double.toString(edgeNumberStdDevs.get(i))
+                            Double.toString(edgeNumberStdDevs.get(i)) + "#" +
+                            Double.toString(((GRN) elites.get(i).getChromosome().getPhenotype(false)).getGRNModularity()) + "#" +
+                            Double.toString(((GRN) mostModularGRNs.get(i).getChromosome().getPhenotype(false)).getGRNModularity())
             ).split("#");
             writer.writeNext(entries);
         }
@@ -219,6 +249,8 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
 //            dataSet.addValue(worsts.get(i).getFitness(), "Worst", Integer.toString(i));
             dataSet.addValue(medians.get(i).getFitness(), "Median", Integer.toString(i));
             dataSet.addValue(means.get(i), "Mean", Integer.toString(i));
+            dataSet.addValue(((GRN) elites.get(i).getChromosome().getPhenotype(false)).getGRNModularity(), "Most Modularity", Integer.toString(i));
+            dataSet.addValue(meanMods.get(i), "Mean Modularity", Integer.toString(i));
         }
         return dataSet;
     }
