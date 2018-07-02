@@ -146,9 +146,38 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
         return modularities;
     }
 
+    private Individual<C> getFittestMostModularIndividual(List<Individual<C>> data) {
+        Individual<C> rtn = data.get(0);
+        for (int i=0; i<data.size(); i++) {
+            if (data.get(i).getFitness() >= data.get(0).getFitness()) {
+                if (data.get(i).getGRNModularity() > rtn.getGRNModularity()) {
+                    rtn = data.get(i).copy();
+                }
+            } else {
+                return rtn;
+            }
+        }
+        throw new RuntimeException("Unexpected get fitness most modular individual. ");
+    }
+
+    private Individual<C> getMostModularFittestIndividual(List<Individual<C>> data) {
+        List<Double> mods = this.getAllModularities(data);
+        int modArgMax = ListTools.getArgMax(mods);
+        Individual<C> rtn = data.get(modArgMax);
+
+        for (int i=0; i<data.size(); i++) {
+            if (data.get(i).getGRNModularity() >= data.get(0).getGRNModularity()) {
+                if (data.get(i).getFitness() > rtn.getFitness()) {
+                    rtn = data.get(i).copy();
+                }
+            }
+        }
+        return rtn;
+    }
+
     @Override
     public void record(List<Individual<C>> data) {
-        Individual<C> elite = data.get(0).copy();
+        Individual<C> elite = this.getFittestMostModularIndividual(data);
         Individual<C> worst = data.get(data.size() - 1).copy();
         Individual<C> median = data.get(data.size() / 2).copy();
 
@@ -176,8 +205,7 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
             deltas.add(elite.getFitness() - elites.get(generation-1).getFitness());
 
         List<Double> mods = this.getAllModularities(data);
-        int modArgMax = ListTools.getArgMax(mods);
-        mostModularGRNs.add(data.get(modArgMax));
+        mostModularGRNs.add(this.getMostModularFittestIndividual(data));
 
         meanMods.add(ListTools.getListAvg(mods));
 

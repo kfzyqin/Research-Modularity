@@ -3,6 +3,7 @@ package ga.collections;
 import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.Chromosome;
 import ga.components.genes.DataGene;
+import ga.components.materials.GRN;
 import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.FitnessFunctionMultipleTargets;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargets;
@@ -89,5 +90,9 @@ public class Individual<C extends Chromosome> implements Comparable<Individual<C
     @Override
     public String toString() {
         return "FitnessFunction: " + fitness + ", " + chromosome.toString();
+    }
+
+    public double getGRNModularity() {
+        return ((GRN) this.getChromosome().getPhenotype(false)).getGRNModularity();
     }
 }
