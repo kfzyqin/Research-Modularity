@@ -1,7 +1,7 @@
 import scipy
 import scipy.stats
 import GRNPlotter
-from FitnessPlotter import FitnessPlotter
+from GRNCSVReader import GRNCSVReader
 from EdgeNumberTool import EdgeNumberTool
 
 
@@ -27,11 +27,25 @@ class StatisticsToolkit:
                 "wilcoxon": wilcoxon, "t_test": t_test}
 
     def calculate_fitness_significance(self, sample_size=40):
-        fitness_plotter = FitnessPlotter()
+        fitness_plotter = GRNCSVReader()
         fitness_values_1 = fitness_plotter.get_fitness_values_of_an_experiment(self.path_1, -1)[:sample_size]
         fitness_values_2 = fitness_plotter.get_fitness_values_of_an_experiment(self.path_2, -1)[:sample_size]
         print "length 1: ", len(fitness_values_1), " length 2: ", len(fitness_values_2)
         return self.calculate_statistical_significances(fitness_values_1, fitness_values_2)
+
+    def calculate_most_modularities_significance(self, sample_size=40):
+        fitness_plotter = GRNCSVReader()
+        most_mod_values_1 = fitness_plotter.get_most_modularities_of_an_experiment(self.path_1, -1)[:sample_size]
+        most_mod_values_2 = fitness_plotter.get_most_modularities_of_an_experiment(self.path_2, -1)[:sample_size]
+        print "length 1: ", len(most_mod_values_1), " length 2: ", len(most_mod_values_2)
+        return self.calculate_statistical_significances(most_mod_values_1, most_mod_values_2)
+
+    def calculate_fittest_modularities_significance(self, sample_size=40):
+        fitness_plotter = GRNCSVReader()
+        most_mod_values_1 = fitness_plotter.get_fittest_modularities_of_an_experiment(self.path_1, -1)[:sample_size]
+        most_mod_values_2 = fitness_plotter.get_fittest_modularities_of_an_experiment(self.path_2, -1)[:sample_size]
+        print "length 1: ", len(most_mod_values_1), " length 2: ", len(most_mod_values_2)
+        return self.calculate_statistical_significances(most_mod_values_1, most_mod_values_2)
 
     def calculate_edge_number_significance(self, sample_size=40):
         edge_number_tool = EdgeNumberTool()

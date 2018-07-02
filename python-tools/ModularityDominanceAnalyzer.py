@@ -9,7 +9,7 @@ import sys
 class ModularityDominanceAnalyzer:
     def __init__(self):
         self.grn_plotter = GRNPlotter.GRNPlotter()
-        self.fitness_plotter = FitnessPlotter.FitnessPlotter()
+        self.fitness_plotter = FitnessPlotter.GRNCSVReader()
 
     def get_fitness_modularity_pair_of_a_trial(self, a_path):
         phenotypes = self.grn_plotter.get_grn_phenotypes(a_path)

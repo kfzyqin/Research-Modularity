@@ -90,7 +90,10 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
                                @NotNull final List<Double> means,
                                @NotNull final List<Double> deltas,
                                @NotNull final List<Double> averageEdgeNumber,
-                               @NotNull final List<Double> edgeNumberStdDev) {
+                               @NotNull final List<Double> edgeNumberStdDev,
+                               @NotNull final List<Individual<C>> fittestGRNs,
+                               @NotNull final List<Individual<C>> mostModularGRNs,
+                               @NotNull final List<Double> meanMods) {
         generation = elites.size();
         this.elites = new ArrayList<>(generation);
         this.means = new ArrayList<>(means);
@@ -102,12 +105,17 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
             this.means.add(means.get(i));
             this.averageEdgeNumbers.add(averageEdgeNumber.get(i));
             this.edgeNumberStdDevs.add(edgeNumberStdDev.get(i));
+
+            this.fittestGRNs.add(fittestGRNs.get(i));
+            this.mostModularGRNs.add(mostModularGRNs.get(i));
+            this.meanMods.add(meanMods.get(i));
         }
     }
 
     @Override
     public DetailedStatistics<C> copy() {
-        return new DetailedStatistics<>(elites, worsts, medians, means, deltas, averageEdgeNumbers, edgeNumberStdDevs);
+        return new DetailedStatistics<>(elites, worsts, medians, means, deltas, averageEdgeNumbers, edgeNumberStdDevs,
+                fittestGRNs, mostModularGRNs, meanMods);
     }
 
     private double getAverageFitnessValueOfAPopulation(@NotNull final List<Individual<C>> data) {
@@ -212,6 +220,29 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
     @Override
     public int getGeneration() {
         return this.generation;
+    }
+
+    public void generateFitnessModularityGRNs(String fileName) throws IOException {
+        String modName = this.directoryPath + fileName + "_mod.list";
+        String fitName = this.directoryPath + fileName + "_fit.list";
+
+        BufferedWriter modOutputWriter;
+        modOutputWriter = new BufferedWriter(new FileWriter(modName));
+
+        BufferedWriter fitOutputWriter;
+        fitOutputWriter = new BufferedWriter(new FileWriter(fitName));
+
+        for (int i=0; i<=generation; i++) {
+            modOutputWriter.write((mostModularGRNs.get(i).getChromosome().getPhenotype(false)).toString());
+            fitOutputWriter.write((elites.get(i).getChromosome().getPhenotype(false)).toString());
+            modOutputWriter.newLine();
+            fitOutputWriter.newLine();
+        }
+
+        modOutputWriter.flush();
+        modOutputWriter.close();
+        fitOutputWriter.flush();
+        fitOutputWriter.close();
     }
 
     public void generateNormalCSVFile(String fileName) throws IOException {

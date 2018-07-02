@@ -46,7 +46,7 @@ public class HaploidGRNMatrixMain {
     /* Parameters of the GRN */
     private static final int maxCycle = 30;
     private static final int edgeSize = 20;
-    private static final int perturbations = 500;
+    private static final int perturbations = 75;
     private static final double perturbationRate = 0.15;
 
     /* Parameters of the GA */
@@ -54,41 +54,42 @@ public class HaploidGRNMatrixMain {
     private static final int numElites = 10;
     private static final int populationSize = 100;
     private static final int tournamentSize = 3;
-    private static final double reproductionRate = 0.9;
+    private static final double reproductionRate = 1.0;
 
-    private static final int maxGen = 2000;
-    private static final List<Integer> thresholds = Arrays.asList(0, 500); // when to switch targets
+    private static final int maxGen = 100;
+    private static final List<Integer> thresholds = Arrays.asList(0, 1); // when to switch targets
     private static final double alpha = 0.75;
     private static final int[] perturbationSizes = {1, 2};
     private static final int perturbationCycleSize = perturbations;
 
     /* Settings for text outputs */
-    private static final String summaryFileName = "Haploid-GRN-Matrix.txt";
-    private static final String csvFileName = "Haploid-GRN-Matrix.csv";
-    private static final String outputDirectory = "larson-cycle-500";
+    private static final String summaryFileName = "Summary.txt";
+    private static final String csvFileName = "Statistics.csv";
+    private static final String outputDirectory = "test-only";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
-    private static final String allPerturbationsName = "Haploid-GRN-Matrix.per";
+    private static final String allPerturbationsName = "Perturbations.per";
+    private static final String modFitNamePrefix = "phenotypes";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
 
     /* Settings for graph outputs */
     private static final String plotTitle = "Haploid GRN Matrix";
-    private static final String plotFileName = "Haploid-GRN-Matrix.png";
+    private static final String plotFileName = "Trends.png";
 
-    private static final double stride = 0.1;
+    private static final double stride = 0;
 
     public static void main(String[] args) throws IOException, InterruptedException {
 //        int[][] targets = {target1, target2, target3, target4, target5, target6, target7};
         int[][] targets = {target1, target2};
 
         /* Fitness function */
-//        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(
-//                targets, maxCycle, perturbations, perturbationRate, thresholds);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(
+                targets, maxCycle, perturbations, perturbationRate, thresholds);
 
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFast(
-                targets, maxCycle, perturbations, perturbationRate, thresholds, perturbationCycleSize);
+//        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFast(
+//                targets, maxCycle, perturbations, perturbationRate, thresholds, perturbationCycleSize);
 
-//        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(
+//        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsAllCombinationsAsymmetric(
 //                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
 
         /* It is not necessary to write an initializer, but doing so is convenient to
@@ -141,6 +142,7 @@ public class HaploidGRNMatrixMain {
 
         /* Generate output files */
         statistics.save(summaryFileName);
+        statistics.generateFitnessModularityGRNs(modFitNamePrefix);
         statistics.generateNormalCSVFile(csvFileName);
         statistics.generatePlot(plotTitle, plotFileName);
     }
