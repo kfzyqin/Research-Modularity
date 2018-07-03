@@ -72,3 +72,27 @@ def write_a_list_into_a_file(a_list, file_path, file_name):
     for item in a_list:
         the_file.write("%s " % item)
 
+
+def save_lists_graph(lists, labels=None, ver_lines=None, path="", file_name="", marker=None, colors=None):
+    fig, ax0 = plt.subplots(nrows=1, figsize=(16, 10))
+    default_colors = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'w']
+    for a_list_idx in range(len(lists)):
+        if not (labels is None):
+            ax0.plot(lists[a_list_idx], linewidth=1.5, label=labels[a_list_idx], marker=marker,
+                     c=default_colors[int(colors[a_list_idx])] if colors is not None else default_colors[a_list_idx%len(default_colors)])
+        else:
+            ax0.plot(lists[a_list_idx], linewidth=1.5, marker=marker,
+                     c=default_colors[int(colors[a_list_idx])] if colors is not None else default_colors[a_list_idx%len(default_colors)])
+        ax0.legend()
+
+    if ver_lines is not None:
+        for v_l in ver_lines:
+            plt.axvline(x=v_l, ls='dashed', c='y')
+
+    if path and file_name:
+        plt.savefig(path + os.sep + file_name, dpi=200)
+    else:
+        plt.show()
+    plt.clf()
+    plt.close()
+

@@ -1,6 +1,6 @@
 import GRNPlotter
 import sys
-import FitnessPlotter
+import GRNCSVReader
 from file_processor import save_multiple_lists_graph, write_a_list_into_a_file
 import ModularityDominanceAnalyzer
 from file_processor import count_number_of_edges
@@ -21,7 +21,7 @@ phenotypes = grn_plotter.get_grn_phenotypes(working_path)
 
 modular_values = grn_plotter.get_module_values_of_a_trial(working_path)
 
-fitness_plotter = FitnessPlotter.GRNCSVReader()
+fitness_plotter = GRNCSVReader.GRNCSVReader()
 fitness_values = fitness_plotter.get_fitness_values_of_an_trial(working_path)
 
 multiple_pattern_generation = int(sys.argv[2])

@@ -42,3 +42,5 @@ def get_entry_values_of_an_trial(path, entry):
         return a_df[entry].tolist()
     else:
         raise Exception("Error: No or multiple CSV files detected. ")
+
+

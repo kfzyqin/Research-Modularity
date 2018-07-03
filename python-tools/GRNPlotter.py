@@ -17,6 +17,8 @@ class GRNPlotter:
         return community.best_partition(a_grn.to_undirected())
 
     def get_modularity_value(self, a_grn, louvain=False):
+        if isinstance(a_grn, list):
+            a_grn = self.generate_directed_grn(a_grn)
         if louvain:
             modularity_partition = community.best_partition(a_grn.to_undirected())
         else:

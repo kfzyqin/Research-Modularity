@@ -27,3 +27,5 @@ class GRNCSVReader:
     def get_fittest_modularities_of_an_experiment(root_directory_path, index=-1):
         return csv_reader.get_entry_values_of_an_experiment(root_directory_path, 'FittestModularity', index=index)
 
+
+

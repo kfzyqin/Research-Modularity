@@ -148,10 +148,10 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
 
     private Individual<C> getFittestMostModularIndividual(List<Individual<C>> data) {
         Individual<C> rtn = data.get(0);
-        for (int i=0; i<data.size(); i++) {
-            if (data.get(i).getFitness() >= data.get(0).getFitness()) {
-                if (data.get(i).getGRNModularity() > rtn.getGRNModularity()) {
-                    rtn = data.get(i).copy();
+        for (Individual<C> aData : data) {
+            if (aData.getFitness() >= data.get(0).getFitness()) {
+                if (aData.getGRNModularity() > rtn.getGRNModularity()) {
+                    rtn = aData.copy();
                 }
             } else {
                 return rtn;
@@ -165,10 +165,10 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
         int modArgMax = ListTools.getArgMax(mods);
         Individual<C> rtn = data.get(modArgMax);
 
-        for (int i=0; i<data.size(); i++) {
-            if (data.get(i).getGRNModularity() >= data.get(0).getGRNModularity()) {
-                if (data.get(i).getFitness() > rtn.getFitness()) {
-                    rtn = data.get(i).copy();
+        for (Individual<C> aData : data) {
+            if (aData.getGRNModularity() >= rtn.getGRNModularity()) {
+                if (aData.getFitness() > rtn.getFitness()) {
+                    rtn = aData.copy();
                 }
             }
         }
@@ -282,7 +282,8 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
         }
 
         CSVWriter writer = new CSVWriter(new FileWriter(this.directoryPath + fileName), '\t');
-        String[] entries = "Best#Worst#Median#Mean#AvgEdgeNumber#StdDevEdgeNumber#FittestModularity#MostModularity".split("#");
+        String[] entries = ("Best#Worst#Median#Mean#AvgEdgeNumber#StdDevEdgeNumber#FittestModularity#MostModularity" +
+                "#MostModFitness").split("#");
         writer.writeNext(entries);
         for (int i=0; i<=generation; i++) {
             entries = (
@@ -293,7 +294,8 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
                             Double.toString(averageEdgeNumbers.get(i)) + "#" +
                             Double.toString(edgeNumberStdDevs.get(i)) + "#" +
                             Double.toString(((GRN) elites.get(i).getChromosome().getPhenotype(false)).getGRNModularity()) + "#" +
-                            Double.toString(((GRN) mostModularGRNs.get(i).getChromosome().getPhenotype(false)).getGRNModularity())
+                            Double.toString(((GRN) mostModularGRNs.get(i).getChromosome().getPhenotype(false)).getGRNModularity()) + "#" +
+                            Double.toString(mostModularGRNs.get(i).getFitness())
             ).split("#");
             writer.writeNext(entries);
         }

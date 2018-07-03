@@ -18,7 +18,9 @@ import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -46,7 +48,7 @@ public class HaploidGRNMatrixMain {
     /* Parameters of the GRN */
     private static final int maxCycle = 30;
     private static final int edgeSize = 20;
-    private static final int perturbations = 500;
+    private static final int perturbations = 75;
     private static final double perturbationRate = 0.15;
 
     /* Parameters of the GA */
@@ -56,7 +58,7 @@ public class HaploidGRNMatrixMain {
     private static final int tournamentSize = 3;
     private static final double reproductionRate = 1.0;
 
-    private static final int maxGen = 2000;
+    private static final int maxGen = 100;
     private static final List<Integer> thresholds = Arrays.asList(0, 500); // when to switch targets
     private static final double alpha = 0.75;
     private static final int[] perturbationSizes = {1, 2};
@@ -65,7 +67,7 @@ public class HaploidGRNMatrixMain {
     /* Settings for text outputs */
     private static final String summaryFileName = "Summary.txt";
     private static final String csvFileName = "Statistics.csv";
-    private static final String outputDirectory = "soto";
+    private static final String outputDirectory = "test-only";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static final String allPerturbationsName = "Perturbations.per";
     private static final String modFitNamePrefix = "phenotypes";
@@ -145,5 +147,18 @@ public class HaploidGRNMatrixMain {
         statistics.generateFitnessModularityGRNs(modFitNamePrefix);
         statistics.generateNormalCSVFile(csvFileName);
         statistics.generatePlot(plotTitle, plotFileName);
+
+        String test = Arrays.deepToString(targets);
+
+        ProcessBuilder PB1 = new ProcessBuilder("python2", "./python-tools/java_plot_curves.py",
+                System.getProperty("user.dir") + "/generated-outputs/" + outputDirectoryPath,
+                "" + perturbations, test, thresholds.toString());
+        Process p1 = PB1.start();
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(p1.getInputStream()));
+        String ret = in.readLine();
+        System.out.println("value is : "+ret);
+
+
     }
 }
