@@ -157,7 +157,7 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
                 return rtn;
             }
         }
-        throw new RuntimeException("Unexpected get fitness most modular individual. ");
+        return rtn;
     }
 
     private Individual<C> getMostModularFittestIndividual(List<Individual<C>> data) {
