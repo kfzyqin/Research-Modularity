@@ -1,6 +1,5 @@
 package tests;
 
-import com.sun.source.tree.AssertTree;
 import ga.components.genes.DataGene;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsAllCombinations;
 import org.junit.Assert;
