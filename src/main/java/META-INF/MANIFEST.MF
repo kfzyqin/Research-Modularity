@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Main-Class: experiments.exp6_haploid_hotspot_aid_matrix_x_validation.HaploidGRNMatrixMainParameterized
+

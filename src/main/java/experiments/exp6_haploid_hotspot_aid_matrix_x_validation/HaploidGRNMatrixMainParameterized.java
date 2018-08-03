@@ -9,6 +9,7 @@ import ga.frame.states.SimpleHaploidState;
 import ga.frame.states.State;
 import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargets;
+import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsAllCombinationsAsymmetric;
 import ga.operations.initializers.HaploidGRNInitializer;
 import ga.operations.mutators.GRNEdgeMutator;
 import ga.operations.mutators.Mutator;
@@ -67,7 +68,7 @@ public class HaploidGRNMatrixMainParameterized {
     /* Settings for text outputs */
     private static final String summaryFileName = "Summary.txt";
     private static final String csvFileName = "Statistics.csv";
-    private static final String outputDirectory = "soto";
+//    private static final String outputDirectory = "soto";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static final String allPerturbationsName = "Perturbations.per";
     private static final String modFitNamePrefix = "phenotypes";
@@ -78,15 +79,18 @@ public class HaploidGRNMatrixMainParameterized {
     private static final String plotTitle = "Haploid GRN Matrix";
     private static final String plotFileName = "Trends.png";
 
-    private static final double stride = 0.2;
+//    private static final double stride = 0.2;
 
     public static void main(String[] args) throws IOException, InterruptedException {
 //        int[][] targets = {target1, target2, target3, target4, target5, target6, target7};
         int[][] targets = {target1, target2};
 
+        double stride = Double.parseDouble(args[1]);
+        String outputDirectory = args[2];
+
         /* Fitness function */
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(
-                targets, maxCycle, perturbations, perturbationRate, thresholds);
+//        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(
+//                targets, maxCycle, perturbations, perturbationRate, thresholds);
 
 //        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsAsymmetric(
 //                targets, maxCycle, perturbations, perturbationRate, thresholds, stride);
@@ -94,8 +98,8 @@ public class HaploidGRNMatrixMainParameterized {
 //        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFast(
 //                targets, maxCycle, perturbations, perturbationRate, thresholds, perturbationCycleSize);
 
-//        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsAllCombinationsAsymmetric(
-//                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsAllCombinationsAsymmetric(
+                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
 
         /* It is not necessary to write an initializer, but doing so is convenient to
         repeat the experiment using different parameter */
