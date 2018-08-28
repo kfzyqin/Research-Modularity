@@ -1,6 +1,7 @@
 package ga.components.genes;
 
-import com.sun.istack.internal.NotNull;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
 

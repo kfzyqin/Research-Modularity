@@ -1,9 +1,9 @@
 package ga.operations.fitnessFunctions;
 
-import com.sun.istack.internal.NotNull;
 import ga.components.genes.DataGene;
 import ga.components.materials.SimpleMaterial;
 import ga.others.GeneralMethods;
+import org.jetbrains.annotations.NotNull;
 
 import javax.xml.crypto.Data;
 import java.util.*;

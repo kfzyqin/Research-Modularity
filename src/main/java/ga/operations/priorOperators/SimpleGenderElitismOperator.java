@@ -1,10 +1,10 @@
 package ga.operations.priorOperators;
 
-import com.sun.istack.internal.NotNull;
 import ga.collections.Individual;
 import ga.collections.Population;
 import ga.components.chromosomes.Chromosome;
 import ga.components.chromosomes.Coupleable;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 

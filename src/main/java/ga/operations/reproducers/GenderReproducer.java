@@ -1,11 +1,11 @@
 package ga.operations.reproducers;
 
-import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.Chromosome;
 import ga.components.chromosomes.Coupleable;
 import ga.components.chromosomes.CoupleableWithHotspot;
 import ga.components.genes.Gene;
 import ga.components.materials.Material;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;

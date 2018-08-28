@@ -1,8 +1,8 @@
 package ga.collections;
 
-import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.Chromosome;
 import ga.others.Copyable;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 

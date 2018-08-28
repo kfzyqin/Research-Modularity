@@ -1,6 +1,5 @@
 package ga.frame.states;
 
-import com.sun.istack.internal.NotNull;
 import ga.collections.Population;
 import ga.components.chromosomes.Chromosome;
 import ga.operations.dominanceMapMutators.ExpressionMapMutator;

@@ -1,7 +1,7 @@
 package ga.operations.dominanceMapMutators;
 
-import com.sun.istack.internal.NotNull;
 import ga.operations.expressionMaps.ExpressionMap;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Created by zhenyueqin on 17/6/17.

@@ -1,6 +1,5 @@
 package ga.operations.reproducers;
 
-import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.SimpleDiploid;
 import ga.components.chromosomes.SimpleHotspotDiploid;
 import ga.components.genes.Gene;

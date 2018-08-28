@@ -1,9 +1,9 @@
 package ga.components.chromosomes;
 
-import com.sun.istack.internal.NotNull;
 import ga.components.hotspots.Hotspot;
 import ga.components.materials.SimpleMaterial;
 import ga.operations.expressionMaps.ExpressionMap;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
 import java.util.List;

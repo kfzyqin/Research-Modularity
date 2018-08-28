@@ -1,9 +1,9 @@
 package ga.operations.reproducers;
 
-import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.SimpleDiploid;
 import ga.components.materials.SimpleMaterial;
 import ga.operations.expressionMaps.ExpressionMap;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;

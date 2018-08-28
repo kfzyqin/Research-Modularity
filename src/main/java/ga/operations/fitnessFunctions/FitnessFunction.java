@@ -1,7 +1,7 @@
 package ga.operations.fitnessFunctions;
 
-import com.sun.istack.internal.NotNull;
 import ga.components.materials.Material;
+import org.jetbrains.annotations.NotNull;
 
 /*
     GASEE is a Java-based genetic algorithm library for scientific exploration and experiment.

@@ -1,6 +1,7 @@
 package ga.operations.selectionOperators.selectionSchemes;
 
-import com.sun.istack.internal.NotNull;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 

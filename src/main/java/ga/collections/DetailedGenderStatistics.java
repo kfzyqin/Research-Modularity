@@ -1,10 +1,10 @@
 package ga.collections;
 
 import au.com.bytecode.opencsv.CSVWriter;
-import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.Chromosome;
 import ga.components.chromosomes.Coupleable;
 import org.apache.commons.io.FileUtils;
+import org.jetbrains.annotations.NotNull;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;

@@ -1,7 +1,7 @@
 package ga.operations.fitnessFunctions;
 
-import com.sun.istack.internal.NotNull;
 import ga.components.materials.Material;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Created by zhenyueqin on 19/6/17.

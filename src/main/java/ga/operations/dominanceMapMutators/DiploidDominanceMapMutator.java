@@ -1,6 +1,5 @@
 package ga.operations.dominanceMapMutators;
 
-import com.sun.istack.internal.NotNull;
 import ga.components.genes.EdgeGene;
 import ga.operations.expressionMaps.DiploidEvolvedMap;
 import ga.operations.expressionMaps.ExpressionMap;

@@ -1,6 +1,5 @@
 package ga.operations.expressionMaps;
 
-import com.sun.istack.internal.NotNull;
 import ga.components.genes.DataGene;
 import ga.components.genes.EdgeGene;
 import ga.components.genes.Gene;

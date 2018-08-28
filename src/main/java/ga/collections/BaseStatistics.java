@@ -1,7 +1,7 @@
 package ga.collections;
 
-import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.Chromosome;
+import org.jetbrains.annotations.NotNull;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;

@@ -1,8 +1,8 @@
 package ga.collections;
 
 import au.com.bytecode.opencsv.CSVWriter;
-import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.Chromosome;
+import org.jetbrains.annotations.NotNull;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 import java.io.File;

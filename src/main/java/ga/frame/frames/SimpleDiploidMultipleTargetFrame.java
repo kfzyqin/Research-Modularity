@@ -1,6 +1,5 @@
 package ga.frame.frames;
 
-import com.sun.istack.internal.NotNull;
 import ga.collections.Statistics;
 import ga.components.chromosomes.Chromosome;
 import ga.frame.states.DiploidState;
@@ -8,6 +7,7 @@ import ga.frame.states.State;
 import ga.operations.dynamicHandlers.DynamicHandler;
 import ga.operations.postOperators.PostOperator;
 import ga.operations.priorOperators.PriorOperator;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Created by zhenyueqin on 19/6/17.

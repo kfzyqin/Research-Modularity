@@ -1,9 +1,9 @@
 package ga.operations.fitnessFunctions;
 
 import au.com.bytecode.opencsv.CSVWriter;
-import com.sun.istack.internal.NotNull;
 import ga.components.genes.DataGene;
 import ga.components.materials.SimpleMaterial;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.FileWriter;

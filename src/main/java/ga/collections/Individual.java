@@ -1,6 +1,5 @@
 package ga.collections;
 
-import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.Chromosome;
 import ga.components.genes.DataGene;
 import ga.components.materials.GRN;
@@ -8,6 +7,7 @@ import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.FitnessFunctionMultipleTargets;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargets;
 import ga.others.Copyable;
+import org.jetbrains.annotations.NotNull;
 
 
 import java.io.Serializable;

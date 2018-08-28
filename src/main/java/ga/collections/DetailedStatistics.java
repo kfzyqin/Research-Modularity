@@ -1,7 +1,6 @@
 package ga.collections;
 
 import au.com.bytecode.opencsv.CSVWriter;
-import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.Chromosome;
 import ga.components.genes.DataGene;
 import ga.components.materials.GRN;
@@ -10,6 +9,7 @@ import ga.components.materials.SimpleMaterial;
 import ga.others.GeneralMethods;
 import org.apache.commons.io.FileUtils;
 import org.graphstream.graph.Graph;
+import org.jetbrains.annotations.NotNull;
 import org.jfree.data.category.DefaultCategoryDataset;
 import tools.GRNModularity;
 import tools.ListTools;

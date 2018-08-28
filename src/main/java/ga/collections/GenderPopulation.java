@@ -1,8 +1,8 @@
 package ga.collections;
 
-import com.sun.istack.internal.NotNull;
 import ga.components.chromosomes.Chromosome;
 import ga.components.chromosomes.Coupleable;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * This population class restricts individuals to be Coupleable and maintains a pre-defined

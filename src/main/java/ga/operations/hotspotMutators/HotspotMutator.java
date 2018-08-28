@@ -1,7 +1,7 @@
 package ga.operations.hotspotMutators;
 
-import com.sun.istack.internal.NotNull;
 import ga.components.hotspots.Hotspot;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * This interface provides an abstraction for mutation of hotspot encodings.

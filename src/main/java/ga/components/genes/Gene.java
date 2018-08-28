@@ -1,7 +1,7 @@
 package ga.components.genes;
 
-import com.sun.istack.internal.NotNull;
 import ga.others.Copyable;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
 

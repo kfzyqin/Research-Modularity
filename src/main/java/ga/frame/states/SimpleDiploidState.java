@@ -1,6 +1,5 @@
 package ga.frame.states;
 
-import com.sun.istack.internal.NotNull;
 import ga.collections.Individual;
 import ga.collections.Population;
 import ga.components.chromosomes.Chromosome;
@@ -9,6 +8,7 @@ import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.mutators.Mutator;
 import ga.operations.reproducers.Reproducer;
 import ga.operations.selectionOperators.selectors.Selector;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Created by zhenyueqin on 17/6/17.

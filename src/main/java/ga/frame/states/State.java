@@ -1,6 +1,5 @@
 package ga.frame.states;
 
-import com.sun.istack.internal.NotNull;
 import ga.collections.Population;
 import ga.collections.PopulationMode;
 import ga.collections.Statistics;
@@ -14,6 +13,7 @@ import ga.operations.postOperators.PostOperator;
 import ga.operations.priorOperators.PriorOperator;
 import ga.operations.reproducers.Reproducer;
 import ga.operations.selectionOperators.selectors.Selector;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * This class provides an overall base implementation for the state of current generation of genetic algorithm.

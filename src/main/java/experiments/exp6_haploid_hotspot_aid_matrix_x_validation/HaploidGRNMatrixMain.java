@@ -48,7 +48,7 @@ public class HaploidGRNMatrixMain {
     /* Parameters of the GRN */
     private static final int maxCycle = 30;
     private static final int edgeSize = 20;
-    private static final int perturbations = 100;
+    private static final int perturbations = 500;
     private static final double perturbationRate = 0.15;
 
     /* Parameters of the GA */
@@ -61,13 +61,13 @@ public class HaploidGRNMatrixMain {
     private static final int maxGen = 2000;
     private static final List<Integer> thresholds = Arrays.asList(0, 500); // when to switch targets
     private static final double alpha = 0.75;
-    private static final int[] perturbationSizes = {1, 2};
+    private static final int[] perturbationSizes = {1, 2, 3, 4};
     private static final int perturbationCycleSize = perturbations;
 
     /* Settings for text outputs */
     private static final String summaryFileName = "Summary.txt";
     private static final String csvFileName = "Statistics.csv";
-    private static final String outputDirectory = "all-combination-asymmetric-stride-p45";
+    private static final String outputDirectory = "combinations-p00";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static final String allPerturbationsName = "Perturbations.per";
     private static final String modFitNamePrefix = "phenotypes";
@@ -78,7 +78,7 @@ public class HaploidGRNMatrixMain {
     private static final String plotTitle = "Haploid GRN Matrix";
     private static final String plotFileName = "Trends.png";
 
-    private static final double stride = 0.45;
+    private static final double stride = 0.40;
 
     public static void main(String[] args) throws IOException, InterruptedException {
 //        int[][] targets = {target1, target2, target3, target4, target5, target6, target7};
@@ -88,14 +88,17 @@ public class HaploidGRNMatrixMain {
 //        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(
 //                targets, maxCycle, perturbations, perturbationRate, thresholds);
 
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsAsymmetric(
-                targets, maxCycle, perturbations, perturbationRate, thresholds, stride);
+//        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsAsymmetric(
+//                targets, maxCycle, perturbations, perturbationRate, thresholds, stride);
 
 //        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsFast(
 //                targets, maxCycle, perturbations, perturbationRate, thresholds, perturbationCycleSize);
 
-//        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsAllCombinationsAsymmetric(
-//                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
+//        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsAllCombinations(
+//                targets, maxCycle, perturbationRate, thresholds, perturbationSizes);
+
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsAllCombinationsAsymmetric(
+                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
 
         /* It is not necessary to write an initializer, but doing so is convenient to
         repeat the experiment using different parameter */
@@ -158,6 +161,6 @@ public class HaploidGRNMatrixMain {
                 "" + perturbations, test, thresholds.toString());
         PB1.start();
 
-        statistics.storePerturbations(allPerturbationsName);
+//        statistics.storePerturbations(allPerturbationsName);
     }
 }

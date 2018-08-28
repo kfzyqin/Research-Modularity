@@ -35,9 +35,36 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>experiments.exp6_haploid_hotspot_aid_matrix_x_validation.HaploidGRNMatrixMainParameterized</mainClass>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>experiments.exp6_haploid_hotspot_aid_matrix_x_validation.HaploidGRNMatrixMain</mainClass>
+                            <classpathPrefix>classes/lib</classpathPrefix>
                         </manifest>
                     </archive>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>experiments.exp6_haploid_hotspot_aid_matrix_x_validation.HaploidGRNMatrixMain</mainClass>
+                            <classpathPrefix>classes/lib</classpathPrefix>
+                        </manifest>
+                    </archive>
+
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
                 </configuration>
             </plugin>
 
@@ -148,6 +175,10 @@
             <artifactId>commons-collections4</artifactId>
             <version>4.1</version>
         </dependency>
+
+
+
+
 
 
     </dependencies>

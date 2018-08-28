@@ -1,9 +1,9 @@
 package ga.components.chromosomes;
 
-import com.sun.istack.internal.NotNull;
 import ga.components.materials.Material;
 import ga.operations.expressionMaps.ExpressionMap;
 import ga.others.Copyable;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
 import java.util.List;

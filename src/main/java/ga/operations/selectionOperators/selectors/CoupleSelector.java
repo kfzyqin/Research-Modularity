@@ -1,10 +1,10 @@
 package ga.operations.selectionOperators.selectors;
 
-import com.sun.istack.internal.NotNull;
 import ga.collections.Individual;
 import ga.components.chromosomes.Chromosome;
 import ga.components.chromosomes.Coupleable;
 import ga.operations.selectionOperators.selectionSchemes.SelectionScheme;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;

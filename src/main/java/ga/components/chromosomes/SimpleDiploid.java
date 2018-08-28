@@ -1,8 +1,8 @@
 package ga.components.chromosomes;
 
-import com.sun.istack.internal.NotNull;
 import ga.components.materials.SimpleMaterial;
 import ga.operations.expressionMaps.ExpressionMap;
+import org.jetbrains.annotations.NotNull;
 
 /*
     GASEE is a Java-based genetic algorithm library for scientific exploration and experiment.

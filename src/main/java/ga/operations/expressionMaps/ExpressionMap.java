@@ -1,8 +1,8 @@
 package ga.operations.expressionMaps;
 
-import com.sun.istack.internal.NotNull;
 import ga.components.materials.Material;
 import ga.others.Copyable;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 

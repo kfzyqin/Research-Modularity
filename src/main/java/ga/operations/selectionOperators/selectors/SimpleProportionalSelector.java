@@ -1,9 +1,9 @@
 package ga.operations.selectionOperators.selectors;
 
-import com.sun.istack.internal.NotNull;
 import ga.collections.Individual;
 import ga.components.chromosomes.Chromosome;
 import ga.operations.selectionOperators.selectionSchemes.ProportionalScheme;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 

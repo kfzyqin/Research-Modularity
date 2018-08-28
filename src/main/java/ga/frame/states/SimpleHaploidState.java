@@ -1,6 +1,5 @@
 package ga.frame.states;
 
-import com.sun.istack.internal.NotNull;
 import ga.collections.Individual;
 import ga.collections.Population;
 import ga.collections.PopulationMode;
@@ -10,6 +9,7 @@ import ga.operations.hotspotMutators.HotspotMutator;
 import ga.operations.mutators.Mutator;
 import ga.operations.reproducers.Reproducer;
 import ga.operations.selectionOperators.selectors.Selector;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
