@@ -7,9 +7,10 @@ from time import gmtime, strftime
 class SymmetryPairedAnalyzer:
     def __init__(self):
         self.prefix_path = os.path.expanduser("~")
-        self.candidates = ['p00', 'p05', 'p10', 'p15', 'p20', 'p25', 'p30', 'p35', 'p40']
-        self.starting_path = self.prefix_path + '/Portal/generated-outputs/combinations-'
-        self.sample_size = 100
+        self.candidates = ['p00', 'p01', 'p05', 'p10', 'p15']
+        # self.starting_path = self.prefix_path + '/Portal/generated-outputs/combinations-'
+        self.starting_path = self.prefix_path + '/Portal/generated-outputs/x-balanced-combinations-'
+        self.sample_size = 40
 
     def print_a_paired_dist(self, a_dict):
         tab_list = []
@@ -69,6 +70,10 @@ class SymmetryPairedAnalyzer:
 
         cur_time = strftime("-%Y-%m-%d-%H-%M-%S", gmtime())
         f = open("Statistics-Report" + cur_time + ".txt", "w+")
+        f.write("\n" + self.starting_path + "\n")
+
+        f.write("\n" + "sample size " + str(self.sample_size) + "\n")
+
         f.write("\nfittest dist\n")
         f.write(self.print_a_single_dist(fittest_dist))
 

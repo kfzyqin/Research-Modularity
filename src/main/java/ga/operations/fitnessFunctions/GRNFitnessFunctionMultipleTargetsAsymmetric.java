@@ -28,11 +28,6 @@ public class GRNFitnessFunctionMultipleTargetsAsymmetric extends GRNFitnessFunct
         this.stride = stride;
     }
 
-    public GRNFitnessFunctionMultipleTargetsAsymmetric(int[][] targets, int maxCycle, double perturbationRate, List<Integer> thresholdOfAddingTarget, double stride) {
-        super(targets, maxCycle, perturbationRate, thresholdOfAddingTarget);
-        this.stride = stride;
-    }
-
     @Override
     protected double getHammingDistance(DataGene[] attractor, int[] target) {
         double[] weights = new double[target.length];
@@ -45,7 +40,7 @@ public class GRNFitnessFunctionMultipleTargetsAsymmetric extends GRNFitnessFunct
             }
         } else {
             int middle = (target.length - 1) / 2;
-            double startWeight = 1 - this.stride * middle;
+            double startWeight = this.stride * target.length / 2.0 - this.stride * middle;
             for (int i=0; i<target.length; i++) {
                 weights[i] = startWeight + i * this.stride;
             }

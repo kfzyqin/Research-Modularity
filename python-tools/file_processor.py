@@ -2,6 +2,7 @@ import os
 import matplotlib.pyplot as plt
 import operator as op
 import math
+import ast
 
 
 def ncr(n, r):
@@ -96,3 +97,15 @@ def save_lists_graph(lists, labels=None, ver_lines=None, path="", file_name="", 
     plt.clf()
     plt.close()
 
+
+def read_a_file_line_by_line(a_file, convert_list=False):
+    rtn = []
+    with open(a_file) as f:
+        content = f.readlines()
+        if convert_list:
+            for a_content in content:
+                x = ast.literal_eval(a_content)
+                rtn.append(x)
+            return rtn
+        else:
+            return content
