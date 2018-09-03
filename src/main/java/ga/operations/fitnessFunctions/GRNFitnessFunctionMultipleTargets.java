@@ -225,6 +225,5 @@ public class GRNFitnessFunctionMultipleTargets extends GRNFitnessFunction<Simple
 //            }
         }
         return fitnessValue / currentTargetIndices.size();
-
     }
 }

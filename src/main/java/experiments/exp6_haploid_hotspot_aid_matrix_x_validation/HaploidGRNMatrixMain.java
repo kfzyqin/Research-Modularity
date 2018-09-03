@@ -67,7 +67,7 @@ public class HaploidGRNMatrixMain {
     /* Settings for text outputs */
     private static final String summaryFileName = "Summary.txt";
     private static final String csvFileName = "Statistics.csv";
-    private static final String outputDirectory = "x-balanced-combinations-p04";
+    private static final String outputDirectory = "balanced-combinations-p09";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static final String allPerturbationsName = "Perturbations.per";
     private static final String modFitNamePrefix = "phenotypes";
@@ -78,7 +78,7 @@ public class HaploidGRNMatrixMain {
     private static final String plotTitle = "Haploid GRN Matrix";
     private static final String plotFileName = "Trends.png";
 
-    private static final double stride = 0.04;
+    private static final double stride = 0.09;
 
     public static void main(String[] args) throws IOException, InterruptedException {
 //        int[][] targets = {target1, target2, target3, target4, target5, target6, target7};
@@ -125,8 +125,8 @@ public class HaploidGRNMatrixMain {
                 new SimpleTournamentScheme(3));
 
         /* Reproducer for reproduction */
-//        Reproducer<SimpleHaploid> reproducer = new GRNHaploidNoXReproducer();
-        Reproducer<SimpleHaploid> reproducer = new GRNHaploidMatrixDiagonalReproducer(target1.length);
+        Reproducer<SimpleHaploid> reproducer = new GRNHaploidNoXReproducer();
+//        Reproducer<SimpleHaploid> reproducer = new GRNHaploidMatrixDiagonalReproducer(target1.length);
 
         /* Statistics for keeping track the performance in generations */
         DetailedStatistics<SimpleHaploid> statistics = new DetailedStatistics<>();

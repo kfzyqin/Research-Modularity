@@ -25,8 +25,8 @@ class ClimbingAnalyzer:
         print x_s
         print y_s
         plt.scatter(x_s, y_s, marker='.')
-        plt.xlabel('Fitness')
-        plt.ylabel('No. of Edges Removed')
+        plt.xlabel('No. of Edges Removed')
+        plt.ylabel('Fitness')
         plt.axhline(y=y_s[0], color='green', linestyle='--', label='original fitness')
         if not to_save:
             plt.show()

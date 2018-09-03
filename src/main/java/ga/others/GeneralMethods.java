@@ -198,6 +198,14 @@ public class GeneralMethods<T> {
         return sum / aList.length;
     }
 
+    public static double getAverageNumber(List<Double> aList) {
+        double sum = 0;
+        for (double aNumber : aList) {
+            sum += aNumber;
+        }
+        return sum / aList.size();
+    }
+
     public static double getStandardDeviation(int[] aList) {
         double anAverage = getAverageNumber(aList);
         double tmpSum = 0;
@@ -327,7 +335,8 @@ public class GeneralMethods<T> {
                     new BufferedReader(fileReader);
 
             while((line = bufferedReader.readLine()) != null) {
-                String[] splitLine = line.split(" ");
+                line = line.replace("[", "").replace("]", "");
+                String[] splitLine = line.split(", ");
                 lines.add(splitLine);
             }
 
@@ -401,6 +410,45 @@ public class GeneralMethods<T> {
         String ret = in.readLine();
         ret = ret.replace(" ", "");
         return (GeneralMethods.convertStringArrayToSimpleMaterial(ret.split(",")));
+    }
+
+    public static int getInterModuleEdgeNumber(Integer[] aGRN) {
+        int grnSideSize = (int) Math.sqrt(aGRN.length);
+        int middleSideIdx = (grnSideSize / 2);
+
+        Set<Integer> partialGenes = new HashSet<>();
+        for (int i=0; i<aGRN.length; i++) {
+            partialGenes.add(i);
+        }
+
+        Set<Integer> nonInterGenes = new HashSet<>();
+        for (int currentCrossIndex=0; currentCrossIndex<middleSideIdx; currentCrossIndex++) {
+            int tmpCrossIndex = currentCrossIndex;
+            while (tmpCrossIndex < middleSideIdx * grnSideSize) {
+                nonInterGenes.add(tmpCrossIndex);
+                tmpCrossIndex += grnSideSize;
+            }
+        }
+
+        for (int currentCrossIndex=middleSideIdx; currentCrossIndex<grnSideSize; currentCrossIndex++) {
+            int tmpCrossIndex = currentCrossIndex + middleSideIdx * grnSideSize;
+            while (tmpCrossIndex < grnSideSize * grnSideSize) {
+                nonInterGenes.add(tmpCrossIndex);
+                tmpCrossIndex += grnSideSize;
+            }
+        }
+
+        partialGenes.removeAll(nonInterGenes);
+
+        int interEdgeNo = 0;
+        for (Integer anIdx : partialGenes) {
+            if (aGRN[anIdx] != 0) {
+                interEdgeNo += 1;
+            }
+        }
+
+        return interEdgeNo;
+
     }
 
 

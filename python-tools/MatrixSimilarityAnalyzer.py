@@ -9,8 +9,8 @@ from StatisticsToolkit import StatisticsToolkit
 class MatrixSimilarityAnalyzer:
     def __init__(self):
         self.prefix_path = os.path.expanduser("~")
-        self.starting_path_1 = self.prefix_path + '/Portal/generated-outputs/x-balanced-combinations-p00'
-        self.starting_path_2 = self.prefix_path + '/Portal/generated-outputs/x-balanced-combinations-p01'
+        self.starting_path_1 = self.prefix_path + '/Portal/generated-outputs/balanced-combinations-p00'
+        self.starting_path_2 = self.prefix_path + '/Portal/generated-outputs/balanced-combinations-p02'
         self.sample_size = 80
 
     @staticmethod
@@ -18,33 +18,9 @@ class MatrixSimilarityAnalyzer:
         grn_side_size = int(math.sqrt(len(a_grn_phenotype)))
         return np.array(a_grn_phenotype).reshape([grn_side_size, grn_side_size])
 
-    def get_grn_phenotypes(self, a_type, root_directory_path):
-        suffix = ""
-        if a_type == 'fit':
-            suffix += '_fit.list'
-        elif a_type == 'mod':
-            suffix += '_mod.list'
-        else:
-            raise RuntimeError("GRN phenotypes are unexpected")
-
-        file_target = 'phenotypes' + suffix
-
-        phenotypes = []
-        txt_files = []
-        for root, dirs, files in os.walk(root_directory_path):
-            for a_file in files:
-                if a_file.endswith(file_target):
-                    txt_files.append(root + os.sep + a_file)
-
-        txt_files = txt_files[:self.sample_size]
-
-        for a_txt_file in txt_files:
-            phenotypes.append(ast.literal_eval(fp.read_a_file_line_by_line(a_txt_file)[-1]))
-
-        return phenotypes
 
     def evaluate_grn_distances(self, a_type, root_directory_path):
-        list_phenotypes = self.get_grn_phenotypes(a_type, root_directory_path)
+        list_phenotypes = fp.get_last_grn_phenotypes(self.sample_size, a_type, root_directory_path)
         matrix_phenotypes = list([self.convert_a_list_grn_to_a_matrix(a_phe) for a_phe in list_phenotypes])
 
         dists = []
@@ -60,4 +36,4 @@ class MatrixSimilarityAnalyzer:
 
 
 matrix_similarity_analyzer = MatrixSimilarityAnalyzer()
-matrix_similarity_analyzer.statistically_compare_two_group_grn_distances('mod')
+matrix_similarity_analyzer.statistically_compare_two_group_grn_distances('fit')

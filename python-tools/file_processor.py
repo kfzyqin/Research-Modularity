@@ -109,3 +109,29 @@ def read_a_file_line_by_line(a_file, convert_list=False):
             return rtn
         else:
             return content
+
+
+def get_last_grn_phenotypes(sample_size, a_type, root_directory_path):
+    suffix = ""
+    if a_type == 'fit':
+        suffix += '_fit.list'
+    elif a_type == 'mod':
+        suffix += '_mod.list'
+    else:
+        raise RuntimeError("GRN phenotypes are unexpected")
+
+    file_target = 'phenotypes' + suffix
+
+    phenotypes = []
+    txt_files = []
+    for root, dirs, files in os.walk(root_directory_path):
+        for a_file in files:
+            if a_file.endswith(file_target):
+                txt_files.append(root + os.sep + a_file)
+
+    txt_files = txt_files[:sample_size]
+
+    for a_txt_file in txt_files:
+        phenotypes.append(ast.literal_eval(read_a_file_line_by_line(a_txt_file)[-1]))
+
+    return phenotypes
