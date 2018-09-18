@@ -63,6 +63,7 @@ public class InterSymmetricLandscapeAnalyzer {
                 System.out.println("Array out of bound caught! ");
             }
         }
+        System.out.println(newFitnesses);
         System.out.println(GeneralMethods.getAverageNumber(newFitnesses));
     }
 }

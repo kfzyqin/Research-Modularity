@@ -7,10 +7,10 @@ from time import gmtime, strftime
 class SymmetryPairedAnalyzer:
     def __init__(self):
         self.prefix_path = os.path.expanduser("~")
-        self.candidates = ['p00', 'p01', 'p02', 'p03', 'p04', 'p05']
+        self.candidates = ['p00', 'p01', 'p05', 'p1']
         # self.starting_path = self.prefix_path + '/Portal/generated-outputs/combinations-'
-        self.starting_path = self.prefix_path + '/Portal/generated-outputs/balanced-combinations-'
-        self.sample_size = 90
+        self.starting_path = self.prefix_path + '/Portal/generated-outputs/zhenyue-balanced-combinations-'
+        self.sample_size = 34
 
     def print_a_paired_dist(self, a_dict):
         tab_list = []

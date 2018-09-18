@@ -4,7 +4,7 @@ from GRNEdgeMutator import GRNEdgeMutator
 import copy
 
 class LarsonNeighborModularityAnalyzer:
-    def __init__(self, path=None, neighbor_size=500):
+    def __init__(self, path=None, neighbor_size=100):
         self.path = path
         self.grn_plotter = GRNPlotter()
         self.directories = get_immediate_subdirectories(self.path)

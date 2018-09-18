@@ -6,6 +6,7 @@ import ga.components.hotspots.MatrixHotspot;
 import ga.components.materials.GRN;
 import ga.components.materials.SimpleMaterial;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargets;
+import org.apache.commons.math3.distribution.BinomialDistribution;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -449,6 +450,25 @@ public class GeneralMethods<T> {
 
         return interEdgeNo;
 
+    }
+
+    public static List<Double> getBinomialDistribution(int n, double successfulRate) {
+        List<Double> rtn = new ArrayList<>();
+        BinomialDistribution aBinomialDistribution = new BinomialDistribution(n, successfulRate);
+        for (int i=0; i<n; i++) {
+            rtn.add(aBinomialDistribution.probability(i));
+        }
+        return rtn;
+    }
+
+    public static double getOriginalHammingDistance(DataGene[] attractor, int[] target) {
+        int count = 0;
+        for (int i=0; i<attractor.length; i++) {
+            if (attractor[i].getValue() == target[i]) {
+                count += 1;
+            }
+        }
+        return attractor.length - count;
     }
 
 

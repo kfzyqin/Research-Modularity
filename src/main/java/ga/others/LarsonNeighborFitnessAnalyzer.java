@@ -15,8 +15,7 @@ import java.util.List;
 public class LarsonNeighborFitnessAnalyzer {
     private static final double geneMutationRate = 0.05;
     private static final int neighborSize = 500;
-//    private static final String pathToTheExperiment = "/Users/qin/Software-Engineering/Chin-GA-Project/thesis-data/different-crossover-mechanism-comparisons/chin-crossover";
-    private static final String pathToTheExperiment = "/Users/qin/Software-Engineering/Chin-GA-Project/generated-outputs/old-data-by-20-01-18/soto-with-perturbation-recording";
+    private static final String pathToTheExperiment = "/Users/qin/Portal/generated-outputs/esw-balanced-combinations-p00";
 
     private static final int[] target1 = {
             1, -1, 1, -1, 1,
@@ -32,7 +31,7 @@ public class LarsonNeighborFitnessAnalyzer {
     private static final List<Integer> thresholds = Arrays.asList(0, 500);
 
     /* Parameters of the GRN */
-    private static final int maxCycle = 20;
+    private static final int maxCycle = 30;
     private static final int edgeSize = 20;
     private static final int perturbations = 75;
     private static final double perturbationRate = 0.15;

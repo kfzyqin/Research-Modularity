@@ -2,9 +2,7 @@ package experiments.experiment6;
 
 import ga.components.genes.Gene;
 import ga.components.materials.SimpleMaterial;
-import ga.operations.fitnessFunctions.FitnessFunction;
-import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetric;
-import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsAllCombinations;
+import ga.operations.fitnessFunctions.*;
 import ga.others.GeneralMethods;
 import ga.others.ModularityPathAnalyzer;
 
@@ -33,19 +31,19 @@ public class InterModulePathPlotter {
     private static final double perturbationRate = 0.15;
     private static final List<Integer> thresholds = Arrays.asList(0, 500);
     private static final int[] perturbationSizes = {1, 2, 3, 4};
-    private static final double stride = 0.04;
+    private static final double stride = 0.1;
 
 
     public static void main(String[] args) throws IOException {
-        String targetPath = "/Users/qin/Portal/generated-outputs/balanced-combinations-p02";
+        String targetPath = "/Users/qin/Portal/generated-outputs/esw-balanced-combinations-p01";
 
         int[][] targets = {target1, target2};
 
 //        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetric(
 //                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
 
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsAllCombinations(
-                targets, maxCycle, perturbationRate, thresholds, perturbationSizes);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
+                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
 
         File[] directories = new File(targetPath).listFiles(File::isDirectory);
 
