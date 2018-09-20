@@ -12,7 +12,7 @@ class MatrixSimilarityAnalyzer:
         self.prefix_path = os.path.expanduser("~")
         self.starting_path_1 = self.prefix_path + '/Portal/generated-outputs/zhenyue-balanced-combinations-p00'
         self.starting_path_2 = self.prefix_path + '/Portal/generated-outputs/zhenyue-balanced-combinations-p01'
-        self.sample_size = 99
+        self.sample_size = 100
 
     @staticmethod
     def convert_a_list_grn_to_a_matrix(a_grn_phenotype):

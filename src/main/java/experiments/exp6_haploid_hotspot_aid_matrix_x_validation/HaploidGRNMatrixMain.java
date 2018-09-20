@@ -65,10 +65,11 @@ public class HaploidGRNMatrixMain {
     /* Settings for text outputs */
     private static final String summaryFileName = "Summary.txt";
     private static final String csvFileName = "Statistics.csv";
-    private static final String outputDirectory = "bob-balanced-combinations-p00";
+    private static final String outputDirectory = "record-esw-balanced-combinations-p01";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static final String allPerturbationsName = "Perturbations.per";
     private static final String modFitNamePrefix = "phenotypes";
+    private static final String allPopulationPhenotypeName = "./population-phenotypes/all-population-phenotype";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
 
@@ -76,7 +77,7 @@ public class HaploidGRNMatrixMain {
     private static final String plotTitle = "Haploid GRN Matrix";
     private static final String plotFileName = "Trends.png";
 
-    private static final double stride = 0.0;
+    private static final double stride = 0.01;
     private static final int PerturbationPathUpBound = 4;
 
     public static void main(String[] args) throws IOException, InterruptedException {
@@ -87,8 +88,8 @@ public class HaploidGRNMatrixMain {
 //        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(
 //                targets, maxCycle, perturbations, perturbationRate, thresholds);
 
-//        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsBalanceAsymmetric(
-//                targets, maxCycle, perturbations, perturbationRate, thresholds, stride);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsBalanceAsymmetric(
+                targets, maxCycle, perturbations, perturbationRate, thresholds, stride);
 
 //        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsBalanceAsymmetricResample(
 //                targets, maxCycle, perturbations, perturbationRate, thresholds, stride, PerturbationPathUpBound);
@@ -105,8 +106,8 @@ public class HaploidGRNMatrixMain {
 //        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetric(
 //                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
 
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricBob(
-                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
+//        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricBob(
+//                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
 
 //        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
 //                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
@@ -164,15 +165,16 @@ public class HaploidGRNMatrixMain {
         /* Generate output files */
         statistics.save(summaryFileName);
         statistics.generateFitnessModularityGRNs(modFitNamePrefix);
+        statistics.generatePopulationPhenotypesOfAllGenerations(allPopulationPhenotypeName);
         statistics.generateNormalCSVFile(csvFileName);
         statistics.generatePlot(plotTitle, plotFileName);
 
-        String test = Arrays.deepToString(targets);
-
-        ProcessBuilder PB1 = new ProcessBuilder("python2", "./python-tools/java_plot_curves.py",
-                System.getProperty("user.dir") + "/generated-outputs/" + outputDirectoryPath,
-                "" + perturbations, test, thresholds.toString());
-        PB1.start();
+//        String test = Arrays.deepToString(targets);
+//
+//        ProcessBuilder PB1 = new ProcessBuilder("python2", "./python-tools/java_plot_curves.py",
+//                System.getProperty("user.dir") + "/generated-outputs/" + outputDirectoryPath,
+//                "" + perturbations, test, thresholds.toString());
+//        PB1.start();
 
 //        statistics.storePerturbations(allPerturbationsName);
     }

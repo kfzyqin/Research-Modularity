@@ -35,7 +35,7 @@ public class InterModulePathPlotter {
 
 
     public static void main(String[] args) throws IOException {
-        String targetPath = "/Users/qin/Portal/generated-outputs/esw-balanced-combinations-p01";
+        String targetPath = "/Users/qin/Portal/generated-outputs/zhenyue-balanced-combinations-p01";
 
         int[][] targets = {target1, target2};
 

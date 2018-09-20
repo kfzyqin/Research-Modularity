@@ -41,6 +41,8 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
 
     List<List<DataGene[][]>> allGenerationPerturbations;
 
+    List<List<String>> populationPhenotypeList;
+
     public DetailedStatistics() {
         generation = 0;
         elites = new ArrayList<>();
@@ -59,6 +61,8 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
         fittestGRNs = new ArrayList<>();
         mostModularGRNs = new ArrayList<>();
         meanMods = new ArrayList<>();
+
+        populationPhenotypeList = new ArrayList<>();
     }
 
     /**
@@ -82,6 +86,8 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
         fittestGRNs = new ArrayList<>(maxGen);
         mostModularGRNs = new ArrayList<>(maxGen);
         meanMods = new ArrayList<>(maxGen);
+
+        populationPhenotypeList = new ArrayList<>(maxGen);
     }
 
     private DetailedStatistics(@NotNull final List<Individual<C>> elites,
@@ -93,7 +99,8 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
                                @NotNull final List<Double> edgeNumberStdDev,
                                @NotNull final List<Individual<C>> fittestGRNs,
                                @NotNull final List<Individual<C>> mostModularGRNs,
-                               @NotNull final List<Double> meanMods) {
+                               @NotNull final List<Double> meanMods,
+                               @NotNull final List<List<String>> populationPhenotypeList) {
         generation = elites.size();
         this.elites = new ArrayList<>(generation);
         this.means = new ArrayList<>(means);
@@ -109,13 +116,14 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
             this.fittestGRNs.add(fittestGRNs.get(i));
             this.mostModularGRNs.add(mostModularGRNs.get(i));
             this.meanMods.add(meanMods.get(i));
+            this.populationPhenotypeList.add(populationPhenotypeList.get(i));
         }
     }
 
     @Override
     public DetailedStatistics<C> copy() {
         return new DetailedStatistics<>(elites, worsts, medians, means, deltas, averageEdgeNumbers, edgeNumberStdDevs,
-                fittestGRNs, mostModularGRNs, meanMods);
+                fittestGRNs, mostModularGRNs, meanMods, populationPhenotypeList);
     }
 
     private double getAverageFitnessValueOfAPopulation(@NotNull final List<Individual<C>> data) {
@@ -175,6 +183,14 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
         return rtn;
     }
 
+    protected List<String> getPopulationPhenotype(List<Individual<C>> data) {
+        List<String> populationPhenotype = new ArrayList<>();
+        for (Individual i : data) {
+            populationPhenotype.add(i.chromosome.getPhenotype(false).toString());
+        }
+        return populationPhenotype;
+    }
+
     @Override
     public void record(List<Individual<C>> data) {
         Individual<C> elite = this.getFittestMostModularIndividual(data);
@@ -209,7 +225,9 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
 
         meanMods.add(ListTools.getListAvg(mods));
 
-        this.allGenerationPerturbations.add(new ArrayList(elite.getIndividualSPerturbations()));
+        populationPhenotypeList.add(this.getPopulationPhenotype(data));
+
+//        this.allGenerationPerturbations.add(new ArrayList(elite.getIndividualSPerturbations()));
 //        for (DataGene[][] aDataGene : this.allGenerationPerturbations.get(allGenerationPerturbations.size()-1)) {
 //            System.out.println(Arrays.toString(aDataGene[0]));
 //        }
@@ -218,7 +236,8 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
     public void setDirectory(@NotNull String directoryName) {
         this.directoryPath += "/" + directoryName + "/";
         boolean isCreated = this.createDirectory(this.directoryPath);
-        if (!isCreated) {
+        boolean isCreatedSub = this.createDirectory(this.directoryPath + "/population-phenotypes/");
+        if (!isCreated || !isCreatedSub) {
             throw new RuntimeException("Failed to create the directory: " + this.directoryPath);
         }
     }
@@ -248,6 +267,21 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
     @Override
     public int getGeneration() {
         return this.generation;
+    }
+
+    public void generatePopulationPhenotypesOfAllGenerations(String fileName) throws IOException {
+
+        for (int i=0; i<=generation; i++) {
+            BufferedWriter pheOutputWriter;
+            String aFileName = this.directoryPath + fileName + "_gen_" + ((Integer) i).toString() + ".lists";
+            pheOutputWriter = new BufferedWriter(new FileWriter(aFileName));
+            List<String> aPopulationPhenotype = populationPhenotypeList.get(i);
+            for (String aIndPhenotype : aPopulationPhenotype) {
+                pheOutputWriter.write(aIndPhenotype);
+                pheOutputWriter.newLine();
+            }
+            pheOutputWriter.close();
+        }
     }
 
     public void generateFitnessModularityGRNs(String fileName) throws IOException {
@@ -347,4 +381,5 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
     public List<List<DataGene[][]>> getAllGenerationPerturbations() {
         return this.allGenerationPerturbations;
     }
+
 }
