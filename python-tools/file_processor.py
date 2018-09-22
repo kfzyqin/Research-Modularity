@@ -13,9 +13,13 @@ def ncr(n, r):
     return numer//denom
 
 
-def get_immediate_subdirectories(a_dir):
-    return [(a_dir + os.sep + name) for name in os.listdir(a_dir)
-            if os.path.isdir(os.path.join(a_dir, name))]
+def get_immediate_subdirectories(a_dir, no_limitation=0):
+    if no_limitation == 0:
+        return [(a_dir + os.sep + name) for name in os.listdir(a_dir)
+                if os.path.isdir(os.path.join(a_dir, name))]
+    else:
+        return [(a_dir + os.sep + name) for name in os.listdir(a_dir)
+                if os.path.isdir(os.path.join(a_dir, name)) and len(os.listdir((a_dir + os.sep + name))) >= no_limitation]
 
 
 def save_a_list_graph(a_list, y_label, path, file_name, vertical_lines=None):
@@ -30,17 +34,22 @@ def save_a_list_graph(a_list, y_label, path, file_name, vertical_lines=None):
     plt.close()
 
 
-def plot_a_list_graph(a_list, y_label):
-    plt.plot(a_list)
+def plot_a_list_graph(a_list, y_label, dpi=500, save_path=None, save_name=None):
+    plt.clf()
+    xs = range(len(a_list))
+    plt.scatter(xs, a_list)
     plt.ylabel(y_label)
-    plt.show()
+    if save_path is None:
+        plt.show()
+    else:
+        plt.savefig(save_path + os.sep + save_name, dpi=dpi)
 
 
 def save_multiple_lists_graph(lists, labels, path, file_name, vertical_lines=None):
     if vertical_lines is None:
         vertical_lines = []
     for idx in range(len(lists)):
-        plt.plot(lists[idx], label=labels[idx])
+        plt.plot( lists[idx], label=labels[idx])
     if len(vertical_lines) != 2:
         for xc in vertical_lines:
             plt.axvline(x=xc)
@@ -74,15 +83,15 @@ def write_a_list_into_a_file(a_list, file_path, file_name):
         the_file.write("%s " % item)
 
 
-def save_lists_graph(lists, labels=None, ver_lines=None, path="", file_name="", marker=None, colors=None):
+def save_lists_graph(lists, labels=None, ver_lines=None, path="", file_name="", marker=None, colors=None, dpi=500):
     fig, ax0 = plt.subplots(nrows=1, figsize=(16, 10))
     default_colors = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'w']
     for a_list_idx in range(len(lists)):
         if not (labels is None):
-            ax0.plot(lists[a_list_idx], linewidth=1.5, label=labels[a_list_idx], marker=marker,
+            ax0.scatter(list(range(len(lists[a_list_idx]))), lists[a_list_idx], label=labels[a_list_idx], marker=marker,
                      c=default_colors[int(colors[a_list_idx])] if colors is not None else default_colors[a_list_idx%len(default_colors)])
         else:
-            ax0.plot(lists[a_list_idx], linewidth=1.5, marker=marker,
+            ax0.scatter(list(range(len(lists[a_list_idx]))), lists[a_list_idx], marker=marker,
                      c=default_colors[int(colors[a_list_idx])] if colors is not None else default_colors[a_list_idx%len(default_colors)])
         ax0.legend()
 
@@ -91,7 +100,7 @@ def save_lists_graph(lists, labels=None, ver_lines=None, path="", file_name="", 
             plt.axvline(x=v_l, ls='dashed', c='y')
 
     if path and file_name:
-        plt.savefig(path + os.sep + file_name, dpi=200)
+        plt.savefig(path + os.sep + file_name, dpi=dpi)
     else:
         plt.show()
     plt.clf()
@@ -135,3 +144,5 @@ def get_last_grn_phenotypes(sample_size, a_type, root_directory_path):
         phenotypes.append(ast.literal_eval(read_a_file_line_by_line(a_txt_file)[-1]))
 
     return phenotypes
+
+

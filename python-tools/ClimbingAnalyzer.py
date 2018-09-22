@@ -20,14 +20,20 @@ class ClimbingAnalyzer:
         return blocks
 
     def plot_blocks(self, blocks, to_save=False, save_path='', save_name=''):
-        x_s = [x[0] for x in blocks]
-        y_s = [x[1] for x in blocks]
-        print x_s
-        print y_s
-        plt.scatter(x_s, y_s, marker='.')
+        starting_fit = blocks[0][1]
+
+        x_s_g = [x[0] for x in blocks if x[1] <= starting_fit]
+        y_s_g = [x[1] for x in blocks if x[1] <= starting_fit]
+
+        x_s_r = [x[0] for x in blocks if x[1] > starting_fit]
+        y_s_r = [x[1] for x in blocks if x[1] > starting_fit]
+
+        plt.scatter(x_s_g, y_s_g, marker='.', color='g')
+        plt.scatter(x_s_r, y_s_r, marker='.', color='r')
+
         plt.xlabel('No. of Edges Removed')
         plt.ylabel('Fitness')
-        plt.axhline(y=y_s[0], color='green', linestyle='--', label='original fitness')
+        plt.axhline(y=blocks[0][1], color='blue', linestyle='--', label='original fitness')
         if not to_save:
             plt.show()
         else:
