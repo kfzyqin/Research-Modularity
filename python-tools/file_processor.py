@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import operator as op
 import math
 import ast
+import json
 
 
 def ncr(n, r):
@@ -146,3 +147,7 @@ def get_last_grn_phenotypes(sample_size, a_type, root_directory_path):
     return phenotypes
 
 
+def open_a_json_as_a_dict(file_path):
+    with open(file_path) as f:
+        data = json.load(f)
+    return data

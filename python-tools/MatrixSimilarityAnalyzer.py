@@ -13,8 +13,8 @@ from time import gmtime, strftime
 class MatrixSimilarityAnalyzer:
     def __init__(self):
         self.prefix_path = os.path.expanduser("~")
-        self.starting_path_1 = self.prefix_path + '/Portal/generated-outputs/record-zhenyue-balanced-combinations-p00'
-        self.starting_path_2 = self.prefix_path + '/Portal/generated-outputs/record-zhenyue-balanced-combinations-p01'
+        self.starting_path_1 = self.prefix_path + '/Portal/generated-outputs/record-esw-balanced-combinations-p00'
+        self.starting_path_2 = self.prefix_path + '/Portal/generated-outputs/record-esw-balanced-combinations-p01'
         self.sample_size = 50
 
     @staticmethod
@@ -120,16 +120,18 @@ class MatrixSimilarityAnalyzer:
 
             cur_time = strftime("-%Y-%m-%d-%H-%M-%S", gmtime())
 
-            import json
-            with open('./generated_images/dict_1' + cur_time + '.json', 'w') as a_f:
-                json.dump(dist_dict_1, a_f, sort_keys=True, indent=4)
-            a_f.close()
-
-            with open('./generated_images/dict_2' + cur_time + '.json', 'w') as a_f:
-                json.dump(dist_dict_2, a_f, sort_keys=True, indent=4)
-            a_f.close()
-
             if to_plot:
+                self.avg_dist_of_each_gen_analyse(dist_dict_1, dist_dict_2)
+
+                import json
+                with open('./generated_images/dict_1' + cur_time + '.json', 'w') as a_f:
+                    json.dump(dist_dict_1, a_f, sort_keys=True, indent=4)
+                a_f.close()
+
+                with open('./generated_images/dict_2' + cur_time + '.json', 'w') as a_f:
+                    json.dump(dist_dict_2, a_f, sort_keys=True, indent=4)
+                a_f.close()
+
                 self.plot_dist_gen_curve(dist_dict_1, dpi=500,
                                          save_path='./generated_images/', save_name=('avg_dist_1' + cur_time + '.png'))
                 self.plot_dist_gen_curve(dist_dict_2, dpi=500,
@@ -196,9 +198,28 @@ class MatrixSimilarityAnalyzer:
         print(StatisticsToolkit.calculate_statistical_significances(ks_dict_1[set_idxs_1[-1]],
                                                                     ks_dict_2[set_idxs_2[-1]]))
 
+    def avg_dist_of_each_gen_analyse(self, dists_1, dists_2):
+        new_dists_1 = dists_1
+        new_dists_2 = dists_2
+
+        if isinstance(dists_1, str):
+            new_dists_1 = fp.open_a_json_as_a_dict(dists_1)
+        if isinstance(dists_2, str):
+            new_dists_2 = fp.open_a_json_as_a_dict(dists_2)
+
+        list_1 = []
+        list_2 = []
+
+        for a_gen in sorted(new_dists_1.keys()):
+            list_1.append(np.mean(new_dists_1[a_gen]))
+            list_2.append(np.mean(new_dists_2[a_gen]))
+
+        print(StatisticsToolkit.calculate_statistical_significances(list_1, list_2))
+
 
 matrix_similarity_analyzer = MatrixSimilarityAnalyzer()
 # matrix_similarity_analyzer.statistically_compare_two_inter_file_grn_distances('fit', dist_type='manhattan')
 matrix_similarity_analyzer.launch_inter_ind_dists(starting_gen=1, dist_type='manhattan', use_average=True, to_plot=True)
 # matrix_similarity_analyzer.launch_k_means_evaluation(2000, 32)
-
+# matrix_similarity_analyzer.avg_dist_of_each_gen_analyse('./generated_images/dict_1-2018-09-22-04-59-07.json',
+#                                                         './generated_images/dict_2-2018-09-22-04-59-07.json')

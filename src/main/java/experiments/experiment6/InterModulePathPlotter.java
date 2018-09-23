@@ -31,11 +31,11 @@ public class InterModulePathPlotter {
     private static final double perturbationRate = 0.15;
     private static final List<Integer> thresholds = Arrays.asList(0, 500);
     private static final int[] perturbationSizes = {0, 1, 2, 3, 4, 5, 6, 7};
-    private static final double stride = 0.00;
+    private static final double stride = 0.01;
 
 
     public static void main(String[] args) throws IOException {
-        String targetPath = "/Users/qin/Portal/generated-outputs/record-zhenyue-balanced-combinations-p00";
+        String targetPath = "/Users/qin/Portal/generated-outputs/record-zhenyue-balanced-combinations-p01";
 
         int[][] targets = {target1, target2};
 
