@@ -16,6 +16,7 @@ import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
 import ga.operations.reproducers.*;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
+import ga.operations.selectionOperators.selectors.SimpleProportionalSelector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
 
 import java.io.IOException;
@@ -65,7 +66,7 @@ public class HaploidGRNMatrixMain {
     /* Settings for text outputs */
     private static final String summaryFileName = "Summary.txt";
     private static final String csvFileName = "Statistics.csv";
-    private static final String outputDirectory = "record-esw-balanced-combinations-p01";
+    private static final String outputDirectory = "record-zhenyue-balanced-combinations-p04";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static final String allPerturbationsName = "Perturbations.per";
     private static final String modFitNamePrefix = "phenotypes";
@@ -77,7 +78,7 @@ public class HaploidGRNMatrixMain {
     private static final String plotTitle = "Haploid GRN Matrix";
     private static final String plotFileName = "Trends.png";
 
-    private static final double stride = 0.01;
+    private static final double stride = 0.04;
     private static final int PerturbationPathUpBound = 4;
 
     public static void main(String[] args) throws IOException, InterruptedException {
@@ -88,8 +89,8 @@ public class HaploidGRNMatrixMain {
 //        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(
 //                targets, maxCycle, perturbations, perturbationRate, thresholds);
 
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsBalanceAsymmetric(
-                targets, maxCycle, perturbations, perturbationRate, thresholds, stride);
+//        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsBalanceAsymmetric(
+//                targets, maxCycle, perturbations, perturbationRate, thresholds, stride);
 
 //        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsBalanceAsymmetricResample(
 //                targets, maxCycle, perturbations, perturbationRate, thresholds, stride, PerturbationPathUpBound);
@@ -109,8 +110,8 @@ public class HaploidGRNMatrixMain {
 //        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricBob(
 //                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
 
-//        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
-//                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
+                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
 
         /* It is not necessary to write an initializer, but doing so is convenient to
         repeat the experiment using different parameter */

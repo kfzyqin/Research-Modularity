@@ -1,8 +1,11 @@
 package ga.others;
 
 import ga.components.genes.DataGene;
+import ga.components.materials.Material;
 import ga.components.materials.SimpleMaterial;
+import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargets;
+import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue;
 import ga.operations.mutators.GRNEdgeMutator;
 import ga.operations.mutators.Mutator;
 
@@ -14,8 +17,10 @@ import java.util.List;
 
 public class LarsonNeighborFitnessAnalyzer {
     private static final double geneMutationRate = 0.05;
-    private static final int neighborSize = 500;
-    private static final String pathToTheExperiment = "/Users/qin/Portal/generated-outputs/esw-balanced-combinations-p00";
+    private static final int neighborSize = 100;
+    private static final String pathToTheExperiment = "/Users/qin/Portal/generated-outputs/record-zhenyue-balanced-combinations-p01";
+    private static final double stride = 0.00;
+    private static final int[] perturbationSizes = {0, 1, 2, 3, 4, 5, 6, 7};
 
     private static final int[] target1 = {
             1, -1, 1, -1, 1,
@@ -50,6 +55,19 @@ public class LarsonNeighborFitnessAnalyzer {
         return mutatedNeighbors;
     }
 
+    public static Double getMutatedNeighbourFitness(SimpleMaterial aNeighbor,
+                                                    GRNFitnessFunctionMultipleTargets fitnessFunction, int generation) {
+        int[][] targets = {target1, target2};
+        return fitnessFunction.evaluate(aNeighbor, generation);
+    }
+
+    public static Double getMutatedNeighbourFitnessZhenyue(SimpleMaterial aNeighbor, double stride,
+                                                           int[] perturbationSizes, int[][] targets) {
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
+                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
+        return getMutatedNeighbourFitness(aNeighbor, (GRNFitnessFunctionMultipleTargets) fitnessFunction, 1999);
+    }
+
     public static Double getMutatedNeighbourFitness(String path, SimpleMaterial aNeighbor, int generation) throws IOException, ClassNotFoundException {
         int[][] targets = {target1, target2};
         GRNFitnessFunctionMultipleTargets fitnessFunction = new GRNFitnessFunctionMultipleTargets(
@@ -70,23 +88,35 @@ public class LarsonNeighborFitnessAnalyzer {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         List<Double> maxFitnessValues = new ArrayList<>();
         Mutator mutator = new GRNEdgeMutator(geneMutationRate);
-        File[] files = new File(pathToTheExperiment).listFiles();
-        List<String> directories = new ArrayList<>();
-        GeneralMethods.showFiles(files, directories);
+//        File[] files = new File(pathToTheExperiment).listFiles();
+        File[] directories = new File(pathToTheExperiment).listFiles(File::isDirectory);
+        List<Integer> areLocalOptima = new ArrayList<>();
 
-        for (String aPath : directories) {
+        int[][] targets = {target1, target2};
+
+        for (File aPath : directories) {
             System.out.println(aPath);
             List<Double> fitnessValues = new ArrayList<>();
-            List<SimpleMaterial> mutationNeighbors = getMutatedNeighbors(GeneralMethods.getGenerationPhenotype(aPath, 2000));
-            List<List<DataGene[][]>> perturbations = GeneralMethods.getPerturbations(aPath);
+
+            System.out.println("a directory: " + aPath);
+            String aModFile = aPath + "/" + "phenotypes_fit.list";
+            List<String[]> lines = GeneralMethods.readFileLineByLine(aModFile);
+            String[] lastGRNString = lines.get(lines.size() - 1);
+//            List<List<DataGene[][]>> perturbations = GeneralMethods.getPerturbations(aPath);
+            SimpleMaterial aMaterial = GeneralMethods.convertStringArrayToSimpleMaterial(lastGRNString);
+            List<SimpleMaterial> mutationNeighbors = getMutatedNeighbors(aMaterial);
+
             for (SimpleMaterial aNeighbor : mutationNeighbors) {
-                fitnessValues.add(getMutatedNeighbourFitness(aNeighbor, 2000, perturbations));
+                fitnessValues.add(getMutatedNeighbourFitnessZhenyue(aNeighbor, stride, perturbationSizes, targets));
             }
             maxFitnessValues.add(Collections.max(fitnessValues));
             System.out.println(fitnessValues);
             System.out.println("Original: " + fitnessValues.get(0) + " max: " + Collections.max(fitnessValues.subList(1, fitnessValues.size())));
-            System.out.println(fitnessValues.get(0) == Collections.max(fitnessValues));
+            boolean isLocalOptimum = fitnessValues.get(0) == Collections.max(fitnessValues);
+            areLocalOptima.add(isLocalOptimum ? 1 : 0);
+            System.out.println(isLocalOptimum);
         }
         System.out.println(maxFitnessValues);
+        System.out.println(areLocalOptima);
     }
 }

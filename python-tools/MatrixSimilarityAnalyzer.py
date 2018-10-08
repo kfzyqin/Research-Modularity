@@ -12,10 +12,11 @@ from time import gmtime, strftime
 
 class MatrixSimilarityAnalyzer:
     def __init__(self):
-        self.prefix_path = os.path.expanduser("~")
-        self.starting_path_1 = self.prefix_path + '/Portal/generated-outputs/record-esw-balanced-combinations-p00'
-        self.starting_path_2 = self.prefix_path + '/Portal/generated-outputs/record-esw-balanced-combinations-p01'
-        self.sample_size = 50
+        # self.prefix_path = os.path.expanduser("~")
+        self.starting_path_1 = '/Volumes/LaCie/Maotai-Project-Symmetry-Breaking/generated-outputs/record-zhenyue-balanced-combinations-p00'
+        self.starting_path_2 = '/Volumes/LaCie/Maotai-Project-Symmetry-Breaking/generated-outputs/record-zhenyue-balanced-combinations-p04'
+        self.sample_size = 1
+        self.to_fetch_sample = 5
 
     @staticmethod
     def convert_a_list_grn_to_a_matrix(a_grn_phenotype):
@@ -57,14 +58,17 @@ class MatrixSimilarityAnalyzer:
         for a_txt_file in txt_files:
             a_gen_phe = []
             for an_ind in fp.read_a_file_line_by_line(a_txt_file):
-                a_gen_phe.append(ast.literal_eval(an_ind))
+                to_append = ast.literal_eval(an_ind)
+                if len(to_append) < 100:
+                    print "watch: ", file_path
+                a_gen_phe.append(to_append)
             phenotypes.append(a_gen_phe)
 
         return phenotypes
 
     def get_pop_phe_lists_of_an_experiment(self, root_path, sample_size, starting_gen=0, ending_gen=None):
         pop_phe_lists_list = []
-        for a_trial_dir in fp.get_immediate_subdirectories(root_path, no_limitation=5)[:sample_size]:
+        for a_trial_dir in fp.get_immediate_subdirectories(root_path, no_limitation=3)[:sample_size]:
             print(a_trial_dir)
             pop_phe_lists_list.append(self.get_pop_phe_lists_of_a_trial(a_trial_dir, starting_gen, ending_gen))
         return pop_phe_lists_list
@@ -105,8 +109,8 @@ class MatrixSimilarityAnalyzer:
             fp.save_lists_graph(dist_list, ['sym', 'asym'], path=save_path, file_name=save_name, dpi=dpi)
 
     def launch_inter_ind_dists(self, starting_gen, dist_type, use_average=True, to_plot=False):
-        exp_list_1 = self.get_pop_phe_lists_of_an_experiment(self.starting_path_1, sample_size=self.sample_size, starting_gen=starting_gen)
-        exp_list_2 = self.get_pop_phe_lists_of_an_experiment(self.starting_path_2, sample_size=self.sample_size, starting_gen=starting_gen)
+        exp_list_1 = self.get_pop_phe_lists_of_an_experiment(self.starting_path_1, sample_size=self.to_fetch_sample, starting_gen=starting_gen)
+        exp_list_2 = self.get_pop_phe_lists_of_an_experiment(self.starting_path_2, sample_size=self.to_fetch_sample, starting_gen=starting_gen)
 
         if use_average:
             dist_dict_1 = self.evaluate_inter_ind_grn_distances(exp_list_1, dist_type, use_average=True)
@@ -139,8 +143,10 @@ class MatrixSimilarityAnalyzer:
                 self.plot_dist_gen_curve([dist_dict_1, dist_dict_2], dpi=500,
                                          save_path='./generated_images/', save_name=('avg_dist_1_2' + cur_time + '.png'))
 
-            print(StatisticsToolkit.calculate_statistical_significances(dist_dict_1[set_idxs_1[-1]],
-                                                                        dist_dict_2[set_idxs_2[-1]]))
+            print("len 1: ", len(dist_dict_1[set_idxs_1[-1]]))
+            print("len 2: ", len(dist_dict_2[set_idxs_2[-1]]))
+            print(StatisticsToolkit.calculate_statistical_significances(dist_dict_1[set_idxs_1[-1]][:self.sample_size],
+                                                                        dist_dict_2[set_idxs_2[-1]][:self.sample_size]))
 
         else:
             dists_dict_1 = self.evaluate_inter_ind_grn_distances(exp_list_1, dist_type, use_average=False)
@@ -149,7 +155,8 @@ class MatrixSimilarityAnalyzer:
             set_idxs_1 = sorted(dists_dict_1.keys())
             set_idxs_2 = sorted(dists_dict_2.keys())
 
-            for dists_1, dists_2 in zip(dists_dict_1[set_idxs_1[-1]], dists_dict_2[set_idxs_2[-1]]):
+            for dists_1, dists_2 in zip(dists_dict_1[set_idxs_1[-1]][:self.sample_size],
+                                        dists_dict_2[set_idxs_2[-1]][:self.sample_size]):
                 print(StatisticsToolkit.calculate_statistical_significances(dists_1, dists_2))
 
     def statistically_compare_two_inter_file_grn_distances(self, a_type, dist_type):
@@ -178,12 +185,13 @@ class MatrixSimilarityAnalyzer:
                     cluster_nos[i].append(self.k_means_analysis(max_cluster, pop_phe_lists[i]))
                 else:
                     cluster_nos[i] = [self.k_means_analysis(max_cluster, pop_phe_lists[i])]
+
         return cluster_nos
 
     def launch_k_means_evaluation(self, starting_gen, max_cluster):
-        exp_list_1 = self.get_pop_phe_lists_of_an_experiment(self.starting_path_1, sample_size=self.sample_size,
+        exp_list_1 = self.get_pop_phe_lists_of_an_experiment(self.starting_path_1, sample_size=self.to_fetch_sample,
                                                              starting_gen=starting_gen)
-        exp_list_2 = self.get_pop_phe_lists_of_an_experiment(self.starting_path_2, sample_size=self.sample_size,
+        exp_list_2 = self.get_pop_phe_lists_of_an_experiment(self.starting_path_2, sample_size=self.to_fetch_sample,
                                                              starting_gen=starting_gen)
 
         ks_dict_1 = self.evaluate_k_means_inter_ind(exp_list_1, max_cluster)
@@ -195,8 +203,8 @@ class MatrixSimilarityAnalyzer:
         set_idxs_1 = sorted(ks_dict_1.keys())
         set_idxs_2 = sorted(ks_dict_2.keys())
 
-        print(StatisticsToolkit.calculate_statistical_significances(ks_dict_1[set_idxs_1[-1]],
-                                                                    ks_dict_2[set_idxs_2[-1]]))
+        print(StatisticsToolkit.calculate_statistical_significances(ks_dict_1[set_idxs_1[-1]][:self.sample_size],
+                                                                    ks_dict_2[set_idxs_2[-1]][:self.sample_size]))
 
     def avg_dist_of_each_gen_analyse(self, dists_1, dists_2):
         new_dists_1 = dists_1

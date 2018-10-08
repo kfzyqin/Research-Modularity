@@ -3,6 +3,7 @@ package experiments.experiment6;
 import ga.components.materials.SimpleMaterial;
 import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetric;
+import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsAllCombinations;
 import ga.others.GeneralMethods;
 import ga.others.ModularityPathAnalyzer;
@@ -31,20 +32,21 @@ public class InterSymmetricLandscapeAnalyzer {
 
     private static final double perturbationRate = 0.15;
     private static final List<Integer> thresholds = Arrays.asList(0, 500);
-    private static final int[] perturbationSizes = {1, 2, 3, 4};
+    private static final int[] perturbationSizes = {0, 1, 2, 3, 4, 5, 6, 7};
 
-    private static final double stride = 0.03;
+    private static final double stride1 = 0.00;
+    private static final double stride2 = 0.01;
 
     public static void main(String[] args) throws IOException {
-        String targetPath = "/Users/qin/Portal/generated-outputs/balanced-combinations-p03";
+        String targetPath = "/Users/qin/Portal/generated-outputs/record-zhenyue-balanced-combinations-p01";
 
         int[][] targets = {target1, target2};
 
-        FitnessFunction fitnessFunction1 = new GRNFitnessFunctionMultipleTargetsAllCombinations(
-                targets, maxCycle, perturbationRate, thresholds, perturbationSizes);
+        FitnessFunction fitnessFunction1 = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
+                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride1);
 
-        FitnessFunction fitnessFunction2 = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetric(
-                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
+        FitnessFunction fitnessFunction2 = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
+                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride2);
 
         File[] directories = new File(targetPath).listFiles(File::isDirectory);
 
@@ -64,6 +66,6 @@ public class InterSymmetricLandscapeAnalyzer {
             }
         }
         System.out.println(newFitnesses);
-        System.out.println(GeneralMethods.getAverageNumber(newFitnesses));
+//        System.out.println(GeneralMethods.getAverageNumber(newFitnesses));
     }
 }

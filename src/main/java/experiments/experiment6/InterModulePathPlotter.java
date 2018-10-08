@@ -32,18 +32,18 @@ public class InterModulePathPlotter {
     private static final List<Integer> thresholds = Arrays.asList(0, 500);
     private static final int[] perturbationSizes = {0, 1, 2, 3, 4, 5, 6, 7};
     private static final double stride = 0.01;
-
+    private static final int perturbations = 500;
 
     public static void main(String[] args) throws IOException {
-        String targetPath = "/Users/qin/Portal/generated-outputs/record-zhenyue-balanced-combinations-p01";
+        String targetPath = "/Volumes/LaCie/Maotai-Project-Symmetry-Breaking/generated-outputs/record-zhenyue-balanced-combinations-p01";
 
         int[][] targets = {target1, target2};
 
-//        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetric(
-//                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsBalanceAsymmetric(
+                targets, maxCycle, perturbations, perturbationRate, thresholds, stride);
 
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
-                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
+//        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
+//                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
 
         File[] directories = new File(targetPath).listFiles(File::isDirectory);
 
