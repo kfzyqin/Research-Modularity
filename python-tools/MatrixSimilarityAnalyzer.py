@@ -14,9 +14,9 @@ class MatrixSimilarityAnalyzer:
     def __init__(self):
         # self.prefix_path = os.path.expanduser("~")
         self.starting_path_1 = '/Volumes/LaCie/Maotai-Project-Symmetry-Breaking/generated-outputs/record-zhenyue-balanced-combinations-p00'
-        self.starting_path_2 = '/Volumes/LaCie/Maotai-Project-Symmetry-Breaking/generated-outputs/record-zhenyue-balanced-combinations-p04'
-        self.sample_size = 1
-        self.to_fetch_sample = 5
+        self.starting_path_2 = '/Volumes/LaCie/Maotai-Project-Symmetry-Breaking/generated-outputs/record-zhenyue-balanced-combinations-p001'
+        self.sample_size = 100
+        self.to_fetch_sample = 105
 
     @staticmethod
     def convert_a_list_grn_to_a_matrix(a_grn_phenotype):
@@ -42,26 +42,34 @@ class MatrixSimilarityAnalyzer:
         return self.evaluate_grn_distances(list_phenotypes, dist_type)
 
     def get_pop_phe_lists_of_a_trial(self, file_path, starting_gen=0, ending_gen=None):
-        txt_files = []
+        txt_files_unsorted = []
         phenotypes = []
 
+        txt_file_prefix = ''
         for root, dirs, files in os.walk(file_path):
             for a_file in files:
                 if a_file.endswith('.lists'):
-                    txt_files.append(root + os.sep + a_file)
+                    txt_files_unsorted.append(root + os.sep + a_file)
+                    if txt_file_prefix == '':
+                        txt_file_prefix = root + os.sep
 
         if ending_gen is None:
-            ending_gen = len(txt_files)
+            ending_gen = len(txt_files_unsorted)
 
-        txt_files = txt_files[starting_gen:ending_gen]
+        txt_files_sorted = []
+        for txt_file_idx in range(len(txt_files_unsorted)):
+            txt_files_sorted.append(txt_file_prefix + 'all-population-phenotype_gen_' + str(txt_file_idx) + '.lists')
 
-        for a_txt_file in txt_files:
+        txt_files_sorted = txt_files_sorted[starting_gen:ending_gen]
+
+        for a_txt_file in txt_files_sorted:
             a_gen_phe = []
             for an_ind in fp.read_a_file_line_by_line(a_txt_file):
                 to_append = ast.literal_eval(an_ind)
                 if len(to_append) < 100:
                     print "watch: ", file_path
                 a_gen_phe.append(to_append)
+                # print("to_append: ", to_append)
             phenotypes.append(a_gen_phe)
 
         return phenotypes
@@ -91,13 +99,13 @@ class MatrixSimilarityAnalyzer:
         return gen_dist_dict
 
     @staticmethod
-    def plot_dist_gen_curve(dist_dict, dpi=500, save_path=None, save_name=None):
+    def plot_dist_gen_curve(dist_dict, dpi=300, save_path=None, save_name=None):
         dist_list = []
         if isinstance(dist_dict, dict):
             set_idxs = sorted(dist_dict.keys())
             for a_gen in set_idxs:
                 dist_list.append(np.mean(dist_dict[a_gen]))
-            fp.plot_a_list_graph(dist_list, 'Avg dist', dpi=dpi, save_path=save_path, save_name=save_name)
+            fp.plot_a_list_graph(dist_list, 'Avg dist', dpi=dpi, save_path=save_path, save_name=save_name, marker='x')
 
         elif isinstance(dist_dict, list):
             set_idxs = sorted(dist_dict[0].keys())
@@ -106,7 +114,7 @@ class MatrixSimilarityAnalyzer:
                 for a_gen in set_idxs:
                     a_dist_list.append(np.mean(a_dist_dict[a_gen]))
                 dist_list.append(a_dist_list)
-            fp.save_lists_graph(dist_list, ['sym', 'asym'], path=save_path, file_name=save_name, dpi=dpi)
+            fp.save_lists_graph(dist_list, ['sym', 'asym'], path=save_path, file_name=save_name, dpi=dpi, marker='x')
 
     def launch_inter_ind_dists(self, starting_gen, dist_type, use_average=True, to_plot=False):
         exp_list_1 = self.get_pop_phe_lists_of_an_experiment(self.starting_path_1, sample_size=self.to_fetch_sample, starting_gen=starting_gen)
@@ -136,11 +144,11 @@ class MatrixSimilarityAnalyzer:
                     json.dump(dist_dict_2, a_f, sort_keys=True, indent=4)
                 a_f.close()
 
-                self.plot_dist_gen_curve(dist_dict_1, dpi=500,
+                self.plot_dist_gen_curve(dist_dict_1, dpi=300,
                                          save_path='./generated_images/', save_name=('avg_dist_1' + cur_time + '.png'))
-                self.plot_dist_gen_curve(dist_dict_2, dpi=500,
+                self.plot_dist_gen_curve(dist_dict_2, dpi=300,
                                          save_path='./generated_images/', save_name=('avg_dist_2' + cur_time + '.png'))
-                self.plot_dist_gen_curve([dist_dict_1, dist_dict_2], dpi=500,
+                self.plot_dist_gen_curve([dist_dict_1, dist_dict_2], dpi=300,
                                          save_path='./generated_images/', save_name=('avg_dist_1_2' + cur_time + '.png'))
 
             print("len 1: ", len(dist_dict_1[set_idxs_1[-1]]))
@@ -227,7 +235,7 @@ class MatrixSimilarityAnalyzer:
 
 matrix_similarity_analyzer = MatrixSimilarityAnalyzer()
 # matrix_similarity_analyzer.statistically_compare_two_inter_file_grn_distances('fit', dist_type='manhattan')
-matrix_similarity_analyzer.launch_inter_ind_dists(starting_gen=1, dist_type='manhattan', use_average=True, to_plot=True)
+matrix_similarity_analyzer.launch_inter_ind_dists(starting_gen=2000, dist_type='manhattan', use_average=True, to_plot=False)
 # matrix_similarity_analyzer.launch_k_means_evaluation(2000, 32)
 # matrix_similarity_analyzer.avg_dist_of_each_gen_analyse('./generated_images/dict_1-2018-09-22-04-59-07.json',
 #                                                         './generated_images/dict_2-2018-09-22-04-59-07.json')

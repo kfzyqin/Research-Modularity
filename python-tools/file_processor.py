@@ -35,10 +35,10 @@ def save_a_list_graph(a_list, y_label, path, file_name, vertical_lines=None):
     plt.close()
 
 
-def plot_a_list_graph(a_list, y_label, dpi=500, save_path=None, save_name=None):
+def plot_a_list_graph(a_list, y_label, dpi=500, save_path=None, save_name=None, marker=None):
     plt.clf()
     xs = range(len(a_list))
-    plt.scatter(xs, a_list)
+    plt.plot(xs, a_list, marker=marker)
     plt.ylabel(y_label)
     if save_path is None:
         plt.show()
