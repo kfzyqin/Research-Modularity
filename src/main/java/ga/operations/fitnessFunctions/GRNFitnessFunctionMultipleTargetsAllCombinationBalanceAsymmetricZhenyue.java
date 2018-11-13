@@ -19,8 +19,15 @@ public class GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhe
 
     protected double evaluateOneTarget(@NotNull final SimpleMaterial phenotype, @NotNull final int[] target,
                                        DataGene[][] startAttractors) {
+//        System.out.println("We are now evaluating one target. ");
+//        System.out.println("Size of start attractors: " + startAttractors.length);
+//        System.out.println("Whether this can reduce the duplications: " + GeneralMethods.getArrayDuplicateElementNo(startAttractors).size());
+        HashMap<Integer, Integer> aDistribution = GeneralMethods.getPerturbationNumberDistribution(startAttractors, target);
+//        System.out.println(aDistribution);
+
+        double g = 0;
+
         Map<Integer, List<Double>> perturbationPathDistanceMap = new HashMap<>();
-        double fitnessAvgSum = 0;
 
         for (DataGene[] startAttractor : startAttractors) {
             int perturbedLength = (int) GeneralMethods.getOriginalHammingDistance(startAttractor, target);
@@ -51,12 +58,17 @@ public class GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhe
             }
         }
         for (Integer key : perturbationPathDistanceMap.keySet()) {
-            double avgDist = GeneralMethods.getAverageNumber(perturbationPathDistanceMap.get(key));
+            List<Double> aPerturbationPathDistances = perturbationPathDistanceMap.get(key);
             double perturbedLengthWeight = perturbationLengthBinomialDistribution.get(key);
-            double contribution = (1 - (avgDist / ((double) target.length)));
-            fitnessAvgSum += perturbedLengthWeight * Math.pow(contribution, 5);
+            List<Double> gammas = new ArrayList<>();
+            for (Double aPerturbationPathDistance : aPerturbationPathDistances) {
+                double aD = (1 - (aPerturbationPathDistance / ((double) target.length)));
+                double oneGamma = Math.pow(aD, 5);
+                gammas.add(oneGamma);
+            }
+            double averageGamma = GeneralMethods.getAverageNumber(gammas);
+            g += perturbedLengthWeight * averageGamma;
         }
-        double arithmeticMean = fitnessAvgSum / perturbationPathDistanceMap.size();
-        return 1 - Math.pow(Math.E, (-3 * arithmeticMean));
+        return 1 - Math.pow(Math.E, (-3 * g));
     }
 }

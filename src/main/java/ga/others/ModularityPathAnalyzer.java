@@ -13,6 +13,29 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class ModularityPathAnalyzer {
+    public static List<Integer> removeInterModuleEdges(SimpleMaterial material) {
+        List<Integer> interModuleEdges = new ArrayList<>();
+        int nodeSize = (int) Math.sqrt(material.getSize());
+        for (int i=0; i<nodeSize; i++) {
+            for (int j=0; j<nodeSize; j++) {
+                if (!((i < nodeSize / 2 && j < nodeSize / 2) || (i >= nodeSize / 2 && j >= nodeSize / 2))) {
+                    if ((int) (material.getGene(i * nodeSize + j).getValue()) != 0) {
+                        interModuleEdges.add(i * nodeSize + j);
+                    }
+                }
+            }
+        }
+        List<Integer> edgesNoInterModule = new ArrayList<>();
+        for (int i=0; i<material.getSize(); i++) {
+            if (interModuleEdges.contains(i)) {
+                edgesNoInterModule.add(0);
+            } else {
+                edgesNoInterModule.add((Integer) material.getGene(i).getValue());
+            }
+        }
+        return edgesNoInterModule;
+    }
+
     public static List<Double> removeEdgeAnalyzer(int removalNumber, SimpleMaterial material,
                                                   FitnessFunction grnFit, boolean toCheat, int startGeneration,
                                                   List<DataGene[][]> targetPerturbations,

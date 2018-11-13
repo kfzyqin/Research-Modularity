@@ -193,7 +193,7 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
 
     @Override
     public void record(List<Individual<C>> data) {
-        Individual<C> elite = this.getFittestMostModularIndividual(data);
+        Individual<C> elite = data.get(0).copy();
         Individual<C> worst = data.get(data.size() - 1).copy();
         Individual<C> median = data.get(data.size() / 2).copy();
 

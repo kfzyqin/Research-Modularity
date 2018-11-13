@@ -8,15 +8,20 @@ from scipy import spatial
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_samples, silhouette_score
 from time import gmtime, strftime
+from sklearn.preprocessing import StandardScaler
+import seaborn as sn
+import matplotlib.pyplot as plt
 
 
 class MatrixSimilarityAnalyzer:
     def __init__(self):
         # self.prefix_path = os.path.expanduser("~")
-        self.starting_path_1 = '/Volumes/LaCie/Maotai-Project-Symmetry-Breaking/generated-outputs/record-zhenyue-balanced-combinations-p00'
-        self.starting_path_2 = '/Volumes/LaCie/Maotai-Project-Symmetry-Breaking/generated-outputs/record-zhenyue-balanced-combinations-p001'
+        self.starting_path_1 = '/Users/qin/Portal/generated-outputs/fixed-record-zhenyue-balanced-combinations-elite-p001'
+        self.starting_path_2 = '/Users/qin/Portal/generated-outputs/fixed-record-zhenyue-balanced-combinations-elite-p00'
         self.sample_size = 100
-        self.to_fetch_sample = 105
+        self.to_fetch_sample = 100
+        self.population_size = 100
+        self.grn_size = 100
 
     @staticmethod
     def convert_a_list_grn_to_a_matrix(a_grn_phenotype):
@@ -41,7 +46,7 @@ class MatrixSimilarityAnalyzer:
         list_phenotypes = fp.get_last_grn_phenotypes(self.sample_size, a_type, root_directory_path)
         return self.evaluate_grn_distances(list_phenotypes, dist_type)
 
-    def get_pop_phe_lists_of_a_trial(self, file_path, starting_gen=0, ending_gen=None):
+    def get_pop_phe_lists_of_a_trial(self, file_path, starting_gen=0, ending_gen=None, the_interval=1):
         txt_files_unsorted = []
         phenotypes = []
 
@@ -61,11 +66,17 @@ class MatrixSimilarityAnalyzer:
             txt_files_sorted.append(txt_file_prefix + 'all-population-phenotype_gen_' + str(txt_file_idx) + '.lists')
 
         txt_files_sorted = txt_files_sorted[starting_gen:ending_gen]
+        new_txt_files_sorted = []
+        for i in range(0, len(txt_files_sorted), the_interval):
+            new_txt_files_sorted.append(txt_files_sorted[i])
+
+        txt_files_sorted = new_txt_files_sorted
 
         for a_txt_file in txt_files_sorted:
             a_gen_phe = []
-            for an_ind in fp.read_a_file_line_by_line(a_txt_file):
-                to_append = ast.literal_eval(an_ind)
+            ind_lines = fp.read_a_file_line_by_line(a_txt_file)
+            for an_ind_idx in range(0, len(ind_lines)):
+                to_append = ast.literal_eval(ind_lines[an_ind_idx])
                 if len(to_append) < 100:
                     print "watch: ", file_path
                 a_gen_phe.append(to_append)
@@ -74,11 +85,13 @@ class MatrixSimilarityAnalyzer:
 
         return phenotypes
 
-    def get_pop_phe_lists_of_an_experiment(self, root_path, sample_size, starting_gen=0, ending_gen=None):
+    def get_pop_phe_lists_of_an_experiment(self, root_path, sample_size, starting_gen=0, ending_gen=None,
+                                           the_interval=1):
         pop_phe_lists_list = []
         for a_trial_dir in fp.get_immediate_subdirectories(root_path, no_limitation=3)[:sample_size]:
             print(a_trial_dir)
-            pop_phe_lists_list.append(self.get_pop_phe_lists_of_a_trial(a_trial_dir, starting_gen, ending_gen))
+            pop_phe_lists_list.append(self.get_pop_phe_lists_of_a_trial(a_trial_dir, starting_gen, ending_gen,
+                                                                        the_interval=the_interval))
         return pop_phe_lists_list
 
     def evaluate_inter_ind_grn_distances(self, exp_list, dict_type, use_average=True):
@@ -116,15 +129,20 @@ class MatrixSimilarityAnalyzer:
                 dist_list.append(a_dist_list)
             fp.save_lists_graph(dist_list, ['sym', 'asym'], path=save_path, file_name=save_name, dpi=dpi, marker='x')
 
-    def launch_inter_ind_dists(self, starting_gen, dist_type, use_average=True, to_plot=False):
-        exp_list_1 = self.get_pop_phe_lists_of_an_experiment(self.starting_path_1, sample_size=self.to_fetch_sample, starting_gen=starting_gen)
-        exp_list_2 = self.get_pop_phe_lists_of_an_experiment(self.starting_path_2, sample_size=self.to_fetch_sample, starting_gen=starting_gen)
+    def launch_inter_ind_dists(self, starting_gen, dist_type, use_average=True, to_plot=False, end_gen=None,
+                               the_interval=1):
+        exp_list_1 = self.get_pop_phe_lists_of_an_experiment(self.starting_path_1, sample_size=self.to_fetch_sample,
+                                                             starting_gen=starting_gen, ending_gen=end_gen,
+                                                             the_interval=the_interval)
+        exp_list_2 = self.get_pop_phe_lists_of_an_experiment(self.starting_path_2, sample_size=self.to_fetch_sample,
+                                                             starting_gen=starting_gen, ending_gen=end_gen,
+                                                             the_interval=the_interval)
 
         if use_average:
             dist_dict_1 = self.evaluate_inter_ind_grn_distances(exp_list_1, dist_type, use_average=True)
             dist_dict_2 = self.evaluate_inter_ind_grn_distances(exp_list_2, dist_type, use_average=True)
 
-            # print(dist_dict_1)
+            print('dist dict 1: ', dist_dict_1.keys())
             # print(dist_dict_2)
 
             set_idxs_1 = sorted(dist_dict_1.keys())
@@ -196,11 +214,34 @@ class MatrixSimilarityAnalyzer:
 
         return cluster_nos
 
-    def launch_k_means_evaluation(self, starting_gen, max_cluster):
+    def launch_clustering_evaluation(self, starting_gen):
         exp_list_1 = self.get_pop_phe_lists_of_an_experiment(self.starting_path_1, sample_size=self.to_fetch_sample,
                                                              starting_gen=starting_gen)
         exp_list_2 = self.get_pop_phe_lists_of_an_experiment(self.starting_path_2, sample_size=self.to_fetch_sample,
                                                              starting_gen=starting_gen)
+
+        for an_idx in range(self.sample_size):
+            exp_np_list_1 = np.array(exp_list_1[an_idx]).reshape(self.population_size, self.grn_size)
+            exp_np_list_2 = np.array(exp_list_1[an_idx]).reshape(self.population_size, self.grn_size)
+
+            # concat_vectors = np.concatenate([exp_np_list_1[:1000], exp_np_list_2[:1000]], axis=1)
+            # print("concat vectors shape: ", concat_vectors.shape)
+
+            scaler = StandardScaler()
+            X_scaled = scaler.fit_transform(exp_np_list_1)
+            cmap = sn.cubehelix_palette(as_cmap=True, rot=-.3, light=1)
+            sn.clustermap(X_scaled, cmap=cmap, linewidths=.5)
+            plt.show()
+            break
+
+
+    def launch_k_means_evaluation(self, starting_gen, max_cluster):
+        exp_list_1 = self.get_pop_phe_lists_of_an_experiment(self.starting_path_1, sample_size=self.to_fetch_sample,
+                                                             starting_gen=starting_gen)
+
+        exp_list_2 = self.get_pop_phe_lists_of_an_experiment(self.starting_path_2, sample_size=self.to_fetch_sample,
+                                                             starting_gen=starting_gen)
+        # print("exp list 2: ", exp_list_2)
 
         ks_dict_1 = self.evaluate_k_means_inter_ind(exp_list_1, max_cluster)
         ks_dict_2 = self.evaluate_k_means_inter_ind(exp_list_2, max_cluster)
@@ -214,7 +255,7 @@ class MatrixSimilarityAnalyzer:
         print(StatisticsToolkit.calculate_statistical_significances(ks_dict_1[set_idxs_1[-1]][:self.sample_size],
                                                                     ks_dict_2[set_idxs_2[-1]][:self.sample_size]))
 
-    def avg_dist_of_each_gen_analyse(self, dists_1, dists_2):
+    def avg_dist_of_each_gen_analyse(self, dists_1, dists_2, starting_gen=0):
         new_dists_1 = dists_1
         new_dists_2 = dists_2
 
@@ -230,12 +271,15 @@ class MatrixSimilarityAnalyzer:
             list_1.append(np.mean(new_dists_1[a_gen]))
             list_2.append(np.mean(new_dists_2[a_gen]))
 
-        print(StatisticsToolkit.calculate_statistical_significances(list_1, list_2))
+        print(StatisticsToolkit.calculate_statistical_significances(list_1[starting_gen:], list_2[starting_gen:]))
 
 
 matrix_similarity_analyzer = MatrixSimilarityAnalyzer()
 # matrix_similarity_analyzer.statistically_compare_two_inter_file_grn_distances('fit', dist_type='manhattan')
-matrix_similarity_analyzer.launch_inter_ind_dists(starting_gen=2000, dist_type='manhattan', use_average=True, to_plot=False)
+
+matrix_similarity_analyzer.launch_inter_ind_dists(starting_gen=500, end_gen=1001, dist_type='manhattan',
+                                                      use_average=True, to_plot=True, the_interval=10)
 # matrix_similarity_analyzer.launch_k_means_evaluation(2000, 32)
-# matrix_similarity_analyzer.avg_dist_of_each_gen_analyse('./generated_images/dict_1-2018-09-22-04-59-07.json',
-#                                                         './generated_images/dict_2-2018-09-22-04-59-07.json')
+# matrix_similarity_analyzer.avg_dist_of_each_gen_analyse('./generated_images/zhenyue-p00-p001-dict_1-2018-10-08-13-41-23.json',
+#                                                         './generated_images/zhenyue-p00-p001-dict_2-2018-10-08-13-41-23.json',
+#                                                         starting_gen=500)

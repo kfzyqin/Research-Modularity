@@ -7,6 +7,7 @@ import ga.components.materials.GRN;
 import ga.components.materials.SimpleMaterial;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargets;
 import org.apache.commons.math3.distribution.BinomialDistribution;
+import org.jetbrains.annotations.NotNull;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -471,5 +472,49 @@ public class GeneralMethods<T> {
         return attractor.length - count;
     }
 
+    public static <T> Set<T[]> getArrayDuplicateElementNo(T[][] theArrays) {
+        Set<T[]> aSet = new HashSet<>();
+        for (int i=0; i<theArrays.length; i++) {
+            boolean thisToAdd = true;
+            for (int j=i+1; j < theArrays.length; j++) {
+                if (Arrays.equals(theArrays[i], theArrays[j])) {
+                    thisToAdd = false;
+                    break;
+                }
+            }
+            if (thisToAdd) {
+                aSet.add(theArrays[i]);
+            }
+        }
+
+        return aSet;
+    }
+
+    public static int getTwoArraysHowManyPositionsDifferent(DataGene[] array1, int[] array2) {
+        if (array1.length != array2.length) {
+            throw new RuntimeException("Array lengths are different when comparing. ");
+        } else {
+            int rtn = 0;
+            for (int i=0; i<array1.length; i++) {
+                if (array1[i].getValue() != (array2[i])) {
+                    rtn += 1;
+                }
+            }
+            return rtn;
+        }
+    }
+
+    public static HashMap<Integer, Integer> getPerturbationNumberDistribution(DataGene[][] perturbations, final int[] target) {
+        HashMap<Integer, Integer> distribution = new HashMap<>();
+        for (DataGene[] aPerturbation : perturbations) {
+            int aDifference = getTwoArraysHowManyPositionsDifferent(aPerturbation, target);
+            if (distribution.containsKey(aDifference)) {
+                distribution.put(aDifference, (distribution.get(aDifference) + 1));
+            } else {
+                distribution.put(aDifference, 1);
+            }
+        }
+        return distribution;
+    }
 
 }

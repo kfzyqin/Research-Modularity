@@ -3,6 +3,8 @@ import scipy.stats
 import GRNPlotter
 from GRNCSVReader import GRNCSVReader
 from EdgeNumberTool import EdgeNumberTool
+import matplotlib.pyplot as plt
+import file_processor as fp
 
 
 class StatisticsToolkit:
@@ -23,8 +25,10 @@ class StatisticsToolkit:
 
         wilcoxon = scipy.stats.wilcoxon(values_1, values_2)
         t_test = scipy.stats.ttest_ind(values_1, values_2)
+        mann_whitney = scipy.stats.mannwhitneyu(values_1, values_2)
+
         return {"size_1": len(values_1), "size_2": len(values_2), "average_1": average_1, "average_2": average_2,
-                "wilcoxon": wilcoxon, "t_test": t_test}
+                "wilcoxon": wilcoxon, "t_test": t_test, 'mann whitney: ': mann_whitney}
 
     def calculate_fitness_significance(self, sample_size=40):
         fitness_plotter = GRNCSVReader()
@@ -60,3 +64,41 @@ class StatisticsToolkit:
         std_dev_2 = edge_number_tool.get_average_std_dev_edge_number_of_the_whole_experiment(self.path_2)[:sample_size]
         print "length 1: ", len(std_dev_1), " length 2: ", len(std_dev_2)
         return self.calculate_statistical_significances(std_dev_1, std_dev_2)
+
+    def calculate_inter_module_edge_number_significance(self, phenotype_type, sample_size=40):
+        edge_number_tool = EdgeNumberTool()
+        inter_module_edge_1 = edge_number_tool.get_average_inter_module_edges_for_an_experiment(
+            self.path_1, phenotype_type, sample_size=sample_size)[:sample_size]
+        inter_module_edge_2 = edge_number_tool.get_average_inter_module_edges_for_an_experiment(
+            self.path_2, phenotype_type, sample_size=sample_size)[:sample_size]
+
+        print(fp.get_distribution_of_a_list(inter_module_edge_1))
+        print(fp.get_distribution_of_a_list(inter_module_edge_2))
+
+        fp.plot_bar_charts([inter_module_edge_1, inter_module_edge_2], ['sym', 'asym'])
+
+        print "length 1: ", len(inter_module_edge_1), " length 2: ", len(inter_module_edge_2)
+        return self.calculate_statistical_significances(inter_module_edge_1, inter_module_edge_2)
+
+    def calcuate_evaluated_inter_module_edge_number_significance(self, phenotype_type, eva_type, start_gen, end_gen,
+                                                                 sample_size=40, to_plot=False):
+        edge_number_tool = EdgeNumberTool()
+        inter_module_edge_1 = edge_number_tool.analyze_inter_module_edges_for_an_experiment(
+            self.path_1, phenotype_type, eva_type=eva_type, sample_size=sample_size,
+            start_gen=start_gen, end_gen=end_gen)[:sample_size]
+        inter_module_edge_2 = edge_number_tool.analyze_inter_module_edges_for_an_experiment(
+            self.path_2, phenotype_type, eva_type=eva_type, sample_size=sample_size,
+            start_gen=start_gen, end_gen=end_gen)[:sample_size]
+
+        if to_plot:
+            print(fp.get_distribution_of_a_list(inter_module_edge_1))
+            print(fp.get_distribution_of_a_list(inter_module_edge_2))
+
+            fp.plot_bar_charts([inter_module_edge_1, inter_module_edge_2], ['sym', 'asym'])
+
+        print "length 1: ", len(inter_module_edge_1), " length 2: ", len(inter_module_edge_2)
+        return self.calculate_statistical_significances(inter_module_edge_1, inter_module_edge_2)
+
+
+
+

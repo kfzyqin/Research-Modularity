@@ -1,21 +1,21 @@
-import GRNPlotter
-import ModularityDominanceAnalyzer
-from file_processor import write_a_list_into_a_file
+from EdgeNumberTool import EdgeNumberTool
+from GRNCSVReader import GRNCSVReader
+from scipy.stats.stats import pearsonr
 
-working_path = '/Users/qin/Software-Engineering/Chin-GA-Project/generated-outputs/' \
-               'all-combination-perturbations/2017-12-04-10-50-27'
-grn_plotter = GRNPlotter.GRNPlotter()
 
-phenotypes = grn_plotter.get_grn_phenotypes(working_path)
+path_1 = '/Volumes/LaCie/Maotai-Project-Symmetry-Breaking/generated-outputs/record-zhenyue-balanced-combinations-p00'
+path_2 = '/Volumes/LaCie/Maotai-Project-Symmetry-Breaking/generated-outputs/record-zhenyue-balanced-combinations-p001'
 
-modularity_dominance_analyzer = ModularityDominanceAnalyzer.ModularityDominanceAnalyzer()
+sample_size = 100
 
-least_modular = modularity_dominance_analyzer.get_the_least_modular_individual_in_the_fittest_networks(
-    working_path, 501)
+edge_number_tool = EdgeNumberTool()
+inter_module_edge_1 = edge_number_tool.get_average_inter_module_edges_for_an_experiment(
+    path_1, 'fit', sample_size)[:sample_size]
 
-print phenotypes[least_modular[0]]
+fitness_plotter = GRNCSVReader()
 
-write_a_list_into_a_file(phenotypes[least_modular[0]], working_path, 'least_modular_phenotype.phe')
+fitness_values_1 = fitness_plotter.get_fitness_values_of_an_experiment(path_1, -1)[:sample_size]
 
-converted_phenotype = modularity_dominance_analyzer.get_modular_grn_matrix(phenotypes[least_modular[0]])
-write_a_list_into_a_file(converted_phenotype, working_path, 'converted_least_modular_phenotype.phe')
+print("fitness values: ", fitness_values_1)
+
+print "pearsonr: ", pearsonr(inter_module_edge_1, fitness_values_1)

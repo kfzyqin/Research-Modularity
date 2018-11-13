@@ -4,6 +4,7 @@ import operator as op
 import math
 import ast
 import json
+import numpy as np
 
 
 def ncr(n, r):
@@ -84,7 +85,14 @@ def write_a_list_into_a_file(a_list, file_path, file_name):
         the_file.write("%s " % item)
 
 
-def save_lists_graph(lists, labels=None, ver_lines=None, path="", file_name="", marker=None, colors=None, dpi=500):
+def save_lists_graph(lists, labels=None, ver_lines=None, path="", file_name="", marker=None, colors=None, dpi=500,
+                     to_normalize=False):
+    if to_normalize:
+        tmp_lists = []
+        for a_list in lists:
+            norm = [(float(i) - min(a_list)) / max(a_list) for i in a_list]
+            tmp_lists.append(norm)
+        lists = tmp_lists
     fig, ax0 = plt.subplots(nrows=1, figsize=(16, 10))
     default_colors = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'w']
     for a_list_idx in range(len(lists)):
@@ -137,6 +145,7 @@ def get_last_grn_phenotypes(sample_size, a_type, root_directory_path):
     for root, dirs, files in os.walk(root_directory_path):
         for a_file in files:
             if a_file.endswith(file_target):
+                print("a file inter module: ", root)
                 txt_files.append(root + os.sep + a_file)
 
     txt_files = txt_files[:sample_size]
@@ -147,7 +156,59 @@ def get_last_grn_phenotypes(sample_size, a_type, root_directory_path):
     return phenotypes
 
 
+def get_grn_phenotypes(sample_size, a_type, root_directory_path, starting_gen, ending_gen):
+    suffix = ""
+    if a_type == 'fit':
+        suffix += '_fit.list'
+    elif a_type == 'mod':
+        suffix += '_mod.list'
+    else:
+        raise RuntimeError("GRN phenotypes are unexpected")
+
+    file_target = 'phenotypes' + suffix
+
+    phenotypes_all_gen = []
+    txt_files = []
+    for root, dirs, files in os.walk(root_directory_path):
+        for a_file in files:
+            if a_file.endswith(file_target):
+                txt_files.append(root + os.sep + a_file)
+
+    txt_files = txt_files[:sample_size]
+
+    for a_txt_file in txt_files:
+        one_gen_phenotypes = []
+        txt_phenotypes = read_a_file_line_by_line(a_txt_file)[starting_gen:ending_gen+1]
+        for a_txt_phenotype in txt_phenotypes:
+            one_gen_phenotypes.append(ast.literal_eval(a_txt_phenotype))
+        phenotypes_all_gen.append(one_gen_phenotypes)
+    return phenotypes_all_gen
+
+
 def open_a_json_as_a_dict(file_path):
     with open(file_path) as f:
         data = json.load(f)
     return data
+
+
+def plot_bar_charts(lists, labels):
+    fig, ax = plt.subplots()
+    top_alpha = 0.2
+    for an_idx in range(len(lists)):
+        a_dist = get_distribution_of_a_list(lists[an_idx])
+        dict_values = []
+        for an_key in sorted(list(a_dist)):
+            dict_values.append(a_dist[an_key])
+        ax.bar(sorted(list(a_dist)), dict_values, label=labels[an_idx], width=1, edgecolor='b', alpha=top_alpha)
+        top_alpha += 0.2
+
+    plt.legend(fontsize=10)
+    plt.show()
+
+
+def get_distribution_of_a_list(a_list):
+    a_set = set(a_list)
+    occurrences = {}
+    for an_element in a_set:
+        occurrences[an_element] = a_list.count(an_element)
+    return occurrences

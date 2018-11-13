@@ -13,6 +13,8 @@ import ga.operations.mutators.GRNEdgeMutator;
 import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
 import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
+import ga.operations.priorOperators.PriorOperator;
+import ga.operations.priorOperators.SimpleElitismOperator;
 import ga.operations.reproducers.*;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
@@ -55,7 +57,7 @@ public class HaploidGRNMatrixMain {
     private static final int numElites = 10;
     private static final int populationSize = 100;
     private static final int tournamentSize = 3;
-    private static final double reproductionRate = 1.0;
+    private static final double reproductionRate = 0.9;
 
     private static final int maxGen = 2000;
     private static final List<Integer> thresholds = Arrays.asList(0, 500); // when to switch targets
@@ -66,7 +68,7 @@ public class HaploidGRNMatrixMain {
     /* Settings for text outputs */
     private static final String summaryFileName = "Summary.txt";
     private static final String csvFileName = "Statistics.csv";
-    private static final String outputDirectory = "record-zhenyue-balanced-combinations-p04";
+    private static final String outputDirectory = "fixed-record-zhenyue-balanced-combinations-elite-p00";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static final String allPerturbationsName = "Perturbations.per";
     private static final String modFitNamePrefix = "phenotypes";
@@ -78,7 +80,7 @@ public class HaploidGRNMatrixMain {
     private static final String plotTitle = "Haploid GRN Matrix";
     private static final String plotFileName = "Trends.png";
 
-    private static final double stride = 0.04;
+    private static final double stride = 0.00;
     private static final int PerturbationPathUpBound = 4;
 
     public static void main(String[] args) throws IOException, InterruptedException {
@@ -124,11 +126,11 @@ public class HaploidGRNMatrixMain {
         Mutator mutator = new GRNEdgeMutator(geneMutationRate);
 
         /* Selector for reproduction */
-        Selector<SimpleHaploid> selector = new SimpleTournamentSelector<>(tournamentSize);
-//        Selector<SimpleHaploid> selector = new SimpleProportionalSelector<>();
+//        Selector<SimpleHaploid> selector = new SimpleTournamentSelector<>(tournamentSize);
+        Selector<SimpleHaploid> selector = new SimpleProportionalSelector<>();
 
-//        /* Selector for elites */
-//        PriorOperator<SimpleHaploid> priorOperator = new SimpleElitismOperator<>(numElites);
+        /* Selector for elites */
+        PriorOperator<SimpleHaploid> priorOperator = new SimpleElitismOperator<>(numElites);
 
         /* PostOperator is required to fill up the vacancy */
         PostOperator<SimpleHaploid> postOperator = new SimpleFillingOperatorForNormalizable<>(
@@ -154,7 +156,7 @@ public class HaploidGRNMatrixMain {
         state.record(statistics); // record the initial state of an population
 
         /* The frame of an GA to change states */
-        Frame<SimpleHaploid> frame = new SimpleHaploidFrame<>(state,postOperator,statistics);
+        Frame<SimpleHaploid> frame = new SimpleHaploidFrame<>(state,postOperator,statistics, priorOperator);
 
         statistics.print(0); // print the initial state of an population
         /* Actual GA evolutions */

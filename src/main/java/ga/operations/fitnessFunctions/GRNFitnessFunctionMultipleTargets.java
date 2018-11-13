@@ -3,6 +3,7 @@ package ga.operations.fitnessFunctions;
 import au.com.bytecode.opencsv.CSVWriter;
 import ga.components.genes.DataGene;
 import ga.components.materials.SimpleMaterial;
+import ga.others.GeneralMethods;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
@@ -127,6 +128,13 @@ public class GRNFitnessFunctionMultipleTargets extends GRNFitnessFunction<Simple
 
     protected double evaluateOneTarget(@NotNull final SimpleMaterial phenotype, @NotNull final int[] target,
                                        DataGene[][] startAttractors) {
+
+//        System.out.println("We are now evaluating one target. ");
+//        System.out.println("Size of start attractors: " + startAttractors.length);
+//        System.out.println("Whether this can reduce the duplications: " + GeneralMethods.getArrayDuplicateElementNo(startAttractors).size());
+        HashMap<Integer, Integer> aDistribution = GeneralMethods.getPerturbationNumberDistribution(startAttractors, target);
+//        System.out.println(aDistribution);
+
         double fitnessValue = 0;
         for (DataGene[] startAttractor : startAttractors) {
             DataGene[] currentAttractor = startAttractor;

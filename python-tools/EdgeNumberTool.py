@@ -2,6 +2,9 @@ import CSVFileOpener
 from file_processor import get_immediate_subdirectories
 import math
 import file_processor as fp
+import statistics
+import numpy as np
+from GRNPlotter import GRNPlotter
 
 
 class EdgeNumberTool:
@@ -33,12 +36,50 @@ class EdgeNumberTool:
                 edge_no += 1
         return edge_no
 
-    def get_average_inter_module_edges_for_an_experiment(self, sample_size, a_type, root_directory_path):
+    def get_intra_module_edge_number(self, a_grn):
+        return fp.count_number_of_edges(a_grn) - self.get_inter_module_edge_number(a_grn)
+
+    def get_average_inter_module_edges_for_an_experiment(self, root_directory_path, a_type, sample_size):
         grn_phenotypes = fp.get_last_grn_phenotypes(sample_size, a_type, root_directory_path)
         inter_edge_nos = []
         for a_phenotype in grn_phenotypes:
-            inter_edge_nos.append(self.get_inter_module_edge_number(a_phenotype))
+            an_inter_module_edge_no = self.get_inter_module_edge_number(a_phenotype)
+            # if an_inter_module_edge_no > 15:
+            #     print('Caught an inter module edge larger than 15')
+            #     grn_plotter = GRNPlotter()
+            #     grn_plotter.draw_a_grn(grn=a_phenotype, is_to_save=False)
+            inter_edge_nos.append(an_inter_module_edge_no)
         return inter_edge_nos
+
+    def get_average_intra_module_edges_for_an_experiment(self, root_directory_path, a_type, sample_size):
+        grn_phenotypes = fp.get_last_grn_phenotypes(sample_size, a_type, root_directory_path)
+        inter_edge_nos = []
+        for a_phenotype in grn_phenotypes:
+            an_intra_module_edge_no = self.get_intra_module_edge_number(a_phenotype)
+            # if an_intra_module_edge_no > 15:
+            #     print('Caught an inter module edge larger than 15')
+            #     grn_plotter = GRNPlotter()
+            #     grn_plotter.draw_a_grn(grn=a_phenotype, is_to_save=False)
+            inter_edge_nos.append(an_intra_module_edge_no)
+        return inter_edge_nos
+
+    def analyze_inter_module_edges_for_an_experiment(self, root_directory_path, a_type, sample_size, eva_type,
+                                                     start_gen, end_gen):
+        grn_all_gen_phenotypes = fp.get_grn_phenotypes(sample_size, a_type, root_directory_path, start_gen, end_gen)
+        eva_results = []
+        for grn_a_gen_phenotypes in grn_all_gen_phenotypes:
+            inter_module_edge_numbers = []
+            for a_grn_g_gen_phenotype in grn_a_gen_phenotypes:
+                inter_module_edge_numbers.append(self.get_inter_module_edge_number(a_grn_g_gen_phenotype))
+            if eva_type == 'avg':
+                eva_results.append(np.mean(inter_module_edge_numbers))
+            elif eva_type == 'mode':
+                eva_results.append(statistics.mode(inter_module_edge_numbers))
+            elif eva_type == 'stddev':
+                eva_results.append(statistics.stdev(inter_module_edge_numbers))
+            else:
+                raise RuntimeError('not supported evaluation type. ')
+        return eva_results
 
     def get_average_edge_number_in_each_generation(self, working_path):
         average_edge_numbers = self.csv_file_opener.get_fitness_values_of_an_trial(working_path, 'AvgEdgeNumber')

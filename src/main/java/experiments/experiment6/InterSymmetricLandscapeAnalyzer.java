@@ -1,10 +1,7 @@
 package experiments.experiment6;
 
 import ga.components.materials.SimpleMaterial;
-import ga.operations.fitnessFunctions.FitnessFunction;
-import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetric;
-import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue;
-import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsAllCombinations;
+import ga.operations.fitnessFunctions.*;
 import ga.others.GeneralMethods;
 import ga.others.ModularityPathAnalyzer;
 
@@ -34,19 +31,25 @@ public class InterSymmetricLandscapeAnalyzer {
     private static final List<Integer> thresholds = Arrays.asList(0, 500);
     private static final int[] perturbationSizes = {0, 1, 2, 3, 4, 5, 6, 7};
 
-    private static final double stride1 = 0.00;
-    private static final double stride2 = 0.01;
+    private static final int perturbations = 500;
+
+    private static final double stride_p00 = 0.00;
+    private static final double stride_p001 = 0.001;
+    private static final double stride_p01 = 0.01;
 
     public static void main(String[] args) throws IOException {
-        String targetPath = "/Users/qin/Portal/generated-outputs/record-zhenyue-balanced-combinations-p01";
+        String targetPath = "/Volumes/LaCie/Maotai-Project-Symmetry-Breaking/generated-outputs/record-zhenyue-balanced-combinations-p001";
 
         int[][] targets = {target1, target2};
 
         FitnessFunction fitnessFunction1 = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
-                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride1);
+                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride_p00);
 
         FitnessFunction fitnessFunction2 = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
-                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride2);
+                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride_p001);
+
+        FitnessFunction fitnessFunction3 = new GRNFitnessFunctionMultipleTargetsBalanceAsymmetric(
+                targets, maxCycle, perturbations, perturbationRate, thresholds, stride_p001);
 
         File[] directories = new File(targetPath).listFiles(File::isDirectory);
 
@@ -58,9 +61,10 @@ public class InterSymmetricLandscapeAnalyzer {
                 List<String[]> lines = GeneralMethods.readFileLineByLine(aModFile);
                 String[] lastGRNString = lines.get(lines.size() - 1);
                 SimpleMaterial aMaterial = GeneralMethods.convertStringArrayToSimpleMaterial(lastGRNString);
-
-                newFitnesses.add(((GRNFitnessFunctionMultipleTargetsAllCombinations) fitnessFunction2).evaluate(
-                        aMaterial, 1700));
+                double aNewFitness = ((GRNFitnessFunctionMultipleTargets) fitnessFunction2).evaluate(
+                        aMaterial, 1700);
+                newFitnesses.add(aNewFitness);
+                System.out.println("a new fitness: " + aNewFitness);
             } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println("Array out of bound caught! ");
             }

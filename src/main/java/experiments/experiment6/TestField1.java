@@ -5,10 +5,7 @@ import ga.components.genes.EdgeGene;
 import ga.components.genes.Gene;
 import ga.components.materials.Material;
 import ga.components.materials.SimpleMaterial;
-import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargets;
-import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsFast;
-import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsHidden;
-import ga.operations.fitnessFunctions.GRNFitnessFunctionSingleTarget;
+import ga.operations.fitnessFunctions.*;
 import ga.operations.reproducers.GRNHaploidMatrixDiagonalReproducer;
 import ga.operations.reproducers.Reproducer;
 import sun.java2d.pipe.SpanShapeRenderer;
@@ -24,6 +21,7 @@ import java.util.List;
 
 public class TestField1 {
 
+
     private static final int[] target1 = {
             1, -1, 1, -1, 1,
             -1, 1, -1, 1, -1
@@ -33,7 +31,17 @@ public class TestField1 {
             1, -1, 1, -1, 1
     };
 
+    private static final int maxCycle = 30;
+
+    private static final double perturbationRate = 0.15;
+    private static final List<Integer> thresholds = Arrays.asList(0, 500);
+    private static final int[] perturbationSizes = {0, 1, 2, 3, 4, 5, 6, 7};
+    private static final double stride = 0.00;
+    private static final int perturbations = 500;
+
     public static void main(String[] args) {
+        int[][] targets = {target1, target2};
+
         Integer[] tmpArray1 = {1, -1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, -1, 1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                 0, 1, 0, 0, -1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, -1, 0, -1, 1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
                 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, -1, 1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1,
@@ -48,10 +56,10 @@ public class TestField1 {
                 0, 0, 0, 0, 1, 0, -1, 0, -1, 0, 0, 1, -1, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, -1, 0,
                 0, 0};
 
-        Integer[] tmpArray1_2 = {0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, -1, 0, -1, 0, -1, 0, 0, 0, 0, 0, 1, 1, -1,
-                -1, 0, 0, 0, -1, 0, 0, -1, 1, 0, 1, 0, 0, -1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0, 0, 0,
-                1, 0, 0};
+        Integer[] tmpArray1_2 = {0, 0, 1, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 1, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0,
+                0, 0, 0, -1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, -1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, -1, 0, 0, 0, 0, 0, 0,
+                -1, 1, -1, 0};
 
         // this is not stable, fitness: 0.8299172167220299
         Integer[] tmpArray3 = {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, -1, 0, -1, 0, 1, 0, 1, 0, 1, 0, 1, -1, 0, 0, 0, 0, 0, 0, 0,
@@ -71,11 +79,11 @@ public class TestField1 {
 
         SimpleMaterial simpleMaterial1 = new SimpleMaterial(tmpList2);
 
-        GRNFitnessFunctionSingleTarget grnFit1 = new GRNFitnessFunctionSingleTarget(
-                target1, 30, 500, 0.15);
+        FitnessFunction grnFit1 = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
+                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
 
 
-        System.out.println("===Soto's method, we expect the following two are different: ===");
+//        System.out.println("===Soto's method, we expect the following two are different: ===");
         System.out.println(grnFit1.evaluate(simpleMaterial1));
 
 
