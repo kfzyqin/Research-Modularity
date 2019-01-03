@@ -7,22 +7,35 @@ from StatisticsToolkit import StatisticsToolkit
 from EdgeNumberTool import EdgeNumberTool
 from GRNCSVReader import GRNCSVReader
 from scipy.stats.stats import pearsonr
+import pandas as pd
+import csv
 
-sample_size = 100
+csv_path = "/Users/qin/Portal/generated-outputs/fixed-record-zhenyue-balanced-combinations-elite-p001/volcanoe.csv"
 
-a_1 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
-b_1 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0]
+a = pd.read_csv(csv_path,
+                sep='\t', quoting=csv.QUOTE_NONE)
 
-all_remove_00 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-all_remove_001 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+# a = pd.read_csv("/Users/qin/Portal/generated-outputs/fixed-record-zhenyue-balanced-combinations-elite-p001/"
+#                 "complete_sampling_asym_volcanoe.csv",
+#                 sep='\t', quoting=csv.QUOTE_NONE)
+
+a_raw_list = a['\"Fitness Complete Sampling ASymmetric After Edge Removing\"'].values.tolist()
+print(set([float(e.replace('\"', '')) for e in a_raw_list]))
+
+# print(a['\"Fitness Complete Sampling ASymmetric After Edge Removing\"'].values.tolist())
+# print(a.columns.values)
+print(a['\"GRNAfterRemovalInterModuleEdge\"'])
+
+# str_GRNs = list([e.replace('\"', '').replace('[', '').replace(']', '').split(',') for e in a['\"GRNAfterRemovalInterModuleEdge\"']])
+# num_GRNs = list(list(int(e2) for e2 in e) for e in str_GRNs)
+# print(num_GRNs)
+#
+# csv_df_saving_name = csv_path.replace('complete_sampling_asym_volcanoe.csv', '') + 'volcanoe_grns.txt'
+# outfile = open(csv_df_saving_name, "w")
+# print >> outfile, "\n".join(str(i) for i in num_GRNs)
+# outfile.close()
+
+# print(a[['GRNBeforeRemovalInterModuleEdge']])
 
 
-path_1 = '/Volumes/LaCie/Maotai-Project-Symmetry-Breaking/generated-outputs/record-zhenyue-balanced-combinations-p00'
-path_2 = '/Volumes/LaCie/Maotai-Project-Symmetry-Breaking/generated-outputs/record-zhenyue-balanced-combinations-p001'
 
-
-fitness_plotter = GRNCSVReader()
-fitness_values_1 = fitness_plotter.get_fitness_values_of_an_experiment(path_1, -1)[:sample_size]
-# fitness_values_2 = fitness_plotter.get_fitness_values_of_an_experiment(path_2, -1)[:sample_size]
-
-print "pearsonr: ", pearsonr(all_remove_00[:100], fitness_values_1)

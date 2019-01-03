@@ -374,6 +374,14 @@ public class GeneralMethods<T> {
         return tmpList;
     }
 
+    public static List<EdgeGene> convertArrayToList(int[] tmpArray1) {
+        List<EdgeGene> tmpList = new ArrayList<>();
+        for (Integer e : tmpArray1) {
+            tmpList.add(new EdgeGene(e));
+        }
+        return tmpList;
+    }
+
     public static SimpleMaterial convertStringArrayToSimpleMaterial(String[] tmpArray) {
         return new SimpleMaterial(convertArrayToList(convertStringArrayToIntArray(tmpArray)));
     }
@@ -456,7 +464,7 @@ public class GeneralMethods<T> {
     public static List<Double> getBinomialDistribution(int n, double successfulRate) {
         List<Double> rtn = new ArrayList<>();
         BinomialDistribution aBinomialDistribution = new BinomialDistribution(n, successfulRate);
-        for (int i=0; i<n; i++) {
+        for (int i=0; i<=n; i++) {
             rtn.add(aBinomialDistribution.probability(i));
         }
         return rtn;
@@ -515,6 +523,16 @@ public class GeneralMethods<T> {
             }
         }
         return distribution;
+    }
+
+    public static int getCertainEdgeNumber(int[] aGRN, int target) {
+        int count = 0;
+        for (int e : aGRN) {
+            if (e == target) {
+                count += 1;
+            }
+        }
+        return count;
     }
 
 }

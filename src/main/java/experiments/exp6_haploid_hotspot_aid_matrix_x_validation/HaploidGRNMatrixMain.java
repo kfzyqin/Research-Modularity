@@ -62,13 +62,13 @@ public class HaploidGRNMatrixMain {
     private static final int maxGen = 2000;
     private static final List<Integer> thresholds = Arrays.asList(0, 500); // when to switch targets
     private static final double alpha = 0.75;
-    private static final int[] perturbationSizes = {0, 1, 2, 3, 4, 5, 6, 7};
+    private static final int[] perturbationSizes = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     private static final int perturbationCycleSize = perturbations;
 
     /* Settings for text outputs */
     private static final String summaryFileName = "Summary.txt";
     private static final String csvFileName = "Statistics.csv";
-    private static final String outputDirectory = "fixed-record-zhenyue-balanced-combinations-elite-p00";
+    private static final String outputDirectory = "fixed-record-esw-balanced-combinations-elite-p00";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static final String allPerturbationsName = "Perturbations.per";
     private static final String modFitNamePrefix = "phenotypes";

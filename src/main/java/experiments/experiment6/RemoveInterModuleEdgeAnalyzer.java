@@ -35,8 +35,8 @@ public class RemoveInterModuleEdgeAnalyzer {
     private static final int perturbations = 500;
 
     public static void main(String[] args) throws IOException {
-//        String targetPath = "/Users/qin/Portal/generated-outputs/fixed-record-zhenyue-balanced-combinations-elite-p001";
-        String targetPath = "/Volumes/LaCie/Maotai-Project-Symmetry-Breaking/generated-outputs/record-esw-balanced-combinations-p01";
+        String targetPath = "/Users/qin/Portal/generated-outputs/fixed-record-zhenyue-balanced-combinations-elite-p00";
+//        String targetPath = "/Volumes/LaCie/Maotai-Project-Symmetry-Breaking/generated-outputs/record-esw-balanced-combinations-p01";
 
         int[][] targets = {target1, target2};
 

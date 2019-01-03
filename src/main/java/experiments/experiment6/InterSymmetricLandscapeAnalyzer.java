@@ -29,7 +29,7 @@ public class InterSymmetricLandscapeAnalyzer {
 
     private static final double perturbationRate = 0.15;
     private static final List<Integer> thresholds = Arrays.asList(0, 500);
-    private static final int[] perturbationSizes = {0, 1, 2, 3, 4, 5, 6, 7};
+    private static final int[] perturbationSizes = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
     private static final int perturbations = 500;
 
