@@ -5,7 +5,9 @@ import ga.components.genes.EdgeGene;
 import ga.components.hotspots.MatrixHotspot;
 import ga.components.materials.GRN;
 import ga.components.materials.SimpleMaterial;
+import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargets;
+import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue;
 import org.apache.commons.math3.distribution.BinomialDistribution;
 import org.jetbrains.annotations.NotNull;
 import org.json.simple.JSONObject;
@@ -358,8 +360,8 @@ public class GeneralMethods<T> {
         return lines;
     }
 
-    public static Integer[] convertStringArrayToIntArray(String[] stringArray) {
-        Integer[] rtn = new Integer[stringArray.length];
+    public static int[] convertStringArrayToIntArray(String[] stringArray) {
+        int[] rtn = new int[stringArray.length];
         for (int i=0; i<stringArray.length; i++) {
             rtn[i] = Integer.parseInt(stringArray[i]);
         }
@@ -422,7 +424,7 @@ public class GeneralMethods<T> {
         return (GeneralMethods.convertStringArrayToSimpleMaterial(ret.split(",")));
     }
 
-    public static int getInterModuleEdgeNumber(Integer[] aGRN) {
+    public static int getInterModuleEdgeNumber(int[] aGRN) {
         int grnSideSize = (int) Math.sqrt(aGRN.length);
         int middleSideIdx = (grnSideSize / 2);
 
@@ -535,4 +537,141 @@ public class GeneralMethods<T> {
         return count;
     }
 
+    public static int[] getPatternedGRN(int[] aGRN) {
+        int[] rtn = aGRN.clone();
+        int grnSideSize = (int) Math.sqrt(aGRN.length);
+        for (int i=grnSideSize/2; i<grnSideSize; i++) {
+            for (int j=grnSideSize/2; j<grnSideSize; j++) {
+                if (j % 2 == 0) {
+                    if (i % 2 == 0) {
+                        if (rtn[i + j * grnSideSize] != 1) {
+                            rtn[i + j * grnSideSize] = 1;
+                        }
+                    } else {
+                        if (rtn[i + j * grnSideSize] != -1) {
+                            rtn[i + j * grnSideSize] = -1;
+                        }
+                    }
+                }
+                else {
+                    if (i % 2 != 0) {
+                        if (rtn[i + j * grnSideSize] != 1) {
+                            rtn[i + j * grnSideSize] = 1;
+                        }
+                    } else {
+                        if (rtn[i + j * grnSideSize] != -1) {
+                            rtn[i + j * grnSideSize] = -1;
+                        }
+                    }
+                }
+            }
+        }
+
+        for (int i=(grnSideSize/2); i<grnSideSize; i++) {
+            for (int j=0; j < (grnSideSize/2); j++) {
+                rtn[i + j * grnSideSize] = 0;
+            }
+        }
+
+        for (int i=0; i<(grnSideSize/2); i++) {
+            for (int j=(grnSideSize/2); j<grnSideSize; j++) {
+                rtn[i + j * grnSideSize] = 0;
+            }
+        }
+        return rtn;
+    }
+
+    public static void printRow(int[] row) {
+        for (int i : row) {
+            System.out.print(i);
+            System.out.print("\t");
+        }
+        System.out.println();
+    }
+
+    public static void printSquareGRN(int[] aGRN) {
+        int grnSideSize = (int) Math.sqrt(aGRN.length);
+        for (int i=0; i<grnSideSize; i++) {
+            for (int j=0; j<grnSideSize; j++) {
+                System.out.print(aGRN[i*grnSideSize + j] + ",\t");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
+
+    public static int[] getInterModuleRemovedGRN(int[] aGRN) {
+        int[] rtn = aGRN.clone();
+        int grnSideSize = (int) Math.sqrt(aGRN.length);
+        for (int i=(grnSideSize/2); i<grnSideSize; i++) {
+            for (int j=0; j < (grnSideSize/2); j++) {
+                rtn[i + j * grnSideSize] = 0;
+            }
+        }
+
+        for (int i=0; i<(grnSideSize/2); i++) {
+            for (int j=(grnSideSize/2); j<grnSideSize; j++) {
+                rtn[i + j * grnSideSize] = 0;
+            }
+        }
+        return rtn;
+    }
+
+    public static List<Double> evaluateSeparateModuleFitnesses(int[] aGRN) {
+        System.out.println("a GRN: " + Arrays.toString(aGRN));
+        int grnSideSize = (int) Math.sqrt(aGRN.length);
+        int[] module1 = new int[(grnSideSize/2) * (grnSideSize/2)];
+        int[] module2 = new int[(grnSideSize/2) * (grnSideSize/2)];
+
+        int count=0;
+        for (int i=0; i<grnSideSize/2; i++) {
+            for (int j=0; j<grnSideSize/2; j++) {
+                module1[count] = aGRN[i*grnSideSize + j];
+                count += 1;
+            }
+        }
+
+        count=0;
+        for (int i=grnSideSize/2; i<grnSideSize; i++) {
+            for (int j=grnSideSize/2; j<grnSideSize; j++) {
+                module2[count] = aGRN[i*grnSideSize + j];
+                count += 1;
+            }
+        }
+
+        System.out.println("module 2: " + Arrays.toString(module2));
+        final int[] target1 = {
+                1, -1, 1, -1, 1,
+        };
+
+        final int[] target2 = {
+                -1, 1, -1, 1, -1
+        };
+
+        int[][] target_1_1 = {target1, target1};
+        int[][] target_1_2 = {target1, target2};
+        int[][] target_2_2 = {target2, target2};
+
+        final int maxCycle = 30;
+
+        final double perturbationRate = 0.15;
+        final List<Integer> thresholds = Arrays.asList(0, 500);
+        final int[] perturbationSizes = {0, 1, 2, 3, 4, 5};
+        final double stride = 0.00;
+        FitnessFunction fitnessFunction_1_1 = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
+                target_1_1, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
+        FitnessFunction fitnessFunction_1_2 = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
+                target_1_2, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
+        FitnessFunction fitnessFunction_2_2 = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
+                target_2_2, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
+
+        SimpleMaterial aNewMaterial1 = new SimpleMaterial(GeneralMethods.convertArrayToList(module1));
+        SimpleMaterial aNewMaterial2 = new SimpleMaterial(GeneralMethods.convertArrayToList(module2));
+        double fitness_1_1 = ((GRNFitnessFunctionMultipleTargets) fitnessFunction_1_1).evaluate(aNewMaterial1, 300);
+//        double fitness_1_2 = ((GRNFitnessFunctionMultipleTargets) fitnessFunction_1_2).evaluate(aNewMaterial1, 501);
+        double fitness_2_1 = ((GRNFitnessFunctionMultipleTargets) fitnessFunction_1_2).evaluate(aNewMaterial2, 501);
+        double fitness_2_2 = ((GRNFitnessFunctionMultipleTargets) fitnessFunction_2_2).evaluate(aNewMaterial2, 300);
+
+        return Arrays.asList(fitness_1_1, fitness_2_2, fitness_2_1);
+    }
 }

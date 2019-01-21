@@ -92,7 +92,6 @@ public class EdgeDeletionAnalyzer {
                 double originalFitness = ((GRNFitnessFunctionMultipleTargets) fitnessFunction).evaluate(aMaterial, 501);
                 System.out.println("return fitness: " + originalFitness);
 
-
 //                System.out.println(Arrays.toString(rtn));
 //                System.out.println("Activation edge: " + GeneralMethods.getCertainEdgeNumber(rtn, 1) +
 //                        " Depression edge: " + GeneralMethods.getCertainEdgeNumber(rtn, 1));
