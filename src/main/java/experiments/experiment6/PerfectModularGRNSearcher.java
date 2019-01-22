@@ -1,6 +1,7 @@
 package experiments.experiment6;
 
 import ga.collections.DetailedStatistics;
+import ga.collections.Individual;
 import ga.collections.Population;
 import ga.components.chromosomes.SimpleHaploid;
 import ga.frame.frames.Frame;
@@ -11,12 +12,14 @@ import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue;
 import ga.operations.initializers.HaploidGRNInitializer;
 import ga.operations.mutators.GRNEdgeMutator;
+import ga.operations.mutators.GRNFixedEdgeNoModularMutator;
 import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
 import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
 import ga.operations.priorOperators.PriorOperator;
 import ga.operations.priorOperators.SimpleElitismOperator;
 import ga.operations.reproducers.GRNHaploidHorizontalOneGeneReproducer;
+import ga.operations.reproducers.GRNHaploidNoXReproducer;
 import ga.operations.reproducers.Reproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
@@ -25,9 +28,7 @@ import ga.operations.selectionOperators.selectors.SimpleProportionalSelector;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * This file belongs to the experiments to compare crossover at GRN diagonals crossover
@@ -49,19 +50,19 @@ public class PerfectModularGRNSearcher {
 
     /* Parameters of the GRN */
     private static final int maxCycle = 30;
-    private static final int edgeSize = 20;
+    private static final int edgeSize = 22;
     private static final int perturbations = 500;
     private static final double perturbationRate = 0.15;
 
     /* Parameters of the GA */
-    private static final double geneMutationRate = 0.05;
+    private static final double geneMutationRate = 0.15;
     private static final int numElites = 10;
     private static final int populationSize = 100;
     private static final int tournamentSize = 3;
     private static final double reproductionRate = 0.9;
 
     private static final int maxGen = 2000;
-    private static final List<Integer> thresholds = Arrays.asList(0, 500); // when to switch targets
+    private static final List<Integer> thresholds = Arrays.asList(0, 1); // when to switch targets
     private static final double alpha = 0.75;
     private static final int[] perturbationSizes = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     private static final int perturbationCycleSize = perturbations;
@@ -121,10 +122,23 @@ public class PerfectModularGRNSearcher {
         HaploidGRNInitializer initializer = new HaploidGRNInitializer(populationSize, target1.length, edgeSize);
 
         /* Population */
-        Population<SimpleHaploid> population = initializer.initialize();
+        Population<SimpleHaploid> population = initializer.initializeModularizedPopulation(5);
+
+//        Population<SimpleHaploid> population = initializer.initialize();
+//        System.out.println(population.getIndividualsView().get(0));
+//        int count = 0;
+//        for (int i=0; i<population.getIndividualsView().get(0).getChromosome().getLength(); i++) {
+//            System.out.print(population.getIndividualsView().get(0).getChromosome().getPhenotype(false).getGene(i));
+//            System.out.print("\t");
+//            count += 1;
+//            if (count % 10 == 0) {
+//                System.out.println();
+//            }
+//        }
+
 
         /* Mutator for chromosomes */
-        Mutator mutator = new GRNEdgeMutator(geneMutationRate);
+        Mutator mutator = new GRNFixedEdgeNoModularMutator(geneMutationRate);
 
         /* Selector for reproduction */
 //        Selector<SimpleHaploid> selector = new SimpleTournamentSelector<>(tournamentSize);
@@ -138,9 +152,9 @@ public class PerfectModularGRNSearcher {
                 new SimpleTournamentScheme(3));
 
         /* Reproducer for reproduction */
-//        Reproducer<SimpleHaploid> reproducer = new GRNHaploidNoXReproducer();
+        Reproducer<SimpleHaploid> reproducer = new GRNHaploidNoXReproducer();
 //        Reproducer<SimpleHaploid> reproducer = new GRNHaploidMatrixDiagonalReproducer(target1.length);
-        Reproducer<SimpleHaploid> reproducer = new GRNHaploidHorizontalOneGeneReproducer(target1.length);
+//        Reproducer<SimpleHaploid> reproducer = new GRNHaploidHorizontalOneGeneReproducer(target1.length);
 
         /* Statistics for keeping track the performance in generations */
         DetailedStatistics<SimpleHaploid> statistics = new DetailedStatistics<>();
@@ -161,9 +175,25 @@ public class PerfectModularGRNSearcher {
 
         statistics.print(0); // print the initial state of an population
         /* Actual GA evolutions */
+        Set<String> aIndSet = new HashSet<>();
         for (int i = 1; i <= maxGen; i++) {
             frame.evolve();
             statistics.print(i);
+            for (Individual e : population.getIndividualsView()) {
+                if (e.getFitness() > 0.9462) {
+                    String strInd = e.getChromosome().getPhenotype(false).toString();
+                    if (!aIndSet.contains(strInd)) {
+                        aIndSet.add(strInd);
+                        System.out.println("A new good individual: ");
+                        System.out.println(strInd);
+                    }
+                }
+            }
+            System.out.println("here is a complete set printing");
+            for (String e : aIndSet) {
+                System.out.println(e);
+            }
+            System.out.println();
         }
 
         /* Generate output files */

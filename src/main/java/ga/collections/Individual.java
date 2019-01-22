@@ -6,6 +6,7 @@ import ga.components.materials.GRN;
 import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.FitnessFunctionMultipleTargets;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargets;
+import ga.operations.initializers.Initializer;
 import ga.others.Copyable;
 import org.jetbrains.annotations.NotNull;
 
@@ -94,5 +95,13 @@ public class Individual<C extends Chromosome> implements Comparable<Individual<C
 
     public double getGRNModularity() {
         return ((GRN) this.getChromosome().getPhenotype(false)).getGRNModularity();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Individual)) {
+            return false;
+        }
+        return this.chromosome.equals(((Individual) obj).chromosome);
     }
 }

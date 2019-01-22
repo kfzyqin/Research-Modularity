@@ -31,7 +31,6 @@ public class GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhe
 
         for (DataGene[] startAttractor : startAttractors) {
             int perturbedLength = (int) GeneralMethods.getOriginalHammingDistance(startAttractor, target);
-
             DataGene[] currentAttractor = startAttractor;
             int currentRound = 0;
             boolean isNotStable;
@@ -56,10 +55,27 @@ public class GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhe
                     perturbationPathDistanceMap.put(perturbedLength, new ArrayList<>(Collections.singletonList((double) target.length)));
                 }
             }
+
+//            if (target.length <= 5) {
+//                System.out.println("current round < max cycle: " + (currentRound < maxCycle));
+//                System.out.println("attractor: ");
+//                System.out.println(Arrays.toString(currentAttractor));
+//                System.out.println("target: ");
+//                System.out.println(Arrays.toString(target));
+//                System.out.println("perturbed length: " + perturbedLength);
+//
+//            }
         }
+//        if (target.length <= 5) {
+//            System.out.println("target: " + Arrays.toString(target));
+//            System.out.println("GRN: " + phenotype);
+//            System.out.println(perturbationPathDistanceMap);
+//        }
+
         for (Integer key : perturbationPathDistanceMap.keySet()) {
             List<Double> aPerturbationPathDistances = perturbationPathDistanceMap.get(key);
             double perturbedLengthWeight = perturbationLengthBinomialDistribution.get(key);
+//            double perturbedLengthWeight = 1;
             List<Double> gammas = new ArrayList<>();
             for (Double aPerturbationPathDistance : aPerturbationPathDistances) {
                 double aD = (1 - (aPerturbationPathDistance / ((double) target.length)));

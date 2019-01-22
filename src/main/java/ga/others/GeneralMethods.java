@@ -668,10 +668,11 @@ public class GeneralMethods<T> {
         SimpleMaterial aNewMaterial1 = new SimpleMaterial(GeneralMethods.convertArrayToList(module1));
         SimpleMaterial aNewMaterial2 = new SimpleMaterial(GeneralMethods.convertArrayToList(module2));
         double fitness_1_1 = ((GRNFitnessFunctionMultipleTargets) fitnessFunction_1_1).evaluate(aNewMaterial1, 300);
-//        double fitness_1_2 = ((GRNFitnessFunctionMultipleTargets) fitnessFunction_1_2).evaluate(aNewMaterial1, 501);
-        double fitness_2_1 = ((GRNFitnessFunctionMultipleTargets) fitnessFunction_1_2).evaluate(aNewMaterial2, 501);
+        double fitness_1_2 = ((GRNFitnessFunctionMultipleTargets) fitnessFunction_1_2).evaluate(aNewMaterial1, 501);
+        double fitness_2_1 = ((GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue) fitnessFunction_1_2).evaluate(aNewMaterial2, 501);
         double fitness_2_2 = ((GRNFitnessFunctionMultipleTargets) fitnessFunction_2_2).evaluate(aNewMaterial2, 300);
 
         return Arrays.asList(fitness_1_1, fitness_2_2, fitness_2_1);
+//        return Collections.singletonList(fitness_2_1);
     }
 }

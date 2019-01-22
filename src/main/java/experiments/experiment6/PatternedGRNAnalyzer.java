@@ -47,8 +47,11 @@ public class PatternedGRNAnalyzer {
         for (File aDirectory : directories) {
             try {
                 String aModFile = aDirectory + "/" + "phenotypes_fit.list";
+//                String aModFile = "/Users/qin/Research/Project-Maotai-Modularity/data/perfect_modular_individuals.txt";
                 List<String[]> lines = GeneralMethods.readFileLineByLine(aModFile);
+
                 String[] lastGRNString = lines.get(lines.size() - 1);
+//                String[] lastGRNString = lines.get(3);
                 SimpleMaterial aMaterial = GeneralMethods.convertStringArrayToSimpleMaterial(lastGRNString);
                 int interEdgeNo = GeneralMethods.getInterModuleEdgeNumber(GeneralMethods.convertStringArrayToIntArray(lastGRNString));
 
@@ -60,7 +63,8 @@ public class PatternedGRNAnalyzer {
                 List<Double> fitnesses = Arrays.asList (
                         removeNoEdgeFitnessesZhenyueSym.get(0), removeAllEdgeFitnessesZhenyueSym.get(0));
 
-                if (fitnesses.get(0) > 0.9462 && fitnesses.get(1) < fitnesses.get(0)) {
+//                if (fitnesses.get(0) > 0.9462 && fitnesses.get(1) < fitnesses.get(0)) {
+                if (true) {
                     System.out.println("###A New Directory###");
                     System.out.println("original fitness value: " + fitnesses.get(0));
                     List<Double> originalSeparateFitnesses = GeneralMethods.evaluateSeparateModuleFitnesses(GeneralMethods.convertStringArrayToIntArray(lastGRNString));

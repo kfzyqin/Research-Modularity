@@ -92,8 +92,8 @@ public class DiploidGRNInitializer implements Initializer<SimpleDiploid> {
     private Individual<SimpleDiploid> generateModularizedIndividual(final int moduleIndex) {
         GRNFactoryNoHiddenTarget grnFactory = new GRNFactoryNoHiddenTarget(targetLength, this.edgeSize);
         ExpressionMap<SimpleMaterial,SimpleMaterial> mapping = new DiploidEvolvedMap(grnSize);
-        GRN grn1 = grnFactory.generateModularizedGeneRegulatoryNetwork(moduleIndex);
-        GRN grn2 = grnFactory.generateModularizedGeneRegulatoryNetwork(moduleIndex);
+        GRN grn1 = grnFactory.generateModularizedGeneRegulatoryNetwork(moduleIndex, true);
+        GRN grn2 = grnFactory.generateModularizedGeneRegulatoryNetwork(moduleIndex, true);
         return new Individual<>(new SimpleDiploid(grn1, grn2, mapping));
     }
 }

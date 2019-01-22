@@ -2,11 +2,14 @@ package ga.components.materials;
 
 import ga.components.GRNs.DirectedEdge;
 import ga.components.genes.EdgeGene;
+import tools.PatternTemplate;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.regex.Pattern;
 
 /**
  * Created by zhenyueqin on 25/6/17.
@@ -55,7 +58,7 @@ public abstract class GRNFactory {
         return edgeGenes;
     }
 
-    public List<EdgeGene> initializeModularizedEdges(final int modularIndex) {
+    public List<EdgeGene> initializeModularizedEdges(final int modularIndex, final boolean toUsePattern) {
         if (edgeSize > networkSize / 2) {
             throw new IllegalArgumentException("Edge size must be less than half of network size. ");
         }
@@ -94,11 +97,17 @@ public abstract class GRNFactory {
             edgeGenes.add(new EdgeGene(0));
         }
 
-        for (DirectedEdge edge : edges) {
-            if (this.flipACoin()) {
-                edgeGenes.get(edge.getLeft() * this.manifestTargetSize + edge.getRight()).setValue(1);
-            } else {
-                edgeGenes.get(edge.getLeft() * this.manifestTargetSize + edge.getRight()).setValue(-1);
+        if (toUsePattern) {
+            for (DirectedEdge edge : edges) {
+                edgeGenes.get(edge.getLeft() * this.manifestTargetSize + edge.getRight()).setValue(PatternTemplate.getPatternTemplate()[edge.getLeft()][edge.getRight()]);
+            }
+        } else {
+            for (DirectedEdge edge : edges) {
+                if (this.flipACoin()) {
+                    edgeGenes.get(edge.getLeft() * this.manifestTargetSize + edge.getRight()).setValue(1);
+                } else {
+                    edgeGenes.get(edge.getLeft() * this.manifestTargetSize + edge.getRight()).setValue(-1);
+                }
             }
         }
         return edgeGenes;
@@ -112,8 +121,8 @@ public abstract class GRNFactory {
         return new GRN(this.initializeEdges());
     }
 
-    public GRN generateModularizedGeneRegulatoryNetwork(final int moduleIndex) {
-        return new GRN(this.initializeModularizedEdges(moduleIndex));
+    public GRN generateModularizedGeneRegulatoryNetwork(final int moduleIndex, final boolean toUsePattern) {
+        return new GRN(this.initializeModularizedEdges(moduleIndex, toUsePattern));
     }
 
     public int getManifestTargetSize() {

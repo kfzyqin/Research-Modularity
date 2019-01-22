@@ -79,7 +79,7 @@ public class HotspotHaploidGRNInitializer implements Initializer<SimpleHotspotHa
     protected Individual<SimpleHotspotHaploid> generateModularizedIndividual(final int moduleIndex) {
         GRNFactoryNoHiddenTarget grnFactory = new GRNFactoryNoHiddenTarget(targetLength, this.edgeSize);
         MatrixHotspot matrixHotspot = new MatrixHotspot(this.hotspotSize, grnSize);
-        GRN grn = grnFactory.generateModularizedGeneRegulatoryNetwork(moduleIndex);
+        GRN grn = grnFactory.generateModularizedGeneRegulatoryNetwork(moduleIndex, true);
         return new Individual<>(new SimpleHotspotHaploid(grn, matrixHotspot));
     }
 }

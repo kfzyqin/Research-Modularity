@@ -96,7 +96,6 @@ public class HotspotDiploidGRNInitializer implements Initializer<SimpleHotspotDi
         }
         population.nextGeneration();
         return population;
-
     }
 
     public Population<SimpleHotspotDiploid> initializeExistingModularizedPopulationWithMatrixHotspot(final int moduleIndex) throws IOException, ParseException {
@@ -117,8 +116,8 @@ public class HotspotDiploidGRNInitializer implements Initializer<SimpleHotspotDi
     protected Individual<SimpleHotspotDiploid> generateModularizedIndividualWithMatrixHotspot(final int moduleIndex) {
         GRNFactoryNoHiddenTarget grnFactory = new GRNFactoryNoHiddenTarget(targetLength, this.edgeSize);
         ExpressionMap<SimpleMaterial,SimpleMaterial> mapping = new DiploidEvolvedMap(grnSize);
-        GRN grn1 = grnFactory.generateModularizedGeneRegulatoryNetwork(moduleIndex);
-        GRN grn2 = grnFactory.generateModularizedGeneRegulatoryNetwork(moduleIndex);
+        GRN grn1 = grnFactory.generateModularizedGeneRegulatoryNetwork(moduleIndex, true);
+        GRN grn2 = grnFactory.generateModularizedGeneRegulatoryNetwork(moduleIndex, true);
         MatrixHotspot matrixHotspot = new MatrixHotspot(this.hotspotSize, grnSize);
         return new Individual<>(new SimpleHotspotDiploid(grn1, grn2, mapping, matrixHotspot));
     }

@@ -1,5 +1,6 @@
 package ga.components.chromosomes;
 
+import ga.collections.Individual;
 import ga.components.materials.Material;
 import ga.operations.expressionMaps.ExpressionMap;
 import ga.others.Copyable;
@@ -83,6 +84,14 @@ public abstract class Chromosome<M extends Material, P extends Material> impleme
      */
     public void setMapping(@NotNull final ExpressionMap<M, P> mapping) {
         this.mapping = mapping;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Chromosome)) {
+            return false;
+        }
+        return this.phenotype.equals(((Chromosome) obj).phenotype);
     }
 
 }
