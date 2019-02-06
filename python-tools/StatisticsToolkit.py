@@ -30,10 +30,10 @@ class StatisticsToolkit:
         return {"size_1": len(values_1), "size_2": len(values_2), "average_1": average_1, "average_2": average_2,
                 "wilcoxon": wilcoxon, "t_test": t_test, 'mann whitney: ': mann_whitney}
 
-    def calculate_fitness_significance(self, sample_size=40):
+    def calculate_fitness_significance(self, sample_size=40, index=-1):
         fitness_plotter = GRNCSVReader()
-        fitness_values_1 = fitness_plotter.get_fitness_values_of_an_experiment(self.path_1, -1)[:sample_size]
-        fitness_values_2 = fitness_plotter.get_fitness_values_of_an_experiment(self.path_2, -1)[:sample_size]
+        fitness_values_1 = fitness_plotter.get_fitness_values_of_an_experiment(self.path_1, index)[:sample_size]
+        fitness_values_2 = fitness_plotter.get_fitness_values_of_an_experiment(self.path_2, index)[:sample_size]
         print "length 1: ", len(fitness_values_1), " length 2: ", len(fitness_values_2)
         return self.calculate_statistical_significances(fitness_values_1, fitness_values_2)
 

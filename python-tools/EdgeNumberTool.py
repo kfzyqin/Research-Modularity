@@ -84,7 +84,7 @@ class EdgeNumberTool:
     def get_average_edge_number_in_each_generation(self, working_path):
         average_edge_numbers = self.csv_file_opener.get_fitness_values_of_an_trial(working_path, 'AvgEdgeNumber')
         return average_edge_numbers
-
+    
     def get_std_dev_edge_number_in_each_generation(self, working_path):
         std_dev_numbers = self.csv_file_opener.get_fitness_values_of_an_trial(working_path, 'StdDevEdgeNumber')
         return std_dev_numbers

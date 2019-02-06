@@ -3,19 +3,20 @@ import os
 
 prefix_path = os.path.expanduser("~")
 
-# path_1 = '/Volumes/LaCie/Maotai-Project-Symmetry-Breaking/generated-outputs/esw-balanced-combinations-p00'
-path_1 = '/Users/qin/Portal/generated-outputs/fixed-record-zhenyue-balanced-combinations-elite-p001'
-path_2 = '/Users/qin/Portal/generated-outputs/fixed-record-zhenyue-balanced-combinations-elite-p00'
+path_1 = '/Volumes/LaCie/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/no-selection'
+path_2 = '/Volumes/LaCie/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/with-selection'
+# path_1 = '/Users/qin/Portal/generated-outputs/no-selection'
+# path_2 = '/Users/qin/Portal/generated-outputs/with-selection'
 
 omega = StatisticsToolkit(path_1, path_2)
 
-sample_size = 100
+sample_size = 20
 
 print "path 1", path_1
 print "path 2", path_2
 
 print('fitness significance')
-print omega.calculate_fitness_significance(sample_size=sample_size)
+print omega.calculate_fitness_significance(sample_size=sample_size, index=1)
 
 print('most modularity significance')
 print omega.calculate_most_modularities_significance(sample_size=sample_size)
