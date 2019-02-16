@@ -8,17 +8,29 @@ csv_file_opener = CSVFileOpener()
 fits_1 = csv_file_opener.get_properties_of_each_generation_in_a_whole_experiment(path_1, 'Best')
 fits_2 = csv_file_opener.get_properties_of_each_generation_in_a_whole_experiment(path_2, 'Best')
 
+fits_avg_1 = csv_file_opener.get_properties_of_each_generation_in_a_whole_experiment(path_1, 'Median')
+fits_avg_2 = csv_file_opener.get_properties_of_each_generation_in_a_whole_experiment(path_2, 'Median')
+
 mod_1 = csv_file_opener.get_properties_of_each_generation_in_a_whole_experiment(path_1, 'MostModFitness')
 mod_2 = csv_file_opener.get_properties_of_each_generation_in_a_whole_experiment(path_2, 'MostModFitness')
 
 avg_edge_no_1 = csv_file_opener.get_properties_of_each_generation_in_a_whole_experiment(path_1, 'AvgEdgeNumber')
 avg_edge_no_2 = csv_file_opener.get_properties_of_each_generation_in_a_whole_experiment(path_2, 'AvgEdgeNumber')
 
+std_dev_edge_no_1 = csv_file_opener.get_properties_of_each_generation_in_a_whole_experiment(path_1, 'StdDevEdgeNumber')
+std_dev_edge_no_2 = csv_file_opener.get_properties_of_each_generation_in_a_whole_experiment(path_2, 'StdDevEdgeNumber')
+
 fp.save_lists_graph([fits_1, fits_2], labels=['with_selection', 'no_selection'], ver_lines=None, path=path_1, file_name='avg_fit', marker='.',
+                    colors=None, dpi=500, to_normalize=False)
+
+fp.save_lists_graph([fits_avg_1, fits_avg_2], labels=['with_selection', 'no_selection'], ver_lines=None, path=path_1, file_name='avg_median_fit', marker='.',
                     colors=None, dpi=500, to_normalize=False)
 
 fp.save_lists_graph([mod_1, mod_2], labels=['with_selection', 'no_selection'], ver_lines=None, path=path_1, file_name='avg_mod', marker='.',
                     colors=None, dpi=500, to_normalize=False)
 
 fp.save_lists_graph([avg_edge_no_1, avg_edge_no_2], labels=['with_selection', 'no_selection'], ver_lines=None, path=path_1, file_name='avg_edge_no', marker='.',
+                    colors=None, dpi=500, to_normalize=False)
+
+fp.save_lists_graph([std_dev_edge_no_1, std_dev_edge_no_2], labels=['with_selection', 'no_selection'], ver_lines=None, path=path_1, file_name='std_dev_edge_no', marker='.',
                     colors=None, dpi=500, to_normalize=False)

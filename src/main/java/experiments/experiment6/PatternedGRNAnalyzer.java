@@ -28,14 +28,14 @@ public class PatternedGRNAnalyzer {
             1, -1, 1, -1, 1
     };
 
-    private static final int maxCycle = 30;
+    private static final int maxCycle = 100;
 
     private static final double perturbationRate = 0.15;
     private static final List<Integer> thresholds = Arrays.asList(0, 500);
     private static final int[] perturbationSizes = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
     public static void main(String[] args) {
-        String targetPath = "/Users/qin/Portal/generated-outputs/fixed-record-zhenyue-balanced-combinations-elite-p001";
+        String targetPath = "/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/fixed-record-zhenyue-balanced-combinations-elite-p001";
 
         int[][] targets = {target1, target2};
 
@@ -44,6 +44,7 @@ public class PatternedGRNAnalyzer {
 
         File[] directories = new File(targetPath).listFiles(File::isDirectory);
 
+        int directoryCounter = 0;
         for (File aDirectory : directories) {
             try {
                 String aModFile = aDirectory + "/" + "phenotypes_fit.list";
@@ -64,29 +65,37 @@ public class PatternedGRNAnalyzer {
                         removeNoEdgeFitnessesZhenyueSym.get(0), removeAllEdgeFitnessesZhenyueSym.get(0));
 
 //                if (fitnesses.get(0) > 0.9462 && fitnesses.get(1) < fitnesses.get(0)) {
-                if (true) {
-                    System.out.println("###A New Directory###");
-                    System.out.println("original fitness value: " + fitnesses.get(0));
+                if (fitnesses.get(0) > 0.9462) {
+//                if (true) {
+//                    System.out.println("###A New Directory###");
+//                    System.out.println("original fitness value: " + fitnesses.get(0));
                     List<Double> originalSeparateFitnesses = GeneralMethods.evaluateSeparateModuleFitnesses(GeneralMethods.convertStringArrayToIntArray(lastGRNString));
                     int[] noInterModuleGRN = GeneralMethods.getInterModuleRemovedGRN(GeneralMethods.convertStringArrayToIntArray(lastGRNString));
-                    System.out.println("original fitness: " + originalSeparateFitnesses);
-                    printSquareGRN(GeneralMethods.convertStringArrayToIntArray(lastGRNString));
+//                    System.out.println("original fitness: " + originalSeparateFitnesses);
+//                    printSquareGRN(GeneralMethods.convertStringArrayToIntArray(lastGRNString));
+                    if (originalSeparateFitnesses.get(0) > 0.9502 && originalSeparateFitnesses.get(2) > 0.9460) {
+                        directoryCounter += 1;
 
-                    List<Double> noInterModuleSeparateFitnesses = GeneralMethods.evaluateSeparateModuleFitnesses(noInterModuleGRN);
-                    SimpleMaterial aNoInterModuleMaterial = new SimpleMaterial(GeneralMethods.convertArrayToList(noInterModuleGRN));
-                    double noInterModuleFitness = ((GRNFitnessFunctionMultipleTargets) fitnessFunctionZhenyueSym).evaluate(aNoInterModuleMaterial, 501);
-                    System.out.println("no inter module fitness: " + noInterModuleFitness);
-                    System.out.println("no inter module: " + noInterModuleSeparateFitnesses);
-                    printSquareGRN(noInterModuleGRN);
+                        System.out.println("\n###A New Directory###");
+                        System.out.println("original fitness value: " + fitnesses.get(0));
+                        System.out.println("original fitness: " + originalSeparateFitnesses);
+//                        break;
+                    }
 
-                    int[] patternedGRN = GeneralMethods.getPatternedGRN(GeneralMethods.convertStringArrayToIntArray(lastGRNString));
+//                    List<Double> noInterModuleSeparateFitnesses = GeneralMethods.evaluateSeparateModuleFitnesses(noInterModuleGRN);
+//                    SimpleMaterial aNoInterModuleMaterial = new SimpleMaterial(GeneralMethods.convertArrayToList(noInterModuleGRN));
+//                    double noInterModuleFitness = ((GRNFitnessFunctionMultipleTargets) fitnessFunctionZhenyueSym).evaluate(aNoInterModuleMaterial, 501);
+//                    System.out.println("no inter module fitness: " + noInterModuleFitness);
+//                    System.out.println("no inter module: " + noInterModuleSeparateFitnesses);
+//                    printSquareGRN(noInterModuleGRN);
+
+                    int[] patternedGRN = GeneralMethods.getPatternedGRN(GeneralMethods.convertStringArrayToIntArray(lastGRNString), true);
                     List<Double> patternedSeparateFitnesses = GeneralMethods.evaluateSeparateModuleFitnesses(patternedGRN);
-                    System.out.println("patterned: " + patternedSeparateFitnesses);
+//                    System.out.println("patterned: " + patternedSeparateFitnesses);
                     SimpleMaterial aNewMaterial = new SimpleMaterial(GeneralMethods.convertArrayToList(patternedGRN));
                     double patternedFitness = ((GRNFitnessFunctionMultipleTargets) fitnessFunctionZhenyueSym).evaluate(aNewMaterial, 501);
-                    System.out.println("patterned fitness: " + patternedFitness);
-                    printSquareGRN(patternedGRN);
-
+                    System.out.println("patterned fitness: " + patternedSeparateFitnesses);
+//                    printSquareGRN(patternedGRN);
 
 
 //                    if ((patternedFitness < fitnesses.get(0))) {
@@ -107,5 +116,6 @@ public class PatternedGRNAnalyzer {
             }
 
         }
+        System.out.println("Directory Counter: " + directoryCounter);
     }
 }

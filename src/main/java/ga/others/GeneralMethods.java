@@ -8,6 +8,7 @@ import ga.components.materials.SimpleMaterial;
 import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargets;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue;
+import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyueSameWeight;
 import org.apache.commons.math3.distribution.BinomialDistribution;
 import org.jetbrains.annotations.NotNull;
 import org.json.simple.JSONObject;
@@ -537,7 +538,7 @@ public class GeneralMethods<T> {
         return count;
     }
 
-    public static int[] getPatternedGRN(int[] aGRN) {
+    public static int[] getPatternedGRN(int[] aGRN, boolean alterFirst) {
         int[] rtn = aGRN.clone();
         int grnSideSize = (int) Math.sqrt(aGRN.length);
         for (int i=grnSideSize/2; i<grnSideSize; i++) {
@@ -561,6 +562,35 @@ public class GeneralMethods<T> {
                     } else {
                         if (rtn[i + j * grnSideSize] != -1) {
                             rtn[i + j * grnSideSize] = -1;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (alterFirst) {
+            for (int i=0; i<grnSideSize/2; i++) {
+                for (int j=0; j<grnSideSize/2; j++) {
+                    if (j % 2 == 0) {
+                        if (i % 2 == 0) {
+                            if (rtn[i + j * grnSideSize] != 1) {
+                                rtn[i + j * grnSideSize] = 1;
+                            }
+                        } else {
+                            if (rtn[i + j * grnSideSize] != -1) {
+                                rtn[i + j * grnSideSize] = -1;
+                            }
+                        }
+                    }
+                    else {
+                        if (i % 2 != 0) {
+                            if (rtn[i + j * grnSideSize] != 1) {
+                                rtn[i + j * grnSideSize] = 1;
+                            }
+                        } else {
+                            if (rtn[i + j * grnSideSize] != -1) {
+                                rtn[i + j * grnSideSize] = -1;
+                            }
                         }
                     }
                 }
@@ -618,7 +648,7 @@ public class GeneralMethods<T> {
     }
 
     public static List<Double> evaluateSeparateModuleFitnesses(int[] aGRN) {
-        System.out.println("a GRN: " + Arrays.toString(aGRN));
+//        System.out.println("a GRN: " + Arrays.toString(aGRN));
         int grnSideSize = (int) Math.sqrt(aGRN.length);
         int[] module1 = new int[(grnSideSize/2) * (grnSideSize/2)];
         int[] module2 = new int[(grnSideSize/2) * (grnSideSize/2)];
@@ -639,7 +669,7 @@ public class GeneralMethods<T> {
             }
         }
 
-        System.out.println("module 2: " + Arrays.toString(module2));
+//        System.out.println("module 2: " + Arrays.toString(module2));
         final int[] target1 = {
                 1, -1, 1, -1, 1,
         };
@@ -657,6 +687,7 @@ public class GeneralMethods<T> {
         final double perturbationRate = 0.15;
         final List<Integer> thresholds = Arrays.asList(0, 500);
         final int[] perturbationSizes = {0, 1, 2, 3, 4, 5};
+        final int[] perturbationSizes_same_weight = {0};
         final double stride = 0.00;
         FitnessFunction fitnessFunction_1_1 = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
                 target_1_1, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
@@ -665,14 +696,29 @@ public class GeneralMethods<T> {
         FitnessFunction fitnessFunction_2_2 = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
                 target_2_2, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
 
+        FitnessFunction fitnessFunction_1_1_same_weight = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyueSameWeight(
+                target_1_1, maxCycle, perturbationRate, thresholds, perturbationSizes_same_weight, stride);
+        FitnessFunction fitnessFunction_1_2_same_weight = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyueSameWeight(
+                target_1_2, maxCycle, perturbationRate, thresholds, perturbationSizes_same_weight, stride);
+        FitnessFunction fitnessFunction_2_2_same_weight = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyueSameWeight(
+                target_2_2, maxCycle, perturbationRate, thresholds, perturbationSizes_same_weight, stride);
+
         SimpleMaterial aNewMaterial1 = new SimpleMaterial(GeneralMethods.convertArrayToList(module1));
         SimpleMaterial aNewMaterial2 = new SimpleMaterial(GeneralMethods.convertArrayToList(module2));
         double fitness_1_1 = ((GRNFitnessFunctionMultipleTargets) fitnessFunction_1_1).evaluate(aNewMaterial1, 300);
         double fitness_1_2 = ((GRNFitnessFunctionMultipleTargets) fitnessFunction_1_2).evaluate(aNewMaterial1, 501);
         double fitness_2_1 = ((GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue) fitnessFunction_1_2).evaluate(aNewMaterial2, 501);
         double fitness_2_2 = ((GRNFitnessFunctionMultipleTargets) fitnessFunction_2_2).evaluate(aNewMaterial2, 300);
+        double fitness_2_2_material_1 = ((GRNFitnessFunctionMultipleTargets) fitnessFunction_1_1).evaluate(aNewMaterial2, 300);
 
-        return Arrays.asList(fitness_1_1, fitness_2_2, fitness_2_1);
+        double fitness_1_1_same_weight = ((GRNFitnessFunctionMultipleTargets) fitnessFunction_1_1_same_weight).evaluate(aNewMaterial1, 300);
+        double fitness_1_2_same_weight = ((GRNFitnessFunctionMultipleTargets) fitnessFunction_1_2_same_weight).evaluate(aNewMaterial1, 501);
+        double fitness_2_1_same_weight = ((GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyueSameWeight) fitnessFunction_2_2_same_weight).evaluate(aNewMaterial2, 501);
+        double fitness_2_2_same_weight = ((GRNFitnessFunctionMultipleTargets) fitnessFunction_2_2_same_weight).evaluate(aNewMaterial2, 300);
+        double fitness_2_2_material_1_same_weight = ((GRNFitnessFunctionMultipleTargets) fitnessFunction_1_1_same_weight).evaluate(aNewMaterial2, 300);
+
+        return Arrays.asList(fitness_1_1, fitness_2_2, fitness_2_1, fitness_2_2_material_1,
+                fitness_1_1_same_weight, fitness_2_2_same_weight, fitness_2_1_same_weight, fitness_2_2_material_1_same_weight);
 //        return Collections.singletonList(fitness_2_1);
     }
 }
