@@ -17,6 +17,11 @@ public class GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhe
         super(targets, maxCycle, perturbationRate, thresholdOfAddingTarget, perturbationSizes, stride);
     }
 
+    public boolean printCyclePath = false;
+    public List<Integer> cycleDists = new ArrayList<>();
+
+    protected ArrayList<DataGene[]> cyclePath = new ArrayList<>();
+
     protected double evaluateOneTarget(@NotNull final SimpleMaterial phenotype, @NotNull final int[] target,
                                        DataGene[][] startAttractors) {
 //        System.out.println("We are now evaluating one target. ");
@@ -34,11 +39,13 @@ public class GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhe
             DataGene[] currentAttractor = startAttractor;
             int currentRound = 0;
             boolean isNotStable;
+            cyclePath.add(startAttractor.clone());
             do {
                 DataGene[] updatedState = this.updateState(currentAttractor, phenotype);
                 isNotStable = this.hasNotAttainedAttractor(currentAttractor, updatedState);
                 currentAttractor = updatedState;
                 currentRound += 1;
+                cyclePath.add(updatedState.clone());
             } while (currentRound < this.maxCycle && isNotStable);
 
             if (currentRound < maxCycle) {
@@ -56,15 +63,27 @@ public class GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhe
                 }
             }
 
-//            if (target.length <= 5) {
-//                System.out.println("current round < max cycle: " + (currentRound < maxCycle));
-//                System.out.println("attractor: ");
-//                System.out.println(Arrays.toString(currentAttractor));
-//                System.out.println("target: ");
-//                System.out.println(Arrays.toString(target));
-//                System.out.println("perturbed length: " + perturbedLength);
-//
-//            }
+            cyclePath.remove(cyclePath.size()-1);
+
+            if (this.printCyclePath) {
+                System.out.println("currentRound: \t" + currentRound);
+                System.out.println("s attractor: \t" + Arrays.toString(startAttractor));
+                System.out.println("target: \t\t" + Arrays.toString(target));
+                System.out.println("initial distance: \t" + this.getHammingDistance(startAttractor, target));
+                System.out.println("final distance: \t" + this.getHammingDistance(currentAttractor, target));
+                List<Double> cycleDists = new ArrayList<>();
+                for (DataGene[] aCyclePath : cyclePath) {
+                    cycleDists.add(this.getHammingDistance(aCyclePath, target));
+                }
+                System.out.println(Arrays.deepToString(cyclePath.toArray()));
+                System.out.println(cycleDists);
+                System.out.println();
+            }
+            cycleDists.add(currentRound);
+
+            cyclePath = new ArrayList<>();
+
+
         }
 //        if (target.length <= 5) {
 //            System.out.println("target: " + Arrays.toString(target));
@@ -72,6 +91,7 @@ public class GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhe
 //            System.out.println(perturbationPathDistanceMap);
 //        }
 
+//        System.out.println(perturbationPathDistanceMap);
         for (Integer key : perturbationPathDistanceMap.keySet()) {
             List<Double> aPerturbationPathDistances = perturbationPathDistanceMap.get(key);
             double perturbedLengthWeight = perturbationLengthBinomialDistribution.get(key);
@@ -83,8 +103,10 @@ public class GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhe
                 gammas.add(oneGamma);
             }
             double averageGamma = GeneralMethods.getAverageNumber(gammas);
+//            System.out.println("average Gamma: " + averageGamma);
             g += perturbedLengthWeight * averageGamma;
         }
+//        System.out.println("g: " + g);
         return 1 - Math.pow(Math.E, (-3 * g));
     }
 }

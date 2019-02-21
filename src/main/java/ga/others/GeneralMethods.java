@@ -203,10 +203,26 @@ public class GeneralMethods<T> {
         return sum / aList.length;
     }
 
-    public static double getAverageNumber(List<Double> aList) {
+    public static double getAverageNumber(Integer[] aList) {
         double sum = 0;
         for (double aNumber : aList) {
             sum += aNumber;
+        }
+        return sum / aList.length;
+    }
+
+    public static  double getAverageNumber(List<Double> aList) {
+        double sum = 0;
+        for (Double aNumber : aList) {
+            sum += aNumber;
+        }
+        return sum / aList.size();
+    }
+
+    public static  double getIntAverageNumber(List<Integer> aList) {
+        double sum = 0;
+        for (Integer aNumber : aList) {
+            sum += (double) aNumber.intValue();
         }
         return sum / aList.size();
     }
@@ -538,6 +554,48 @@ public class GeneralMethods<T> {
         return count;
     }
 
+    public static int[] getCustomGRN() {
+        int[] rtn = new int[]{
+                0,	0, 0, 0, 0,	    0, 0, 0, 0, 0,
+                0,	0, -1, 0, 0,    0,	0, 0, 0, 0,
+                0,	0, 0, -1, 1,    0,	0, 0, 0, 0,
+                0,	0, 0, 0, -1,    0,	0, 0, 0, 0,
+                1,	0, 0, 0, 0,     0,	0, 0, 0, 0,
+                0,	0, 0, 0, 0,     1,  -1,  1,  -1,  1,
+                0,	0, 0, 0, 0,     -1,  0,  0,  0,  0,
+                0,	0, 0, 0, 0,     0,  0,  0,  0,  0,
+                0,	0, 0, 0, 0,     0,  0,  0,  0,  0,
+                0,	0, 0, 0, 0,     0,  0,  0,  0,  0};
+        return rtn;
+    }
+
+    public static int[] getSameColumnGRN(int[] aGRN) {
+        int[] rtn = aGRN.clone();
+        int grnSideSize = (int) Math.sqrt(aGRN.length);
+        int halfGRNSideSize = (grnSideSize/2);
+        for (int i=0; i<grnSideSize; i++) {
+            for (int j=0; j<grnSideSize; j++) {
+                if (i % 2 == 0) {
+                    if (i < (grnSideSize/2)) {
+                        rtn[i + j * grnSideSize] = 1;
+                    } else {
+                        rtn[i + j * grnSideSize] = -1;
+                    }
+                } else {
+                    if (i < (grnSideSize/2)) {
+                        rtn[i + j * grnSideSize] = -1;
+                    } else {
+                        rtn[i + j * grnSideSize] = 1;
+                    }
+                }
+                if ((i >= halfGRNSideSize && j < halfGRNSideSize) || (i < halfGRNSideSize && j >= halfGRNSideSize)) {
+                    rtn[i + j * grnSideSize] = 0;
+                }
+            }
+        }
+        return rtn;
+    }
+
     public static int[] getPatternedGRN(int[] aGRN, boolean alterFirst) {
         int[] rtn = aGRN.clone();
         int grnSideSize = (int) Math.sqrt(aGRN.length);
@@ -630,6 +688,19 @@ public class GeneralMethods<T> {
         System.out.println();
     }
 
+    public static int[] convertSimpleMaterialToIntArray(SimpleMaterial phenotype) {
+        int[] rtn = new int[phenotype.getSize()];
+        for (int i=0; i<phenotype.getSize(); i++) {
+            rtn[i] = (int) phenotype.getGene(i).getValue();
+        }
+        return rtn;
+    }
+
+    public static void printSquareGRN(SimpleMaterial phenotype) {
+        int[] rtn = convertSimpleMaterialToIntArray(phenotype);
+        printSquareGRN(rtn);
+    }
+
     public static int[] getInterModuleRemovedGRN(int[] aGRN) {
         int[] rtn = aGRN.clone();
         int grnSideSize = (int) Math.sqrt(aGRN.length);
@@ -647,7 +718,7 @@ public class GeneralMethods<T> {
         return rtn;
     }
 
-    public static List<Double> evaluateSeparateModuleFitnesses(int[] aGRN) {
+    public static List<Double> evaluateSeparateModuleFitnesses(int[] aGRN, boolean toPrintCyclePath) {
 //        System.out.println("a GRN: " + Arrays.toString(aGRN));
         int grnSideSize = (int) Math.sqrt(aGRN.length);
         int[] module1 = new int[(grnSideSize/2) * (grnSideSize/2)];
@@ -687,7 +758,7 @@ public class GeneralMethods<T> {
         final double perturbationRate = 0.15;
         final List<Integer> thresholds = Arrays.asList(0, 500);
         final int[] perturbationSizes = {0, 1, 2, 3, 4, 5};
-        final int[] perturbationSizes_same_weight = {0};
+        final int[] perturbationSizes_same_weight = {5};
         final double stride = 0.00;
         FitnessFunction fitnessFunction_1_1 = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
                 target_1_1, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
@@ -695,6 +766,11 @@ public class GeneralMethods<T> {
                 target_1_2, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
         FitnessFunction fitnessFunction_2_2 = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
                 target_2_2, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
+
+        if (toPrintCyclePath) {
+//            ((GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue) fitnessFunction_2_2).printCyclePath = true;
+            ((GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue) fitnessFunction_1_1).printCyclePath = true;
+        }
 
         FitnessFunction fitnessFunction_1_1_same_weight = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyueSameWeight(
                 target_1_1, maxCycle, perturbationRate, thresholds, perturbationSizes_same_weight, stride);
@@ -711,11 +787,11 @@ public class GeneralMethods<T> {
         double fitness_2_2 = ((GRNFitnessFunctionMultipleTargets) fitnessFunction_2_2).evaluate(aNewMaterial2, 300);
         double fitness_2_2_material_1 = ((GRNFitnessFunctionMultipleTargets) fitnessFunction_1_1).evaluate(aNewMaterial2, 300);
 
-        double fitness_1_1_same_weight = ((GRNFitnessFunctionMultipleTargets) fitnessFunction_1_1_same_weight).evaluate(aNewMaterial1, 300);
-        double fitness_1_2_same_weight = ((GRNFitnessFunctionMultipleTargets) fitnessFunction_1_2_same_weight).evaluate(aNewMaterial1, 501);
+        double fitness_1_1_same_weight = ((GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyueSameWeight) fitnessFunction_1_1_same_weight).evaluate(aNewMaterial1, 300);
+        double fitness_1_2_same_weight = ((GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyueSameWeight) fitnessFunction_1_2_same_weight).evaluate(aNewMaterial1, 501);
         double fitness_2_1_same_weight = ((GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyueSameWeight) fitnessFunction_2_2_same_weight).evaluate(aNewMaterial2, 501);
-        double fitness_2_2_same_weight = ((GRNFitnessFunctionMultipleTargets) fitnessFunction_2_2_same_weight).evaluate(aNewMaterial2, 300);
-        double fitness_2_2_material_1_same_weight = ((GRNFitnessFunctionMultipleTargets) fitnessFunction_1_1_same_weight).evaluate(aNewMaterial2, 300);
+        double fitness_2_2_same_weight = ((GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyueSameWeight) fitnessFunction_2_2_same_weight).evaluate(aNewMaterial2, 300);
+        double fitness_2_2_material_1_same_weight = ((GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyueSameWeight) fitnessFunction_1_1_same_weight).evaluate(aNewMaterial2, 300);
 
         return Arrays.asList(fitness_1_1, fitness_2_2, fitness_2_1, fitness_2_2_material_1,
                 fitness_1_1_same_weight, fitness_2_2_same_weight, fitness_2_1_same_weight, fitness_2_2_material_1_same_weight);

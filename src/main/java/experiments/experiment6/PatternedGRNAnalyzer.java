@@ -12,10 +12,13 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static experiments.experiment6.EdgeDeletionAnalyzer.getBasicGRN;
+import static ga.others.GeneralMethods.getAverageNumber;
+import static ga.others.GeneralMethods.getIntAverageNumber;
 import static ga.others.GeneralMethods.printSquareGRN;
 
 public class PatternedGRNAnalyzer {
@@ -33,9 +36,11 @@ public class PatternedGRNAnalyzer {
     private static final double perturbationRate = 0.15;
     private static final List<Integer> thresholds = Arrays.asList(0, 500);
     private static final int[] perturbationSizes = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    private static final double stride = 0.00;
 
     public static void main(String[] args) {
-        String targetPath = "/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/fixed-record-zhenyue-balanced-combinations-elite-p001";
+//        String targetPath = "/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/fixed-record-zhenyue-balanced-combinations-elite-p001";
+        String targetPath = "/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/with-selection-two-targets";
 
         int[][] targets = {target1, target2};
 
@@ -45,6 +50,10 @@ public class PatternedGRNAnalyzer {
         File[] directories = new File(targetPath).listFiles(File::isDirectory);
 
         int directoryCounter = 0;
+
+        List<Double> cycleDistAll = new ArrayList<>();
+        List<Double> originalFitnessLists = new ArrayList<>();
+
         for (File aDirectory : directories) {
             try {
                 String aModFile = aDirectory + "/" + "phenotypes_fit.list";
@@ -69,18 +78,44 @@ public class PatternedGRNAnalyzer {
 //                if (true) {
 //                    System.out.println("###A New Directory###");
 //                    System.out.println("original fitness value: " + fitnesses.get(0));
-                    List<Double> originalSeparateFitnesses = GeneralMethods.evaluateSeparateModuleFitnesses(GeneralMethods.convertStringArrayToIntArray(lastGRNString));
+                    List<Double> originalSeparateFitnesses = GeneralMethods.evaluateSeparateModuleFitnesses(GeneralMethods.convertStringArrayToIntArray(lastGRNString), false);
                     int[] noInterModuleGRN = GeneralMethods.getInterModuleRemovedGRN(GeneralMethods.convertStringArrayToIntArray(lastGRNString));
 //                    System.out.println("original fitness: " + originalSeparateFitnesses);
 //                    printSquareGRN(GeneralMethods.convertStringArrayToIntArray(lastGRNString));
-                    if (originalSeparateFitnesses.get(0) > 0.9502 && originalSeparateFitnesses.get(2) > 0.9460) {
-                        directoryCounter += 1;
 
+//                    if (originalSeparateFitnesses.get(0) > 0.9502 && originalSeparateFitnesses.get(2) > 0.9460) {
+                    if (true) {
+                        printSquareGRN(aMaterial);
+
+                        FitnessFunction originalFitness = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
+                                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
+//                        ((GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue) originalFitness).printCyclePath = true;
+
+                        ((GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue) originalFitness).evaluate(aMaterial, 200);
+                        cycleDistAll.add(getIntAverageNumber(((GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue) originalFitness).cycleDists));
+                        originalFitnessLists.add(fitnesses.get(1));
+
+                        directoryCounter += 1;
+                        GeneralMethods.evaluateSeparateModuleFitnesses(GeneralMethods.convertStringArrayToIntArray(lastGRNString), false);
                         System.out.println("\n###A New Directory###");
                         System.out.println("original fitness value: " + fitnesses.get(0));
                         System.out.println("original fitness: " + originalSeparateFitnesses);
+
+//                        printSquareGRN(noInterModuleGRN);
+
+                        System.out.println("@@@@@@ Customing @@@@@@");
+                        int[] customGRN = GeneralMethods.getCustomGRN();
+                        List<Double> sameColumnPatternedSeparateFitnesses = GeneralMethods.evaluateSeparateModuleFitnesses(customGRN, false);
+                        SimpleMaterial aCustomMaterial = new SimpleMaterial(GeneralMethods.convertArrayToList(customGRN));
+                        double sameCustomFitness = ((GRNFitnessFunctionMultipleTargets) fitnessFunctionZhenyueSym).evaluate(aCustomMaterial, 501);
+                        System.out.println("custom fitness: " + sameColumnPatternedSeparateFitnesses);
+//                        printSquareGRN(customGRN);
+//                        GeneralMethods.evaluateSeparateModuleFitnesses(customGRN, true);
+
 //                        break;
                     }
+
+
 
 //                    List<Double> noInterModuleSeparateFitnesses = GeneralMethods.evaluateSeparateModuleFitnesses(noInterModuleGRN);
 //                    SimpleMaterial aNoInterModuleMaterial = new SimpleMaterial(GeneralMethods.convertArrayToList(noInterModuleGRN));
@@ -89,13 +124,13 @@ public class PatternedGRNAnalyzer {
 //                    System.out.println("no inter module: " + noInterModuleSeparateFitnesses);
 //                    printSquareGRN(noInterModuleGRN);
 
-                    int[] patternedGRN = GeneralMethods.getPatternedGRN(GeneralMethods.convertStringArrayToIntArray(lastGRNString), true);
-                    List<Double> patternedSeparateFitnesses = GeneralMethods.evaluateSeparateModuleFitnesses(patternedGRN);
-//                    System.out.println("patterned: " + patternedSeparateFitnesses);
-                    SimpleMaterial aNewMaterial = new SimpleMaterial(GeneralMethods.convertArrayToList(patternedGRN));
-                    double patternedFitness = ((GRNFitnessFunctionMultipleTargets) fitnessFunctionZhenyueSym).evaluate(aNewMaterial, 501);
-                    System.out.println("patterned fitness: " + patternedSeparateFitnesses);
-//                    printSquareGRN(patternedGRN);
+//                    int[] patternedGRN = GeneralMethods.getPatternedGRN(GeneralMethods.convertStringArrayToIntArray(lastGRNString), true);
+//                    List<Double> patternedSeparateFitnesses = GeneralMethods.evaluateSeparateModuleFitnesses(patternedGRN);
+////                    System.out.println("patterned: " + patternedSeparateFitnesses);
+//                    SimpleMaterial aNewMaterial = new SimpleMaterial(GeneralMethods.convertArrayToList(patternedGRN));
+//                    double patternedFitness = ((GRNFitnessFunctionMultipleTargets) fitnessFunctionZhenyueSym).evaluate(aNewMaterial, 501);
+//                    System.out.println("patterned fitness: " + patternedSeparateFitnesses);
+////                    printSquareGRN(patternedGRN);
 
 
 //                    if ((patternedFitness < fitnesses.get(0))) {
@@ -114,8 +149,11 @@ public class PatternedGRNAnalyzer {
             } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println("Array out of bound caught! ");
             }
-
         }
+
+        System.out.println(cycleDistAll);
+        System.out.println(originalFitnessLists);
+
         System.out.println("Directory Counter: " + directoryCounter);
     }
 }
