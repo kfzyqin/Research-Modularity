@@ -26,6 +26,7 @@ import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -62,7 +63,7 @@ public class HaploidGRNMatrixMain {
     private static final double reproductionRate = 1;
 
     private static final int maxGen = 2000;
-    private static final List<Integer> thresholds = Arrays.asList(0, 0); // when to switch targets
+    private static final List<Integer> thresholds = Arrays.asList(0, 500); // when to switch targets
     private static final double alpha = 0.75;
     private static final int[] perturbationSizes = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     private static final int perturbationCycleSize = perturbations;
@@ -70,7 +71,7 @@ public class HaploidGRNMatrixMain {
     /* Settings for text outputs */
     private static final String summaryFileName = "Summary.txt";
     private static final String csvFileName = "Statistics.csv";
-    private static final String outputDirectory = "with-selection-two-targets";
+    private static final String outputDirectory = "complete-sampling-time";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static final String allPerturbationsName = "Perturbations.per";
     private static final String modFitNamePrefix = "phenotypes";
@@ -119,8 +120,8 @@ public class HaploidGRNMatrixMain {
 
         /* It is not necessary to write an initializer, but doing so is convenient to
         repeat the experiment using different parameter */
-//        HaploidGRNInitializer initializer = new HaploidGRNInitializer(populationSize, target1.length, edgeSize);
-        PerfectIndividualInitializer initializer = new PerfectIndividualInitializer(populationSize, target1.length, edgeSize);
+        HaploidGRNInitializer initializer = new HaploidGRNInitializer(populationSize, target1.length, edgeSize);
+//        PerfectIndividualInitializer initializer = new PerfectIndividualInitializer(populationSize, target1.length, edgeSize);
 
         /* Population */
         Population<SimpleHaploid> population = initializer.initialize();
@@ -164,11 +165,23 @@ public class HaploidGRNMatrixMain {
         Frame<SimpleHaploid> frame = new SimpleHaploidFrame<>(state,postOperator,statistics);
 
         statistics.print(0); // print the initial state of an population
+
+        java.util.Date sDate = new java.util.Date();
+
         /* Actual GA evolutions */
         for (int i = 1; i <= maxGen; i++) {
+            if (i == 502) {
+                sDate = new java.util.Date();
+                System.out.println("Starting time: " + sDate);
+            }
             frame.evolve();
             statistics.print(i);
         }
+
+        java.util.Date eDate = new java.util.Date();
+        System.out.println("Starting time: " + eDate);
+
+        System.out.println("Total time used: " + (eDate.getTime() - sDate.getTime()));
 
         /* Generate output files */
         statistics.save(summaryFileName);

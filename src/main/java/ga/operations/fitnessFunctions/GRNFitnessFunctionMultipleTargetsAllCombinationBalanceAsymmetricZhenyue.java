@@ -34,34 +34,80 @@ public class GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhe
 
         Map<Integer, List<Double>> perturbationPathDistanceMap = new HashMap<>();
 
+        Map<String, Double> perturbationCache = new HashMap<>();
+
         for (DataGene[] startAttractor : startAttractors) {
             int perturbedLength = (int) GeneralMethods.getOriginalHammingDistance(startAttractor, target);
+            boolean cached = false;
+
+            if (perturbationCache.containsKey(Arrays.deepToString(startAttractor))) {
+                if (perturbationPathDistanceMap.containsKey(perturbedLength)) {
+                    perturbationPathDistanceMap.get(perturbedLength).add(perturbationCache.get(Arrays.deepToString(startAttractor)));
+                } else {
+                    perturbationPathDistanceMap.put(perturbedLength, new ArrayList<>(Collections.singletonList(perturbationCache.get(Arrays.deepToString(startAttractor)))));
+                }
+                cached = true;
+                continue;
+            }
+
             DataGene[] currentAttractor = startAttractor;
             int currentRound = 0;
             boolean isNotStable;
             cyclePath.add(startAttractor.clone());
+
+//            System.out.println(perturbationCache);
+
+            List<DataGene[]> cycleStates = new ArrayList<>();
+
             do {
                 DataGene[] updatedState = this.updateState(currentAttractor, phenotype);
                 isNotStable = this.hasNotAttainedAttractor(currentAttractor, updatedState);
                 currentAttractor = updatedState;
                 currentRound += 1;
                 cyclePath.add(updatedState.clone());
+
+                if (perturbationCache.containsKey(Arrays.deepToString(currentAttractor))) {
+//                    System.out.println("caught cached! ");
+                    if (perturbationPathDistanceMap.containsKey(perturbedLength)) {
+                        perturbationPathDistanceMap.get(perturbedLength).add(perturbationCache.get(Arrays.deepToString(currentAttractor)));
+                    } else {
+                        perturbationPathDistanceMap.put(perturbedLength, new ArrayList<>(Collections.singletonList(perturbationCache.get(Arrays.deepToString(currentAttractor)))));
+                    }
+                    cached = true;
+                    break;
+                }
+
+                cycleStates.add(updatedState);
+
             } while (currentRound < this.maxCycle && isNotStable);
 
-            if (currentRound < maxCycle) {
+            if (cached) {
+                continue;
+            }
+
+            if (currentRound < maxCycle && !(cached)) {
+
                 double hammingDistance = this.getHammingDistance(currentAttractor, target);
                 if (perturbationPathDistanceMap.containsKey(perturbedLength)) {
                     perturbationPathDistanceMap.get(perturbedLength).add(hammingDistance);
                 } else {
                     perturbationPathDistanceMap.put(perturbedLength, new ArrayList<>(Collections.singletonList(hammingDistance)));
                 }
+                for (DataGene[] e : cycleStates) {
+                    perturbationCache.put(Arrays.deepToString(e), hammingDistance);
+                }
+
             } else {
                 if (perturbationPathDistanceMap.containsKey(perturbedLength)) {
                     perturbationPathDistanceMap.get(perturbedLength).add((double) target.length);
                 } else {
                     perturbationPathDistanceMap.put(perturbedLength, new ArrayList<>(Collections.singletonList((double) target.length)));
                 }
+                for (DataGene[] e : cycleStates) {
+                    perturbationCache.put(Arrays.deepToString(e), (double) target.length);
+                }
             }
+
 
             cyclePath.remove(cyclePath.size()-1);
 
@@ -82,7 +128,6 @@ public class GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhe
             cycleDists.add(currentRound);
 
             cyclePath = new ArrayList<>();
-
 
         }
 //        if (target.length <= 5) {

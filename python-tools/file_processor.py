@@ -1,10 +1,13 @@
 import os
+
+import matplotlib.ticker
 import matplotlib.pyplot as plt
 import operator as op
 import math
 import ast
 import json
 import numpy as np
+plt.rcParams.update({'font.size': 22})
 
 
 def ncr(n, r):
@@ -86,7 +89,7 @@ def write_a_list_into_a_file(a_list, file_path, file_name):
 
 
 def save_lists_graph(lists, labels=None, ver_lines=None, path="", file_name="", marker=None, colors=None, dpi=500,
-                     to_normalize=False):
+                     to_normalize=False, left_lim=0):
     if to_normalize:
         tmp_lists = []
         for a_list in lists:
@@ -97,10 +100,14 @@ def save_lists_graph(lists, labels=None, ver_lines=None, path="", file_name="", 
     default_colors = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'w']
     for a_list_idx in range(len(lists)):
         if not (labels is None):
-            ax0.scatter(list(range(len(lists[a_list_idx]))), lists[a_list_idx], label=labels[a_list_idx], marker=marker,
+            a_x_axis = list(range(left_lim, left_lim+len(lists[a_list_idx])))
+
+            ax0.scatter(a_x_axis, lists[a_list_idx], label=labels[a_list_idx], marker=marker,
                      c=default_colors[int(colors[a_list_idx])] if colors is not None else default_colors[a_list_idx%len(default_colors)])
         else:
-            ax0.scatter(list(range(len(lists[a_list_idx]))), lists[a_list_idx], marker=marker,
+            a_x_axis = list(range(left_lim, left_lim+len(lists[a_list_idx])))
+
+            ax0.scatter(a_x_axis, list(range(len(lists[a_list_idx]))), lists[a_list_idx], marker=marker,
                      c=default_colors[int(colors[a_list_idx])] if colors is not None else default_colors[a_list_idx%len(default_colors)])
         ax0.legend()
 

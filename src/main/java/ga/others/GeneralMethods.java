@@ -499,6 +499,27 @@ public class GeneralMethods<T> {
         return attractor.length - count;
     }
 
+    public static double[] getSeparateModuleHammingDistance(DataGene[] attractor, int[] target) {
+        int midPivot = target.length / 2;
+        int[] firstHalfTarget = new int[midPivot];
+        int[] secondHalfTarget = new int[midPivot];
+
+        DataGene[] firstHalfAttractor = new DataGene[midPivot];
+        DataGene[] secondHalfAttractor = new DataGene[midPivot];
+        for (int i=0; i<midPivot; i++) {
+            firstHalfTarget[i] = target[i];
+            firstHalfAttractor[i] = attractor[i];
+        }
+        for (int i=midPivot; i<target.length; i++) {
+            secondHalfTarget[i-midPivot] = target[i-midPivot];
+            secondHalfAttractor[i-midPivot] = attractor[i-midPivot];
+        }
+        double[] rtn = new double[2];
+        rtn[0] = getOriginalHammingDistance(firstHalfAttractor, firstHalfTarget);
+        rtn[1] = getOriginalHammingDistance(secondHalfAttractor, secondHalfTarget);
+        return rtn;
+    }
+
     public static <T> Set<T[]> getArrayDuplicateElementNo(T[][] theArrays) {
         Set<T[]> aSet = new HashSet<>();
         for (int i=0; i<theArrays.length; i++) {
@@ -673,6 +694,14 @@ public class GeneralMethods<T> {
         for (int i : row) {
             System.out.print(i);
             System.out.print("\t");
+        }
+        System.out.println();
+    }
+
+    public static void printRow(int[] row, char sep) {
+        for (int i : row) {
+            System.out.print(i);
+            System.out.print(sep);
         }
         System.out.println();
     }

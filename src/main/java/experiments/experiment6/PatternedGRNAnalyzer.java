@@ -5,6 +5,7 @@ import ga.components.materials.SimpleMaterial;
 import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargets;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue;
+import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsBalanceAsymmetric;
 import ga.others.GeneralMethods;
 import ga.others.ModularityPathAnalyzer;
 
@@ -39,13 +40,16 @@ public class PatternedGRNAnalyzer {
     private static final double stride = 0.00;
 
     public static void main(String[] args) {
-//        String targetPath = "/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/fixed-record-zhenyue-balanced-combinations-elite-p001";
-        String targetPath = "/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/with-selection-two-targets";
+        String targetPath = "/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/fixed-record-zhenyue-balanced-combinations-p00";
+//        String targetPath = "/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/record-esw-balanced-combinations-p00";
 
         int[][] targets = {target1, target2};
 
         FitnessFunction fitnessFunctionZhenyueSym = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
                 targets, maxCycle, perturbationRate, thresholds, perturbationSizes, 0.00);
+
+        FitnessFunction fitnessFunctionESW = new GRNFitnessFunctionMultipleTargetsBalanceAsymmetric(
+                targets, maxCycle, 500, perturbationRate, thresholds, stride);
 
         File[] directories = new File(targetPath).listFiles(File::isDirectory);
 
@@ -54,7 +58,13 @@ public class PatternedGRNAnalyzer {
         List<Double> cycleDistAll = new ArrayList<>();
         List<Double> originalFitnessLists = new ArrayList<>();
 
+        int improvedCount = 0;
+        int maxed = 0;
+
+        int fileNumberCounter = 0;
+
         for (File aDirectory : directories) {
+
             try {
                 String aModFile = aDirectory + "/" + "phenotypes_fit.list";
 //                String aModFile = "/Users/qin/Research/Project-Maotai-Modularity/data/perfect_modular_individuals.txt";
@@ -73,9 +83,15 @@ public class PatternedGRNAnalyzer {
                 List<Double> fitnesses = Arrays.asList (
                         removeNoEdgeFitnessesZhenyueSym.get(0), removeAllEdgeFitnessesZhenyueSym.get(0));
 
-//                if (fitnesses.get(0) > 0.9462 && fitnesses.get(1) < fitnesses.get(0)) {
                 if (fitnesses.get(0) > 0.9462) {
-//                if (true) {
+                    maxed += 1;
+                }
+
+                if (fitnesses.get(0) > 0.9462 && fitnesses.get(1) < fitnesses.get(0)) {
+                    improvedCount += 1;
+                }
+//                if (fitnesses.get(0) > 0.9462) {
+                if (true) {
 //                    System.out.println("###A New Directory###");
 //                    System.out.println("original fitness value: " + fitnesses.get(0));
                     List<Double> originalSeparateFitnesses = GeneralMethods.evaluateSeparateModuleFitnesses(GeneralMethods.convertStringArrayToIntArray(lastGRNString), false);
@@ -93,7 +109,7 @@ public class PatternedGRNAnalyzer {
 
                         ((GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue) originalFitness).evaluate(aMaterial, 200);
                         cycleDistAll.add(getIntAverageNumber(((GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue) originalFitness).cycleDists));
-                        originalFitnessLists.add(fitnesses.get(1));
+                        originalFitnessLists.add(fitnesses.get(0));
 
                         directoryCounter += 1;
                         GeneralMethods.evaluateSeparateModuleFitnesses(GeneralMethods.convertStringArrayToIntArray(lastGRNString), false);
@@ -149,11 +165,19 @@ public class PatternedGRNAnalyzer {
             } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println("Array out of bound caught! ");
             }
+            fileNumberCounter += 1;
+            if (fileNumberCounter > 100) {
+                break;
+            }
         }
+
+        System.out.println("improved count: " + improvedCount);
 
         System.out.println(cycleDistAll);
         System.out.println(originalFitnessLists);
 
         System.out.println("Directory Counter: " + directoryCounter);
+
+        System.out.println("maxed: " + maxed);
     }
 }

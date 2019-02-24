@@ -7,12 +7,13 @@ def get_entry_values_of_an_experiment(root_directory_path, entry, index=-1):
     csv_files = []
     for root, dirs, files in os.walk(root_directory_path):
         for a_file in files:
-            if a_file.endswith(".csv"):
+            if a_file.endswith(".csv") and not a_file.endswith('volcanoe.csv'):
                 # print("a file fitness: ", root)
                 csv_files.append(root + os.sep + a_file)
 
     for a_file in csv_files:
         a_df = pd.read_csv(a_file, '\t')
+        # print('headers: ', a_df.columns.values)
         fitness_values.append(a_df[entry].iloc[index])
     return fitness_values
 

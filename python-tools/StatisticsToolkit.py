@@ -37,28 +37,28 @@ class StatisticsToolkit:
         print "length 1: ", len(fitness_values_1), " length 2: ", len(fitness_values_2)
         return self.calculate_statistical_significances(fitness_values_1, fitness_values_2)
 
-    def calculate_most_modularities_significance(self, sample_size=40):
+    def calculate_most_modularities_significance(self, sample_size=40, index=-1):
         fitness_plotter = GRNCSVReader()
-        most_mod_values_1 = fitness_plotter.get_most_modularities_of_an_experiment(self.path_1, -1)[:sample_size]
-        most_mod_values_2 = fitness_plotter.get_most_modularities_of_an_experiment(self.path_2, -1)[:sample_size]
+        most_mod_values_1 = fitness_plotter.get_most_modularities_of_an_experiment(self.path_1, index)[:sample_size]
+        most_mod_values_2 = fitness_plotter.get_most_modularities_of_an_experiment(self.path_2, index)[:sample_size]
         print "length 1: ", len(most_mod_values_1), " length 2: ", len(most_mod_values_2)
         return self.calculate_statistical_significances(most_mod_values_1, most_mod_values_2)
 
-    def calculate_fittest_modularities_significance(self, sample_size=40):
+    def calculate_fittest_modularities_significance(self, sample_size=40, index=-1):
         fitness_plotter = GRNCSVReader()
-        most_mod_values_1 = fitness_plotter.get_fittest_modularities_of_an_experiment(self.path_1, -1)[:sample_size]
-        most_mod_values_2 = fitness_plotter.get_fittest_modularities_of_an_experiment(self.path_2, -1)[:sample_size]
+        most_mod_values_1 = fitness_plotter.get_fittest_modularities_of_an_experiment(self.path_1, index)[:sample_size]
+        most_mod_values_2 = fitness_plotter.get_fittest_modularities_of_an_experiment(self.path_2, index)[:sample_size]
         print "length 1: ", len(most_mod_values_1), " length 2: ", len(most_mod_values_2)
         return self.calculate_statistical_significances(most_mod_values_1, most_mod_values_2)
 
-    def calculate_edge_number_significance(self, sample_size=40):
+    def calculate_edge_number_significance(self, sample_size=40, index=-1):
         edge_number_tool = EdgeNumberTool()
         edge_number_1 = edge_number_tool.get_average_edge_number_of_the_whole_experiment(self.path_1)[:sample_size]
         edge_number_2 = edge_number_tool.get_average_edge_number_of_the_whole_experiment(self.path_2)[:sample_size]
         print "length 1: ", len(edge_number_1), " length 2: ", len(edge_number_2)
         return self.calculate_statistical_significances(edge_number_1, edge_number_2)
 
-    def calculate_edge_number_std_dev_significance(self, sample_size=40):
+    def calculate_edge_number_std_dev_significance(self, sample_size=40, index=-1):
         edge_number_tool = EdgeNumberTool()
         std_dev_1 = edge_number_tool.get_average_std_dev_edge_number_of_the_whole_experiment(self.path_1)[:sample_size]
         std_dev_2 = edge_number_tool.get_average_std_dev_edge_number_of_the_whole_experiment(self.path_2)[:sample_size]

@@ -91,10 +91,12 @@ class EdgeNumberTool:
 
     def get_average_edge_number_of_the_whole_trial(self, working_path):
         edge_numbers = self.get_average_edge_number_in_each_generation(working_path)
+        if edge_numbers is None:
+            return None
         try:
             return reduce(lambda x, y: x + y, edge_numbers) / len(edge_numbers)
-        except RuntimeError:
-            return 0
+        except RuntimeError or TypeError:
+            return None
 
     def get_average_edge_number_std_dev_of_the_whole_trial(self, working_path):
         std_devs = self.get_std_dev_edge_number_in_each_generation(working_path)
@@ -109,8 +111,10 @@ class EdgeNumberTool:
         directories = get_immediate_subdirectories(working_path)
         for a_directory in directories:
             try:
-                avg_edge_numbers.append(self.get_average_edge_number_of_the_whole_trial(a_directory))
-            except RuntimeError:
+                a_new_number = self.get_average_edge_number_of_the_whole_trial(a_directory)
+                if a_new_number is not None:
+                    avg_edge_numbers.append(a_new_number)
+            except RuntimeError or TypeError:
                 pass
 
         return avg_edge_numbers
