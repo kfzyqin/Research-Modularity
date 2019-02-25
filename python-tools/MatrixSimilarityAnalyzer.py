@@ -333,7 +333,7 @@ matrix_similarity_analyzer = MatrixSimilarityAnalyzer()
 
 # matrix_similarity_analyzer.avg_dist_of_each_gen_analyse('generated_images/With-Elite-Fixed-Zhenyue-p00-p001-dict_1-2018-11-07-11-21-45.json',
 #                                                         'generated_images/With-Elite-Fixed-Zhenyue-p00-p001-dict_2-2018-11-07-11-21-45.json',
-#                                                         starting_gen=600, end_gen=800, to_save=False, str_key=True)
+#                                                         starting_gen=500, end_gen=2000, to_save=True, str_key=True)
 
 # matrix_similarity_analyzer.avg_dist_of_each_gen_analyse('generated_images/Fixed-Zhenyue-p00-p001-dict_1-2018-10-21-06-51-10.json',
 #                                                         'generated_images/Fixed-Zhenyue-p00-p001-dict_2-2018-10-21-06-51-10.json',
@@ -345,5 +345,5 @@ matrix_similarity_analyzer = MatrixSimilarityAnalyzer()
 
 matrix_similarity_analyzer.avg_dist_of_each_gen_analyse('generated_images/esw_p0_p_01_dict_1-2019-02-22-22-06-56.json',
                                                         'generated_images/esw_p0_p_01_dict_2-2019-02-22-22-06-56.json',
-                                                        starting_gen=500, end_gen=2000, to_save=True, str_key=True)
+                                                        starting_gen=600, end_gen=700, to_save=False, str_key=True)
 
