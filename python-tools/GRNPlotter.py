@@ -16,6 +16,19 @@ class GRNPlotter:
     def get_best_partition(self, a_grn):
         return community.best_partition(a_grn.to_undirected())
 
+    def get_non_self_edge_modularity_value(self, a_grn, louvain=False):
+        if isinstance(a_grn, list):
+            a_grn = self.generate_directed_grn(a_grn)
+        if louvain:
+            modularity_partition = community.best_partition(a_grn.to_undirected())
+        else:
+            node_no = len(a_grn.nodes())
+            modularity_partition = {}
+            for i in range(node_no):
+                modularity_partition[i] = int(i / 5)
+        return community.modularity(modularity_partition, a_grn.to_undirected())
+
+
     def get_modularity_value(self, a_grn, louvain=False):
         if isinstance(a_grn, list):
             a_grn = self.generate_directed_grn(a_grn)
@@ -129,15 +142,48 @@ class GRNPlotter:
                 grn.node[key[0]]['pos'] = value
             write_dot(grn, save_path + os.sep + 'directed_graph.dot')
 
+    def get_avg_module_values_for_each_generation_of_an_experiment(self, a_path, start_gen=0, end_gen=None,
+                                                                   louvain=False, no_self_edge=False, avg_gen=True):
+        sub_directories = get_immediate_subdirectories(a_path)
+        rtn_modularity_list = []
+
+        for a_directory in sub_directories:
+            phenotypes = self.get_grn_phenotypes(a_directory)
+            if len(phenotypes) > 0:
+                if end_gen is None:
+                    end_gen = len(phenotypes)
+                for a_gen in range(start_gen, end_gen):
+                    target_phenotype = phenotypes[a_gen]
+                    if no_self_edge:
+                        side_grn_size = int(math.sqrt(len(target_phenotype)))
+                        for i in range(side_grn_size):
+                            target_phenotype[i * side_grn_size + i] = 0
+                    a_grn = self.generate_directed_grn(target_phenotype)
+                    if len(rtn_modularity_list) <= a_gen:
+                        rtn_modularity_list.append([self.get_modularity_value(a_grn, louvain)])
+                    else:
+                        rtn_modularity_list[a_gen].append(self.get_modularity_value(a_grn, louvain))
+
+        if avg_gen:
+            for i in range(len(rtn_modularity_list)):
+                rtn_modularity_list[i] = sum(rtn_modularity_list[i]) / len(rtn_modularity_list[i])
+        return rtn_modularity_list
+
+
     def get_module_values_of_an_experiment(self, a_path, generation=-1, draw_modularity=False, draw_grn=False,
-                                           draw_gen_avg_modularity=False, louvain=False):
+                                           draw_gen_avg_modularity=False, louvain=False, no_self_edge=False):
         sub_directories = get_immediate_subdirectories(a_path)
         all_modularities = []
         final_module_value_list = []
         for a_directory in sub_directories:
             phenotypes = self.get_grn_phenotypes(a_directory)
             if len(phenotypes) > 0:
-                a_grn = self.generate_directed_grn(phenotypes[generation])
+                target_phenotype = phenotypes[generation]
+                if no_self_edge:
+                    side_grn_size = int(math.sqrt(len(target_phenotype)))
+                    for i in range(side_grn_size):
+                        target_phenotype[i*side_grn_size + i] = 0
+                a_grn = self.generate_directed_grn(target_phenotype)
                 final_module_value_list.append(self.get_modularity_value(a_grn, louvain))
 
                 if draw_modularity:

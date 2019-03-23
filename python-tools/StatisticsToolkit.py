@@ -12,10 +12,10 @@ class StatisticsToolkit:
         self.path_1 = path_1
         self.path_2 = path_2
 
-    def calculate_modularity_significance(self, sample_size=40):
+    def calculate_modularity_significance(self, sample_size=40, no_self_edge=False):
         grn_plotter = GRNPlotter.GRNPlotter()
-        modularity_values_1 = grn_plotter.get_module_values_of_an_experiment(self.path_1, -1)[:sample_size]
-        modularity_values_2 = grn_plotter.get_module_values_of_an_experiment(self.path_2, -1)[:sample_size]
+        modularity_values_1 = grn_plotter.get_module_values_of_an_experiment(self.path_1, -1, no_self_edge=no_self_edge)[:sample_size]
+        modularity_values_2 = grn_plotter.get_module_values_of_an_experiment(self.path_2, -1, no_self_edge=no_self_edge)[:sample_size]
         return self.calculate_statistical_significances(modularity_values_1, modularity_values_2)
 
     @staticmethod

@@ -6,9 +6,9 @@ prefix_path = os.path.expanduser("~")
 path_1 = '/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/fixed-record-zhenyue-balanced-combinations-p00'
 # path_2 = '/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/fixed-record-zhenyue-balanced-combinations-p01'
 # path_2 = '/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/no-selection-two-targets'
-# path_2 = prefix_path + '/Portal/generated-outputs/fixed-record-zhenyue-balanced-combinations-p008-69'
+path_2 = prefix_path + '/Portal/generated-outputs/fixed-record-zhenyue-balanced-combinations-p008-69'
 
-path_2 = '/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/record-esw-balanced-combinations-p00'
+# path_2 = '/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/record-esw-balanced-combinations-p00'
 # path_2 = '/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/record-esw-balanced-combinations-p01'
 
 # path_1 = '/Users/qin/Portal/generated-outputs/no-selection'
@@ -16,7 +16,7 @@ path_2 = '/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-S
 
 omega = StatisticsToolkit(path_1, path_2)
 
-sample_size = 69
+sample_size = 100
 
 the_index = -1
 
@@ -33,7 +33,7 @@ print('fittest modularity significance')
 print omega.calculate_fittest_modularities_significance(sample_size=sample_size, index=the_index)
 
 print('modularity significance')
-print omega.calculate_modularity_significance(sample_size=sample_size)
+print omega.calculate_modularity_significance(sample_size=sample_size, no_self_edge=True)
 
 print('edge number significance')
 print omega.calculate_edge_number_significance(sample_size=sample_size)

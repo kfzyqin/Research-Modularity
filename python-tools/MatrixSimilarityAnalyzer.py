@@ -16,8 +16,8 @@ import matplotlib.pyplot as plt
 class MatrixSimilarityAnalyzer:
     def __init__(self):
         # self.prefix_path = os.path.expanduser("~")
-        self.starting_path_1 = '/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/fixed-record-zhenyue-balanced-combinations-p00'
-        self.starting_path_2 = '/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/fixed-record-zhenyue-balanced-combinations-p01'
+        self.starting_path_1 = '/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/original_esw_p00'
+        self.starting_path_2 = '/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/original_esw_p01'
 
         # self.starting_path_1 = '/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/record-esw-balanced-combinations-p00'
         # self.starting_path_2 = '/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/record-esw-balanced-combinations-p01'
@@ -326,6 +326,7 @@ matrix_similarity_analyzer = MatrixSimilarityAnalyzer()
 
 # matrix_similarity_analyzer.launch_inter_ind_dists(starting_gen=1, end_gen=2000, dist_type='manhattan',
 #                                                       use_average=True, to_plot=True, the_interval=1)
+
 # matrix_similarity_analyzer.launch_k_means_evaluation(2000, 32)
 
 # matrix_similarity_analyzer.launch_inter_ind_dist_only_one(path_idx=2, starting_gen=1, end_gen=2000, dist_type='manhattan',
@@ -343,7 +344,7 @@ matrix_similarity_analyzer = MatrixSimilarityAnalyzer()
 #                                                         'generated_images/zenyue_complete_sampling_p01_dict_2-2019-02-22-23-10-31.json',
 #                                                         starting_gen=500, end_gen=1997, to_save=True, str_key=True)
 
-matrix_similarity_analyzer.avg_dist_of_each_gen_analyse('generated_images/esw_p0_p_01_dict_1-2019-02-22-22-06-56.json',
-                                                        'generated_images/esw_p0_p_01_dict_2-2019-02-22-22-06-56.json',
-                                                        starting_gen=600, end_gen=700, to_save=False, str_key=True)
+matrix_similarity_analyzer.avg_dist_of_each_gen_analyse('generated_images/dict_1-2019-03-23-10-29-27.json',
+                                                        'generated_images/dict_2-2019-03-23-10-29-27.json',
+                                                        starting_gen=600, end_gen=700, to_save=True, str_key=True)
 
