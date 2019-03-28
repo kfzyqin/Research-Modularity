@@ -37,11 +37,11 @@ public class PatternedGRNAnalyzer {
     private static final double perturbationRate = 0.15;
     private static final List<Integer> thresholds = Arrays.asList(0, 500);
     private static final int[] perturbationSizes = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-    private static final double stride = 0.00;
+    private static final double stride = 0.01;
 
     public static void main(String[] args) {
-        String targetPath = "/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/fixed-record-zhenyue-balanced-combinations-p00";
-//        String targetPath = "/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/record-esw-balanced-combinations-p00";
+        String targetPath = "/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/original_esw_p01";
+//        String targetPath = "/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/original_esw_p00";
 
         int[][] targets = {target1, target2};
 
@@ -64,7 +64,7 @@ public class PatternedGRNAnalyzer {
         int fileNumberCounter = 0;
 
         for (File aDirectory : directories) {
-
+            boolean excepted = false;
             try {
                 String aModFile = aDirectory + "/" + "phenotypes_fit.list";
 //                String aModFile = "/Users/qin/Research/Project-Maotai-Modularity/data/perfect_modular_individuals.txt";
@@ -84,6 +84,8 @@ public class PatternedGRNAnalyzer {
                         removeNoEdgeFitnessesZhenyueSym.get(0), removeAllEdgeFitnessesZhenyueSym.get(0));
 
                 if (fitnesses.get(0) > 0.9462) {
+                    System.out.println("a material");
+                    System.out.println(aMaterial);
                     maxed += 1;
                 }
 
@@ -163,9 +165,12 @@ public class PatternedGRNAnalyzer {
                 }
 
             } catch (ArrayIndexOutOfBoundsException e) {
+                excepted = true;
                 System.out.println("Array out of bound caught! ");
             }
-            fileNumberCounter += 1;
+            if (!excepted) {
+                fileNumberCounter += 1;
+            }
             if (fileNumberCounter > 100) {
                 break;
             }

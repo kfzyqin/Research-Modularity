@@ -41,7 +41,6 @@ public class GRNRandomEdgeMutator<T extends Chromosome> extends GRNEdgeMutator<T
                 }
             }
 
-                    /* Use this formula to maintain the number of edges */
             double probabilityToLoseInteraction = 0.5;
 
             actualMutate(probabilityToLoseInteraction, material, targetNumber, i);

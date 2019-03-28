@@ -34,5 +34,5 @@ mods_2 = csv_file_opener.get_properties_of_each_generation_in_a_whole_experiment
 #
 # print StatisticsToolkit.calculate_statistical_significances(most_mod_values_1, most_mod_values_2)
 
-fp.save_lists_graph([mods], labels=['modularity'], ver_lines=[500], path=path_1, file_name='modularity.png', marker='.',
+fp.save_lists_graph([mods_1], labels=['Modularity'], ver_lines=[500], path=path_1, file_name='modularity.png', marker='.',
                     colors=[0], dpi=500, to_normalize=False)

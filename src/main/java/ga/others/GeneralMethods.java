@@ -826,4 +826,6 @@ public class GeneralMethods<T> {
                 fitness_1_1_same_weight, fitness_2_2_same_weight, fitness_2_1_same_weight, fitness_2_2_material_1_same_weight);
 //        return Collections.singletonList(fitness_2_1);
     }
+
+
 }

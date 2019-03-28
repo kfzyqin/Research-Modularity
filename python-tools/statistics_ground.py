@@ -6,13 +6,13 @@ prefix_path = os.path.expanduser("~")
 path_1 = '/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/fixed-record-zhenyue-balanced-combinations-p00'
 # path_2 = '/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/fixed-record-zhenyue-balanced-combinations-p01'
 # path_2 = '/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/no-selection-two-targets'
-path_2 = prefix_path + '/Portal/generated-outputs/fixed-record-zhenyue-balanced-combinations-p008-69'
+# path_2 = '/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/original_esw_p01'
 
 # path_2 = '/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/record-esw-balanced-combinations-p00'
 # path_2 = '/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/record-esw-balanced-combinations-p01'
 
 # path_1 = '/Users/qin/Portal/generated-outputs/no-selection'
-# path_2 = '/Users/qin/Portal/generated-outputs/with-selection'
+path_2 = '/Users/qin/Portal/generated-outputs/distributional-p01'
 
 omega = StatisticsToolkit(path_1, path_2)
 

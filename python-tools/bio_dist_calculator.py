@@ -87,5 +87,6 @@ if __name__ == "__main__":
     print('fits 10: ', fits_10)
     print(avg_gamma_formula(np.sum(fits_10)))
 
-
+    print('gamma 0: ', get_dst_gamma(0, 10))
+    print('gamma 5: ', get_dst_gamma(5, 10))
 

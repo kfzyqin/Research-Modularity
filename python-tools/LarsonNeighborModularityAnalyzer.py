@@ -40,7 +40,6 @@ class LarsonNeighborModularityAnalyzer:
         return max_mutated_modularity_values
 
 omega = LarsonNeighborModularityAnalyzer(path=
-                                         '/Users/qin/Software-Engineering/Chin-GA-Project/generated-outputs/'
-                                         'larson-with-perturbation-recording')
+                                         '/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/original_esw_p00')
 print omega.path
 print omega.get_max_mutated_modularity_values()

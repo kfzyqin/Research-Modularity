@@ -1,6 +1,8 @@
 import scipy
 import scipy.stats
 import StatisticsToolkit
+import fitness_warehouse
+from GRNCSVReader import GRNCSVReader
 
 omega = StatisticsToolkit.StatisticsToolkit()
 
@@ -65,4 +67,8 @@ esw_list_1 = \
      0.9462206464189278, 0.9462161813654351, 0.9462237671678849, 0.9462364708833446, 0.9462480203315855,
      0.9462135726318793, 0.9461943902038995, 0.9462794492826014, 0.946376415927302, 0.9463347969216669]
 
-print(omega.calculate_statistical_significances(com_sam_list_1, esw_list_1))
+path_1 = '/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/fixed-record-zhenyue-balanced-combinations-p01'
+sample_size=100
+fitness_plotter = GRNCSVReader()
+zhenyue_fit_p00 = fitness_plotter.get_fitness_values_of_an_experiment(path_1, -1)[:sample_size]
+print(omega.calculate_statistical_significances(zhenyue_fit_p00[:sample_size], fitness_warehouse.original_esw_p01[:sample_size]))

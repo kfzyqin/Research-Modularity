@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 class MatrixSimilarityAnalyzer:
     def __init__(self):
         # self.prefix_path = os.path.expanduser("~")
-        self.starting_path_1 = '/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/original_esw_p00'
+        self.starting_path_1 = '/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/original-esw-p00-balanced'
         self.starting_path_2 = '/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/original_esw_p01'
 
         # self.starting_path_1 = '/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/record-esw-balanced-combinations-p00'
@@ -116,13 +116,16 @@ class MatrixSimilarityAnalyzer:
         return gen_dist_dict
 
     @staticmethod
-    def plot_dist_gen_curve(dist_dict, dpi=300, save_path=None, save_name=None, start_gen=0, end_gen=10000):
+    def plot_dist_gen_curve(dist_dict, dpi=300, save_path=None, save_name=None, start_gen=0, end_gen=10000, is_running=False):
         plt.rcParams.update({'font.size': 22})
         dist_list = []
         if isinstance(dist_dict, dict):
-            set_idxs = sorted(list([int(x) for x in dist_dict[0].keys()]))
+            set_idxs = sorted(list([int(x) for x in dist_dict.keys()]))
             for a_gen in set_idxs[start_gen:end_gen]:
-                dist_list.append(np.mean(dist_dict[str(a_gen)]))
+                if is_running:
+                    dist_list.append(np.mean(dist_dict[int(a_gen)]))
+                else:
+                    dist_list.append(np.mean(dist_dict[str(a_gen)]))
             fp.plot_a_list_graph(dist_list, 'Avg dist', dpi=dpi, save_path=save_path, save_name=save_name, marker='x')
 
         elif isinstance(dist_dict, list):
@@ -130,7 +133,10 @@ class MatrixSimilarityAnalyzer:
             for a_dist_dict in dist_dict:
                 a_dist_list = []
                 for a_gen in set_idxs[start_gen:end_gen]:
-                    a_dist_list.append(np.mean(a_dist_dict[str(a_gen)]))
+                    if is_running:
+                        a_dist_list.append(np.mean(a_dist_dict[int(a_gen)]))
+                    else:
+                        a_dist_list.append(np.mean(a_dist_dict[str(a_gen)]))
                 dist_list.append(a_dist_list)
             fp.save_lists_graph(dist_list, ['Symmetry', 'Asymmetry'], path=save_path, file_name=save_name, dpi=dpi, marker='x', left_lim=start_gen)
 
@@ -195,11 +201,14 @@ class MatrixSimilarityAnalyzer:
                 self.avg_dist_of_each_gen_analyse(dist_dict_1, dist_dict_2)
 
                 self.plot_dist_gen_curve(dist_dict_1, dpi=300,
-                                         save_path='./generated_images/', save_name=('avg_dist_1' + cur_time + '.png'))
+                                         save_path='./generated_images/', save_name=('avg_dist_1' + cur_time + '.png'),
+                                         is_running=True)
                 self.plot_dist_gen_curve(dist_dict_2, dpi=300,
-                                         save_path='./generated_images/', save_name=('avg_dist_2' + cur_time + '.png'))
+                                         save_path='./generated_images/', save_name=('avg_dist_2' + cur_time + '.png'),
+                                         is_running=True)
                 self.plot_dist_gen_curve([dist_dict_1, dist_dict_2], dpi=300,
-                                         save_path='./generated_images/', save_name=('avg_dist_1_2' + cur_time + '.png'))
+                                         save_path='./generated_images/', save_name=('avg_dist_1_2' + cur_time + '.png'),
+                                         is_running=True)
 
             print("len 1: ", len(dist_dict_1[set_idxs_1[-1]]))
             print("len 2: ", len(dist_dict_2[set_idxs_2[-1]]))
@@ -344,7 +353,7 @@ matrix_similarity_analyzer = MatrixSimilarityAnalyzer()
 #                                                         'generated_images/zenyue_complete_sampling_p01_dict_2-2019-02-22-23-10-31.json',
 #                                                         starting_gen=500, end_gen=1997, to_save=True, str_key=True)
 
-matrix_similarity_analyzer.avg_dist_of_each_gen_analyse('generated_images/dict_1-2019-03-23-10-29-27.json',
-                                                        'generated_images/dict_2-2019-03-23-10-29-27.json',
-                                                        starting_gen=600, end_gen=700, to_save=True, str_key=True)
+matrix_similarity_analyzer.avg_dist_of_each_gen_analyse('generated_images/dict_1-2019-03-26-05-33-58.json',
+                                                        'generated_images/dict_2-2019-03-26-05-33-58.json',
+                                                        starting_gen=600, end_gen=700, to_save=False, str_key=True)
 

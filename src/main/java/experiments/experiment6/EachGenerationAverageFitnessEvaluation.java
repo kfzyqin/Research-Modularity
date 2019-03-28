@@ -34,9 +34,11 @@ public class EachGenerationAverageFitnessEvaluation {
     private static final int[] perturbationSizes = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     private static final double stride = 0.00;
 
+    private static final int usedSize = 100;
+
     public static void main(String[] args) {
 //        String targetPath = "/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/fixed-record-zhenyue-balanced-combinations-p00";
-        String targetPath = "/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/record-esw-balanced-combinations-p01";
+        String targetPath = "/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/original_esw_p01";
 
         int[][] targets = {target1, target2};
 
@@ -55,7 +57,7 @@ public class EachGenerationAverageFitnessEvaluation {
 
         int fileNumberCounter = 0;
 
-
+        List<Double> finalGenFitnesses = new ArrayList<>();
 
         for (File aDirectory : directories) {
             System.out.println("a directory: " + aDirectory);
@@ -67,19 +69,17 @@ public class EachGenerationAverageFitnessEvaluation {
 
                 List<Double> oneTrialFitnesses = new ArrayList<>();
 
-                int currentLineNumber = 0;
-                for (String[] lastGRNString : lines) {
-                    SimpleMaterial aMaterial = GeneralMethods.convertStringArrayToSimpleMaterial(lastGRNString);
+                for (int aGen=0; aGen<lines.size(); aGen++) {
+                    SimpleMaterial aMaterial = GeneralMethods.convertStringArrayToSimpleMaterial(lines.get(aGen));
 
                     List<Double> removeNoEdgeFitnessesZhenyueSym = ModularityPathAnalyzer.removeEdgeAnalyzer(0, aMaterial,
-                            fitnessFunctionZhenyueSym, true, currentLineNumber, null, false);
+                            fitnessFunctionZhenyueSym, true, aGen, null, false);
 
 
                     List<Double> fitnesses = Arrays.asList(
                             removeNoEdgeFitnessesZhenyueSym.get(0));
 
                     oneTrialFitnesses.add(fitnesses.get(0));
-                    currentLineNumber += 1;
                 }
 
                 if (experimentAvgFitnesses == null) {
@@ -89,21 +89,25 @@ public class EachGenerationAverageFitnessEvaluation {
                     experimentAvgFitnesses[i] += oneTrialFitnesses.get(i);
                 }
 
+                finalGenFitnesses.add(oneTrialFitnesses.get(oneTrialFitnesses.size()-1));
+
             } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println("Array out of bound caught! ");
             }
             fileNumberCounter += 1;
-            if (fileNumberCounter > 100) {
+            if (fileNumberCounter >= usedSize) {
                 break;
             }
         }
 
         for (int i=0; i<experimentAvgFitnesses.length; i++) {
-            experimentAvgFitnesses[i] = (experimentAvgFitnesses[i] / directories.length);
+            experimentAvgFitnesses[i] = (experimentAvgFitnesses[i] / usedSize);
         }
 
         System.out.println(cycleDistAll);
         System.out.println(Arrays.toString(experimentAvgFitnesses));
+
+        System.out.println(finalGenFitnesses);
 
     }
 }

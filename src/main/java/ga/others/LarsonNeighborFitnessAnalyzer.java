@@ -18,9 +18,9 @@ import java.util.List;
 public class LarsonNeighborFitnessAnalyzer {
     private static final double geneMutationRate = 0.05;
     private static final int neighborSize = 100;
-    private static final String pathToTheExperiment = "/Users/qin/Portal/generated-outputs/record-zhenyue-balanced-combinations-p01";
+    private static final String pathToTheExperiment = "/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/original_esw_p00";
     private static final double stride = 0.00;
-    private static final int[] perturbationSizes = {0, 1, 2, 3, 4, 5, 6, 7};
+    private static final int[] perturbationSizes = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
     private static final int[] target1 = {
             1, -1, 1, -1, 1,

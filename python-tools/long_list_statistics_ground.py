@@ -17,13 +17,14 @@ esw_fit_2 = [0.6176830096670171, 0.6725501910749812, 0.735108733320694, 0.765870
 
 # print StatisticsToolkit.calculate_statistical_significances(esw_fit_1, esw_fit_2)
 
-csv_file_opener = CSVFileOpener()
+if __name__ == '__main__':
+    csv_file_opener = CSVFileOpener()
 
-fits_1 = csv_file_opener.get_properties_of_each_generation_in_a_whole_experiment(path_1, 'Best')
+    fits_1 = csv_file_opener.get_properties_of_each_generation_in_a_whole_experiment(path_1, 'Best')
 
-# print StatisticsToolkit.calculate_statistical_significances(fits_1, list_1)
+    # print StatisticsToolkit.calculate_statistical_significances(fits_1, list_1)
 
-print(fits_1[-1])
+    print(fits_1[-1])
 
-fp.save_lists_graph([fits_1, esw_fit_1], labels=['Complete Sampling', 'ES&W'], ver_lines=[500], path=path_1, file_name='avg_fit_comp_esw.png', marker='.',
-                    colors=None, dpi=500, to_normalize=False)
+    fp.save_lists_graph([fits_1, esw_fit_1], labels=['Complete Sampling', 'ES&W'], ver_lines=[500], path=path_1, file_name='avg_fit_comp_esw.png', marker='.',
+                        colors=None, dpi=500, to_normalize=False)
