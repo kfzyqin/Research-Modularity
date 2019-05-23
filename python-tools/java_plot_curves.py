@@ -1,7 +1,5 @@
-import os
-import extractors
 import numpy as np
-import fitness
+from evo_alg_evals import fitness
 from GRNPlotter import GRNPlotter
 import file_processor as fp
 import sys

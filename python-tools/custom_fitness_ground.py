@@ -26,7 +26,7 @@ if __name__ == '__main__':
         'stoc_p01_by_stoc_p00', 'stoc_p01_by_stoc_p01',
     ]
 
-    stat_sz = 80
+    stat_sz = 100
     for i in range(len(candidate_values_gen)):
         for j in range(i, len(candidate_values_gen)):
             print 'Currently processing: ', candidate_values_strs[i], ' ', candidate_values_strs[j]
