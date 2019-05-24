@@ -3,8 +3,8 @@ import os
 
 prefix_path = os.path.expanduser("~")
 
-path_1 = '/home/zhenyue-qin/Research/Project-Kuroko-Portal/Project-Maotai-Portal/generated-outputs/stochastic-p00'
-path_2 = '/home/zhenyue-qin/Research/Project-Kuroko-Portal/Project-Maotai-Portal/generated-outputs/stochastic-p01'
+path_1 = '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/elite-distributional-p00'
+path_2 = '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/elite-stochastic-p00'
 
 omega = StatisticsToolkit(path_1, path_2)
 

@@ -26,10 +26,32 @@ if __name__ == '__main__':
         'stoc_p01_by_stoc_p00', 'stoc_p01_by_stoc_p01',
     ]
 
+    elite_candidate_values_gen = [
+        fit_war.elite_dist_p00_by_dist_p00_final, fit_war.elite_dist_p00_by_dist_p01_final,
+        fit_war.elite_dist_p00_by_stoc_p00_final, fit_war.elite_dist_p00_by_stoc_p01_final,
+        fit_war.elite_dist_p01_by_dist_p00_final, fit_war.elite_dist_p01_by_dist_p01_final,
+        fit_war.elite_dist_p01_by_stoc_p00_final, fit_war.elite_dist_p01_by_stoc_p01_final,
+        fit_war.elite_stoc_p00_by_dist_p00_final, fit_war.elite_stoc_p00_by_dist_p01_final,
+        fit_war.elite_stoc_p00_by_stoc_p00_final, fit_war.elite_stoc_p00_by_stoc_p01_final,
+        fit_war.elite_stoc_p01_by_dist_p00_final, fit_war.elite_stoc_p01_by_dist_p01_final,
+        fit_war.elite_stoc_p01_by_stoc_p00_final, fit_war.elite_stoc_p01_by_stoc_p01_final,
+    ]
+
+    elite_candidate_values_strs = [
+        'elite_dist_p00_by_dist_p00', 'elite_dist_p00_by_dist_p01',
+        'elite_dist_p00_by_stoc_p00', 'elite_dist_p00_by_stoc_p01',
+        'elite_dist_p01_by_dist_p00', 'elite_dist_p01_by_dist_p01',
+        'elite_dist_p01_by_stoc_p00', 'elite_dist_p01_by_stoc_p01',
+        'elite_stoc_p00_by_dist_p00', 'elite_stoc_p00_by_dist_p01',
+        'elite_stoc_p00_by_stoc_p00', 'elite_stoc_p00_by_stoc_p01',
+        'elite_stoc_p01_by_dist_p00', 'elite_stoc_p01_by_dist_p01',
+        'elite_stoc_p01_by_stoc_p00', 'elite_stoc_p01_by_stoc_p01',
+    ]
+
     stat_sz = 100
     for i in range(len(candidate_values_gen)):
         for j in range(i, len(candidate_values_gen)):
-            print 'Currently processing: ', candidate_values_strs[i], ' ', candidate_values_strs[j]
+            print 'Currently processing: ', elite_candidate_values_strs[i], ' ', elite_candidate_values_strs[j]
             vals_1 = candidate_values_gen[i]
             vals_2 = candidate_values_gen[j]
             print 'size of vals 1', len(vals_1)
