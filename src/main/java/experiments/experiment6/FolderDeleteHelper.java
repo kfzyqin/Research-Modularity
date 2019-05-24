@@ -11,7 +11,7 @@ import java.util.List;
 
 public class FolderDeleteHelper {
     public static void main(String[] args) throws IOException {
-        String targetPath = "/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/original_esw_p00";
+        String targetPath = "/home/zhenyue-qin/Research/Project-Kuroko-Portal/Project-Maotai-Portal/generated-outputs/stochastic-p01";
 
         File[] directories = new File(targetPath).listFiles(File::isDirectory);
         List<String> abnormalPaths = new ArrayList<>();
