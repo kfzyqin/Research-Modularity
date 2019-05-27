@@ -49,11 +49,11 @@ if __name__ == '__main__':
     ]
 
     stat_sz = 100
-    for i in range(len(candidate_values_gen)):
-        for j in range(i, len(candidate_values_gen)):
+    for i in range(len(elite_candidate_values_gen)):
+        for j in range(i, len(elite_candidate_values_gen)):
             print 'Currently processing: ', elite_candidate_values_strs[i], ' ', elite_candidate_values_strs[j]
-            vals_1 = candidate_values_gen[i]
-            vals_2 = candidate_values_gen[j]
+            vals_1 = elite_candidate_values_gen[i]
+            vals_2 = elite_candidate_values_gen[j]
             print 'size of vals 1', len(vals_1)
             print 'size of vals 2', len(vals_2)
             stat_sig = stat_tool_kit.calculate_statistical_significances(vals_1[:stat_sz], vals_2[:stat_sz])

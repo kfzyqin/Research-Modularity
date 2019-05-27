@@ -2,6 +2,13 @@ import matplotlib.pyplot as plt
 import random
 from file_processor import plot_a_list_graph
 import os
+import matplotlib
+
+font = {'family': 'normal',
+        # 'weight' : 'bold',
+        'size': 20}
+
+matplotlib.rc('font', **font)
 
 
 class ClimbingAnalyzer:
@@ -28,12 +35,28 @@ class ClimbingAnalyzer:
         x_s_r = [x[0] for x in blocks if x[1] > starting_fit]
         y_s_r = [x[1] for x in blocks if x[1] > starting_fit]
 
-        plt.scatter(x_s_g, y_s_g, marker='.', color='g')
-        plt.scatter(x_s_r, y_s_r, marker='.', color='r')
+        y_min = min(min(y_s_g), min(y_s_r))
+
+        plt.scatter(x_s_g, y_s_g, marker='.', color='g', s=120)
+        plt.scatter(x_s_r, y_s_r, marker='.', color='r', s=120)
+
+        for x_idx in range(len(x_s_g)):
+            plt.axvline(x=x_s_g[x_idx], color='green', linestyle='--')
+
+        for x_idx in range(len(x_s_r)):
+            plt.axvline(x=x_s_r[x_idx], color='red', linestyle='--')
+
+
+        # plt.stem(x_s_g+x_s_r, y_s_g+y_s_r)
+
+        # x1, x2, y1, y2 = plt.axis()
+        # plt.axis((x1, x2, y_min-0.0001, y2))
 
         plt.xlabel('No. of Edges Removed')
         plt.ylabel('Fitness')
-        plt.axhline(y=blocks[0][1], color='blue', linestyle='--', label='original fitness')
+        plt.tight_layout()
+
+        plt.axhline(y=blocks[0][1], color='green', linestyle='--', label='original fitness')
         if not to_save:
             plt.show()
         else:
