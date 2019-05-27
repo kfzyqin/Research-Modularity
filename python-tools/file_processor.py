@@ -198,16 +198,16 @@ def open_a_json_as_a_dict(file_path):
     return data
 
 
-def plot_bar_charts(lists, labels):
+def plot_bar_charts(lists, labels, alpha=0.2):
     fig, ax = plt.subplots()
-    top_alpha = 0.2
+    top_alpha = alpha
     for an_idx in range(len(lists)):
         a_dist = get_distribution_of_a_list(lists[an_idx])
         dict_values = []
         for an_key in sorted(list(a_dist)):
             dict_values.append(a_dist[an_key])
         ax.bar(sorted(list(a_dist)), dict_values, label=labels[an_idx], width=1, edgecolor='b', alpha=top_alpha)
-        top_alpha += 0.2
+        top_alpha += alpha
 
     plt.legend(fontsize=10)
     plt.show()
