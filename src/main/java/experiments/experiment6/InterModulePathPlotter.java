@@ -38,15 +38,15 @@ public class InterModulePathPlotter {
 
     public static void main(String[] args) throws IOException {
 //        String targetPath = "/Volumes/LaCie/Maotai-Project-Symmetry-Breaking/generated-outputs/record-esw-balanced-combinations-p00";
-        String targetPath = "/Users/qin/Portal/generated-outputs/fixed-record-zhenyue-balanced-combinations-elite-p001";
+        String targetPath = "/home/zhenyue-qin/Research/Project-Nora-Miscellaneous/no-elites";
 
         int[][] targets = {target1, target2};
 
-//        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsBalanceAsymmetric(
-//                targets, maxCycle, perturbations, perturbationRate, thresholds, stride);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsBalanceAsymmetric(
+                targets, maxCycle, perturbations, perturbationRate, thresholds, stride);
 
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
-                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
+//        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
+//                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
 
         File[] directories = new File(targetPath).listFiles(File::isDirectory);
 
@@ -60,9 +60,9 @@ public class InterModulePathPlotter {
                 SimpleMaterial aMaterial = GeneralMethods.convertStringArrayToSimpleMaterial(lastGRNString);
                 int interEdgeNo = GeneralMethods.getInterModuleEdgeNumber(GeneralMethods.convertStringArrayToIntArray(lastGRNString));
 
-//                if (interEdgeNo > 15) {
-//                    continue;
-//                }
+                if (interEdgeNo > 15) {
+                    continue;
+                }
 
                 double startFitness = 0;
                 boolean isIncreasedPath = false;
@@ -81,7 +81,7 @@ public class InterModulePathPlotter {
                 }
                 System.out.println("in increased path: " + isIncreasedPath);
                 increasedPaths.add(isIncreasedPath);
-                ProcessBuilder postPB = new ProcessBuilder("python2", "./python-tools/java_post_mate.py",
+                ProcessBuilder postPB = new ProcessBuilder("/home/zhenyue-qin/.conda/envs/modularity/bin/python", "./python-tools/java_post_mate.py",
                         aDirectory.toString(), allPotentialPaths.toString());
 
                 Process p = postPB.start();

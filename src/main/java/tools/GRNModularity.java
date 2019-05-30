@@ -39,7 +39,6 @@ public class GRNModularity {
 
     public static double getGRNModularity(List<Integer> aGRN) {
         Graph graph = getGRNGraph(aGRN);
-
         HashMap<Object, HashSet<Node>> aCommunity = getModularityPartition(graph, 5);
         return QinModularity.getQWithCommunities(graph, aCommunity);
     }
