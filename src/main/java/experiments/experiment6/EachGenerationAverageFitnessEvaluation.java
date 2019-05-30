@@ -39,7 +39,7 @@ public class EachGenerationAverageFitnessEvaluation {
     public static void main(String[] args) {
 //        String targetPath = "/media/zhenyue-qin/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/fixed-record-zhenyue-balanced-combinations-p01";
 //        String targetPath = "/media/zhenyue-qin/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/original_esw_p01";
-        String targetPath = "/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/distributional-p00";
+        String targetPath = "/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/elite-stochastic-p01";
 
         int[][] targets = {target1, target2};
 

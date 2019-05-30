@@ -11,7 +11,7 @@ print(original_fitness_paths)
 
 climbing_analyzer = ClimbingAnalyzer()
 climbing_analyzer.plot_blocks(climbing_analyzer.generate_blocks(original_fitness_paths), True, working_path,
-                              'zhenyue_original_fitness_cheating_paths.png')
+                              'stochastic_p00_fitness_cheating_paths_.png')
 
 
 # climbing_analyzer.plot_blocks(climbing_analyzer.generate_blocks(another_fitness_paths), True, working_path,
