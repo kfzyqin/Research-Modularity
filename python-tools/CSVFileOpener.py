@@ -23,11 +23,20 @@ class CSVFileOpener:
             pass
             # raise RuntimeError("Error at " + path + ": No or multiple CSV files detected. ")
 
-    def get_properties_of_each_generation_in_a_whole_experiment(self, exp_path, column):
-        trial_dirs = fp.get_immediate_subdirectories(exp_path)
+    def get_properties_of_each_generation_in_a_whole_experiment(self, exp_path, column, sample_size=100):
+        trial_dirs = fp.get_immediate_subdirectories(exp_path)[:sample_size]
         all_trails = []
         for a_trail_dir in trial_dirs:
             a_dir_list = self.get_fitness_values_of_an_trial(a_trail_dir, column)
             if a_dir_list is not None:
                 all_trails.append(np.array(a_dir_list))
         return np.mean(np.array(all_trails), axis=0)
+
+    def get_properties_of_each_generation_in_a_whole_experiment_with_stdev(self, exp_path, column, sample_size=100):
+        trial_dirs = fp.get_immediate_subdirectories(exp_path)[:sample_size]
+        all_trails = []
+        for a_trail_dir in trial_dirs:
+            a_dir_list = self.get_fitness_values_of_an_trial(a_trail_dir, column)
+            if a_dir_list is not None:
+                all_trails.append(np.array(a_dir_list))
+        return np.mean(np.array(all_trails), axis=0), np.std(np.array(all_trails), axis=0)

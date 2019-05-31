@@ -89,7 +89,7 @@ def write_a_list_into_a_file(a_list, file_path, file_name):
 
 
 def save_lists_graph(lists, labels=None, ver_lines=None, path="", file_name="", marker=None, colors=None, dpi=500,
-                     to_normalize=False, left_lim=0):
+                     to_normalize=False, left_lim=0, error_bars=None, x_gap=1):
     if to_normalize:
         tmp_lists = []
         for a_list in lists:
@@ -98,17 +98,33 @@ def save_lists_graph(lists, labels=None, ver_lines=None, path="", file_name="", 
         lists = tmp_lists
     fig, ax0 = plt.subplots(nrows=1, figsize=(16, 10))
     default_colors = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'w']
+    default_line_styles = ['-', '--', '-.', ':']
+    default_markers = ['.', 'x', '^', 'v', 'D']
     for a_list_idx in range(len(lists)):
-        if not (labels is None):
-            a_x_axis = list(range(left_lim, left_lim+len(lists[a_list_idx])))
+        a_x_axis = list(range(left_lim, left_lim + len(lists[a_list_idx]), x_gap))
+        gapped_list = list([lists[a_list_idx][x] for x in a_x_axis])
+        if error_bars is None:
+            if not (labels is None):
+                ax0.scatter(a_x_axis, gapped_list, label=labels[a_list_idx], marker=marker,
+                            c=default_colors[int(colors[a_list_idx])] if colors is not None else default_colors[a_list_idx%len(default_colors)],
+                            linestyle=default_line_styles[a_list_idx%len(default_line_styles)])
+            else:
 
-            ax0.scatter(a_x_axis, lists[a_list_idx], label=labels[a_list_idx], marker=marker,
-                     c=default_colors[int(colors[a_list_idx])] if colors is not None else default_colors[a_list_idx%len(default_colors)])
+                ax0.scatter(a_x_axis, gapped_list, marker=marker,
+                            c=default_colors[int(colors[a_list_idx])] if colors is not None else default_colors[a_list_idx%len(default_colors)],
+                            linestyle=default_line_styles[a_list_idx%len(default_line_styles)])
         else:
-            a_x_axis = list(range(left_lim, left_lim+len(lists[a_list_idx])))
-
-            ax0.scatter(a_x_axis, list(range(len(lists[a_list_idx]))), lists[a_list_idx], marker=marker,
-                     c=default_colors[int(colors[a_list_idx])] if colors is not None else default_colors[a_list_idx%len(default_colors)])
+            an_error_bar = list([error_bars[a_list_idx][x] for x in a_x_axis])
+            if not (labels is None):
+                ax0.errorbar(a_x_axis, gapped_list, an_error_bar, label=labels[a_list_idx],
+                             marker=default_markers[a_list_idx%len(default_markers)],
+                             c=default_colors[int(colors[a_list_idx])] if colors is not None else default_colors[
+                                 a_list_idx % len(default_colors)])
+            else:
+                ax0.errorbar(a_x_axis, gapped_list, an_error_bar,
+                             marker=default_markers[a_list_idx % len(default_markers)],
+                             c=default_colors[int(colors[a_list_idx])] if colors is not None else default_colors[
+                                 a_list_idx % len(default_colors)], linestyle='None')
         ax0.legend()
 
     if ver_lines is not None:
@@ -116,7 +132,7 @@ def save_lists_graph(lists, labels=None, ver_lines=None, path="", file_name="", 
             plt.axvline(x=v_l, ls='dashed', c='y')
 
     if path and file_name:
-        plt.savefig(path + os.sep + file_name, dpi=dpi)
+        plt.savefig(os.path.join(path, file_name), dpi=dpi)
     else:
         plt.show()
     plt.clf()

@@ -1,0 +1,5 @@
+from StatisticsToolkit import StatisticsToolkit
+import storage.stat_warehouse as stat_warehouse
+
+statistics_toolkit = StatisticsToolkit()
+print statistics_toolkit.calculate_statistical_significances(stat_warehouse.distributional_dist_fit_cor_1, stat_warehouse.stochastic_dist_fit_cor_3)
