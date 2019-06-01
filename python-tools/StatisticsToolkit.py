@@ -5,18 +5,22 @@ from GRNCSVReader import GRNCSVReader
 from EdgeNumberTool import EdgeNumberTool
 import matplotlib.pyplot as plt
 import file_processor as fp
+import tools.mod_tools as mod_tools
+from GRNPlotter import GRNPlotter
 
 
 class StatisticsToolkit:
     def __init__(self, path_1=None, path_2=None):
         self.path_1 = path_1
         self.path_2 = path_2
+        self.grn_plotter = GRNPlotter()
 
-    def calculate_modularity_significance(self, sample_size=40, no_self_edge=False):
-        grn_plotter = GRNPlotter.GRNPlotter()
-        modularity_values_1 = grn_plotter.get_module_values_of_an_experiment(self.path_1, -1, no_self_edge=no_self_edge)[:sample_size]
-        modularity_values_2 = grn_plotter.get_module_values_of_an_experiment(self.path_2, -1, no_self_edge=no_self_edge)[:sample_size]
-        return self.calculate_statistical_significances(modularity_values_1, modularity_values_2)
+    def calculate_modularity_significance(self, sample_size=40, no_self_edge=False, index=-1):
+        modularity_values_1 = self.grn_plotter.get_module_values_of_an_experiment(self.path_1, -1, no_self_edge=no_self_edge)[:sample_size]
+        modularity_values_2 = self.grn_plotter.get_module_values_of_an_experiment(self.path_2, -1, no_self_edge=no_self_edge)[:sample_size]
+        edge_nums_1 = self.grn_plotter.get_exp_fittest_grn_edge_num(self.path_1, index=index)
+        edge_nums_2 = self.grn_plotter.get_exp_fittest_grn_edge_num(self.path_2, index=index)
+        return self.calculate_normed_mods_significance(modularity_values_1, modularity_values_2, edge_nums_1, edge_nums_2)
 
     @staticmethod
     def calculate_statistical_significances(values_1, values_2):
@@ -37,19 +41,27 @@ class StatisticsToolkit:
         print "length 1: ", len(fitness_values_1), " length 2: ", len(fitness_values_2)
         return self.calculate_statistical_significances(fitness_values_1, fitness_values_2)
 
+    def calculate_normed_mods_significance(self, mods_1, mods_2, edge_nums_1, edge_nums_2):
+        normed_mods_1 = mod_tools.normalize_mod_q(mods_1, edge_nums_1)
+        normed_mods_2 = mod_tools.normalize_mod_q(mods_2, edge_nums_2)
+        return self.calculate_statistical_significances(normed_mods_1, normed_mods_2)
+
     def calculate_most_modularities_significance(self, sample_size=40, index=-1):
         fitness_plotter = GRNCSVReader()
         most_mod_values_1 = fitness_plotter.get_most_modularities_of_an_experiment(self.path_1, index)[:sample_size]
         most_mod_values_2 = fitness_plotter.get_most_modularities_of_an_experiment(self.path_2, index)[:sample_size]
-        print "length 1: ", len(most_mod_values_1), " length 2: ", len(most_mod_values_2)
-        return self.calculate_statistical_significances(most_mod_values_1, most_mod_values_2)
+        edge_nums_1 = self.grn_plotter.get_exp_fittest_grn_edge_num(self.path_1, index=index)
+        edge_nums_2 = self.grn_plotter.get_exp_fittest_grn_edge_num(self.path_2, index=index)
+        return self.calculate_normed_mods_significance(most_mod_values_1, most_mod_values_2, edge_nums_1, edge_nums_2)
+        # return self.calculate_statistical_significances(most_mod_values_1, most_mod_values_2)
 
     def calculate_fittest_modularities_significance(self, sample_size=40, index=-1):
         fitness_plotter = GRNCSVReader()
         most_mod_values_1 = fitness_plotter.get_fittest_modularities_of_an_experiment(self.path_1, index)[:sample_size]
         most_mod_values_2 = fitness_plotter.get_fittest_modularities_of_an_experiment(self.path_2, index)[:sample_size]
-        print "length 1: ", len(most_mod_values_1), " length 2: ", len(most_mod_values_2)
-        return self.calculate_statistical_significances(most_mod_values_1, most_mod_values_2)
+        edge_nums_1 = self.grn_plotter.get_exp_fittest_grn_edge_num(self.path_1, index=index)
+        edge_nums_2 = self.grn_plotter.get_exp_fittest_grn_edge_num(self.path_2, index=index)
+        return self.calculate_normed_mods_significance(most_mod_values_1, most_mod_values_2, edge_nums_1, edge_nums_2)
 
     def calculate_edge_number_significance(self, sample_size=40, index=-1):
         edge_number_tool = EdgeNumberTool()

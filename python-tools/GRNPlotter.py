@@ -7,6 +7,8 @@ import matplotlib.pyplot as plt
 from networkx.drawing.nx_agraph import write_dot
 import numpy as np
 from file_processor import get_immediate_subdirectories, save_a_list_graph
+import file_processor as fp
+import tools.io_tools as io_tools
 
 
 class GRNPlotter:
@@ -45,10 +47,24 @@ class GRNPlotter:
         phenotypes = []
         sum_location = os.path.join(root_directory_path, 'Summary.txt')
 
-        for i, line in enumerate(open(sum_location)):
-            for match in re.finditer(self.phenotype_patter, line):
-                phenotypes.append(map(int, match.groups()[0].split(',')))
+        exists = os.path.isfile(sum_location)
+        if exists:
+            for i, line in enumerate(open(sum_location)):
+                for match in re.finditer(self.phenotype_patter, line):
+                    phenotypes.append(map(int, match.groups()[0].split(',')))
         return phenotypes
+
+    def get_exp_fittest_grn_edge_num(self, root_path, index=-1, sample_size=100):
+        trial_dirs = fp.get_immediate_subdirectories(root_path)
+        final_phes = []
+        for a_trail_dir in trial_dirs:
+            phenotypes = self.get_grn_phenotypes(a_trail_dir)
+            if phenotypes:
+                phenotypes = phenotypes[index]
+                final_phes.append(phenotypes)
+            if len(final_phes) >= sample_size:
+                break
+        return list([io_tools.count_number_of_edges(a_phe) for a_phe in final_phes])
 
     def generate_edge_colors(self, a_grn, a_grn_phenotype):
         grn_side_size = int(math.sqrt(len(a_grn_phenotype)))

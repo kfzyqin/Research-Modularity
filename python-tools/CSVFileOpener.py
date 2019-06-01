@@ -58,5 +58,6 @@ class CSVFileOpener:
         return np.mean(np.array(all_trails), axis=0), np.std(np.array(all_trails), axis=0)
 
 
+
 if __name__ == '__main__':
     pass

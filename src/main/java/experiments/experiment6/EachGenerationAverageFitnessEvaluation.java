@@ -39,7 +39,7 @@ public class EachGenerationAverageFitnessEvaluation {
     public static void main(String[] args) {
 //        String targetPath = "/media/zhenyue-qin/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/fixed-record-zhenyue-balanced-combinations-p01";
 //        String targetPath = "/media/zhenyue-qin/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/original_esw_p01";
-        String targetPath = "/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/distributional-p00";
+        String targetPath = "/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/elite-stochastic-p01";
 
         int[][] targets = {target1, target2};
 
@@ -51,7 +51,7 @@ public class EachGenerationAverageFitnessEvaluation {
 
         FitnessFunction fitnessFunctionToUse = null;
 
-        String fitnessToUseStr = "ESW";
+        String fitnessToUseStr = "Zhenyue";
         if (fitnessToUseStr.equals("Zhenyue")) {
             fitnessFunctionToUse = fitnessFunctionZhenyueSym;
         } else if (fitnessToUseStr.equals("ESW")) {
@@ -71,7 +71,8 @@ public class EachGenerationAverageFitnessEvaluation {
         int fileNumberCounter = 0;
 
         List<Double> finalGenFitnesses = new ArrayList<>();
-        List<Double> fitnessStdDev = new ArrayList<>();
+        List<List<Double>> fitnessStdDev = null;
+        List<Double> finalFitnessStDev = new ArrayList<>();
 
         for (File aDirectory : directories) {
             System.out.println("a directory: " + aDirectory);
@@ -99,12 +100,21 @@ public class EachGenerationAverageFitnessEvaluation {
                 if (experimentAvgFitnesses == null) {
                     experimentAvgFitnesses = new double[oneTrialFitnesses.size()];
                 }
+                if (fitnessStdDev == null) {
+                    fitnessStdDev = new ArrayList<>();
+                    for (int genIdx=0; genIdx<oneTrialFitnesses.size(); genIdx++) {
+                        fitnessStdDev.add(new ArrayList<>());
+                    }
+                }
                 for (int i=0; i<oneTrialFitnesses.size(); i++) {
                     experimentAvgFitnesses[i] += oneTrialFitnesses.get(i);
+                    fitnessStdDev.get(i).add(oneTrialFitnesses.get(i));
                 }
 
                 finalGenFitnesses.add(oneTrialFitnesses.get(oneTrialFitnesses.size()-1));
-                fitnessStdDev.add(GeneralMethods.getStDev(oneTrialFitnesses));
+//                System.out.println(oneTrialFitnesses);
+//                System.out.println("stdev: " + GeneralMethods.getStDev(oneTrialFitnesses));
+
 
             } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println("Array out of bound caught! ");
@@ -123,6 +133,10 @@ public class EachGenerationAverageFitnessEvaluation {
         System.out.println(Arrays.toString(experimentAvgFitnesses));
 
         System.out.println(finalGenFitnesses);
+        for (List<Double> fits : fitnessStdDev) {
+            finalFitnessStDev.add(GeneralMethods.getStDev(fits));
+        }
+        System.out.println(finalFitnessStDev);
 
     }
 }

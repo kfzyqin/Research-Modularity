@@ -2,18 +2,27 @@ from CSVFileOpener import CSVFileOpener
 import file_processor as fp
 import os
 import numpy as np
+import tools.storage.fitness_warehouse as fitness_warehouse
 
 prefix_path = os.path.expanduser("~")
 
 
-def plot_fit_lines(path_1, labels, save_path, file_name, sample_size=100):
+def plot_fit_lines(path_1, labels, save_path, file_name, sample_size=100, gens=2000):
     csv_file_opener = CSVFileOpener()
     target_column = None
     if 'Fitness' in labels[0]:
-        target_column = 'Best'
-        values, value_std_1 = csv_file_opener. \
-            get_properties_of_each_generation_in_a_whole_experiment_with_stdev(path_1, target_column,
-                                                                               sample_size=sample_size)
+        if 'Stoc' in labels[0]:
+            if 'Sym' in labels[0]:
+                values = fitness_warehouse.stoc_p00_by_dist_p00_gen[:gens]
+                value_std_1 = fitness_warehouse.stoc_p00_by_dist_p00_stdev[:gens]
+            elif 'Asym' in labels[0]:
+                values = fitness_warehouse.stoc_p01_by_dist_p01_gen[:gens]
+                value_std_1 = fitness_warehouse.stoc_p01_by_dist_p01_stdev[:gens]
+        else:
+            target_column = 'Best'
+            values, value_std_1 = csv_file_opener. \
+                get_properties_of_each_generation_in_a_whole_experiment_with_stdev(path_1, target_column,
+                                                                                   sample_size=sample_size)
     elif 'Modularity' in labels[0]:
         target_column = 'FittestModularity'
         values, value_std_1 = csv_file_opener. \
@@ -34,7 +43,9 @@ path_dict = {
     'Dist Sym': '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/distributional-p00',
     'Dist Asym': '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/distributional-p01',
     'Elite Dist Sym': '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/elite-distributional-p00',
-    'Elite Dist Asym': '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/elite-distributional-p01'
+    'Elite Dist Asym': '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/elite-distributional-p01',
+    'Stoc Sym': '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/stochastic-p00',
+    'Stoc Asym': '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/stochastic-p01',
 }
 
 
@@ -43,8 +54,9 @@ save_path = '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modular
 
 sample_size = 100
 
-path_key = 'Elite Dist Sym'
-value_type = 'Modularity Normalized'
+path_key = 'Stoc Sym'
+# value_type = 'Modularity Normalized'
+value_type = 'Fitness'
 label_key = path_key + ' ' + value_type
 plot_fit_lines(path_dict[path_key], [label_key], save_path, file_name=label_key + '.png', sample_size=sample_size)
 

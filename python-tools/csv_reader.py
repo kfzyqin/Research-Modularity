@@ -9,7 +9,8 @@ def get_entry_values_of_an_experiment(root_directory_path, entry, index=-1):
     sub_dirs = io_tools.get_immediate_subdirectories(root_directory_path)
     for a_sub_dir in sub_dirs:
         a_stat_csv = os.path.join(a_sub_dir, 'Statistics.csv')
-        csv_files.append(a_stat_csv)
+        if os.path.exists(a_stat_csv):
+            csv_files.append(a_stat_csv)
 
     for a_file in csv_files:
         a_df = pd.read_csv(a_file, '\t')

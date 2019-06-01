@@ -6,7 +6,7 @@ if __name__ == '__main__':
     # exp_types = ['distributional', 'stochastic', 'elite-distributional', 'elite-stochastic']
     # sym_types = ['p00', 'p01']
 
-    exp_types = ['elite-distributional', 'elite-stochastic']
+    exp_types = ['stochastic']
     sym_types = ['p00', 'p01']
 
     exp_sym_types = []
