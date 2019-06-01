@@ -7,6 +7,9 @@ import numpy as np
 from GRNPlotter import GRNPlotter
 
 
+def count_number_of_edges(a_grn):
+    return sum(x != 0 for x in a_grn)
+
 class EdgeNumberTool:
     def __init__(self):
         self.csv_file_opener = CSVFileOpener.CSVFileOpener()
@@ -82,11 +85,11 @@ class EdgeNumberTool:
         return eva_results
 
     def get_average_edge_number_in_each_generation(self, working_path):
-        average_edge_numbers = self.csv_file_opener.get_fitness_values_of_an_trial(working_path, 'AvgEdgeNumber')
+        average_edge_numbers = self.csv_file_opener.get_column_values_of_an_trial(working_path, 'AvgEdgeNumber')
         return average_edge_numbers
     
     def get_std_dev_edge_number_in_each_generation(self, working_path):
-        std_dev_numbers = self.csv_file_opener.get_fitness_values_of_an_trial(working_path, 'StdDevEdgeNumber')
+        std_dev_numbers = self.csv_file_opener.get_column_values_of_an_trial(working_path, 'StdDevEdgeNumber')
         return std_dev_numbers
 
     def get_average_edge_number_of_the_whole_trial(self, working_path):

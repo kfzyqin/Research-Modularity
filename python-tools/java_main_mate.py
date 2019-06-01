@@ -46,8 +46,8 @@ save_multiple_lists_graph([fitness_values, modular_values], ['Fitness', 'Modular
                           'fitness_modularity.png', vertical_lines=[most_modular[0], least_modular[0]])
 
 csv_file_opener = CSVFileOpener.CSVFileOpener()
-average_edge_numbers = csv_file_opener.get_fitness_values_of_an_trial(working_path, 'AvgEdgeNumber')
-std_dev_numbers = csv_file_opener.get_fitness_values_of_an_trial(working_path, 'StdDevEdgeNumber')
+average_edge_numbers = csv_file_opener.get_column_values_of_an_trial(working_path, 'AvgEdgeNumber')
+std_dev_numbers = csv_file_opener.get_column_values_of_an_trial(working_path, 'StdDevEdgeNumber')
 
 save_multiple_lists_graph([average_edge_numbers, std_dev_numbers], ['Average Edge Number', 'Std Dev Number'], working_path,
                           'avg_edge_num_and_std_dev.png', vertical_lines=[most_modular[0], least_modular[0]])

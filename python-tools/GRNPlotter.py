@@ -43,16 +43,11 @@ class GRNPlotter:
 
     def get_grn_phenotypes(self, root_directory_path):
         phenotypes = []
-        txt_files = []
-        for root, dirs, files in os.walk(root_directory_path):
-            for a_file in files:
-                if a_file.endswith(".txt"):
-                    txt_files.append(root + os.sep + a_file)
+        sum_location = os.path.join(root_directory_path, 'Summary.txt')
 
-        for a_file in txt_files:
-            for i, line in enumerate(open(a_file)):
-                for match in re.finditer(self.phenotype_patter, line):
-                    phenotypes.append(map(int, match.groups()[0].split(',')))
+        for i, line in enumerate(open(sum_location)):
+            for match in re.finditer(self.phenotype_patter, line):
+                phenotypes.append(map(int, match.groups()[0].split(',')))
         return phenotypes
 
     def generate_edge_colors(self, a_grn, a_grn_phenotype):
@@ -209,4 +204,3 @@ class GRNPlotter:
                 save_a_list_graph(modularity_values, 'Modularity', a_directory, 'modularity.png', specialization)
 
             return modularity_values
-

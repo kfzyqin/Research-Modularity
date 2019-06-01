@@ -39,7 +39,7 @@ public class EachGenerationAverageFitnessEvaluation {
     public static void main(String[] args) {
 //        String targetPath = "/media/zhenyue-qin/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/fixed-record-zhenyue-balanced-combinations-p01";
 //        String targetPath = "/media/zhenyue-qin/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/original_esw_p01";
-        String targetPath = "/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/elite-stochastic-p01";
+        String targetPath = "/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/distributional-p00";
 
         int[][] targets = {target1, target2};
 
@@ -71,6 +71,7 @@ public class EachGenerationAverageFitnessEvaluation {
         int fileNumberCounter = 0;
 
         List<Double> finalGenFitnesses = new ArrayList<>();
+        List<Double> fitnessStdDev = new ArrayList<>();
 
         for (File aDirectory : directories) {
             System.out.println("a directory: " + aDirectory);
@@ -103,6 +104,7 @@ public class EachGenerationAverageFitnessEvaluation {
                 }
 
                 finalGenFitnesses.add(oneTrialFitnesses.get(oneTrialFitnesses.size()-1));
+                fitnessStdDev.add(GeneralMethods.getStDev(oneTrialFitnesses));
 
             } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println("Array out of bound caught! ");

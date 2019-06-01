@@ -1,34 +1,52 @@
 from CSVFileOpener import CSVFileOpener
 import file_processor as fp
 import os
-import statistics
+import numpy as np
 
 prefix_path = os.path.expanduser("~")
 
 
-def plot_fit_lines(path_1, path_2, save_path, sample_size=100):
+def plot_fit_lines(path_1, labels, save_path, file_name, sample_size=100):
     csv_file_opener = CSVFileOpener()
-    fits_best_1, fits_std_1 = csv_file_opener.\
-        get_properties_of_each_generation_in_a_whole_experiment_with_stdev(path_1, 'Best', sample_size=sample_size)
-    print('len of fits_best 1: ', len(fits_best_1))
-    fits_best_2, fits_std_2 = csv_file_opener.\
-        get_properties_of_each_generation_in_a_whole_experiment_with_stdev(path_2, 'Best', sample_size=sample_size)
-    print('len of fits_best 2: ', len(fits_best_2))
+    target_column = None
+    if 'Fitness' in labels[0]:
+        target_column = 'Best'
+        values, value_std_1 = csv_file_opener. \
+            get_properties_of_each_generation_in_a_whole_experiment_with_stdev(path_1, target_column,
+                                                                               sample_size=sample_size)
+    elif 'Modularity' in labels[0]:
+        target_column = 'FittestModularity'
+        values, value_std_1 = csv_file_opener. \
+            get_mod_of_each_generation_in_a_whole_exp_with_stdev(path_1, target_column,
+                                                                               sample_size=sample_size)
 
-    fp.save_lists_graph([fits_best_1, fits_best_2],
-                        labels=['Dist Sym Fitness', 'Dist Asym Fitness'],
-                        ver_lines=[500], path=save_path, file_name='distributional_fit.png', marker='.', colors=None,
-                        dpi=500, to_normalize=False, x_gap=10, error_bars=[fits_std_1, fits_std_2])
+    print('current label: ', labels)
+    print('max value: ', np.max(values))
+    print('min value: ', np.min(values))
+    print('len of values: ', len(values))
+
+    fp.save_lists_graph([values],
+                        labels=labels,
+                        ver_lines=[500], path=save_path, file_name=file_name, marker='.', colors=None,
+                        dpi=500, to_normalize=False, x_gap=20, error_bars=[value_std_1], leg_loc='lower right')
+
+path_dict = {
+    'Dist Sym': '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/distributional-p00',
+    'Dist Asym': '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/distributional-p01',
+    'Elite Dist Sym': '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/elite-distributional-p00',
+    'Elite Dist Asym': '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/elite-distributional-p01'
+}
 
 
-path_1 = '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/distributional-p00'
-path_2 = '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/distributional-p01'
 
 save_path = '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/tec-imgs'
 
 sample_size = 100
 
-plot_fit_lines(path_1, path_2, save_path, sample_size)
+path_key = 'Elite Dist Sym'
+value_type = 'Modularity Normalized'
+label_key = path_key + ' ' + value_type
+plot_fit_lines(path_dict[path_key], [label_key], save_path, file_name=label_key + '.png', sample_size=sample_size)
 
 # # fits_avg_1 = csv_file_opener.get_properties_of_each_generation_in_a_whole_experiment(path_1, 'Median')
 # # fits_avg_2 = csv_file_opener.get_properties_of_each_generation_in_a_whole_experiment(path_2, 'Median')

@@ -22,7 +22,7 @@ public class PerfectIndividualInitializer extends HaploidGRNInitializer {
     @Override
     public Population<SimpleHaploid> initialize() {
         Population<SimpleHaploid> population = new Population<>(size);
-        String aModFile = "./Data/perfect_modular_individuals.txt";
+        String aModFile = "./data/perfect_modular_individuals.txt";
         List<String[]> lines = GeneralMethods.readFileLineByLine(aModFile);
         int count = 0;
         for (String[] aLine : lines) {

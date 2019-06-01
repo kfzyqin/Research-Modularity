@@ -16,14 +16,14 @@ import matplotlib.pyplot as plt
 class MatrixSimilarityAnalyzer:
     def __init__(self):
         # self.prefix_path = os.path.expanduser("~")
-        self.starting_path_1 = '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/elite-distributional-p00'
-        self.starting_path_2 = '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/elite-distributional-p01'
+        self.starting_path_1 = '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/distributional-p00'
+        self.starting_path_2 = '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/distributional-p01'
 
         # self.starting_path_1 = '/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/record-esw-balanced-combinations-p00'
         # self.starting_path_2 = '/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/record-esw-balanced-combinations-p01'
 
-        self.sample_size = 20
-        self.to_fetch_sample = 20
+        self.sample_size = 100
+        self.to_fetch_sample = 100
         self.population_size = 100
         self.grn_size = 100
 
@@ -334,7 +334,7 @@ matrix_similarity_analyzer = MatrixSimilarityAnalyzer()
 # matrix_similarity_analyzer.statistically_compare_two_inter_file_grn_distances('fit', dist_type='manhattan')
 
 matrix_similarity_analyzer.launch_inter_ind_dists(starting_gen=1, end_gen=2000, dist_type='manhattan',
-                                                      use_average=True, to_plot=True, the_interval=1)
+                                                      use_average=True, to_plot=True, the_interval=20)
 
 # matrix_similarity_analyzer.launch_k_means_evaluation(2000, 32)
 

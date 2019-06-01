@@ -1,15 +1,15 @@
 import os
 import pandas as pd
+import tools.io_tools as io_tools
 
 
 def get_entry_values_of_an_experiment(root_directory_path, entry, index=-1):
     fitness_values = []
     csv_files = []
-    for root, dirs, files in os.walk(root_directory_path):
-        for a_file in files:
-            if a_file.endswith(".csv") and not a_file.endswith('volcanoe.csv'):
-                # print("a file fitness: ", root)
-                csv_files.append(root + os.sep + a_file)
+    sub_dirs = io_tools.get_immediate_subdirectories(root_directory_path)
+    for a_sub_dir in sub_dirs:
+        a_stat_csv = os.path.join(a_sub_dir, 'Statistics.csv')
+        csv_files.append(a_stat_csv)
 
     for a_file in csv_files:
         a_df = pd.read_csv(a_file, '\t')

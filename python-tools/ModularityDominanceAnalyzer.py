@@ -15,7 +15,7 @@ class ModularityDominanceAnalyzer:
         phenotypes = self.grn_plotter.get_grn_phenotypes(a_path)
         grns = map(self.grn_plotter.generate_directed_grn, phenotypes)
         modularity_values = map(self.grn_plotter.get_modularity_value, grns)
-        fitnesses = self.fitness_plotter.get_fitness_values_of_an_trial(a_path)
+        fitnesses = self.fitness_plotter.get_column_values_of_an_trial(a_path)
         return zip(fitnesses, modularity_values)
 
     def get_the_fittest_individual_in_the_most_modular_networks(self, a_path, starting_generation):

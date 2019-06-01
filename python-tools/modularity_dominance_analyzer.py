@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import scipy.stats
 from StatisticsToolkit import StatisticsToolkit
+from tools.io_tools import get_immediate_subdirectories
 
 pattern = re.compile("(?<=Phenotype: \[)(.*)(?=\])")
 
@@ -133,11 +134,6 @@ def force_modular_grn_matrix_printing_helper(a_grn_phenotype):
                 sys.stdout.write('0')
                 sys.stdout.write(',\t')
         print ''
-
-
-def get_immediate_subdirectories(a_dir):
-    return [(a_dir + os.sep + name) for name in os.listdir(a_dir)
-            if os.path.isdir(os.path.join(a_dir, name))]
 
 
 def count_number_of_edges(a_grn):

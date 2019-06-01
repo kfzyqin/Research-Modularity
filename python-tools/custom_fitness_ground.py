@@ -1,5 +1,5 @@
 import StatisticsToolkit
-import storage.fitness_warehouse as fit_war
+import tools.storage.fitness_warehouse as fit_war
 
 if __name__ == '__main__':
     stat_tool_kit = StatisticsToolkit.StatisticsToolkit()
