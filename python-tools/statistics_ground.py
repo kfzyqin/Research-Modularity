@@ -6,8 +6,8 @@ if __name__ == '__main__':
     # exp_types = ['distributional', 'stochastic', 'elite-distributional', 'elite-stochastic']
     # sym_types = ['p00', 'p01']
 
-    exp_types = ['stochastic']
-    sym_types = ['p00', 'p01']
+    exp_types = ['distributional', 'stochastic']
+    sym_types = ['p00']
 
     exp_sym_types = []
     for an_exp_type in exp_types:
@@ -39,7 +39,7 @@ if __name__ == '__main__':
             print omega.calculate_fittest_modularities_significance(sample_size=sample_size, index=the_index)
 
             print('modularity significance')
-            print omega.calculate_modularity_significance(sample_size=sample_size, no_self_edge=True)
+            print omega.calculate_modularity_significance(sample_size=sample_size, no_self_edge=False)
 
             print('edge number significance')
             print omega.calculate_edge_number_significance(sample_size=sample_size)

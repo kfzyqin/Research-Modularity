@@ -7,7 +7,7 @@ import tools.storage.fitness_warehouse as fitness_warehouse
 prefix_path = os.path.expanduser("~")
 
 
-def plot_fit_lines(path_1, labels, save_path, file_name, sample_size=100, gens=2000):
+def plot_fit_lines(path_1, labels, save_path, file_name, sample_size=100, gens=2000, to_save=True):
     csv_file_opener = CSVFileOpener()
     target_column = None
     if 'Fitness' in labels[0]:
@@ -29,15 +29,21 @@ def plot_fit_lines(path_1, labels, save_path, file_name, sample_size=100, gens=2
             get_mod_of_each_generation_in_a_whole_exp_with_stdev(path_1, target_column,
                                                                                sample_size=sample_size)
 
+        # values, value_std_1 = csv_file_opener. \
+        #     get_properties_of_each_generation_in_a_whole_experiment_with_stdev(path_1, target_column,
+        #                                                                        sample_size=sample_size)
+
     print('current label: ', labels)
+    print('final value: ', values[-1])
     print('max value: ', np.max(values))
     print('min value: ', np.min(values))
     print('len of values: ', len(values))
 
-    fp.save_lists_graph([values],
-                        labels=labels,
-                        ver_lines=[500], path=save_path, file_name=file_name, marker='.', colors=None,
-                        dpi=500, to_normalize=False, x_gap=20, error_bars=[value_std_1], leg_loc='lower right')
+    if to_save:
+        fp.save_lists_graph([values],
+                            labels=labels,
+                            ver_lines=[500], path=save_path, file_name=file_name, marker='.', colors=None,
+                            dpi=500, to_normalize=False, x_gap=20, error_bars=[value_std_1], leg_loc='lower right')
 
 path_dict = {
     'Dist Sym': '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/distributional-p00',
@@ -46,6 +52,8 @@ path_dict = {
     'Elite Dist Asym': '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/elite-distributional-p01',
     'Stoc Sym': '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/stochastic-p00',
     'Stoc Asym': '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/stochastic-p01',
+    'Elite Stoc Sym': '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/elite-stochastic-p00',
+    'Elite Stoc Asym': '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/elite-stochastic-p01',
 }
 
 
@@ -54,9 +62,9 @@ save_path = '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modular
 
 sample_size = 100
 
-path_key = 'Stoc Sym'
-# value_type = 'Modularity Normalized'
-value_type = 'Fitness'
+path_key = 'Dist Sym'
+value_type = 'Modularity'
+# value_type = 'Modularity'
 label_key = path_key + ' ' + value_type
 plot_fit_lines(path_dict[path_key], [label_key], save_path, file_name=label_key + '.png', sample_size=sample_size)
 

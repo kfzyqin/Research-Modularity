@@ -62,6 +62,7 @@ class StatisticsToolkit:
         edge_nums_1 = self.grn_plotter.get_exp_fittest_grn_edge_num(self.path_1, index=index)
         edge_nums_2 = self.grn_plotter.get_exp_fittest_grn_edge_num(self.path_2, index=index)
         return self.calculate_normed_mods_significance(most_mod_values_1, most_mod_values_2, edge_nums_1, edge_nums_2)
+        # return self.calculate_statistical_significances(most_mod_values_1, most_mod_values_2)
 
     def calculate_edge_number_significance(self, sample_size=40, index=-1):
         edge_number_tool = EdgeNumberTool()
