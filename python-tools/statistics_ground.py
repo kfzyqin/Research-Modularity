@@ -6,8 +6,8 @@ if __name__ == '__main__':
     # exp_types = ['distributional', 'stochastic', 'elite-distributional', 'elite-stochastic']
     # sym_types = ['p00', 'p01']
 
-    exp_types = ['distributional', 'stochastic']
-    sym_types = ['p00']
+    exp_types = ['distributional']
+    sym_types = ['p00', 'p01']
 
     exp_sym_types = []
     for an_exp_type in exp_types:
@@ -24,7 +24,7 @@ if __name__ == '__main__':
 
             sample_size = 100
 
-            the_index = -1
+            the_index = 499
 
             print "path 1", path_1
             print "path 2", path_2

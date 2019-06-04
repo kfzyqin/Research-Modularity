@@ -119,12 +119,16 @@ def save_lists_graph(lists, labels=None, ver_lines=None, path="", file_name="", 
                 ax0.errorbar(a_x_axis, gapped_list, an_error_bar, label=labels[a_list_idx],
                              marker=default_markers[a_list_idx%len(default_markers)],
                              c=default_colors[int(colors[a_list_idx])] if colors is not None else default_colors[
-                                 a_list_idx % len(default_colors)])
+                                 a_list_idx % len(default_colors)], linestyle=default_line_styles[a_list_idx%len(default_line_styles)],
+                             capsize=2)
+
+
             else:
                 ax0.errorbar(a_x_axis, gapped_list, an_error_bar,
                              marker=default_markers[a_list_idx % len(default_markers)],
                              c=default_colors[int(colors[a_list_idx])] if colors is not None else default_colors[
-                                 a_list_idx % len(default_colors)], linestyle='None')
+                                 a_list_idx % len(default_colors)], linestyle=default_line_styles[a_list_idx%len(default_line_styles)],
+                             capsize=2)
         ax0.legend(loc=leg_loc)
 
     if ver_lines is not None:
@@ -132,7 +136,7 @@ def save_lists_graph(lists, labels=None, ver_lines=None, path="", file_name="", 
             plt.axvline(x=v_l, ls='dashed', c='y')
 
     if path and file_name:
-        plt.savefig(os.path.join(path, file_name), dpi=dpi)
+        plt.savefig(os.path.join(path, file_name), dpi=dpi, pad_inches=0, bbox_inches='tight')
     else:
         plt.show()
     plt.clf()

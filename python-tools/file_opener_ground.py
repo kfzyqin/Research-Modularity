@@ -3,6 +3,7 @@ import file_processor as fp
 import os
 import numpy as np
 import tools.storage.fitness_warehouse as fitness_warehouse
+from StatisticsToolkit import StatisticsToolkit
 
 prefix_path = os.path.expanduser("~")
 
@@ -13,11 +14,19 @@ def plot_fit_lines(path_1, labels, save_path, file_name, sample_size=100, gens=2
     if 'Fitness' in labels[0]:
         if 'Stoc' in labels[0]:
             if 'Sym' in labels[0]:
-                values = fitness_warehouse.stoc_p00_by_dist_p00_gen[:gens]
-                value_std_1 = fitness_warehouse.stoc_p00_by_dist_p00_stdev[:gens]
+                if 'Elite' in labels[0]:
+                    values = fitness_warehouse.elite_stoc_p00_by_dist_p00_gen[:gens]
+                    value_std_1 = fitness_warehouse.elite_stoc_p00_by_dist_p00_stdev[:gens]
+                else:
+                    values = fitness_warehouse.stoc_p00_by_dist_p00_gen[:gens]
+                    value_std_1 = fitness_warehouse.stoc_p00_by_dist_p00_stdev[:gens]
             elif 'Asym' in labels[0]:
-                values = fitness_warehouse.stoc_p01_by_dist_p01_gen[:gens]
-                value_std_1 = fitness_warehouse.stoc_p01_by_dist_p01_stdev[:gens]
+                if 'Elite' in labels[0]:
+                    values = fitness_warehouse.elite_stoc_p01_by_dist_p01_gen[:gens]
+                    value_std_1 = fitness_warehouse.elite_stoc_p01_by_dist_p01_stdev[:gens]
+                else:
+                    values = fitness_warehouse.stoc_p01_by_dist_p01_gen[:gens]
+                    value_std_1 = fitness_warehouse.stoc_p01_by_dist_p01_stdev[:gens]
         else:
             target_column = 'Best'
             values, value_std_1 = csv_file_opener. \
@@ -35,18 +44,27 @@ def plot_fit_lines(path_1, labels, save_path, file_name, sample_size=100, gens=2
 
     print('current label: ', labels)
     print('final value: ', values[-1])
+    print('value_std_1: ', value_std_1[499])
     print('max value: ', np.max(values))
     print('min value: ', np.min(values))
     print('len of values: ', len(values))
 
     if to_save:
+        if 'Stoc' in labels[0]:
+            the_colors = [1, 0, 2, 3, 4, 5]
+        else:
+            the_colors = None
         fp.save_lists_graph([values],
                             labels=labels,
-                            ver_lines=[500], path=save_path, file_name=file_name, marker='.', colors=None,
+                            ver_lines=[500], path=save_path, file_name=file_name, marker='.', colors=the_colors,
                             dpi=500, to_normalize=False, x_gap=20, error_bars=[value_std_1], leg_loc='lower right')
+
+    return values, labels, value_std_1
+
 
 path_dict = {
     'Dist Sym': '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/distributional-p00',
+    # 'Dist Sym': '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/distributional-p00',
     'Dist Asym': '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/distributional-p01',
     'Elite Dist Sym': '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/elite-distributional-p00',
     'Elite Dist Asym': '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/elite-distributional-p01',
@@ -58,15 +76,36 @@ path_dict = {
 
 
 
-save_path = '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/tec-imgs'
+save_path = '/home/zhenyue-qin/Research/Project-Nora-Miscellaneous/tmp-imgs'
+save_path_single = '/home/zhenyue-qin/Research/Project-Nora-Miscellaneous/tmp-imgs/single'
+save_combined_path = '/home/zhenyue-qin/Research/Project-Nora-Miscellaneous/tmp-imgs/combined'
 
 sample_size = 100
 
-path_key = 'Dist Sym'
+path_key_1 = 'Dist Sym'
 value_type = 'Modularity'
-# value_type = 'Modularity'
-label_key = path_key + ' ' + value_type
-plot_fit_lines(path_dict[path_key], [label_key], save_path, file_name=label_key + '.png', sample_size=sample_size)
+label_key_1 = path_key_1 + ' ' + value_type
+label_key_1 = label_key_1.replace(' ', '-')
+
+values_1, label_1, stdevs_1 = plot_fit_lines(path_dict[path_key_1], [label_key_1], save_path_single, file_name=label_key_1 + '.png',
+                                             sample_size=sample_size, to_save=False)
+
+# path_key_2 = 'Elite Dist Asym'
+# label_key_2 = path_key_2 + ' ' + value_type
+# values_2, label_2, stdevs_2 = plot_fit_lines(path_dict[path_key_2], [label_key_2], save_path, file_name=label_key_2 + '.png',
+#                                              sample_size=sample_size, to_save=False)
+
+# stat_tool_kil = StatisticsToolkit()
+# print stat_tool_kil.calculate_statistical_significances(values_1[501:], values_2[501:])
+
+# to_save_name = path_key_1 + ' ' + path_key_2 + ' ' + value_type
+# to_save_name = to_save_name.replace(' ', '_')
+#
+# fp.save_lists_graph([values_1[1:2001], values_2[1:2001]],
+#                             labels=[path_key_1, path_key_2],
+#                             ver_lines=[500], path=save_combined_path, file_name=to_save_name, marker='.', colors=[1, 6],
+#                             dpi=500, to_normalize=False, x_gap=20, error_bars=[stdevs_1[1:2001], stdevs_2[1:2001]], leg_loc='lower right')
+
 
 # # fits_avg_1 = csv_file_opener.get_properties_of_each_generation_in_a_whole_experiment(path_1, 'Median')
 # # fits_avg_2 = csv_file_opener.get_properties_of_each_generation_in_a_whole_experiment(path_2, 'Median')

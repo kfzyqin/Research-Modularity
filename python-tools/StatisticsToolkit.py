@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import file_processor as fp
 import tools.mod_tools as mod_tools
 from GRNPlotter import GRNPlotter
+from CSVFileOpener import CSVFileOpener
 
 
 class StatisticsToolkit:
@@ -18,9 +19,10 @@ class StatisticsToolkit:
     def calculate_modularity_significance(self, sample_size=40, no_self_edge=False, index=-1):
         modularity_values_1 = self.grn_plotter.get_module_values_of_an_experiment(self.path_1, -1, no_self_edge=no_self_edge)[:sample_size]
         modularity_values_2 = self.grn_plotter.get_module_values_of_an_experiment(self.path_2, -1, no_self_edge=no_self_edge)[:sample_size]
-        edge_nums_1 = self.grn_plotter.get_exp_fittest_grn_edge_num(self.path_1, index=index)
-        edge_nums_2 = self.grn_plotter.get_exp_fittest_grn_edge_num(self.path_2, index=index)
-        return self.calculate_normed_mods_significance(modularity_values_1, modularity_values_2, edge_nums_1, edge_nums_2)
+        # edge_nums_1 = self.grn_plotter.get_exp_fittest_grn_edge_num(self.path_1, index=index)
+        # edge_nums_2 = self.grn_plotter.get_exp_fittest_grn_edge_num(self.path_2, index=index)
+        # return self.calculate_normed_mods_significance(modularity_values_1, modularity_values_2, edge_nums_1, edge_nums_2)
+        return self.calculate_statistical_significances(modularity_values_1, modularity_values_2)
 
     @staticmethod
     def calculate_statistical_significances(values_1, values_2):
@@ -50,19 +52,16 @@ class StatisticsToolkit:
         fitness_plotter = GRNCSVReader()
         most_mod_values_1 = fitness_plotter.get_most_modularities_of_an_experiment(self.path_1, index)[:sample_size]
         most_mod_values_2 = fitness_plotter.get_most_modularities_of_an_experiment(self.path_2, index)[:sample_size]
-        edge_nums_1 = self.grn_plotter.get_exp_fittest_grn_edge_num(self.path_1, index=index)
-        edge_nums_2 = self.grn_plotter.get_exp_fittest_grn_edge_num(self.path_2, index=index)
-        return self.calculate_normed_mods_significance(most_mod_values_1, most_mod_values_2, edge_nums_1, edge_nums_2)
-        # return self.calculate_statistical_significances(most_mod_values_1, most_mod_values_2)
+        # edge_nums_1 = self.grn_plotter.get_exp_fittest_grn_edge_num(self.path_1, index=index)
+        # edge_nums_2 = self.grn_plotter.get_exp_fittest_grn_edge_num(self.path_2, index=index)
+        # return self.calculate_normed_mods_significance(most_mod_values_1, most_mod_values_2, edge_nums_1, edge_nums_2)
+        return self.calculate_statistical_significances(most_mod_values_1, most_mod_values_2)
 
     def calculate_fittest_modularities_significance(self, sample_size=40, index=-1):
-        fitness_plotter = GRNCSVReader()
-        most_mod_values_1 = fitness_plotter.get_fittest_modularities_of_an_experiment(self.path_1, index)[:sample_size]
-        most_mod_values_2 = fitness_plotter.get_fittest_modularities_of_an_experiment(self.path_2, index)[:sample_size]
-        edge_nums_1 = self.grn_plotter.get_exp_fittest_grn_edge_num(self.path_1, index=index)
-        edge_nums_2 = self.grn_plotter.get_exp_fittest_grn_edge_num(self.path_2, index=index)
-        return self.calculate_normed_mods_significance(most_mod_values_1, most_mod_values_2, edge_nums_1, edge_nums_2)
-        # return self.calculate_statistical_significances(most_mod_values_1, most_mod_values_2)
+        csv_file_opener = CSVFileOpener()
+        mods_1, stdevs_1 = csv_file_opener.get_fittest_mod_of_a_exp_with_stdev(self.path_1, index, sample_size)
+        mods_2, stdevs_2 = csv_file_opener.get_fittest_mod_of_a_exp_with_stdev(self.path_2, index, sample_size)
+        return self.calculate_statistical_significances(mods_1, mods_2)
 
     def calculate_edge_number_significance(self, sample_size=40, index=-1):
         edge_number_tool = EdgeNumberTool()

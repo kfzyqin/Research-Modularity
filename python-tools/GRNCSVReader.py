@@ -2,6 +2,7 @@ import pandas as pd
 import os
 import csv_reader
 from CSVFileOpener import CSVFileOpener
+import numpy as np
 
 
 class GRNCSVReader:
@@ -29,6 +30,11 @@ class GRNCSVReader:
         return csv_reader.get_entry_values_of_an_experiment(root_directory_path, 'FittestModularity', index=index)
 
 
+if __name__ == '__main__':
+    root_path = '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/stochastic-p00'
+    tmp_rst = csv_reader.get_entry_values_of_an_experiment(root_path, 'FittestModularity', index=-1)
+    # print tmp_rst
+    print np.mean(tmp_rst)
 
 
 
