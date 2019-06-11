@@ -99,7 +99,20 @@ class CSVFileOpener:
                     break
         return np.mean(np.array(all_trails), axis=0), np.std(np.array(all_trails), axis=0)
 
+    def get_edge_num_of_each_generation_in_a_whole_exp_with_stdev(self, exp_path, sample_size=100):
+        trial_dirs = fp.get_immediate_subdirectories(exp_path)
+        all_trails = []
 
+        for a_trail_dir in trial_dirs:
+            grn_plotter = GRNPlotter()
+            phenotypes = grn_plotter.get_grn_phenotypes(a_trail_dir)
+            if phenotypes:
+                trial_edges = list([io_tools.count_number_of_edges(a_phe) for a_phe in phenotypes])
+                if len(trial_edges) == 2001:
+                    all_trails.append(np.array(trial_edges))
+                    if len(all_trails) > sample_size:
+                        break
+        return np.mean(np.array(all_trails), axis=0), np.std(np.array(all_trails), axis=0)
 
 if __name__ == '__main__':
     pass

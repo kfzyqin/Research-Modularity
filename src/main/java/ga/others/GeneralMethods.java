@@ -864,4 +864,26 @@ public class GeneralMethods<T> {
         return Math.sqrt( sum / ( a.size() - 1 ) ); // sample
     }
 
+    public static double getSimpleMaterialPositionDifference(SimpleMaterial material1, SimpleMaterial material2) {
+        assert material1.getSize() == material2.getSize();
+        double differences = 0;
+        for (int i=0; i<material1.getSize(); i++) {
+            if (material1.getGene(i).getValue() != material2.getGene(i).getValue()) {
+                differences += 1;
+            }
+        }
+        return differences;
+    }
+
+    public static double getSimpleMaterialAbsDifference(SimpleMaterial material1, SimpleMaterial material2) {
+        assert material1.getSize() == material2.getSize();
+        double differences = 0;
+        for (int i=0; i<material1.getSize(); i++) {
+            if (material1.getGene(i).getValue() != material2.getGene(i).getValue()) {
+                int aDifference = Math.abs(((int) material1.getGene(i).getValue() - (int) material2.getGene(i).getValue()));
+                differences += aDifference;
+            }
+        }
+        return differences;
+    }
 }

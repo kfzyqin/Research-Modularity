@@ -8,13 +8,15 @@ import ga.operations.mutators.GRNEdgeMutator;
 import ga.operations.mutators.Mutator;
 import ga.others.GeneralMethods;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.IntStream;
 
 public class DistanceCorrelation {
     public static double getCorrelation(List<Double> xs, List<Double> ys) {
+        System.out.print("Correlation xs: ");
+        System.out.println(xs);
+        System.out.print("Correlation ys: ");
+        System.out.println(ys);
         double[] xsArray = new double[xs.size()];
         double[] ysArray = new double[ys.size()];
         for (int i=0; i<xs.size(); i++) {
@@ -71,42 +73,71 @@ public class DistanceCorrelation {
     private static final List<Integer> thresholds = Arrays.asList(0, 500);
     private static final double stride = 0.00;
 
-    static final double mutationRate = 1;
+    static final double mutationRate = 0.05;
     public static void main(String[] args) {
         int[][] targets = {target1, target2};
 
-//        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
-//                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
+        GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue fitnessFunction = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
+                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
 
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(
-                targets, maxCycle, perturbations, perturbationRate, thresholds);
+//        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(
+//                targets, maxCycle, perturbations, perturbationRate, thresholds);
 
         String aModFile = "./data/perfect_modular_individuals.txt";
         List<String[]> lines = GeneralMethods.readFileLineByLine(aModFile);
         SimpleMaterial aMaterial = GeneralMethods.convertStringArrayToSimpleMaterial(lines.get(0));
 
-        List<Double> correlations = new ArrayList<>();
+
+        List<Double> mutationNumCorrelations = new ArrayList<>();
+        List<Double> posCorrelations = new ArrayList<>();
+        List<Double> absCorrelations = new ArrayList<>();
+
         for (int corID=0; corID<100; corID++) {
+            List<Double> posList = new ArrayList<>();
+            List<Double> absList = new ArrayList<>();
+
             System.out.println("Current correlation ID: " + corID);
             List<Double> mutatedFitnesses = new ArrayList<>();
             mutatedFitnesses.add(fitnessFunction.evaluate(aMaterial));
             GRNEdgeMutator edgeGeneMutator = new GRNEdgeMutator(mutationRate);
+            Set<SimpleMaterial> previousMaterials = new HashSet<>();
 
-            int mutatingTimes = 100;
-            for (int i = 0; i < mutatingTimes; i++) {
-                edgeGeneMutator.mutateAGRN(aMaterial);
-                mutatedFitnesses.add(fitnessFunction.evaluate(aMaterial));
-            }
+
+            int mutatingTimes = 20;
+            int mutatedTimes = 0;
+            SimpleMaterial aMaterialCopy = aMaterial.copy();
+            SimpleMaterial aMaterialCopyOriginal = aMaterial.copy();
+            posList.add(GeneralMethods.getSimpleMaterialPositionDifference(aMaterialCopy, aMaterialCopy));
+            absList.add(GeneralMethods.getSimpleMaterialAbsDifference(aMaterialCopy, aMaterialCopy));
+
+            SimpleMaterial previousMaterial = aMaterialCopy.copy();
+            do{
+                if (!previousMaterials.contains(aMaterialCopy)) {
+                    posList.add(GeneralMethods.getSimpleMaterialPositionDifference(aMaterialCopyOriginal, aMaterialCopy));
+                    absList.add(GeneralMethods.getSimpleMaterialAbsDifference(aMaterialCopyOriginal, aMaterialCopy));
+                    previousMaterials.add(aMaterialCopy.copy());
+                    previousMaterial = aMaterialCopy.copy();
+                    mutatedFitnesses.add(fitnessFunction.evaluate(aMaterialCopy, 502));
+                    mutatedTimes += 1;
+                }
+                edgeGeneMutator.mutateAGRN(aMaterialCopy);
+            } while (mutatedTimes < mutatingTimes);
 
             List<Double> dists = new ArrayList<>();
 
             for (int i = 0; i < mutatedFitnesses.size(); i++) {
                 dists.add((double) i);
             }
-            double aCorrelation = getCorrelation(mutatedFitnesses, dists);
-            correlations.add(aCorrelation);
+            double aMutationNumCorrelation = getCorrelation(mutatedFitnesses, dists);
+            double aPosCorrelation = getCorrelation(mutatedFitnesses, posList);
+            double aAbsCorrelation = getCorrelation(mutatedFitnesses, absList);
+            mutationNumCorrelations.add(aMutationNumCorrelation);
+            posCorrelations.add(aPosCorrelation);
+            absCorrelations.add(aAbsCorrelation);
         }
 
-        System.out.println(correlations);
+        System.out.println(mutationNumCorrelations);
+        System.out.println(posCorrelations);
+        System.out.println(absCorrelations);
     }
 }
