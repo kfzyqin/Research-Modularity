@@ -410,6 +410,14 @@ public class GeneralMethods<T> {
         return tmpList;
     }
 
+    public static List<Integer> convertArrayToIntegerList(int[] tmpArray1) {
+        List<Integer> tmpList = new ArrayList<>();
+        for (Integer e : tmpArray1) {
+            tmpList.add(e);
+        }
+        return tmpList;
+    }
+
     public static SimpleMaterial convertStringArrayToSimpleMaterial(String[] tmpArray) {
         return new SimpleMaterial(convertArrayToList(convertStringArrayToIntArray(tmpArray)));
     }
@@ -424,6 +432,14 @@ public class GeneralMethods<T> {
 //                System.out.println("File: " + file.getName());
             }
         }
+    }
+
+    public static SimpleMaterial convertIntArrayToSimpleMaterial(int[] anArray) {
+        List<EdgeGene> tmpList = new ArrayList<>();
+        for (Integer e : anArray) {
+            tmpList.add(new EdgeGene(e));
+        }
+        return new SimpleMaterial(tmpList);
     }
 
     public static List<List<DataGene[][]>> getPerturbations(String path) throws IOException, ClassNotFoundException {

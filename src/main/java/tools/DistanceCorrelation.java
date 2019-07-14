@@ -83,14 +83,20 @@ public class DistanceCorrelation {
 //        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(
 //                targets, maxCycle, perturbations, perturbationRate, thresholds);
 
-        String aModFile = "./data/perfect_modular_individuals.txt";
-        List<String[]> lines = GeneralMethods.readFileLineByLine(aModFile);
-        SimpleMaterial aMaterial = GeneralMethods.convertStringArrayToSimpleMaterial(lines.get(0));
+//        String aModFile = "./data/perfect_modular_individuals.txt";
+//        List<String[]> lines = GeneralMethods.readFileLineByLine(aModFile);
+//        SimpleMaterial aMaterial = GeneralMethods.convertStringArrayToSimpleMaterial(lines.get(0));
+
+        int[] targetGRN = {0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, -1, 0, -1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, -1, 0, -1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, -1, 1, -1, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0};
+        SimpleMaterial aMaterial = GeneralMethods.convertIntArrayToSimpleMaterial(targetGRN);
 
 
         List<Double> mutationNumCorrelations = new ArrayList<>();
         List<Double> posCorrelations = new ArrayList<>();
         List<Double> absCorrelations = new ArrayList<>();
+
+        Map<Integer, List<Double>> mutateNumFitMap = new HashMap<>();
+        Map<Integer, List<Double>> mutateNumFitChangeMap = new HashMap<>();
 
         for (int corID=0; corID<100; corID++) {
             List<Double> posList = new ArrayList<>();
@@ -98,7 +104,13 @@ public class DistanceCorrelation {
 
             System.out.println("Current correlation ID: " + corID);
             List<Double> mutatedFitnesses = new ArrayList<>();
-            mutatedFitnesses.add(fitnessFunction.evaluate(aMaterial));
+//            mutatedFitnesses.add(fitnessFunction.evaluate(aMaterial));
+
+//            if (!mutateNumFitMap.containsKey(0)) {
+//                mutateNumFitMap.put(0, new ArrayList<>());
+//            }
+//            mutateNumFitMap.get(0).add(mutatedFitnesses.get(mutatedFitnesses.size()-1));
+
             GRNEdgeMutator edgeGeneMutator = new GRNEdgeMutator(mutationRate);
             Set<SimpleMaterial> previousMaterials = new HashSet<>();
 
@@ -118,6 +130,19 @@ public class DistanceCorrelation {
                     previousMaterials.add(aMaterialCopy.copy());
                     previousMaterial = aMaterialCopy.copy();
                     mutatedFitnesses.add(fitnessFunction.evaluate(aMaterialCopy, 502));
+
+                    if (mutatedTimes >= 1) {
+                        if (!mutateNumFitChangeMap.containsKey(mutatedTimes)) {
+                            mutateNumFitChangeMap.put(mutatedTimes, new ArrayList<>());
+                        }
+                        mutateNumFitChangeMap.get(mutatedTimes).add(mutatedFitnesses.get(mutatedFitnesses.size() - 1) - mutatedFitnesses.get(mutatedFitnesses.size() - 2));
+                    }
+
+                    if (!mutateNumFitMap.containsKey(mutatedTimes)) {
+                        mutateNumFitMap.put(mutatedTimes, new ArrayList<>());
+                    }
+                    mutateNumFitMap.get(mutatedTimes).add(mutatedFitnesses.get(mutatedFitnesses.size()-1));
+
                     mutatedTimes += 1;
                 }
                 edgeGeneMutator.mutateAGRN(aMaterialCopy);
@@ -139,5 +164,32 @@ public class DistanceCorrelation {
         System.out.println(mutationNumCorrelations);
         System.out.println(posCorrelations);
         System.out.println(absCorrelations);
+
+        System.out.println(mutateNumFitMap);
+        System.out.println(mutateNumFitChangeMap);
+
+        List<Double> avgFitValues = new ArrayList<>();
+        List<Double> avgFitStdev = new ArrayList<>();
+        List<Double> avgDifValues = new ArrayList<>();
+        List<Double> avgDivStdev = new ArrayList<>();
+
+        List<Integer> fitIdxes = new ArrayList<>(mutateNumFitMap.keySet());
+        Collections.sort(fitIdxes);
+        for (Integer e : fitIdxes) {
+            avgFitValues.add(GeneralMethods.getAverageNumber(mutateNumFitMap.get(e)));
+            avgFitStdev.add(GeneralMethods.getStDev(mutateNumFitMap.get(e)));
+        }
+
+        List<Integer> difIdxes = new ArrayList<>(mutateNumFitChangeMap.keySet());
+        Collections.sort(difIdxes);
+        for (Integer e : difIdxes) {
+            avgDifValues.add(GeneralMethods.getAverageNumber(mutateNumFitChangeMap.get(e)));
+            avgDivStdev.add(GeneralMethods.getStDev(mutateNumFitChangeMap.get(e)));
+        }
+
+        System.out.println(avgFitValues);
+        System.out.println(avgFitStdev);
+        System.out.println(avgDifValues);
+        System.out.println(avgDivStdev);
     }
 }

@@ -8,6 +8,8 @@ import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsAllCombin
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsBalanceAsymmetric;
 import ga.others.GeneralMethods;
 import ga.others.ModularityPathAnalyzer;
+import tools.GRNModularity;
+import tools.Modularity;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -40,7 +42,7 @@ public class PatternedGRNAnalyzer {
     private static final double stride = 0.01;
 
     public static void main(String[] args) {
-        String targetPath = "/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/original_esw_p01";
+        String targetPath = "/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/distributional-p00";
 //        String targetPath = "/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/original_esw_p00";
 
         int[][] targets = {target1, target2};
@@ -63,6 +65,11 @@ public class PatternedGRNAnalyzer {
 
         int fileNumberCounter = 0;
 
+        double maxMod = -1;
+        double maxEdgeNum = 0;
+        double minMod = 1;
+        double minEdgeNum = 100;
+
         for (File aDirectory : directories) {
             boolean excepted = false;
             try {
@@ -73,6 +80,10 @@ public class PatternedGRNAnalyzer {
                 String[] lastGRNString = lines.get(lines.size() - 1);
 //                String[] lastGRNString = lines.get(3);
                 SimpleMaterial aMaterial = GeneralMethods.convertStringArrayToSimpleMaterial(lastGRNString);
+
+                List<Integer> materialList = GeneralMethods.convertArrayToIntegerList(GeneralMethods.convertSimpleMaterialToIntArray(aMaterial));
+                double mod = GRNModularity.getGRNModularity(materialList);
+
                 int interEdgeNo = GeneralMethods.getInterModuleEdgeNumber(GeneralMethods.convertStringArrayToIntArray(lastGRNString));
 
                 List<Double> removeNoEdgeFitnessesZhenyueSym = ModularityPathAnalyzer.removeEdgeAnalyzer(0, aMaterial,
@@ -83,10 +94,35 @@ public class PatternedGRNAnalyzer {
                 List<Double> fitnesses = Arrays.asList (
                         removeNoEdgeFitnessesZhenyueSym.get(0), removeAllEdgeFitnessesZhenyueSym.get(0));
 
+                System.out.println("\n###A New Directory###");
+                System.out.print("fitnesses: ");
+                System.out.println(fitnesses);
                 if (fitnesses.get(0) > 0.9462) {
-                    System.out.println("a material");
-                    System.out.println(aMaterial);
                     maxed += 1;
+                }
+
+                int edgeNum = GeneralMethods.getEdgeNumber(aMaterial);
+                System.out.println("Edge number: " + edgeNum);
+                if (edgeNum > maxEdgeNum) {
+                    maxEdgeNum = edgeNum;
+                }
+                if (edgeNum < minEdgeNum) {
+                    minEdgeNum = edgeNum;
+                }
+
+                if (mod > maxMod) {
+                    maxMod = mod;
+                }
+                if (mod < minMod) {
+                    minMod = mod;
+                }
+
+                System.out.println("Modularity: " + mod);
+
+                System.out.println("a material");
+                System.out.println(aMaterial);
+                if (mod < -0.08) {
+                    System.out.println("look here");
                 }
 
                 if (fitnesses.get(0) > 0.9462 && fitnesses.get(1) < fitnesses.get(0)) {
@@ -115,7 +151,6 @@ public class PatternedGRNAnalyzer {
 
                         directoryCounter += 1;
                         GeneralMethods.evaluateSeparateModuleFitnesses(GeneralMethods.convertStringArrayToIntArray(lastGRNString), false);
-                        System.out.println("\n###A New Directory###");
                         System.out.println("original fitness value: " + fitnesses.get(0));
                         System.out.println("original fitness: " + originalSeparateFitnesses);
 
@@ -184,5 +219,10 @@ public class PatternedGRNAnalyzer {
         System.out.println("Directory Counter: " + directoryCounter);
 
         System.out.println("maxed: " + maxed);
+
+        System.out.println("Max Mod: " + maxMod);
+        System.out.println("Min Mod: " + minMod);
+        System.out.println("Max Edge Num: " + maxEdgeNum);
+        System.out.println("Min Edge Num: " + minEdgeNum);
     }
 }

@@ -13,29 +13,14 @@ import java.util.List;
  * The Australian National University.
  */
 public class TestField10 {
-    private static final int[] target1 = {
-            1, -1, 1
-    };
-    private static final int[] target2 = {
-            1, -1, 1
-    };
-    private static final int[] target3 = {
-            1, -1, 1
-    };
 
     public static void main(String[] args) {
-        int[][] targets = {target1, target2, target3};
+        List<Integer> testList = new ArrayList<>();
 
-        Integer[] tmpArray1 = {1, 1, 1, 0, 0, 0, -1, -1, -1};
-        List<EdgeGene> tmpList1 = TestField1.getTmpList(tmpArray1);
-        SimpleMaterial simpleMaterial1 = new SimpleMaterial(tmpList1);
-        Integer[] values = {0, 300};
-        List<Integer> tmpThresholds = new ArrayList<>(Arrays.asList(values));
+        testList.add(0);
+        testList.add(1);
+        testList.add(2);
 
-        GRNFitnessFunctionMultipleTargetsFast aFitnessFunction = new GRNFitnessFunctionMultipleTargetsFast(
-                targets, 3, 10, 0.15, tmpThresholds, 100
-        );
-
-        aFitnessFunction.evaluate(simpleMaterial1, 0);
+        System.out.println(testList.get(0));
     }
 }
