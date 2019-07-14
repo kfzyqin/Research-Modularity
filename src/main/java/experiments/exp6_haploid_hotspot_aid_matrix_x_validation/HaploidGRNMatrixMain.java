@@ -72,7 +72,7 @@ public class HaploidGRNMatrixMain {
     /* Settings for text outputs */
     private static final String summaryFileName = "Summary.txt";
     private static final String csvFileName = "Statistics.csv";
-    private static final String outputDirectory = "distributional-p01";
+    private static final String outputDirectory = "always-return-same-fit";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static final String allPerturbationsName = "Perturbations.per";
     private static final String modFitNamePrefix = "phenotypes";
@@ -84,7 +84,7 @@ public class HaploidGRNMatrixMain {
     private static final String plotTitle = "Haploid GRN Matrix";
     private static final String plotFileName = "Trends.png";
 
-    private static final double stride = 0.01;
+    private static final double stride = 0.00;
     private static final int PerturbationPathUpBound = 4;
 
     public static void main(String[] args) throws IOException, InterruptedException {

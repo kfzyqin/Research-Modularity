@@ -55,6 +55,8 @@ public class PatternedGRNAnalyzer {
 
         File[] directories = new File(targetPath).listFiles(File::isDirectory);
 
+        List<Double> fits = new ArrayList<>();
+
         int directoryCounter = 0;
 
         List<Double> cycleDistAll = new ArrayList<>();
@@ -94,12 +96,18 @@ public class PatternedGRNAnalyzer {
                 List<Double> fitnesses = Arrays.asList (
                         removeNoEdgeFitnessesZhenyueSym.get(0), removeAllEdgeFitnessesZhenyueSym.get(0));
 
+                if (fitnesses.get(0) <= 0.01) {
+                    continue;
+                }
+
                 System.out.println("\n###A New Directory###");
                 System.out.print("fitnesses: ");
                 System.out.println(fitnesses);
                 if (fitnesses.get(0) > 0.9462) {
                     maxed += 1;
                 }
+
+                fits.add(fitnesses.get(0));
 
                 int edgeNum = GeneralMethods.getEdgeNumber(aMaterial);
                 System.out.println("Edge number: " + edgeNum);
@@ -110,20 +118,19 @@ public class PatternedGRNAnalyzer {
                     minEdgeNum = edgeNum;
                 }
 
-                if (mod > maxMod) {
-                    maxMod = mod;
+                double normedMod = GRNModularity.getNormedMod(mod, edgeNum);
+                if (normedMod > maxMod) {
+                    maxMod = normedMod;
                 }
-                if (mod < minMod) {
-                    minMod = mod;
+                if (normedMod < minMod) {
+                    minMod = normedMod;
                 }
 
-                System.out.println("Modularity: " + mod);
+                System.out.println("Modularity: " + normedMod);
+                System.out.println("mod: " + mod);
 
                 System.out.println("a material");
                 System.out.println(aMaterial);
-                if (mod < -0.08) {
-                    System.out.println("look here");
-                }
 
                 if (fitnesses.get(0) > 0.9462 && fitnesses.get(1) < fitnesses.get(0)) {
                     improvedCount += 1;
@@ -224,5 +231,6 @@ public class PatternedGRNAnalyzer {
         System.out.println("Min Mod: " + minMod);
         System.out.println("Max Edge Num: " + maxEdgeNum);
         System.out.println("Min Edge Num: " + minEdgeNum);
+        System.out.println("Mean Fit: " + GeneralMethods.getAverageNumber(fits));
     }
 }

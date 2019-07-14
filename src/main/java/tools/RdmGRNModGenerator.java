@@ -1,4 +1,4 @@
-package tests;
+package tools;
 
 import ga.others.GeneralMethods;
 import tools.GRNModularity;
@@ -7,7 +7,7 @@ import tools.Randomness;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class TestGRNModularity {
+public class RdmGRNModGenerator {
     public static void main(String[] args) {
         Random rd = new Random();
 //        List<Integer> aList = Arrays.asList(
@@ -27,7 +27,7 @@ public class TestGRNModularity {
         int[] ses = {15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50};
         for (int aSz : ses) {
             List<Double> mods = new ArrayList<>();
-            for (int i = 0; i < 10000; i++) {
+            for (int i = 0; i < 1000000; i++) {
                 List<Integer> edgeIdxes = Randomness.generateASetOfIntegers(0, 99, aSz);
                 List<Integer> aGRN = new ArrayList<>(Collections.nCopies(100, 0));
                 for (Integer edgeIdx : edgeIdxes) {
