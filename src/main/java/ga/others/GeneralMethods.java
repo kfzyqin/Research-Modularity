@@ -325,7 +325,7 @@ public class GeneralMethods<T> {
 
     }
 
-    public static <T> List<T> getRandomElementsFromAnArray(T[] anArray, int n) {
+    public static <T> List<T> convertRandomElementsFromAnArray(T[] anArray, int n) {
         List<T> rtn = new ArrayList<>();
 
         if (anArray.length < n) {
@@ -336,6 +336,14 @@ public class GeneralMethods<T> {
 
         for (int anInt : ints) {
             rtn.add(anArray[anInt]);
+        }
+        return rtn;
+    }
+
+    public static Integer[] convertIntegerListToIntegerArray(List<Integer> aList) {
+        Integer[] rtn = new Integer[aList.size()];
+        for (int i=0; i<aList.size(); i++) {
+            rtn[i] = aList.get(i);
         }
         return rtn;
     }
@@ -902,4 +910,6 @@ public class GeneralMethods<T> {
         }
         return differences;
     }
+
+
 }
