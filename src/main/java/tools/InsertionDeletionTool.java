@@ -29,25 +29,39 @@ public class InsertionDeletionTool {
     static GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue fitnessFunction = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
             targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
 
-    private static List<Integer> getCertainEdgeIdxes(int[] aGRN, boolean toUseEmptyEdge) {
+    private static List<Integer> getCertainEdgeIdxes(int[] aGRN, String edgeType) {
         List<Integer> rtn = new ArrayList<>();
-        int dealType = -1;
-        if (toUseEmptyEdge) {
+        int dealType = -10;
+        if (edgeType.equals("empty")) {
             dealType = 0;
-        } else {
+        } else if (edgeType.equals("edge")) {
             dealType = 1;
+        } else if (edgeType.equals("empty inter-mod")) {
+            dealType = 2;
+        } else if (edgeType.equals("inter-mod")) {
+            dealType = 3;
         }
         for (int i=0; i<aGRN.length; i++) {
-            if (aGRN[i] == dealType) {
-                rtn.add(i);
+            if (dealType == 0) {
+                if (aGRN[i] == 0) {
+                    rtn.add(i);
+                }
+            } else if (dealType == 1) {
+                if (aGRN[i] == 1 || aGRN[i] == -1) {
+                    rtn.add(i);
+                }
+            } else if (dealType == 2) {
+                rtn = GeneralMethods.getInterModuleEdgeIdxes(aGRN);
+            } else if (dealType == 3) {
+                rtn = GeneralMethods.getInterModuleNoEdgeIdxes(aGRN);
             }
         }
         return rtn;
     }
 
-    private static List<Double> getEdgeInsertionFit(int[] aGRN, int dealNum) {
+    private static List<Double> getEdgeInsertionFit(int[] aGRN, int dealNum, String edgeType) {
         List<Double> fits = new ArrayList<>();
-        List<Integer> listIdxes = getCertainEdgeIdxes(aGRN, true);
+        List<Integer> listIdxes = getCertainEdgeIdxes(aGRN, edgeType);
         Integer[] idxes = GeneralMethods.convertIntegerListToIntegerArray(listIdxes);
         List<List<Integer>> targetIdxes = GeneralMethods.getCombination(idxes, dealNum);
         for (List<Integer> aTargetIdxes : targetIdxes) {
@@ -65,9 +79,9 @@ public class InsertionDeletionTool {
         return fits;
     }
 
-    private static List<Double> getEdgeDeletionFit(int[] aGRN, int dealNum) {
+    private static List<Double> getEdgeDeletionFit(int[] aGRN, int dealNum, String edgeType) {
         List<Double> fits = new ArrayList<>();
-        List<Integer> listIdxes = getCertainEdgeIdxes(aGRN, false);
+        List<Integer> listIdxes = getCertainEdgeIdxes(aGRN, edgeType);
         Integer[] idxes = GeneralMethods.convertIntegerListToIntegerArray(listIdxes);
         List<List<Integer>> targetIdxes = GeneralMethods.getCombination(idxes, dealNum);
         for (List<Integer> aTargetIdxes : targetIdxes) {
@@ -88,19 +102,17 @@ public class InsertionDeletionTool {
         Integer[] anArray = {1, 2, 3, 4, 5};
 
         System.out.println(GeneralMethods.getCombination(anArray, 3));
-        List<Integer> tmp = getCertainEdgeIdxes(targetGRN,  true);
-        System.out.println(tmp);
 
         List<Double> avgFits = new ArrayList<>();
         int dealNum = 2;
         System.out.println("deal num: " + dealNum);
         for (int i=0; i<3; i++) {
-            List<Double> insertionFits = getEdgeInsertionFit(targetGRN, dealNum);
+            List<Double> insertionFits = getEdgeInsertionFit(targetGRN, dealNum, "empty");
             avgFits.add(GeneralMethods.getAverageNumber(insertionFits));
         }
         System.out.println("Avg Insertion Fit: " + GeneralMethods.getAverageNumber(avgFits));
 
-        List<Double> deletionFits = getEdgeDeletionFit(targetGRN, dealNum);
+        List<Double> deletionFits = getEdgeDeletionFit(targetGRN, dealNum, "edge");
         System.out.println("Avg Deletion Fit: " + GeneralMethods.getAverageNumber(deletionFits));
     }
 }

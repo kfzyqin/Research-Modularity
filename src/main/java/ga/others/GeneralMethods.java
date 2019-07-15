@@ -911,5 +911,68 @@ public class GeneralMethods<T> {
         return differences;
     }
 
+    public static List<Integer> getInterModuleEdgeIdxes(int[] aGRN) {
+        List<Integer> rtn = new ArrayList<>();
+        int grnSideSize = (int) Math.sqrt(aGRN.length);
+        for (int i=(grnSideSize/2); i<grnSideSize; i++) {
+            for (int j=0; j < (grnSideSize/2); j++) {
+                if (aGRN[(i + j * grnSideSize)] != 0) {
+                    rtn.add((i + j * grnSideSize));
+                }
+            }
+        }
+
+        for (int i=0; i<(grnSideSize/2); i++) {
+            for (int j=(grnSideSize/2); j<grnSideSize; j++) {
+                if (aGRN[(i + j * grnSideSize)] != 0) {
+                    rtn.add((i + j * grnSideSize));
+                }
+            }
+        }
+        return rtn;
+    }
+
+    public static List<Integer> getInterModuleNoEdgeIdxes(int[] aGRN) {
+        List<Integer> rtn = new ArrayList<>();
+        int grnSideSize = (int) Math.sqrt(aGRN.length);
+        for (int i=(grnSideSize/2); i<grnSideSize; i++) {
+            for (int j=0; j < (grnSideSize/2); j++) {
+                if (aGRN[(i + j * grnSideSize)] == 0) {
+                    rtn.add((i + j * grnSideSize));
+                }
+            }
+        }
+
+        for (int i=0; i<(grnSideSize/2); i++) {
+            for (int j=(grnSideSize/2); j<grnSideSize; j++) {
+                if (aGRN[(i + j * grnSideSize)] == 0) {
+                    rtn.add((i + j * grnSideSize));
+                }
+            }
+        }
+        return rtn;
+    }
+
+    public static boolean isInterModuleEdge(int edgeId, int[] aGRN) {
+        int[] rtn = aGRN.clone();
+        int grnSideSize = (int) Math.sqrt(aGRN.length);
+        for (int i=(grnSideSize/2); i<grnSideSize; i++) {
+            for (int j=0; j < (grnSideSize/2); j++) {
+                if (edgeId == (i + j * grnSideSize)) {
+                    return true;
+                }
+            }
+        }
+
+        for (int i=0; i<(grnSideSize/2); i++) {
+            for (int j=(grnSideSize/2); j<grnSideSize; j++) {
+                if (edgeId == (i + j * grnSideSize)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 
 }
