@@ -953,6 +953,26 @@ public class GeneralMethods<T> {
         return rtn;
     }
 
+    public static List<Integer> getIntraModuleEdgeIdxes(int[] aGRN) {
+        List<Integer> rtn = new ArrayList<>();
+        for (int i=0; i<aGRN.length; i++) {
+            if (!isInterModuleEdge(i, aGRN) && aGRN[i] != 0) {
+                rtn.add(i);
+            }
+        }
+        return rtn;
+    }
+
+    public static List<Integer> getIntraModuleNoEdgeIdxes(int[] aGRN) {
+        List<Integer> rtn = new ArrayList<>();
+        for (int i=0; i<aGRN.length; i++) {
+            if (!isInterModuleEdge(i, aGRN) && aGRN[i] == 0) {
+                rtn.add(i);
+            }
+        }
+        return rtn;
+    }
+
     public static boolean isInterModuleEdge(int edgeId, int[] aGRN) {
         int[] rtn = aGRN.clone();
         int grnSideSize = (int) Math.sqrt(aGRN.length);
