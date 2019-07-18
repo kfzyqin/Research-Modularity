@@ -211,13 +211,15 @@ public class GeneralMethods<T> {
         return sum / aList.length;
     }
 
-    public static  double getAverageNumber(List<Double> aList) {
+    public static double getAverageNumber(List<Double> aList) {
         double sum = 0;
         for (Double aNumber : aList) {
             sum += aNumber;
         }
         return sum / aList.size();
     }
+
+    public static double getProportional
 
     public static  double getIntAverageNumber(List<Integer> aList) {
         double sum = 0;

@@ -2,7 +2,7 @@ from StatisticsToolkit import StatisticsToolkit
 import os
 if __name__ == '__main__':
     # prefix_path = os.path.expanduser("~")
-    prefix_path = '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/'
+    prefix_path = '/media/zhenyue-qin/New Volume/Data-Warehouse/Data-Experiments/Project-Maotai/tec-data/'
     # exp_types = ['distributional', 'stochastic', 'elite-distributional', 'elite-stochastic']
     # sym_types = ['p00', 'p01']
 

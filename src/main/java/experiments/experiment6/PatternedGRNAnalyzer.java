@@ -42,7 +42,7 @@ public class PatternedGRNAnalyzer {
     private static final double stride = 0.01;
 
     public static void main(String[] args) {
-        String targetPath = "/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/distributional-p00";
+        String targetPath = "/media/zhenyue-qin/New Volume/Data-Warehouse/Data-Experiments/Project-Maotai/tec-data/distributional-p00";
 //        String targetPath = "/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/original_esw_p00";
 
         int[][] targets = {target1, target2};
@@ -72,6 +72,8 @@ public class PatternedGRNAnalyzer {
         double minMod = 1;
         double minEdgeNum = 100;
 
+        int targetGeneration = 1000;
+
         for (File aDirectory : directories) {
             boolean excepted = false;
             try {
@@ -79,7 +81,7 @@ public class PatternedGRNAnalyzer {
 //                String aModFile = "/Users/qin/Research/Project-Maotai-Modularity/data/perfect_modular_individuals.txt";
                 List<String[]> lines = GeneralMethods.readFileLineByLine(aModFile);
 
-                String[] lastGRNString = lines.get(lines.size() - 1);
+                String[] lastGRNString = lines.get(lines.size() - targetGeneration);
 //                String[] lastGRNString = lines.get(3);
                 SimpleMaterial aMaterial = GeneralMethods.convertStringArrayToSimpleMaterial(lastGRNString);
 
@@ -96,9 +98,9 @@ public class PatternedGRNAnalyzer {
                 List<Double> fitnesses = Arrays.asList (
                         removeNoEdgeFitnessesZhenyueSym.get(0), removeAllEdgeFitnessesZhenyueSym.get(0));
 
-                if (fitnesses.get(0) <= 0.01) {
-                    continue;
-                }
+//                if (fitnesses.get(0) < 0.9462) {
+//                    continue;
+//                }
 
                 System.out.println("\n###A New Directory###");
                 System.out.print("fitnesses: ");
