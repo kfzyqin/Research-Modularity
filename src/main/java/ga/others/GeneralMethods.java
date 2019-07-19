@@ -219,8 +219,6 @@ public class GeneralMethods<T> {
         return sum / aList.size();
     }
 
-    public static double getProportional
-
     public static  double getIntAverageNumber(List<Integer> aList) {
         double sum = 0;
         for (Integer aNumber : aList) {

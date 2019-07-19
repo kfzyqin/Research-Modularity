@@ -53,7 +53,7 @@ public class HaploidGRNMatrixMain {
     /* Parameters of the GRN */
     private static final int maxCycle = 30;
     private static final int edgeSize = 20;
-    private static final int perturbations = 500;
+    private static final int perturbations = 75;
     private static final double perturbationRate = 0.15;
 
     /* Parameters of the GA */
@@ -72,7 +72,7 @@ public class HaploidGRNMatrixMain {
     /* Settings for text outputs */
     private static final String summaryFileName = "Summary.txt";
     private static final String csvFileName = "Statistics.csv";
-    private static final String outputDirectory = "always-return-same-fit";
+    private static final String outputDirectory = "distributional-proportional";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static final String allPerturbationsName = "Perturbations.per";
     private static final String modFitNamePrefix = "phenotypes";
