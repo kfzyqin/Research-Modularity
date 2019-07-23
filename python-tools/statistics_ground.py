@@ -26,7 +26,7 @@ if __name__ == '__main__':
 
                 sample_size = 100
 
-                the_index = 499
+                the_index = -1
 
                 print "path 1", path_1
                 print "path 2", path_2
@@ -57,14 +57,14 @@ if __name__ == '__main__':
                 #                                                                      end_gen=2000, to_plot=True)
 
     elif to_use == 'specific':
-        path_1 = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Portal/generated-outputs/distributional-p00-75-perturbations'
-        path_2 = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Portal/generated-outputs/distributional-p00-proportional'
+        path_1 = '/media/zhenyue-qin/New Volume/Data-Warehouse/Data-Experiments/Project-Maotai/tec-simultaneous-experiments/always-return-same-fit'
+        path_2 = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Portal/generated-outputs/distributional-proportional'
 
         omega = StatisticsToolkit(path_1, path_2)
 
         sample_size = 100
 
-        the_index = 499
+        the_index = -1
 
         print "path 1", path_1
         print "path 2", path_2

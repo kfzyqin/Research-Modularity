@@ -2,7 +2,7 @@ from EdgeNumberTool import EdgeNumberTool
 from GRNCSVReader import GRNCSVReader
 import file_processor as fp
 # path_1 = '/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/fixed-record-zhenyue-balanced-combinations-p00'
-path_1 = '/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/record-esw-balanced-combinations-p00'
+path_1 = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Portal/generated-outputs/distributional-proportional'
 
 # path_2 = '/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/no-selection'
 from CSVFileOpener import CSVFileOpener
@@ -38,5 +38,6 @@ total_edge_nos_1 = csv_file_opener.get_properties_of_each_generation_in_a_whole_
 # fp.save_lists_graph([sorted(inter_module_edge_2), sorted(intra_module_edge_2), sorted(fitness_values_2)], ['inter', 'intra', 'fit'], marker='x',
 #                     to_normalize=False)
 
-fp.save_lists_graph([total_edge_nos_1], ['total edge number'], marker='.', colors=[0], path=path_1, ver_lines=[500], file_name='total_edge_number.png')
+print 'total_edge_nos_1: ', total_edge_nos_1[-1]
+# fp.save_lists_graph([total_edge_nos_1], ['total edge number'], marker='.', colors=[0], path=path_1, ver_lines=[500], file_name='total_edge_number.png')
 
