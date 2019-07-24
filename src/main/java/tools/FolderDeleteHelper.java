@@ -1,4 +1,4 @@
-package experiments.experiment6;
+package tools;
 
 import ga.components.materials.SimpleMaterial;
 import ga.others.GeneralMethods;
@@ -11,7 +11,7 @@ import java.util.List;
 
 public class FolderDeleteHelper {
     public static void main(String[] args) throws IOException {
-        String targetPath = "/home/zhenyue-qin/Research/Project-Kuroko-Portal/Project-Maotai-Portal/generated-outputs/stochastic-p01";
+        String targetPath = "/media/zhenyue-qin/New Volume/Data-Warehouse/Data-Experiments/Project-Maotai/tec-simultaneous-experiments/75-perturbations-proportional";
 
         File[] directories = new File(targetPath).listFiles(File::isDirectory);
         List<String> abnormalPaths = new ArrayList<>();

@@ -42,7 +42,7 @@ public class PatternedGRNAnalyzer {
     private static final double stride = 0.01;
 
     public static void main(String[] args) {
-        String targetPath = "/media/zhenyue-qin/New Volume/Data-Warehouse/Data-Experiments/Project-Maotai/tec-data/distributional-p00";
+        String targetPath = "/media/zhenyue-qin/New Volume/Data-Warehouse/Data-Experiments/Project-Maotai/tec-simultaneous-experiments/75-perturbations-proportional";
 //        String targetPath = "/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/original_esw_p00";
 
         int[][] targets = {target1, target2};
@@ -74,6 +74,8 @@ public class PatternedGRNAnalyzer {
 
         int targetGeneration = 1000;
 
+        List<Double> edgeNumbers = new ArrayList<>();
+
         for (File aDirectory : directories) {
             boolean excepted = false;
             try {
@@ -99,8 +101,10 @@ public class PatternedGRNAnalyzer {
                         removeNoEdgeFitnessesZhenyueSym.get(0), removeAllEdgeFitnessesZhenyueSym.get(0));
 
 //                if (fitnesses.get(0) < 0.9462) {
-//                    continue;
-//                }
+//                if (fitnesses.get(0) < 0.7 || fitnesses.get(0) > 0.8) {
+                if (fitnesses.get(0) > 0.7) {
+                    continue;
+                }
 
                 System.out.println("\n###A New Directory###");
                 System.out.print("fitnesses: ");
@@ -119,6 +123,8 @@ public class PatternedGRNAnalyzer {
                 if (edgeNum < minEdgeNum) {
                     minEdgeNum = edgeNum;
                 }
+
+                edgeNumbers.add((double) edgeNum);
 
                 double normedMod = GRNModularity.getNormedMod(mod, edgeNum);
                 if (normedMod > maxMod) {
@@ -234,5 +240,7 @@ public class PatternedGRNAnalyzer {
         System.out.println("Max Edge Num: " + maxEdgeNum);
         System.out.println("Min Edge Num: " + minEdgeNum);
         System.out.println("Mean Fit: " + GeneralMethods.getAverageNumber(fits));
+
+        System.out.println("Average edge number: " + GeneralMethods.getAverageNumber(edgeNumbers));
     }
 }
