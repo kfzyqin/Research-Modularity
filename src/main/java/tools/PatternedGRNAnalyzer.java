@@ -1,4 +1,4 @@
-package experiments.experiment6;
+package tools;
 
 import ga.components.genes.Gene;
 import ga.components.materials.SimpleMaterial;
