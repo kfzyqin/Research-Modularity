@@ -17,7 +17,7 @@ def plot_grn_edge_gen_shading(edge_gen_shading_list):
     plt.show()
 
 if __name__ == '__main__':
-    # plot_grn_edge_gen_shading(edge_num_shading.dist_p00_edge_num_shading)
-    # plot_grn_edge_gen_shading(edge_num_shading.dist_prop_edge_num_shading)
+    plot_grn_edge_gen_shading(edge_num_shading.dist_p00_edge_num_shading)
+    plot_grn_edge_gen_shading(edge_num_shading.dist_prop_edge_num_shading)
 
-    print np.array(edge_num_shading.dist_prop_edge_num_shading).sum(axis=1)
+    # print np.array(edge_num_shading.dist_prop_edge_num_shading).sum(axis=1)

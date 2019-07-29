@@ -7,7 +7,9 @@ import ga.others.GeneralMethods;
 import ga.others.ModularityPathAnalyzer;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import java.io.File;
+import java.io.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static org.apache.commons.math3.util.CombinatoricsUtils.binomialCoefficientDouble;
@@ -58,7 +60,7 @@ public class EdgeNumberShadingAnalyser {
         List<List<Double>> edgeProbabilitiesAllGen = new ArrayList<>();
         for (int aGen=0; aGen<maxGen; aGen++) {
             if (aGen % 50 == 0) {
-                System.out.println("Process generation: " + aGen);
+                System.out.print("\rProcess generation: " + aGen);
             }
             String test = String.format(targetDir, aGen);
             List<String[]> lines = GeneralMethods.readFileLineByLine(test);
@@ -99,7 +101,6 @@ public class EdgeNumberShadingAnalyser {
             }
             edgeProbabilitiesAllGen.add(edgeProbabilities);
         }
-        System.out.println(edgeProbabilitiesAllGen);
         return edgeProbabilitiesAllGen;
     }
 
@@ -120,32 +121,49 @@ public class EdgeNumberShadingAnalyser {
     private static final double stride = 0.00;
     private static final int[][] targets = {target1, target2};
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+        Date date = new Date();
+        String outputDirectory = "printing-logs";
+        String outputDirectoryPath = outputDirectory + "/edge-shading-log-" + dateFormat.format(date) + ".txt";
+        PrintWriter writer = new PrintWriter(new FileWriter(outputDirectoryPath));
+
         FitnessFunction fitnessFunctionZhenyueSym = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
                 targets, maxCycle, perturbationRate, thresholds, perturbationSizes, 0.00);
 
-        String targetPath = "/media/zhenyue-qin/New Volume/Data-Warehouse/Data-Experiments/Project-Maotai/tec-simultaneous-experiments/distributional-proportional";
+        String targetPath = "/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/distributional-proportional";
+        String theSelectionType = "proportional";
         File[] directories = new File(targetPath).listFiles(File::isDirectory);
 
         List<List<List<Double>>> edgePrbabilityShadingList = new ArrayList<>();
         for (File aDirectory : directories) {
-            String targetDir = aDirectory + "/population-phenotypes/all-population-phenotype_gen_%d.lists";
+            try {
+                String targetDir = aDirectory + "/population-phenotypes/all-population-phenotype_gen_%d.lists";
 
-            String lastGenStringGRN = String.format(targetDir, maxGen);
-            List<String[]> lastGenStringGRNList = GeneralMethods.readFileLineByLine(lastGenStringGRN);
-            String[] eliteInLastGen = lastGenStringGRNList.get(0);
-            SimpleMaterial eliteInLastGenMaterial = GeneralMethods.convertStringArrayToSimpleMaterial(eliteInLastGen);
-            List<Double> removeNoEdgeFitnessesZhenyueSym = ModularityPathAnalyzer.removeEdgeAnalyzer(0, eliteInLastGenMaterial,
-                    fitnessFunctionZhenyueSym, true, 1000, null, false);
-            double finalFitness = removeNoEdgeFitnessesZhenyueSym.get(0);
+                String lastGenStringGRN = String.format(targetDir, maxGen);
+                List<String[]> lastGenStringGRNList = GeneralMethods.readFileLineByLine(lastGenStringGRN);
+                String[] eliteInLastGen = lastGenStringGRNList.get(0);
+                SimpleMaterial eliteInLastGenMaterial = GeneralMethods.convertStringArrayToSimpleMaterial(eliteInLastGen);
+                List<Double> removeNoEdgeFitnessesZhenyueSym = ModularityPathAnalyzer.removeEdgeAnalyzer(0, eliteInLastGenMaterial,
+                        fitnessFunctionZhenyueSym, true, 1000, null, false);
+                double finalFitness = removeNoEdgeFitnessesZhenyueSym.get(0);
 
-            if (finalFitness > 0.9462) {
-                System.out.println("Current Final Fitness: " + finalFitness);
-                System.out.println("a directory: " + aDirectory);
-                System.out.println("targetDir: " + targetDir);
-                edgePrbabilityShadingList.add(getEdgeProbabilityShading(fitnessFunctionZhenyueSym, "proportional", maxGen, targetDir));
+                if (finalFitness > 0.9462) {
+                    System.out.println("\nCurrent Final Fitness: " + finalFitness);
+                    writer.print("\nCurrent Final Fitness: " + finalFitness);
+                    System.out.println("a directory: " + aDirectory);
+                    writer.print("a directory: " + aDirectory);
+                    List<List<Double>> edgeProbabilityShading = getEdgeProbabilityShading(fitnessFunctionZhenyueSym, theSelectionType, maxGen, targetDir);
+                    System.out.println("\n" + edgeProbabilityShading);
+                    writer.print("\n" + edgeProbabilityShading.toString());
+                    edgePrbabilityShadingList.add(edgeProbabilityShading);
+                }
+            } catch (Exception e) {
+                continue;
             }
         }
-
+        System.out.println(edgePrbabilityShadingList);
+        writer.print(edgePrbabilityShadingList.toString());
+        writer.close();
     }
 }
