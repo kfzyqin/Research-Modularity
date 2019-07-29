@@ -20,7 +20,8 @@ public class EdgeNumberShadingAnalyser {
     public static List<Double> getTournamentSelectionProbabilities(int populationSize, int tournamentSize) {
         List<Double> tournamentProbabilities = new ArrayList<>();
         for (int i=1; i<=(populationSize-tournamentSize+1); i++) {
-            tournamentProbabilities.add( binomialCoefficientDouble(populationSize-i, tournamentSize-1));
+            tournamentProbabilities.add(binomialCoefficientDouble(populationSize-i, tournamentSize-1) /
+                    binomialCoefficientDouble(populationSize, tournamentSize));
         }
         for (int i=0; i<(tournamentSize-1); i++) {
             tournamentProbabilities.add(0.0);
@@ -48,7 +49,8 @@ public class EdgeNumberShadingAnalyser {
         return normedFitnessList;
     }
 
-    public static void getEdgeProbabilityShading(FitnessFunction fitness, String selectionType, int maxGen, String targetDir) {
+    public static List<List<Double>> getEdgeProbabilityShading(FitnessFunction fitness, String selectionType, int maxGen,
+                                                 String targetDir) {
         int edgeUpperBound = 50;
         int edgeLowerBound = 10;
         List<Double> tournamentProbabilities = getTournamentSelectionProbabilities(populationSize, tournamentSize);
@@ -98,6 +100,7 @@ public class EdgeNumberShadingAnalyser {
             edgeProbabilitiesAllGen.add(edgeProbabilities);
         }
         System.out.println(edgeProbabilitiesAllGen);
+        return edgeProbabilitiesAllGen;
     }
 
     private static final int[] target1 = {
@@ -124,12 +127,24 @@ public class EdgeNumberShadingAnalyser {
         String targetPath = "/media/zhenyue-qin/New Volume/Data-Warehouse/Data-Experiments/Project-Maotai/tec-simultaneous-experiments/distributional-proportional";
         File[] directories = new File(targetPath).listFiles(File::isDirectory);
 
+        List<List<List<Double>>> edgePrbabilityShadingList = new ArrayList<>();
         for (File aDirectory : directories) {
-            System.out.println("a directory: " + aDirectory);
             String targetDir = aDirectory + "/population-phenotypes/all-population-phenotype_gen_%d.lists";
 
-            System.out.println("targetDir: " + targetDir);
-            getEdgeProbabilityShading(fitnessFunctionZhenyueSym, "proportional", maxGen, targetDir);
+            String lastGenStringGRN = String.format(targetDir, maxGen);
+            List<String[]> lastGenStringGRNList = GeneralMethods.readFileLineByLine(lastGenStringGRN);
+            String[] eliteInLastGen = lastGenStringGRNList.get(0);
+            SimpleMaterial eliteInLastGenMaterial = GeneralMethods.convertStringArrayToSimpleMaterial(eliteInLastGen);
+            List<Double> removeNoEdgeFitnessesZhenyueSym = ModularityPathAnalyzer.removeEdgeAnalyzer(0, eliteInLastGenMaterial,
+                    fitnessFunctionZhenyueSym, true, 1000, null, false);
+            double finalFitness = removeNoEdgeFitnessesZhenyueSym.get(0);
+
+            if (finalFitness > 0.9462) {
+                System.out.println("Current Final Fitness: " + finalFitness);
+                System.out.println("a directory: " + aDirectory);
+                System.out.println("targetDir: " + targetDir);
+                edgePrbabilityShadingList.add(getEdgeProbabilityShading(fitnessFunctionZhenyueSym, "proportional", maxGen, targetDir));
+            }
         }
 
     }
