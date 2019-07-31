@@ -51,6 +51,69 @@ public class EdgeNumberShadingAnalyser {
         return normedFitnessList;
     }
 
+    public static int getModMapIdx(int modLowerBound, double modGap, double mod) {
+        return (int) ((mod - modLowerBound) / modGap);
+    }
+
+    public static List<List<Double>> getModProbabilityShading(FitnessFunction fitness, String selectionType, int maxGen,
+                                                               String targetDir) {
+        int modUpperBound = 2;
+        int modLowerBound = -2;
+        double modGap = 0.1;
+        List<Double> tournamentProbabilities = getTournamentSelectionProbabilities(populationSize, tournamentSize);
+
+        List<List<Double>> modProbabilitiesAllGen = new ArrayList<>();
+        for (int aGen=0; aGen<maxGen; aGen++) {
+            if (aGen % 50 == 0) {
+                System.out.print("\rProcess generation: " + aGen);
+            }
+            String test = String.format(targetDir, aGen);
+            List<String[]> lines = GeneralMethods.readFileLineByLine(test);
+
+            List<Double> concernedProbabilities = null;
+            if (selectionType.equals("tournament")) {
+                concernedProbabilities = tournamentProbabilities;
+            } else if (selectionType.equals("proportional")) {
+                concernedProbabilities = getProportionalSelectionProbabilities(fitness, lines, populationSize, aGen);
+            } else {
+                throw new NotImplementedException();
+            }
+
+            HashMap<Integer, List<Double>> modProbabilityMap = new HashMap<>();
+            for (int i = 0; i < 100; i++) {
+                String[] lastGRNString = lines.get(i);
+                SimpleMaterial aMaterial = GeneralMethods.convertStringArrayToSimpleMaterial(lastGRNString);
+                List<Integer> aListMaterial = GeneralMethods.convertArrayToIntegerList(GeneralMethods.convertSimpleMaterialToIntArray(aMaterial));
+                int edgeNum = GeneralMethods.getEdgeNumber(aMaterial);
+
+                double tmpMod = GRNModularity.getGRNModularity(aListMaterial);
+                double normedMod = GRNModularity.getNormedMod(tmpMod, edgeNum);
+                int modMapIdx = getModMapIdx(modLowerBound, modGap, normedMod);
+
+                if (!modProbabilityMap.containsKey(modMapIdx)) {
+                    List<Double> aNewProbabilityList = new ArrayList<>();
+                    aNewProbabilityList.add(concernedProbabilities.get(i));
+                    modProbabilityMap.put(modMapIdx, aNewProbabilityList);
+                } else {
+                    modProbabilityMap.get(modMapIdx).add(concernedProbabilities.get(i));
+                }
+            }
+
+            int maxModIdx = getModMapIdx(modLowerBound, modGap, modUpperBound);
+            List<Double> modProbabilities = new ArrayList<>();
+            for (int aMod=0; aMod<=maxModIdx; aMod++) {
+                if (modProbabilityMap.containsKey(aMod)) {
+                    List<Double> aModProbabilities = modProbabilityMap.get(aMod);
+                    modProbabilities.add(aModProbabilities.stream().mapToDouble(Double::doubleValue).sum());
+                } else {
+                    modProbabilities.add(0.0);
+                }
+            }
+            modProbabilitiesAllGen.add(modProbabilities);
+        }
+        return modProbabilitiesAllGen;
+    }
+
     public static List<List<Double>> getEdgeProbabilityShading(FitnessFunction fitness, String selectionType, int maxGen,
                                                  String targetDir) {
         int edgeUpperBound = 50;
@@ -122,17 +185,22 @@ public class EdgeNumberShadingAnalyser {
     private static final int[][] targets = {target1, target2};
 
     public static void main(String[] args) throws IOException {
+        String theSelectionType = "tournament";
+        String edgeOrMod = "mod";
+        System.out.println("Edge or Mod: " + edgeOrMod);
+
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
         Date date = new Date();
         String outputDirectory = "printing-logs";
-        String outputDirectoryPath = outputDirectory + "/edge-shading-log-" + dateFormat.format(date) + ".txt";
+        String outputDirectoryPath = outputDirectory + "/edge-shading-log-" + edgeOrMod + "-" + theSelectionType + "-" + dateFormat.format(date) + ".txt";
         PrintWriter writer = new PrintWriter(new FileWriter(outputDirectoryPath));
+        writer.print("\n" + edgeOrMod + "\n");
 
         FitnessFunction fitnessFunctionZhenyueSym = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
                 targets, maxCycle, perturbationRate, thresholds, perturbationSizes, 0.00);
 
         String targetPath = "/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Data/distributional-p00";
-        String theSelectionType = "tournament";
+//        String targetPath = "/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/distributional-proportional";
         File[] directories = new File(targetPath).listFiles(File::isDirectory);
 
         List<List<List<Double>>> edgePrbabilityShadingList = new ArrayList<>();
@@ -150,20 +218,26 @@ public class EdgeNumberShadingAnalyser {
 
                 if (finalFitness > 0.946) {
                     System.out.println("\nCurrent Final Fitness: " + finalFitness);
-                    writer.print("\nCurrent Final Fitness: " + finalFitness);
+                    writer.print("\nCurrent Final Fitness: " + finalFitness + "\n");
                     System.out.println("a directory: " + aDirectory);
-                    writer.print("a directory: " + aDirectory);
-                    List<List<Double>> edgeProbabilityShading = getEdgeProbabilityShading(fitnessFunctionZhenyueSym, theSelectionType, maxGen, targetDir);
-                    System.out.println("\n" + edgeProbabilityShading);
-                    writer.print("\n" + edgeProbabilityShading.toString());
-                    edgePrbabilityShadingList.add(edgeProbabilityShading);
+                    writer.print("a directory: " + aDirectory + "\n");
+                    List<List<Double>> theProbabilityShading;
+                    if (edgeOrMod.equals("edge")) {
+                        theProbabilityShading = getEdgeProbabilityShading(fitnessFunctionZhenyueSym, theSelectionType, maxGen, targetDir);
+                    } else {
+                        theProbabilityShading = getModProbabilityShading(fitnessFunctionZhenyueSym, theSelectionType, maxGen, targetDir);
+                    }
+                    System.out.println("\n" + theProbabilityShading);
+                    writer.print("\n" + theProbabilityShading.toString() + "\n");
+                    edgePrbabilityShadingList.add(theProbabilityShading);
                 }
             } catch (Exception e) {
-                continue;
+                e.printStackTrace();
+                break;
             }
         }
         System.out.println(edgePrbabilityShadingList);
-        writer.print(edgePrbabilityShadingList.toString());
+        writer.print(edgePrbabilityShadingList.toString() + "\n");
         writer.close();
     }
 }

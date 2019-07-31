@@ -42,7 +42,8 @@ public class PatternedGRNAnalyzer {
     private static final double stride = 0.01;
 
     public static void main(String[] args) {
-        String targetPath = "/media/zhenyue-qin/New Volume/Data-Warehouse/Data-Experiments/Project-Maotai/tec-simultaneous-experiments/75-perturbations-proportional";
+        String targetPath = "/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Data/distributional-p00";
+//        String targetPath = "/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/distributional-proportional";
 //        String targetPath = "/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/original_esw_p00";
 
         int[][] targets = {target1, target2};
@@ -101,8 +102,8 @@ public class PatternedGRNAnalyzer {
                         removeNoEdgeFitnessesZhenyueSym.get(0), removeAllEdgeFitnessesZhenyueSym.get(0));
 
 //                if (fitnesses.get(0) < 0.9462) {
-//                if (fitnesses.get(0) < 0.7 || fitnesses.get(0) > 0.8) {
-                if (fitnesses.get(0) > 0.7) {
+//                if (fitnesses.get(0) < 0.9 || fitnesses.get(0) > 0.9462) {
+                if (fitnesses.get(0) < 0.7) {
                     continue;
                 }
 
