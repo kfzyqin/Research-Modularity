@@ -131,8 +131,8 @@ public class EdgeNumberShadingAnalyser {
         FitnessFunction fitnessFunctionZhenyueSym = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
                 targets, maxCycle, perturbationRate, thresholds, perturbationSizes, 0.00);
 
-        String targetPath = "/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/distributional-proportional";
-        String theSelectionType = "proportional";
+        String targetPath = "/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Data/distributional-p00";
+        String theSelectionType = "tournament";
         File[] directories = new File(targetPath).listFiles(File::isDirectory);
 
         List<List<List<Double>>> edgePrbabilityShadingList = new ArrayList<>();
@@ -148,7 +148,7 @@ public class EdgeNumberShadingAnalyser {
                         fitnessFunctionZhenyueSym, true, 1000, null, false);
                 double finalFitness = removeNoEdgeFitnessesZhenyueSym.get(0);
 
-                if (finalFitness > 0.9462) {
+                if (finalFitness > 0.946) {
                     System.out.println("\nCurrent Final Fitness: " + finalFitness);
                     writer.print("\nCurrent Final Fitness: " + finalFitness);
                     System.out.println("a directory: " + aDirectory);
