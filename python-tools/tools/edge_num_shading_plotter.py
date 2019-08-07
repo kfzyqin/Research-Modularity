@@ -42,15 +42,20 @@ def plot_overall_edge_density(target_path, save_path=None):
         saving_file_name = os.path.join(save_path, 'edge_shading_' + str(i) + '.png')
         plot_grn_edge_gen_shading(edge_density_overall_np[i].transpose(), saving_path=saving_file_name)
 
+
 if __name__ == '__main__':
     # plot_grn_edge_gen_shading(edge_num_shading.dist_p00_edge_num_shading)
     # plot_grn_edge_gen_shading(edge_num_shading.dist_prop_edge_num_shading)
 
     # print np.array(edge_num_shading.dist_prop_edge_num_shading).sum(axis=1)
-    target_1_path = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/edge-shading-logs/distributional-proportional-global-optimum-mod-shading.txt'
-    target_2_path = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/edge-shading-logs/distributional-tournament-global-optimum-mod-shading.txt'
+    target_1_path = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments' \
+                    '/edge-shading-logs/distributional-proportional-global-optimum-mod-shading.txt '
+    target_2_path = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments' \
+                    '/edge-shading-logs/distributional-tournament-global-optimum-mod-shading.txt '
 
-    save_path_1 = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/edge-shading-logs/distributional-proportional-shadings/mod'
-    save_path_2 = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/edge-shading-logs/distributional-tournament-shadings/mod'
+    save_path_1 = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments' \
+                  '/edge-shading-logs/distributional-proportional-shadings/mod '
+    save_path_2 = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments' \
+                  '/edge-shading-logs/distributional-tournament-shadings/mod '
     # plot_overall_edge_density(target_1_path, save_path=save_path_1)
     plot_overall_edge_density(target_2_path, save_path=save_path_2)

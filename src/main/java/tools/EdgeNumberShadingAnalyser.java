@@ -31,8 +31,8 @@ public class EdgeNumberShadingAnalyser {
         return tournamentProbabilities;
     }
 
-    public static List<Double> getProportionalSelectionProbabilities(FitnessFunction fitness, List<String[]> GRNs,
-                                                                     int populationSize, int currentGen) {
+    public static List<Double> getFitnessList(FitnessFunction fitness, List<String[]> GRNs,
+                                              int populationSize, int currentGen) {
         List<Double> fitnessList = new ArrayList<>();
         for (int i=0; i<populationSize; i++) {
             String[] aGRN = GRNs.get(i);
@@ -41,6 +41,13 @@ public class EdgeNumberShadingAnalyser {
                     fitness, true, currentGen, null, false);
             fitnessList.add(removeNoEdgeFitnessesZhenyueSym.get(0));
         }
+
+        return fitnessList;
+    }
+
+    public static List<Double> getProportionalSelectionProbabilities(FitnessFunction fitness, List<String[]> GRNs,
+                                                                     int populationSize, int currentGen) {
+        List<Double> fitnessList = getFitnessList(fitness, GRNs, populationSize, currentGen);
 
         List<Double> normedFitnessList = new ArrayList<>();
         double fitnessSum = fitnessList.stream().mapToDouble(Double::doubleValue).sum();
