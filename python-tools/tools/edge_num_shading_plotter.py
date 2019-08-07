@@ -4,8 +4,9 @@ import seaborn as sns
 import numpy as np
 import ast
 import re
+import os
 
-def plot_grn_edge_gen_shading(edge_gen_shading_list):
+def plot_grn_edge_gen_shading(edge_gen_shading_list, saving_path=None):
     fig, ax = plt.subplots()
     plt.xlabel('')
     plt.ylabel('')
@@ -19,10 +20,13 @@ def plot_grn_edge_gen_shading(edge_gen_shading_list):
     plt.xticks(fontsize=12)
     plt.legend(loc='lower center')
     plt.tight_layout()
-    plt.show()
+    if saving_path is None:
+        plt.show()
+    else:
+        plt.savefig(saving_path)
+        plt.close()
 
-
-def plot_overall_edge_density(target_path):
+def plot_overall_edge_density(target_path, save_path=None):
     target_f = open(target_path)
     f_txt = target_f.read()
     phenotype_patter = re.compile("(?<=\[\[\[)(.*)(?=\]\]\])")
@@ -33,15 +37,20 @@ def plot_overall_edge_density(target_path):
     edge_density_overall_list = list([[[float(k) for k in j] for j in i] for i in tmp_str_list])
     edge_density_overall_np = np.array(edge_density_overall_list)
     # plot_grn_edge_gen_shading(np.mean(edge_density_overall_np, axis=0).transpose())
-    plot_grn_edge_gen_shading(edge_density_overall_np[5].transpose())
+
+    for i in range(1, 21):
+        saving_file_name = os.path.join(save_path, 'edge_shading_' + str(i) + '.png')
+        plot_grn_edge_gen_shading(edge_density_overall_np[i].transpose(), saving_path=saving_file_name)
 
 if __name__ == '__main__':
     # plot_grn_edge_gen_shading(edge_num_shading.dist_p00_edge_num_shading)
     # plot_grn_edge_gen_shading(edge_num_shading.dist_prop_edge_num_shading)
 
     # print np.array(edge_num_shading.dist_prop_edge_num_shading).sum(axis=1)
-    target_1_path = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/edge-shading-logs/distributional-proportional-global-optimum-edge-shading.txt'
-    target_2_path = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/edge-shading-logs/distributional-tournament-edge-shading.txt'
+    target_1_path = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/edge-shading-logs/distributional-proportional-global-optimum-mod-shading.txt'
+    target_2_path = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/edge-shading-logs/distributional-tournament-global-optimum-mod-shading.txt'
 
-    plot_overall_edge_density(target_1_path)
-    plot_overall_edge_density(target_2_path)
+    save_path_1 = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/edge-shading-logs/distributional-proportional-shadings/mod'
+    save_path_2 = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/edge-shading-logs/distributional-tournament-shadings/mod'
+    # plot_overall_edge_density(target_1_path, save_path=save_path_1)
+    plot_overall_edge_density(target_2_path, save_path=save_path_2)

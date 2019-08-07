@@ -201,6 +201,7 @@ public class EdgeNumberShadingAnalyser {
 
         String targetPath = "/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Data/distributional-p00";
 //        String targetPath = "/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/distributional-proportional";
+//        String targetPath = "/media/zhenyue-qin/New Volume/Data-Warehouse/Data-Experiments/Project-Maotai/tec-simultaneous-experiments/75-perturbations-proportional";
         File[] directories = new File(targetPath).listFiles(File::isDirectory);
 
         List<List<List<Double>>> edgePrbabilityShadingList = new ArrayList<>();
@@ -216,7 +217,7 @@ public class EdgeNumberShadingAnalyser {
                         fitnessFunctionZhenyueSym, true, 1000, null, false);
                 double finalFitness = removeNoEdgeFitnessesZhenyueSym.get(0);
 
-                if (finalFitness > 0.946) {
+                if (finalFitness > 0.9462) {
                     System.out.println("\nCurrent Final Fitness: " + finalFitness);
                     writer.print("\nCurrent Final Fitness: " + finalFitness + "\n");
                     System.out.println("a directory: " + aDirectory);
@@ -233,7 +234,7 @@ public class EdgeNumberShadingAnalyser {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                break;
+//                break;
             }
         }
         System.out.println(edgePrbabilityShadingList);
