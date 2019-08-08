@@ -123,8 +123,6 @@ public class EdgeSizeFitnessHistogramAnalyser {
     public static void tmp(FitnessFunction fitness, String targetTournament, String targetProportional,
                            int populationSize, double fitnessSep, int aGen, String selectionType) throws IOException {
 
-        int startingIdx = (int) (0.5 / fitnessSep);
-
         String tournamentType = "tournament";
         String proportionalType = "proportional";
         if (selectionType.equals("edge number")) {
@@ -175,13 +173,12 @@ public class EdgeSizeFitnessHistogramAnalyser {
 
     private static final int tournamentSize = 3;
 
-    private static final double fitnessSep = 0.02;
-    private static int startingIdx = (int) (0.5 / fitnessSep);
+    private static final double fitnessSep = 0.0001;
+    private static int startingIdx = (int) (0.9 / fitnessSep);
 
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
-    private static String outputDirectory = "generated-images/selection-fitness";
-
+    private static String outputDirectory = "generated-images/selection-fitness";01
     public static void main(String[] args) throws IOException {
         FitnessFunction fitnessFunctionZhenyueSym = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
                 targets, maxCycle, perturbationRate, thresholds, perturbationSizes, 0.00);
@@ -191,7 +188,7 @@ public class EdgeSizeFitnessHistogramAnalyser {
         String targetPathTournament = "/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Data/distributional-p00";
         File[] directoriesTournament = new File(targetPathTournament).listFiles(File::isDirectory);
 
-        String selectionType = "edge number";
+        String selectionType = "selection";
         String outputDirectoryPath = outputDirectory + "/" + dateFormat.format(date) + "_" + selectionType;
 
         for (int aGen=0; aGen<2000; aGen+=10) {
