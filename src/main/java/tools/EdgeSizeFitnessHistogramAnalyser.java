@@ -160,15 +160,39 @@ public class EdgeSizeFitnessHistogramAnalyser {
         for (int i=0; i<proportionalSelectionList.size(); i++) {
             if (i >= overallProportionalSelectionList.size()) {
                 overallProportionalSelectionList.add(new ArrayList<>());
-                overallProportionalSelectionList.get(i).add(proportionalSelectionList.get(i));
+                if (selectionType.equals("edge number") && operationType.equals("avg")) {
+                    if (proportionalSelectionList.get(i) != 0.0) {
+                        overallProportionalSelectionList.get(i).add(proportionalSelectionList.get(i));
+                    }
+                } else {
+                    overallProportionalSelectionList.get(i).add(proportionalSelectionList.get(i));
+                }
             } else {
-                overallProportionalSelectionList.get(i).add(proportionalSelectionList.get(i));
+                if (selectionType.equals("edge number") && operationType.equals("avg")) {
+                    if (proportionalSelectionList.get(i) != 0.0) {
+                        overallProportionalSelectionList.get(i).add(proportionalSelectionList.get(i));
+                    }
+                } else {
+                    overallProportionalSelectionList.get(i).add(proportionalSelectionList.get(i));
+                }
             }
             if (i >= overallTournamentSelectionList.size()) {
                 overallTournamentSelectionList.add(new ArrayList<>());
-                overallTournamentSelectionList.get(i).add(tournamentSelectionList.get(i));
+                if (selectionType.equals("edge number") && operationType.equals("avg")) {
+                    if (tournamentSelectionList.get(i) != 0) {
+                        overallTournamentSelectionList.get(i).add(tournamentSelectionList.get(i));
+                    }
+                } else {
+                    overallTournamentSelectionList.get(i).add(tournamentSelectionList.get(i));
+                }
             } else {
-                overallTournamentSelectionList.get(i).add(tournamentSelectionList.get(i));
+                if (selectionType.equals("edge number") && operationType.equals("avg")) {
+                    if (tournamentSelectionList.get(i) != 0) {
+                        overallTournamentSelectionList.get(i).add(tournamentSelectionList.get(i));
+                    }
+                } else {
+                    overallTournamentSelectionList.get(i).add(tournamentSelectionList.get(i));
+                }
             }
         }
 
@@ -217,7 +241,7 @@ public class EdgeSizeFitnessHistogramAnalyser {
         for (int aGen=0; aGen<2000; aGen+=10) {
             overallProportionalSelectionList = new ArrayList<>();
             overallTournamentSelectionList = new ArrayList<>();
-            for (int fileIdx = 10; fileIdx < 13; fileIdx++) {
+            for (int fileIdx = 10; fileIdx < 20; fileIdx++) {
                 try {
                     File aDirProportional = directoriesProportional[fileIdx];
                     File aDirTournament = directoriesTournament[fileIdx];
@@ -226,6 +250,7 @@ public class EdgeSizeFitnessHistogramAnalyser {
                     plotHistogram(fitnessFunctionZhenyueSym, targetTournament, targetDirProportional, populationSize, fitnessSep,
                             aGen, selectionType, operationType);
                 } catch (Exception e) {
+                    e.printStackTrace(System.out);
                     continue;
                 }
             }
@@ -248,7 +273,5 @@ public class EdgeSizeFitnessHistogramAnalyser {
             String ret = in.readLine();
             System.out.println(ret);
         }
-
-
     }
 }

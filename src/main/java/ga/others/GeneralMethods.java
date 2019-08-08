@@ -216,6 +216,9 @@ public class GeneralMethods<T> {
         for (Double aNumber : aList) {
             sum += aNumber;
         }
+        if (aList.size() == 0) {
+            return 0;
+        }
         return sum / aList.size();
     }
 
