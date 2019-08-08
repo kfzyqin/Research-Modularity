@@ -15,6 +15,7 @@ import utils.io_utils as io_utils
 x_axis = ast.literal_eval(sys.argv[1])
 y_tour_axis = ast.literal_eval(sys.argv[2])
 y_prop_axis = ast.literal_eval(sys.argv[3])
+out_dir = sys.argv[5]
 
 plt.plot(x_axis, y_tour_axis, color='orange', marker='x')
 plt.fill_between(x_axis, y_tour_axis, alpha=0.4, color='orange')
@@ -22,8 +23,7 @@ plt.fill_between(x_axis, y_tour_axis, alpha=0.4, color='orange')
 plt.plot(x_axis, y_prop_axis, color='cyan', marker='x')
 plt.fill_between(x_axis, y_prop_axis, alpha=0.4, color='cyan')
 
-dir_name = 'generated-images/selection-fitness/'
-dir_name = os.path.join(dir_name, io_utils.get_current_time())
+dir_name = out_dir
 if not os.path.exists(dir_name):
     os.makedirs(dir_name)
 

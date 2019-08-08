@@ -1,5 +1,6 @@
 package tools;
 
+import ga.components.materials.SimpleMaterial;
 import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue;
 import ga.others.GeneralMethods;
@@ -9,6 +10,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static tools.EdgeNumberShadingAnalyser.*;
@@ -63,6 +66,17 @@ public class EdgeSizeFitnessHistogramAnalyser {
         return rtnFitnesses;
     }
 
+    public static List<Double> getPopulationEdgeNumbers(List<String[]> lines) {
+        List<Double> populationEdgeNums = new ArrayList<>();
+        for (int i=0; i<lines.size(); i++) {
+            String[] lastGRNString = lines.get(i);
+            SimpleMaterial aMaterial = GeneralMethods.convertStringArrayToSimpleMaterial(lastGRNString);
+            int edgeNum = GeneralMethods.getEdgeNumber(aMaterial);
+            populationEdgeNums.add((double) edgeNum);
+        }
+        return populationEdgeNums;
+    }
+
     public static Map<Integer, Double> getFitnessProbabilityMap(FitnessFunction fitness, String selectionType, String targetDir,
                                                                 int populationSize, double fitnessSep, int aGen) {
         Map<Integer, Double> fitnessProbabilityMap = new HashMap<>();
@@ -74,6 +88,8 @@ public class EdgeSizeFitnessHistogramAnalyser {
             concernedProbabilities = getTournamentSelectionProbabilities(populationSize, tournamentSize);
         } else if (selectionType.equals("proportional")) {
             concernedProbabilities = getProportionalSelectionProbabilities(fitness, lines, populationSize, aGen);
+        } else if (selectionType.equals("edge number")) {
+            concernedProbabilities = getPopulationEdgeNumbers(lines);
         } else {
             throw new NotImplementedException();
         }
@@ -105,15 +121,21 @@ public class EdgeSizeFitnessHistogramAnalyser {
     public static List<List<Double>> overallProportionalSelectionList = new ArrayList<>();
     public static List<List<Double>> overallTournamentSelectionList = new ArrayList<>();
     public static void tmp(FitnessFunction fitness, String targetTournament, String targetProportional,
-                           int populationSize, double fitnessSep, int aGen) throws IOException {
+                           int populationSize, double fitnessSep, int aGen, String selectionType) throws IOException {
 
         int startingIdx = (int) (0.5 / fitnessSep);
 
-        Map<Integer, Double> tournamentProbabilityMap = getFitnessProbabilityMap(fitness, "tournament",
+        String tournamentType = "tournament";
+        String proportionalType = "proportional";
+        if (selectionType.equals("edge number")) {
+            tournamentType = proportionalType = selectionType;
+        }
+
+        Map<Integer, Double> tournamentProbabilityMap = getFitnessProbabilityMap(fitness, tournamentType,
                 targetTournament, populationSize, fitnessSep, aGen);
         List<Double> tournamentSelectionList = getFitnessHistogramSelectionProbabilityList(tournamentProbabilityMap, startingIdx, fitnessSep);
 
-        Map<Integer, Double> proportionalProbabilityMap = getFitnessProbabilityMap(fitness, "proportional",
+        Map<Integer, Double> proportionalProbabilityMap = getFitnessProbabilityMap(fitness, proportionalType,
                 targetProportional, populationSize, fitnessSep, aGen);
         List<Double> proportionalSelectionList = getFitnessHistogramSelectionProbabilityList(proportionalProbabilityMap, startingIdx, fitnessSep);
 
@@ -152,10 +174,14 @@ public class EdgeSizeFitnessHistogramAnalyser {
     private static final int[][] targets = {target1, target2};
 
     private static final int tournamentSize = 3;
-    private static final int maxGen = 2000;
 
     private static final double fitnessSep = 0.02;
     private static int startingIdx = (int) (0.5 / fitnessSep);
+
+    private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+    private static Date date = new Date();
+    private static String outputDirectory = "generated-images/selection-fitness";
+
     public static void main(String[] args) throws IOException {
         FitnessFunction fitnessFunctionZhenyueSym = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
                 targets, maxCycle, perturbationRate, thresholds, perturbationSizes, 0.00);
@@ -165,14 +191,18 @@ public class EdgeSizeFitnessHistogramAnalyser {
         String targetPathTournament = "/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Data/distributional-p00";
         File[] directoriesTournament = new File(targetPathTournament).listFiles(File::isDirectory);
 
-        for (int aGen=501; aGen<2000; aGen+=10) {
-            for (int fileIdx = 0; fileIdx < 10; fileIdx++) {
+        String selectionType = "edge number";
+        String outputDirectoryPath = outputDirectory + "/" + dateFormat.format(date) + "_" + selectionType;
+
+        for (int aGen=0; aGen<2000; aGen+=10) {
+            for (int fileIdx = 10; fileIdx < 20; fileIdx++) {
                 try {
                     File aDirProportional = directoriesProportional[fileIdx];
                     File aDirTournament = directoriesTournament[fileIdx];
                     String targetDirProportional = aDirProportional + "/population-phenotypes/all-population-phenotype_gen_%d.lists";
                     String targetTournament = aDirTournament + "/population-phenotypes/all-population-phenotype_gen_%d.lists";
-                    tmp(fitnessFunctionZhenyueSym, targetTournament, targetDirProportional, populationSize, fitnessSep, aGen);
+                    tmp(fitnessFunctionZhenyueSym, targetTournament, targetDirProportional, populationSize, fitnessSep,
+                            aGen, selectionType);
                 } catch (Exception e) {
                     continue;
                 }
@@ -188,7 +218,8 @@ public class EdgeSizeFitnessHistogramAnalyser {
                     histogramXAxis.toString(),
                     avgOverallTournamentSelectionList.toString(),
                     avgOverallProportionalSelectionList.toString(),
-                    Integer.toString(aGen));
+                    Integer.toString(aGen),
+                    outputDirectoryPath);
 
             Process p2 = PB1.start();
             BufferedReader in = new BufferedReader(new InputStreamReader(p2.getInputStream()));
