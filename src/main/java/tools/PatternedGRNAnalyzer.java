@@ -39,12 +39,10 @@ public class PatternedGRNAnalyzer {
     private static final double perturbationRate = 0.15;
     private static final List<Integer> thresholds = Arrays.asList(0, 500);
     private static final int[] perturbationSizes = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-    private static final double stride = 0.01;
+    private static final double stride = 0.00;
 
     public static void main(String[] args) {
-        String targetPath = "/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Data/distributional-p00";
-//        String targetPath = "/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/distributional-proportional";
-//        String targetPath = "/Volumes/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/original_esw_p00";
+        String targetPath = "/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/distributional-proportional-no-x";
 
         int[][] targets = {target1, target2};
 
@@ -84,7 +82,8 @@ public class PatternedGRNAnalyzer {
 //                String aModFile = "/Users/qin/Research/Project-Maotai-Modularity/data/perfect_modular_individuals.txt";
                 List<String[]> lines = GeneralMethods.readFileLineByLine(aModFile);
 
-                String[] lastGRNString = lines.get(lines.size() - targetGeneration);
+                int genIdx = lines.size() - targetGeneration;
+                String[] lastGRNString = lines.get(genIdx);
 //                String[] lastGRNString = lines.get(3);
                 SimpleMaterial aMaterial = GeneralMethods.convertStringArrayToSimpleMaterial(lastGRNString);
 
@@ -102,10 +101,10 @@ public class PatternedGRNAnalyzer {
                         removeNoEdgeFitnessesZhenyueSym.get(0), removeAllEdgeFitnessesZhenyueSym.get(0));
 
 //                if (fitnesses.get(0) < 0.9462) {
-//                if (fitnesses.get(0) < 0.9 || fitnesses.get(0) > 0.9462) {
-                if (fitnesses.get(0) < 0.7) {
-                    continue;
-                }
+////                if (fitnesses.get(0) < 0.9 || fitnesses.get(0) > 0.9462) {
+////                if (fitnesses.get(0) < 0.7) {
+//                    continue;
+//                }
 
                 System.out.println("\n###A New Directory###");
                 System.out.print("fitnesses: ");

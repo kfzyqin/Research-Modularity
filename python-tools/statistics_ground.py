@@ -57,12 +57,13 @@ if __name__ == '__main__':
                 #                                                                      end_gen=2000, to_plot=True)
 
     elif to_use == 'specific':
-        path_1 = '/media/zhenyue-qin/New Volume/Data-Warehouse/Data-Experiments/Project-Maotai/tec-simultaneous-experiments/always-return-same-fit'
-        path_2 = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Portal/generated-outputs/distributional-proportional'
+        # path_1 = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/distributional-tournament-no-x'
+        path_1 = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Data/distributional-p00'
+        path_2 = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/distributional-proportional-no-x'
 
         omega = StatisticsToolkit(path_1, path_2)
 
-        sample_size = 100
+        sample_size = 10
 
         the_index = -1
 

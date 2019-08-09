@@ -218,7 +218,7 @@ public class EdgeSizeFitnessHistogramAnalyser {
     private static final int tournamentSize = 3;
 
     private static final double fitnessSep = 0.0001;
-    private static int startingIdx = (int) (0.9 / fitnessSep);
+    private static int startingIdx = (int) (0.5 / fitnessSep);
 
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
@@ -230,9 +230,9 @@ public class EdgeSizeFitnessHistogramAnalyser {
         FitnessFunction fitnessFunctionZhenyueSym = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
                 targets, maxCycle, perturbationRate, thresholds, perturbationSizes, 0.00);
 
-        String targetPathProportional = "/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/distributional-proportional";
+        String targetPathProportional = "/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/distributional-proportional-no-x";
         File[] directoriesProportional = new File(targetPathProportional).listFiles(File::isDirectory);
-        String targetPathTournament = "/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Data/distributional-p00";
+        String targetPathTournament = "/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/distributional-tournament-no-x";
         File[] directoriesTournament = new File(targetPathTournament).listFiles(File::isDirectory);
 
         String selectionType = "edge number";
@@ -241,7 +241,7 @@ public class EdgeSizeFitnessHistogramAnalyser {
         for (int aGen=0; aGen<2000; aGen+=10) {
             overallProportionalSelectionList = new ArrayList<>();
             overallTournamentSelectionList = new ArrayList<>();
-            for (int fileIdx = 10; fileIdx < 20; fileIdx++) {
+            for (int fileIdx = 0; fileIdx < 5; fileIdx++) {
                 try {
                     File aDirProportional = directoriesProportional[fileIdx];
                     File aDirTournament = directoriesTournament[fileIdx];

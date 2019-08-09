@@ -1,10 +1,11 @@
 package tools;
 
-import ga.components.genes.Gene;
 import ga.components.materials.SimpleMaterial;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue;
+import ga.operations.mutators.GRNEdgeMutator;
 import ga.others.GeneralMethods;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -70,7 +71,7 @@ public class InsertionDeletionTool {
         return rtn;
     }
 
-    private static List<Double> getEdgeInsertionFit(int[] aGRN, int dealNum, String edgeType) {
+    private static List<Double> getEdgeInsertionFit(int[] aGRN, int dealNum, String edgeType, int gen) {
         List<Double> fits = new ArrayList<>();
         List<Integer> listIdxes = getCertainEdgeIdxes(aGRN, edgeType);
         Integer[] idxes = GeneralMethods.convertIntegerListToIntegerArray(listIdxes);
@@ -85,12 +86,12 @@ public class InsertionDeletionTool {
                 }
             }
             SimpleMaterial aMaterial = GeneralMethods.convertIntArrayToSimpleMaterial(aGRNCopy1);
-            fits.add(fitnessFunction.evaluate(aMaterial, 502));
+            fits.add(fitnessFunction.evaluate(aMaterial, gen));
         }
         return fits;
     }
 
-    private static List<Double> getEdgeDeletionFit(int[] aGRN, int dealNum, String edgeType) {
+    private static List<Double> getEdgeDeletionFit(int[] aGRN, int dealNum, String edgeType, int gen) {
         List<Double> fits = new ArrayList<>();
         List<Integer> listIdxes = getCertainEdgeIdxes(aGRN, edgeType);
         Integer[] idxes = GeneralMethods.convertIntegerListToIntegerArray(listIdxes);
@@ -101,48 +102,84 @@ public class InsertionDeletionTool {
                 aGRNCopy1[anIdx] = 0;
             }
             SimpleMaterial aMaterial = GeneralMethods.convertIntArrayToSimpleMaterial(aGRNCopy1);
-            fits.add(fitnessFunction.evaluate(aMaterial, 502));
+            fits.add(fitnessFunction.evaluate(aMaterial, gen));
         }
         return fits;
     }
 
+    public static List<int[]> getGRNsOfAGeneration(String targetPath, int aGen) {
+        String targetFormat = targetPath + "/population-phenotypes/all-population-phenotype_gen_%d.lists";
+        String targetFormatted = String.format(targetFormat, aGen);
+        List<String[]> lines = GeneralMethods.readFileLineByLine(targetFormatted);
+        List<int[]> rtn = new ArrayList<>();
+        for (int i=0; i<lines.size(); i++) {
+            SimpleMaterial aMaterial = GeneralMethods.convertStringArrayToSimpleMaterial(lines.get(i));
+            rtn.add(GeneralMethods.convertSimpleMaterialToIntArray(aMaterial));
+        }
+        return rtn;
+    }
+
+    private static double mutationRate = 0.05;
     public static void main(String[] args) {
-        int[] targetGRN = {0, 0, 0, -1, 0, 0, 1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, -1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, -1, 1, -1, 1, -1, 0, -1, -1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, -1, -1, 0, 0, 0, 0, 1, 0, 0, -1, 0, 1, -1, 0, 1, 0, 1, 1, 0, 0, 0, 0, -1, -1, -1, 0, 0, 0, 0, 0, 0};
-        SimpleMaterial aMaterial = GeneralMethods.convertIntArrayToSimpleMaterial(targetGRN);
-        GeneralMethods.printSquareGRN(targetGRN);
+        String dirPath = "/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/distributional-proportional-no-x";
+        File[] dirPathList = new File(dirPath).listFiles(File::isDirectory);
+        GRNEdgeMutator edgeGeneMutator = new GRNEdgeMutator(mutationRate);
 
-        Integer[] anArray = {1, 2, 3, 4, 5};
+        int targetGen = 499;
+        for (int dirIdx=0; dirIdx<20; dirIdx++) {
+            File aDirPath = dirPathList[dirIdx];
+            List<int[]> generationGRNs = getGRNsOfAGeneration(aDirPath.toString(), targetGen);
+            int[] aGenerationGRN = generationGRNs.get(0);
+            int[] targetGRN = aGenerationGRN;
 
-        List<Double> avgInsertionFits = new ArrayList<>();
-        int dealNum = 1;
-        System.out.println("deal num: " + dealNum);
-        for (int i=0; i<3; i++) {
-            List<Double> insertionFits = getEdgeInsertionFit(targetGRN, dealNum, "insert");
-            avgInsertionFits.add(GeneralMethods.getAverageNumber(insertionFits));
+            SimpleMaterial aMaterial = GeneralMethods.convertIntArrayToSimpleMaterial(targetGRN);
+            GeneralMethods.printSquareGRN(targetGRN);
+
+            double origFit = fitnessFunction.evaluate(aMaterial, targetGen);
+            System.out.println("Original fitness: " + origFit);
+            int origEdgeNum = GeneralMethods.getEdgeNumber(aMaterial);
+            System.out.println("Original edge number: " + origEdgeNum);
+
+            SimpleMaterial postMutationMaterial = aMaterial.copy();
+            edgeGeneMutator.mutateAGRN(postMutationMaterial);
+            double postMutFit = fitnessFunction.evaluate(postMutationMaterial);
+//            System.out.println("Post mutation fitness: " + postMutFit);
+
+            List<Double> avgInsertionFits = new ArrayList<>();
+            int dealNum = 1;
+            System.out.println("deal num: " + dealNum);
+            for (int i=0; i<3; i++) {
+                List<Double> insertionFits = getEdgeInsertionFit(targetGRN, dealNum, "insert", targetGen);
+                avgInsertionFits.add(GeneralMethods.getAverageNumber(insertionFits));
+            }
+            double avgInsertionFit = GeneralMethods.getAverageNumber(avgInsertionFits);
+            System.out.println("Avg Insertion Fit: " + avgInsertionFit);
+
+            List<Double> deletionFits = getEdgeDeletionFit(targetGRN, dealNum, "delete", targetGen);
+            double avgDeletionFit = GeneralMethods.getAverageNumber(deletionFits);
+            System.out.println("Avg Deletion Fit: " + avgDeletionFit);
+
+            System.out.println("Avg insertion deletion fit: " + (avgInsertionFit + avgDeletionFit) / 2.0);
+
+            List<Double> avgInterModInsertionFits = new ArrayList<>();
+            for (int i=0; i<3; i++) {
+                List<Double> insertionFits = getEdgeInsertionFit(targetGRN, dealNum, "insert inter-mod", targetGen);
+                avgInterModInsertionFits.add(GeneralMethods.getAverageNumber(insertionFits));
+            }
+            System.out.println("Avg Inter Module Insertion Fit: " + GeneralMethods.getAverageNumber(avgInterModInsertionFits));
+
+            List<Double> deletionInterModFits = getEdgeDeletionFit(targetGRN, dealNum, "delete inter-mod", targetGen);
+            System.out.println("Avg Inter Module Deletion Fit: " + GeneralMethods.getAverageNumber(deletionInterModFits));
+
+            List<Double> avgIntraModInsertionFits = new ArrayList<>();
+            for (int i=0; i<3; i++) {
+                List<Double> insertionFits = getEdgeInsertionFit(targetGRN, dealNum, "insert intra-mod", targetGen);
+                avgIntraModInsertionFits.add(GeneralMethods.getAverageNumber(insertionFits));
+            }
+            System.out.println("Avg Intra Module Insertion Fit: " + GeneralMethods.getAverageNumber(avgIntraModInsertionFits));
+
+            List<Double> deletionIntraModFits = getEdgeDeletionFit(targetGRN, dealNum, "delete intra-mod", targetGen);
+            System.out.println("Avg Intra Module Deletion Fit: " + GeneralMethods.getAverageNumber(deletionIntraModFits));
         }
-        System.out.println("Avg Insertion Fit: " + GeneralMethods.getAverageNumber(avgInsertionFits));
-
-        List<Double> deletionFits = getEdgeDeletionFit(targetGRN, dealNum, "delete");
-        System.out.println("Avg Deletion Fit: " + GeneralMethods.getAverageNumber(deletionFits));
-
-        List<Double> avgInterModInsertionFits = new ArrayList<>();
-        for (int i=0; i<3; i++) {
-            List<Double> insertionFits = getEdgeInsertionFit(targetGRN, dealNum, "insert inter-mod");
-            avgInterModInsertionFits.add(GeneralMethods.getAverageNumber(insertionFits));
-        }
-        System.out.println("Avg Inter Module Insertion Fit: " + GeneralMethods.getAverageNumber(avgInterModInsertionFits));
-
-        List<Double> deletionInterModFits = getEdgeDeletionFit(targetGRN, dealNum, "delete inter-mod");
-        System.out.println("Avg Inter Module Deletion Fit: " + GeneralMethods.getAverageNumber(deletionInterModFits));
-
-        List<Double> avgIntraModInsertionFits = new ArrayList<>();
-        for (int i=0; i<3; i++) {
-            List<Double> insertionFits = getEdgeInsertionFit(targetGRN, dealNum, "insert intra-mod");
-            avgIntraModInsertionFits.add(GeneralMethods.getAverageNumber(insertionFits));
-        }
-        System.out.println("Avg Intra Module Insertion Fit: " + GeneralMethods.getAverageNumber(avgIntraModInsertionFits));
-
-        List<Double> deletionIntraModFits = getEdgeDeletionFit(targetGRN, dealNum, "delete intra-mod");
-        System.out.println("Avg Intra Module Deletion Fit: " + GeneralMethods.getAverageNumber(deletionIntraModFits));
     }
 }
