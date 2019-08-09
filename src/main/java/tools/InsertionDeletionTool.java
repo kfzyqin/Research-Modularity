@@ -6,9 +6,7 @@ import ga.operations.mutators.GRNEdgeMutator;
 import ga.others.GeneralMethods;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class InsertionDeletionTool {
     private static final int[] target1 = {
@@ -119,14 +117,23 @@ public class InsertionDeletionTool {
         return rtn;
     }
 
+    public static void printAIntIdxedHashMap(Map<Integer, ?> aMap) {
+        List<Integer> sortedList = new ArrayList<>(aMap.keySet());
+        Collections.sort(sortedList);
+        for (Integer e : sortedList) {
+            System.out.println("Edge: " + e + "\t" + "Fitness: " + aMap.get(e));
+        }
+    }
+
     private static double mutationRate = 0.05;
     public static void main(String[] args) {
-        String dirPath = "/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/distributional-proportional-no-x";
+        String dirPath = "/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/distributional-tournament-no-x";
         File[] dirPathList = new File(dirPath).listFiles(File::isDirectory);
         GRNEdgeMutator edgeGeneMutator = new GRNEdgeMutator(mutationRate);
 
+        Map<Integer, Double> edgeNumAvgDelFitMap = new HashMap<>();
         int targetGen = 499;
-        for (int dirIdx=0; dirIdx<20; dirIdx++) {
+        for (int dirIdx=0; dirIdx<30; dirIdx++) {
             File aDirPath = dirPathList[dirIdx];
             List<int[]> generationGRNs = getGRNsOfAGeneration(aDirPath.toString(), targetGen);
             int[] aGenerationGRN = generationGRNs.get(0);
@@ -148,7 +155,7 @@ public class InsertionDeletionTool {
             List<Double> avgInsertionFits = new ArrayList<>();
             int dealNum = 1;
             System.out.println("deal num: " + dealNum);
-            for (int i=0; i<3; i++) {
+            for (int i=0; i<5; i++) {
                 List<Double> insertionFits = getEdgeInsertionFit(targetGRN, dealNum, "insert", targetGen);
                 avgInsertionFits.add(GeneralMethods.getAverageNumber(insertionFits));
             }
@@ -158,6 +165,12 @@ public class InsertionDeletionTool {
             List<Double> deletionFits = getEdgeDeletionFit(targetGRN, dealNum, "delete", targetGen);
             double avgDeletionFit = GeneralMethods.getAverageNumber(deletionFits);
             System.out.println("Avg Deletion Fit: " + avgDeletionFit);
+
+            if (origEdgeNum > 20) {
+                edgeNumAvgDelFitMap.put(origEdgeNum, avgDeletionFit);
+            } else {
+                edgeNumAvgDelFitMap.put(origEdgeNum, avgInsertionFit);
+            }
 
             System.out.println("Avg insertion deletion fit: " + (avgInsertionFit + avgDeletionFit) / 2.0);
 
@@ -181,5 +194,6 @@ public class InsertionDeletionTool {
             List<Double> deletionIntraModFits = getEdgeDeletionFit(targetGRN, dealNum, "delete intra-mod", targetGen);
             System.out.println("Avg Intra Module Deletion Fit: " + GeneralMethods.getAverageNumber(deletionIntraModFits));
         }
+        printAIntIdxedHashMap(edgeNumAvgDelFitMap);
     }
 }
