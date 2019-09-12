@@ -71,7 +71,7 @@ public class PatternedGRNAnalyzer {
         double minMod = 1;
         double minEdgeNum = 100;
 
-        int targetGeneration = 1000;
+        int targetGeneration = 499;
 
         List<Double> edgeNumbers = new ArrayList<>();
 
@@ -82,7 +82,7 @@ public class PatternedGRNAnalyzer {
 //                String aModFile = "/Users/qin/Research/Project-Maotai-Modularity/data/perfect_modular_individuals.txt";
                 List<String[]> lines = GeneralMethods.readFileLineByLine(aModFile);
 
-                int genIdx = lines.size() - targetGeneration;
+                int genIdx = targetGeneration;
                 String[] lastGRNString = lines.get(genIdx);
 //                String[] lastGRNString = lines.get(3);
                 SimpleMaterial aMaterial = GeneralMethods.convertStringArrayToSimpleMaterial(lastGRNString);
@@ -224,6 +224,7 @@ public class PatternedGRNAnalyzer {
             if (fileNumberCounter > 100) {
                 break;
             }
+            break;
         }
 
         System.out.println("improved count: " + improvedCount);

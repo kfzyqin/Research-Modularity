@@ -48,14 +48,10 @@ if __name__ == '__main__':
     # plot_grn_edge_gen_shading(edge_num_shading.dist_prop_edge_num_shading)
 
     # print np.array(edge_num_shading.dist_prop_edge_num_shading).sum(axis=1)
-    target_1_path = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments' \
-                    '/edge-shading-logs/distributional-proportional-global-optimum-mod-shading.txt '
-    target_2_path = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments' \
-                    '/edge-shading-logs/distributional-tournament-global-optimum-mod-shading.txt '
+    target_1_path = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/edge-shading-logs/edge-shading-log-Edge-proportional-2019-08-20-22-06-50.txt'
+    target_2_path = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/edge-shading-logs/edge-shading-log-Edge-tournament-2019-08-21-09-48-07.txt'
 
-    save_path_1 = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments' \
-                  '/edge-shading-logs/distributional-proportional-shadings/mod '
-    save_path_2 = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments' \
-                  '/edge-shading-logs/distributional-tournament-shadings/mod '
+    save_path_1 = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/edge-shading-logs/distributional-proportional-shadings-no-x/edge'
+    save_path_2 = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/edge-shading-logs/distributional-tournament-shadings-no-x/edge'
     # plot_overall_edge_density(target_1_path, save_path=save_path_1)
     plot_overall_edge_density(target_2_path, save_path=save_path_2)
