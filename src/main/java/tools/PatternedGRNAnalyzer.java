@@ -42,7 +42,7 @@ public class PatternedGRNAnalyzer {
     private static final double stride = 0.00;
 
     public static void main(String[] args) {
-        String targetPath = "/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/distributional-proportional-no-x";
+        String targetPath = "/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Portal/generated-outputs/no-x-prop-edge-penalty";
 
         int[][] targets = {target1, target2};
 
@@ -71,7 +71,7 @@ public class PatternedGRNAnalyzer {
         double minMod = 1;
         double minEdgeNum = 100;
 
-        int targetGeneration = 499;
+        int targetGeneration = 2000;
 
         List<Double> edgeNumbers = new ArrayList<>();
 
@@ -101,10 +101,10 @@ public class PatternedGRNAnalyzer {
                         removeNoEdgeFitnessesZhenyueSym.get(0), removeAllEdgeFitnessesZhenyueSym.get(0));
 
 //                if (fitnesses.get(0) < 0.9462) {
-////                if (fitnesses.get(0) < 0.9 || fitnesses.get(0) > 0.9462) {
-////                if (fitnesses.get(0) < 0.7) {
-//                    continue;
-//                }
+//                if (fitnesses.get(0) < 0.9 || fitnesses.get(0) > 0.9462) {
+                if (fitnesses.get(0) > 0.9) {
+                    continue;
+                }
 
                 System.out.println("\n###A New Directory###");
                 System.out.print("fitnesses: ");

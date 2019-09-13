@@ -230,9 +230,9 @@ public class EdgeSizeFitnessHistogramAnalyser {
         FitnessFunction fitnessFunctionZhenyueSym = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
                 targets, maxCycle, perturbationRate, thresholds, perturbationSizes, 0.00);
 
-        String targetPathProportional = "/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/distributional-proportional-no-x";
+        String targetPathProportional = "/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Portal/generated-outputs/no-x-prop-edge-penalty";
         File[] directoriesProportional = new File(targetPathProportional).listFiles(File::isDirectory);
-        String targetPathTournament = "/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/distributional-tournament-no-x";
+        String targetPathTournament = "/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Portal/generated-outputs/no-x-tour-edge-penalty";
         File[] directoriesTournament = new File(targetPathTournament).listFiles(File::isDirectory);
 
         String selectionType = "edge number";
