@@ -25,7 +25,6 @@ class CSVFileOpener:
             if caught:
                 break
 
-
         if len(csv_files) == 1:
             a_df = pd.read_csv(csv_files[0], '\t')
             return a_df[column].tolist()
@@ -113,6 +112,7 @@ class CSVFileOpener:
                     if len(all_trails) > sample_size:
                         break
         return np.mean(np.array(all_trails), axis=0), np.std(np.array(all_trails), axis=0)
+
 
 if __name__ == '__main__':
     pass
