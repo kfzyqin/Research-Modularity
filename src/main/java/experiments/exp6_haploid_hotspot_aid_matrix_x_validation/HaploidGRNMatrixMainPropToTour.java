@@ -7,27 +7,22 @@ import ga.frame.frames.Frame;
 import ga.frame.frames.SimpleHaploidFrame;
 import ga.frame.states.SimpleHaploidState;
 import ga.frame.states.State;
-import ga.operations.fitnessFunctions.*;
+import ga.operations.fitnessFunctions.FitnessFunction;
+import ga.operations.fitnessFunctions.GRNFitnessFunctionMulTarDistBalAsymEdgePenalty;
 import ga.operations.initializers.HaploidGRNInitializer;
-import ga.operations.initializers.PerfectIndividualInitializer;
 import ga.operations.mutators.GRNEdgeMutator;
-import ga.operations.mutators.GRNRandomEdgeMutator;
 import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
 import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
-import ga.operations.priorOperators.PriorOperator;
-import ga.operations.priorOperators.SimpleElitismOperator;
-import ga.operations.reproducers.*;
+import ga.operations.reproducers.GRNHaploidNoXReproducer;
+import ga.operations.reproducers.Reproducer;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
-import ga.operations.selectionOperators.selectors.RandomSelector;
 import ga.operations.selectionOperators.selectors.Selector;
-import ga.operations.selectionOperators.selectors.SimpleProportionalSelector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
 
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -39,7 +34,7 @@ import java.util.List;
  * Created by Zhenyue Qin on 23/06/2017.
  * The Australian National University.
  */
-public class HaploidGRNMatrixMain {
+public class HaploidGRNMatrixMainPropToTour {
     /* The two targets that the GA evolve towards */
     private static final int[] target1 = {
             1, -1, 1, -1, 1,
@@ -72,7 +67,7 @@ public class HaploidGRNMatrixMain {
     /* Settings for text outputs */
     private static final String summaryFileName = "Summary.txt";
     private static final String csvFileName = "Statistics.csv";
-    private static final String outputDirectory = "prop-to-tour-at-gen-50";
+    private static final String outputDirectory = "no-x-tour-edge-penalty";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static final String allPerturbationsName = "Perturbations.per";
     private static final String modFitNamePrefix = "phenotypes";
@@ -118,11 +113,11 @@ public class HaploidGRNMatrixMain {
 //        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricBob(
 //                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
 
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
-                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
+//        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
+//                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
 
-//        FitnessFunction fitnessFunction = new GRNFitnessFunctionMulTarDistBalAsymEdgePenalty(
-//                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride, edgePenalty);
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMulTarDistBalAsymEdgePenalty(
+                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride, edgePenalty);
 
         /* It is not necessary to write an initializer, but doing so is convenient to
         repeat the experiment using different parameter */
@@ -138,8 +133,8 @@ public class HaploidGRNMatrixMain {
 //        Mutator mutator = new GRNRandomEdgeMutator(geneMutationRate);
 //
         /* Selector for reproduction */
-        Selector<SimpleHaploid> tourSelector = new SimpleTournamentSelector<>(tournamentSize);
-        Selector<SimpleHaploid> propSelector = new SimpleProportionalSelector<>();
+        Selector<SimpleHaploid> selector = new SimpleTournamentSelector<>(tournamentSize);
+//        Selector<SimpleHaploid> selector = new SimpleProportionalSelector<>();
 //        Selector<SimpleHaploid> selector = new RandomSelector<>();
 
         /* Selector for elites */
@@ -165,7 +160,7 @@ public class HaploidGRNMatrixMain {
 
         /* The state of an GA */
         State<SimpleHaploid> state = new SimpleHaploidState<>(
-                population, fitnessFunction, mutator, reproducer, propSelector, 2, reproductionRate);
+                population, fitnessFunction, mutator, reproducer, selector, 2, reproductionRate);
         state.record(statistics); // record the initial state of an population
 
         /* The frame of an GA to change states */
@@ -173,24 +168,21 @@ public class HaploidGRNMatrixMain {
 
         statistics.print(0); // print the initial state of an population
 
-        java.util.Date sDate = new java.util.Date();
+        Date sDate = new Date();
 
         /* Actual GA evolutions */
         for (int i = 1; i <= maxGen; i++) {
-            if (i == 50) {
-                frame.getState().setSelector(tourSelector);
-            }
             if (i == 502) {
-                sDate = new java.util.Date();
+                sDate = new Date();
                 System.out.println("Starting time: " + sDate);
             }
             frame.evolve();
             statistics.print(i);
-
         }
 
-        java.util.Date eDate = new java.util.Date();
+        Date eDate = new Date();
         System.out.println("Starting time: " + eDate);
+
         System.out.println("Total time used: " + (eDate.getTime() - sDate.getTime()));
 
         /* Generate output files */

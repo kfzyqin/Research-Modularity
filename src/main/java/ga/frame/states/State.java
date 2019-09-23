@@ -138,4 +138,8 @@ public abstract class State<C extends Chromosome> {
     public void setReproducer(@NotNull final Reproducer<C> reproducer) {
         this.reproducer = reproducer;
     }
+
+    public void setSelector(Selector<C> selector) {
+        this.selector = selector;
+    }
 }

@@ -67,4 +67,5 @@ public class SimpleHaploidState<C extends Chromosome> extends State<C> {
         filter(reproductionRate);
         this.reproductionRate = reproductionRate;
     }
+
 }

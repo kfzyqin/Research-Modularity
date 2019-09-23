@@ -149,8 +149,10 @@ if __name__ == '__main__':
     edge_num_tool = EdgeNumberTool()
     prop_dir = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/distributional-proportional-no-x'
     tour_dir = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/distributional-tournament-no-x'
+    prop_to_tour_dir = '/home/zhenyue-qin/Research/Project-Maotai-Modularity/generated-outputs/prop-to-tour-at-gen-50'
 
     prop_gen_edges = edge_num_tool.get_avg_edge_num_in_each_generation_of_an_exp(prop_dir)
     tour_gen_edges = edge_num_tool.get_avg_edge_num_in_each_generation_of_an_exp(tour_dir)
+    prop_to_tour_edges = edge_num_tool.get_avg_edge_num_in_each_generation_of_an_exp(prop_to_tour_dir)
 
-    fp.save_lists_graph([prop_gen_edges[:50], tour_gen_edges[:50]])
+    fp.save_lists_graph([prop_gen_edges[:500], tour_gen_edges[:500], prop_to_tour_edges[:500]])
