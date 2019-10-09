@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -19,6 +20,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class SimpleTournamentScheme implements SelectionScheme {
 
     private int size;
+    private Random randomno = new Random();
 
     /**
      * Constructs a tournament selection scheme.
@@ -45,7 +47,7 @@ public class SimpleTournamentScheme implements SelectionScheme {
         List<Integer> indices = new ArrayList<>(size);
         final int populationSize = fitnessValues.size();
         while (indices.size() < size) {
-            final int index = ThreadLocalRandom.current().nextInt(populationSize);
+            final int index = randomno.nextInt(populationSize);
             if (!indices.contains(index))
                 indices.add(index);
         }

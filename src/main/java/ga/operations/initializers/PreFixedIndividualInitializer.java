@@ -14,15 +14,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class PerfectIndividualInitializer extends HaploidGRNInitializer {
-    public PerfectIndividualInitializer(int size, int targetLength, int edgeSize) {
+public class PreFixedIndividualInitializer extends HaploidGRNInitializer {
+    public PreFixedIndividualInitializer(int size, int targetLength, int edgeSize) {
         super(size, targetLength, edgeSize);
     }
 
     @Override
     public Population<SimpleHaploid> initialize() {
         Population<SimpleHaploid> population = new Population<>(size);
-        String aModFile = "./data/perfect_modular_individuals.txt";
+//        String aModFile = "./data/perfect_modular_individuals.txt";
+        String aModFile = "./data/proportional/2019-10-09-12-47-22/population-phenotypes/all-population-phenotype_gen_30.lists";
         List<String[]> lines = GeneralMethods.readFileLineByLine(aModFile);
         int count = 0;
         for (String[] aLine : lines) {
