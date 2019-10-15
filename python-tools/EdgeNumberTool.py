@@ -153,15 +153,20 @@ if __name__ == '__main__':
     edge_num_tool = EdgeNumberTool()
     prop_dir = '/home/zhenyue-qin/Research/Project-Maotai-Modularity/jars/generated-outputs/proportional-100'
     tour_dir = '/home/zhenyue-qin/Research/Project-Maotai-Modularity/jars/generated-outputs/tournament-100'
-    # prop_to_tour_dir = '/home/zhenyue-qin/Research/Project-Maotai-Modularity/generated-outputs/prop-to-tour-at-gen-50'
+    prop_to_tour_dir = '/home/zhenyue-qin/Research/Project-Maotai-Modularity/jars/generated-outputs/prop-to-tour-at' \
+                       '-gen-20'
+    prop_to_prop_dir = '/home/zhenyue-qin/Research/Project-Maotai-Modularity/jars/generated-outputs/prop-to-prop-at-gen-20'
 
     prop_gen_edges, prop_gen_edges_stds = edge_num_tool.get_avg_edge_num_in_each_generation_of_an_exp(prop_dir, True,
-                                                                                                      dir_num=5)
+                                                                                                      dir_num=100)
     tour_gen_edges, tour_gen_edges_stds = edge_num_tool.get_avg_edge_num_in_each_generation_of_an_exp(tour_dir, True,
-                                                                                                      dir_num=5)
-    # prop_to_tour_edges = edge_num_tool.get_avg_edge_num_in_each_generation_of_an_exp(prop_to_tour_dir)
+                                                                                                      dir_num=100)
+    conv_p_t_gen_edges, conv_p_t_gen_edges_stds = edge_num_tool.get_avg_edge_num_in_each_generation_of_an_exp(
+        prop_to_tour_dir, True, dir_num=100)
+    conv_p_p_gen_edges, conv_p_p_gen_edges_stds = edge_num_tool.get_avg_edge_num_in_each_generation_of_an_exp(
+        prop_to_prop_dir, True, dir_num=100)
 
-    fp.save_lists_graph([prop_gen_edges[:99], tour_gen_edges[:99]], error_bars=
-        [prop_gen_edges_stds, tour_gen_edges_stds],dpi=100)
+    fp.save_lists_graph([prop_gen_edges[:10], tour_gen_edges[:10]], error_bars=
+        [prop_gen_edges_stds, tour_gen_edges_stds], dpi=100)
 
     # fp.save_lists_graph([prop_gen_edges[:99], tour_gen_edges[:99]], dpi=100)

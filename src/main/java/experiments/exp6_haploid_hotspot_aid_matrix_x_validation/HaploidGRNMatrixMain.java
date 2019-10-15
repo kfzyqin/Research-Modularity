@@ -58,7 +58,7 @@ public class HaploidGRNMatrixMain {
     private static final int tournamentSize = 3;
     private static final double reproductionRate = 1;
 
-    private static final int maxGen = 100;
+    private static final int maxGen = 93;
     private static final List<Integer> thresholds = Arrays.asList(0, 470); // when to switch targets
     private static final double alpha = 0.75;
     private static final int[] perturbationSizes = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
@@ -67,7 +67,7 @@ public class HaploidGRNMatrixMain {
     /* Settings for text outputs */
     private static final String summaryFileName = "Summary.txt";
     private static final String csvFileName = "Statistics.csv";
-    private static final String outputDirectory = "tournament-100";
+    private static final String outputDirectory = "prop-to-tour-at-gen-7";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static final String allPerturbationsName = "Perturbations.per";
     private static final String modFitNamePrefix = "phenotypes";
@@ -121,8 +121,8 @@ public class HaploidGRNMatrixMain {
 
         /* It is not necessary to write an initializer, but doing so is convenient to
         repeat the experiment using different parameter */
-        HaploidGRNInitializer initializer = new HaploidGRNInitializer(populationSize, target1.length, edgeSize);
-//        PreFixedIndividualInitializer initializer = new PreFixedIndividualInitializer(populationSize, target1.length, edgeSize);
+//        HaploidGRNInitializer initializer = new HaploidGRNInitializer(populationSize, target1.length, edgeSize);
+        PreFixedIndividualInitializer initializer = new PreFixedIndividualInitializer(populationSize, target1.length, edgeSize);
 
         /* Population */
         Population<SimpleHaploid> population = initializer.initialize();
@@ -134,7 +134,7 @@ public class HaploidGRNMatrixMain {
 //
         /* Selector for reproduction */
         Selector<SimpleHaploid> tourSelector = new SimpleTournamentSelector<>(tournamentSize);
-        Selector<SimpleHaploid> propSelector = new SimpleProportionalSelector<>();
+//        Selector<SimpleHaploid> propSelector = new SimpleProportionalSelector<>();
 //        Selector<SimpleHaploid> selector = new RandomSelector<>();
 
         /* Selector for elites */
