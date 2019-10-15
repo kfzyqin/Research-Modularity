@@ -92,15 +92,19 @@ class EdgeNumberTool:
         std_dev_numbers = self.csv_file_opener.get_column_values_of_an_trial(working_path, 'StdDevEdgeNumber')
         return std_dev_numbers
 
-    def get_avg_edge_num_in_each_generation_of_an_exp(self, exp_path):
+    def get_avg_edge_num_in_each_generation_of_an_exp(self, exp_path, with_stdev=False, dir_num=-1):
         trial_dirs = fp.get_immediate_subdirectories(exp_path)
         exp_edge_nums = []
-        for a_trial_dir in trial_dirs:
+        for a_trial_dir in trial_dirs[:dir_num]:
             a_dir_gen_edge_nums = self.get_average_edge_number_in_each_generation(a_trial_dir)
             exp_edge_nums.append(np.array(a_dir_gen_edge_nums))
         exp_edge_nums = np.array(exp_edge_nums)
         avg_exp_edge_nums = np.mean(exp_edge_nums, axis=0)
-        return avg_exp_edge_nums
+        if not with_stdev:
+            return avg_exp_edge_nums
+        else:
+            std_exp_edge_nums = np.std(exp_edge_nums, axis=0)
+            return avg_exp_edge_nums, std_exp_edge_nums
 
     def get_average_edge_number_of_the_whole_trial(self, working_path):
         edge_numbers = self.get_average_edge_number_in_each_generation(working_path)
@@ -147,12 +151,17 @@ class EdgeNumberTool:
 
 if __name__ == '__main__':
     edge_num_tool = EdgeNumberTool()
-    prop_dir = '/home/zhenyue-qin/Research/Project-Maotai-Modularity/generated-outputs/30-proportional'
-    tour_dir = '/home/zhenyue-qin/Research/Project-Maotai-Modularity/generated-outputs/30-tournament'
+    prop_dir = '/home/zhenyue-qin/Research/Project-Maotai-Modularity/jars/generated-outputs/proportional-100'
+    tour_dir = '/home/zhenyue-qin/Research/Project-Maotai-Modularity/jars/generated-outputs/tournament-100'
     # prop_to_tour_dir = '/home/zhenyue-qin/Research/Project-Maotai-Modularity/generated-outputs/prop-to-tour-at-gen-50'
 
-    prop_gen_edges = edge_num_tool.get_avg_edge_num_in_each_generation_of_an_exp(prop_dir)
-    tour_gen_edges = edge_num_tool.get_avg_edge_num_in_each_generation_of_an_exp(tour_dir)
+    prop_gen_edges, prop_gen_edges_stds = edge_num_tool.get_avg_edge_num_in_each_generation_of_an_exp(prop_dir, True,
+                                                                                                      dir_num=5)
+    tour_gen_edges, tour_gen_edges_stds = edge_num_tool.get_avg_edge_num_in_each_generation_of_an_exp(tour_dir, True,
+                                                                                                      dir_num=5)
     # prop_to_tour_edges = edge_num_tool.get_avg_edge_num_in_each_generation_of_an_exp(prop_to_tour_dir)
 
-    fp.save_lists_graph([prop_gen_edges[:470], tour_gen_edges[:470]])
+    fp.save_lists_graph([prop_gen_edges[:99], tour_gen_edges[:99]], error_bars=
+        [prop_gen_edges_stds, tour_gen_edges_stds],dpi=100)
+
+    # fp.save_lists_graph([prop_gen_edges[:99], tour_gen_edges[:99]], dpi=100)

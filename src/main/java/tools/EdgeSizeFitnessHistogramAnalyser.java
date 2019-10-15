@@ -230,9 +230,9 @@ public class EdgeSizeFitnessHistogramAnalyser {
         FitnessFunction fitnessFunctionZhenyueSym = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
                 targets, maxCycle, perturbationRate, thresholds, perturbationSizes, 0.00);
 
-        String targetPathProportional = "/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Portal/generated-outputs/no-x-prop-edge-penalty";
+        String targetPathProportional = "/home/zhenyue-qin/Research/Project-Maotai-Modularity/generated-outputs/30-proportional";
         File[] directoriesProportional = new File(targetPathProportional).listFiles(File::isDirectory);
-        String targetPathTournament = "/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Portal/generated-outputs/no-x-tour-edge-penalty";
+        String targetPathTournament = "/home/zhenyue-qin/Research/Project-Maotai-Modularity/generated-outputs/30-tournament";
         File[] directoriesTournament = new File(targetPathTournament).listFiles(File::isDirectory);
 
         String selectionType = "edge number";
@@ -241,7 +241,7 @@ public class EdgeSizeFitnessHistogramAnalyser {
         for (int aGen=0; aGen<2000; aGen+=10) {
             overallProportionalSelectionList = new ArrayList<>();
             overallTournamentSelectionList = new ArrayList<>();
-            for (int fileIdx = 0; fileIdx < 5; fileIdx++) {
+            for (int fileIdx = 0; fileIdx < 1; fileIdx++) {
                 try {
                     File aDirProportional = directoriesProportional[fileIdx];
                     File aDirTournament = directoriesTournament[fileIdx];

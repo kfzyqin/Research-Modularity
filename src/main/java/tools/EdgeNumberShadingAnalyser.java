@@ -17,7 +17,7 @@ import static org.apache.commons.math3.util.CombinatoricsUtils.binomialCoefficie
 public class EdgeNumberShadingAnalyser {
     private static final int populationSize = 100;
     private static final int tournamentSize = 3;
-    private static final int maxGen = 2000;
+    private static final int maxGen = 1970;
 
     public static List<Double> getTournamentSelectionProbabilities(int populationSize, int tournamentSize) {
         List<Double> tournamentProbabilities = new ArrayList<>();
@@ -206,7 +206,7 @@ public class EdgeNumberShadingAnalyser {
         FitnessFunction fitnessFunctionZhenyueSym = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
                 targets, maxCycle, perturbationRate, thresholds, perturbationSizes, 0.00);
 
-        String targetPath = "/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/distributional-tournament-no-x";
+        String targetPath = "/home/zhenyue-qin/Research/Project-Maotai-Modularity/generated-outputs/30-tournament";
 //        String targetPath = "/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/distributional-proportional";
 //        String targetPath = "/media/zhenyue-qin/New Volume/Data-Warehouse/Data-Experiments/Project-Maotai/tec-simultaneous-experiments/75-perturbations-proportional";
         File[] directories = new File(targetPath).listFiles(File::isDirectory);
