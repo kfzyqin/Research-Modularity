@@ -67,7 +67,7 @@ public class HaploidGRNMatrixMain {
     /* Settings for text outputs */
     private static final String summaryFileName = "Summary.txt";
     private static final String csvFileName = "Statistics.csv";
-    private static final String outputDirectory = "prop-to-tour-at-gen-7";
+    private static final String outputDirectory = "prop-to-prop-at-gen-10";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static final String allPerturbationsName = "Perturbations.per";
     private static final String modFitNamePrefix = "phenotypes";
@@ -133,8 +133,8 @@ public class HaploidGRNMatrixMain {
 //        Mutator mutator = new GRNRandomEdgeMutator(geneMutationRate);
 //
         /* Selector for reproduction */
-        Selector<SimpleHaploid> tourSelector = new SimpleTournamentSelector<>(tournamentSize);
-//        Selector<SimpleHaploid> propSelector = new SimpleProportionalSelector<>();
+//        Selector<SimpleHaploid> tourSelector = new SimpleTournamentSelector<>(tournamentSize);
+        Selector<SimpleHaploid> propSelector = new SimpleProportionalSelector<>();
 //        Selector<SimpleHaploid> selector = new RandomSelector<>();
 
         /* Selector for elites */
@@ -160,7 +160,7 @@ public class HaploidGRNMatrixMain {
 
         /* The state of an GA */
         State<SimpleHaploid> state = new SimpleHaploidState<>(
-                population, fitnessFunction, mutator, reproducer, tourSelector, 2, reproductionRate);
+                population, fitnessFunction, mutator, reproducer, propSelector, 2, reproductionRate);
         state.record(statistics); // record the initial state of an population
 
         /* The frame of an GA to change states */
