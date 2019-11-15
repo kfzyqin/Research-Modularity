@@ -10,6 +10,7 @@ from GRNPlotter import GRNPlotter
 def count_number_of_edges(a_grn):
     return sum(x != 0 for x in a_grn)
 
+
 class EdgeNumberTool:
     def __init__(self):
         self.csv_file_opener = CSVFileOpener.CSVFileOpener()
@@ -66,25 +67,30 @@ class EdgeNumberTool:
             inter_edge_nos.append(an_intra_module_edge_no)
         return inter_edge_nos
 
-    def analyze_inter_module_edges_for_an_experiment(self, root_directory_path, a_type, sample_size, eva_type,
-                                                     start_gen, end_gen):
+    def analyze_edge_nums_for_an_experiment(self, root_directory_path, a_type, sample_size, eva_type,
+                                            start_gen, end_gen, edge_type='inter_module'):
         grn_all_gen_phenotypes = fp.get_grn_phenotypes(sample_size, a_type, root_directory_path, start_gen, end_gen)
         eva_results = []
         for grn_a_gen_phenotypes in grn_all_gen_phenotypes:
-            inter_module_edge_numbers = []
+            edge_numbers = []
             for a_grn_g_gen_phenotype in grn_a_gen_phenotypes:
-                inter_module_edge_numbers.append(self.get_inter_module_edge_number(a_grn_g_gen_phenotype))
+                if edge_type == 'inter_module':
+                    edge_numbers.append(self.get_inter_module_edge_number(a_grn_g_gen_phenotype))
+                elif edge_type == 'original':
+                    edge_numbers.append(count_number_of_edges(a_grn_g_gen_phenotype))
             if eva_type == 'avg':
-                eva_results.append(np.mean(inter_module_edge_numbers))
+                eva_results.append(np.mean(edge_numbers))
             elif eva_type == 'mode':
-                eva_results.append(statistics.mode(inter_module_edge_numbers))
+                eva_results.append(statistics.mode(edge_numbers))
             elif eva_type == 'stddev':
-                eva_results.append(statistics.stdev(inter_module_edge_numbers))
+                eva_results.append(statistics.stdev(edge_numbers))
+            elif eva_type == 'list':
+                eva_results.append(edge_numbers)
             else:
                 raise RuntimeError('not supported evaluation type. ')
         return eva_results
 
-    def get_average_edge_number_in_each_generation(self, working_path):
+    def get_average_edge_number_in_each_generation(self, working_path, edge_type='avg'):
         average_edge_numbers = self.csv_file_opener.get_column_values_of_an_trial(working_path, 'AvgEdgeNumber')
         return average_edge_numbers
     
@@ -99,7 +105,7 @@ class EdgeNumberTool:
             a_dir_gen_edge_nums = self.get_average_edge_number_in_each_generation(a_trial_dir)
             exp_edge_nums.append(np.array(a_dir_gen_edge_nums))
         exp_edge_nums = np.array(exp_edge_nums)
-        avg_exp_edge_nums = np.mean(exp_edge_nums, axis=0)
+        avg_exp_edge_nums = np.median(exp_edge_nums, axis=0)
         if not with_stdev:
             return avg_exp_edge_nums
         else:
@@ -158,7 +164,12 @@ if __name__ == '__main__':
     prop_to_prop_dir = '/home/zhenyue-qin/Research/Project-Maotai-Modularity/jars/generated-outputs/prop-to-prop-at' \
                        '-gen-10'
 
-    prop_gen_edges, prop_gen_edges_stds = edge_num_tool.get_avg_edge_num_in_each_generation_of_an_exp(prop_dir, True,
+    tour_1_dir = '/home/zhenyue-qin/Research/Project-Maotai-Modularity/generated-outputs/tour-size-1-gen-300'
+    tour_2_dir = '/home/zhenyue-qin/Research/Project-Maotai-Modularity/generated-outputs/tour-size-99-gen-300'
+
+    prop_300 = '/home/zhenyue-qin/Research/Project-Maotai-Modularity/generated-outputs/prop-gen-300'
+
+    prop_gen_edges, prop_gen_edges_stds = edge_num_tool.get_avg_edge_num_in_each_generation_of_an_exp(prop_300, True,
                                                                                                       dir_num=100)
     tour_gen_edges, tour_gen_edges_stds = edge_num_tool.get_avg_edge_num_in_each_generation_of_an_exp(tour_dir, True,
                                                                                                       dir_num=100)
@@ -167,7 +178,20 @@ if __name__ == '__main__':
     conv_p_p_gen_edges, conv_p_p_gen_edges_stds = edge_num_tool.get_avg_edge_num_in_each_generation_of_an_exp(
         prop_to_prop_dir, True, dir_num=100)
 
-    fp.save_lists_graph([conv_p_p_gen_edges[:100], conv_p_t_gen_edges[:100]], error_bars=
-        [conv_p_t_gen_edges_stds, conv_p_p_gen_edges_stds], dpi=100)
+    tour_1_edges, tour_1_edges_stds = edge_num_tool.get_avg_edge_num_in_each_generation_of_an_exp(
+        tour_1_dir, True, dir_num=4
+    )
+    tour_2_edges, tour_2_edges_stds = edge_num_tool.get_avg_edge_num_in_each_generation_of_an_exp(
+        tour_2_dir, True, dir_num=4
+    )
+
+    elite_edge_lists = edge_num_tool.analyze_edge_nums_for_an_experiment(tour_1_dir, a_type='fit', sample_size=100,
+                                                            eva_type='list', start_gen=0, end_gen=300,
+                                                            edge_type='original')
+    np_mean_elite_edge_lists = np.mean(elite_edge_lists, axis=0)
+    np_std_elite_edge_lists = np.std(elite_edge_lists, axis=0)
+
+    fp.save_lists_graph([tour_1_edges[:300], tour_2_edges[:300]],
+                        error_bars=[tour_1_edges_stds, tour_2_edges_stds])
 
     # fp.save_lists_graph([prop_gen_edges[:99], tour_gen_edges[:99]], dpi=100)

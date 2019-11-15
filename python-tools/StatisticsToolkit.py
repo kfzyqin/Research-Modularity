@@ -95,10 +95,10 @@ class StatisticsToolkit:
     def calcuate_evaluated_inter_module_edge_number_significance(self, phenotype_type, eva_type, start_gen, end_gen,
                                                                  sample_size=40, to_plot=False):
         edge_number_tool = EdgeNumberTool()
-        inter_module_edge_1 = edge_number_tool.analyze_inter_module_edges_for_an_experiment(
+        inter_module_edge_1 = edge_number_tool.analyze_edge_nums_for_an_experiment(
             self.path_1, phenotype_type, eva_type=eva_type, sample_size=sample_size,
             start_gen=start_gen, end_gen=end_gen)[:sample_size]
-        inter_module_edge_2 = edge_number_tool.analyze_inter_module_edges_for_an_experiment(
+        inter_module_edge_2 = edge_number_tool.analyze_edge_nums_for_an_experiment(
             self.path_2, phenotype_type, eva_type=eva_type, sample_size=sample_size,
             start_gen=start_gen, end_gen=end_gen)[:sample_size]
 
@@ -112,5 +112,45 @@ class StatisticsToolkit:
         return self.calculate_statistical_significances(inter_module_edge_1, inter_module_edge_2)
 
 
+if __name__ == '__main__':
+    bal_softmax_micro = [0.89120692, 0.893103421, 0.893275857, 0.892069, 0.892241359, 0.894137919, 0.894655168,
+                      0.890689671,
+           0.890517235, 0.89172411]
+    bal_softmax_macro = [0.895172417, 0.892069, 0.890172422, 0.88931036, 0.893793106, 0.89120692, 0.896034479, 0.890862048,
+           0.892241359, 0.89362067]
+
+    bal_pc_softmax_micro = [0.890489638, 0.893084705, 0.8924523, 0.891764, 0.891470969, 0.893691242, 0.894046605,
+                       0.890159547,
+           0.889997244, 0.891028225]
+    bal_pc_softmax_macro = [0.894888461, 0.891061425, 0.889619529, 0.889407575, 0.893162251, 0.89056921, 0.895139, 0.890755475,
+           0.891913235, 0.89319253]
+
+    unb_softmax_micro = [0.891034484, 0.890517235, 0.893103421, 0.892758608, 0.893448293]
+    unb_softmax_macro = [0.843545437, 0.843878865, 0.845666647, 0.848545551, 0.849878788]
+
+    unb_pc_softmax_micro = [0.898448288, 0.897241354, 0.897069, 0.894655168, 0.899482787, ]
+    unb_pc_softmax_macro = [0.879212141, 0.879212201, 0.877, 0.871545434, 0.878]
+
+    print(StatisticsToolkit.calculate_statistical_significances(bal_softmax_micro[:5], bal_pc_softmax_micro[:5]))
+    print(StatisticsToolkit.calculate_statistical_significances(unb_softmax_micro, unb_pc_softmax_micro))
+    print(StatisticsToolkit.calculate_statistical_significances(bal_softmax_macro[:5], bal_pc_softmax_macro[:5]))
+    print(StatisticsToolkit.calculate_statistical_significances(unb_softmax_macro, unb_pc_softmax_macro))
+
+    mnist_bal_softmax_micro = [99.0036, 98.9676, 99.0156, 99.0276, 99.0516]
+    mnist_bal_softmax_macro = [0.9900, 0.9897, 0.9902, 0.9903, 0.9905]
+
+    mnist_bal_pc_softmax_micro = [99.0756, 99.0156, 99.0396, 99.0156, 99.0396]
+    mnist_bal_pc_softmax_macro = [0.9908, 0.9902, 0.9904, 0.9902, 0.9904]
+
+    mnist_unb_softmax_micro = [97.9913, 97.9913, 98.0131, 98.0349, 98.0131]
+    mnist_unb_softmax_macro = [0.9553, 0.9553, 0.9565, 0.9556, 0.9565]
+
+    mnist_unb_pc_softmax_micro = [97.7948, 97.8384, 97.8384, 97.8603, 97.9039]
+    mnist_unb_pc_softmax_macro = [0.9738, 0.9740, 0.9729, 0.9730, 0.9744]
+
+    print(StatisticsToolkit.calculate_statistical_significances(mnist_bal_softmax_micro[:5], mnist_bal_pc_softmax_micro[:5]))
+    print(StatisticsToolkit.calculate_statistical_significances(mnist_unb_softmax_micro, mnist_unb_pc_softmax_micro))
+    print(StatisticsToolkit.calculate_statistical_significances(mnist_bal_softmax_macro[:5], mnist_bal_pc_softmax_macro[:5]))
+    print(StatisticsToolkit.calculate_statistical_significances(mnist_unb_softmax_macro, mnist_unb_pc_softmax_macro))
 
 
