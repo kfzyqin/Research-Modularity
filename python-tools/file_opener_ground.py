@@ -8,7 +8,7 @@ from StatisticsToolkit import StatisticsToolkit
 prefix_path = os.path.expanduser("~")
 
 
-def plot_fit_lines(path_1, labels, save_path, file_name, sample_size=100, gens=2000, to_save=True):
+def plot_fit_lines(path_1, labels, save_path, file_name, sample_size=100, gens=2000, to_save=True, target_column=None):
     csv_file_opener = CSVFileOpener()
     target_column = None
     if 'Fitness' in labels[0]:
@@ -77,34 +77,38 @@ path_dict = {
     'Elite Stoc Sym': '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/elite-stochastic-p00',
     'Elite Stoc Asym': '/media/zhenyue-qin/New Volume/Data-Warehouse/Project-Maotai-Modularity/tec-data/elite-stochastic-p01',
     'With Selection': '/media/zhenyue-qin/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/with-selection-two-targets',
-    'No Selection': '/media/zhenyue-qin/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/no-selection-two-targets'
+    'No Selection': '/media/zhenyue-qin/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking'
+                    '/generated-outputs/no-selection-two-targets',
+    'Tour-No-X': '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments' \
+                 '/distributional-tournament-no-x',
+    'Prop-No-X': '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/distributional-proportional-no-x'
 }
 
 
 
 # save_path = '/home/zhenyue-qin/Research/Project-Nora-Miscellaneous/tmp-imgs'
-save_path_single = '/home/zhenyue-qin/Research/Project-Nora-Miscellaneous/tmp-imgs/single'
-save_combined_path = '/home/zhenyue-qin/Research/Project-Nora-Miscellaneous/tmp-imgs/combined'
+save_path_single = 'tmp-imgs'
+save_combined_path = 'tmp-imgs'
 
-save_path_selection = '/home/zhenyue-qin/Research/Project-Nora-Miscellaneous/tmp-imgs/selection'
+save_path_selection = 'tmp-imgs'
 
 sample_size = 100
 
-path_key_1 = 'With Selection'
-value_type = 'Edge Number'
+path_key_1 = 'Tour-No-X'
+value_type = 'Fitness'
 label_key_1 = path_key_1 + ' ' + value_type
 label_key_1 = label_key_1.replace(' ', '-')
 
 values_1, label_1, stdevs_1 = plot_fit_lines(path_dict[path_key_1], [label_key_1], save_path_selection, file_name=label_key_1 + '.png',
                                              sample_size=sample_size, to_save=False)
 
-path_key_2 = 'No Selection'
+path_key_2 = 'Prop-No-X'
 label_key_2 = path_key_2 + ' ' + value_type
 values_2, label_2, stdevs_2 = plot_fit_lines(path_dict[path_key_2], [label_key_2], save_path_selection, file_name=label_key_2 + '.png',
                                              sample_size=sample_size, to_save=False)
 
-# stat_tool_kil = StatisticsToolkit()
-# print stat_tool_kil.calculate_statistical_significances(values_1[501:], values_2[501:])
+stat_tool_kil = StatisticsToolkit()
+print stat_tool_kil.calculate_statistical_significances(values_1[1:2001], values_2[1:2001])
 
 to_save_name = path_key_1 + ' ' + path_key_2 + ' ' + value_type
 to_save_name = to_save_name.replace(' ', '_')
@@ -112,7 +116,8 @@ to_save_name = to_save_name.replace(' ', '_')
 fp.save_lists_graph([values_1[1:2001], values_2[1:2001]],
                             labels=[path_key_1, path_key_2],
                             ver_lines=[500], path=save_path_selection, file_name=to_save_name, marker='.', colors=[0, 1],
-                            dpi=500, to_normalize=False, x_gap=20, error_bars=[stdevs_1[1:2001], stdevs_2[1:2001]], leg_loc='upper left')
+                            dpi=150, to_normalize=False, x_gap=20, error_bars=[stdevs_1[1:2001], stdevs_2[1:2001]],
+                    leg_loc='bottom right')
 
 
 # # fits_avg_1 = csv_file_opener.get_properties_of_each_generation_in_a_whole_experiment(path_1, 'Median')

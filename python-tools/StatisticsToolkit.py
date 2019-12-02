@@ -136,17 +136,17 @@ if __name__ == '__main__':
     print(StatisticsToolkit.calculate_statistical_significances(bal_softmax_macro[:5], bal_pc_softmax_macro[:5]))
     print(StatisticsToolkit.calculate_statistical_significances(unb_softmax_macro, unb_pc_softmax_macro))
 
-    mnist_bal_softmax_micro = [99.0036, 98.9676, 99.0156, 99.0276, 99.0516]
-    mnist_bal_softmax_macro = [0.9900, 0.9897, 0.9902, 0.9903, 0.9905]
+    mnist_bal_softmax_micro = [98.0100, 97.7600, 98.1200, 97.8600, 98.0400]
+    mnist_bal_softmax_macro = [0.9800, 0.9775, 0.9810, 0.9785, 0.9805]
 
-    mnist_bal_pc_softmax_micro = [99.0756, 99.0156, 99.0396, 99.0156, 99.0396]
-    mnist_bal_pc_softmax_macro = [0.9908, 0.9902, 0.9904, 0.9902, 0.9904]
+    mnist_bal_pc_softmax_micro = [97.9200, 97.7800, 98.1200, 97.7200, 98.0600]
+    mnist_bal_pc_softmax_macro = [0.9793, 0.9778, 0.9811, 0.9771, 0.9805]
 
-    mnist_unb_softmax_micro = [97.9913, 97.9913, 98.0131, 98.0349, 98.0131]
-    mnist_unb_softmax_macro = [0.9553, 0.9553, 0.9565, 0.9556, 0.9565]
+    mnist_unb_softmax_micro = [96.9203, 96.8898, 96.6916, 96.8288, 96.7221]
+    mnist_unb_softmax_macro = [0.9508, 0.9543, 0.9505, 0.9517, 0.9454]
 
-    mnist_unb_pc_softmax_micro = [97.7948, 97.8384, 97.8384, 97.8603, 97.9039]
-    mnist_unb_pc_softmax_macro = [0.9738, 0.9740, 0.9729, 0.9730, 0.9744]
+    mnist_unb_pc_softmax_micro = [97.2557, 97.0422, 96.2494, 96.7526, 97.0270]
+    mnist_unb_pc_softmax_macro = [0.9654, 0.9610, 0.9590, 0.9642, 0.9656]
 
     print(StatisticsToolkit.calculate_statistical_significances(mnist_bal_softmax_micro[:5], mnist_bal_pc_softmax_micro[:5]))
     print(StatisticsToolkit.calculate_statistical_significances(mnist_unb_softmax_micro, mnist_unb_pc_softmax_micro))
