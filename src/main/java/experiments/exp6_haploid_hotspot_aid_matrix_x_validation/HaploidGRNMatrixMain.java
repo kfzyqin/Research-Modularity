@@ -121,8 +121,8 @@ public class HaploidGRNMatrixMain {
 
         /* It is not necessary to write an initializer, but doing so is convenient to
         repeat the experiment using different parameter */
-//        HaploidGRNInitializer initializer = new HaploidGRNInitializer(populationSize, target1.length, edgeSize);
-        PreFixedIndividualInitializer initializer = new PreFixedIndividualInitializer(populationSize, target1.length, edgeSize);
+        HaploidGRNInitializer initializer = new HaploidGRNInitializer(populationSize, target1.length, edgeSize);
+//        PreFixedIndividualInitializer initializer = new PreFixedIndividualInitializer(populationSize, target1.length, edgeSize);
 
         /* Population */
         Population<SimpleHaploid> population = initializer.initialize();
@@ -145,8 +145,8 @@ public class HaploidGRNMatrixMain {
                 new SimpleTournamentScheme(3));
 
         /* Reproducer for reproduction */
-        Reproducer<SimpleHaploid> reproducer = new GRNHaploidNoXReproducer();
-//        Reproducer<SimpleHaploid> reproducer = new GRNHaploidMatrixDiagonalReproducer(target1.length);
+//        Reproducer<SimpleHaploid> reproducer = new GRNHaploidNoXReproducer();
+        Reproducer<SimpleHaploid> reproducer = new GRNHaploidMatrixDiagonalReproducer(target1.length);
 //        Reproducer<SimpleHaploid> reproducer = new GRNHaploidHorizontalOneGeneReproducer(target1.length);
 
         /* Statistics for keeping track the performance in generations */
@@ -175,7 +175,7 @@ public class HaploidGRNMatrixMain {
 //            if (i == 50) {
 //                frame.getState().setSelector(tourSelector);
 //            }
-            if (i == 502) {
+            if (i == 500) {
                 sDate = new java.util.Date();
                 System.out.println("Starting time: " + sDate);
             }

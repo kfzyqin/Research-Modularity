@@ -5,7 +5,7 @@ import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue;
 import ga.others.GeneralMethods;
 import ga.others.ModularityPathAnalyzer;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import org.openide.util.NotImplementedException;
 
 import java.io.*;
 import java.text.DateFormat;

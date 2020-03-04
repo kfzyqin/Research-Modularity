@@ -8,7 +8,6 @@ import ga.components.materials.SimpleMaterial;
 import ga.operations.fitnessFunctions.*;
 import ga.operations.reproducers.GRNHaploidMatrixDiagonalReproducer;
 import ga.operations.reproducers.Reproducer;
-import sun.java2d.pipe.SpanShapeRenderer;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -4,7 +4,7 @@ import ga.components.materials.SimpleMaterial;
 import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue;
 import ga.others.GeneralMethods;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import org.openide.util.NotImplementedException;
 
 import java.io.BufferedReader;
 import java.io.File;
