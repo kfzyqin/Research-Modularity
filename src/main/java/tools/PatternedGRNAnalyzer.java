@@ -52,6 +52,9 @@ public class PatternedGRNAnalyzer {
         FitnessFunction fitnessFunctionESW = new GRNFitnessFunctionMultipleTargetsBalanceAsymmetric(
                 targets, maxCycle, 500, perturbationRate, thresholds, stride);
 
+        FitnessFunction fitnessFunctionESWOrig = new GRNFitnessFunctionMultipleTargets(
+                targets, maxCycle, 500, perturbationRate, thresholds);
+
         File[] directories = new File(targetPath).listFiles(File::isDirectory);
 
         List<Double> fits = new ArrayList<>();
@@ -85,7 +88,9 @@ public class PatternedGRNAnalyzer {
                 int genIdx = targetGeneration;
                 String[] lastGRNString = lines.get(genIdx);
 //                String[] lastGRNString = lines.get(3);
-                SimpleMaterial aMaterial = GeneralMethods.convertStringArrayToSimpleMaterial(lastGRNString);
+//                SimpleMaterial aMaterial = GeneralMethods.convertStringArrayToSimpleMaterial(lastGRNString);
+                int[] a = {0, 0, 1, 0, 0, 0, 0, 0, 0, 0, -1, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, 1, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, -1, 1, 0, 1, 0, 0, 0, 0, 0, -1, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, -1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, -1, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, -1, 1};
+                SimpleMaterial aMaterial = GeneralMethods.convertIntArrayToSimpleMaterial(a);
 
                 List<Integer> materialList = GeneralMethods.convertArrayToIntegerList(GeneralMethods.convertSimpleMaterialToIntArray(aMaterial));
                 double mod = GRNModularity.getGRNModularity(materialList);
@@ -93,16 +98,18 @@ public class PatternedGRNAnalyzer {
                 int interEdgeNo = GeneralMethods.getInterModuleEdgeNumber(GeneralMethods.convertStringArrayToIntArray(lastGRNString));
 
                 List<Double> removeNoEdgeFitnessesZhenyueSym = ModularityPathAnalyzer.removeEdgeAnalyzer(0, aMaterial,
-                        fitnessFunctionZhenyueSym, true, 1700, null, false);
+                        fitnessFunctionESWOrig, true, 1700, null, false);
                 List<Double> removeAllEdgeFitnessesZhenyueSym = ModularityPathAnalyzer.removeEdgeAnalyzer(interEdgeNo, aMaterial,
-                        fitnessFunctionZhenyueSym, true, 1700, null, false);
+                        fitnessFunctionESWOrig, true, 1700, null, false);
+
+                System.out.println(removeNoEdgeFitnessesZhenyueSym);
 
                 List<Double> fitnesses = Arrays.asList (
                         removeNoEdgeFitnessesZhenyueSym.get(0), removeAllEdgeFitnessesZhenyueSym.get(0));
 
 //                if (fitnesses.get(0) < 0.9462) {
 //                if (fitnesses.get(0) < 0.9 || fitnesses.get(0) > 0.9462) {
-                if (fitnesses.get(0) > 0.9) {
+                if (fitnesses.get(0) > 0.5) {
                     continue;
                 }
 

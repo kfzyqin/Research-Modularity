@@ -105,7 +105,7 @@ public abstract class GRNFitnessFunction<M extends Material> implements FitnessF
         return returnables;
     }
 
-    protected double getHammingDistance(DataGene[] attractor, int[] target) {
+    public double getHammingDistance(DataGene[] attractor, int[] target) {
         int count = 0;
         for (int i=0; i<attractor.length; i++) {
             if (attractor[i].getValue() == target[i]) {

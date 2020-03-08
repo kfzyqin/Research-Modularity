@@ -58,12 +58,12 @@ if __name__ == '__main__':
 
     elif to_use == 'specific':
         # path_1 = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/distributional-tournament-no-x'
-        path_1 = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Data/distributional-p00'
-        path_2 = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/distributional-proportional-no-x'
+        path_1 = '/home/zhenyue-qin/Research/Project-Maotai-Modularity/generated-outputs/2020-distributional-x-p00'
+        path_2 = '/home/zhenyue-qin/Research/Project-Maotai-Modularity/generated-outputs/2020-distributional-x-p01'
 
         omega = StatisticsToolkit(path_1, path_2)
 
-        sample_size = 10
+        sample_size = 20
 
         the_index = -1
 

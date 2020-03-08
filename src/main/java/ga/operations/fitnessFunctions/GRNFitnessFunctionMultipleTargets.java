@@ -192,10 +192,12 @@ public class GRNFitnessFunctionMultipleTargets extends GRNFitnessFunction<Simple
 
     @Override
     public double evaluate(final SimpleMaterial phenotype, final int generation) {
+        List<Double> tmpFits = new ArrayList<>();
         currentPerturbations.clear();
         List<Integer> currentTargetIndices = this.getCurrentTargetIndices(generation);
         double fitnessValue = 0;
         for (Integer targetIndex : currentTargetIndices) {
+//            System.out.println("target index: " + targetIndex);
             int[] aTarget = this.targets[targetIndex];
             DataGene[][] startAttractors = this.generateInitialAttractors(perturbations, perturbationRate, aTarget);
 
@@ -208,13 +210,21 @@ public class GRNFitnessFunctionMultipleTargets extends GRNFitnessFunction<Simple
             }
 
             currentPerturbations.add(startAttractorsClone.clone());
-            fitnessValue += this.evaluateOneTarget(phenotype, aTarget, startAttractors);
+            double aFitness = this.evaluateOneTarget(phenotype, aTarget, startAttractors);
+            if (targetIndex == 1) {
+                tmpFits.add(aFitness);
+            }
+            fitnessValue += aFitness;
+
 //            try {
 //                generatePerturbationCSVFile(generation, phenotype, startAttractors, targetIndex);
 //            } catch (IOException e) {
 //                e.printStackTrace();
 //            }
         }
+//        if (currentTargetIndices.size() == 2) {
+//            System.out.println("len of tmpFits: " + tmpFits);
+//        }
         return fitnessValue / currentTargetIndices.size();
 
     }

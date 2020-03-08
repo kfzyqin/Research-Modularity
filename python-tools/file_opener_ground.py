@@ -81,9 +81,10 @@ path_dict = {
                     '/generated-outputs/no-selection-two-targets',
     'Tour-No-X': '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments' \
                  '/distributional-tournament-no-x',
-    'Prop-No-X': '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/distributional-proportional-no-x'
+    'Prop-No-X': '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments'
+                 '/distributional-proportional-no-x',
+    'Dist-Prop': '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/distributional-proportional'
 }
-
 
 
 # save_path = '/home/zhenyue-qin/Research/Project-Nora-Miscellaneous/tmp-imgs'
@@ -102,7 +103,7 @@ label_key_1 = label_key_1.replace(' ', '-')
 values_1, label_1, stdevs_1 = plot_fit_lines(path_dict[path_key_1], [label_key_1], save_path_selection, file_name=label_key_1 + '.png',
                                              sample_size=sample_size, to_save=False)
 
-path_key_2 = 'Prop-No-X'
+path_key_2 = 'Dist-Prop'
 label_key_2 = path_key_2 + ' ' + value_type
 values_2, label_2, stdevs_2 = plot_fit_lines(path_dict[path_key_2], [label_key_2], save_path_selection, file_name=label_key_2 + '.png',
                                              sample_size=sample_size, to_save=False)

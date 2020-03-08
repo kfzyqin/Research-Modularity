@@ -19,7 +19,7 @@ public class GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetric ex
     }
 
     @Override
-    protected double getHammingDistance(DataGene[] attractor, int[] target) {
+    public double getHammingDistance(DataGene[] attractor, int[] target) {
         double[] weights = new double[target.length];
 
         if (target.length % 2 == 0) {

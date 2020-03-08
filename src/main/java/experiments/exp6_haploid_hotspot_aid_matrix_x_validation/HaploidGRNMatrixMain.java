@@ -14,6 +14,8 @@ import ga.operations.mutators.GRNEdgeMutator;
 import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
 import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
+import ga.operations.priorOperators.PriorOperator;
+import ga.operations.priorOperators.SimpleElitismOperator;
 import ga.operations.reproducers.*;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.Selector;
@@ -48,7 +50,7 @@ public class HaploidGRNMatrixMain {
     /* Parameters of the GRN */
     private static final int maxCycle = 30;
     private static final int edgeSize = 20;
-    private static final int perturbations = 75;
+    private static final int perturbations = 500;
     private static final double perturbationRate = 0.15;
 
     /* Parameters of the GA */
@@ -58,8 +60,8 @@ public class HaploidGRNMatrixMain {
     private static final int tournamentSize = 3;
     private static final double reproductionRate = 1;
 
-    private static final int maxGen = 93;
-    private static final List<Integer> thresholds = Arrays.asList(0, 470); // when to switch targets
+    private static final int maxGen = 2000;
+    private static final List<Integer> thresholds = Arrays.asList(0, 500); // when to switch targets
     private static final double alpha = 0.75;
     private static final int[] perturbationSizes = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     private static final int perturbationCycleSize = perturbations;
@@ -67,7 +69,7 @@ public class HaploidGRNMatrixMain {
     /* Settings for text outputs */
     private static final String summaryFileName = "Summary.txt";
     private static final String csvFileName = "Statistics.csv";
-    private static final String outputDirectory = "prop-to-prop-at-gen-10";
+    private static final String outputDirectory = "2020-distributional-x-p01";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static final String allPerturbationsName = "Perturbations.per";
     private static final String modFitNamePrefix = "phenotypes";
@@ -79,10 +81,10 @@ public class HaploidGRNMatrixMain {
     private static final String plotTitle = "Haploid GRN Matrix";
     private static final String plotFileName = "Trends.png";
 
-    private static final double stride = 0.00;
+    private static final double stride = 0.01;
     private static final int PerturbationPathUpBound = 4;
 
-    private static double edgePenalty = 0.01;
+//    private static double edgePenalty = 0.00;
 
     public static void main(String[] args) throws IOException, InterruptedException {
 //        int[][] targets = {target1, target2, target3, target4, target5, target6, target7};
@@ -121,8 +123,8 @@ public class HaploidGRNMatrixMain {
 
         /* It is not necessary to write an initializer, but doing so is convenient to
         repeat the experiment using different parameter */
-//        HaploidGRNInitializer initializer = new HaploidGRNInitializer(populationSize, target1.length, edgeSize);
-        PreFixedIndividualInitializer initializer = new PreFixedIndividualInitializer(populationSize, target1.length, edgeSize);
+        HaploidGRNInitializer initializer = new HaploidGRNInitializer(populationSize, target1.length, edgeSize);
+//        PreFixedIndividualInitializer initializer = new PreFixedIndividualInitializer(populationSize, target1.length, edgeSize);
 
         /* Population */
         Population<SimpleHaploid> population = initializer.initialize();
@@ -133,20 +135,20 @@ public class HaploidGRNMatrixMain {
 //        Mutator mutator = new GRNRandomEdgeMutator(geneMutationRate);
 //
         /* Selector for reproduction */
-//        Selector<SimpleHaploid> tourSelector = new SimpleTournamentSelector<>(tournamentSize);
-        Selector<SimpleHaploid> propSelector = new SimpleProportionalSelector<>();
+        Selector<SimpleHaploid> tourSelector = new SimpleTournamentSelector<>(tournamentSize);
+//        Selector<SimpleHaploid> propSelector = new SimpleProportionalSelector<>();
 //        Selector<SimpleHaploid> selector = new RandomSelector<>();
 
         /* Selector for elites */
-//        PriorOperator<SimpleHaploid> priorOperator = new SimpleElitismOperator<>(numElites);
+        PriorOperator<SimpleHaploid> priorOperator = new SimpleElitismOperator<>(numElites);
 
         /* PostOperator is required to fill up the vacancy */
         PostOperator<SimpleHaploid> postOperator = new SimpleFillingOperatorForNormalizable<>(
                 new SimpleTournamentScheme(3));
 
         /* Reproducer for reproduction */
-        Reproducer<SimpleHaploid> reproducer = new GRNHaploidNoXReproducer();
-//        Reproducer<SimpleHaploid> reproducer = new GRNHaploidMatrixDiagonalReproducer(target1.length);
+//        Reproducer<SimpleHaploid> reproducer = new GRNHaploidNoXReproducer();
+        Reproducer<SimpleHaploid> reproducer = new GRNHaploidMatrixDiagonalReproducer(target1.length);
 //        Reproducer<SimpleHaploid> reproducer = new GRNHaploidHorizontalOneGeneReproducer(target1.length);
 
         /* Statistics for keeping track the performance in generations */
@@ -160,11 +162,12 @@ public class HaploidGRNMatrixMain {
 
         /* The state of an GA */
         State<SimpleHaploid> state = new SimpleHaploidState<>(
-                population, fitnessFunction, mutator, reproducer, propSelector, 2, reproductionRate);
+                population, fitnessFunction, mutator, reproducer, tourSelector, 2, reproductionRate);
         state.record(statistics); // record the initial state of an population
 
         /* The frame of an GA to change states */
         Frame<SimpleHaploid> frame = new SimpleHaploidFrame<>(state,postOperator,statistics);
+//        Frame<SimpleHaploid> frame = new SimpleHaploidFrame<>(state,postOperator,statistics, priorOperator);
 
         statistics.print(0); // print the initial state of an population
 
@@ -172,13 +175,6 @@ public class HaploidGRNMatrixMain {
 
         /* Actual GA evolutions */
         for (int i = 1; i <= maxGen; i++) {
-//            if (i == 50) {
-//                frame.getState().setSelector(tourSelector);
-//            }
-            if (i == 502) {
-                sDate = new java.util.Date();
-                System.out.println("Starting time: " + sDate);
-            }
             frame.evolve();
             statistics.print(i);
 

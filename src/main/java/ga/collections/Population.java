@@ -112,24 +112,39 @@ public class Population<C extends Chromosome> implements Copyable<Population<C>>
         Collections.sort(individuals);
     }
 
-    private Map<String, Double> grnRecorder = new HashMap<>();
+    private Map<String, Double> grnRecorder_1 = new HashMap<>();
+    private Map<String, Double> grnRecorder_2 = new HashMap<>();
 
     public void evaluate(@NotNull final FitnessFunctionMultipleTargets fitnessFunction, final boolean recompute, int generation) {
         for (Individual<C> i : individuals) {
-            if (grnRecorder.size() > 2500) {
-                grnRecorder = new HashMap<>();
+            if (grnRecorder_1.size() > 2500) {
+                grnRecorder_1 = new HashMap<>();
+            }
+
+            if (grnRecorder_2.size() > 2500) {
+                grnRecorder_2 = new HashMap<>();
             }
 
             String string_i_Phenotype = i.getChromosome().getPhenotype(false).toString();
 
-            if (grnRecorder.containsKey(string_i_Phenotype)) {
-                i.fitness = grnRecorder.get(string_i_Phenotype);
+            if (generation > 500) {
+                if (grnRecorder_2.containsKey(string_i_Phenotype)) {
+                    i.fitness = grnRecorder_2.get(string_i_Phenotype);
+                } else {
+                    double aFitness = i.evaluate(fitnessFunction, recompute, generation);
+                    grnRecorder_2.put(string_i_Phenotype, aFitness);
+                }
             } else {
-                double aFitness = i.evaluate(fitnessFunction, recompute, generation);
-                grnRecorder.put(string_i_Phenotype, aFitness);
+                if (grnRecorder_1.containsKey(string_i_Phenotype)) {
+                    i.fitness = grnRecorder_1.get(string_i_Phenotype);
+                } else {
+                    double aFitness = i.evaluate(fitnessFunction, recompute, generation);
+                    grnRecorder_1.put(string_i_Phenotype, aFitness);
+                }
             }
 
 //            i.evaluate(fitnessFunction, recompute, generation);
+
         }
         Collections.sort(individuals);
     }

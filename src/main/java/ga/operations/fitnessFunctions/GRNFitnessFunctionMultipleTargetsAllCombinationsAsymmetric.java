@@ -33,7 +33,7 @@ public class GRNFitnessFunctionMultipleTargetsAllCombinationsAsymmetric extends 
     }
 
     @Override
-    protected double getHammingDistance(DataGene[] attractor, int[] target) {
+    public double getHammingDistance(DataGene[] attractor, int[] target) {
         return grnFitnessFunctionMultipleTargetsAsymmetric.getHammingDistance(attractor, target);
     }
 }
