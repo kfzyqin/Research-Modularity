@@ -89,7 +89,7 @@ def write_a_list_into_a_file(a_list, file_path, file_name):
 
 
 def save_lists_graph(lists, labels=None, ver_lines=None, path="", file_name="", marker=None, colors=None, dpi=500,
-                     to_normalize=False, left_lim=0, error_bars=None, x_gap=1, leg_loc=0):
+                     to_normalize=False, left_lim=0, error_bars=None, x_gap=1, leg_loc=0, y_lim=None, y_scale=None):
     if to_normalize:
         tmp_lists = []
         for a_list in lists:
@@ -99,7 +99,7 @@ def save_lists_graph(lists, labels=None, ver_lines=None, path="", file_name="", 
     fig, ax0 = plt.subplots(nrows=1, figsize=(16, 10))
     default_colors = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'w']
     default_line_styles = ['-', '--', '-.', ':']
-    default_markers = ['D', 'x', '^', 'v', '.']
+    default_markers = ['x', 'D', '^', 'v', '.']
     for a_list_idx in range(len(lists)):
         a_x_axis = list(range(left_lim, left_lim + len(lists[a_list_idx]), x_gap))
         gapped_list = list([lists[a_list_idx][x] for x in a_x_axis])
@@ -120,7 +120,7 @@ def save_lists_graph(lists, labels=None, ver_lines=None, path="", file_name="", 
                              marker=default_markers[a_list_idx%len(default_markers)],
                              c=default_colors[int(colors[a_list_idx])] if colors is not None else default_colors[
                                  a_list_idx % len(default_colors)], linestyle=default_line_styles[a_list_idx%len(default_line_styles)],
-                             capsize=2)
+                             capsize=1)
 
 
             else:
@@ -128,12 +128,18 @@ def save_lists_graph(lists, labels=None, ver_lines=None, path="", file_name="", 
                              marker=default_markers[a_list_idx % len(default_markers)],
                              c=default_colors[int(colors[a_list_idx])] if colors is not None else default_colors[
                                  a_list_idx % len(default_colors)], linestyle=default_line_styles[a_list_idx%len(default_line_styles)],
-                             capsize=2)
+                             capsize=1)
         ax0.legend(loc=leg_loc)
 
     if ver_lines is not None:
         for v_l in ver_lines:
             plt.axvline(x=v_l, ls='dashed', c='y')
+
+    if y_lim is not None:
+        axes = plt.gca()
+        axes.set_yticks(y_lim)
+        for a_y in y_lim[1:-1]:
+            plt.axhline(a_y, ls='--', c='red')
 
     if path and file_name:
         plt.savefig(os.path.join(path, file_name), dpi=dpi, pad_inches=0, bbox_inches='tight')

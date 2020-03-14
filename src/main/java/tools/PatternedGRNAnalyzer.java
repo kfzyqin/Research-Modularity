@@ -42,12 +42,12 @@ public class PatternedGRNAnalyzer {
     private static final double stride = 0.00;
 
     public static void main(String[] args) {
-        String targetPath = "/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Portal/generated-outputs/no-x-prop-edge-penalty";
-
+        String targetPath = "/media/zhenyue-qin/New Volume/Experiment-Data-Storage/" +
+                "Storage-Modularity/2020-New-Exps/2020-stochastic-elite-x-p01";
         int[][] targets = {target1, target2};
 
         FitnessFunction fitnessFunctionZhenyueSym = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
-                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, 0.00);
+                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
 
         FitnessFunction fitnessFunctionESW = new GRNFitnessFunctionMultipleTargetsBalanceAsymmetric(
                 targets, maxCycle, 500, perturbationRate, thresholds, stride);
@@ -88,9 +88,9 @@ public class PatternedGRNAnalyzer {
                 int genIdx = targetGeneration;
                 String[] lastGRNString = lines.get(genIdx);
 //                String[] lastGRNString = lines.get(3);
-//                SimpleMaterial aMaterial = GeneralMethods.convertStringArrayToSimpleMaterial(lastGRNString);
-                int[] a = {0, 0, 1, 0, 0, 0, 0, 0, 0, 0, -1, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, 1, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, -1, 1, 0, 1, 0, 0, 0, 0, 0, -1, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, -1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, -1, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, -1, 1};
-                SimpleMaterial aMaterial = GeneralMethods.convertIntArrayToSimpleMaterial(a);
+                SimpleMaterial aMaterial = GeneralMethods.convertStringArrayToSimpleMaterial(lastGRNString);
+//                int[] a = {0, 0, 1, 0, 0, 0, 0, 0, 0, 0, -1, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, 1, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, -1, 1, 0, 1, 0, 0, 0, 0, 0, -1, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, -1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, -1, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, -1, 1};
+//                SimpleMaterial aMaterial = GeneralMethods.convertIntArrayToSimpleMaterial(a);
 
                 List<Integer> materialList = GeneralMethods.convertArrayToIntegerList(GeneralMethods.convertSimpleMaterialToIntArray(aMaterial));
                 double mod = GRNModularity.getGRNModularity(materialList);
@@ -98,20 +98,18 @@ public class PatternedGRNAnalyzer {
                 int interEdgeNo = GeneralMethods.getInterModuleEdgeNumber(GeneralMethods.convertStringArrayToIntArray(lastGRNString));
 
                 List<Double> removeNoEdgeFitnessesZhenyueSym = ModularityPathAnalyzer.removeEdgeAnalyzer(0, aMaterial,
-                        fitnessFunctionESWOrig, true, 1700, null, false);
+                        fitnessFunctionZhenyueSym, true, 1700, null, false);
                 List<Double> removeAllEdgeFitnessesZhenyueSym = ModularityPathAnalyzer.removeEdgeAnalyzer(interEdgeNo, aMaterial,
-                        fitnessFunctionESWOrig, true, 1700, null, false);
-
-                System.out.println(removeNoEdgeFitnessesZhenyueSym);
+                        fitnessFunctionZhenyueSym, true, 1700, null, false);
 
                 List<Double> fitnesses = Arrays.asList (
                         removeNoEdgeFitnessesZhenyueSym.get(0), removeAllEdgeFitnessesZhenyueSym.get(0));
 
 //                if (fitnesses.get(0) < 0.9462) {
 //                if (fitnesses.get(0) < 0.9 || fitnesses.get(0) > 0.9462) {
-                if (fitnesses.get(0) > 0.5) {
-                    continue;
-                }
+//                if (fitnesses.get(0) > 0.5) {
+//                    continue;
+//                }
 
                 System.out.println("\n###A New Directory###");
                 System.out.print("fitnesses: ");
@@ -231,12 +229,13 @@ public class PatternedGRNAnalyzer {
             if (fileNumberCounter > 100) {
                 break;
             }
-            break;
+//            break;
         }
 
         System.out.println("improved count: " + improvedCount);
 
         System.out.println(cycleDistAll);
+        System.out.println("original fitness list: ");
         System.out.println(originalFitnessLists);
 
         System.out.println("Directory Counter: " + directoryCounter);

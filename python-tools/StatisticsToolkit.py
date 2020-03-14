@@ -61,7 +61,8 @@ class StatisticsToolkit:
         csv_file_opener = CSVFileOpener()
         mods_1, stdevs_1 = csv_file_opener.get_fittest_mod_of_a_exp_with_stdev(self.path_1, index, sample_size)
         mods_2, stdevs_2 = csv_file_opener.get_fittest_mod_of_a_exp_with_stdev(self.path_2, index, sample_size)
-        return self.calculate_statistical_significances(mods_1, mods_2)
+
+        return self.calculate_statistical_significances(mods_1[:sample_size], mods_2[:sample_size])
 
     def calculate_edge_number_significance(self, sample_size=40, index=-1):
         edge_number_tool = EdgeNumberTool()

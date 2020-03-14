@@ -58,12 +58,14 @@ if __name__ == '__main__':
 
     elif to_use == 'specific':
         # path_1 = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/distributional-tournament-no-x'
-        path_1 = '/home/zhenyue-qin/Research/Project-Maotai-Modularity/generated-outputs/2020-distributional-x-p00'
-        path_2 = '/home/zhenyue-qin/Research/Project-Maotai-Modularity/generated-outputs/2020-distributional-x-p01'
+        path_1 = '/media/zhenyue-qin/New Volume/Experiment-Data-Storage/Storage-Modularity/2020-New-Exps/2020' \
+                 '-stochastic-x-p01'
+        path_2 = '/media/zhenyue-qin/New Volume/Experiment-Data-Storage/Storage-Modularity/2020-New-Exps/2020' \
+                 '-distributional-x-p01'
 
         omega = StatisticsToolkit(path_1, path_2)
 
-        sample_size = 20
+        sample_size = 100
 
         the_index = -1
 
@@ -73,17 +75,17 @@ if __name__ == '__main__':
         print('fitness significance')
         print omega.calculate_fitness_significance(sample_size=sample_size, index=the_index)
 
-        print('most modularity significance')
-        print omega.calculate_most_modularities_significance(sample_size=sample_size, index=the_index)
+        # print('most modularity significance')
+        # print omega.calculate_most_modularities_significance(sample_size=sample_size, index=the_index)
 
         print('fittest modularity significance')
         print omega.calculate_fittest_modularities_significance(sample_size=sample_size, index=the_index)
 
-        print('modularity significance')
-        print omega.calculate_modularity_significance(sample_size=sample_size, no_self_edge=False)
+        # print('modularity significance')
+        # print omega.calculate_modularity_significance(sample_size=sample_size, no_self_edge=False)
 
         print('edge number significance')
-        print omega.calculate_edge_number_significance(sample_size=sample_size)
+        print omega.calculate_edge_number_significance(sample_size=sample_size, index=the_index)
 
         # print('edge number std dev significance')
         # print omega.calculate_edge_number_std_dev_significance(sample_size=sample_size)
