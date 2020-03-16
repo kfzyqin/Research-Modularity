@@ -26,7 +26,7 @@ public class GRNModularity {
         for (int i=0; i<targetNumber; i++) {
             for (int j=0; j<targetNumber; j++) {
                 int grnValue = aGRN.get(j * targetNumber + i);
-                String potentialEdgeId = Integer.toString(j) + Integer.toString(i);
+                String potentialEdgeId = Integer.toString(j) + "_" + Integer.toString(i);
                 if (grnValue == 1) {
                     graph.addEdge(potentialEdgeId + "+", Integer.toString(j), Integer.toString(i), true);
                 } else if (grnValue == -1) {
