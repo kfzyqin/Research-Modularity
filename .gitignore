@@ -69,3 +69,5 @@ papers/GECCO/mod.xcp
 target/generated-sources/
 
 generated-images/
+
+target/
