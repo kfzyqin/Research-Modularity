@@ -39,7 +39,7 @@ public class EachGenerationAverageFitnessEvaluation {
     public static void main(String[] args) {
 //        String targetPath = "/media/zhenyue-qin/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/fixed-record-zhenyue-balanced-combinations-p01";
 //        String targetPath = "/media/zhenyue-qin/Qin-Warehouse/Warehouse-Data/Modularity-Data/Maotai-Project-Symmetry-Breaking/generated-outputs/original_esw_p01";
-        String targetPath = "/media/zhenyue-qin/New Volume/Experiment-Data-Storage/Storage-Modularity/2020-New-Exps/2020-stochastic-elite-x-p00";
+        String targetPath = "/media/zhenyue-qin/New Volume/Experiment-Data-Storage/Storage-Modularity/2020-New-Exps/2020-stochastic-x-p01";
 
         int[][] targets = {target1, target2};
 
@@ -51,7 +51,7 @@ public class EachGenerationAverageFitnessEvaluation {
 
         FitnessFunction fitnessFunctionToUse = null;
 
-        String fitnessToUseStr = "Zhenyue";
+        String fitnessToUseStr = "ESW";
         if (fitnessToUseStr.equals("Zhenyue")) {
             fitnessFunctionToUse = fitnessFunctionZhenyueSym;
         } else if (fitnessToUseStr.equals("ESW")) {
@@ -84,7 +84,7 @@ public class EachGenerationAverageFitnessEvaluation {
 
                 List<Double> oneTrialFitnesses = new ArrayList<>();
 
-                for (int aGen=0; aGen<lines.size(); aGen++) {
+                for (int aGen=2000; aGen<lines.size(); aGen++) {
                     SimpleMaterial aMaterial = GeneralMethods.convertStringArrayToSimpleMaterial(lines.get(aGen));
 
                     List<Double> removeNoEdgeFitnessesZhenyueSym = ModularityPathAnalyzer.removeEdgeAnalyzer(0, aMaterial,
@@ -133,6 +133,8 @@ public class EachGenerationAverageFitnessEvaluation {
         System.out.println(Arrays.toString(experimentAvgFitnesses));
 
         System.out.println(finalGenFitnesses);
+        System.out.println("Average final generation fitness: ");
+        System.out.println(GeneralMethods.getAverageNumber(finalGenFitnesses));
         for (List<Double> fits : fitnessStdDev) {
             finalFitnessStDev.add(GeneralMethods.getStDev(fits));
         }
