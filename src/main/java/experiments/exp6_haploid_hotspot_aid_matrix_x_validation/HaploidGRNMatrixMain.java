@@ -38,24 +38,49 @@ public class HaploidGRNMatrixMain {
     /* The two targets that the GA evolve towards */
     private static final int[] target1 = {
             1, -1, 1, -1, 1,
-            1, -1, 1, -1, 1,
             -1, 1, -1, 1, -1
     };
     private static final int[] target2 = {
             1, -1, 1, -1, 1,
-            -1, 1, -1, 1, -1,
-            -1, 1, -1, 1, -1
-    };
-    private static final int[] target3 = {
-            1, -1, 1, -1, 1,
-            1, -1, 1, -1, 1,
             1, -1, 1, -1, 1
     };
+//    private static final int[] target3 = {
+//            1, -1, 1, -1, 1,
+//            1, -1, 1, -1, 1,
+//            -1, 1, -1, 1, -1,
+//            1, -1, 1, -1, 1,
+//            1, -1, 1, -1, 1,
+//            1, -1, 1, -1, 1
+//    };
+//    private static final int[] target4 = {
+//            1, -1, 1, -1, 1,
+//            1, -1, 1, -1, 1,
+//            1, -1, 1, -1, 1,
+//            -1, 1, -1, 1, -1,
+//            1, -1, 1, -1, 1,
+//            1, -1, 1, -1, 1
+//    };
+//    private static final int[] target5 = {
+//            1, -1, 1, -1, 1,
+//            1, -1, 1, -1, 1,
+//            1, -1, 1, -1, 1,
+//            1, -1, 1, -1, 1,
+//            -1, 1, -1, 1, -1,
+//            1, -1, 1, -1, 1
+//    };
+//    private static final int[] target6 = {
+//            1, -1, 1, -1, 1,
+//            1, -1, 1, -1, 1,
+//            1, -1, 1, -1, 1,
+//            1, -1, 1, -1, 1,
+//            1, -1, 1, -1, 1,
+//            -1, 1, -1, 1, -1
+//    };
 
     /* Parameters of the GRN */
     private static final int maxCycle = 30;
     private static final int edgeSize = 20;
-    private static final int perturbations = 75;
+    private static final int perturbations = 500;
     private static final double perturbationRate = 0.15;
 
     /* Parameters of the GA */
@@ -65,8 +90,8 @@ public class HaploidGRNMatrixMain {
     private static final int tournamentSize = 3;
     private static final double reproductionRate = 1;
 
-    private static final int maxGen = 10000;
-    private static final List<Integer> thresholds = Arrays.asList(0, 500, 3000); // when to switch targets
+    private static final int maxGen = 2000;
+    private static final List<Integer> thresholds = Arrays.asList(0, 500); // when to switch targets
     private static final double alpha = 0.75;
     private static final int[] perturbationSizes = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     private static final int perturbationCycleSize = perturbations;
@@ -74,7 +99,7 @@ public class HaploidGRNMatrixMain {
     /* Settings for text outputs */
     private static final String summaryFileName = "Summary.txt";
     private static final String csvFileName = "Statistics.csv";
-    private static final String outputDirectory = "3-target";
+    private static final String outputDirectory = "combined-methods-10-gene";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static final String allPerturbationsName = "Perturbations.per";
     private static final String modFitNamePrefix = "phenotypes";
@@ -93,14 +118,19 @@ public class HaploidGRNMatrixMain {
 
     public static void main(String[] args) throws IOException, InterruptedException {
 //        int[][] targets = {target1, target2, target3, target4, target5, target6, target7};
-        int[][] targets = {target1, target2, target3};
+        int[][] targets = {target1, target2};
+//        int[][] targets = {target1, target2, target3, target4, target5, target6};
 
         /* Fitness function */
 //        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(
 //                targets, maxCycle, perturbations, perturbationRate, thresholds);
 
-        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsBalanceAsymmetric(
-                targets, maxCycle, perturbations, perturbationRate, thresholds, stride);
+//        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsBalanceAsymmetric(
+//                targets, maxCycle, perturbations, perturbationRate, thresholds, stride);
+
+        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsCombinationWithResampleAsymmetric(
+                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
+
 
 //        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsBalanceAsymmetricResample(
 //                targets, maxCycle, perturbations, perturbationRate, thresholds, stride, PerturbationPathUpBound);
