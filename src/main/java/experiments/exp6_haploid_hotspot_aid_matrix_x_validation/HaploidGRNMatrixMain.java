@@ -20,6 +20,7 @@ import ga.operations.selectionOperators.selectors.Selector;
 import ga.operations.selectionOperators.selectors.SimpleProportionalSelector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
 
+import java.io.*;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -44,38 +45,55 @@ public class HaploidGRNMatrixMain {
             1, -1, 1, -1, 1,
             1, -1, 1, -1, 1
     };
-//    private static final int[] target3 = {
-//            1, -1, 1, -1, 1,
-//            1, -1, 1, -1, 1,
+
+//    private static final int[] target1 = {
 //            -1, 1, -1, 1, -1,
+//            1, -1, 1, -1, 1,
+//            1, -1, 1, -1, 1,
 //            1, -1, 1, -1, 1,
 //            1, -1, 1, -1, 1,
 //            1, -1, 1, -1, 1
 //    };
-//    private static final int[] target4 = {
-//            1, -1, 1, -1, 1,
-//            1, -1, 1, -1, 1,
+//    private static final int[] target2 = {
 //            1, -1, 1, -1, 1,
 //            -1, 1, -1, 1, -1,
 //            1, -1, 1, -1, 1,
+//            1, -1, 1, -1, 1,
+//            1, -1, 1, -1, 1,
 //            1, -1, 1, -1, 1
 //    };
-//    private static final int[] target5 = {
-//            1, -1, 1, -1, 1,
-//            1, -1, 1, -1, 1,
-//            1, -1, 1, -1, 1,
-//            1, -1, 1, -1, 1,
-//            -1, 1, -1, 1, -1,
-//            1, -1, 1, -1, 1
-//    };
-//    private static final int[] target6 = {
-//            1, -1, 1, -1, 1,
-//            1, -1, 1, -1, 1,
-//            1, -1, 1, -1, 1,
-//            1, -1, 1, -1, 1,
-//            1, -1, 1, -1, 1,
-//            -1, 1, -1, 1, -1
-//    };
+    private static final int[] target3 = {
+            1, -1, 1, -1, 1,
+            1, -1, 1, -1, 1,
+            -1, 1, -1, 1, -1,
+            1, -1, 1, -1, 1,
+            1, -1, 1, -1, 1,
+            1, -1, 1, -1, 1
+    };
+    private static final int[] target4 = {
+            1, -1, 1, -1, 1,
+            1, -1, 1, -1, 1,
+            1, -1, 1, -1, 1,
+            -1, 1, -1, 1, -1,
+            1, -1, 1, -1, 1,
+            1, -1, 1, -1, 1
+    };
+    private static final int[] target5 = {
+            1, -1, 1, -1, 1,
+            1, -1, 1, -1, 1,
+            1, -1, 1, -1, 1,
+            1, -1, 1, -1, 1,
+            -1, 1, -1, 1, -1,
+            1, -1, 1, -1, 1
+    };
+    private static final int[] target6 = {
+            1, -1, 1, -1, 1,
+            1, -1, 1, -1, 1,
+            1, -1, 1, -1, 1,
+            1, -1, 1, -1, 1,
+            1, -1, 1, -1, 1,
+            -1, 1, -1, 1, -1
+    };
 
     /* Parameters of the GRN */
     private static final int maxCycle = 30;
@@ -90,8 +108,10 @@ public class HaploidGRNMatrixMain {
     private static final int tournamentSize = 3;
     private static final double reproductionRate = 1;
 
-    private static final int maxGen = 2000;
-    private static final List<Integer> thresholds = Arrays.asList(0, 500); // when to switch targets
+    private static final int maxGen = 2000; //2000
+//    private static final int maxGen = 30000;
+    private static final List<Integer> thresholds = Arrays.asList(0, 500); // when to switch targets 500
+//    private static final List<Integer> thresholds = Arrays.asList(0, 500, 2000, 5000, 10000, 15000); // when to switch targets
     private static final double alpha = 0.75;
     private static final int[] perturbationSizes = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     private static final int perturbationCycleSize = perturbations;
@@ -104,6 +124,7 @@ public class HaploidGRNMatrixMain {
     private static final String allPerturbationsName = "Perturbations.per";
     private static final String modFitNamePrefix = "phenotypes";
     private static final String allPopulationPhenotypeName = "./population-phenotypes/all-population-phenotype";
+
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private static Date date = new Date();
 
@@ -228,7 +249,7 @@ public class HaploidGRNMatrixMain {
         /* Generate output files */
         statistics.save(summaryFileName);
         statistics.generateFitnessModularityGRNs(modFitNamePrefix);
-        statistics.generatePopulationPhenotypesOfAllGenerations(allPopulationPhenotypeName);
+//        statistics.generatePopulationPhenotypesOfAllGenerations(allPopulationPhenotypeName);
         statistics.generateNormalCSVFile(csvFileName);
         statistics.generatePlot(plotTitle, plotFileName);
 
