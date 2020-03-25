@@ -42,6 +42,8 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
     List<List<DataGene[][]>> allGenerationPerturbations;
 
     List<List<String>> populationPhenotypeList;
+    public String outputPath = "./population-phenotypes/all-population-phenotype";
+
 
     public DetailedStatistics() {
         generation = 0;
@@ -225,13 +227,40 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
 
         meanMods.add(ListTools.getListAvg(mods));
 
-        populationPhenotypeList.add(this.getPopulationPhenotype(data));
+//        populationPhenotypeList.add(this.getPopulationPhenotype(data));
+
+        try {
+            generatePopulationPhenotypesOfOneGenerations(data);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            Runtime.getRuntime().exec("tar -zcf population-phenotypes-compressed.tar.gz population-phenotypes --remove-files" , null, new File(this.directoryPath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 //        this.allGenerationPerturbations.add(new ArrayList(elite.getIndividualSPerturbations()));
 //        for (DataGene[][] aDataGene : this.allGenerationPerturbations.get(allGenerationPerturbations.size()-1)) {
 //            System.out.println(Arrays.toString(aDataGene[0]));
 //        }
     }
+
+    public void generatePopulationPhenotypesOfOneGenerations(List<Individual<C>> data) throws IOException {
+
+        List<String> aPopulationPhenotype = this.getPopulationPhenotype(data);
+
+        BufferedWriter pheOutputWriter;
+        String aFileName = this.directoryPath + outputPath + "_gen_" + ((Integer) generation).toString() + ".lists";
+        pheOutputWriter = new BufferedWriter(new FileWriter(aFileName));
+        for (String aIndPhenotype : aPopulationPhenotype) {
+            pheOutputWriter.write(aIndPhenotype);
+            pheOutputWriter.newLine();
+        }
+        pheOutputWriter.close();
+
+    }
+
 
     public void setDirectory(@NotNull String directoryName) {
         this.directoryPath += "/" + directoryName + "/";
