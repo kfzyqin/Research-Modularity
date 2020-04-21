@@ -3,16 +3,22 @@ package ga.collections;
 import ga.components.chromosomes.Chromosome;
 import ga.components.genes.DataGene;
 import ga.components.materials.GRN;
+import ga.components.materials.Material;
 import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.FitnessFunctionMultipleTargets;
+import ga.operations.fitnessFunctions.GRNFitnessFunction;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargets;
 import ga.operations.initializers.Initializer;
 import ga.others.Copyable;
+import ga.others.GeneralMethods;
 import org.jetbrains.annotations.NotNull;
 
 
+import javax.xml.crypto.Data;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * This class represents an individual in the population. An individual consists of a chromosomes and fitnessFunctions function value.
@@ -45,6 +51,7 @@ public class Individual<C extends Chromosome> implements Comparable<Individual<C
         this.chromosome = (C)chromosome.copy();
         this.fitness = fitness;
         this.individualSPerturbations = perturbations;
+
     }
 
     @Override
@@ -61,6 +68,67 @@ public class Individual<C extends Chromosome> implements Comparable<Individual<C
 
     public List<DataGene[][]> getIndividualSPerturbations() {
         return this.individualSPerturbations;
+    }
+
+    public boolean canRegulateToTarget(int[] target, DataGene[] perturbed, int maxCycle) {
+        DataGene[] targetDataGene = new DataGene[target.length];
+        for (int i = 0; i < target.length; i++) {
+            targetDataGene[i] = new DataGene(target[i]);
+        }
+
+        if (canAchieveAttractor(perturbed, this.chromosome.getPhenotype(false), maxCycle)) {
+            DataGene[] attractor = getAttractor(perturbed, this.chromosome.getPhenotype(false), maxCycle);
+            return equalDataGeneArray(attractor, targetDataGene);
+        } else return false;
+
+    }
+
+    public DataGene[] getAttractor(DataGene[] currentState, Material phenotype, int maxCycle) {
+        DataGene[] updated = update(currentState, phenotype);
+        if (canAchieveAttractor(currentState, phenotype, maxCycle)) {
+            if (equalDataGeneArray(currentState, updated)) return updated;
+            else return getAttractor(updated, phenotype, maxCycle-1);
+        } else return null;
+    }
+
+    public boolean canAchieveAttractor(DataGene[] currentState, Material phenotype, int maxCycle) {
+        DataGene[] updated = update(currentState, phenotype);
+        if (equalDataGeneArray(updated, currentState)) return true;
+        else if (maxCycle > 0) return canAchieveAttractor(updated, phenotype, maxCycle-1);
+        else return false;
+    }
+
+    public DataGene[] update(DataGene[] currentState, Material phenotype) {
+        DataGene[] updatedState = new DataGene[currentState.length];
+        updatedState = this.initializeDataGeneArray(updatedState);
+        for (int i=0; i<currentState.length; i++) {
+            double influence = 0;
+            for (int j=0; j<currentState.length; j++) {
+                int aNewInfluence = (int)
+                        (phenotype.getGene(i + j*updatedState.length)).getValue() * currentState[j].getValue();
+                influence += aNewInfluence;
+            }
+            updatedState[i].setValue(influence > 0 ? 1 : -1);
+        }
+        return updatedState;
+    }
+
+    protected DataGene[] initializeDataGeneArray(DataGene[] dataGenes) {
+        DataGene[] emptyDataGeneArray = new DataGene[dataGenes.length];
+        for (int i=0; i<emptyDataGeneArray.length; i++) {
+            emptyDataGeneArray[i] = new DataGene();
+        }
+        return emptyDataGeneArray;
+    }
+
+    public boolean equalDataGeneArray(DataGene[] current, DataGene[] updated) {
+        int differenceCounts = 0;
+        for (int i=0; i<current.length; i++) {
+            if (current[i].getValue() != updated[i].getValue()) {
+                differenceCounts += 1;
+            }
+        }
+        return differenceCounts == 0;
     }
 
     @Override
