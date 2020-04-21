@@ -9,6 +9,7 @@ import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargets;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue;
 import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyueSameWeight;
+import it.unimi.dsi.fastutil.Hash;
 import org.apache.commons.math3.distribution.BinomialDistribution;
 import org.jetbrains.annotations.NotNull;
 import org.json.simple.JSONObject;
@@ -352,10 +353,16 @@ public class GeneralMethods<T> {
     }
 
     public static int getCombinationNumber(int n, int r) {
-        return factorial(n) / (factorial(n-r) * factorial(r));
+        if (r == 0) return 1;
+        if (r == 1) return n;
+        if (n == r) return 1;
+//        if (n < 2*r) return getCombinationNumber(n, n-r);
+//        else return getCombinationNumber(n-1, r-1) + getCombinationNumber(n-1, r);
+
+        return (int) (factorial(n) / (factorial(n-r) * factorial(r)));
     }
 
-    public static int factorial(int number) {
+    public static double factorial(int number) {
         int result = 1;
 
         for (int factor = 2; factor <= number; factor++) {
@@ -363,6 +370,11 @@ public class GeneralMethods<T> {
         }
 
         return result;
+//        if (number <= 0)
+//            return 1;
+//        else
+//            return(number * factorial(number-1));
+
     }
 
     public static List<String[]> readFileLineByLine(String filePath) {
@@ -997,5 +1009,121 @@ public class GeneralMethods<T> {
         return false;
     }
 
+
+    public static int[] getHighestProbOfPerturbationSize(List<Double> binomialDistribution) {
+        double probability = 0.00;
+        ArrayList<Integer> highestProbOfPerturbationSizes = new ArrayList<>();
+
+        for (double aPerturbationProbability: binomialDistribution) {
+            if (aPerturbationProbability >= 0.15) {
+//                probability += aPerturbationProbability;
+                highestProbOfPerturbationSizes.add(binomialDistribution.indexOf(aPerturbationProbability));
+            }
+        }
+
+        int[] highestProbOfPerturbationSizesArray = new int[highestProbOfPerturbationSizes.size()];
+        for (int i = 0; i < highestProbOfPerturbationSizes.size(); i ++) {
+            highestProbOfPerturbationSizesArray[i] = highestProbOfPerturbationSizes.get(i);
+        }
+
+        return highestProbOfPerturbationSizesArray;
+
+
+    }
+
+    public static boolean containsElementInArray(int element, int[] array) {
+        boolean contains = false;
+        for (int arr: array) {
+            if (arr == element) contains = true;
+        }
+        return contains;
+    }
+
+
+    public static int[] getDifferenceOfArray(int[] highProbCombinationPerturbationSizes, int[] perturbationSizes) {
+        int[] difference = new int[perturbationSizes.length - highProbCombinationPerturbationSizes.length];
+        int i = 0;
+        for (int size : perturbationSizes) {
+            if (containsElementInArray(size, highProbCombinationPerturbationSizes)) {
+                continue;
+            } else difference[i++] = size;
+        }
+        return difference;
+    }
+
+
+    public static HashMap<Integer, Integer> getSamplingSizes(int geneLength, int samplePerturbations, double samplingRate, int[] perturbationSizes) {
+        HashMap<Integer, Integer> samplingSize = new HashMap<>();
+
+        for (int aPerturbationSize: perturbationSizes) {
+            int allCombinationSizes = getCombinationNumber(geneLength, aPerturbationSize);
+            double partialCombinationSize = samplingRate * allCombinationSizes;
+            if (partialCombinationSize < samplePerturbations) {
+                samplingSize.put(aPerturbationSize, (int) partialCombinationSize);
+            } else {
+                samplingSize.put(aPerturbationSize, samplePerturbations);
+            }
+        }
+
+        return samplingSize;
+
+    }
+
+    public static Map<Integer, DataGene[][]> generateEveryPerturbationAttractors(int[] target, int perturbationThreshould) {
+        Map<Integer, DataGene[][]> staticPerturbations = new HashMap<>();
+        Integer[] indices = new Integer[target.length];
+        for (int i = 0; i < indices.length; i++) {
+            indices[i] = i;
+        }
+        for (int perturbationSize = 0; perturbationSize <= perturbationThreshould; perturbationSize++) {
+            if (!staticPerturbations.containsKey(perturbationSize)) {
+                int allCombinationNumber = getCombinationNumber(target.length, perturbationSize);
+                DataGene[][] returnables = new DataGene[allCombinationNumber][target.length];
+                for (int i = 0; i < allCombinationNumber; i++) {
+                    for (int j = 0; j < target.length; j++) {
+                        returnables[i][j] = new DataGene(target[j]);
+                    }
+                }
+
+                int overallIndex = 0;
+                List<List<Integer>> combinations = getCombination(indices, perturbationSize);
+                for (List<Integer> combination: combinations) {
+                    for (Integer aPosition: combination) {
+                        returnables[overallIndex][aPosition].flip();
+                    }
+                    overallIndex += 1;
+                }
+                staticPerturbations.put(perturbationSize, returnables);
+            }
+        }
+        return staticPerturbations;
+    }
+
+    public static DataGene[][] generateAttractors(int[] target, int perturbationSize) {
+        Integer[] indices = new Integer[target.length];
+        for (int i = 0; i < indices.length; i++) {
+            indices[i] = i;
+        }
+
+        int allCombinationNumber = getCombinationNumber(target.length, perturbationSize);
+        DataGene[][] returnables = new DataGene[allCombinationNumber][target.length];
+        for (int i = 0; i < allCombinationNumber; i++) {
+            for (int j = 0; j < target.length; j++) {
+                returnables[i][j] = new DataGene(target[j]);
+            }
+        }
+
+        int overallIndex = 0;
+        List<List<Integer>> combinations = getCombination(indices, perturbationSize);
+        for (List<Integer> combination: combinations) {
+            for (Integer aPosition: combination) {
+                returnables[overallIndex][aPosition].flip();
+            }
+            overallIndex += 1;
+        }
+
+        return returnables;
+
+    }
 
 }
