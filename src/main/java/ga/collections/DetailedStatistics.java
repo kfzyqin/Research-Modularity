@@ -235,7 +235,7 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
             e.printStackTrace();
         }
         try {
-            Runtime.getRuntime().exec("tar -zcf population-phenotypes-compressed.tar.gz population-phenotypes --remove-files" , null, new File(this.directoryPath));
+            Runtime.getRuntime().exec("tar -zcf population-phenotypes-compressed.tar.gz population-phenotypes" , null, new File(this.directoryPath));
         } catch (IOException e) {
             e.printStackTrace();
         }
