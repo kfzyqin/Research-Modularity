@@ -12,6 +12,7 @@ import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
 import ga.operations.priorOperators.PriorOperator;
 import ga.operations.reproducers.Reproducer;
+import ga.operations.selectionOperators.selectors.ExtendedTournamentSelector;
 import ga.operations.selectionOperators.selectors.Selector;
 import org.jetbrains.annotations.NotNull;
 
@@ -109,6 +110,9 @@ public abstract class State<C extends Chromosome> {
      */
     public boolean nextGeneration(){
         generation++;
+        if (selector instanceof ExtendedTournamentSelector) {
+            ((ExtendedTournamentSelector<C>) selector).setGeneration(generation);
+        }
         return population.nextGeneration();
     }
 
