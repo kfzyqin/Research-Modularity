@@ -42,7 +42,7 @@ public class PatternedGRNAnalyzer {
     private static final double stride = 0.00;
 
     public static void main(String[] args) {
-        String targetPath = "/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Portal/generated-outputs/no-x-prop-edge-penalty";
+        String targetPath = "/media/zhenyue-qin/New Volume/Experiment-Data-Storage/Storage-Modularity/2020-New-Exps/2020-stochastic-x-p00";
 
         int[][] targets = {target1, target2};
 
@@ -93,18 +93,12 @@ public class PatternedGRNAnalyzer {
                 int interEdgeNo = GeneralMethods.getInterModuleEdgeNumber(GeneralMethods.convertStringArrayToIntArray(lastGRNString));
 
                 List<Double> removeNoEdgeFitnessesZhenyueSym = ModularityPathAnalyzer.removeEdgeAnalyzer(0, aMaterial,
-                        fitnessFunctionZhenyueSym, true, 1700, null, false);
+                        fitnessFunctionESW, true, 1700, null, false);
                 List<Double> removeAllEdgeFitnessesZhenyueSym = ModularityPathAnalyzer.removeEdgeAnalyzer(interEdgeNo, aMaterial,
-                        fitnessFunctionZhenyueSym, true, 1700, null, false);
+                        fitnessFunctionESW, true, 1700, null, false);
 
                 List<Double> fitnesses = Arrays.asList (
                         removeNoEdgeFitnessesZhenyueSym.get(0), removeAllEdgeFitnessesZhenyueSym.get(0));
-
-//                if (fitnesses.get(0) < 0.9462) {
-//                if (fitnesses.get(0) < 0.9 || fitnesses.get(0) > 0.9462) {
-                if (fitnesses.get(0) > 0.9) {
-                    continue;
-                }
 
                 System.out.println("\n###A New Directory###");
                 System.out.print("fitnesses: ");
@@ -140,7 +134,7 @@ public class PatternedGRNAnalyzer {
                 System.out.println("a material");
                 System.out.println(aMaterial);
 
-                if (fitnesses.get(0) > 0.9462 && fitnesses.get(1) < fitnesses.get(0)) {
+                if (fitnesses.get(1) > fitnesses.get(0)) {
                     improvedCount += 1;
                 }
 //                if (fitnesses.get(0) > 0.9462) {
@@ -175,7 +169,6 @@ public class PatternedGRNAnalyzer {
                         int[] customGRN = GeneralMethods.getCustomGRN();
                         List<Double> sameColumnPatternedSeparateFitnesses = GeneralMethods.evaluateSeparateModuleFitnesses(customGRN, false);
                         SimpleMaterial aCustomMaterial = new SimpleMaterial(GeneralMethods.convertArrayToList(customGRN));
-                        double sameCustomFitness = ((GRNFitnessFunctionMultipleTargets) fitnessFunctionZhenyueSym).evaluate(aCustomMaterial, 501);
                         System.out.println("custom fitness: " + sameColumnPatternedSeparateFitnesses);
 //                        printSquareGRN(customGRN);
 //                        GeneralMethods.evaluateSeparateModuleFitnesses(customGRN, true);
@@ -224,7 +217,6 @@ public class PatternedGRNAnalyzer {
             if (fileNumberCounter > 100) {
                 break;
             }
-            break;
         }
 
         System.out.println("improved count: " + improvedCount);

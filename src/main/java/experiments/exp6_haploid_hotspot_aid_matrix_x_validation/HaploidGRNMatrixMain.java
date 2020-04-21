@@ -113,7 +113,8 @@ public class HaploidGRNMatrixMain {
 //    private static final List<Integer> thresholds = Arrays.asList(0, 500); // when to switch targets 500
     private static final List<Integer> thresholds = Arrays.asList(0, 500, 2000, 5000, 10000, 15000); // when to switch targets
     private static final double alpha = 0.75;
-    private static final int[] perturbationSizes = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    private static final int[] perturbationSizes = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
+    19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30};
     private static final int perturbationCycleSize = perturbations;
 
     /* Settings for text outputs */
@@ -139,8 +140,8 @@ public class HaploidGRNMatrixMain {
 
     public static void main(String[] args) throws IOException, InterruptedException {
 //        int[][] targets = {target1, target2, target3, target4, target5, target6, target7};
-        int[][] targets = {target1, target2};
-//        int[][] targets = {target1, target2, target3, target4, target5, target6};
+//        int[][] targets = {target1, target2};
+        int[][] targets = {target1, target2, target3, target4, target5, target6};
 
         /* Fitness function */
 //        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargets(
@@ -222,7 +223,7 @@ public class HaploidGRNMatrixMain {
         state.record(statistics); // record the initial state of an population
 
         /* The frame of an GA to change states */
-        Frame<SimpleHaploid> frame = new SimpleHaploidFrame<>(state,postOperator,statistics);
+        Frame<SimpleHaploid> frame = new SimpleHaploidFrame<>(state, postOperator, statistics);
 
         statistics.print(0); // print the initial state of an population
 

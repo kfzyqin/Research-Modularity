@@ -108,7 +108,6 @@ public class GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhe
                 }
             }
 
-
             cyclePath.remove(cyclePath.size()-1);
 
             if (this.printCyclePath) {
@@ -136,7 +135,22 @@ public class GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhe
 //            System.out.println(perturbationPathDistanceMap);
 //        }
 
-//        System.out.println(perturbationPathDistanceMap);
+        for (Integer aKey : perturbationPathDistanceMap.keySet()) {
+            List<Double> aDistances = perturbationPathDistanceMap.get(aKey);
+            Map<Double, Integer> aDistanceMap = new HashMap<>();
+            for (Double aDist : aDistances) {
+                if (aDistanceMap.containsKey(aDist)) {
+                    aDistanceMap.put(aDist, aDistanceMap.get(aDist) + 1);
+                } else {
+                    aDistanceMap.put(aDist, 1);
+                }
+            }
+//            System.out.println("Perturbation Size: " + aKey + "; Distance Map: " + aDistanceMap);
+
+//            Set<Double> aSet = new HashSet<Double>(perturbationPathDistanceMap.get(aKey));
+//            perturbationPathDistanceMap.get(aKey);
+//            System.out.println("A Key: " + aKey + " Average Distance: " + aSet);
+        }
         for (Integer key : perturbationPathDistanceMap.keySet()) {
             List<Double> aPerturbationPathDistances = perturbationPathDistanceMap.get(key);
             double perturbedLengthWeight = perturbationLengthBinomialDistribution.get(key);
