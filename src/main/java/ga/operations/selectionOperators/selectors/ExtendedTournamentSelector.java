@@ -4,14 +4,14 @@ import ga.collections.Individual;
 import ga.components.chromosomes.Chromosome;
 import ga.components.genes.DataGene;
 import ga.components.materials.Material;
-import ga.frame.states.State;
-import ga.operations.selectionOperators.selectionSchemes.ExtendedTournamentScheme;
-import ga.operations.selectionOperators.selectionSchemes.SelectionScheme;
+import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargetsCombinationWithResampleAsymmetric;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.others.GeneralMethods;
+import it.unimi.dsi.fastutil.Hash;
+import org.apache.batik.dom.util.HashTable;
 import org.jetbrains.annotations.NotNull;
 
-import javax.xml.crypto.Data;
+import java.io.*;
 import java.util.*;
 
 public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelector<C> {
@@ -20,7 +20,7 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
     protected int maxCycle;
     protected int size;
     private Random randomno = new Random();
-    public Hashtable<Material, Map<Integer, Integer>> targetSolvedTable = new Hashtable<>();
+    public Hashtable<Material, Map<Integer, Double>> targetSolvedTable = new Hashtable<>();
     private final List<Integer> threshold;
     private int generation;
 
@@ -52,7 +52,6 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
 
     }
 
-
     public int getNumberOfTargets(int generation) {
         if (threshold.size() == 1) return 1;
         int targets = 0;
@@ -74,62 +73,6 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
         return targets;
     }
 
-    private List<Individual<C>> getFullySolvedIndividuals(List<Individual<C>> individuals, int perturbationSize) {
-        int targetNum = getNumberOfTargets(generation);
-        List<Individual<C>> fullySolvedIndividuals = new ArrayList<>();
-
-        for (Individual<C> individual : individuals) {
-            int maxSolved = GeneralMethods.getCombinationNumber(targets[0].length, perturbationSize) * targetNum;
-            if (!targetSolvedTable.containsKey(individual.getChromosome().getPhenotype(false))) {
-                System.out.println("individual not in table");
-            }
-            if (!targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).containsKey(perturbationSize)) {
-                System.out.println("table has individual but do not have the perturbation size");
-                System.out.println("perturbation size: " + perturbationSize);
-                System.out.println("individual map in table: " + targetSolvedTable.get(individual.getChromosome().getPhenotype(false)));
-            }
-            int solved = targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).get(perturbationSize);
-            if (solved == maxSolved) {
-                fullySolvedIndividuals.add(individual);
-            }
-        }
-        return fullySolvedIndividuals;
-    }
-
-    private Individual<C> getCurrentBestIndividual(List<Individual<C>> selectedIndividuals, int perturbationSize) {
-        List<Individual<C>> currentBestIndividuals = getCurrentBestIndividuals(selectedIndividuals, perturbationSize);
-        if (currentBestIndividuals.size() == 1) return currentBestIndividuals.get(0);
-        else if (currentBestIndividuals.size() > 1) {
-
-        }
-        else if (currentBestIndividuals.size() == 0) {
-
-        }
-        return null;
-
-    }
-
-    private List<Individual<C>> getCurrentBestIndividuals(List<Individual<C>> selectedIndividuals, int perturbationSize) {
-        Map<Individual<C>, Integer> individualCurrentSolved = new HashMap<>();
-        List<Individual<C>> bestIndividuals = new ArrayList<>();
-        for (Individual<C> individual : selectedIndividuals) {
-            individualCurrentSolved.put(individual, targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).get(perturbationSize));
-        }
-
-        Integer currentBest = 0;
-        for (Integer solvedNum : individualCurrentSolved.values()) {
-            if (solvedNum > currentBest) currentBest = solvedNum;
-        }
-
-        for (Individual<C> individual : individualCurrentSolved.keySet()) {
-            if (currentBest == individualCurrentSolved.get(individual)) {
-                bestIndividuals.add(individual);
-            }
-        }
-        return bestIndividuals;
-    }
-
-
     private int selectIndividual() {
         //generate random individuals
         List<Integer> indices = new ArrayList<>(size);
@@ -148,87 +91,60 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
         int selectedIndex = -1;
 
         while (perturbationSize < targets[0].length) {
-
-            //update the table
+            // update table
             for (Individual<C> individual : selectedIndividuals) {
                 if (targetSolvedTable.containsKey(individual.getChromosome().getPhenotype(false))) {
                     if (!hasUpdatedToPerturbationSize(individual, perturbationSize)) {
-                        int[][] currentTargets = new int[targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).get(-1)][];
+                        int[][] currentTargets = new int[targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).get(-1).intValue()][];
                         for (int i = 0; i < currentTargets.length; i++) {
                             currentTargets[i] = targets[i];
                         }
-
-                        updatePerturbationSize(individual, perturbationSize, currentTargets);
-                        if (!targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).containsKey(perturbationSize)) {
-                            System.out.println("after update: individual not update to perturbation size");
-                            System.out.println("perturbation size: " + perturbationSize);
-                            System.out.println("map: " + targetSolvedTable.get(individual.getChromosome().getPhenotype(false)));
+                        for (int[] aTarget: currentTargets) {
+                            updateTargetSize(individual, perturbationSize, aTarget);
                         }
+//                        if (!targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).containsKey(perturbationSize)) {
+//                            System.out.println("after update: individual not update to perturbation size");
+//                            System.out.println("perturbation size: " + perturbationSize);
+//                            System.out.println("map: " + targetSolvedTable.get(individual.getChromosome().getPhenotype(false)));
+//                        }
                     }
                     if (!hasUpdatedToTargetSize(individual, targetNum)) {
-                        int saved = targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).get(-1);
-                        int[][] currentTargets = new int[targetNum - saved][];
-                        for (int i = 0; i < currentTargets.length; i++) {
-                            currentTargets[i] = targets[i + saved];
-                        }
-                        updateTargetSize(individual, perturbationSize, currentTargets);
+                        int saved = targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).get(-1).intValue();
+                        int[] addedTarget = targets[saved];
+
+                        // update target value in the map
+                        targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).put(-1, Double.valueOf(targetNum));
+                        updateTargetSize(individual, perturbationSize, addedTarget);
                     }
-                } else {
-                    Map<Integer, Integer> targetNumMap = new HashMap<>();
-                    targetNumMap.put(-1, targetNum);
+                } else { // map don't have individual
+                    Map<Integer, Double> targetNumMap = new HashMap<>();
+                    targetNumMap.put(-1, Double.valueOf(targetNum));
                     targetSolvedTable.put(individual.getChromosome().getPhenotype(false), targetNumMap);
                     int[][] currentTargets = new int[targetNum][];
                     for (int i = 0; i < currentTargets.length; i++) {
                         currentTargets[i] = targets[i];
                     }
-                    updatePerturbationSize(individual, perturbationSize, currentTargets);
-                    updateTargetSize(individual, perturbationSize, currentTargets);
+                    for (int[] aTarget: currentTargets) {
+                        updateTargetSize(individual, perturbationSize, aTarget);
+                    }
                 }
             }
 
-//            for (Individual<C> individual : selectedIndividuals) {
-//                if (hasUpdatedTargetNum(individual, targetNum)) {//table has the individual and updated to current target number
-//                    if (!targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).containsKey(perturbationSize)) { //not update to the size
-//                        int[][] currentTargets = new int[targetNum][];
-//                        for (int i = 0; i < targetNum; i++) {
-//                            currentTargets[i] = targets[i];
-//                        }
-//                        updateMap(individual, perturbationSize, currentTargets);
-//                    }
-//                } else updateTargetNum(individual, targetNum, perturbationSize);
-//            }
-
-//            if (perturbationSize == 0 && selectedIndividuals.size() == size) {
-//                int solvedZeroPerturbation = 0;
-//                for (Individual<C> individual : selectedIndividuals) {
-//                    if (targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).get(0) != 0) solvedZeroPerturbation += 1;
-//                }
-//                if (solvedZeroPerturbation == 0) {
-//                    Individual<C> randomChoice = selectedIndividuals.get(randomno.nextInt(selectedIndividuals.size()));
-//                    for (Integer index : indices) {
-//                        if (individuals.get(index).getChromosome().getPhenotype(false).equals(randomChoice.getChromosome().getPhenotype(false)))
-//                            selectedIndex = index;
-//                    }
-//                    break;
-//                }
-//            }
-
-            // choose the individual
-            List<Individual<C>> fullySolvedIndividuals = getFullySolvedIndividuals(selectedIndividuals, perturbationSize);
-//            List<Individual<C>> fullySolvedIndividuals = getCurrentBestIndividuals(selectedIndividuals, perturbationSize);
-            if (fullySolvedIndividuals.size() == 1) {
+            // select data
+            List<Individual<C>> bestIndividuals = getBestIndividuals(selectedIndividuals, perturbationSize);
+            if (bestIndividuals.size() == 1) {
                 for (Integer index : indices) {
-                    Individual<C> best = fullySolvedIndividuals.get(0);
+                    Individual<C> best = bestIndividuals.get(0);
                     if (individuals.get(index).getChromosome().getPhenotype(false).equals(best.getChromosome().getPhenotype(false)))
                         selectedIndex = index;
                 }
                 break;
             }
-            else if (fullySolvedIndividuals.size() > 1) {
+            else if (bestIndividuals.size() > 1) {
 //                System.out.println("fullySolved > 1, fullySolvedSize: " + fullySolvedIndividuals.size());
 //                System.out.println("perturbation size: " + perturbationSize);
-                selectedIndividuals = fullySolvedIndividuals;
-                if (perturbationSize == targets[0].length - 1) {
+                selectedIndividuals = bestIndividuals;
+                if (perturbationSize == targets[0].length-1) {
                     Individual<C> randomChoice = selectedIndividuals.get(randomno.nextInt(selectedIndividuals.size()));
                     for (Integer index : indices) {
                         if (individuals.get(index).getChromosome().getPhenotype(false).equals(randomChoice.getChromosome().getPhenotype(false)))
@@ -238,148 +154,134 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
                 }
                 else perturbationSize += 1;
             }
-            else if (fullySolvedIndividuals.size() == 0) {
-                //choose the best
-//                Individual<C> currentBest = getCurrentBestIndividual(selectedIndividuals, perturbationSize);
-                //randomly choose one
-                List<Individual<C>> currentBestIndividuals = getCurrentBestIndividuals(selectedIndividuals, perturbationSize);
-                Individual<C> currentBest = currentBestIndividuals.get(randomno.nextInt(currentBestIndividuals.size()));
-                for (Integer index : indices) {
-                    if (individuals.get(index).getChromosome().getPhenotype(false).equals(currentBest.getChromosome().getPhenotype(false)))
-                        selectedIndex = index;
-                }
-                break;
-            }
             else {
                 break;
             }
+
         }
+
         return selectedIndex;
+    }
+
+
+
+    private List<Individual<C>> getBestIndividuals(List<Individual<C>> selectedIndividuals, int perturbation) {
+        List<Individual<C>> selection = new ArrayList<>();
+        double gamma_avg = 0;
+        for (Individual<C> individual : selectedIndividuals) {
+            if (gamma_avg < targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).get(perturbation)) {
+                gamma_avg = targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).get(perturbation);
+            }
+        }
+
+        for (Individual<C> individual : selectedIndividuals) {
+            if (targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).get(perturbation) == gamma_avg) {
+                selection.add(individual);
+            }
+        }
+
+
+        return selection;
 
     }
 
-    //second method update
+    //the perturbation size is in table
     private boolean hasUpdatedToPerturbationSize(Individual<C> individual, int perturbationSize) {
-        boolean updated = true;
-        for (int size = 0; size <= perturbationSize; size ++) {
-            if (!targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).containsKey(size)) {
-                updated = false;
+        return targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).containsKey(perturbationSize);
+    }
+
+    private void updateTargetSize(Individual<C> individual, int perturbationSize, int[] addedTarget) {
+        int combinations = GeneralMethods.getCombinationNumber(targets[0].length, perturbationSize);
+
+        DataGene[][] perturbs = GeneralMethods.generatePurterbed(addedTarget, perturbationSize);
+        List<Double> gammas = new ArrayList<>();
+
+        for (DataGene[] perturb: perturbs) {
+            if (individual.canAchieveAttractor(perturb, maxCycle)) {
+                DataGene[] attractor = individual.getAttractor(perturb, maxCycle);
+                double distance = getHammingDistance(attractor, addedTarget);
+                double aD = (1 - (distance / ((double) addedTarget.length)));
+                double oneGamma = Math.pow(aD, 5);
+                gammas.add(oneGamma);
             }
         }
-        return updated;
+        double sum = GeneralMethods.getSum(gammas);
+        double average = sum / combinations;
+        if (targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).containsKey(perturbationSize)) {
+            double attained = targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).get(perturbationSize);
+            double avg = (attained + average) / targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).get(-1);
+            targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).put(perturbationSize, avg);
+
+        } else {
+            targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).put(perturbationSize, average);
+        }
+
     }
 
     private boolean hasUpdatedToTargetSize(Individual<C> individual, int targetNum) {
         if (targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).containsKey(-1)) {
-            return targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).get(-1) == targetNum;
+            return targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).get(-1).intValue() == targetNum;
         }
         else return false;
     }
 
     private void updatePerturbationSize(Individual<C> individual, int perturbationSize, int[][] currentTargets) {
-        for (int size = 0; size <= perturbationSize; size ++) {
-            if (!targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).containsKey(size)) {
-                for (int[] aTarget : currentTargets) {
-                    DataGene[][] attractors = GeneralMethods.generateAttractors(aTarget, size);
-                    int solvedPerturbations = 0;
-                    for (DataGene[] perturbedTarget : attractors) {
-                        if (individual.canRegulateToTarget(aTarget, perturbedTarget, maxCycle)) solvedPerturbations += 1;
-                    }
-                    boolean contains = targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).containsKey(perturbationSize);
-                    if (contains) {
-                        targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).put(perturbationSize,
-                                targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).get(perturbationSize) + solvedPerturbations);
-                    } else targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).put(perturbationSize, solvedPerturbations);
+        int combinations = GeneralMethods.getCombinationNumber(perturbationSize, targets[0].length);
+        for (int[] aTarget: currentTargets) {
+            DataGene[][] perturbs = GeneralMethods.generatePurterbed(aTarget, perturbationSize);
+            List<Double> gammas = new ArrayList<>();
+
+            for (DataGene[] perturb: perturbs) {
+                if (individual.canAchieveAttractor(perturb, maxCycle)) {
+                    DataGene[] attractor = individual.getAttractor(perturb, maxCycle);
+                    double distance = getHammingDistance(attractor, aTarget);
+                    double aD = (1 - (distance / ((double) aTarget.length)));
+                    double oneGamma = Math.pow(aD, 5);
+                    gammas.add(oneGamma);
                 }
             }
-        }
-
-    }
-
-    private void updateTargetSize(Individual<C> individual, int perturbationSize, int[][] targets) {
-        for (int[] aTarget : targets) {
-            DataGene[][] attractors = GeneralMethods.generateAttractors(aTarget, perturbationSize);
-            int solvedPerturbations = 0;
-            for (DataGene[] perturbedTarget : attractors) {
-                if (individual.canRegulateToTarget(aTarget, perturbedTarget, maxCycle)) solvedPerturbations += 1;
-            }
-            boolean contains = targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).containsKey(perturbationSize);
-            if (contains) {
-                targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).put(perturbationSize,
-                        targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).get(perturbationSize) + solvedPerturbations);
-            } else targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).put(perturbationSize, solvedPerturbations);
-        }
-
-    }
-
-
-    //first method update
-    private void updateTargetNum(Individual<C> individual, int targetNum, int perturbationSize) {
-        if (targetSolvedTable.containsKey(individual.getChromosome().getPhenotype(false))) {
-            int targetNumSaved = targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).get(-1);
-
-            // update perturbation size
+            double sum = GeneralMethods.getSum(gammas);
+            double average = sum / combinations;
             if (targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).containsKey(perturbationSize)) {
-                int[][] previousTargets = new int[targetNum][];
-                for (int i = 0; i < targetNumSaved; i ++) {
-                    previousTargets[i] = targets[i];
-                }
-                updateMap(individual, perturbationSize, previousTargets);
+                double attained = targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).get(perturbationSize);
+                double avg = (attained + average) / targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).get(-1);
+                targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).put(perturbationSize, avg);
+
+            } else {
+                targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).put(perturbationSize, average);
             }
-            // update target size
-            int[][] currentTargets = new int[targetNum - targetNumSaved][];
-            for (int i = 0; i < currentTargets.length; i ++) {
-                currentTargets[i] = targets[i+targetNumSaved];
-            }
-            targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).put(-1, targetNum);
-            updateMap(individual, perturbationSize, currentTargets);
-        } else {
-            Map<Integer, Integer> targetNumMap = new HashMap<>();
-            targetNumMap.put(-1, targetNum);
-            targetSolvedTable.put(individual.getChromosome().getPhenotype(false), targetNumMap);
-            int[][] currentTargets = new int[targetNum][];
-            for (int i = 0; i < targetNum; i ++) {
-                currentTargets[i] = targets[i];
-            }
-            updateMap(individual, perturbationSize, currentTargets);
         }
+
 
     }
 
-    private void updateMap(Individual<C> individual, int perturbationSize, int[][] currentTargets) {
-        //check for perturbation size < current perturbation size
-        for (int size = 0; size < perturbationSize; size ++) {
-            if (!targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).containsKey(size)) {
-                updateMap(individual, size, currentTargets);
+    protected double getHammingDistance(DataGene[] attractor, int[] target) {
+        int count = 0;
+        for (int i=0; i<attractor.length; i++) {
+            if (attractor[i].getValue() == target[i]) {
+                count += 1;
             }
         }
-
-        for (int[] aTarget : currentTargets) {
-            DataGene[][] attractors = GeneralMethods.generateAttractors(aTarget, perturbationSize);
-            int solvedPerturbations = 0;
-            for (DataGene[] perturbedTarget : attractors) {
-                if (individual.canRegulateToTarget(aTarget, perturbedTarget, maxCycle)) solvedPerturbations += 1;
-            }
-            boolean contains = targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).containsKey(perturbationSize);
-            if (contains) {
-                targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).put(perturbationSize,
-                        targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).get(perturbationSize) + solvedPerturbations);
-            } else targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).put(perturbationSize, solvedPerturbations);
-        }
-
+        return attractor.length - count;
     }
 
-    // if not in the table: false; if not correct target number: false
-    private boolean hasUpdatedTargetNum(Individual<C> individual, int targetNum) {
-        boolean updated = true;
-        if (targetSolvedTable.containsKey(individual.getChromosome().getPhenotype(false))) { //table has the individual
-            if (targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).get(-1) != targetNum) { //table value(map) updated to current target number
-                updated = false;
-            }
-        } else { //table don't have the individual
-            updated = false;
+    String targetPath = "/Users/rouyijin/Desktop/modularity/Research-Modularity/generated-outputs/extended-tournament-selection";
+
+    public void generateSomeGenerations() throws IOException{
+
+        BufferedWriter pheOutputWriter;
+        String aFileName = targetPath + "_gen_" + ((Integer) generation).toString() + ".maps";
+        pheOutputWriter = new BufferedWriter(new FileWriter(aFileName));
+        Set set = targetSolvedTable.entrySet();
+        Iterator it = set.iterator();
+        while (it.hasNext()) {
+            Map.Entry entry = (Map.Entry) it.next();
+            pheOutputWriter.write(entry.getKey().toString() + " = " + entry.getValue().toString());
+            pheOutputWriter.newLine();
         }
-        return updated;
+
+        pheOutputWriter.close();
+
     }
 
 
