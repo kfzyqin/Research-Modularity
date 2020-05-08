@@ -1099,7 +1099,7 @@ public class GeneralMethods<T> {
         return staticPerturbations;
     }
 
-    public static DataGene[][] generateAttractors(int[] target, int perturbationSize) {
+    public static DataGene[][] generatePurterbed(int[] target, int perturbationSize) {
         Integer[] indices = new Integer[target.length];
         for (int i = 0; i < indices.length; i++) {
             indices[i] = i;
@@ -1124,6 +1124,14 @@ public class GeneralMethods<T> {
 
         return returnables;
 
+    }
+
+    public static double getSum(List<Double> doubles) {
+        double res = 0;
+        for (Double d: doubles) {
+            res += d;
+        }
+        return res;
     }
 
 }
