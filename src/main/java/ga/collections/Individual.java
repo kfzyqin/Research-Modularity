@@ -76,25 +76,25 @@ public class Individual<C extends Chromosome> implements Comparable<Individual<C
             targetDataGene[i] = new DataGene(target[i]);
         }
 
-        if (canAchieveAttractor(perturbed, this.chromosome.getPhenotype(false), maxCycle)) {
-            DataGene[] attractor = getAttractor(perturbed, this.chromosome.getPhenotype(false), maxCycle);
+        if (canAchieveAttractor(perturbed, maxCycle)) {
+            DataGene[] attractor = getAttractor(perturbed, maxCycle);
             return equalDataGeneArray(attractor, targetDataGene);
         } else return false;
 
     }
 
-    public DataGene[] getAttractor(DataGene[] currentState, Material phenotype, int maxCycle) {
-        DataGene[] updated = update(currentState, phenotype);
-        if (canAchieveAttractor(currentState, phenotype, maxCycle)) {
+    public DataGene[] getAttractor(DataGene[] currentState, int maxCycle) {
+        DataGene[] updated = update(currentState, this.getChromosome().getPhenotype(false));
+        if (canAchieveAttractor(currentState,  maxCycle)) {
             if (equalDataGeneArray(currentState, updated)) return updated;
-            else return getAttractor(updated, phenotype, maxCycle-1);
+            else return getAttractor(updated, maxCycle-1);
         } else return null;
     }
 
-    public boolean canAchieveAttractor(DataGene[] currentState, Material phenotype, int maxCycle) {
-        DataGene[] updated = update(currentState, phenotype);
+    public boolean canAchieveAttractor(DataGene[] currentState, int maxCycle) {
+        DataGene[] updated = update(currentState, this.getChromosome().getPhenotype(false));
         if (equalDataGeneArray(updated, currentState)) return true;
-        else if (maxCycle > 0) return canAchieveAttractor(updated, phenotype, maxCycle-1);
+        else if (maxCycle > 0) return canAchieveAttractor(updated, maxCycle-1);
         else return false;
     }
 
