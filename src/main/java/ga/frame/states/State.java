@@ -4,9 +4,11 @@ import ga.collections.Population;
 import ga.collections.PopulationMode;
 import ga.collections.Statistics;
 import ga.components.chromosomes.Chromosome;
+import ga.components.chromosomes.SimpleHaploid;
 import ga.components.hotspots.Hotspot;
 import ga.operations.fitnessFunctions.FitnessFunction;
 import ga.operations.fitnessFunctions.FitnessFunctionMultipleTargets;
+import ga.operations.fitnessFunctions.GRNFitnessFunctionMultipleTargets;
 import ga.operations.hotspotMutators.HotspotMutator;
 import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.PostOperator;
@@ -71,10 +73,12 @@ public abstract class State<C extends Chromosome> {
      * @param recomputePhenotype determines whether to force re-computation of phenotype from genotype
      */
     public void evaluate(final boolean recomputePhenotype){
+//        ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = ((ExtendedTournamentSelector<SimpleHaploid>) selector).threshold;
         population.evaluate(fitnessFunction, recomputePhenotype);
     }
 
     public void evaluateWithMultipleTargets(final boolean recomputePhenotype) {
+//        ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = ((ExtendedTournamentSelector<SimpleHaploid>) selector).threshold;
         population.evaluate((FitnessFunctionMultipleTargets) fitnessFunction, recomputePhenotype, this.generation);
     }
 
