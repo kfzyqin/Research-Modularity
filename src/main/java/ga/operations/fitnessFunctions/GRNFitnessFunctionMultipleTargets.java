@@ -20,7 +20,7 @@ public class GRNFitnessFunctionMultipleTargets extends GRNFitnessFunction<Simple
     protected Map<List<Integer>, Map<SimpleMaterial, Double>> targetPhenotypeFitnessMap = new HashMap<>();
     protected String outputPath;
 
-    protected final List<Integer> thresholdOfAddingTarget;
+    public List<Integer> thresholdOfAddingTarget;
 
     private static int overallCount = 1;
 
