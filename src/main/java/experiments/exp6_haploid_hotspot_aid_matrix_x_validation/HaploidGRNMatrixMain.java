@@ -9,20 +9,17 @@ import ga.frame.states.SimpleHaploidState;
 import ga.frame.states.State;
 import ga.operations.fitnessFunctions.*;
 import ga.operations.initializers.HaploidGRNInitializer;
-import ga.operations.initializers.PreFixedIndividualInitializer;
 import ga.operations.mutators.GRNEdgeMutator;
 import ga.operations.mutators.Mutator;
+import ga.operations.postOperators.ExtendedFillingOperator;
 import ga.operations.postOperators.PostOperator;
 import ga.operations.postOperators.SimpleFillingOperatorForNormalizable;
 import ga.operations.reproducers.*;
-import ga.operations.selectionOperators.selectionSchemes.ExtendedTournamentScheme;
 import ga.operations.selectionOperators.selectionSchemes.SimpleTournamentScheme;
 import ga.operations.selectionOperators.selectors.ExtendedTournamentSelector;
 import ga.operations.selectionOperators.selectors.Selector;
-import ga.operations.selectionOperators.selectors.SimpleProportionalSelector;
 import ga.operations.selectionOperators.selectors.SimpleTournamentSelector;
 
-import java.io.*;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -107,15 +104,16 @@ public class HaploidGRNMatrixMain {
     private static final double perturbationRate = 0.15;
 
     /* Parameters of the GA */
-    private static final double geneMutationRate = 0.05;
+    private static final double geneMutationRate = 0.2;
     private static final int numElites = 10;
     private static final int populationSize = 100;
     private static final int tournamentSize = 3;
-    private static final double reproductionRate = 1;
+    private static final double reproductionRate = 0.2;
+    private static final double k = 0.5; // proportion of adding second target
 
     private static final int maxGen = 2000; //2000
 //    private static final int maxGen = 30000;
-    private static final List<Integer> thresholds = Arrays.asList(0, 500); // when to switch targets 500
+    private static List<Integer> thresholds = Arrays.asList(0, 500); // when to switch targets 500
 //    private static final List<Integer> thresholds = Arrays.asList(0, 500, 2000, 5000, 10000, 15000); // when to switch targets
     private static final double alpha = 0.75;
     private static final int[] perturbationSizes = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30};
@@ -124,7 +122,7 @@ public class HaploidGRNMatrixMain {
     /* Settings for text outputs */
     private static final String summaryFileName = "Summary.txt";
     private static final String csvFileName = "Statistics.csv";
-    private static final String outputDirectory = "extended-tournament-selection";
+    private static final String outputDirectory = "zhenyue-2000gen-500-target";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static final String allPerturbationsName = "Perturbations.per";
     private static final String modFitNamePrefix = "phenotypes";
@@ -178,8 +176,10 @@ public class HaploidGRNMatrixMain {
 //        FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricBob(
 //                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
 
+//
         FitnessFunction fitnessFunction = new GRNFitnessFunctionMultipleTargetsAllCombinationBalanceAsymmetricZhenyue(
                 targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride);
+
 
 //        FitnessFunction fitnessFunction = new GRNFitnessFunctionMulTarDistBalAsymEdgePenalty(
 //                targets, maxCycle, perturbationRate, thresholds, perturbationSizes, stride, edgePenalty);
@@ -198,10 +198,11 @@ public class HaploidGRNMatrixMain {
 //        Mutator mutator = new GRNRandomEdgeMutator(geneMutationRate);
 //
         /* Selector for reproduction */
-        Selector<SimpleHaploid> tourSelector = new ExtendedTournamentSelector<>(tournamentSize, targets, maxCycle, thresholds);
-//        Selector<SimpleHaploid> tourSelector = new SimpleTournamentSelector<>(tournamentSize);
+//        Selector<SimpleHaploid> tourSelector = new ExtendedTournamentSelector<>(tournamentSize, targets, maxCycle, thresholds, k);
+        Selector<SimpleHaploid> tourSelector = new SimpleTournamentSelector<>(tournamentSize);
 //        Selector<SimpleHaploid> propSelector = new SimpleProportionalSelector<>();
 //        Selector<SimpleHaploid> selector = new RandomSelector<>();
+
 
         /* Selector for elites */
 //        PriorOperator<SimpleHaploid> priorOperator = new SimpleElitismOperator<>(numElites);
@@ -209,8 +210,7 @@ public class HaploidGRNMatrixMain {
         /* PostOperator is required to fill up the vacancy */
         PostOperator<SimpleHaploid> postOperator = new SimpleFillingOperatorForNormalizable<>(
                 new SimpleTournamentScheme(3));
-//        PostOperator<SimpleHaploid> postOperator = new SimpleFillingOperatorForNormalizable<>(
-//                new ExtendedTournamentScheme());
+//        PostOperator<SimpleHaploid> postOperator = new ExtendedFillingOperator(tourSelector);
 
         /* Reproducer for reproduction */
 //        Reproducer<SimpleHaploid> reproducer = new GRNHaploidNoXReproducer();
@@ -262,6 +262,7 @@ public class HaploidGRNMatrixMain {
 //        statistics.generatePopulationPhenotypesOfAllGenerations(allPopulationPhenotypeName);
         statistics.generateNormalCSVFile(csvFileName);
         statistics.generatePlot(plotTitle, plotFileName);
+        statistics.generateTime("time-used", eDate.getTime() - sDate.getTime(), maxGen);
 
 //        String test = Arrays.deepToString(targets);
 //
