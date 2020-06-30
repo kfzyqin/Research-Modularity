@@ -1134,4 +1134,20 @@ public class GeneralMethods<T> {
         return res;
     }
 
+    public static double median(List<Double> doubles) {
+        Collections.sort(doubles);
+        if (doubles.size() % 2 == 0) return (doubles.get(doubles.size()/2)+doubles.get(doubles.size()/2+1))/2;
+        else return doubles.get(doubles.size()/2);
+    }
+
+    public static double best(List<Double> doubles) {
+        Collections.sort(doubles);
+        return doubles.get(doubles.size()-1);
+    }
+
+    public static double kproportion(double k, List<Double> doubles) {
+        Collections.sort(doubles);
+        int index = (int) (doubles.size() * (1-k));
+        return doubles.get(index-1);
+    }
 }
