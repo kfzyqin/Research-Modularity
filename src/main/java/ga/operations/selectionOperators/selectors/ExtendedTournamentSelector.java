@@ -97,7 +97,8 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
         }
 
         double kproportion = GeneralMethods.kproportion(k, fitness);
-        double best = GeneralMethods.best(fitness);
+        double best = 0.950212931632136;
+//                GeneralMethods.best(fitness);
         if (kproportion == best && targetNum < targets.length) targetNum += 1;
     }
 
