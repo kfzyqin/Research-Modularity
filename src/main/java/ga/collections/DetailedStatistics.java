@@ -410,5 +410,16 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
     public List<List<DataGene[][]>> getAllGenerationPerturbations() {
         return this.allGenerationPerturbations;
     }
+    public void generateTime(String fileName, long time, int maxGen) throws IOException {
 
+        if (generation == maxGen) {
+            BufferedWriter OutputWriter;
+            String aFileName = this.directoryPath + fileName;
+            OutputWriter = new BufferedWriter(new FileWriter(aFileName));
+            String totalTime = Long.toString(time);
+                OutputWriter.write(totalTime);
+                OutputWriter.newLine();
+            OutputWriter.close();
+        }
+    }
 }
