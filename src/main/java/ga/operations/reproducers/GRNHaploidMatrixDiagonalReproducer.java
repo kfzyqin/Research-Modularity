@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -14,6 +15,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class GRNHaploidMatrixDiagonalReproducer extends HaploidReproducer<SimpleHaploid> {
     private final int matrixSideSize;
+    private long seed = 100;
 
     public GRNHaploidMatrixDiagonalReproducer(int matrixSideSize) {
         this.matrixSideSize = matrixSideSize;
@@ -29,7 +31,13 @@ public class GRNHaploidMatrixDiagonalReproducer extends HaploidReproducer<Simple
         SimpleMaterial dna1 = child1.getMaterialsView().get(0);
         SimpleMaterial dna2 = child2.getMaterialsView().get(0);
 
-        final int crossIndex = ThreadLocalRandom.current().nextInt(matrixSideSize);
+        // for seed
+        Random r = new Random();
+        seed +=10;
+        r.setSeed(seed);
+        final int crossIndex = r.nextInt(matrixSideSize);
+
+//        final int crossIndex = ThreadLocalRandom.current().nextInt(matrixSideSize);
 //        final int crossIndex = 3;
         for (int currentCrossIndex=0; currentCrossIndex<crossIndex; currentCrossIndex++) {
             int tmpCrossIndex = currentCrossIndex;
