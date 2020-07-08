@@ -23,7 +23,8 @@ public class PreFixedIndividualInitializer extends HaploidGRNInitializer {
     public Population<SimpleHaploid> initialize() {
         Population<SimpleHaploid> population = new Population<>(size);
 //        String aModFile = "./data/perfect_modular_individuals.txt";
-        String aModFile = "/home/zhenyue-qin/Research/Project-Maotai-Modularity/jars/generated-outputs/proportional-100/2019-10-14-18-29-17/population-phenotypes/all-population-phenotype_gen_10.lists";
+//        String aModFile = "/home/zhenyue-qin/Research/Project-Maotai-Modularity/jars/generated-outputs/proportional-100/2019-10-14-18-29-17/population-phenotypes/all-population-phenotype_gen_10.lists";
+        String aModFile = "/Users/rouyijin/Desktop/initial-population.lists";
         List<String[]> lines = GeneralMethods.readFileLineByLine(aModFile);
         int count = 0;
         for (String[] aLine : lines) {
