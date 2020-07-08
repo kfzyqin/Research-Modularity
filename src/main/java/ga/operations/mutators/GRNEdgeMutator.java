@@ -18,6 +18,11 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class GRNEdgeMutator<T extends Chromosome> implements Mutator<T> {
     private double prob;
+    private long seedCoin = 12345;
+    private long seedGen = 54321;
+    private long seedMeet = 2345;
+    private int flipTimes = 0;
+    private int genIntTimes = 0;
 
     public GRNEdgeMutator(final double prob) {
         filter(prob);
@@ -39,7 +44,11 @@ public class GRNEdgeMutator<T extends Chromosome> implements Mutator<T> {
     }
 
     protected void actualMutate(double probabilityToLoseInteraction, SimpleMaterial material, int targetNumber, int i) {
-        if (Math.random() <= probabilityToLoseInteraction) { // lose an interaction
+        Random r = new Random();
+        r.setSeed(seedGen);
+        double randomMath = r.nextDouble();
+        // randomMath was Math.random()
+        if (randomMath <= probabilityToLoseInteraction) { // lose an interaction
             List<Integer> interactions = new ArrayList<>();
             for (int edgeIdx = 0; edgeIdx < targetNumber; edgeIdx++) {
                 if ((int) material.getGene(edgeIdx * targetNumber + i).getValue() != 0) {
@@ -47,7 +56,12 @@ public class GRNEdgeMutator<T extends Chromosome> implements Mutator<T> {
                 }
             }
             if (interactions.size() > 0) {
-                int toRemove = ThreadLocalRandom.current().nextInt(interactions.size());
+                //seed
+                Random remove = new Random();
+                seedGen += 10;
+                remove.setSeed(seedGen);
+                int toRemove = remove.nextInt(interactions.size());
+//                int toRemove = ThreadLocalRandom.current().nextInt(interactions.size());
                 material.getGene(interactions.get(toRemove) * targetNumber + i).setValue(0);
             }
         } else { // gain an interaction
@@ -58,7 +72,9 @@ public class GRNEdgeMutator<T extends Chromosome> implements Mutator<T> {
                 }
             }
             if (nonInteractions.size() > 0) {
+                seedGen += 100;
                 int toAdd = this.generateAnRandomInteger(nonInteractions.size());
+                seedCoin += 100;
                 if (this.flipACoin()) {
                     material.getGene(nonInteractions.get(toAdd) * targetNumber + i).setValue(1);
                 } else {
@@ -76,9 +92,17 @@ public class GRNEdgeMutator<T extends Chromosome> implements Mutator<T> {
             int regulatorNumber = 0;
 
                     /* Does not meet the mutation rate */
-            if (Math.random() > this.prob) {
+//            seed
+            Random r = new Random();
+            r.setSeed(seedMeet);
+            seedMeet += 10;
+            double random = r.nextDouble();
+            if (random > this.prob) {
                 continue;
             }
+//            if (Math.random() > this.prob) {
+//                continue;
+//            }
 
                     /* Get how many genes that regulate gene i */
             for (int j=0; j<targetNumber; j++) {
@@ -111,11 +135,24 @@ public class GRNEdgeMutator<T extends Chromosome> implements Mutator<T> {
     }
 
     private boolean flipACoin() {
-        return 0.5 < Math.random();
+        // seed
+        flipTimes += 100;
+        Random r = new Random();
+        r.setSeed(seedCoin + flipTimes);
+        double random = r.nextDouble();
+        return 0.5 < random;
+
+//        return 0.5 < Math.random();
     }
 
     private int generateAnRandomInteger(int upBound) {
-        Random randomGenerator = new Random();
-        return randomGenerator.nextInt(upBound);
+        genIntTimes += 100;
+        Random r = new Random();
+        r.setSeed(seedGen + genIntTimes);
+        return r.nextInt(upBound);
+
+
+//        Random randomGenerator = new Random();
+//        return randomGenerator.nextInt(upBound);
     }
 }
