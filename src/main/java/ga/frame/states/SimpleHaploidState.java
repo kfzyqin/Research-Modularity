@@ -34,6 +34,17 @@ public class SimpleHaploidState<C extends Chromosome> extends State<C> {
         super(population, fitnessFunction, mutator, reproducer, selector, numOfMates);
         setReproductionRate(reproductionRate);
     }
+    public SimpleHaploidState(@NotNull final Population<C> population,
+                              @NotNull final FitnessFunction fitnessFunction,
+                              @NotNull final Mutator mutator,
+                              @NotNull final Reproducer<C> reproducer,
+                              @NotNull final Selector<C> selector,
+                              final int numOfMates,
+                              final double reproductionRate,
+                              double k) {
+        super(population, fitnessFunction, mutator, reproducer, selector, numOfMates, k);
+        setReproductionRate(reproductionRate);
+    }
 
     private void filter(final double probability) {
         if (probability < 0 || probability > 1)
