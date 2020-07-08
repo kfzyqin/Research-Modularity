@@ -1,5 +1,6 @@
 package ga.frame.states;
 
+import ga.collections.Individual;
 import ga.collections.Population;
 import ga.collections.PopulationMode;
 import ga.collections.Statistics;
@@ -16,7 +17,12 @@ import ga.operations.priorOperators.PriorOperator;
 import ga.operations.reproducers.Reproducer;
 import ga.operations.selectionOperators.selectors.ExtendedTournamentSelector;
 import ga.operations.selectionOperators.selectors.Selector;
+import ga.others.GeneralMethods;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * This class provides an overall base implementation for the state of current generation of genetic algorithm.
@@ -33,6 +39,8 @@ public abstract class State<C extends Chromosome> {
     protected Mutator mutator;
     protected Reproducer<C> reproducer;
     protected Selector<C> selector;
+    protected double k;
+
 
     /**
      * Constructs an initial state for the GA
@@ -58,6 +66,40 @@ public abstract class State<C extends Chromosome> {
         evaluate(true);
     }
 
+    public State(@NotNull final Population<C> population,
+                 @NotNull final FitnessFunction fitnessFunction,
+                 @NotNull final Mutator mutator,
+                 @NotNull final Reproducer<C> reproducer,
+                 @NotNull final Selector<C> selector,
+                 final int numOfMates,
+                 double k) {
+        this.population = population;
+        this.fitnessFunction = fitnessFunction;
+        this.mutator = mutator;
+        this.reproducer = reproducer;
+        this.selector = selector;
+        this.numOfMates = numOfMates;
+        this.k = k;
+        evaluate(true);
+    }
+
+    public boolean addTarget() {
+        List<Double> fitness = new ArrayList<>();
+
+
+        for (Individual<C> individual: population.getIndividualsView()) {
+            fitness.add(individual.getFitness());
+        }
+        double kproportion = GeneralMethods.kproportion(k, fitness);
+//        GeneralMethods.best(fitness);
+
+        double best = 0.950212931632136;
+
+        if (kproportion == best) return true;
+        else return false;
+
+    }
+
     /**
      * Performs recombination using the reproducers operator.
      */
@@ -74,11 +116,77 @@ public abstract class State<C extends Chromosome> {
      */
     public void evaluate(final boolean recomputePhenotype){
 //        ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = ((ExtendedTournamentSelector<SimpleHaploid>) selector).threshold;
+        if (fitnessFunction instanceof GRNFitnessFunctionMultipleTargets && !((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdIsAtMaxLength()) {
+            List<Integer> threshold = new ArrayList<>();
+            for (int i: ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget) {
+                threshold.add(i);
+            }
+            if (addTarget()) {
+                threshold.add(this.generation);
+                ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = threshold;
+            } else if (this.generation == 500) {
+                threshold.add(this.generation);
+                ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = threshold;
+            }
+        }
+
+//        if(addTarget()){
+//            if (fitnessFunction instanceof GRNFitnessFunctionMultipleTargets && !((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdIsAtMaxLength()) {
+//                List<Integer> threshold = new ArrayList<>();
+//                for (int i: ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget) {
+//                    threshold.add(i);
+//                }
+//                threshold.add(this.generation);
+//                ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = threshold;
+//            }
+//        } else if (this.generation == 500 &&
+//                fitnessFunction instanceof GRNFitnessFunctionMultipleTargets &&
+//                !((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdIsAtMaxLength()) {
+//            List<Integer> threshold = new ArrayList<>();
+//            for (int i: ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget) {
+//                threshold.add(i);
+//            }
+//            threshold.add(this.generation);
+//            ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = threshold;
+//        }
         population.evaluate(fitnessFunction, recomputePhenotype);
     }
 
     public void evaluateWithMultipleTargets(final boolean recomputePhenotype) {
 //        ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = ((ExtendedTournamentSelector<SimpleHaploid>) selector).threshold;
+        if (fitnessFunction instanceof GRNFitnessFunctionMultipleTargets && !((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdIsAtMaxLength()) {
+            List<Integer> threshold = new ArrayList<>();
+            for (int i: ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget) {
+                threshold.add(i);
+            }
+            if (addTarget()) {
+                threshold.add(this.generation);
+                ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = threshold;
+            } else if (this.generation == 500) {
+                threshold.add(this.generation);
+                ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = threshold;
+            }
+        }
+
+//        if(addTarget()){
+//            if (fitnessFunction instanceof GRNFitnessFunctionMultipleTargets && !((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdIsAtMaxLength()) {
+//                List<Integer> threshold = new ArrayList<>();
+//                for (int i: ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget) {
+//                    threshold.add(i);
+//                }
+//                threshold.add(this.generation);
+//                ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = threshold;
+//            }
+//        } else if (this.generation == 500 &&
+//                fitnessFunction instanceof GRNFitnessFunctionMultipleTargets &&
+//                !((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdIsAtMaxLength()) {
+//            List<Integer> threshold = new ArrayList<>();
+//            for (int i: ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget) {
+//                threshold.add(i);
+//            }
+//            threshold.add(this.generation);
+//            ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = threshold;
+//        }
         population.evaluate((FitnessFunctionMultipleTargets) fitnessFunction, recomputePhenotype, this.generation);
     }
 
