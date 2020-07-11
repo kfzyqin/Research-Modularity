@@ -32,12 +32,12 @@ public class GRNHaploidMatrixDiagonalReproducer extends HaploidReproducer<Simple
         SimpleMaterial dna2 = child2.getMaterialsView().get(0);
 
         // for seed
-        Random r = new Random();
-        seed +=10;
-        r.setSeed(seed);
-        final int crossIndex = r.nextInt(matrixSideSize);
+//        Random r = new Random();
+//        seed += 1000;
+//        r.setSeed(seed);
+//        final int crossIndex = r.nextInt(matrixSideSize);
 
-//        final int crossIndex = ThreadLocalRandom.current().nextInt(matrixSideSize);
+        final int crossIndex = ThreadLocalRandom.current().nextInt(matrixSideSize);
 //        final int crossIndex = 3;
         for (int currentCrossIndex=0; currentCrossIndex<crossIndex; currentCrossIndex++) {
             int tmpCrossIndex = currentCrossIndex;
