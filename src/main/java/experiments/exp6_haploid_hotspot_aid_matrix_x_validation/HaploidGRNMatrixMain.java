@@ -111,10 +111,11 @@ public class HaploidGRNMatrixMain {
     private static final int tournamentSize = 3;
     private static final double reproductionRate = 0.2;
     private static final double k = 0.5; // proportion of adding second target
+    private static final int maxPerturbation = 2;
 
     private static final int maxGen = 2000; //2000
 //    private static final int maxGen = 30000;
-    private static List<Integer> thresholds = Arrays.asList(0,500); // when to switch targets 500
+    private static List<Integer> thresholds = Arrays.asList(0); // when to switch targets 500
 //    private static final List<Integer> thresholds = Arrays.asList(0, 500, 2000, 5000, 10000, 15000); // when to switch targets
     private static final double alpha = 0.75;
     private static final int[] perturbationSizes = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
@@ -124,7 +125,7 @@ public class HaploidGRNMatrixMain {
     /* Settings for text outputs */
     private static final String summaryFileName = "Summary.txt";
     private static final String csvFileName = "Statistics.csv";
-    private static final String outputDirectory = "Zhenyue-debug-500-2000-fixed-pop";
+    private static final String outputDirectory = "Rouyi-selection-random-pop-maxPer-2-no-seed-pop";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static final String allPerturbationsName = "Perturbations.per";
     private static final String modFitNamePrefix = "phenotypes";
@@ -188,8 +189,8 @@ public class HaploidGRNMatrixMain {
 
         /* It is not necessary to write an initializer, but doing so is convenient to
         repeat the experiment using different parameter */
-//        HaploidGRNInitializer initializer = new HaploidGRNInitializer(populationSize, target1.length, edgeSize);
-        PreFixedIndividualInitializer initializer = new PreFixedIndividualInitializer(populationSize, target1.length, edgeSize);
+        HaploidGRNInitializer initializer = new HaploidGRNInitializer(populationSize, target1.length, edgeSize);
+//        PreFixedIndividualInitializer initializer = new PreFixedIndividualInitializer(populationSize, target1.length, edgeSize);
 
         /* Population */
         Population<SimpleHaploid> population = initializer.initialize();
@@ -200,8 +201,9 @@ public class HaploidGRNMatrixMain {
 //        Mutator mutator = new GRNRandomEdgeMutator(geneMutationRate);
 //
         /* Selector for reproduction */
-//        Selector<SimpleHaploid> tourSelector = new ExtendedTournamentSelector<>(tournamentSize, targets, maxCycle, thresholds, k);
-        Selector<SimpleHaploid> tourSelector = new SimpleTournamentSelector<>(tournamentSize);
+//        Selector<SimpleHaploid> tourSelector = new ExtendedTournamentSelector<>(tournamentSize, targets, maxCycle, k);
+        Selector<SimpleHaploid> tourSelector = new ExtendedTournamentSelector<>(tournamentSize, targets, maxCycle, thresholds, k, maxPerturbation);
+//        Selector<SimpleHaploid> tourSelector = new SimpleTournamentSelector<>(tournamentSize);
 //        Selector<SimpleHaploid> propSelector = new SimpleProportionalSelector<>();
 //        Selector<SimpleHaploid> selector = new RandomSelector<>();
 
