@@ -115,7 +115,7 @@ public abstract class State<C extends Chromosome> {
      * @param recomputePhenotype determines whether to force re-computation of phenotype from genotype
      */
     public void evaluate(final boolean recomputePhenotype){
-//        ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = ((ExtendedTournamentSelector<SimpleHaploid>) selector).threshold;
+
         if (fitnessFunction instanceof GRNFitnessFunctionMultipleTargets && !((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdIsAtMaxLength()) {
             List<Integer> threshold = new ArrayList<>();
             for (int i: ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget) {
@@ -124,36 +124,18 @@ public abstract class State<C extends Chromosome> {
             if (addTarget()) {
                 threshold.add(this.generation);
                 ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = threshold;
+                if (selector instanceof ExtendedTournamentSelector) ((ExtendedTournamentSelector<C>) selector).setThreshold(threshold);
             } else if (this.generation == 500) {
                 threshold.add(this.generation);
-                ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = threshold;
+                if (selector instanceof ExtendedTournamentSelector) ((ExtendedTournamentSelector<C>) selector).setThreshold(threshold);
             }
         }
 
-//        if(addTarget()){
-//            if (fitnessFunction instanceof GRNFitnessFunctionMultipleTargets && !((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdIsAtMaxLength()) {
-//                List<Integer> threshold = new ArrayList<>();
-//                for (int i: ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget) {
-//                    threshold.add(i);
-//                }
-//                threshold.add(this.generation);
-//                ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = threshold;
-//            }
-//        } else if (this.generation == 500 &&
-//                fitnessFunction instanceof GRNFitnessFunctionMultipleTargets &&
-//                !((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdIsAtMaxLength()) {
-//            List<Integer> threshold = new ArrayList<>();
-//            for (int i: ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget) {
-//                threshold.add(i);
-//            }
-//            threshold.add(this.generation);
-//            ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = threshold;
-//        }
         population.evaluate(fitnessFunction, recomputePhenotype);
     }
 
     public void evaluateWithMultipleTargets(final boolean recomputePhenotype) {
-//        ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = ((ExtendedTournamentSelector<SimpleHaploid>) selector).threshold;
+
         if (fitnessFunction instanceof GRNFitnessFunctionMultipleTargets && !((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdIsAtMaxLength()) {
             List<Integer> threshold = new ArrayList<>();
             for (int i: ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget) {
@@ -162,31 +144,14 @@ public abstract class State<C extends Chromosome> {
             if (addTarget()) {
                 threshold.add(this.generation);
                 ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = threshold;
+                if (selector instanceof ExtendedTournamentSelector) ((ExtendedTournamentSelector<C>) selector).setThreshold(threshold);
             } else if (this.generation == 500) {
                 threshold.add(this.generation);
                 ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = threshold;
+                if (selector instanceof ExtendedTournamentSelector) ((ExtendedTournamentSelector<C>) selector).setThreshold(threshold);
             }
         }
 
-//        if(addTarget()){
-//            if (fitnessFunction instanceof GRNFitnessFunctionMultipleTargets && !((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdIsAtMaxLength()) {
-//                List<Integer> threshold = new ArrayList<>();
-//                for (int i: ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget) {
-//                    threshold.add(i);
-//                }
-//                threshold.add(this.generation);
-//                ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = threshold;
-//            }
-//        } else if (this.generation == 500 &&
-//                fitnessFunction instanceof GRNFitnessFunctionMultipleTargets &&
-//                !((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdIsAtMaxLength()) {
-//            List<Integer> threshold = new ArrayList<>();
-//            for (int i: ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget) {
-//                threshold.add(i);
-//            }
-//            threshold.add(this.generation);
-//            ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = threshold;
-//        }
         population.evaluate((FitnessFunctionMultipleTargets) fitnessFunction, recomputePhenotype, this.generation);
     }
 
