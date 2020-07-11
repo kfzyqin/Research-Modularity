@@ -47,8 +47,8 @@ public class SimpleTournamentScheme implements SelectionScheme {
     public int select(@NotNull List<Double> fitnessValues) {
         List<Integer> indices = new ArrayList<>(size);
         final int populationSize = fitnessValues.size();
-        seed += 1;
-        randomno.setSeed(seed);
+//        seed += 1000;
+//        randomno.setSeed(seed);
         while (indices.size() < size) {
             final int index = randomno.nextInt(populationSize);
             if (!indices.contains(index))
