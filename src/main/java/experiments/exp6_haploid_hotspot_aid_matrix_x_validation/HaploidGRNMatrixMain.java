@@ -9,6 +9,7 @@ import ga.frame.states.SimpleHaploidState;
 import ga.frame.states.State;
 import ga.operations.fitnessFunctions.*;
 import ga.operations.initializers.HaploidGRNInitializer;
+import ga.operations.initializers.PreFixedIndividualInitializer;
 import ga.operations.mutators.GRNEdgeMutator;
 import ga.operations.mutators.Mutator;
 import ga.operations.postOperators.ExtendedFillingOperator;
@@ -110,19 +111,21 @@ public class HaploidGRNMatrixMain {
     private static final int tournamentSize = 3;
     private static final double reproductionRate = 0.2;
     private static final double k = 0.5; // proportion of adding second target
+    private static final int maxPerturbation = 2;
 
     private static final int maxGen = 2000; //2000
 //    private static final int maxGen = 30000;
-    private static List<Integer> thresholds = Arrays.asList(0, 500); // when to switch targets 500
+    private static List<Integer> thresholds = Arrays.asList(0); // when to switch targets 500
 //    private static final List<Integer> thresholds = Arrays.asList(0, 500, 2000, 5000, 10000, 15000); // when to switch targets
     private static final double alpha = 0.75;
-    private static final int[] perturbationSizes = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30};
+    private static final int[] perturbationSizes = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+//    , 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30};
     private static final int perturbationCycleSize = perturbations;
 
     /* Settings for text outputs */
     private static final String summaryFileName = "Summary.txt";
     private static final String csvFileName = "Statistics.csv";
-    private static final String outputDirectory = "zhenyue-2000gen-500-target";
+    private static final String outputDirectory = "Rouyi-selection-random-pop-maxPer-2-no-seed-pop";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static final String allPerturbationsName = "Perturbations.per";
     private static final String modFitNamePrefix = "phenotypes";
@@ -198,8 +201,9 @@ public class HaploidGRNMatrixMain {
 //        Mutator mutator = new GRNRandomEdgeMutator(geneMutationRate);
 //
         /* Selector for reproduction */
-//        Selector<SimpleHaploid> tourSelector = new ExtendedTournamentSelector<>(tournamentSize, targets, maxCycle, thresholds, k);
-        Selector<SimpleHaploid> tourSelector = new SimpleTournamentSelector<>(tournamentSize);
+//        Selector<SimpleHaploid> tourSelector = new ExtendedTournamentSelector<>(tournamentSize, targets, maxCycle, k);
+        Selector<SimpleHaploid> tourSelector = new ExtendedTournamentSelector<>(tournamentSize, targets, maxCycle, thresholds, k, maxPerturbation);
+//        Selector<SimpleHaploid> tourSelector = new SimpleTournamentSelector<>(tournamentSize);
 //        Selector<SimpleHaploid> propSelector = new SimpleProportionalSelector<>();
 //        Selector<SimpleHaploid> selector = new RandomSelector<>();
 
@@ -227,8 +231,10 @@ public class HaploidGRNMatrixMain {
                 "/src/main/java/experiments/exp6_haploid_hotspot_aid_matrix_x_validation/" + mainFileName);
 
         /* The state of an GA */
+//        State<SimpleHaploid> state = new SimpleHaploidState<>(
+//                population, fitnessFunction, mutator, reproducer, tourSelector, 2, reproductionRate);
         State<SimpleHaploid> state = new SimpleHaploidState<>(
-                population, fitnessFunction, mutator, reproducer, tourSelector, 2, reproductionRate);
+                population, fitnessFunction, mutator, reproducer, tourSelector, 2, reproductionRate, k);
         state.record(statistics); // record the initial state of an population
 
         /* The frame of an GA to change states */
@@ -243,7 +249,7 @@ public class HaploidGRNMatrixMain {
 //            if (i == 50) {
 //                frame.getState().setSelector(tourSelector);
 //            }
-            if (i == 500) {
+            if (i == 1) {
                 sDate = new java.util.Date();
                 System.out.println("Starting time: " + sDate);
             }

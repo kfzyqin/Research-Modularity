@@ -21,6 +21,9 @@ public class GRNFitnessFunctionMultipleTargets extends GRNFitnessFunction<Simple
     protected String outputPath;
 
     public List<Integer> thresholdOfAddingTarget;
+    public boolean thresholdIsAtMaxLength(){
+        return thresholdOfAddingTarget.size() >= targets.length;
+    }
 
     private static int overallCount = 1;
 

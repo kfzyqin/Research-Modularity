@@ -17,6 +17,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class GRNRandomEdgeMutator<T extends Chromosome> extends GRNEdgeMutator<T> {
     private double prob;
+    private long seed = 1443;
 
     public GRNRandomEdgeMutator(final double prob) {
         super(prob);
@@ -30,6 +31,13 @@ public class GRNRandomEdgeMutator<T extends Chromosome> extends GRNEdgeMutator<T
             int regulatorNumber = 0;
 
                     /* Does not meet the mutation rate */
+//            Random r = new Random();
+//            r.setSeed(seed);
+//            seed += 1000;
+//            double random = r.nextDouble();
+//            if (random > this.prob) {
+//                continue;
+//            }
             if (Math.random() > this.prob) {
                 continue;
             }

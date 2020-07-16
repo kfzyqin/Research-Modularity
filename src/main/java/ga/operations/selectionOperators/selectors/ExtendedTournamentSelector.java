@@ -21,12 +21,23 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
     protected int maxCycle;
     public int size;
     private Random randomno = new Random();
-    public Hashtable<Material, Map<Integer, Double>> targetSolvedTable = new Hashtable<>();
-    public List<Integer> threshold;
+    public long seed = 123;
+    public Hashtable<Material, Map<Integer, Double>> targetSolvedTable = new Hashtable<>(40000);
+    private List<Integer> threshold;
     private int generation;
     private double k;
+    private int maxPerSize;
 
-    public ExtendedTournamentSelector(@NotNull int size, int[][] targets, int maxCycle, List<Integer> threshold, double k) {
+    public ExtendedTournamentSelector(@NotNull int size, int[][] targets, int maxCycle, double k) {
+        super(new SimpleTournamentScheme(size));
+        this.size = size;
+        this.targets = targets;
+        this.maxCycle = maxCycle;
+        this.k = k;
+    }
+
+    public ExtendedTournamentSelector(@NotNull int size, int[][] targets, int maxCycle, List<Integer> threshold,
+            double k) {
         super(new SimpleTournamentScheme(size));
         this.size = size;
         this.targets = targets;
@@ -35,19 +46,34 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
         this.k = k;
     }
 
+    public ExtendedTournamentSelector(@NotNull int size, int[][] targets, int maxCycle, List<Integer> threshold,
+                                      double k, int maxPerSize) {
+        super(new SimpleTournamentScheme(size));
+        this.size = size;
+        this.targets = targets;
+        this.maxCycle = maxCycle;
+        this.threshold = threshold;
+        this.k = k;
+        this.maxPerSize = maxPerSize;
+    }
+
     public void setGeneration(int generation) {
         this.generation = generation;
     }
 
-    public void setThreshold() {
-//        if (targetNum == 2 && !targetadded) {
-//            targetadded = true;
-            List arrList = new ArrayList(threshold);
-            arrList.add(generation);
-            threshold = arrList;
-//        }
-//        return threshold;
+    public void setThreshold(List<Integer> threshold) {
+        this.threshold = threshold;
     }
+
+//    public void setThreshold() {
+////        if (targetNum == 2 && !targetadded) {
+////            targetadded = true;
+//            List arrList = new ArrayList(threshold);
+//            arrList.add(generation);
+//            threshold = arrList;
+////        }
+////        return threshold;
+//    }
 
     /**
      *
@@ -66,9 +92,9 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
 
     int targetNum = 1;
 
-    // without k
+
     public int getTargetNum (int generation){
-        if (threshold.size() == 1) return 1;
+//        if (threshold.size() == 1) return 1;
         int targets = 0;
         for (int targetNum = 0; targetNum < threshold.size(); targetNum ++) {
             if (targetNum < threshold.size() - 1) {
@@ -89,18 +115,18 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
     }
 
     // with k
-    public void getNumberOfTargets(double k) {
-        List<Double> fitness = new ArrayList<>();
-
-        for (Individual<C> individual : individuals) {
-            fitness.add(individual.getFitness());
-        }
-
-        double kproportion = GeneralMethods.kproportion(k, fitness);
-        double best = 0.950212931632136;
-//                GeneralMethods.best(fitness);
-        if (kproportion == best && targetNum < targets.length) targetNum += 1;
-    }
+//    public void getNumberOfTargets(double k) {
+//        List<Double> fitness = new ArrayList<>();
+//
+//        for (Individual<C> individual : individuals) {
+//            fitness.add(individual.getFitness());
+//        }
+//
+//        double kproportion = GeneralMethods.kproportion(k, fitness);
+//        double best = 0.950212931632136;
+////                GeneralMethods.best(fitness);
+//        if (kproportion == best && targetNum < targets.length) targetNum += 1;
+//    }
 
 
 
@@ -115,6 +141,10 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
         // generate random individuals
         List<Integer> indices = new ArrayList<>(size);
         List<Individual<C>> selectedIndividuals = new ArrayList<>();
+
+//        seed += 1;
+//        randomno.setSeed(seed);
+
         while (indices.size() < size) {
             final int index = randomno.nextInt(this.individuals.size());
             if (!indices.contains(index))
@@ -124,20 +154,20 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
             selectedIndividuals.add(this.individuals.get(index));
         }
 
-//        targetNum = getTargetNum(generation);
-        if (targetNum < targets.length) {
-            getNumberOfTargets(k);
-        }
+        targetNum = getTargetNum(generation);
+//        if (targetNum < targets.length) {
+//            getNumberOfTargets(k);
+//        }
         int perturbationSize = 0;
         int selectedIndex = -1;
 
         if (targetNum == 2 && first) {
             first = false;
-            setThreshold();
-            System.out.println("add 2 target"+threshold);
+//            setThreshold();
+            System.out.println("add 2 target" + threshold);
         }
 
-        while (perturbationSize < targets[0].length) {
+        while (perturbationSize <= maxPerSize) {
             // update table
             for (Individual<C> individual : selectedIndividuals) {
                 if (targetSolvedTable.containsKey(individual.getChromosome().getPhenotype(false))) {
@@ -191,7 +221,10 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
 //                System.out.println("fullySolved > 1, fullySolvedSize: " + fullySolvedIndividuals.size());
 //                System.out.println("perturbation size: " + perturbationSize);
                 selectedIndividuals = bestIndividuals;
-                if (perturbationSize == targets[0].length-1) {
+                if (perturbationSize == maxPerSize) {
+//                    select smallest index
+//                    selectedIndex = Collections.min(indices);
+
                     Individual<C> randomChoice = selectedIndividuals.get(randomno.nextInt(selectedIndividuals.size()));
                     for (Integer index : indices) {
                         if (individuals.get(index).getChromosome().getPhenotype(false).equals(randomChoice.getChromosome().getPhenotype(false)))
@@ -213,7 +246,7 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
                     Double.valueOf(1) + targetSolvedTable.get(selected.getChromosome().getPhenotype(false)).get(-2));
         } else targetSolvedTable.get(selected.getChromosome().getPhenotype(false)).put(-2, Double.valueOf(1));
 
-//        if (generation == 599) {
+//        if (generation == 1999) {
 //            try {
 //                generateSomeGenerations();
 //            } catch (IOException e) {
