@@ -6,6 +6,7 @@ import ga.components.genes.DataGene;
 import ga.components.materials.GRN;
 import ga.components.materials.Material;
 import ga.components.materials.SimpleMaterial;
+import ga.operations.selectionOperators.selectors.ExtendedTournamentSelector;
 import ga.others.GeneralMethods;
 import org.apache.commons.io.FileUtils;
 import org.graphstream.graph.Graph;
@@ -15,8 +16,7 @@ import tools.GRNModularity;
 import tools.ListTools;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * This class is a simple implementation of statistics bookkeeping that
@@ -420,6 +420,24 @@ public class DetailedStatistics <C extends Chromosome> extends BaseStatistics<C>
                 OutputWriter.write(totalTime);
                 OutputWriter.newLine();
             OutputWriter.close();
+        }
+    }
+
+    public void generatePerturbations(Map<Integer, Integer> perturbationNum, int maxGen) throws IOException {
+
+        if (generation == maxGen) {
+            BufferedWriter pheOutputWriter;
+            String aFileName = this.directoryPath + "perturbationNum" + ".maps";
+            pheOutputWriter = new BufferedWriter(new FileWriter(aFileName));
+            Set set = perturbationNum.entrySet();
+            Iterator it = set.iterator();
+            while (it.hasNext()) {
+                Map.Entry entry = (Map.Entry) it.next();
+                pheOutputWriter.write(entry.getKey().toString() + " = " + entry.getValue().toString());
+                pheOutputWriter.newLine();
+            }
+
+            pheOutputWriter.close();
         }
     }
 }
