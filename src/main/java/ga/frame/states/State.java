@@ -115,42 +115,78 @@ public abstract class State<C extends Chromosome> {
      * @param recomputePhenotype determines whether to force re-computation of phenotype from genotype
      */
     public void evaluate(final boolean recomputePhenotype){
-
-        if (fitnessFunction instanceof GRNFitnessFunctionMultipleTargets && !((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdIsAtMaxLength()) {
-            List<Integer> threshold = new ArrayList<>();
-            for (int i: ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget) {
-                threshold.add(i);
-            }
-            if (addTarget()) {
-                threshold.add(this.generation);
-                ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = threshold;
-                if (selector instanceof ExtendedTournamentSelector) ((ExtendedTournamentSelector<C>) selector).setThreshold(threshold);
-            } else if (this.generation == 500) {
-                threshold.add(this.generation);
-                if (selector instanceof ExtendedTournamentSelector) ((ExtendedTournamentSelector<C>) selector).setThreshold(threshold);
+//        ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = ((ExtendedTournamentSelector<SimpleHaploid>) selector).threshold;
+        if (fitnessFunction instanceof GRNFitnessFunctionMultipleTargets) {
+            if (selector instanceof ExtendedTournamentSelector) {
+                ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = ((ExtendedTournamentSelector<SimpleHaploid>) selector).threshold;
+            } else if (!((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdIsAtMaxLength()){
+                List<Integer> threshold = new ArrayList<>();
+                for (int i: ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget) {
+                    threshold.add(i);
+                }
+                if (addTarget()) {
+                    threshold.add(this.generation);
+                    ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = threshold;
+                } else if (this.generation == 500) {
+                    threshold.add(this.generation);
+                    ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = threshold;
+                }
             }
         }
+//        if (fitnessFunction instanceof GRNFitnessFunctionMultipleTargets && !((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdIsAtMaxLength()) {
+//            List<Integer> threshold = new ArrayList<>();
+//            for (int i: ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget) {
+//                threshold.add(i);
+//            }
+//            if (addTarget()) {
+//                threshold.add(this.generation);
+//                ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = threshold;
+//                if (selector instanceof ExtendedTournamentSelector) ((ExtendedTournamentSelector<C>) selector).setThreshold(threshold);
+//            } else if (this.generation == 500) {
+//                threshold.add(this.generation);
+//                if (selector instanceof ExtendedTournamentSelector) ((ExtendedTournamentSelector<C>) selector).setThreshold(threshold);
+//            }
+//        }
 
         population.evaluate(fitnessFunction, recomputePhenotype);
     }
 
     public void evaluateWithMultipleTargets(final boolean recomputePhenotype) {
-
-        if (fitnessFunction instanceof GRNFitnessFunctionMultipleTargets && !((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdIsAtMaxLength()) {
-            List<Integer> threshold = new ArrayList<>();
-            for (int i: ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget) {
-                threshold.add(i);
-            }
-            if (addTarget()) {
-                threshold.add(this.generation);
-                ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = threshold;
-                if (selector instanceof ExtendedTournamentSelector) ((ExtendedTournamentSelector<C>) selector).setThreshold(threshold);
-            } else if (this.generation == 500) {
-                threshold.add(this.generation);
-                ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = threshold;
-                if (selector instanceof ExtendedTournamentSelector) ((ExtendedTournamentSelector<C>) selector).setThreshold(threshold);
+        if (fitnessFunction instanceof GRNFitnessFunctionMultipleTargets) {
+            if (selector instanceof ExtendedTournamentSelector) {
+                ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = ((ExtendedTournamentSelector<SimpleHaploid>) selector).threshold;
+            } else if (!((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdIsAtMaxLength()){
+                List<Integer> threshold = new ArrayList<>();
+                for (int i: ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget) {
+                    threshold.add(i);
+                }
+                if (addTarget()) {
+                    threshold.add(this.generation);
+                    ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = threshold;
+                } else if (this.generation == 500) {
+                    threshold.add(this.generation);
+                    ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = threshold;
+                }
             }
         }
+
+//        ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = ((ExtendedTournamentSelector<SimpleHaploid>) selector).threshold;
+
+//        if (fitnessFunction instanceof GRNFitnessFunctionMultipleTargets && !((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdIsAtMaxLength()) {
+//            List<Integer> threshold = new ArrayList<>();
+//            for (int i: ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget) {
+//                threshold.add(i);
+//            }
+//            if (addTarget()) {
+//                threshold.add(this.generation);
+//                ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = threshold;
+//                if (selector instanceof ExtendedTournamentSelector) ((ExtendedTournamentSelector<C>) selector).setThreshold(threshold);
+//            } else if (this.generation == 500) {
+//                threshold.add(this.generation);
+//                ((GRNFitnessFunctionMultipleTargets) fitnessFunction).thresholdOfAddingTarget = threshold;
+//                if (selector instanceof ExtendedTournamentSelector) ((ExtendedTournamentSelector<C>) selector).setThreshold(threshold);
+//            }
+//        }
 
         population.evaluate((FitnessFunctionMultipleTargets) fitnessFunction, recomputePhenotype, this.generation);
     }
