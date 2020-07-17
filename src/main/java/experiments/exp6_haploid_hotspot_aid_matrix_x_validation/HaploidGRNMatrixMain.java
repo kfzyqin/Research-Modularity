@@ -125,7 +125,7 @@ public class HaploidGRNMatrixMain {
     /* Settings for text outputs */
     private static final String summaryFileName = "Summary.txt";
     private static final String csvFileName = "Statistics.csv";
-    private static final String outputDirectory = "Rouyi-selection-random-pop-maxPer-2-no-seed-pop";
+    private static final String outputDirectory = "Rouyi-selection-k-0.5-2000-max-2-with-perturbationMap-random-init";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static final String allPerturbationsName = "Perturbations.per";
     private static final String modFitNamePrefix = "phenotypes";
@@ -212,9 +212,9 @@ public class HaploidGRNMatrixMain {
 //        PriorOperator<SimpleHaploid> priorOperator = new SimpleElitismOperator<>(numElites);
 
         /* PostOperator is required to fill up the vacancy */
-        PostOperator<SimpleHaploid> postOperator = new SimpleFillingOperatorForNormalizable<>(
-                new SimpleTournamentScheme(3));
-//        PostOperator<SimpleHaploid> postOperator = new ExtendedFillingOperator(tourSelector);
+//        PostOperator<SimpleHaploid> postOperator = new SimpleFillingOperatorForNormalizable<>(
+//                new SimpleTournamentScheme(3));
+        PostOperator<SimpleHaploid> postOperator = new ExtendedFillingOperator(tourSelector);
 
         /* Reproducer for reproduction */
 //        Reproducer<SimpleHaploid> reproducer = new GRNHaploidNoXReproducer();
@@ -268,8 +268,11 @@ public class HaploidGRNMatrixMain {
 //        statistics.generatePopulationPhenotypesOfAllGenerations(allPopulationPhenotypeName);
         statistics.generateNormalCSVFile(csvFileName);
         statistics.generatePlot(plotTitle, plotFileName);
-        statistics.generateTime("time-used", eDate.getTime() - sDate.getTime(), maxGen);
+//        statistics.generateTime("time-used", eDate.getTime() - sDate.getTime(), maxGen);
 
+        if (tourSelector instanceof ExtendedTournamentSelector) {
+            statistics.generatePerturbations(((ExtendedTournamentSelector<SimpleHaploid>) tourSelector).perturbationNum, maxGen);
+        }
 //        String test = Arrays.deepToString(targets);
 //
 //        ProcessBuilder PB1 = new ProcessBuilder("python2", "./python-tools/java_plot_curves.py",
