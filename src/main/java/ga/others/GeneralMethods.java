@@ -356,10 +356,10 @@ public class GeneralMethods<T> {
         if (r == 0) return 1;
         if (r == 1) return n;
         if (n == r) return 1;
-//        if (n < 2*r) return getCombinationNumber(n, n-r);
-//        else return getCombinationNumber(n-1, r-1) + getCombinationNumber(n-1, r);
+        if (n < 2*r) return getCombinationNumber(n, n-r);
+        else return getCombinationNumber(n-1, r-1) + getCombinationNumber(n-1, r);
 
-        return (int) (factorial(n) / (factorial(n-r) * factorial(r)));
+//        return (int) (factorial(n) / (factorial(n-r) * factorial(r)));
     }
 
     public static double factorial(int number) {
@@ -1146,8 +1146,11 @@ public class GeneralMethods<T> {
     }
 
     public static double kproportion(double k, List<Double> doubles) {
-        Collections.sort(doubles);
-        int index = (int) (doubles.size() * (1-k));
-        return doubles.get(index-1);
+//        Collections.sort(doubles);
+//        int index = (int) (doubles.size() * (1-k));
+//        return doubles.get(index-1);
+        Collections.sort(doubles, Collections.reverseOrder());
+        int index = (int) (doubles.size() * k);
+        return doubles.get(index);
     }
 }
