@@ -41,8 +41,9 @@ public class SimpleHaploidState<C extends Chromosome> extends State<C> {
                               @NotNull final Selector<C> selector,
                               final int numOfMates,
                               final double reproductionRate,
-                              double k) {
-        super(population, fitnessFunction, mutator, reproducer, selector, numOfMates, k);
+                              double k,
+                              List<Integer> compulsory_thrsholds) {
+        super(population, fitnessFunction, mutator, reproducer, selector, numOfMates, k, compulsory_thrsholds);
         setReproductionRate(reproductionRate);
     }
 
