@@ -1099,7 +1099,7 @@ public class GeneralMethods<T> {
         return staticPerturbations;
     }
 
-    public static DataGene[][] generatePurterbed(int[] target, int perturbationSize) {
+    public static DataGene[][] generatePerturbed(int[] target, int perturbationSize) {
         Integer[] indices = new Integer[target.length];
         for (int i = 0; i < indices.length; i++) {
             indices[i] = i;
@@ -1152,5 +1152,57 @@ public class GeneralMethods<T> {
         Collections.sort(doubles, Collections.reverseOrder());
         int index = (int) (doubles.size() * k);
         return doubles.get(index);
+    }
+
+    public static DataGene[][] generatePartialPurterbed(int[] target, int perturbationSize) {
+        int partialGeneNum = 5;
+        int segments = target.length / partialGeneNum;
+        int allCombinationNumber = segments * getCombinationNumber(partialGeneNum, perturbationSize);
+        DataGene[][] returnables = new DataGene[allCombinationNumber][target.length];
+        for (int i = 0; i < allCombinationNumber; i++) {
+            for (int j = 0; j < target.length; j++) {
+                returnables[i][j] = new DataGene(target[j]);
+            }
+        }
+
+        Integer[] indices = new Integer[partialGeneNum];
+        for (int i = 0; i < indices.length; i++) {
+            indices[i] = i;
+        }
+        List<List<Integer>> first_combinations = getCombination(indices, perturbationSize);
+        List<List<Integer>> combinations = new ArrayList<>();
+        for (int i = 0; i < segments; i ++) {
+            for (List<Integer> combination: first_combinations) {
+                List<Integer> nextSegment = new ArrayList<>();
+                for (Integer integer: combination) {
+                    nextSegment.add(integer + i * partialGeneNum);
+                }
+                combinations.add(nextSegment);
+            }
+        }
+
+        int overallIndex = 0;
+        for (List<Integer> combination: combinations) {
+            for (Integer aPosition: combination) {
+                returnables[overallIndex][aPosition].flip();
+            }
+            overallIndex += 1;
+        }
+
+        return returnables;
+    }
+
+    public static double perturbationProb(int targetLen, int perturbationSize) {
+        double probability = getCombinationNumber(targetLen, perturbationSize) * Math.pow(0.85, targetLen-perturbationSize) * Math.pow(0.15, perturbationSize);
+        return probability;
+    }
+
+    public static double normalisedPerturbationWeight(int targetLen, int perturbationSize, int maxPerturbation) {
+        double sum = 0;
+        for (int i = 0; i <= maxPerturbation; i ++) {
+            sum += perturbationProb(targetLen, i);
+        }
+        double probability = perturbationProb(targetLen, perturbationSize);
+        return probability/sum;
     }
 }
