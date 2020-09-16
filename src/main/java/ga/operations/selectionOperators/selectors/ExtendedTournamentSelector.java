@@ -77,6 +77,7 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
         arrList.add(generation);
         threshold = arrList;
         threshold = threshold.stream().distinct().collect(Collectors.toList());
+//        System.out.println(targetNum);
     }
 
     /**
@@ -146,10 +147,12 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
             }
 
             double kproportion = GeneralMethods.kproportion(k, fitness);
-//        double best = 0.950212931632136;
-            double best = GeneralMethods.best(fitness);
 
             targetNum = threshold.size();
+            double best = GeneralMethods.best(fitness);
+            if (targetNum == 1) {
+                best = 0.950212931632136;
+            }
 
             if (targetNum < targets.length) {
                 if (kproportion == best) {
@@ -211,7 +214,9 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
 //            setThreshold();
 //            System.out.println("add 2 target" + threshold);
 //        }
-
+        if (targetNum == 1) {
+            maxPerSize = 2;
+        } else maxPerSize = 4;
         while (perturbationSize <= maxPerSize) {
             // update table
             for (Individual<C> individual : selectedIndividuals) {
@@ -326,10 +331,19 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
     }
 
     private void updateTargetSize(Individual<C> individual, int perturbationSize, int[] addedTarget) {
-        int combinations = GeneralMethods.getCombinationNumber(targets[0].length, perturbationSize);
 
-        DataGene[][] perturbs = GeneralMethods.generatePurterbed(addedTarget, perturbationSize);
+        // partial purturbation
+        DataGene[][] perturbs = GeneralMethods.generatePartialPurterbed(addedTarget, perturbationSize);
+//        int partialGeneNum = 5;
+//        int segments = addedTarget.length / partialGeneNum;
+//        int combinations = segments * GeneralMethods.getCombinationNumber(partialGeneNum, perturbationSize);
+
+        // full purturbation
+//        int combinations = GeneralMethods.getCombinationNumber(targets[0].length, perturbationSize);
+//        DataGene[][] perturbs = GeneralMethods.generatePerturbed(addedTarget, perturbationSize);
+
         List<Double> gammas = new ArrayList<>();
+        double weight = GeneralMethods.normalisedPerturbationWeight(addedTarget.length, perturbationSize, maxPerSize);
 
         for (DataGene[] perturb: perturbs) {
             if (individual.canAchieveAttractor(perturb, maxCycle)) {
@@ -337,11 +351,13 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
                 double distance = getHammingDistance(attractor, addedTarget);
                 double aD = (1 - (distance / ((double) addedTarget.length)));
                 double oneGamma = Math.pow(aD, 5);
-                gammas.add(oneGamma);
+                double weightedGamma = oneGamma*weight;
+                gammas.add(weightedGamma);
             }
         }
-        double sum = GeneralMethods.getSum(gammas);
-        double average = sum / combinations;
+//        double sum = GeneralMethods.getSum(gammas);
+//        double average = sum / combinations;
+        double average = GeneralMethods.getAverageNumber(gammas);
         if (targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).containsKey(perturbationSize)) {
             double attained = targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).get(perturbationSize);
             Double recorded_target_num = targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).get(-1);
@@ -407,6 +423,7 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
         for (int i : set) {
             parents.add(individuals.get(i).getChromosome());
         }
+
         return parents;
     }
 
