@@ -47,47 +47,47 @@ public class HaploidGRNMatrixMain {
 //    };
 
     /* The three targets that the GA evolve towards */
-//    private static final int[] target1 = {
-//            1, -1, 1, -1, 1,
-//            1, -1, 1, -1, 1,
-//            1, -1, 1, -1, 1
-//    };
-//    private static final int[] target2 = {
-//            1, -1, 1, -1, 1,
-//            1, -1, 1, -1, 1,
-//            -1, 1, -1, 1, -1
-//    };
-//    private static final int[] target3 = {
-//            1, -1, 1, -1, 1,
-//            -1, 1, -1, 1, -1,
-//            -1, 1, -1, 1, -1
-//    };
-
-    /* The four targets that the GA evolve towards */
     private static final int[] target1 = {
-            -1, 1, -1, 1, -1,
             1, -1, 1, -1, 1,
             1, -1, 1, -1, 1,
             1, -1, 1, -1, 1
     };
     private static final int[] target2 = {
             1, -1, 1, -1, 1,
-            -1, 1, -1, 1, -1,
-            1, -1, 1, -1, 1,
-            1, -1, 1, -1, 1
-    };
-    private static final int[] target3 = {
-            1, -1, 1, -1, 1,
-            1, -1, 1, -1, 1,
-            -1, 1, -1, 1, -1,
-            1, -1, 1, -1, 1
-    };
-    private static final int[] target4 = {
-            1, -1, 1, -1, 1,
-            1, -1, 1, -1, 1,
             1, -1, 1, -1, 1,
             -1, 1, -1, 1, -1
     };
+    private static final int[] target3 = {
+            1, -1, 1, -1, 1,
+            -1, 1, -1, 1, -1,
+            -1, 1, -1, 1, -1
+    };
+
+    /* The four targets that the GA evolve towards */
+//    private static final int[] target1 = {
+//            -1, 1, -1, 1, -1,
+//            1, -1, 1, -1, 1,
+//            1, -1, 1, -1, 1,
+//            1, -1, 1, -1, 1
+//    };
+//    private static final int[] target2 = {
+//            1, -1, 1, -1, 1,
+//            -1, 1, -1, 1, -1,
+//            1, -1, 1, -1, 1,
+//            1, -1, 1, -1, 1
+//    };
+//    private static final int[] target3 = {
+//            1, -1, 1, -1, 1,
+//            1, -1, 1, -1, 1,
+//            -1, 1, -1, 1, -1,
+//            1, -1, 1, -1, 1
+//    };
+//    private static final int[] target4 = {
+//            1, -1, 1, -1, 1,
+//            1, -1, 1, -1, 1,
+//            1, -1, 1, -1, 1,
+//            -1, 1, -1, 1, -1
+//    };
 
     /* The five targets that the GA evolve towards */
 //    private static final int[] target1 = {
@@ -188,25 +188,25 @@ public class HaploidGRNMatrixMain {
     /* Parameters of the GA */
     private static final double geneMutationRate = 0.2;
     private static final int numElites = 10;
-    private static final int populationSize = 50;
+    private static final int populationSize = 100;
     private static final int tournamentSize = 3;
     private static final double reproductionRate = 0.2;
     private static final double k = 0.5; // proportion of adding second target
-    private static final int maxPerturbation = 5;
+    private static final int maxPerturbation = 2;
 
 //    private static final int maxGen = 5000; //2000
-    private static final int maxGen = 10000;
-    private static List<Integer> thresholds = Arrays.asList(0); // when to switch targets 500
-    private static List<Integer> compulsory_thrsholds = Arrays.asList(0, 500, 2000, 5000); // when to switch targets 500
-//    private static final List<Integer> thresholds = Arrays.asList(0, 500, 2000, 5000, 10000, 15000); // when to switch targets
+    private static final int maxGen = 5000;
+    private static List<Integer> thresholds = Arrays.asList(0,500,2000); // when to switch targets 500
+    private static List<Integer> compulsory_thrsholds = Arrays.asList(0, 500, 2000); // when to switch targets 500
+//    private static final List<Integer> thresholds = Arrays.asList(0, 500, 2000, 5000, 10000, 15000); // when to switch targets 500,3k,10k
     private static final double alpha = 0.75;
-    private static final int[] perturbationSizes = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
+    private static final int[] perturbationSizes = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     private static final int perturbationCycleSize = perturbations;
 
     /* Settings for text outputs */
     private static final String summaryFileName = "Summary.txt";
     private static final String csvFileName = "Statistics.csv";
-    private static final String outputDirectory = "stoc_fitness_dynamic_prog_maxPer_5_4_targets";
+    private static final String outputDirectory = "stoc_fitness_fixed_prog_maxPer_partial_weighted_2_3_targets";
     private static final String mainFileName = "HaploidGRNMatrixMain.java";
     private static final String allPerturbationsName = "Perturbations.per";
     private static final String modFitNamePrefix = "phenotypes";
@@ -226,8 +226,8 @@ public class HaploidGRNMatrixMain {
 
     public static void main(String[] args) throws IOException, InterruptedException {
 //        int[][] targets = {target1, target2};
-//        int[][] targets = {target1, target2, target3};
-        int[][] targets = {target1, target2, target3, target4};
+        int[][] targets = {target1, target2, target3};
+//        int[][] targets = {target1, target2, target3, target4};
 //        int[][] targets = {target1, target2, target3, target4, target5};
 //        int[][] targets = {target1, target2, target3, target4, target5, target6};
 
@@ -323,12 +323,12 @@ public class HaploidGRNMatrixMain {
         /* The frame of an GA to change states */
         Frame<SimpleHaploid> frame = new SimpleHaploidFrame<>(state,postOperator,statistics);
 
-        statistics.print(0); // print the initial state of an population
+//        statistics.print(0); // print the initial state of an population
 
         java.util.Date sDate = new java.util.Date();
 
         /* Actual GA evolutions */
-        for (int i = 1; i <= maxGen; i++) {
+        for (int i = 1; i <= maxGen; i++) { //1
 //            if (i == 50) {
 //                frame.getState().setSelector(tourSelector);
 //            }
