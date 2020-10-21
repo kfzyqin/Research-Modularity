@@ -1158,6 +1158,9 @@ public class GeneralMethods<T> {
         int partialGeneNum = 5;
         int segments = target.length / partialGeneNum;
         int allCombinationNumber = segments * getCombinationNumber(partialGeneNum, perturbationSize);
+        if (perturbationSize == 0) {
+            allCombinationNumber = getCombinationNumber(target.length, perturbationSize);
+        }
         DataGene[][] returnables = new DataGene[allCombinationNumber][target.length];
         for (int i = 0; i < allCombinationNumber; i++) {
             for (int j = 0; j < target.length; j++) {
@@ -1197,12 +1200,92 @@ public class GeneralMethods<T> {
         return probability;
     }
 
-    public static double normalisedPerturbationWeight(int targetLen, int perturbationSize, int maxPerturbation) {
+    public static double normalisedPerturbationWeight(int targetLen, int perturbationSize, int minPer, int maxPerturbation) {
         double sum = 0;
-        for (int i = 0; i <= maxPerturbation; i ++) {
+        for (int i = minPer; i <= maxPerturbation; i ++) {
             sum += perturbationProb(targetLen, i);
         }
         double probability = perturbationProb(targetLen, perturbationSize);
         return probability/sum;
     }
+
+    public static int setMaxPerturbation(int[] target, double min_prob) {
+        int length = target.length;
+        int maxPerturbation = 0;
+        for (int i = 0; i <= length; i ++) {
+            double probability = perturbationProb(length, i);
+            if (probability < min_prob && i-1 > 0) {
+                maxPerturbation = i-1;
+                break;
+            }
+        }
+        return maxPerturbation;
+    }
+
+    public static int setMinPerturbation(int[] target, int sampling_threshold) {
+        // the min perturbation size that reaches sampling threshold like 100
+        int minPerturbation = 0;
+        for (int i = 0; i < target.length; i++) {
+            if (getCombinationNumber(target.length, i) >= sampling_threshold) {
+                minPerturbation = i;
+                break;
+            }
+        }
+        return minPerturbation;
+    }
+
+    public static DataGene[][] generatePurterbedSampling(int[] target, int perturbationSize) {
+        DataGene[][] returnables = generatePerturbed(target, perturbationSize);
+        int sampling_size = returnables.length;
+        if (sampling_size > 100) sampling_size = 100;
+        DataGene[][] sampling_returnables = new DataGene[sampling_size][target.length];
+
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        for (int i = 0; i < sampling_size; i++) {
+            list.add(i);
+        }
+        Collections.shuffle(list);
+
+        for (int i = 0; i < sampling_size; i ++) {
+            sampling_returnables[i] = returnables[list.get(i)];
+        }
+
+        return sampling_returnables;
+    }
+
+    public static int generateImportanceSamplingSize(int length, int perturbationSize, int minPer, int maxPer) {
+        int total_perturb_num = 1000;
+        double normalised_w = normalisedPerturbationWeight(length, perturbationSize, minPer, maxPer);
+        int ceiling = (int) Math.ceil(total_perturb_num*normalised_w);
+        if (ceiling > getCombinationNumber(length, perturbationSize)) ceiling = getCombinationNumber(length, perturbationSize);
+        return ceiling;
+
+    }
+
+    public static DataGene[][] generateImportanceSampling(int[] target, int perturbationSize) {
+        DataGene[][] returnables = generatePerturbed(target, perturbationSize);
+        int sampling_size = returnables.length;
+        int sampling_threshold = 100;
+        int maxPer = setMaxPerturbation(target, 0.05);
+        int minPer = setMinPerturbation(target, sampling_threshold);
+
+        if (sampling_size > sampling_threshold) {
+            sampling_size = generateImportanceSamplingSize(target.length, perturbationSize, minPer, maxPer);
+        }
+
+        DataGene[][] sampling_returnables = new DataGene[sampling_size][target.length];
+
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        for (int i = 0; i < sampling_size; i++) {
+            list.add(i);
+        }
+        Collections.shuffle(list);
+
+        for (int i = 0; i < sampling_size; i ++) {
+            sampling_returnables[i] = returnables[list.get(i)];
+        }
+
+        return sampling_returnables;
+    }
+
 }
