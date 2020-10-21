@@ -63,6 +63,18 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
         this.compulsory_thrsholds = compulsory_thrsholds;
     }
 
+    public ExtendedTournamentSelector(@NotNull int size, int[][] targets, int maxCycle, List<Integer> threshold,
+                                      double k, List<Integer> compulsory_thrsholds) {
+        super(new SimpleTournamentScheme(size));
+        this.size = size;
+        this.targets = targets;
+        this.maxCycle = maxCycle;
+        this.threshold = threshold;
+        this.k = k;
+        this.maxPerSize = GeneralMethods.setMaxPerturbation(targets[0], 0.02);
+        this.compulsory_thrsholds = compulsory_thrsholds;
+    }
+
     public void setGeneration(int generation) {
         this.generation = generation;
     }
@@ -77,6 +89,7 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
         arrList.add(generation);
         threshold = arrList;
         threshold = threshold.stream().distinct().collect(Collectors.toList());
+//        targetNum = threshold.size();
 //        System.out.println(targetNum);
     }
 
@@ -202,7 +215,7 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
         }
         if (second && targetNum == 3){
             second = false;
-            System.out.println("3 targets");
+            System.out.println(generation + " has 3 targets");
         }
 
         int perturbationSize = 0;
@@ -214,9 +227,9 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
 //            setThreshold();
 //            System.out.println("add 2 target" + threshold);
 //        }
-        if (targetNum == 1) {
-            maxPerSize = 2;
-        } else maxPerSize = 4;
+//        if (targetNum == 1) {
+//            maxPerSize = 2;
+//        } else maxPerSize = 4;
         while (perturbationSize <= maxPerSize) {
             // update table
             for (Individual<C> individual : selectedIndividuals) {
@@ -304,9 +317,17 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
 
     // record perturbation number
     private void setPerturbationNum(int perturbation) {
+//        partial
+//        int combs = GeneralMethods.generatePartialPurterbed(targets[0], perturbation).length;
+//        sampling
+        int combs = GeneralMethods.generatePurterbedSampling(targets[0], perturbation).length;
         if (perturbationNum.containsKey(generation)) {
-            perturbationNum.put(generation, perturbationNum.get(generation) + GeneralMethods.getCombinationNumber(targets[0].length, perturbation));
-        } else perturbationNum.put(generation, GeneralMethods.getCombinationNumber(targets[0].length, perturbation));
+//            perturbationNum.put(generation, perturbationNum.get(generation) + GeneralMethods.getCombinationNumber(targets[0].length, perturbation));
+            perturbationNum.put(generation, perturbationNum.get(generation) + combs);
+        } else {
+//            perturbationNum.put(generation, targetNum);
+            perturbationNum.put(generation, combs);
+        }
     }
 
     private List<Individual<C>> getBestIndividuals(List<Individual<C>> selectedIndividuals, int perturbation) {
@@ -333,17 +354,20 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
     private void updateTargetSize(Individual<C> individual, int perturbationSize, int[] addedTarget) {
 
         // partial purturbation
-        DataGene[][] perturbs = GeneralMethods.generatePartialPurterbed(addedTarget, perturbationSize);
-//        int partialGeneNum = 5;
-//        int segments = addedTarget.length / partialGeneNum;
-//        int combinations = segments * GeneralMethods.getCombinationNumber(partialGeneNum, perturbationSize);
+//        DataGene[][] perturbs = GeneralMethods.generatePartialPurterbed(addedTarget, perturbationSize);
+
+//        sampling perturbation evaluation
+//        DataGene[][] perturbs = GeneralMethods.generatePurterbedSampling(addedTarget, perturbationSize);
+
+//        importance sampling
+//        DataGene[][] perturbs = GeneralMethods.generateImportanceSampling(addedTarget, perturbationSize);
 
         // full purturbation
-//        int combinations = GeneralMethods.getCombinationNumber(targets[0].length, perturbationSize);
-//        DataGene[][] perturbs = GeneralMethods.generatePerturbed(addedTarget, perturbationSize);
+        DataGene[][] perturbs = GeneralMethods.generatePerturbed(addedTarget, perturbationSize);
 
         List<Double> gammas = new ArrayList<>();
-        double weight = GeneralMethods.normalisedPerturbationWeight(addedTarget.length, perturbationSize, maxPerSize);
+//        anti symmetry
+//        double weight = GeneralMethods.normalisedPerturbationWeight(addedTarget.length, perturbationSize,0, maxPerSize);
 
         for (DataGene[] perturb: perturbs) {
             if (individual.canAchieveAttractor(perturb, maxCycle)) {
@@ -351,7 +375,8 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
                 double distance = getHammingDistance(attractor, addedTarget);
                 double aD = (1 - (distance / ((double) addedTarget.length)));
                 double oneGamma = Math.pow(aD, 5);
-                double weightedGamma = oneGamma*weight;
+//                double weightedGamma = oneGamma*weight;
+                double weightedGamma = oneGamma;
                 gammas.add(weightedGamma);
             }
         }
