@@ -79,18 +79,13 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
         this.generation = generation;
     }
 
-//    public void setThreshold(List<Integer> threshold) {
-//        this.threshold = threshold;
-//    }
 
-    // pre
+    // set threshold when using dynamic addition
     public void setThreshold() {
         List arrList = new ArrayList(threshold);
         arrList.add(generation);
         threshold = arrList;
         threshold = threshold.stream().distinct().collect(Collectors.toList());
-//        targetNum = threshold.size();
-//        System.out.println(targetNum);
     }
 
     /**
@@ -111,28 +106,7 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
     int targetNum = 1;
 
 
-//    public int getTargetNum (int generation){
-//        if (threshold.size() == 1) return 1;
-//        int targets = 0;
-//        for (int targetNum = 0; targetNum < threshold.size(); targetNum ++) {
-//            if (targetNum < threshold.size() - 1) {
-//                if (generation >= threshold.get(targetNum) && generation < threshold.get(targetNum + 1)) {
-//                    targets = targetNum + 1;
-//                    break;
-//                } else {
-//                    continue;
-//                }
-//            }
-//            else if (targetNum == threshold.size()-1) {
-//                if (generation >= threshold.get(targetNum)) {
-//                    targets = targetNum + 1;
-//                }
-//            }
-//        }
-//        return targets;
-//    }
-
-    // with k
+    // using k to decide target number
     public void getNumberOfTargets(double k) {
         if (targets.length == threshold.size()) {
             for (int target = 0; target < threshold.size(); target ++) {
@@ -153,7 +127,6 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
         }
         else {
             List<Double> fitness = new ArrayList<>();
-//            List<Integer> compulsory = Arrays.asList(0, 500, 2000); // when to switch targets 500
 
             for (Individual<C> individual : individuals) {
                 fitness.add(individual.getFitness());
@@ -169,13 +142,10 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
 
             if (targetNum < targets.length) {
                 if (kproportion == best) {
-//                    targetNum += 1;
                     setThreshold();
                 }
-//        if (generation == 500 && threshold.size() == 1) targetNum +=1;
 //            if k proportion not reached
                 if (compulsory_thrsholds.contains(generation) && targetNum == compulsory_thrsholds.indexOf(generation)) {
-//                    targetNum += 1;
                     setThreshold();
                 }
             }
@@ -209,30 +179,22 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
         if (targetNum < targets.length) {
             getNumberOfTargets(k);
         }
-        if (first && targetNum == 2){
-            first = false;
-            System.out.println("2 targets");
-        }
-        if (second && targetNum == 3){
-            second = false;
-            System.out.println(generation + " has 3 targets");
-        }
+//        if (first && targetNum == 2){
+//            first = false;
+//            System.out.println("2 targets");
+//        }
+//        if (second && targetNum == 3){
+//            second = false;
+//            System.out.println(generation + " has 3 targets");
+//        }
 
         int perturbationSize = 0;
         int selectedIndex = -1;
 
-        //  length 10
-//        if (targetNum == 2 && first) {
-//            first = false;
-//            setThreshold();
-//            System.out.println("add 2 target" + threshold);
-//        }
-//        if (targetNum == 1) {
-//            maxPerSize = 2;
-//        } else maxPerSize = 4;
         while (perturbationSize <= maxPerSize) {
             // update table
             for (Individual<C> individual : selectedIndividuals) {
+                //individual in the map
                 if (targetSolvedTable.containsKey(individual.getChromosome().getPhenotype(false))) {
                     if (!hasUpdatedToPerturbationSize(individual, perturbationSize)) {
                         int[][] currentTargets = new int[targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).get(-1).intValue()][];
@@ -243,7 +205,7 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
                             updateTargetSize(individual, perturbationSize, aTarget);
                         }
                     }
-                    if (!hasUpdatedToTargetSize(individual, targetNum)) {
+                    if (!hasUpdatedToTargetSize(individual, targetNum)) { // table does not update to target size
                         int saved = targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).get(-1).intValue();
                         int[] addedTarget = targets[saved];
 
@@ -253,8 +215,8 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
                     }
                 } else { // map don't have individual
                     Map<Integer, Double> targetNumMap = new HashMap<>();
-                    targetNumMap.put(-1, Double.valueOf(targetNum));
-                    targetNumMap.put(-2, Double.valueOf(targetNum));
+                    targetNumMap.put(-1, Double.valueOf(targetNum)); // record previous target number
+                    targetNumMap.put(-2, Double.valueOf(targetNum)); // record current target number
                     targetSolvedTable.put(individual.getChromosome().getPhenotype(false), targetNumMap);
                     int[][] currentTargets = new int[targetNum][];
                     for (int i = 0; i < currentTargets.length; i++) {
@@ -282,6 +244,7 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
                 selectedIndividuals = bestIndividuals;
                 if (perturbationSize == maxPerSize) {
 //                    randomno2.setSeed(seed);
+//                    no individual stands out, randomly choose one
                     Individual<C> randomChoice = selectedIndividuals.get(randomno2.nextInt(selectedIndividuals.size()));
                     for (Integer index : indices) {
                         if (individuals.get(index).getChromosome().getPhenotype(false).equals(randomChoice.getChromosome().getPhenotype(false)))
@@ -317,9 +280,9 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
 
     // record perturbation number
     private void setPerturbationNum(int perturbation) {
-//        partial
+//        partial method
 //        int combs = GeneralMethods.generatePartialPurterbed(targets[0], perturbation).length;
-//        sampling
+//        sampling method
         int combs = GeneralMethods.generatePurterbedSampling(targets[0], perturbation).length;
         if (perturbationNum.containsKey(generation)) {
 //            perturbationNum.put(generation, perturbationNum.get(generation) + GeneralMethods.getCombinationNumber(targets[0].length, perturbation));
@@ -366,7 +329,7 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
         DataGene[][] perturbs = GeneralMethods.generatePerturbed(addedTarget, perturbationSize);
 
         List<Double> gammas = new ArrayList<>();
-//        anti symmetry
+//        anti symmetry adding weights
 //        double weight = GeneralMethods.normalisedPerturbationWeight(addedTarget.length, perturbationSize,0, maxPerSize);
 
         for (DataGene[] perturb: perturbs) {
@@ -380,14 +343,15 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
                 gammas.add(weightedGamma);
             }
         }
-//        double sum = GeneralMethods.getSum(gammas);
-//        double average = sum / combinations;
+
         double average = GeneralMethods.getAverageNumber(gammas);
         if (targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).containsKey(perturbationSize)) {
             double attained = targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).get(perturbationSize);
             Double recorded_target_num = targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).get(-1);
             Double pre = targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).get(-2);
+            // calculating new value with previous updated target
             double avg = (attained * pre + average) / recorded_target_num;
+//            update the map
             targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).put(perturbationSize, avg);
             targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).put(-2, recorded_target_num);
 
@@ -395,6 +359,7 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
             targetSolvedTable.get(individual.getChromosome().getPhenotype(false)).put(perturbationSize, average);
         }
 
+//        count perturbations
         setPerturbationNum(perturbationSize);
     }
 
@@ -415,8 +380,9 @@ public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelect
         return attractor.length - count;
     }
 
-    String targetPath = "/Users/rouyijin/Desktop/modularity/Research-Modularity/generated-outputs/crossover25-mutation0.3";
 
+    String targetPath = "/Users/rouyijin/Desktop/modularity/Research-Modularity/generated-outputs/crossover25-mutation0.3";
+// to generate some generations during evolution
     public void generateSomeGenerations() throws IOException{
 
         BufferedWriter pheOutputWriter;
