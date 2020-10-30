@@ -1146,9 +1146,6 @@ public class GeneralMethods<T> {
     }
 
     public static double kproportion(double k, List<Double> doubles) {
-//        Collections.sort(doubles);
-//        int index = (int) (doubles.size() * (1-k));
-//        return doubles.get(index-1);
         Collections.sort(doubles, Collections.reverseOrder());
         int index = (int) (doubles.size() * k);
         return doubles.get(index);
