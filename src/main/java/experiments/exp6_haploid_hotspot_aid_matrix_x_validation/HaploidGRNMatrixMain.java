@@ -37,31 +37,31 @@ import java.util.List;
  */
 public class HaploidGRNMatrixMain {
     /* The two targets that the GA evolve towards */
-//    private static final int[] target1 = {
-//            1, -1, 1, -1, 1,
-//            1, -1, 1, -1, 1
-//    };
-//    private static final int[] target2 = {
-//            1, -1, 1, -1, 1,
-//            -1, 1, -1, 1, -1
-//    };
-
-    /* The three targets that the GA evolve towards */
     private static final int[] target1 = {
-            1, -1, 1, -1, 1,
             1, -1, 1, -1, 1,
             1, -1, 1, -1, 1
     };
     private static final int[] target2 = {
             1, -1, 1, -1, 1,
-            1, -1, 1, -1, 1,
             -1, 1, -1, 1, -1
     };
-    private static final int[] target3 = {
-            1, -1, 1, -1, 1,
-            -1, 1, -1, 1, -1,
-            -1, 1, -1, 1, -1
-    };
+
+    /* The three targets that the GA evolve towards */
+//    private static final int[] target1 = {
+//            1, -1, 1, -1, 1,
+//            1, -1, 1, -1, 1,
+//            1, -1, 1, -1, 1
+//    };
+//    private static final int[] target2 = {
+//            1, -1, 1, -1, 1,
+//            1, -1, 1, -1, 1,
+//            -1, 1, -1, 1, -1
+//    };
+//    private static final int[] target3 = {
+//            1, -1, 1, -1, 1,
+//            -1, 1, -1, 1, -1,
+//            -1, 1, -1, 1, -1
+//    };
 
     /* The four targets that the GA evolve towards */
 //    private static final int[] target1 = {
@@ -198,7 +198,7 @@ public class HaploidGRNMatrixMain {
     private static final int maxGen = 5000; //2000
 //    private static final int maxGen = 10000;
     private static List<Integer> thresholds = Arrays.asList(0); // when to switch targets 500
-    private static List<Integer> compulsory_thrsholds = Arrays.asList(0, 500, 2000); // when to switch targets 500
+    private static List<Integer> compulsory_thrsholds = Arrays.asList(0, 500); // when to switch targets 500
 //    private static final List<Integer> thresholds = Arrays.asList(0, 500, 2000, 5000, 10000, 15000); // when to switch targets 500,3k,10k
     private static final double alpha = 0.75;
     private static final int[] perturbationSizes = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
@@ -226,8 +226,8 @@ public class HaploidGRNMatrixMain {
     private static double edgePenalty = 0.01;
 
     public static void main(String[] args) throws IOException, InterruptedException {
-//        int[][] targets = {target1, target2};
-        int[][] targets = {target1, target2, target3};
+        int[][] targets = {target1, target2};
+//        int[][] targets = {target1, target2, target3};
 //        int[][] targets = {target1, target2, target3, target4};
 //        int[][] targets = {target1, target2, target3, target4, target5};
 //        int[][] targets = {target1, target2, target3, target4, target5, target6};
