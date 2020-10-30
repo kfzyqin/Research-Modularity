@@ -15,7 +15,12 @@ import org.jetbrains.annotations.NotNull;
 import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
-
+/**
+ * This class is the extended selection.
+ *
+ * @author Rouyi Jin
+ * @since 27/03/2020.
+ */
 public class ExtendedTournamentSelector<C extends Chromosome> extends BaseSelector<C> {
 
     protected int[][] targets;
