@@ -61,9 +61,9 @@ def best_mod_avg(path, min_gen, max_gen, sample_size):
     return modularity
 
 
-sample_size = 100
+sample_size = 44
 min_gen = 1
-max_gen = 1001
+max_gen = 5000
 fitness_key = 'Best'
 modularity_key = 'FittestModularity'
 
@@ -79,6 +79,7 @@ stoc_diag_f = "/Users/rouyijin/Desktop/IEEE-Alife-Results/stoc-x-0.2-0.2"
 stoc_hori_f = "/Users/rouyijin/Desktop/IEEE-Alife-Results/stoc-x-0.2-0.2-horizontal-x"
 # dynamic stochastic
 dyn_sto_f = "/Users/rouyijin/Desktop/IEEE-Alife-Results/Stochastic-0.5-2000-random-init"
+target3 = '/Volumes/My Passport/target_3_results/generated-outputs/stoc_fitness_dynamic_prog_0.5_maxPer_4_3_targets'
 
 # # fitness
 # original = statistics_read_sample_size(file1, fitness_key, sample_size)
@@ -109,24 +110,26 @@ dyn_sto_f = "/Users/rouyijin/Desktop/IEEE-Alife-Results/Stochastic-0.5-2000-rand
 # stoc_hori = statistics_read_sample_size(stoc_hori_f, fitness_key, sample_size)
 # stoc_hori_avg = statistics_avg_generation_range(min_gen, max_gen, stoc_hori, sample_size)
 
+three_target = statistics_read_sample_size(target3, fitness_key, sample_size)
+three_target_avg = statistics_avg_generation_range(min_gen, max_gen, three_target, sample_size)
 
 # drawing fitness
-# x = list(range(0, 1000))
+# x = list(range(1, 5000))
 # # multiple line plot
-# plt.plot(x, stoc_avg, marker='x', label="stochastic", color='red', linewidth=1, markevery=50, markersize=7)
-# plt.plot(x, progressive_avg, marker='^', label="progressive", color='green', linewidth=1, markevery=50, markersize=7)
+# # plt.plot(x, stoc_avg, marker='x', label="stochastic", color='red', linewidth=1, markevery=50, markersize=7)
+# plt.plot(x, three_target_avg, marker='^', label="progressive_3_targets", color='green', linewidth=1, markevery=200, markersize=7)
 # plt.xlabel('generation', fontsize=14)
 # plt.ylabel('fitness', fontsize=14)
 #
-# plt.ylim(0.5, 1.00)
-# my_x_ticks = np.arange(0, 1001, 100)
-# my_y_ticks = np.arange(0.55, 0.96, 0.05)
+# plt.ylim(0.35, 1.00)
+# my_x_ticks = np.arange(0, 5001, 1000)
+# my_y_ticks = np.arange(0.35, 0.96, 0.05)
 # plt.xticks(my_x_ticks, fontsize=13)
 # plt.yticks(my_y_ticks, fontsize=13)
 #
 # plt.legend(loc='lower right', fontsize=13)
 # plt.tight_layout()
-# plt.savefig('/Users/rouyijin/Desktop/fitness_stochastic_vs_dist_progressive_0_1000.png', dpi=500, bbox_inches='tight')
+# plt.savefig('/Users/rouyijin/Desktop/fitness_targets_3.png', dpi=500, bbox_inches='tight')
 # plt.show()
 
 
@@ -139,29 +142,31 @@ dyn_sto_f = "/Users/rouyijin/Desktop/IEEE-Alife-Results/Stochastic-0.5-2000-rand
 # progressive_mod = best_mod_avg(file4, min_gen, max_gen, sample_size)
 # dynamic_progressive_mod = best_mod_avg(file2, min_gen, max_gen, sample_size)
 #
-dynamic_stoc_mod = best_mod_avg(dyn_sto_f, min_gen, max_gen, sample_size)
-stoc_diag_mod = best_mod_avg(stoc_diag_f, min_gen, max_gen, sample_size)
+# dynamic_stoc_mod = best_mod_avg(dyn_sto_f, min_gen, max_gen, sample_size)
+# stoc_diag_mod = best_mod_avg(stoc_diag_f, min_gen, max_gen, sample_size)
 # stoc_hori_mod = best_mod_avg(stoc_hori_f, min_gen, max_gen, sample_size)
 #
 # # tec
 # tec_distributional_mod = best_mod_avg(tecDis, min_gen, max_gen, sample_size)
 # tec_stochastic_mod = best_mod_avg(tecSto, min_gen, max_gen, sample_size)
+# 3 targets
+target3_mod = best_mod_avg(target3, min_gen, max_gen, sample_size)
 #
 # drawing modularity
-x = list(range(0, 1000))
+x = list(range(1, 5000))
 # multiple line plot
-plt.plot(x, stoc_diag_mod, marker='x', label="stoc pre-defined", color='red', linewidth=1, markevery=50, markersize=7)
-plt.plot(x, dynamic_stoc_mod, marker='^', label="stoc dynamic", color='green', linewidth=1, markevery=50, markersize=7)
+# plt.plot(x, stoc_diag_mod, marker='x', label="stoc pre-defined", color='red', linewidth=1, markevery=50, markersize=7)
+plt.plot(x, target3_mod, marker='^', label="progressive_3_targets", color='green', linewidth=1, markevery=200, markersize=7)
 plt.xlabel('generation', fontsize=14)
 plt.ylabel('modularity', fontsize=14)
 
-plt.ylim(-0.2, 1)
-my_x_ticks = np.arange(0, 1001, 100)
-my_y_ticks = np.arange(-0.20, 1.1, 0.1)
+plt.ylim(-0.2, 1.4)
+my_x_ticks = np.arange(0, 5001, 1000)
+my_y_ticks = np.arange(-0.20, 1.4, 0.1)
 plt.xticks(my_x_ticks, fontsize=13)
 plt.yticks(my_y_ticks, fontsize=13)
 
 plt.legend(loc='lower right', fontsize=13)
 plt.tight_layout()
-plt.savefig('/Users/rouyijin/Desktop/modularity_stochastic_original_vs_dynamic_0_1000.png', dpi=500, bbox_inches='tight')
+plt.savefig('/Users/rouyijin/Desktop/mod_targets_3.png', dpi=500, bbox_inches='tight')
 plt.show()
