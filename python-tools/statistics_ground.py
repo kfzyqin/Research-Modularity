@@ -58,12 +58,61 @@ if __name__ == '__main__':
 
     elif to_use == 'specific':
         # path_1 = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/distributional-tournament-no-x'
-        path_1 = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Data/distributional-p00'
-        path_2 = '/home/zhenyue-qin/Research/Project-Rin-Datasets/Project-Maotai-Data/Tec-Simultaneous-Experiments/distributional-proportional-no-x'
+
+        # Zhenyue's 500, 2000
+        # path_1 = '/Users/rouyijin/Desktop/IEEE-Alife-Results/Zhenyue\'s-500-2000/mutation-0.2-x-0.2'
+        # path_1 = '/Volumes/My Passport/IEEE-Alife/Zhenyue-500-2000/mutation-0.2-x-0.2'
+
+
+        # Zhenyue's k or 500, 1000 no seed, random initial pop
+        # path_1 = '/Users/rouyijin/Desktop/IEEE-Alife-Results/Zhenyue\'s-0.5-2000/mutation-0.2-x-0.2'
+
+        # stochastic
+        # path_1 = '/Users/rouyijin/Desktop/IEEE-Alife-Results/Stochastic-0.5-2000-random-init'
+        # path_2 = "/Users/rouyijin/Desktop/IEEE-Alife-Results/stoc-x-0.2-0.2"
+        # path_2 = '/Volumes/My Passport/IEEE-Alife/stoc-x-0.2-0.2'
+
+        # Rouyi's max perturbation 10, without seed, 2 random
+        # path_1 = '/Users/rouyijin/Desktop/IEEE-Alife-Results/Rouyi-selection-k-0.5-2000-max-10-with-perturbationMap'
+
+        # Rouyi's max perturbation 2, without seed, 2 random
+        # path_1 = '/Volumes/My Passport/IEEE-Alife/Rouyi-selection-k-0.5-2000-max-2-with-perturbationMap-random-init'
+
+        # Rouyi's 500-2000
+        # path_2 = '/Volumes/My Passport/IEEE-Alife/Rouyi-selection-500-2000-perturbationMap-random-init'
+
+        # 3 targets max per 2 and 4
+        # path_1 = '/Users/rouyijin/Desktop/target_3_results/generated-outputs/stoc_fitness_dynamic_prog_0.5_maxPer_2_4_3_targets'
+        # path_2 = '/Users/rouyijin/Desktop/target_3_results/generated-outputs/stoc_fitness_dynamic_prog_0.5_maxPer_2_4_3_targets'
+        # path_2 = '/Users/rouyijin/Desktop/target_3_results/generated-outputs/stoc_fitness_dynamic_prog_0.5_maxPer_4_3_targets'
+
+        # 2 targets max per 2 partial
+        # path_1 = "/Users/rouyijin/Desktop/target_3_results/generated-outputs/stoc_fitness_dynamic_prog_0.5_maxPer_partial_2_3_targets"
+        # path_2 = "/Users/rouyijin/Desktop/target_3_results/generated-outputs/stoc_fitness_dynamic_prog_0.5_maxPer_partial_2_3_targets"
+
+        # 3 targets partial max 2
+        # path_1 = '/Volumes/My Passport/target_3_results/generated-outputs/stoc_fitness_dyn_prog_weighted_partial_per2_3targets'
+        # path_2 = '/Volumes/My Passport/target_3_results/generated-outputs/stoc_fitness_dyn_prog_weighted_partial_per2_3targets'
+
+        # 3 targets full per 2
+        # path_1 = '/Volumes/My Passport/target_3_results/generated-outputs/stoc_fitness_dynamic_prog_0.5_maxPer_2_4_3_targets'
+        # path_2 = '/Volumes/My Passport/target_3_results/generated-outputs/stoc_fitness_dynamic_prog_0.5_maxPer_2_4_3_targets'
+
+        # sampling 3 targets
+        # path_1 = '/Users/rouyijin/Desktop/sampling3/generated-outputs/stoc_fitness_dyn_prog_weighted_sampling_3targets'
+        # path_2 = '/Users/rouyijin/Desktop/sampling3/generated-outputs/stoc_fitness_dyn_prog_weighted_sampling_3targets'
+
+        # 3 targets
+        path_1 = '/Volumes/My Passport/target_3_results/generated-outputs/stoc_fitness_dynamic_prog_0.5_maxPer_4_3_targets'
+        path_2 = '/Volumes/My Passport/target_3_results/generated-outputs/stoc_fitness_dynamic_prog_0.5_maxPer_4_3_targets'
+
+        # sampling 2 targets
+        # path_1 = '/Volumes/My Passport/2_targets/generated-outputs/stoc_fitness_dyn_prog_weighted_partial_per2_2targets'
+        # path_2 = '/Volumes/My Passport/2_targets/generated-outputs/stoc_fitness_dyn_prog_weighted_partial_per2_2targets'
 
         omega = StatisticsToolkit(path_1, path_2)
 
-        sample_size = 10
+        sample_size = 44
 
         the_index = -1
 
