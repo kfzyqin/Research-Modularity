@@ -31,7 +31,7 @@ public class IndividualFunctionTest<M extends Material, P extends Material> {
 
 
 
-    PreFixedIndividualInitializer initializer = new PreFixedIndividualInitializer(1, target1.length, 5);
+    PreFixedIndividualInitializer initializer = new PreFixedIndividualInitializer(1, target1.length, 6);
     Population<SimpleHaploid> population = initializer.initialize();
     Individual individual1 = population.getIndividualsView().get(0);
 
