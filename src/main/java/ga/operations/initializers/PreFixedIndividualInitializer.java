@@ -27,7 +27,7 @@ public class PreFixedIndividualInitializer extends HaploidGRNInitializer {
 //        String aModFile = "/home/zhenyue-qin/Research/Project-Maotai-Modularity/jars/generated-outputs/proportional-100/2019-10-14-18-29-17/population-phenotypes/all-population-phenotype_gen_10.lists";
 //        String aModFile = "/Users/rouyijin/Desktop/initial-population.lists";
 //        String aModFile = "./all-population-phenotype_gen_10742.lists";
-        String aModFile = "./all-population-phenotype_test.lists"; // for test
+        String aModFile = "./data/all-population-phenotype_test.lists"; // for test
 //        URL url = getClass().getResource("initial-population.lists");
 //        String aModFile = url.getPath();
         List<String[]> lines = GeneralMethods.readFileLineByLine(aModFile);
